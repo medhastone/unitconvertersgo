@@ -1,0 +1,1984 @@
+"use client";
+
+import { useState, useMemo, useEffect, useDeferredValue } from "react";
+import Link from "next/link";
+import {
+  Thermometer,
+  Ruler,
+  Scale,
+  Square,
+  Beaker,
+  Gauge,
+  Clock,
+  CircleDot,
+  Zap,
+  Activity,
+  HardDrive,
+  ArrowDownUp,
+  Flame,
+  Layers,
+  RotateCw,
+  Radio,
+  Compass,
+  Fuel,
+  ArrowLeftRight,
+  ArrowUpDown,
+  Copy,
+  Check,
+  RotateCcw,
+  Calculator,
+  Table,
+  CheckCircle2,
+  ArrowRight,
+  ArrowUpRight,
+  Sparkles,
+  Info,
+  AlertTriangle,
+  Link2,
+  HelpCircle,
+  Lightbulb,
+  Grid,
+  ChevronRight,
+  ChevronDown,
+  ExternalLink,
+  ShieldCheck,
+  Target,
+  Code2,
+} from "lucide-react";
+import {
+  ConversionOutput,
+  ConversionPairInfo,
+  PrecisionMode,
+} from "@/lib/conversions/types";
+import { convertUnits, formatValue } from "@/lib/conversions/engine";
+import {
+  CATEGORIES,
+  getUnitsByCategory,
+  UNIT_MAP,
+  CATEGORY_MAP,
+} from "@/lib/conversions/units";
+import {
+  CONVERSION_CATALOGUE,
+  getConversionsByCategory,
+  getMoreUnitConversionLinks,
+  getPairUrl,
+  getCategoryUrl,
+} from "@/lib/conversions/catalogue";
+import {
+  generateEditorialContentBundle,
+  generateScaleAwareTableRows,
+} from "@/lib/conversions/editorial";
+import { getTrustedReferencesForPair } from "@/lib/conversions/references";
+import { generateLiveSolution } from "@/lib/conversions/solver";
+import { getPresetSearchQueries } from "@/lib/conversions/scenarios";
+import {
+  parseNumericOrFractionInput,
+  formatAsTapeFraction,
+  formatFeetAndInches,
+  getMultiUnitEquivalents,
+  STANDARD_TAPE_FRACTIONS,
+  QUICK_FRACTION_CHIPS,
+} from "@/lib/conversions/fractions";
+
+interface ConversionPageInteractiveProps {
+  pair: ConversionPairInfo;
+  featuredRelatedPairs?: ConversionPairInfo[];
+}
+
+const CATEGORY_THEME_BY_ID: Record<
+  string,
+  { heroBadge: string; sidebarBadge: string }
+> = {
+  length: {
+    heroBadge:
+      "bg-blue-50 dark:bg-blue-950/60 border-blue-200/80 dark:border-blue-800/70 text-blue-600 dark:text-blue-400",
+    sidebarBadge:
+      "bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400",
+  },
+  mass: {
+    heroBadge:
+      "bg-indigo-50 dark:bg-indigo-950/60 border-indigo-200/80 dark:border-indigo-800/70 text-indigo-600 dark:text-indigo-400",
+    sidebarBadge:
+      "bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400",
+  },
+  temperature: {
+    heroBadge:
+      "bg-rose-50 dark:bg-rose-950/60 border-rose-200/80 dark:border-rose-800/70 text-rose-500 dark:text-rose-400",
+    sidebarBadge:
+      "bg-rose-50 dark:bg-rose-950/60 text-rose-500 dark:text-rose-400",
+  },
+  area: {
+    heroBadge:
+      "bg-emerald-50 dark:bg-emerald-950/60 border-emerald-200/80 dark:border-emerald-800/70 text-emerald-600 dark:text-emerald-400",
+    sidebarBadge:
+      "bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400",
+  },
+  volume: {
+    heroBadge:
+      "bg-cyan-50 dark:bg-cyan-950/60 border-cyan-200/80 dark:border-cyan-800/70 text-cyan-600 dark:text-cyan-400",
+    sidebarBadge:
+      "bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400",
+  },
+  speed: {
+    heroBadge:
+      "bg-orange-50 dark:bg-orange-950/60 border-orange-200/80 dark:border-orange-800/70 text-orange-600 dark:text-orange-400",
+    sidebarBadge:
+      "bg-orange-50 dark:bg-orange-950/60 text-orange-600 dark:text-orange-400",
+  },
+  time: {
+    heroBadge:
+      "bg-violet-50 dark:bg-violet-950/60 border-violet-200/80 dark:border-violet-800/70 text-violet-600 dark:text-violet-400",
+    sidebarBadge:
+      "bg-violet-50 dark:bg-violet-950/60 text-violet-600 dark:text-violet-400",
+  },
+  pressure: {
+    heroBadge:
+      "bg-sky-50 dark:bg-sky-950/60 border-sky-200/80 dark:border-sky-800/70 text-sky-600 dark:text-sky-400",
+    sidebarBadge:
+      "bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400",
+  },
+  energy: {
+    heroBadge:
+      "bg-amber-50 dark:bg-amber-950/60 border-amber-200/80 dark:border-amber-800/70 text-amber-600 dark:text-amber-400",
+    sidebarBadge:
+      "bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400",
+  },
+  power: {
+    heroBadge:
+      "bg-fuchsia-50 dark:bg-fuchsia-950/60 border-fuchsia-200/80 dark:border-fuchsia-800/70 text-fuchsia-600 dark:text-fuchsia-400",
+    sidebarBadge:
+      "bg-fuchsia-50 dark:bg-fuchsia-950/60 text-fuchsia-600 dark:text-fuchsia-400",
+  },
+  digital_storage: {
+    heroBadge:
+      "bg-teal-50 dark:bg-teal-950/60 border-teal-200/80 dark:border-teal-800/70 text-teal-600 dark:text-teal-400",
+    sidebarBadge:
+      "bg-teal-50 dark:bg-teal-950/60 text-teal-600 dark:text-teal-400",
+  },
+};
+
+const RELATED_BADGE_CLASSES = [
+  "bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 border-rose-200/80 dark:border-rose-800/60",
+  "bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 border-sky-200/80 dark:border-sky-800/60",
+  "bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border-emerald-200/80 dark:border-emerald-800/60",
+  "bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 border-amber-200/80 dark:border-amber-800/60",
+  "bg-violet-50 dark:bg-violet-950/60 text-violet-600 dark:text-violet-400 border-violet-200/80 dark:border-violet-800/60",
+];
+
+function renderCategoryIcon(iconName: string, className = "w-5 h-5") {
+  switch (iconName) {
+    case "Thermometer":
+      return <Thermometer className={className} />;
+    case "Ruler":
+      return <Ruler className={className} />;
+    case "Scale":
+      return <Scale className={className} />;
+    case "Square":
+      return <Square className={className} />;
+    case "Beaker":
+      return <Beaker className={className} />;
+    case "Gauge":
+      return <Gauge className={className} />;
+    case "Clock":
+      return <Clock className={className} />;
+    case "CircleDot":
+      return <CircleDot className={className} />;
+    case "Zap":
+      return <Zap className={className} />;
+    case "Activity":
+      return <Activity className={className} />;
+    case "HardDrive":
+      return <HardDrive className={className} />;
+    case "ArrowDownUp":
+      return <ArrowDownUp className={className} />;
+    case "Flame":
+      return <Flame className={className} />;
+    case "Layers":
+      return <Layers className={className} />;
+    case "RotateCw":
+      return <RotateCw className={className} />;
+    case "Radio":
+      return <Radio className={className} />;
+    case "Compass":
+      return <Compass className={className} />;
+    case "Fuel":
+      return <Fuel className={className} />;
+    default:
+      return <ArrowLeftRight className={className} />;
+  }
+}
+
+/**
+ * Formats a conversion result with up to 9 decimal places in "auto" mode on pair pages
+ * so e.g. 10 cm -> 3.937007874 inches while keeping integer/exact results clean.
+ */
+function formatPairResult(rawValue: number, precision: PrecisionMode): string {
+  if (!Number.isFinite(rawValue)) return "Invalid Input";
+  if (rawValue === 0) return "0";
+
+  if (precision !== "auto") {
+    return formatValue(rawValue, precision);
+  }
+
+  const abs = Math.abs(rawValue);
+  if (abs >= 1e9 || (abs > 0 && abs < 1e-6)) {
+    return rawValue.toExponential(6).replace(/\.?0+e/, "e");
+  }
+
+  // Round to 9 decimal places to eliminate floating-point noise while preserving 3.937007874
+  const rounded9 = Number(rawValue.toFixed(9));
+  const parts = rounded9.toString().split(".");
+  const intPart = Number(parts[0]).toLocaleString("en-US");
+  return parts[1] ? `${intPart}.${parts[1]}` : intPart;
+}
+
+/**
+ * Produces a human-readable formula string and worked example arithmetic
+ */
+function getHumanFormulaAndExample(
+  fromUnitId: string,
+  toUnitId: string,
+  inputVal: number,
+  output: ConversionOutput
+) {
+  const fromUnit = output.fromUnit;
+  const toUnit = output.toUnit;
+  const fromPlural = fromUnit.plural.toLowerCase();
+  const toPlural = toUnit.plural.toLowerCase();
+
+  const oneReverse = convertUnits(1, toUnitId, fromUnitId, "auto");
+  const oneForward = convertUnits(1, fromUnitId, toUnitId, "auto");
+
+  if (fromUnitId === "centimeter" && toUnitId === "inch") {
+    const approx3 = Number(output.rawValue.toFixed(3));
+    return {
+      primaryFormula: "inches = centimeters ÷ 2.54",
+      secondaryFormula: "in = cm × 0.3937007874",
+      inverseFormula: "centimeters = inches × 2.54",
+      factorText: "1 inch = 2.54 centimeters (exact international definition)",
+      workedEquation: `${inputVal} ÷ 2.54 = approximately ${approx3} inches`,
+      workedExact: `${inputVal} cm ÷ 2.54 = ${formatPairResult(output.rawValue, "auto")} in`,
+    };
+  }
+
+  if (fromUnitId === "inch" && toUnitId === "centimeter") {
+    const approx3 = Number(output.rawValue.toFixed(3));
+    return {
+      primaryFormula: "centimeters = inches × 2.54",
+      secondaryFormula: "cm = in ÷ 0.3937007874",
+      inverseFormula: "inches = centimeters ÷ 2.54",
+      factorText: "1 inch = 2.54 centimeters (exact international definition)",
+      workedEquation: `${inputVal} × 2.54 = ${approx3} centimeters`,
+      workedExact: `${inputVal} in × 2.54 = ${formatPairResult(output.rawValue, "auto")} cm`,
+    };
+  }
+
+  if (fromUnit.categoryId === "temperature" || fromUnit.categoryId === "fuel_economy") {
+    return {
+      primaryFormula: output.formulaDisplay,
+      secondaryFormula: `1 ${fromUnit.symbol} = ${oneForward.formattedValue} ${toUnit.symbol}`,
+      inverseFormula: `1 ${toUnit.symbol} = ${oneReverse.formattedValue} ${fromUnit.symbol}`,
+      factorText: `Non-linear / offset scale conversion between ${fromUnit.name} and ${toUnit.name}`,
+      workedEquation: `${output.steps.map((s) => s.expression).join(" → ")}`,
+      workedExact: `${inputVal} ${fromUnit.symbol} = ${formatPairResult(output.rawValue, "auto")} ${toUnit.symbol}`,
+    };
+  }
+
+  const invRaw = oneReverse.rawValue;
+  const invRounded = Number(invRaw.toFixed(4));
+  const isCleanDivisor =
+    invRaw > 1 &&
+    Math.abs(invRaw - invRounded) < 1e-7 &&
+    invRounded.toString().length <= 6;
+
+  if (isCleanDivisor) {
+    const approx3 = Number(output.rawValue.toFixed(3));
+    return {
+      primaryFormula: `${toPlural} = ${fromPlural} ÷ ${invRounded}`,
+      secondaryFormula: `${toUnit.symbol} = ${fromUnit.symbol} × ${oneForward.formattedValue}`,
+      inverseFormula: `${fromUnit.symbol} = ${toUnit.symbol} × ${invRounded}`,
+      factorText: `1 ${toUnit.name.toLowerCase()} (${toUnit.symbol}) = ${invRounded} ${fromPlural} (${fromUnit.symbol})`,
+      workedEquation: `${inputVal} ÷ ${invRounded} = approximately ${approx3} ${toPlural}`,
+      workedExact: `${inputVal} ${fromUnit.symbol} ÷ ${invRounded} = ${formatPairResult(output.rawValue, "auto")} ${toUnit.symbol}`,
+    };
+  }
+
+  const fwdFactor = oneForward.formattedValue;
+  const approx3 = Number(output.rawValue.toFixed(3));
+  return {
+    primaryFormula: `${toPlural} = ${fromPlural} × ${fwdFactor}`,
+    secondaryFormula: output.formulaDisplay,
+    inverseFormula: `${fromUnit.symbol} = ${toUnit.symbol} × ${oneReverse.formattedValue}`,
+    factorText: `1 ${fromUnit.name.toLowerCase()} (${fromUnit.symbol}) = ${fwdFactor} ${toPlural} (${toUnit.symbol})`,
+    workedEquation: `${inputVal} × ${fwdFactor} = approximately ${approx3} ${toPlural}`,
+    workedExact: `${inputVal} ${fromUnit.symbol} × ${fwdFactor} = ${formatPairResult(output.rawValue, "auto")} ${toUnit.symbol}`,
+  };
+}
+
+export default function ConversionPageInteractive({
+  pair,
+  featuredRelatedPairs = [],
+}: ConversionPageInteractiveProps) {
+  const [fromUnitId, setFromUnitId] = useState<string>(pair.fromUnitId);
+  const [toUnitId, setToUnitId] = useState<string>(pair.toUnitId);
+  const [inputStr, setInputStr] = useState<string>(String(pair.exampleInput));
+  const deferredInputStr = useDeferredValue(inputStr);
+  const [precision, setPrecision] = useState<PrecisionMode>("auto");
+  const [copied, setCopied] = useState(false);
+  const [copiedFormula, setCopiedFormula] = useState(false);
+  const [copiedSolution, setCopiedSolution] = useState(false);
+  const [tablePreset, setTablePreset] = useState<"common" | "small" | "large">(
+    "common"
+  );
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+
+  // Sync optional ?value= query parameter on mount/navigation so direct preset links pre-fill the converter
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const syncFromUrl = () => {
+      const params = new URLSearchParams(window.location.search);
+      const qVal = params.get("value");
+      if (qVal && Number.isFinite(parseFloat(qVal))) {
+        setInputStr((prev) => (prev === qVal ? prev : qVal));
+      }
+    };
+    const rafId = window.requestAnimationFrame(syncFromUrl);
+    window.addEventListener("popstate", syncFromUrl);
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      window.removeEventListener("popstate", syncFromUrl);
+    };
+  }, []);
+
+  const categoryUnits = useMemo(() => {
+    const base = [...getUnitsByCategory(pair.categoryId)];
+    const f = UNIT_MAP.get(fromUnitId);
+    const t = UNIT_MAP.get(toUnitId);
+    if (f && !base.some((u) => u.id === f.id)) base.push(f);
+    if (t && !base.some((u) => u.id === t.id)) base.push(t);
+    return base;
+  }, [pair.categoryId, fromUnitId, toUnitId]);
+  const category = CATEGORY_MAP.get(pair.categoryId);
+  const iconName = category?.iconName || "ArrowLeftRight";
+  const theme = CATEGORY_THEME_BY_ID[pair.categoryId] || {
+    heroBadge:
+      "bg-teal-50 dark:bg-teal-950/60 border-teal-200/80 dark:border-teal-800/70 text-[#0D9488] dark:text-[#2DD4BF]",
+    sidebarBadge:
+      "bg-teal-50 dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF]",
+  };
+
+  const numericInput = useMemo(() => {
+    return parseNumericOrFractionInput(inputStr);
+  }, [inputStr]);
+
+  const deferredNumericInput = useMemo(() => {
+    return parseNumericOrFractionInput(deferredInputStr);
+  }, [deferredInputStr]);
+
+  const isValidInput = Number.isFinite(numericInput);
+  const effectiveInput = isValidInput ? numericInput : 0;
+  const isDeferredValid = Number.isFinite(deferredNumericInput);
+  const deferredEffectiveInput = isDeferredValid ? deferredNumericInput : 0;
+
+  const activeOutput: ConversionOutput = useMemo(() => {
+    return convertUnits(effectiveInput, fromUnitId, toUnitId, precision);
+  }, [effectiveInput, fromUnitId, toUnitId, precision]);
+
+  const highPrecisionFormatted = useMemo(() => {
+    if (!isValidInput) return "—";
+    return formatPairResult(activeOutput.rawValue, precision);
+  }, [isValidInput, activeOutput.rawValue, precision]);
+
+  const fromUnit = UNIT_MAP.get(fromUnitId) || activeOutput.fromUnit;
+  const toUnit = UNIT_MAP.get(toUnitId) || activeOutput.toUnit;
+
+  // Tape-measure fraction & Feet+Inches breakdown when converting to/from length units
+  const inchBreakdown = useMemo(() => {
+    if (!isValidInput || pair.categoryId !== "length") return null;
+    try {
+      const totalInches =
+        toUnitId === "inch"
+          ? activeOutput.rawValue
+          : fromUnitId === "inch"
+          ? effectiveInput
+          : convertUnits(effectiveInput, fromUnitId, "inch", "auto").rawValue;
+      const totalCm =
+        toUnitId === "centimeter"
+          ? activeOutput.rawValue
+          : fromUnitId === "centimeter"
+          ? effectiveInput
+          : convertUnits(effectiveInput, fromUnitId, "centimeter", "auto").rawValue;
+
+      if (!Number.isFinite(totalInches) || totalInches < 0 || totalInches > 100000) {
+        return null;
+      }
+
+      const frac16 = formatAsTapeFraction(totalInches, 16);
+      const frac64 = formatAsTapeFraction(totalInches, 64);
+      const feetInches = formatFeetAndInches(totalInches);
+
+      return {
+        totalInches,
+        totalCm,
+        frac16,
+        frac64,
+        feetInches,
+      };
+    } catch {
+      return null;
+    }
+  }, [isValidInput, pair.categoryId, toUnitId, fromUnitId, activeOutput.rawValue, effectiveInput]);
+
+  // Simultaneous multi-unit equivalents for the active input (deferred to keep input INP < 50ms)
+  const multiUnitEquivalents = useMemo(() => {
+    if (!isDeferredValid) return [];
+    return getMultiUnitEquivalents(deferredEffectiveInput, fromUnitId, pair.categoryId);
+  }, [isDeferredValid, deferredEffectiveInput, fromUnitId, pair.categoryId]);
+
+  const supportsFractionalInput = useMemo(() => {
+    return ["inch", "foot", "yard", "ounce", "pound", "cup", "fluid_ounce"].includes(
+      fromUnitId
+    );
+  }, [fromUnitId]);
+
+  const primaryReferences = useMemo(() => {
+    return getTrustedReferencesForPair(pair, fromUnit, toUnit);
+  }, [pair, fromUnit, toUnit]);
+
+  const handleSelectFractionChip = (decimal: number, label: string) => {
+    const trimmed = inputStr.trim();
+    const wholeMatch = trimmed.match(/^(\d+)$/);
+    if (wholeMatch && Number(wholeMatch[1]) > 0 && Number(wholeMatch[1]) < 1000) {
+      setInputStr(`${wholeMatch[1]} ${label}`);
+    } else {
+      setInputStr(label);
+    }
+  };
+
+  // Resolve a 3rd visual comparison unit (base unit or another popular unit in the category)
+  const thirdVisualUnit = useMemo(() => {
+    const cat = CATEGORY_MAP.get(pair.categoryId);
+    const baseU = cat ? UNIT_MAP.get(cat.baseUnitId) : undefined;
+    if (baseU && baseU.id !== fromUnit.id && baseU.id !== toUnit.id) {
+      return baseU;
+    }
+    return (
+      categoryUnits.find(
+        (u) => u.id !== fromUnit.id && u.id !== toUnit.id
+      ) || toUnit
+    );
+  }, [pair.categoryId, categoryUnits, fromUnit, toUnit]);
+
+  const visualUnits = useMemo(() => {
+    const list = [fromUnit, toUnit];
+    if (
+      thirdVisualUnit &&
+      thirdVisualUnit.id !== fromUnit.id &&
+      thirdVisualUnit.id !== toUnit.id
+    ) {
+      list.push(thirdVisualUnit);
+    }
+    return list;
+  }, [fromUnit, toUnit, thirdVisualUnit]);
+
+  // Check if the user switched units to another canonical pair in the catalogue
+  const matchingCanonicalPair = useMemo(() => {
+    return CONVERSION_CATALOGUE.find(
+      (p) => p.fromUnitId === fromUnitId && p.toUnitId === toUnitId
+    );
+  }, [fromUnitId, toUnitId]);
+
+  const handleSwapUnits = () => {
+    setFromUnitId(toUnitId);
+    setToUnitId(fromUnitId);
+  };
+
+  const handleReset = () => {
+    setFromUnitId(pair.fromUnitId);
+    setToUnitId(pair.toUnitId);
+    setInputStr(String(pair.exampleInput));
+    setPrecision("auto");
+  };
+
+  const handleClear = () => {
+    setInputStr("");
+  };
+
+  const handleSelectValue = (val: number, scrollToConverter = false) => {
+    setInputStr(String(val));
+    if (scrollToConverter && typeof window !== "undefined") {
+      const targetUrl = `${window.location.pathname}?value=${encodeURIComponent(
+        String(val)
+      )}#converter-tool-section`;
+      window.history.replaceState(null, "", targetUrl);
+
+      const converterEl = document.getElementById("converter-tool-section");
+      if (converterEl) {
+        converterEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      const inputEl = document.getElementById(
+        "pair-numeric-input"
+      ) as HTMLInputElement | null;
+      if (inputEl) {
+        setTimeout(() => {
+          inputEl.focus({ preventScroll: true });
+        }, 300);
+      }
+    }
+  };
+
+  const handleVisualUnitClick = (clickedId: string) => {
+    if (clickedId === fromUnitId) return;
+    if (clickedId === toUnitId) {
+      handleSwapUnits();
+      return;
+    }
+    setFromUnitId(clickedId);
+  };
+
+  const handleCopy = async () => {
+    if (!isValidInput) return;
+    try {
+      await navigator.clipboard.writeText(highPrecisionFormatted);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // ignore clipboard errors
+    }
+  };
+
+  const liveSolution = useMemo(() => {
+    return generateLiveSolution(deferredEffectiveInput, fromUnitId, toUnitId, precision);
+  }, [deferredEffectiveInput, fromUnitId, toUnitId, precision]);
+
+  const searchPresets = useMemo(() => {
+    return getPresetSearchQueries(fromUnitId, toUnitId, pair.categoryId);
+  }, [fromUnitId, toUnitId, pair.categoryId]);
+
+  const editorial = useMemo(
+    () =>
+      generateEditorialContentBundle(
+        pair,
+        fromUnit,
+        toUnit,
+        isDeferredValid ? deferredNumericInput : pair.exampleInput
+      ),
+    [pair, fromUnit, toUnit, isDeferredValid, deferredNumericInput]
+  );
+
+  const moreUnitLinks = useMemo(
+    () => getMoreUnitConversionLinks(fromUnit, toUnit),
+    [fromUnit, toUnit]
+  );
+
+  const handleCopyFormula = async () => {
+    try {
+      await navigator.clipboard.writeText(liveSolution.formulaEquation);
+      setCopiedFormula(true);
+      setTimeout(() => setCopiedFormula(false), 2000);
+    } catch {
+      // ignore
+    }
+  };
+
+  const handleCopySolution = async () => {
+    try {
+      const solutionText = `${liveSolution.step1Title}\n${liveSolution.step1Detail}\n\n${liveSolution.step2Title}\n${liveSolution.step2Expression}\n${liveSolution.step2Explanation}\n\n${liveSolution.step3Title}\n${liveSolution.step3Result}\n${liveSolution.step3Conclusion}`;
+      await navigator.clipboard.writeText(solutionText);
+      setCopiedSolution(true);
+      setTimeout(() => setCopiedSolution(false), 2000);
+    } catch {
+      // ignore
+    }
+  };
+
+  const formulaDetails = useMemo(
+    () =>
+      getHumanFormulaAndExample(
+        fromUnitId,
+        toUnitId,
+        isValidInput ? numericInput : pair.exampleInput,
+        activeOutput
+      ),
+    [
+      fromUnitId,
+      toUnitId,
+      isValidInput,
+      numericInput,
+      pair.exampleInput,
+      activeOutput,
+    ]
+  );
+
+  // Scale-aware conversion table rows (handles extreme ratios like Inches to Nanometers 0.0000001" to 1" + standard rows)
+  const tableRows = useMemo(() => {
+    if (tablePreset === "small" && (fromUnitId === "inch" || pair.categoryId === "length") && toUnitId !== "nanometer") {
+      return STANDARD_TAPE_FRACTIONS.map((row) => {
+        const res = convertUnits(row.decimalValue, fromUnitId, toUnitId, "auto");
+        const resThird = convertUnits(
+          row.decimalValue,
+          fromUnitId,
+          thirdVisualUnit.id,
+          "auto"
+        );
+        return {
+          input: row.decimalValue,
+          inputLabel: `${row.fractionLabel} ${fromUnit.symbol} (${row.decimalLabel})`,
+          formatted6: `${formatPairResult(res.rawValue, "6")} ${toUnit.symbol}`,
+          formattedThird: `${formatValue(resThird.rawValue, "auto")} ${thirdVisualUnit.symbol}`,
+        };
+      });
+    }
+
+    const mode =
+      tablePreset === "common"
+        ? "auto"
+        : tablePreset === "small"
+        ? "fractions"
+        : "standard";
+    const generated = generateScaleAwareTableRows(
+      fromUnit,
+      toUnit,
+      thirdVisualUnit,
+      mode,
+      pair.commonValues
+    );
+    return generated.map((r) => ({
+      input: r.input,
+      inputLabel: r.inputDisplay,
+      formatted6: r.outputDisplay,
+      formattedThird: r.thirdUnitDisplay || "",
+    }));
+  }, [tablePreset, pair.commonValues, pair.categoryId, fromUnitId, toUnitId, fromUnit, toUnit, thirdVisualUnit]);
+
+  // Sidebar links in the same category
+  const sidebarCategoryPairs = useMemo(() => {
+    const allInCat = getConversionsByCategory(pair.categoryId);
+    const prioritized: ConversionPairInfo[] = [pair];
+    for (const p of allInCat) {
+      if (p.slug !== pair.slug && prioritized.length < 6) {
+        prioritized.push(p);
+      }
+    }
+    return prioritized;
+  }, [pair]);
+
+  const oneForward = useMemo(
+    () => convertUnits(1, fromUnitId, toUnitId, "auto"),
+    [fromUnitId, toUnitId]
+  );
+  const oneReverse = useMemo(
+    () => convertUnits(1, toUnitId, fromUnitId, "auto"),
+    [fromUnitId, toUnitId]
+  );
+
+  const sidebarRelatedCategories = useMemo(() => {
+    return CATEGORIES.filter((c) => c.id !== pair.categoryId).slice(0, 6);
+  }, [pair.categoryId]);
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+      {/* =====================================================================
+          LEFT MAIN COLUMN (8 cols on lg)
+          ===================================================================== */}
+      <div className="lg:col-span-8 space-y-8">
+        {/* 1. MAIN CONVERTER CARD (Visual Focus of the Page) */}
+        <section
+          id="converter-tool-section"
+          aria-label={`${fromUnit.plural} to ${toUnit.plural} Calculator`}
+          className="scroll-mt-24 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-5"
+        >
+          {/* Card Header + Precision Mode Controls */}
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF] shrink-0">
+                <ArrowUpDown className="w-5 h-5" />
+              </span>
+              <div>
+                <h2 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
+                  Convert {fromUnit.plural} to {toUnit.plural}
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                  Enter a value in {fromUnit.plural.toLowerCase()} ({fromUnit.symbol}) to convert to {toUnit.plural.toLowerCase()} ({toUnit.symbol}).
+                </p>
+              </div>
+            </div>
+
+            {/* Precision Selector */}
+            <div
+              className="flex items-center gap-1"
+              role="group"
+              aria-label="Decimal precision"
+            >
+              {(
+                [
+                  { mode: "auto", label: "Full" },
+                  { mode: "2", label: "2 dec" },
+                  { mode: "4", label: "4 dec" },
+                  { mode: "6", label: "6 dec" },
+                  { mode: "scientific", label: "10ⁿ" },
+                ] as { mode: PrecisionMode; label: string }[]
+              ).map((item) => (
+                <button
+                  key={item.mode}
+                  type="button"
+                  onClick={() => setPrecision(item.mode)}
+                  className={`px-2.5 py-1 rounded-lg text-xs font-mono font-bold transition-all cursor-pointer ${
+                    precision === item.mode
+                      ? "bg-[#0D9488] text-white shadow-2xs"
+                      : "bg-[#F7F9FC] dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200/80 dark:border-slate-700 hover:border-[#0D9488]/50"
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile-First Form Row: Value + From + Swap + To */}
+          <div className="grid grid-cols-1 sm:grid-cols-12 gap-3.5 items-end">
+            {/* Value Input (supports decimal, fraction "3/8", or mixed number "5 3/8") */}
+            <div className="sm:col-span-3 space-y-1.5">
+              <div className="flex items-center justify-between">
+                <label
+                  htmlFor="pair-numeric-input"
+                  className="block text-xs font-bold text-[#16324F] dark:text-slate-200"
+                >
+                  Value ({fromUnit.symbol})
+                </label>
+                {supportsFractionalInput && (
+                  <span className="text-[10px] font-mono font-semibold text-[#0D9488] dark:text-teal-400">
+                    Dec or Frac
+                  </span>
+                )}
+              </div>
+              <input
+                id="pair-numeric-input"
+                type="text"
+                inputMode="decimal"
+                value={inputStr}
+                onChange={(e) => setInputStr(e.target.value)}
+                placeholder={supportsFractionalInput ? "e.g. 5 or 5 3/8" : "Enter value..."}
+                className="w-full h-12 px-3.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-300/90 dark:border-slate-700 text-base sm:text-lg font-extrabold font-mono text-[#16324F] dark:text-white focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-all"
+              />
+            </div>
+
+            {/* Source Unit Selector */}
+            <div className="sm:col-span-4 space-y-1.5">
+              <label
+                htmlFor="pair-from-unit"
+                className="block text-xs font-bold text-[#16324F] dark:text-slate-200"
+              >
+                From
+              </label>
+              <select
+                id="pair-from-unit"
+                value={fromUnitId}
+                onChange={(e) => setFromUnitId(e.target.value)}
+                className="w-full h-12 px-3.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-300/90 dark:border-slate-700 text-sm font-bold text-[#16324F] dark:text-white focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-all cursor-pointer"
+              >
+                {categoryUnits.map((u) => (
+                  <option key={u.id} value={u.id}>
+                    {u.plural} ({u.symbol})
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Swap Direction Control */}
+            <div className="sm:col-span-1 flex justify-center">
+              <button
+                type="button"
+                onClick={handleSwapUnits}
+                aria-label={`Swap conversion direction from ${fromUnit.plural} to ${toUnit.plural}`}
+                title="Swap source and target units"
+                className="w-full sm:w-12 h-11 sm:h-12 rounded-xl bg-[#E6FAF8] dark:bg-teal-950/70 hover:bg-[#0D9488] text-[#0F766E] dark:text-teal-300 hover:text-white border border-[#0D9488]/30 flex items-center justify-center gap-2 transition-colors cursor-pointer shrink-0"
+              >
+                <ArrowLeftRight className="w-4 h-4" />
+                <span className="sm:hidden text-xs font-bold">Swap Units</span>
+              </button>
+            </div>
+
+            {/* Target Unit Selector */}
+            <div className="sm:col-span-4 space-y-1.5">
+              <label
+                htmlFor="pair-to-unit"
+                className="block text-xs font-bold text-[#16324F] dark:text-slate-200"
+              >
+                To
+              </label>
+              <select
+                id="pair-to-unit"
+                value={toUnitId}
+                onChange={(e) => setToUnitId(e.target.value)}
+                className="w-full h-12 px-3.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-300/90 dark:border-slate-700 text-sm font-bold text-[#16324F] dark:text-white focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-all cursor-pointer"
+              >
+                {categoryUnits.map((u) => (
+                  <option key={u.id} value={u.id}>
+                    {u.plural} ({u.symbol})
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          {/* Quick Tape-Measure Fraction Input Strip (for Inches / Imperial units) */}
+          {supportsFractionalInput && (
+            <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+              <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 mr-1">
+                Quick Fractions ({fromUnit.symbol}):
+              </span>
+              {QUICK_FRACTION_CHIPS.map((fc) => {
+                const isFracSelected = inputStr.trim() === fc.label || inputStr.trim().endsWith(` ${fc.label}`);
+                return (
+                  <button
+                    key={fc.label}
+                    type="button"
+                    onClick={() => handleSelectFractionChip(fc.decimal, fc.label)}
+                    title={`Enter ${fc.label} ${fromUnit.symbol} (${fc.decimal})`}
+                    className={`px-2 py-1 rounded-lg text-xs font-mono font-bold border transition-all cursor-pointer ${
+                      isFracSelected
+                        ? "bg-[#0D9488] text-white border-[#0D9488]"
+                        : "bg-[#F7F9FC] dark:bg-slate-800/80 text-[#16324F] dark:text-slate-200 border-slate-200/90 dark:border-slate-700 hover:border-[#0D9488] hover:text-[#0D9488]"
+                    }`}
+                  >
+                    {fc.label}
+                  </button>
+                );
+              })}
+              <span className="text-[11px] text-slate-400 dark:text-slate-500 ml-1 hidden sm:inline">
+                (Tip: type mixed numbers like <code className="font-mono font-semibold text-slate-600 dark:text-slate-300">5 3/8</code>)
+              </span>
+            </div>
+          )}
+
+          {/* Validation Notice when empty/invalid */}
+          {!isValidInput && (
+            <div
+              role="status"
+              className="flex items-start gap-2.5 p-3.5 rounded-xl bg-amber-50/90 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/70 text-xs sm:text-sm text-amber-900 dark:text-amber-200"
+            >
+              <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+              <span>
+                Please enter a valid number or fraction above (for example:{" "}
+                <strong>{pair.exampleInput}</strong> or <strong>5 3/8</strong>).
+              </span>
+            </div>
+          )}
+
+          {/* Prominent Result Box (Matching Temperature Converter Result Box) */}
+          <div className="space-y-2.5">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-slate-600 dark:text-slate-300">
+                Result
+              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handleClear}
+                  className="text-xs font-semibold text-slate-500 hover:text-[#0D9488] transition-colors cursor-pointer"
+                  title="Clear input field"
+                >
+                  Clear
+                </button>
+                <span className="text-slate-300 dark:text-slate-700">•</span>
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 hover:text-[#0D9488] transition-colors cursor-pointer"
+                  title={`Reset to default (${pair.exampleInput} ${pair.fromUnitId})`}
+                >
+                  <RotateCcw className="w-3 h-3" />
+                  <span>Reset</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="p-4 sm:p-5 min-h-[82px] rounded-2xl bg-[#E6FAF8]/85 dark:bg-teal-950/35 border border-[#0D9488]/30 flex flex-wrap items-center justify-between gap-4">
+              <div
+                aria-live="polite"
+                className="flex items-baseline gap-2.5 flex-wrap"
+              >
+                <span className="text-3xl sm:text-4xl font-extrabold font-mono tracking-tight text-[#16324F] dark:text-white break-all">
+                  {highPrecisionFormatted}
+                </span>
+                <span className="text-base sm:text-xl font-bold text-[#0F766E] dark:text-[#2DD4BF]">
+                  {toUnit.plural.toLowerCase()}
+                </span>
+              </div>
+
+              <button
+                type="button"
+                onClick={handleCopy}
+                disabled={!isValidInput}
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 min-h-[42px] rounded-xl bg-[#0D9488] hover:bg-[#0F766E] disabled:opacity-50 text-white text-xs sm:text-sm font-bold shadow-xs transition-colors cursor-pointer shrink-0"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-4 h-4" />
+                    <span>Copied!</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4" />
+                    <span>Copy Result</span>
+                  </>
+                )}
+              </button>
+            </div>
+
+            {/* Tape-Measure Fractional Inch & Feet+Inches Breakdown (for Length Conversions) */}
+            {inchBreakdown && (toUnitId === "inch" || fromUnitId === "inch" || toUnitId === "foot" || fromUnitId === "foot") && (
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+                {inchBreakdown.frac16 && (
+                  <div className="p-2.5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/80 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                      Nearest 1/16&Prime; Ruler Fraction
+                    </span>
+                    <span className="font-mono text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white mt-0.5">
+                      {inchBreakdown.frac16.display} in{" "}
+                      <span className="text-[11px] font-normal text-slate-500">
+                        ({Number(inchBreakdown.frac16.exactDecimal.toFixed(4))}&Prime;)
+                      </span>
+                    </span>
+                  </div>
+                )}
+                {inchBreakdown.frac64 && (
+                  <div className="p-2.5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/80 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                      Nearest 1/64&Prime; Machinist Fraction
+                    </span>
+                    <span className="font-mono text-xs sm:text-sm font-extrabold text-[#0D9488] dark:text-[#2DD4BF] mt-0.5">
+                      {inchBreakdown.frac64.display} in
+                    </span>
+                  </div>
+                )}
+                {inchBreakdown.feetInches && (
+                  <div className="p-2.5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/80 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                      Feet &amp; Inches (ft + in)
+                    </span>
+                    <span className="font-mono text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white mt-0.5">
+                      {inchBreakdown.feetInches}
+                    </span>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Below Result: Equation Statement + Automatic Update Indicator */}
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+              {isValidInput ? (
+                <div className="font-mono text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white">
+                  {inputStr.trim() !== String(numericInput)
+                    ? `${inputStr.trim()} (${numericInput}) ${fromUnit.symbol}`
+                    : `${numericInput} ${fromUnit.symbol}`}{" "}
+                  = {highPrecisionFormatted} {toUnit.symbol}
+                </div>
+              ) : (
+                <div className="text-xs font-semibold text-amber-700 dark:text-amber-300">
+                  Waiting for numeric input...
+                </div>
+              )}
+
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-[#0D9488] dark:text-[#2DD4BF] shrink-0" />
+                  <span>Result updates automatically</span>
+                </div>
+
+                <Link
+                  href={`/widgets/w/${matchingCanonicalPair?.slug || pair.slug}`}
+                  prefetch={false}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F7F9FC] dark:bg-slate-800 hover:bg-[#E6FAF8] dark:hover:bg-teal-950/60 border border-slate-200/90 dark:border-slate-700 hover:border-[#0D9488] text-xs font-extrabold text-[#16324F] dark:text-teal-300 transition-colors"
+                  title={`Embed this ${fromUnit.plural} to ${toUnit.plural} calculator widget on your website`}
+                >
+                  <Code2 className="w-3.5 h-3.5 text-[#0D9488] dark:text-[#2DD4BF]" />
+                  <span>Get Widget</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Simultaneous Multi-Unit Equivalents Strip */}
+          {multiUnitEquivalents.length > 0 && (
+            <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80 space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                  Equivalent Measurements Across Units
+                </span>
+                <span className="text-[11px] font-mono text-slate-400 dark:text-slate-500">
+                  For {numericInput} {fromUnit.symbol}
+                </span>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {multiUnitEquivalents.map((eq) => (
+                  <div
+                    key={eq.unitId}
+                    className="px-3 py-2 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between gap-2 text-xs"
+                  >
+                    <span className="text-slate-500 dark:text-slate-400 font-medium truncate">
+                      {eq.name}
+                    </span>
+                    <span className="font-mono font-bold text-[#16324F] dark:text-white shrink-0">
+                      {eq.formatted} {!eq.isCompound ? eq.symbol : ""}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Interactive Dual-Scale Ruler Graphic (Inches vs. Centimeters) for Length Tools */}
+          {inchBreakdown && (fromUnitId === "inch" || toUnitId === "inch" || fromUnitId === "centimeter" || toUnitId === "centimeter") && (
+            <div className="p-3.5 sm:p-4 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/70 border border-slate-200/90 dark:border-slate-800 space-y-2.5">
+              <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
+                <span className="font-extrabold text-[#16324F] dark:text-white flex items-center gap-1.5">
+                  <Ruler className="w-4 h-4 text-[#0D9488]" />
+                  <span>Visual Scale Comparison: Inches (in) vs. Centimeters (cm)</span>
+                </span>
+                <span className="font-mono text-[11px] font-bold text-[#0D9488] dark:text-[#2DD4BF]">
+                  1 in = 2.54 cm (exact)
+                </span>
+              </div>
+
+              {/* Dual Ruler SVG / CSS Scale (0 to 4 inches = 0 to 10.16 cm) */}
+              <div className="relative rounded-lg bg-white dark:bg-slate-900 border border-slate-300/80 dark:border-slate-700 p-3 overflow-hidden select-none">
+                {/* Top Edge: Inches (0" to 4" with 1/4" ticks) */}
+                <div className="space-y-1 pb-2 border-b border-slate-200 dark:border-slate-800">
+                  <div className="flex justify-between text-[10px] font-mono font-bold text-[#16324F] dark:text-slate-200">
+                    <span>0 in</span>
+                    <span>1 in</span>
+                    <span>2 in</span>
+                    <span>3 in</span>
+                    <span>4 in</span>
+                  </div>
+                  <div className="relative h-3 w-full flex justify-between items-start">
+                    {Array.from({ length: 17 }).map((_, i) => {
+                      const isWhole = i % 4 === 0;
+                      const isHalf = i % 2 === 0;
+                      return (
+                        <div
+                          key={i}
+                          className={`w-px ${
+                            isWhole
+                              ? "h-3 bg-[#16324F] dark:bg-white"
+                              : isHalf
+                              ? "h-2 bg-slate-500"
+                              : "h-1.5 bg-slate-300 dark:bg-slate-600"
+                          }`}
+                        />
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Highlight Bar for Active Value (clamped to 0 - 4 in visual window) */}
+                {inchBreakdown.totalInches > 0 && (
+                  <div className="py-1.5">
+                    <div className="w-full h-2.5 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-[#0D9488] to-[#16324F] rounded-full transition-all duration-300"
+                        style={{
+                          width: `${Math.min(100, Math.max(3, (inchBreakdown.totalInches / 4) * 100))}%`,
+                        }}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between text-[10px] font-mono text-slate-500 dark:text-slate-400 mt-1">
+                      <span>
+                        Active: <strong className="text-[#16324F] dark:text-white">{Number(inchBreakdown.totalInches.toFixed(3))} in</strong> ({inchBreakdown.frac16?.display}&Prime;)
+                      </span>
+                      <span>
+                        = <strong className="text-[#0D9488] dark:text-[#2DD4BF]">{Number(inchBreakdown.totalCm.toFixed(3))} cm</strong> ({Number((inchBreakdown.totalCm * 10).toFixed(1))} mm)
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Bottom Edge: Centimeters (0 cm to 10.16 cm) */}
+                <div className="space-y-1 pt-1 border-t border-slate-200 dark:border-slate-800">
+                  <div className="relative h-3 w-full flex justify-between items-end">
+                    {Array.from({ length: 21 }).map((_, i) => {
+                      const isWholeCm = i % 2 === 0;
+                      return (
+                        <div
+                          key={i}
+                          className={`w-px ${
+                            isWholeCm
+                              ? "h-3 bg-[#0D9488] dark:bg-[#2DD4BF]"
+                              : "h-1.5 bg-teal-300 dark:bg-teal-700"
+                          }`}
+                        />
+                      );
+                    })}
+                  </div>
+                  <div className="flex justify-between text-[10px] font-mono font-bold text-[#0F766E] dark:text-[#2DD4BF]">
+                    <span>0 cm</span>
+                    <span>2.54 cm</span>
+                    <span>5.08 cm</span>
+                    <span>7.62 cm</span>
+                    <span>10.16 cm</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Compact Visual Unit Selector Buttons */}
+          <div className="space-y-2.5 pt-1">
+            <div
+              role="group"
+              aria-label="Quick unit selector"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-2.5"
+            >
+              {visualUnits.map((u) => {
+                const isSource = fromUnitId === u.id;
+                const isTarget = toUnitId === u.id;
+                return (
+                  <button
+                    key={u.id}
+                    type="button"
+                    onClick={() => handleVisualUnitClick(u.id)}
+                    aria-pressed={isSource}
+                    className={`flex items-center justify-center gap-2 px-4 py-2.5 min-h-[44px] rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer border ${
+                      isSource
+                        ? "bg-[#E6FAF8]/90 dark:bg-teal-950/60 text-[#16324F] dark:text-white border-[#0D9488] shadow-2xs"
+                        : isTarget
+                        ? "bg-[#F7F9FC] dark:bg-slate-800/80 text-[#16324F] dark:text-slate-200 border-[#0D9488]/40"
+                        : "bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-300 border-slate-200/90 dark:border-slate-800 hover:border-[#0D9488]/60"
+                    }`}
+                  >
+                    <span
+                      className={
+                        isSource
+                          ? "text-[#0D9488]"
+                          : "text-slate-500 dark:text-slate-400"
+                      }
+                    >
+                      {renderCategoryIcon(iconName, "w-4 h-4")}
+                    </span>
+                    <span className="truncate">
+                      {u.plural} ({u.symbol})
+                    </span>
+                    {isSource && (
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#0D9488] text-white shrink-0">
+                        From
+                      </span>
+                    )}
+                    {isTarget && (
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-[#16324F] dark:text-slate-200 shrink-0">
+                        To
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Suggested Conversions & Benchmark Chips */}
+            <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80 space-y-2">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-xs font-extrabold text-[#16324F] dark:text-slate-200 flex items-center gap-1.5">
+                  <Sparkles className="w-4 h-4 text-[#0D9488]" />
+                  <span>Suggested Conversions</span>
+                </span>
+                {matchingCanonicalPair &&
+                  matchingCanonicalPair.slug !== pair.slug && (
+                    <Link
+                      href={`/convert/${matchingCanonicalPair.slug}`}
+                      className="inline-flex items-center gap-1 text-xs font-bold text-[#0D9488] dark:text-teal-400 hover:underline"
+                    >
+                      <span>
+                        Open{" "}
+                        {matchingCanonicalPair.title.replace(" Converter", "")}
+                      </span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  )}
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2">
+                {searchPresets.map((preset) => {
+                  const isSelected =
+                    isValidInput && numericInput === preset.value;
+                  return (
+                    <button
+                      key={`${preset.value}-${preset.label}`}
+                      type="button"
+                      onClick={() => handleSelectValue(preset.value, true)}
+                      title={`Load ${preset.label} into calculator`}
+                      className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer flex items-center gap-1.5 ${
+                        isSelected
+                          ? "bg-[#16324F] text-white border-[#16324F] shadow-sm font-bold scale-[1.02]"
+                          : "bg-[#F7F9FC] dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border-slate-200/90 dark:border-slate-700 hover:border-[#0D9488] hover:text-[#0D9488] hover:bg-[#E6FAF8]/50"
+                      }`}
+                    >
+                      <span className="font-mono">{preset.label}</span>
+                      <ArrowUpRight className="w-3 h-3 opacity-75 shrink-0" />
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Clean Standard Reference Attribution Footer (No Author Box) */}
+            {primaryReferences.length > 0 && (
+              <div className="pt-2.5 border-t border-slate-100 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500 dark:text-slate-400">
+                <div className="flex items-center gap-1.5 min-w-0">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#0D9488] shrink-0" />
+                  <span className="font-semibold text-slate-700 dark:text-slate-300">
+                    Reference:
+                  </span>
+                  <span className="truncate">
+                    {primaryReferences[0].shortName} ({primaryReferences[0].standardCode})
+                  </span>
+                </div>
+                <a
+                  href="#references-standards-heading"
+                  className="font-mono font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline shrink-0"
+                >
+                  [1–{primaryReferences.length}] ↓
+                </a>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* 2. SCALE-AWARE CONVERSION TABLE */}
+        <section
+          aria-labelledby="common-conversions-table-heading"
+          className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-4"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="flex items-start gap-3">
+              <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 shrink-0 mt-0.5">
+                <Table className="w-5 h-5" />
+              </span>
+              <div>
+                <h2
+                  id="common-conversions-table-heading"
+                  className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
+                >
+                  {editorial.tableHeading}
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                  {editorial.tableSubheading} Click any preset value or arrow to load it into the converter.
+                </p>
+              </div>
+            </div>
+
+            {/* Scale Range Tabs */}
+            <div className="flex items-center gap-1 p-1 bg-[#F7F9FC] dark:bg-slate-800 rounded-xl border border-slate-200/80 dark:border-slate-700 text-xs self-start sm:self-auto shrink-0">
+              {(
+                [
+                  { id: "common", label: "Scale-Aware" },
+                  { id: "small", label: "Fractions / Micro" },
+                  { id: "large", label: "Standard (1–100)" },
+                ] as const
+              ).map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setTablePreset(tab.id)}
+                  className={`px-2.5 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
+                    tablePreset === tab.id
+                      ? "bg-white dark:bg-slate-900 text-[#16324F] dark:text-white shadow-2xs"
+                      : "text-slate-500 dark:text-slate-400 hover:text-[#16324F]"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="overflow-x-auto rounded-xl border border-slate-200/90 dark:border-slate-800">
+            <table
+              className="w-full text-left border-collapse"
+              aria-label={editorial.tableHeading}
+            >
+              <thead>
+                <tr className="bg-[#F7F9FC] dark:bg-slate-800/80 border-b border-slate-200/90 dark:border-slate-800 text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white">
+                  <th scope="col" className="py-3 px-4 w-1/2">
+                    {fromUnit.plural} ({fromUnit.symbol})
+                  </th>
+                  <th scope="col" className="py-3 px-4 w-1/2">
+                    {toUnit.plural} ({toUnit.symbol})
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-200/70 dark:divide-slate-800 text-xs sm:text-sm font-mono tabular-nums">
+                {tableRows.map((row) => {
+                  const isCurrentRow =
+                    isValidInput && Math.abs(numericInput - row.input) < 1e-9;
+                  return (
+                    <tr
+                      key={`${row.input}-${row.inputLabel}`}
+                      tabIndex={0}
+                      onClick={() => handleSelectValue(row.input, true)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          handleSelectValue(row.input, true);
+                        }
+                      }}
+                      title={`Click to convert ${row.inputLabel} in calculator`}
+                      className={`group/row cursor-pointer transition-colors ${
+                        isCurrentRow
+                          ? "bg-[#E6FAF8]/60 dark:bg-teal-950/40 font-extrabold"
+                          : "hover:bg-[#F7F9FC] dark:hover:bg-slate-800/50"
+                      }`}
+                    >
+                      <td className="py-3 px-4 font-bold text-[#16324F] dark:text-slate-100 group-hover/row:text-[#0D9488] dark:group-hover/row:text-[#2DD4BF] transition-colors">
+                        {row.inputLabel}
+                      </td>
+                      <td className="py-3 px-4 font-bold text-[#0D9488] dark:text-[#2DD4BF]">
+                        <a
+                          href={`?value=${encodeURIComponent(String(row.input))}#converter-tool-section`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            handleSelectValue(row.input, true);
+                          }}
+                          title={`Convert preset value ${row.inputLabel} in calculator`}
+                          aria-label={`Convert preset value ${row.inputLabel} in calculator`}
+                          className="flex items-center justify-between gap-2 w-full font-bold text-[#0D9488] dark:text-[#2DD4BF] cursor-pointer"
+                        >
+                          <span>{row.formatted6}</span>
+                          <span
+                            className={`inline-flex items-center justify-center w-5 h-5 rounded-md border transition-all shrink-0 ${
+                              isCurrentRow
+                                ? "bg-[#0D9488] text-white border-[#0D9488]"
+                                : "bg-[#E6FAF8] dark:bg-teal-950/70 text-[#0D9488] dark:text-[#2DD4BF] border-[#0D9488]/30 group-hover/row:bg-[#0D9488] group-hover/row:text-white group-hover/row:border-[#0D9488]"
+                            }`}
+                          >
+                            <ArrowRight className="w-3 h-3" />
+                          </span>
+                        </a>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* 3. HOW TO CONVERT & HOW MANY SECTION (Competitor-Style Editorial Guide) */}
+        <section
+          aria-labelledby="how-to-convert-heading"
+          className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-6"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
+            <div className="flex items-center gap-3">
+              <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF] shrink-0">
+                <Calculator className="w-5 h-5" />
+              </span>
+              <h2
+                id="how-to-convert-heading"
+                className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
+              >
+                {editorial.howToHeading}
+              </h2>
+            </div>
+
+            <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
+              <button
+                type="button"
+                onClick={handleCopyFormula}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-[#F7F9FC] dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-[#0D9488] hover:text-[#0D9488] transition-all cursor-pointer"
+              >
+                {copiedFormula ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>Copied</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3.5 h-3.5" />
+                    <span>Copy Formula</span>
+                  </>
+                )}
+              </button>
+              <button
+                type="button"
+                onClick={handleCopySolution}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-[#16324F] hover:bg-[#1E4268] text-white transition-all cursor-pointer shadow-2xs"
+              >
+                {copiedSolution ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>Copied</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3.5 h-3.5" />
+                    <span>Copy Steps</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* How to Convert Narrative & Formula Box */}
+          <div className="space-y-3.5 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            <p>{editorial.howToRatioParagraph}</p>
+            <p>{editorial.howToFormulaIntro}</p>
+
+            <div className="p-4 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/90 dark:border-slate-800 font-mono text-sm sm:text-base font-extrabold text-[#16324F] dark:text-teal-300 text-center shadow-2xs">
+              {editorial.howToFormulaBox}
+            </div>
+
+            <p>{editorial.howToSentenceExplanation}</p>
+            <p>{editorial.howToExampleIntro}</p>
+
+            <div className="p-4 rounded-xl bg-[#E6FAF8]/65 dark:bg-teal-950/35 border border-[#0D9488]/30 font-mono text-sm sm:text-base font-extrabold text-[#0F766E] dark:text-[#2DD4BF] text-center shadow-2xs">
+              {editorial.howToExampleBox}
+            </div>
+          </div>
+
+          {/* How Many [ToPlural] Are in a/an [FromSingular]? */}
+          <div className="pt-5 border-t border-slate-100 dark:border-slate-800 space-y-3.5 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            <h3 className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white tracking-tight">
+              {editorial.howManyHeading}
+            </h3>
+            <p>{editorial.howManyParagraph1}</p>
+
+            <div className="p-4 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/90 dark:border-slate-800 flex flex-wrap items-center justify-center gap-4 font-mono text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white">
+              <span>{editorial.howManyEquivalenceBox}</span>
+              <span className="text-slate-300 dark:text-slate-700">|</span>
+              <span className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm font-bold">
+                {editorial.howManyInverseNote}
+              </span>
+            </div>
+
+            <p>{editorial.howManySystemParagraph}</p>
+            <p>{editorial.howManyTransitionParagraph}</p>
+          </div>
+        </section>
+
+        {/* 4. WHAT IS A [SOURCE UNIT] & WHAT IS A [TARGET UNIT] ENCYCLOPEDIA SECTIONS */}
+        <section
+          aria-labelledby="unit-definitions-heading"
+          className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-6"
+        >
+          {/* Source Unit Encyclopedia Section */}
+          <div className="space-y-3 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            <h2
+              id="unit-definitions-heading"
+              className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
+            >
+              {editorial.fromUnitGuide.heading}
+            </h2>
+            <p>
+              {editorial.fromUnitGuide.definitionParagraph}{" "}
+              <a
+                href="#references-standards-heading"
+                className="font-mono text-xs font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+              >
+                [1]
+              </a>
+            </p>
+            <p>{editorial.fromUnitGuide.systemAndSymbolParagraph}</p>
+            <p>{editorial.fromUnitGuide.notationOrPrefixParagraph}</p>
+
+            {editorial.fromUnitGuide.benchmarkCallout && (
+              <div className="p-3.5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/70 border-l-4 border-[#0D9488] text-xs sm:text-sm font-semibold text-[#16324F] dark:text-slate-200">
+                {editorial.fromUnitGuide.benchmarkCallout}
+              </div>
+            )}
+
+            <p>{editorial.fromUnitGuide.toolsAndApplicationsParagraph}</p>
+            <div>
+              <Link
+                href={editorial.fromUnitGuide.categoryHref}
+                prefetch={false}
+                className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+              >
+                <span>{editorial.fromUnitGuide.categoryLinkLabel}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Target Unit Encyclopedia Section */}
+          <div className="pt-5 border-t border-slate-100 dark:border-slate-800 space-y-3 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            <h2 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
+              {editorial.toUnitGuide.heading}
+            </h2>
+            <p>
+              {editorial.toUnitGuide.definitionParagraph}{" "}
+              <a
+                href="#references-standards-heading"
+                className="font-mono text-xs font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+              >
+                [2]
+              </a>
+            </p>
+            <p>{editorial.toUnitGuide.systemAndSymbolParagraph}</p>
+            <p>{editorial.toUnitGuide.notationOrPrefixParagraph}</p>
+
+            {editorial.toUnitGuide.benchmarkCallout && (
+              <div className="p-3.5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/70 border-l-4 border-[#0D9488] text-xs sm:text-sm font-semibold text-[#16324F] dark:text-slate-200">
+                {editorial.toUnitGuide.benchmarkCallout}
+              </div>
+            )}
+
+            <p>{editorial.toUnitGuide.toolsAndApplicationsParagraph}</p>
+            <div>
+              <Link
+                href={editorial.toUnitGuide.categoryHref}
+                prefetch={false}
+                className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+              >
+                <span>{editorial.toUnitGuide.categoryLinkLabel}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+
+            <p className="pt-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800/70">
+              {editorial.measuringAdviceParagraph}
+            </p>
+          </div>
+        </section>
+
+        {/* 5. MORE [UNIT A] & [UNIT B] CONVERSIONS (Reverse Conversion Prose + Complete Internal Linking Lists) */}
+        <section
+          aria-labelledby="more-unit-conversions-heading"
+          className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-5"
+        >
+          <div className="flex items-center gap-2.5 border-b border-slate-100 dark:border-slate-800 pb-3.5">
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF]">
+              <Link2 className="w-4 h-4" />
+            </span>
+            <h2
+              id="more-unit-conversions-heading"
+              className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
+            >
+              {moreUnitLinks.sectionHeading}
+            </h2>
+          </div>
+
+          {(() => {
+            const reversePair = CONVERSION_CATALOGUE.find(
+              (p) => p.fromUnitId === toUnit.id && p.toUnitId === fromUnit.id
+            );
+            const otherRelated = (featuredRelatedPairs || [])
+              .filter((p) => p.slug !== pair.slug && p.slug !== reversePair?.slug)
+              .slice(0, 3);
+            return (
+              <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+                Need to calculate in the opposite direction? Use our{" "}
+                {reversePair ? (
+                  <Link
+                    href={getPairUrl(reversePair)}
+                    prefetch={false}
+                    className="font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+                  >
+                    {toUnit.plural.toLowerCase()} to {fromUnit.plural.toLowerCase()} converter ({toUnit.symbol} to {fromUnit.symbol})
+                  </Link>
+                ) : (
+                  <span>
+                    {toUnit.plural.toLowerCase()} to {fromUnit.plural.toLowerCase()} calculator
+                  </span>
+                )}{" "}
+                to switch your starting unit immediately.
+                {otherRelated.length > 0 && (
+                  <>
+                    {" "}
+                    You can also explore related tools such as{" "}
+                    {otherRelated.map((rel, idx) => {
+                      const rFrom = UNIT_MAP.get(rel.fromUnitId);
+                      const rTo = UNIT_MAP.get(rel.toUnitId);
+                      const anchorLabel =
+                        rFrom && rTo
+                          ? `converting ${rFrom.plural.toLowerCase()} to ${rTo.plural.toLowerCase()}`
+                          : rel.title.replace(/\s*Converter.*$/i, "").toLowerCase();
+                      return (
+                        <span key={rel.slug}>
+                          {idx > 0 && idx === otherRelated.length - 1
+                            ? ", or "
+                            : idx > 0
+                            ? ", "
+                            : ""}
+                          <Link
+                            href={getPairUrl(rel)}
+                            prefetch={false}
+                            className="font-semibold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+                          >
+                            {anchorLabel}
+                          </Link>
+                        </span>
+                      );
+                    })}
+                    .
+                  </>
+                )}
+              </p>
+            );
+          })()}
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {/* Column 1: Convert from [FromUnit.plural] */}
+            <div className="space-y-3">
+              <h3 className="text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white border-b border-slate-100 dark:border-slate-800 pb-2">
+                {moreUnitLinks.fromHeading}
+              </h3>
+              <ul className="space-y-1.5">
+                {moreUnitLinks.fromLinks.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      prefetch={false}
+                      className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-[#0D9488] dark:text-[#2DD4BF] hover:text-[#16324F] dark:hover:text-white hover:underline transition-colors py-0.5"
+                    >
+                      <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                      <span>{item.label}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Column 2: Convert to [ToUnit.plural] */}
+            <div className="space-y-3">
+              <h3 className="text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white border-b border-slate-100 dark:border-slate-800 pb-2">
+                {moreUnitLinks.toHeading}
+              </h3>
+              <ul className="space-y-1.5">
+                {moreUnitLinks.toLinks.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      prefetch={false}
+                      className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-[#0D9488] dark:text-[#2DD4BF] hover:text-[#16324F] dark:hover:text-white hover:underline transition-colors py-0.5"
+                    >
+                      <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                      <span>{item.label}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* 6. FREQUENTLY ASKED QUESTIONS (Google "People Also Ask" Accordion) */}
+        {editorial.googlePaaFaqs.length > 0 && (
+          <section aria-labelledby="pair-faq-heading" className="space-y-4">
+            <div className="flex items-center gap-2.5">
+              <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-sky-100/90 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400">
+                <HelpCircle className="w-4 h-4" />
+              </span>
+              <h2
+                id="pair-faq-heading"
+                className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
+              >
+                Frequently Asked Questions
+              </h2>
+            </div>
+
+            <div className="space-y-2.5">
+              {editorial.googlePaaFaqs.map((faq, idx) => {
+                const isOpen = openFaqIndex === idx;
+                return (
+                  <div
+                    key={faq.question}
+                    className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 overflow-hidden shadow-2xs"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
+                      aria-expanded={isOpen}
+                      className="w-full px-5 py-4 flex items-center justify-between gap-3 text-left text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white hover:bg-[#F7F9FC] dark:hover:bg-slate-800/60 transition-colors cursor-pointer"
+                    >
+                      <span>{faq.question}</span>
+                      <ChevronDown
+                        className={`w-4 h-4 text-slate-500 shrink-0 transition-transform ${
+                          isOpen ? "rotate-180 text-[#0D9488]" : ""
+                        }`}
+                      />
+                    </button>
+                    {isOpen && (
+                      <div className="px-5 pb-4 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/80">
+                        {faq.answer}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
+      </div>
+
+      {/* =====================================================================
+          RIGHT SIDEBAR COLUMN (4 cols on lg)
+          ===================================================================== */}
+      <aside className="lg:col-span-4 space-y-6">
+        {/* 1. Category Converter Pair Links */}
+        <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 shadow-xs space-y-3.5">
+          <div className="flex items-center gap-2.5 pb-1">
+            <span
+              className={`inline-flex items-center justify-center w-7 h-7 rounded-lg ${theme.sidebarBadge}`}
+            >
+              {renderCategoryIcon(iconName, "w-4 h-4")}
+            </span>
+            <h2 className="text-base font-extrabold text-[#16324F] dark:text-white">
+              {category ? `${category.name} Converter` : "Unit Converter"}
+            </h2>
+          </div>
+
+          <nav
+            aria-label={`${category?.name || "Unit"} conversion links`}
+            className="space-y-1"
+          >
+            {sidebarCategoryPairs.map((p) => {
+              const pFrom = UNIT_MAP.get(p.fromUnitId);
+              const pTo = UNIT_MAP.get(p.toUnitId);
+              const label =
+                pFrom && pTo
+                  ? `${pFrom.plural} to ${pTo.plural}`
+                  : p.title.replace(" Converter", "");
+              const isActive = p.slug === pair.slug;
+              return (
+                <Link
+                  key={p.slug}
+                  href={getPairUrl(p)}
+                  prefetch={false}
+                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-colors ${
+                    isActive
+                      ? "bg-sky-50/90 dark:bg-sky-950/50 text-[#16324F] dark:text-sky-300 border border-sky-200/70 dark:border-sky-800/60"
+                      : "text-slate-700 dark:text-slate-300 hover:bg-[#F7F9FC] dark:hover:bg-slate-800 hover:text-[#0D9488]"
+                  }`}
+                >
+                  <span className="truncate pr-2">{label}</span>
+                  <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
+
+        {/* 2. Quick Info Card */}
+        <div className="rounded-2xl bg-amber-50/55 dark:bg-amber-950/20 border border-amber-200/70 dark:border-amber-900/50 p-5 shadow-2xs space-y-3">
+          <div className="flex items-center gap-2.5">
+            <Lightbulb className="w-5 h-5 text-amber-500 fill-amber-400 shrink-0" />
+            <h2 className="text-base font-extrabold text-[#16324F] dark:text-white">
+              Quick Info
+            </h2>
+          </div>
+
+          <ul className="space-y-2.5 text-xs sm:text-[13px] text-slate-700 dark:text-slate-300 leading-relaxed list-disc pl-4">
+            <li>
+              <strong className="text-[#16324F] dark:text-white">
+                Direct Factor:
+              </strong>{" "}
+              1 {fromUnit.name.toLowerCase()} ({fromUnit.symbol}) equals{" "}
+              {oneForward.formattedValue} {toUnit.plural.toLowerCase()} (
+              {toUnit.symbol}).
+            </li>
+            <li>
+              <strong className="text-[#16324F] dark:text-white">
+                Inverse Factor:
+              </strong>{" "}
+              1 {toUnit.name.toLowerCase()} ({toUnit.symbol}) equals{" "}
+              {oneReverse.formattedValue} {fromUnit.plural.toLowerCase()} (
+              {fromUnit.symbol}).
+            </li>
+            <li>
+              <strong className="text-[#16324F] dark:text-white">
+                Formula:
+              </strong>{" "}
+              {formulaDetails.primaryFormula}.
+            </li>
+            {pair.regionalNote ? (
+              <li>
+                <strong className="text-[#16324F] dark:text-white">
+                  Standard Note:
+                </strong>{" "}
+                {pair.regionalNote}
+              </li>
+            ) : (
+              <li>
+                <strong className="text-[#16324F] dark:text-white">
+                  Verified Precision:
+                </strong>{" "}
+                Anchored to official NIST SP 811 and ISO/IEC 80000 standards.
+              </li>
+            )}
+          </ul>
+        </div>
+
+        {/* 3. Units Comparison Card */}
+        <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 shadow-xs space-y-3.5">
+          <div className="flex items-center gap-2.5">
+            <Scale className="w-4 h-4 text-[#0D9488]" />
+            <h2 className="text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white">
+              Units Comparison
+            </h2>
+          </div>
+
+          <div className="space-y-3">
+            {/* Source Unit Card */}
+            <div className="p-3.5 rounded-xl bg-sky-50/60 dark:bg-sky-950/30 border border-sky-200/60 dark:border-sky-900/50 flex items-start gap-3">
+              <div className="w-8 h-8 rounded-lg bg-white dark:bg-slate-900 text-sky-600 flex items-center justify-center shrink-0 shadow-2xs mt-0.5">
+                {renderCategoryIcon(iconName, "w-4 h-4")}
+              </div>
+              <div className="space-y-0.5 min-w-0">
+                <h3 className="text-xs font-extrabold text-[#16324F] dark:text-white">
+                  {fromUnit.name} ({fromUnit.symbol})
+                </h3>
+                <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  {fromUnit.description ||
+                    `Standard source unit of ${
+                      category?.name.toLowerCase() || "measurement"
+                    }.`}
+                </p>
+              </div>
+            </div>
+
+            {/* Target Unit Card */}
+            <div className="p-3.5 rounded-xl bg-rose-50/60 dark:bg-rose-950/30 border border-rose-200/60 dark:border-rose-900/50 flex items-start gap-3">
+              <div className="w-8 h-8 rounded-lg bg-white dark:bg-slate-900 text-rose-500 flex items-center justify-center shrink-0 shadow-2xs mt-0.5">
+                {renderCategoryIcon(iconName, "w-4 h-4")}
+              </div>
+              <div className="space-y-0.5 min-w-0">
+                <h3 className="text-xs font-extrabold text-[#16324F] dark:text-white">
+                  {toUnit.name} ({toUnit.symbol})
+                </h3>
+                <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  {toUnit.description ||
+                    `Standard target unit of ${
+                      category?.name.toLowerCase() || "measurement"
+                    }.`}
+                </p>
+              </div>
+            </div>
+
+            {/* 3rd Reference Unit Card */}
+            {thirdVisualUnit.id !== fromUnit.id &&
+              thirdVisualUnit.id !== toUnit.id && (
+                <div className="p-3.5 rounded-xl bg-emerald-50/60 dark:bg-emerald-950/30 border border-emerald-200/60 dark:border-emerald-900/50 flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-white dark:bg-slate-900 text-emerald-600 flex items-center justify-center shrink-0 shadow-2xs mt-0.5">
+                    {renderCategoryIcon(iconName, "w-4 h-4")}
+                  </div>
+                  <div className="space-y-0.5 min-w-0">
+                    <h3 className="text-xs font-extrabold text-[#16324F] dark:text-white">
+                      {thirdVisualUnit.name} ({thirdVisualUnit.symbol})
+                    </h3>
+                    <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                      {thirdVisualUnit.description ||
+                        `Reference unit in ${
+                          category?.name.toLowerCase() || "this category"
+                        }.`}
+                    </p>
+                  </div>
+                </div>
+              )}
+          </div>
+        </div>
+
+        {/* 4. Clean Compact References Card */}
+        <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-4 sm:p-5 shadow-xs space-y-2.5">
+          <div className="flex items-center gap-2 pb-1 border-b border-slate-100 dark:border-slate-800">
+            <ShieldCheck className="w-4 h-4 text-[#0D9488] shrink-0" />
+            <h2 className="text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white">
+              References
+            </h2>
+          </div>
+
+          <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+            {getTrustedReferencesForPair(pair, fromUnit, toUnit).map((ref, idx) => (
+              <li
+                key={idx}
+                className="flex items-start justify-between gap-2 py-1 border-b border-slate-100/80 dark:border-slate-800/60 last:border-0"
+              >
+                <div className="min-w-0 leading-snug">
+                  <span className="font-mono font-bold text-[#0D9488] dark:text-teal-400 mr-1.5">
+                    [{idx + 1}]
+                  </span>
+                  <span className="font-semibold text-[#16324F] dark:text-slate-200">
+                    {ref.shortName}
+                  </span>{" "}
+                  <span className="text-slate-400">·</span>{" "}
+                  <span className="text-slate-500 dark:text-slate-400">
+                    {ref.standardCode}
+                  </span>
+                </div>
+                <a
+                  href={ref.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline shrink-0"
+                >
+                  <span>Source</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* 5. Related Categories Card */}
+        <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 shadow-xs space-y-3">
+          <div className="flex items-center gap-2.5 pb-1">
+            <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488]">
+              <Grid className="w-4 h-4" />
+            </span>
+            <h2 className="text-base font-extrabold text-[#16324F] dark:text-white">
+              Related Categories
+            </h2>
+          </div>
+
+          <nav
+            aria-label="Related measurement categories"
+            className="divide-y divide-slate-100 dark:divide-slate-800"
+          >
+            {sidebarRelatedCategories.map((cat) => (
+              <Link
+                key={cat.id}
+                href={getCategoryUrl(cat.id)}
+                prefetch={false}
+                className="flex items-center justify-between py-2.5 px-2 -mx-2 rounded-lg text-xs sm:text-sm font-bold text-[#16324F] dark:text-slate-200 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] hover:bg-[#F7F9FC] dark:hover:bg-slate-800/60 transition-colors"
+              >
+                <span>{cat.name} Converter</span>
+                <ChevronRight className="w-4 h-4 text-slate-400" />
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        {/* 6. Embed Calculator Widget Card */}
+        <div className="rounded-2xl bg-[#F7F9FC] dark:bg-slate-900/90 border border-slate-200/90 dark:border-slate-800 p-5 shadow-xs space-y-3">
+          <div className="flex items-center gap-2.5">
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF]">
+              <Code2 className="w-4 h-4" />
+            </span>
+            <div>
+              <h2 className="text-sm font-extrabold text-[#16324F] dark:text-white">
+                Add This Calculator to Your Site
+              </h2>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                Free HTML widget · 4 embed formats
+              </p>
+            </div>
+          </div>
+
+          <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            Embed the interactive <strong>{fromUnit.plural} to {toUnit.plural}</strong> converter on your blog, classroom, or documentation page.
+          </p>
+
+          <Link
+            href={`/widgets/w/${matchingCanonicalPair?.slug || pair.slug}`}
+            prefetch={false}
+            className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#16324F] hover:bg-[#0D9488] text-white text-xs font-extrabold transition-colors"
+          >
+            <Code2 className="w-3.5 h-3.5" />
+            <span>Customize &amp; Get Embed Code</span>
+          </Link>
+        </div>
+      </aside>
+    </div>
+  );
+}

@@ -1,0 +1,6 @@
+{
+  "name": "OmniConvert",
+  "description": "High-precision universal unit converter calculating length, mass, temperature, digital storage, volume, and 18+ categories in real time.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

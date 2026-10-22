@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  select,
+  select option {
+    background-color: #ffffff;
+    color: #0f172a;
+  }
+
+  html.dark select,
+  html.dark select option {
+    background-color: #0f172a;
+    color: #f8fafc;
+  }
+}
