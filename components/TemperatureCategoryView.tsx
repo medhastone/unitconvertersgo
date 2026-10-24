@@ -369,7 +369,7 @@ export default function TemperatureCategoryView({
             </div>
 
             {/* Mobile-First Form Row: Value + From + Swap + To */}
-            <div className="grid grid-cols-1 sm:grid-cols-12 gap-3.5 items-end">
+            <div suppressHydrationWarning className="grid grid-cols-1 sm:grid-cols-12 gap-3.5 items-end">
               {/* Value Input */}
               <div className="sm:col-span-3 space-y-1.5">
                 <label
@@ -379,6 +379,7 @@ export default function TemperatureCategoryView({
                   Value
                 </label>
                 <input
+                  suppressHydrationWarning
                   id="temp-value-input"
                   type="number"
                   step="any"
@@ -398,6 +399,7 @@ export default function TemperatureCategoryView({
                   From
                 </label>
                 <select
+                  suppressHydrationWarning
                   id="temp-from-select"
                   value={fromUnitId}
                   onChange={(e) => setFromUnitId(e.target.value)}
@@ -414,6 +416,7 @@ export default function TemperatureCategoryView({
               {/* Swap Control */}
               <div className="sm:col-span-1 flex justify-center">
                 <button
+                  suppressHydrationWarning
                   type="button"
                   onClick={handleSwap}
                   title="Swap From and To temperature units"
@@ -434,6 +437,7 @@ export default function TemperatureCategoryView({
                   To
                 </label>
                 <select
+                  suppressHydrationWarning
                   id="temp-to-select"
                   value={toUnitId}
                   onChange={(e) => setToUnitId(e.target.value)}
@@ -933,11 +937,16 @@ export default function TemperatureCategoryView({
                         }`}
                       />
                     </button>
-                    {isOpen && (
-                      <div className="px-5 pb-4 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/80">
-                        {faq.answer}
-                      </div>
-                    )}
+                    <div
+                      hidden={!isOpen}
+                      className={
+                        isOpen
+                          ? "px-5 pb-4 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/80"
+                          : "hidden"
+                      }
+                    >
+                      {faq.answer}
+                    </div>
                   </div>
                 );
               })}
@@ -964,7 +973,7 @@ export default function TemperatureCategoryView({
               {SIDEBAR_CONVERTER_LINKS.map((item) => (
                 <Link
                   key={item.slug}
-                  href={`/temperature/${item.slug}`}
+                  href={`/temperature/${item.slug}.htm`}
                   prefetch={false}
                   className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-colors ${
                     item.active

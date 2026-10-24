@@ -227,10 +227,10 @@ const FREQUENTLY_USED_CONVERTERS = [
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#F7F9FC]/60 dark:bg-slate-950">
+    <div suppressHydrationWarning className="min-h-screen bg-[#F7F9FC]/60 dark:bg-slate-950">
       {/* HERO + QUICK CONVERTER SECTION */}
-      <section className="bg-gradient-to-b from-[#F7F9FC] to-white dark:from-slate-950 dark:to-slate-900/50 border-b border-slate-200/70 dark:border-slate-800/80 pt-6 sm:pt-10 pb-8 sm:pb-12 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto space-y-5 sm:space-y-7">
+      <section suppressHydrationWarning className="bg-gradient-to-b from-[#F7F9FC] to-white dark:from-slate-950 dark:to-slate-900/50 border-b border-slate-200/70 dark:border-slate-800/80 pt-6 sm:pt-10 pb-8 sm:pb-12 px-4 sm:px-6">
+        <div suppressHydrationWarning className="max-w-4xl mx-auto space-y-5 sm:space-y-7">
           {/* Hero Heading, Supporting Text & Large Search Bar */}
           <div className="text-center space-y-2.5 sm:space-y-3.5 max-w-2xl mx-auto">
             <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#16324F] dark:text-white text-balance leading-tight">
@@ -466,9 +466,7 @@ export default function HomePage() {
                   calculators to understand how we calculate the results.
                 </p>
                 <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                  Our team draws on practical experience, research, and technical knowledge, working with
-                  industry professionals and subject-matter experts when appropriate to ensure reliable,
-                  correct answers every time.
+                  Every conversion factor and equation is cross-checked against official publications from NIST (Special Publication 811), the BIPM SI Brochure (9th Edition), and ISO/IEC 80000 standards.
                 </p>
               </div>
             </div>
@@ -603,11 +601,10 @@ export default function HomePage() {
                 </div>
                 <div className="space-y-1">
                   <h4 className="text-xs sm:text-sm font-bold text-[#16324F] dark:text-white">
-                    Continuous Review &amp; Community Feedback
+                    Automated Verification &amp; Standards Alignment
                   </h4>
                   <p className="text-xs text-slate-600 dark:text-slate-300">
-                    Our calculation engines are continually tested against standard test suites and peer-reviewed
-                    against published international metrology standards.
+                    Our calculation engines are continuously validated against automated unit-conversion test suites and official NIST SP 811, BIPM SI, and ISO/IEC 80000 reference tables.
                   </p>
                 </div>
               </div>

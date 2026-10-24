@@ -195,6 +195,7 @@ export default function CategoryExplorerHub({
 
   return (
     <section
+      suppressHydrationWarning
       aria-label={`Browse All ${CATEGORIES.length} Measurement Categories`}
       className="rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 sm:p-6 space-y-5 shadow-2xs"
     >
@@ -221,9 +222,10 @@ export default function CategoryExplorerHub({
 
         <div className="flex flex-col sm:flex-row sm:items-center gap-3">
           {/* Instant Search Filter */}
-          <div className="relative w-full sm:w-72">
+          <div suppressHydrationWarning className="relative w-full sm:w-72">
             <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
+              suppressHydrationWarning
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -233,6 +235,7 @@ export default function CategoryExplorerHub({
             />
             {searchQuery && (
               <button
+                suppressHydrationWarning
                 type="button"
                 onClick={() => setSearchQuery("")}
                 aria-label="Clear category search"

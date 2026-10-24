@@ -1,31 +1,16 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
+import { buildPageMetadata } from "@/lib/seo";
 import LegalPageLayout, { TocItem } from "@/components/LegalPageLayout";
 import LocalStorageManager from "@/components/LocalStorageManager";
 
-export const metadata: Metadata = {
-  title: `Cookie Policy — Cookies & Browser Storage Guide | ${SITE_CONFIG.name}`,
+export const metadata: Metadata = buildPageMetadata({
+  title: "Cookie Policy — Browser Storage Guide",
   description:
     "Read the UnitConvertersGo Cookie Policy. See the exact browser localStorage keys we use for theme preferences, recent conversions, and bookmarks, and how to manage or clear them.",
-  alternates: {
-    canonical: `${SITE_CONFIG.canonicalDomain}/cookie-policy`,
-  },
-  openGraph: {
-    title: `Cookie Policy | ${SITE_CONFIG.name}`,
-    description:
-      "Transparent breakdown of cookies and browser localStorage used on UnitConvertersGo, plus one-click controls to clear saved conversion history.",
-    url: `${SITE_CONFIG.canonicalDomain}/cookie-policy`,
-    siteName: SITE_CONFIG.name,
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title: `Cookie Policy | ${SITE_CONFIG.name}`,
-    description:
-      "Transparent breakdown of cookies and browser localStorage used on UnitConvertersGo, plus one-click controls to clear saved conversion history.",
-  },
-};
+  canonicalPath: "/cookie-policy",
+});
 
 const COOKIE_TOC: TocItem[] = [
   { id: "what-are-cookies", label: "What Are Cookies & Local Storage?" },

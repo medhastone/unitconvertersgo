@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { CATEGORIES, getUnitsByCategory } from "@/lib/conversions/units";
 
 const CURATED_NATURAL_PROMPTS: string[] = [
-  "convert volt to watt",
+  "convert 180 cm to inches",
   "convert 100 psi to bar",
   "convert 25 celsius to fahrenheit",
   "convert 50 kg to pounds",
@@ -22,9 +22,9 @@ const CURATED_NATURAL_PROMPTS: string[] = [
   "convert angular velocity rpm to rad/s",
   "convert electric charge coulomb to Ah",
   "convert inductance henry to millihenry",
-  "convert sound decibels dB to bel",
-  "convert typography px to rem",
-  "case converter camelCase to snake_case",
+  "convert sound pascals to microbars",
+  "convert typography px to pt",
+  "convert 5 liters to gallons",
 ];
 
 function buildCompletePromptPool(): string[] {
@@ -57,7 +57,14 @@ function buildCompletePromptPool(): string[] {
   return pool;
 }
 
-const MASTER_PROMPT_POOL = buildCompletePromptPool();
+let cachedMasterPromptPool: string[] | null = null;
+
+function getMasterPromptPool(): string[] {
+  if (!cachedMasterPromptPool) {
+    cachedMasterPromptPool = buildCompletePromptPool();
+  }
+  return cachedMasterPromptPool;
+}
 
 /**
  * Fisher-Yates shuffle that prevents the first item of a new cycle
@@ -118,32 +125,66 @@ export function useTypewriterPlaceholder({
   const lastShownRef = useRef<string | null>(null);
   const isFirstCycleRef = useRef<boolean>(true);
 
+  const [isIdleReady, setIsIdleReady] = useState<boolean>(false);
   const [currentFullPrompt, setCurrentFullPrompt] = useState<string>(
-    MASTER_PROMPT_POOL[0] || "convert volt to watt"
+    CURATED_NATURAL_PROMPTS[0] || "convert 180 cm to inches"
   );
   const [typedText, setTypedText] = useState<string>(
-    MASTER_PROMPT_POOL[0] || "convert volt to watt"
+    CURATED_NATURAL_PROMPTS[0] || "convert 180 cm to inches"
   );
   const [phase, setPhase] = useState<"typing" | "holding" | "deleting">(
     "holding"
   );
 
-  // Initialize shuffled deck on client mount without redundant state updates
+  // Defer prompt deck construction and typewriter animation until browser is idle after initial load
   useEffect(() => {
-    const initialDeck = shuffleNonRepeating(
-      MASTER_PROMPT_POOL,
-      null,
-      true // Ensure "convert volt to watt" leads first before cycling through shuffled non-repeating pool
-    );
-    deckRef.current = initialDeck;
-    deckIndexRef.current = 0;
-    isFirstCycleRef.current = false;
-    const first = initialDeck[0] || "convert volt to watt";
-    lastShownRef.current = first;
+    let idleId: number | null = null;
+    const delayTimer = setTimeout(() => {
+      const startWhenIdle = () => {
+        const pool = getMasterPromptPool();
+        const initialDeck = shuffleNonRepeating(
+          pool,
+          null,
+          true // Ensure primary example leads first before cycling through shuffled non-repeating pool
+        );
+        deckRef.current = initialDeck;
+        deckIndexRef.current = 0;
+        isFirstCycleRef.current = false;
+        const first = initialDeck[0] || "convert 180 cm to inches";
+        lastShownRef.current = first;
+        setIsIdleReady(true);
+      };
+
+      if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+        idleId = (
+          window as Window & {
+            requestIdleCallback: (
+              cb: () => void,
+              opts?: { timeout: number }
+            ) => number;
+          }
+        ).requestIdleCallback(startWhenIdle, { timeout: 1500 });
+      } else {
+        startWhenIdle();
+      }
+    }, 2200);
+
+    return () => {
+      clearTimeout(delayTimer);
+      if (
+        idleId !== null &&
+        typeof window !== "undefined" &&
+        "cancelIdleCallback" in window
+      ) {
+        (
+          window as Window & { cancelIdleCallback: (id: number) => void }
+        ).cancelIdleCallback(idleId);
+      }
+    };
   }, []);
 
   useEffect(() => {
-    if (isPaused) return;
+    if (!isIdleReady || isPaused) return;
     if (typeof document !== "undefined" && document.hidden) return;
 
     // Respect prefers-reduced-motion by rotating whole prompts without rapid character flicker
@@ -153,10 +194,11 @@ export function useTypewriterPlaceholder({
 
     if (prefersReducedMotion) {
       const timer = setTimeout(() => {
+        const pool = getMasterPromptPool();
         let nextIndex = deckIndexRef.current + 1;
         if (nextIndex >= deckRef.current.length) {
           deckRef.current = shuffleNonRepeating(
-            MASTER_PROMPT_POOL,
+            pool,
             lastShownRef.current,
             false
           );
@@ -194,10 +236,11 @@ export function useTypewriterPlaceholder({
         }, deletingSpeedMs);
       } else {
         // Advance to next non-repeating prompt in deck
+        const pool = getMasterPromptPool();
         let nextIndex = deckIndexRef.current + 1;
         if (nextIndex >= deckRef.current.length) {
           deckRef.current = shuffleNonRepeating(
-            MASTER_PROMPT_POOL,
+            pool,
             lastShownRef.current,
             false
           );
@@ -205,7 +248,7 @@ export function useTypewriterPlaceholder({
         }
         deckIndexRef.current = nextIndex;
         const nextPrompt =
-          deckRef.current[nextIndex] || MASTER_PROMPT_POOL[0];
+          deckRef.current[nextIndex] || pool[0];
         lastShownRef.current = nextPrompt;
         setCurrentFullPrompt(nextPrompt);
         setPhase("typing");
@@ -214,6 +257,7 @@ export function useTypewriterPlaceholder({
 
     return () => clearTimeout(timeoutId);
   }, [
+    isIdleReady,
     isPaused,
     phase,
     typedText,
@@ -223,7 +267,7 @@ export function useTypewriterPlaceholder({
     holdDurationMs,
   ]);
 
-  const cursor = !isPaused && phase !== "holding" ? "|" : "";
+  const cursor = isIdleReady && !isPaused && phase !== "holding" ? "|" : "";
   const placeholder = `${prefix}"${typedText}${cursor}"`;
 
   return {

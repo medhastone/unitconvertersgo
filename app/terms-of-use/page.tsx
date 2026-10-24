@@ -1,30 +1,15 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
+import { buildPageMetadata } from "@/lib/seo";
 import LegalPageLayout, { TocItem } from "@/components/LegalPageLayout";
 
-export const metadata: Metadata = {
-  title: `Terms of Use — Website & Calculator Terms | ${SITE_CONFIG.name}`,
+export const metadata: Metadata = buildPageMetadata({
+  title: "Terms of Use — Website & Calculator Terms",
   description:
     "Read the Terms of Use for UnitConvertersGo. Understand acceptable use of our unit conversion tools, embeddable widgets, intellectual property, and limitations of liability.",
-  alternates: {
-    canonical: `${SITE_CONFIG.canonicalDomain}/terms-of-use`,
-  },
-  openGraph: {
-    title: `Terms of Use | ${SITE_CONFIG.name}`,
-    description:
-      "Terms and conditions governing the use of UnitConvertersGo calculators, reference tables, and embeddable widgets.",
-    url: `${SITE_CONFIG.canonicalDomain}/terms-of-use`,
-    siteName: SITE_CONFIG.name,
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title: `Terms of Use | ${SITE_CONFIG.name}`,
-    description:
-      "Terms and conditions governing the use of UnitConvertersGo calculators, reference tables, and embeddable widgets.",
-  },
-};
+  canonicalPath: "/terms-of-use",
+});
 
 const TERMS_TOC: TocItem[] = [
   { id: "acceptance", label: "Acceptance of Terms" },

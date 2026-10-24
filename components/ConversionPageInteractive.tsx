@@ -59,6 +59,7 @@ import {
 } from "@/lib/conversions/units";
 import {
   CONVERSION_CATALOGUE,
+  findDedicatedPair,
   getConversionsByCategory,
   getMoreUnitConversionLinks,
   getPairUrl,
@@ -483,9 +484,7 @@ export default function ConversionPageInteractive({
 
   // Check if the user switched units to another canonical pair in the catalogue
   const matchingCanonicalPair = useMemo(() => {
-    return CONVERSION_CATALOGUE.find(
-      (p) => p.fromUnitId === fromUnitId && p.toUnitId === toUnitId
-    );
+    return findDedicatedPair(fromUnitId, toUnitId);
   }, [fromUnitId, toUnitId]);
 
   const handleSwapUnits = () => {
@@ -736,7 +735,7 @@ export default function ConversionPageInteractive({
           </div>
 
           {/* Mobile-First Form Row: Value + From + Swap + To */}
-          <div className="grid grid-cols-1 sm:grid-cols-12 gap-3.5 items-end">
+          <div suppressHydrationWarning className="grid grid-cols-1 sm:grid-cols-12 gap-3.5 items-end">
             {/* Value Input (supports decimal, fraction "3/8", or mixed number "5 3/8") */}
             <div className="sm:col-span-3 space-y-1.5">
               <div className="flex items-center justify-between">
@@ -753,6 +752,7 @@ export default function ConversionPageInteractive({
                 )}
               </div>
               <input
+                suppressHydrationWarning
                 id="pair-numeric-input"
                 type="text"
                 inputMode="decimal"
@@ -772,6 +772,7 @@ export default function ConversionPageInteractive({
                 From
               </label>
               <select
+                suppressHydrationWarning
                 id="pair-from-unit"
                 value={fromUnitId}
                 onChange={(e) => setFromUnitId(e.target.value)}
@@ -788,6 +789,7 @@ export default function ConversionPageInteractive({
             {/* Swap Direction Control */}
             <div className="sm:col-span-1 flex justify-center">
               <button
+                suppressHydrationWarning
                 type="button"
                 onClick={handleSwapUnits}
                 aria-label={`Swap conversion direction from ${fromUnit.plural} to ${toUnit.plural}`}
@@ -808,6 +810,7 @@ export default function ConversionPageInteractive({
                 To
               </label>
               <select
+                suppressHydrationWarning
                 id="pair-to-unit"
                 value={toUnitId}
                 onChange={(e) => setToUnitId(e.target.value)}
@@ -886,7 +889,7 @@ export default function ConversionPageInteractive({
                   type="button"
                   onClick={handleReset}
                   className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 hover:text-[#0D9488] transition-colors cursor-pointer"
-                  title={`Reset to default (${pair.exampleInput} ${pair.fromUnitId})`}
+                  title={`Reset to default (${pair.exampleInput} ${fromUnit.symbol})`}
                 >
                   <RotateCcw className="w-3 h-3" />
                   <span>Reset</span>
@@ -1185,7 +1188,7 @@ export default function ConversionPageInteractive({
                 {matchingCanonicalPair &&
                   matchingCanonicalPair.slug !== pair.slug && (
                     <Link
-                      href={`/convert/${matchingCanonicalPair.slug}`}
+                      href={getPairUrl(matchingCanonicalPair)}
                       className="inline-flex items-center gap-1 text-xs font-bold text-[#0D9488] dark:text-teal-400 hover:underline"
                     >
                       <span>
@@ -1699,11 +1702,16 @@ export default function ConversionPageInteractive({
                         }`}
                       />
                     </button>
-                    {isOpen && (
-                      <div className="px-5 pb-4 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/80">
-                        {faq.answer}
-                      </div>
-                    )}
+                    <div
+                      hidden={!isOpen}
+                      className={
+                        isOpen
+                          ? "px-5 pb-4 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/80"
+                          : "hidden"
+                      }
+                    >
+                      {faq.answer}
+                    </div>
                   </div>
                 );
               })}
@@ -1883,7 +1891,10 @@ export default function ConversionPageInteractive({
         <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-4 sm:p-5 shadow-xs space-y-2.5">
           <div className="flex items-center gap-2 pb-1 border-b border-slate-100 dark:border-slate-800">
             <ShieldCheck className="w-4 h-4 text-[#0D9488] shrink-0" />
-            <h2 className="text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white">
+            <h2
+              id="references-standards-heading"
+              className="text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white"
+            >
               References
             </h2>
           </div>

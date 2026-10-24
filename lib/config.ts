@@ -8,7 +8,7 @@ export const SITE_CONFIG = {
   domain: "UnitConvertersGo.com",
   tagline: "High-Precision Real-Time Unit Converter",
   description:
-    "Fast, accurate, mobile-first unit conversion platform calculating length, mass, temperature, digital storage, pressure, and 25 measurement categories in real time.",
+    "Fast, accurate, mobile-first unit conversion platform calculating length, mass, temperature, digital storage, pressure, and 78 measurement categories in real time.",
   // Production or runtime app URL without trailing slash
   baseUrl: (
     process.env.APP_URL ||
@@ -16,7 +16,9 @@ export const SITE_CONFIG = {
       ? window.location.origin
       : "https://unitconvertersgo.com")
   ).replace(/\/+$/, ""),
-  canonicalDomain: "https://unitconvertersgo.com",
+  canonicalDomain: (
+    process.env.APP_URL || "https://unitconvertersgo.com"
+  ).replace(/\/+$/, ""),
   author: "UnitConvertersGo Editorial & Engineering Team",
   contactEmail: "info@unitconvertersgo.com",
   formRecipientEmail: "medhastone@gmail.com",

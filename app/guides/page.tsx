@@ -3,28 +3,14 @@ import Link from "next/link";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { GUIDES } from "@/lib/conversions/guides";
 import { SITE_CONFIG } from "@/lib/config";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Measurement Guides & Reference Articles",
   description:
-    "In-depth technical and historical measurement guides covering Metric vs. Imperial standards, US vs. UK fluid ounces, binary vs. decimal storage, temperature scales, pressure units, and fuel economy.",
-  alternates: {
-    canonical: `${SITE_CONFIG.baseUrl}/guides`,
-  },
-  openGraph: {
-    title: "Measurement Guides & Reference Articles | UnitConvertersGo",
-    description:
-      "Explore comprehensive measurement guides, conversion formulas, and engineering reference articles on UnitConvertersGo.",
-    url: `${SITE_CONFIG.baseUrl}/guides`,
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Measurement Guides & Reference Articles | UnitConvertersGo",
-    description:
-      "Explore comprehensive measurement guides, conversion formulas, and engineering reference articles on UnitConvertersGo.",
-  },
-};
+    "In-depth technical and historical measurement guides covering Metric vs. Imperial standards, US vs. UK fluid ounces, binary vs. decimal storage, temperature scales, and pressure units.",
+  canonicalPath: "/guides",
+});
 
 export default function GuidesIndexPage() {
   const collectionJsonLd = {
@@ -90,7 +76,7 @@ export default function GuidesIndexPage() {
           Measurement Guides &amp; Technical Explanations
         </h1>
         <p className="text-base text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed">
-          Clear, practical articles explaining international measurement standards, conversion formulas, and the real-world differences between Metric, US Customary, and British Imperial units.
+          Explore practical guides on international measurement standards, conversion formulas, and unit systems.
         </p>
       </header>
 

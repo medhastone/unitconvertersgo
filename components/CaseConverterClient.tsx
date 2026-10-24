@@ -362,7 +362,7 @@ export default function CaseConverterClient() {
                 {stat.label}
               </span>
               <span className="text-sm font-extrabold font-mono text-[#16324F] dark:text-white">
-                {stat.value.toLocaleString()}
+                {stat.value.toLocaleString("en-US")}
               </span>
             </div>
           ))}

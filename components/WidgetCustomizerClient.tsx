@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import {
   Code2,
@@ -148,10 +148,16 @@ export default function WidgetCustomizerClient({
     ]
   );
 
-  const originUrl =
-    typeof window !== "undefined" && window.location?.origin
-      ? window.location.origin
-      : SITE_CONFIG.baseUrl;
+  const [originUrl, setOriginUrl] = useState<string>(SITE_CONFIG.baseUrl);
+
+  useEffect(() => {
+    if (window.location?.origin) {
+      const frameId = window.requestAnimationFrame(() => {
+        setOriginUrl(window.location.origin);
+      });
+      return () => window.cancelAnimationFrame(frameId);
+    }
+  }, []);
 
   const embedCode = useMemo(
     () => generateWidgetEmbedCode(widget, options, originUrl),

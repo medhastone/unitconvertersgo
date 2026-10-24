@@ -846,6 +846,17 @@ export const UNIT_MAP = new Map<string, Unit>(
   UNITS.map((u) => [u.id, u])
 );
 
-export function getUnitsByCategory(categoryId: string): Unit[] {
-  return UNITS.filter((u) => u.categoryId === categoryId);
+const UNITS_BY_CATEGORY_MAP = new Map<string, Unit[]>();
+for (const u of UNITS) {
+  const list = UNITS_BY_CATEGORY_MAP.get(u.categoryId);
+  if (list) {
+    list.push(u);
+  } else {
+    UNITS_BY_CATEGORY_MAP.set(u.categoryId, [u]);
+  }
 }
+
+export function getUnitsByCategory(categoryId: string): Unit[] {
+  return UNITS_BY_CATEGORY_MAP.get(categoryId) || [];
+}
+

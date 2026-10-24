@@ -5,29 +5,16 @@ import { CATEGORIES } from "@/lib/conversions/units";
 import { CONVERSION_CATALOGUE } from "@/lib/conversions/catalogue";
 import { getCategoryUrl } from "@/lib/conversions/url";
 import { SITE_CONFIG } from "@/lib/config";
+import { buildPageMetadata } from "@/lib/seo";
 import AllConvertersDirectoryClient from "@/components/AllConvertersDirectoryClient";
 import TrustedSourcesSection from "@/components/TrustedSourcesSection";
 
-export const metadata: Metadata = {
-  title: "All Unit Converters — Browse Conversion Tools by Category | UnitConvertersGo",
+export const metadata: Metadata = buildPageMetadata({
+  title: "All Unit Converters Directory",
   description:
-    "Browse conversion tools by measurement category or find a specific unit conversion across Length, Weight & Mass, Temperature, Area, Volume, Speed, Time, Pressure, Energy, Power, and Data Storage.",
-  alternates: {
-    canonical: `${SITE_CONFIG.baseUrl}/directory`,
-  },
-  openGraph: {
-    title: "All Unit Converters — UnitConvertersGo",
-    description:
-      "Browse conversion tools by measurement category or find a specific unit conversion.",
-    url: `${SITE_CONFIG.baseUrl}/directory`,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "All Unit Converters — UnitConvertersGo",
-    description:
-      "Browse conversion tools by measurement category or find a specific unit conversion.",
-  },
-};
+    "Browse conversion tools by measurement category or find a specific unit conversion across Length, Weight & Mass, Temperature, Area, Volume, Speed, Time, Pressure, Energy, and Power.",
+  canonicalPath: "/directory",
+});
 
 export default function AllConvertersDirectoryPage() {
   const breadcrumbJsonLd = {

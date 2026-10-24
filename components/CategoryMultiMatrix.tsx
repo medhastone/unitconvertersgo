@@ -63,11 +63,12 @@ export default function CategoryMultiMatrix({ categoryId }: CategoryMultiMatrixP
         </div>
 
         {/* Input & Unit Selector */}
-        <div className="flex items-center gap-2">
+        <div suppressHydrationWarning className="flex items-center gap-2">
           <label htmlFor={`matrix-input-${categoryId}`} className="sr-only">
             Matrix comparison value
           </label>
           <input
+            suppressHydrationWarning
             id={`matrix-input-${categoryId}`}
             type="number"
             value={inputValue}
@@ -79,6 +80,7 @@ export default function CategoryMultiMatrix({ categoryId }: CategoryMultiMatrixP
             Matrix base unit
           </label>
           <select
+            suppressHydrationWarning
             id={`matrix-unit-${categoryId}`}
             value={selectedUnitId}
             onChange={(e) => setSelectedUnitId(e.target.value)}

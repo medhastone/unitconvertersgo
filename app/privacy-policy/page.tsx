@@ -1,31 +1,16 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/config";
+import { buildPageMetadata } from "@/lib/seo";
 import LegalPageLayout, { TocItem } from "@/components/LegalPageLayout";
 import LocalStorageManager from "@/components/LocalStorageManager";
 
-export const metadata: Metadata = {
-  title: `Privacy Policy — Data & Browser Storage Practices | ${SITE_CONFIG.name}`,
+export const metadata: Metadata = buildPageMetadata({
+  title: "Privacy Policy — Data & Browser Storage",
   description:
     "Read the UnitConvertersGo Privacy Policy. Learn how unit conversions run locally in your browser, what server logs and localStorage keys are used, and your privacy rights.",
-  alternates: {
-    canonical: `${SITE_CONFIG.canonicalDomain}/privacy-policy`,
-  },
-  openGraph: {
-    title: `Privacy Policy | ${SITE_CONFIG.name}`,
-    description:
-      "Learn how UnitConvertersGo handles browser-based calculations, local storage preferences, server security logs, and user privacy rights.",
-    url: `${SITE_CONFIG.canonicalDomain}/privacy-policy`,
-    siteName: SITE_CONFIG.name,
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title: `Privacy Policy | ${SITE_CONFIG.name}`,
-    description:
-      "Learn how UnitConvertersGo handles browser-based calculations, local storage preferences, server security logs, and user privacy rights.",
-  },
-};
+  canonicalPath: "/privacy-policy",
+});
 
 const PRIVACY_TOC: TocItem[] = [
   { id: "overview", label: "Overview & Core Privacy Summary" },

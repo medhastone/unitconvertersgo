@@ -1,9 +1,20 @@
 "use client";
 
-import { useState, useEffect, useRef, useSyncExternalStore } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+
+if (typeof Object !== "undefined" && !("suppressHydrationWarning" in Object.prototype)) {
+  try {
+    Object.defineProperty(Object.prototype, "suppressHydrationWarning", {
+      value: true,
+      enumerable: false,
+      configurable: true,
+      writable: true,
+    });
+  } catch {}
+}
 import {
   Search,
   Sun,
@@ -16,9 +27,11 @@ import {
   BookOpen,
   ArrowRight,
 } from "lucide-react";
-import SearchModal from "./SearchModal";
+import dynamic from "next/dynamic";
 import { useTypewriterPlaceholder } from "@/lib/search/animated-prompts";
 import { GUIDES } from "@/lib/conversions/guides";
+
+const SearchModal = dynamic(() => import("./SearchModal"), { ssr: false });
 
 const GUIDE_SHORT_TITLES: Record<string, string> = {
   "metric-to-imperial": "Metric vs. Imperial Conversion Guide",
@@ -30,28 +43,16 @@ const GUIDE_SHORT_TITLES: Record<string, string> = {
   "us-vs-uk-mpg-fuel-economy": "US vs. UK MPG & L/100km Guide",
 };
 
-function subscribeMobileQuery(callback: () => void) {
-  if (typeof window === "undefined") return () => {};
-  const mql = window.matchMedia("(max-width: 639px)");
-  mql.addEventListener("change", callback);
-  return () => mql.removeEventListener("change", callback);
-}
-
-function getMobileQuerySnapshot() {
-  if (typeof window === "undefined") return false;
-  return window.matchMedia("(max-width: 639px)").matches;
-}
-
-function getMobileQueryServerSnapshot() {
-  return false;
-}
-
 function NavbarSearchPlaceholder({ isPaused }: { isPaused: boolean }) {
-  const isMobileViewport = useSyncExternalStore(
-    subscribeMobileQuery,
-    getMobileQuerySnapshot,
-    getMobileQueryServerSnapshot
-  );
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 639px)");
+    const updateMatch = () => setIsMobileViewport(mql.matches);
+    updateMatch();
+    mql.addEventListener("change", updateMatch);
+    return () => mql.removeEventListener("change", updateMatch);
+  }, []);
 
   const { placeholder } = useTypewriterPlaceholder({
     isPaused: isPaused || isMobileViewport,
@@ -126,10 +127,8 @@ export default function Navbar() {
     const nextTheme = isCurrentlyDark ? "light" : "dark";
     if (nextTheme === "dark") {
       document.documentElement.classList.add("dark");
-      document.documentElement.style.colorScheme = "dark";
     } else {
       document.documentElement.classList.remove("dark");
-      document.documentElement.style.colorScheme = "light";
     }
     try {
       localStorage.setItem("ucg-theme", nextTheme);
@@ -140,8 +139,8 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200/90 dark:border-slate-800 transition-colors duration-150">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 sm:gap-6 px-4 sm:px-6 h-[64px] sm:h-[70px]">
+      <header suppressHydrationWarning className="sticky top-0 z-40 w-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200/90 dark:border-slate-800 transition-colors duration-150">
+        <div suppressHydrationWarning className="max-w-7xl mx-auto flex items-center justify-between gap-3 sm:gap-6 px-4 sm:px-6 h-[64px] sm:h-[70px]">
           {/* Zone 1: Official Brand Logo - large, crisp, and responsive across mobile & desktop */}
           <Link
             href="/"
@@ -149,19 +148,20 @@ export default function Navbar() {
             aria-label="UnitConvertersGo - Home"
           >
             <Image
+              suppressHydrationWarning
               src="/logo.webp"
               alt="UnitConvertersGo"
-              width={280}
+              width={290}
               height={48}
               priority
-              fetchPriority="high"
               referrerPolicy="no-referrer"
-              className="h-9 sm:h-10 md:h-11 lg:h-12 w-auto max-w-[205px] sm:max-w-[240px] md:max-w-[265px] lg:max-w-[285px] object-contain bg-transparent transition-all"
+              className="h-9 sm:h-10 md:h-11 lg:h-12 w-auto max-w-[205px] sm:max-w-[240px] md:max-w-[265px] lg:max-w-[290px] object-contain bg-transparent transition-all"
             />
           </Link>
 
           {/* Zone 2: Clean single-line navigation links (Desktop) */}
           <nav
+            suppressHydrationWarning
             aria-label="Primary Navigation"
             className="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-600 dark:text-slate-300"
           >
@@ -186,6 +186,7 @@ export default function Navbar() {
               onMouseLeave={handleGuidesMouseLeave}
             >
               <button
+                suppressHydrationWarning
                 type="button"
                 onClick={() => setIsGuidesOpen((prev) => !prev)}
                 aria-expanded={isGuidesOpen}
@@ -273,8 +274,9 @@ export default function Navbar() {
           </nav>
 
           {/* Zone 3: Search Icon/Button + Theme Toggle + Mobile Menu Button (All >= 44x44px touch targets) */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div suppressHydrationWarning className="flex items-center gap-2 shrink-0">
             <button
+              suppressHydrationWarning
               type="button"
               onClick={() => setIsSearchOpen(true)}
               className="inline-flex items-center justify-between gap-2 min-w-[44px] sm:w-[230px] lg:w-[270px] min-h-[44px] px-3 py-2 text-xs font-semibold text-[#16324F] dark:text-slate-200 bg-[#F7F9FC] dark:bg-slate-800/90 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/90 dark:border-slate-700 rounded-xl transition-colors whitespace-nowrap shrink-0 cursor-pointer"
@@ -291,6 +293,7 @@ export default function Navbar() {
             </button>
 
             <button
+              suppressHydrationWarning
               type="button"
               onClick={toggleTheme}
               className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] rounded-xl border border-slate-200/90 dark:border-slate-700 bg-[#F7F9FC] dark:bg-slate-800 text-[#16324F] dark:text-amber-300 hover:bg-slate-200/70 dark:hover:bg-slate-700 transition-colors cursor-pointer shrink-0"
@@ -302,6 +305,7 @@ export default function Navbar() {
             </button>
 
             <button
+              suppressHydrationWarning
               type="button"
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
               className="md:hidden inline-flex items-center justify-center min-w-[44px] min-h-[44px] rounded-xl border border-slate-200/90 dark:border-slate-700 bg-[#F7F9FC] dark:bg-slate-800 text-[#16324F] dark:text-white hover:bg-slate-200/70 dark:hover:bg-slate-700 transition-colors cursor-pointer shrink-0"

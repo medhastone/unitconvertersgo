@@ -2,31 +2,16 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { Mail, Clock, CheckCircle2, HelpCircle } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/config";
+import { buildPageMetadata } from "@/lib/seo";
 import LegalPageLayout, { TocItem } from "@/components/LegalPageLayout";
 import ContactForm from "@/components/ContactForm";
 
-export const metadata: Metadata = {
-  title: `Contact ${SITE_CONFIG.name} — Report an Issue or Suggest a Unit`,
+export const metadata: Metadata = buildPageMetadata({
+  title: `Contact ${SITE_CONFIG.name}`,
   description:
     "Contact the UnitConvertersGo team. Report a conversion formula discrepancy, request a new measurement unit, or get help with embeddable calculator widgets.",
-  alternates: {
-    canonical: `${SITE_CONFIG.canonicalDomain}/contact`,
-  },
-  openGraph: {
-    title: `Contact ${SITE_CONFIG.name}`,
-    description:
-      "Get in touch with UnitConvertersGo to suggest a measurement unit, report a bug, or ask a question.",
-    url: `${SITE_CONFIG.canonicalDomain}/contact`,
-    siteName: SITE_CONFIG.name,
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title: `Contact ${SITE_CONFIG.name}`,
-    description:
-      "Get in touch with UnitConvertersGo to suggest a measurement unit, report a bug, or ask a question.",
-  },
-};
+  canonicalPath: "/contact",
+});
 
 const CONTACT_TOC: TocItem[] = [
   { id: "direct-contact", label: "Direct Email & Response Times" },

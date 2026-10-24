@@ -2,6 +2,7 @@ import { ConversionPairInfo, Unit } from "./types";
 import { CATEGORIES, CATEGORY_MAP, UNIT_MAP, UNITS, getUnitsByCategory } from "./units";
 import { convertUnits } from "./engine";
 import { getPairUrl, getCategoryUrl, getCategoryUrlSlug } from "./url";
+import { OBSCURE_UNIT_IDS } from "../seo";
 
 export { getPairUrl, getCategoryUrl, getCategoryUrlSlug };
 
@@ -4353,10 +4354,10 @@ function enrichConversionPair(pair: ConversionPairInfo, index: number): Conversi
     return pair;
   }
 
-  const fromNameLower = fromUnit.name.toLowerCase().replace(/\s*\(.*?\)\s*/g, "").trim();
-  const toNameLower = toUnit.name.toLowerCase().replace(/\s*\(.*?\)\s*/g, "").trim();
-  const fromPluralLower = fromUnit.plural.toLowerCase().replace(/\s*\(.*?\)\s*/g, "").trim();
-  const toPluralLower = toUnit.plural.toLowerCase().replace(/\s*\(.*?\)\s*/g, "").trim();
+  const fromNameLower = fromUnit.name.toLowerCase().replace(/\s+\([^)]*\)/g, "").trim();
+  const toNameLower = toUnit.name.toLowerCase().replace(/\s+\([^)]*\)/g, "").trim();
+  const fromPluralLower = fromUnit.plural.toLowerCase().replace(/\s+\([^)]*\)/g, "").trim();
+  const toPluralLower = toUnit.plural.toLowerCase().replace(/\s+\([^)]*\)/g, "").trim();
   const fromSymLower = fromUnit.symbol.toLowerCase();
   const toSymLower = toUnit.symbol.toLowerCase();
 
@@ -4364,8 +4365,8 @@ function enrichConversionPair(pair: ConversionPairInfo, index: number): Conversi
   const primaryKeyword =
     pair.primaryKeyword || `${fromPluralLower} to ${toPluralLower}`;
 
-  const fromPluralClean = fromUnit.plural.replace(/\s*\(.*?\)\s*/g, "").trim();
-  const toPluralClean = toUnit.plural.replace(/\s*\(.*?\)\s*/g, "").trim();
+  const fromPluralClean = fromUnit.plural.replace(/\s+\([^)]*\)/g, "").trim();
+  const toPluralClean = toUnit.plural.replace(/\s+\([^)]*\)/g, "").trim();
 
   const dimensionNounMap: Record<string, string> = {
     length: "length",
@@ -4580,7 +4581,7 @@ function enrichConversionPair(pair: ConversionPairInfo, index: number): Conversi
 }
 
 // Ensure every category in CATEGORIES (including all 49 extended engineering, heat, fluids, light, electricity, magnetism, radiology, and specialty categories)
-// has canonical conversion pairs in RAW_CONVERSION_CATALOGUE and populated popularPairSlugs.
+// has canonical conversion pairs in RAW_CONVERSION_CATALOGUE and populated popularPairSlugs without running expensive unit math on boot.
 const existingCategoryIdsInCatalogue = new Set(
   RAW_CONVERSION_CATALOGUE.map((p) => p.categoryId)
 );
@@ -4598,7 +4599,7 @@ for (const cat of CATEGORIES) {
 
       const makeCleanUnitSlug = (u: Unit) => {
         const cleaned = slugifyToken(
-          u.plural.replace(/\s*\(.*?\)\s*/g, "").toLowerCase()
+          u.plural.replace(/\s+\([^)]*\)/g, "").toLowerCase()
         );
         return cleaned || slugifyToken(u.id);
       };
@@ -4616,7 +4617,6 @@ for (const cat of CATEGORIES) {
           if (!existingSlugsInCatalogue.has(pairSlug)) {
             existingSlugsInCatalogue.add(pairSlug);
             generatedSlugs.push(pairSlug);
-            const oneResult = convertUnits(1, fromU.id, toU.id, "auto");
             RAW_CONVERSION_CATALOGUE.push({
               slug: pairSlug,
               fromUnitId: fromU.id,
@@ -4624,8 +4624,8 @@ for (const cat of CATEGORIES) {
               categoryId: cat.id,
               title: `${fromU.plural} to ${toU.plural} Converter (${fromU.symbol} to ${toU.symbol})`,
               h1: `${fromU.plural} to ${toU.plural} Converter`,
-              metaDescription: `Convert ${fromU.plural.toLowerCase()} to ${toU.plural.toLowerCase()} (${fromU.symbol} to ${toU.symbol}) with live calculation, conversion table, and exact formula (1 ${fromU.symbol} = ${oneResult.formattedValue} ${toU.symbol}).`,
-              formulaDescription: `To convert ${fromU.plural.toLowerCase()} to ${toU.plural.toLowerCase()}, multiply the value in ${fromU.plural.toLowerCase()} by ${oneResult.formattedValue} (1 ${fromU.symbol} = ${oneResult.formattedValue} ${toU.symbol}).`,
+              metaDescription: `Convert ${fromU.plural.toLowerCase()} to ${toU.plural.toLowerCase()} (${fromU.symbol} to ${toU.symbol}) with live calculation, conversion table, and exact formula.`,
+              formulaDescription: `Convert ${fromU.plural.toLowerCase()} (${fromU.symbol}) to ${toU.plural.toLowerCase()} (${toU.symbol}) using standardized SI and NIST conversion factors.`,
               exampleInput: 10,
             });
           }
@@ -4639,28 +4639,129 @@ for (const cat of CATEGORIES) {
   }
 }
 
-export const CONVERSION_CATALOGUE: ConversionPairInfo[] = RAW_CONVERSION_CATALOGUE.map((pair, index) =>
-  enrichConversionPair(pair, index)
+function createLightweightPair(pair: ConversionPairInfo, index: number): ConversionPairInfo {
+  const fromUnit = UNIT_MAP.get(pair.fromUnitId);
+  const toUnit = UNIT_MAP.get(pair.toUnitId);
+  if (!fromUnit || !toUnit) return pair;
+
+  const fromPluralClean = fromUnit.plural.replace(/\s+\([^)]*\)/g, "").trim();
+  const toPluralClean = toUnit.plural.replace(/\s+\([^)]*\)/g, "").trim();
+  const h1 = pair.h1 || `${fromPluralClean} to ${toPluralClean} Converter`;
+  const primaryKeyword =
+    pair.primaryKeyword || `${fromPluralClean.toLowerCase()} to ${toPluralClean.toLowerCase()}`;
+
+  return {
+    ...pair,
+    h1,
+    primaryKeyword,
+    priorityTier: pair.priorityTier || (index < 60 ? "A" : index < 160 ? "B" : "C"),
+  };
+}
+
+export const CONVERSION_CATALOGUE: ConversionPairInfo[] = RAW_CONVERSION_CATALOGUE.map(
+  (pair, index) => createLightweightPair(pair, index)
 );
 
-// O(1) slug map supporting both canonical slugs AND competitor/synonym alias slugs
-export const CATALOGUE_MAP = new Map<string, ConversionPairInfo>();
-// Also index by `${fromUnitId}__${toUnitId}` for fast canonical lookup
-const PAIR_BY_UNIT_IDS = new Map<string, ConversionPairInfo>();
+const ENRICHED_PAIR_CACHE = new Map<string, ConversionPairInfo>();
+const PAIR_INDEX_MAP = new Map<string, number>();
 
-for (const item of CONVERSION_CATALOGUE) {
+// O(1) slug map supporting canonical slugs immediately and lazy alias resolution on miss
+export const CATALOGUE_MAP = new Map<string, ConversionPairInfo>();
+// Also index by `${fromUnitId}__${toUnitId}` for fast O(1) canonical lookup
+const PAIR_BY_UNIT_IDS = new Map<string, ConversionPairInfo>();
+const PAIRS_BY_CATEGORY_MAP = new Map<string, ConversionPairInfo[]>();
+
+for (let i = 0; i < CONVERSION_CATALOGUE.length; i++) {
+  const item = CONVERSION_CATALOGUE[i];
+  PAIR_INDEX_MAP.set(item.slug, i);
   PAIR_BY_UNIT_IDS.set(`${item.fromUnitId}__${item.toUnitId}`, item);
-  if (item.aliases) {
-    for (const alias of item.aliases) {
-      if (!CATALOGUE_MAP.has(alias)) {
-        CATALOGUE_MAP.set(alias, item);
+  CATALOGUE_MAP.set(item.slug, item);
+
+  const catList = PAIRS_BY_CATEGORY_MAP.get(item.categoryId);
+  if (catList) {
+    catList.push(item);
+  } else {
+    PAIRS_BY_CATEGORY_MAP.set(item.categoryId, [item]);
+  }
+}
+
+export function ensureEnrichedPair(pair: ConversionPairInfo): ConversionPairInfo {
+  const cached = ENRICHED_PAIR_CACHE.get(pair.slug);
+  if (cached) return cached;
+  const idx = PAIR_INDEX_MAP.get(pair.slug) ?? 200;
+  const enriched = enrichConversionPair(pair, idx);
+  ENRICHED_PAIR_CACHE.set(pair.slug, enriched);
+  CATALOGUE_MAP.set(pair.slug, enriched);
+  PAIR_BY_UNIT_IDS.set(`${pair.fromUnitId}__${pair.toUnitId}`, enriched);
+  return enriched;
+}
+
+export function findDedicatedPair(
+  fromUnitId: string,
+  toUnitId: string
+): ConversionPairInfo | undefined {
+  return PAIR_BY_UNIT_IDS.get(`${fromUnitId}__${toUnitId}`);
+}
+
+let isAliasMapPopulated = false;
+function ensureAliasSlugMap(): void {
+  if (isAliasMapPopulated) return;
+  isAliasMapPopulated = true;
+  for (const item of CONVERSION_CATALOGUE) {
+    const fromUnit = UNIT_MAP.get(item.fromUnitId);
+    const toUnit = UNIT_MAP.get(item.toUnitId);
+    if (!fromUnit || !toUnit) continue;
+    const fromNameLower = fromUnit.name.toLowerCase().replace(/\s+\([^)]*\)/g, "").trim();
+    const toNameLower = toUnit.name.toLowerCase().replace(/\s+\([^)]*\)/g, "").trim();
+    const fromPluralLower = fromUnit.plural.toLowerCase().replace(/\s+\([^)]*\)/g, "").trim();
+    const toPluralLower = toUnit.plural.toLowerCase().replace(/\s+\([^)]*\)/g, "").trim();
+    const fromSymLower = fromUnit.symbol.toLowerCase();
+    const toSymLower = toUnit.symbol.toLowerCase();
+
+    const candidateAliases = [
+      ...(item.aliases || []),
+      `${slugifyToken(fromNameLower)}-to-${slugifyToken(toNameLower)}`,
+      `${slugifyToken(fromPluralLower)}-to-${slugifyToken(toPluralLower)}`,
+      `${slugifyToken(fromNameLower)}-to-${slugifyToken(toPluralLower)}`,
+      `${slugifyToken(fromPluralLower)}-to-${slugifyToken(toNameLower)}`,
+      `${slugifyToken(fromSymLower)}-to-${slugifyToken(toSymLower)}`,
+      `${slugifyToken(item.fromUnitId)}-to-${slugifyToken(item.toUnitId)}`,
+      `convert-${item.slug}`,
+      `${item.slug}-converter`,
+      `${item.slug}-calculator`,
+    ];
+    for (const a of candidateAliases) {
+      if (a && a !== item.slug && !a.startsWith("-to-") && !a.endsWith("-to-") && !CATALOGUE_MAP.has(a)) {
+        CATALOGUE_MAP.set(a, item);
       }
     }
   }
-}
-// Canonical slugs always take precedence
-for (const item of CONVERSION_CATALOGUE) {
-  CATALOGUE_MAP.set(item.slug, item);
+
+  // Legacy corrupted slug aliases -> redirect to their clean canonical pairs
+  const legacyUnitPairRedirects: Record<string, [string, string]> = {
+    "watts-per-meter-kelvin-to-cal": ["tc_w_mk", "tc_cal_s_cm_c"],
+    "cal-to-watts-per-meter-kelvin": ["tc_cal_s_cm_c", "tc_w_mk"],
+    "w-to-btu": ["htc_w_m2k", "htc_btu_h_ft2_f"],
+    "btu-to-w": ["htc_btu_h_ft2_f", "htc_w_m2k"],
+    "w-to-w": ["htc_w_m2k", "htc_w_cm2k"],
+    "htc-w-cm2k-to-htc-w-m2k": ["htc_w_cm2k", "htc_w_m2k"],
+    "w-to-kw": ["htc_w_m2k", "htc_kw_m2k"],
+    "kw-to-w": ["htc_kw_m2k", "htc_w_m2k"],
+    "kg-to-g": ["mfd_kg_s_m2", "mfd_g_s_m2"],
+    "g-to-kg": ["mfd_g_s_m2", "mfd_kg_s_m2"],
+    "kg-to-kg": ["mfd_kg_s_m2", "mfd_kg_h_m2"],
+    "mfd-kg-h-m2-to-mfd-kg-s-m2": ["mfd_kg_h_m2", "mfd_kg_s_m2"],
+    "kg-to-lb": ["mfd_kg_s_m2", "mfd_lb_h_ft2"],
+    "lb-to-kg": ["mfd_lb_h_ft2", "mfd_kg_s_m2"],
+    "pascal-seconds-to-lb": ["vd_pa_s", "vd_lb_ft_s"],
+    "lb-to-pascal-seconds": ["vd_lb_ft_s", "vd_pa_s"],
+  };
+  for (const [legacySlug, [fId, tId]] of Object.entries(legacyUnitPairRedirects)) {
+    const target = PAIR_BY_UNIT_IDS.get(`${fId}__${tId}`);
+    if (target && !CATALOGUE_MAP.has(legacySlug)) {
+      CATALOGUE_MAP.set(legacySlug, target);
+    }
+  }
 }
 
 /**
@@ -4763,38 +4864,18 @@ export function getFriendlyUnitSingular(unit: Unit): string {
   if (FRIENDLY_SINGULAR_OVERRIDES[unit.id]) {
     return FRIENDLY_SINGULAR_OVERRIDES[unit.id];
   }
-  return unit.name.replace(/\s*\(.*?\)\s*/g, "").trim();
+  return unit.name.replace(/\s+\([^)]*\)/g, "").trim();
 }
 
 export function getFriendlyUnitPlural(unit: Unit): string {
   if (FRIENDLY_PLURAL_OVERRIDES[unit.id]) {
     return FRIENDLY_PLURAL_OVERRIDES[unit.id];
   }
-  return unit.plural.replace(/\s*\(.*?\)\s*/g, "").trim();
+  return unit.plural.replace(/\s+\([^)]*\)/g, "").trim();
 }
 
 export function getPreferredUnitSlug(unit: Unit): string {
   return slugifyToken(getFriendlyUnitPlural(unit).toLowerCase());
-}
-
-// Build token -> Unit lookup for dynamic pair resolution
-const UNIT_SLUG_TOKEN_MAP = new Map<string, Unit>();
-for (const u of UNITS) {
-  const tokens = [
-    u.id,
-    slugifyToken(u.id),
-    slugifyToken(u.name.replace(/\s*\(.*?\)\s*/g, "")),
-    slugifyToken(u.plural.replace(/\s*\(.*?\)\s*/g, "")),
-    slugifyToken(getFriendlyUnitSingular(u)),
-    slugifyToken(getFriendlyUnitPlural(u)),
-    slugifyToken(u.symbol),
-    ...(u.aliases || []).map((a) => slugifyToken(a)),
-  ];
-  for (const t of tokens) {
-    if (t && !UNIT_SLUG_TOKEN_MAP.has(t)) {
-      UNIT_SLUG_TOKEN_MAP.set(t, u);
-    }
-  }
 }
 
 // Explicit high-priority token bindings so common terms never collide
@@ -4885,11 +4966,36 @@ const EXPLICIT_UNIT_TOKENS: Record<string, string> = {
   nm: "nanometer",
 };
 
-for (const [tok, unitId] of Object.entries(EXPLICIT_UNIT_TOKENS)) {
-  const unitObj = UNIT_MAP.get(unitId);
-  if (unitObj) {
-    UNIT_SLUG_TOKEN_MAP.set(tok, unitObj);
+// Lazily build token -> Unit lookup for dynamic pair resolution only when needed
+let lazyUnitSlugTokenMap: Map<string, Unit> | null = null;
+function getUnitSlugTokenMap(): Map<string, Unit> {
+  if (lazyUnitSlugTokenMap) return lazyUnitSlugTokenMap;
+  const map = new Map<string, Unit>();
+  for (const u of UNITS) {
+    const tokens = [
+      u.id,
+      slugifyToken(u.id),
+      slugifyToken(u.name.replace(/\s+\([^)]*\)/g, "")),
+      slugifyToken(u.plural.replace(/\s+\([^)]*\)/g, "")),
+      slugifyToken(getFriendlyUnitSingular(u)),
+      slugifyToken(getFriendlyUnitPlural(u)),
+      slugifyToken(u.symbol),
+      ...(u.aliases || []).map((a) => slugifyToken(a)),
+    ];
+    for (const t of tokens) {
+      if (t && !map.has(t)) {
+        map.set(t, u);
+      }
+    }
   }
+  for (const [tok, unitId] of Object.entries(EXPLICIT_UNIT_TOKENS)) {
+    const unitObj = UNIT_MAP.get(unitId);
+    if (unitObj) {
+      map.set(tok, unitObj);
+    }
+  }
+  lazyUnitSlugTokenMap = map;
+  return map;
 }
 
 export function getCanonicalPairSlug(fromUnit: Unit, toUnit: Unit): string {
@@ -4900,7 +5006,7 @@ export function getCanonicalPairSlug(fromUnit: Unit, toUnit: Unit): string {
 
 function synthesizeDynamicPair(fromUnit: Unit, toUnit: Unit): ConversionPairInfo {
   const existing = PAIR_BY_UNIT_IDS.get(`${fromUnit.id}__${toUnit.id}`);
-  if (existing) return existing;
+  if (existing) return ensureEnrichedPair(existing);
 
   const canonicalSlug = `${getPreferredUnitSlug(fromUnit)}-to-${getPreferredUnitSlug(toUnit)}`;
   const fromPlural = getFriendlyUnitPlural(fromUnit);
@@ -4920,6 +5026,7 @@ function synthesizeDynamicPair(fromUnit: Unit, toUnit: Unit): ConversionPairInfo
   };
 
   const enriched = enrichConversionPair(rawPair, 200);
+  ENRICHED_PAIR_CACHE.set(canonicalSlug, enriched);
   CATALOGUE_MAP.set(canonicalSlug, enriched);
   PAIR_BY_UNIT_IDS.set(`${fromUnit.id}__${toUnit.id}`, enriched);
   return enriched;
@@ -4934,13 +5041,18 @@ export function getConversionPair(
     .toLowerCase()
     .replace(/\.html?$/i, "");
   const direct = CATALOGUE_MAP.get(clean);
-  if (direct) return direct;
+  if (direct) return ensureEnrichedPair(direct);
+
+  // Lazy-populate alias slugs on first miss
+  ensureAliasSlugMap();
+  const aliasMatch = CATALOGUE_MAP.get(clean);
+  if (aliasMatch) return ensureEnrichedPair(aliasMatch);
 
   // Also resolve numeric-prefixed query variations (e.g. "100-cm-to-inches", "50-kg-to-lbs", "25.4-mm-to-in")
   const strippedNumeric = clean.replace(/^(\d+(?:[._-]\d+)?)-+/, "");
   if (strippedNumeric !== clean) {
     const numMatch = CATALOGUE_MAP.get(strippedNumeric);
-    if (numMatch) return numMatch;
+    if (numMatch) return ensureEnrichedPair(numMatch);
   }
 
   // Dynamic resolution for any "[unitA]-to-[unitB]" slug across all categories & culinary mass/volume units
@@ -4964,8 +5076,8 @@ export function getConversionPair(
         const uTokens = [
           u.id.toLowerCase(),
           slugifyToken(u.id),
-          slugifyToken(u.name.replace(/\s*\(.*?\)\s*/g, "")),
-          slugifyToken(u.plural.replace(/\s*\(.*?\)\s*/g, "")),
+          slugifyToken(u.name.replace(/\s+\([^)]*\)/g, "")),
+          slugifyToken(u.plural.replace(/\s+\([^)]*\)/g, "")),
           slugifyToken(getFriendlyUnitSingular(u)),
           slugifyToken(getFriendlyUnitPlural(u)),
           slugifyToken(u.symbol),
@@ -4980,8 +5092,9 @@ export function getConversionPair(
       }
     }
 
-    if (!fromUnit) fromUnit = UNIT_SLUG_TOKEN_MAP.get(leftToken);
-    if (!toUnit) toUnit = UNIT_SLUG_TOKEN_MAP.get(rightToken);
+    const tokenMap = getUnitSlugTokenMap();
+    if (!fromUnit) fromUnit = tokenMap.get(leftToken);
+    if (!toUnit) toUnit = tokenMap.get(rightToken);
 
     // Special disambiguation for "calorie" / "calories":
     // When paired with a mass or volume unit, resolve to "dietary_calorie" (mass);
@@ -5022,10 +5135,8 @@ export function getConversionPair(
 const SYNTHESIZED_CATEGORY_PAIRS_CACHE = new Map<string, ConversionPairInfo[]>();
 
 export function getConversionsByCategory(categoryId: string): ConversionPairInfo[] {
-  const staticPairs = CONVERSION_CATALOGUE.filter(
-    (item) => item.categoryId === categoryId
-  );
-  if (staticPairs.length > 0) {
+  const staticPairs = PAIRS_BY_CATEGORY_MAP.get(categoryId);
+  if (staticPairs && staticPairs.length > 0) {
     return staticPairs;
   }
 
@@ -5138,16 +5249,20 @@ export function getMoreUnitConversionLinks(
       return result;
     }
 
-    // For all other units, include all standard units in the unit's own category
+    // For all other units, include standard (non-obscure) units in the unit's own category
     const categoryPeers = getUnitsByCategory(anchorUnit.categoryId);
+    const anchorIsObscure = OBSCURE_UNIT_IDS.has(anchorUnit.id);
     for (const u of categoryPeers) {
       if (!seen.has(u.id)) {
+        if (!anchorIsObscure && OBSCURE_UNIT_IDS.has(u.id)) {
+          continue;
+        }
         seen.add(u.id);
         result.push(u);
       }
     }
 
-    return result;
+    return result.slice(0, 12);
   };
 
   const fromTargetUnits = buildPeerUnitsFor(fromUnit).filter(

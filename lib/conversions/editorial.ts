@@ -52,6 +52,7 @@ const CATEGORY_DIMENSION_NOUN: Record<string, string> = {
   length: "length",
   mass: "weight",
   volume: "volume",
+  volume_dry: "dry volume",
   temperature: "temperature",
   area: "area",
   speed: "speed",
@@ -59,6 +60,7 @@ const CATEGORY_DIMENSION_NOUN: Record<string, string> = {
   pressure: "pressure",
   energy: "energy",
   power: "power",
+  force: "force",
   digital_storage: "data size",
   data_transfer: "data transfer rate",
   density: "density",
@@ -69,11 +71,63 @@ const CATEGORY_DIMENSION_NOUN: Record<string, string> = {
   flow: "flow rate",
   current: "electric current",
   voltage: "voltage",
+  electric_potential: "voltage",
   capacitance: "capacitance",
   charge: "electric charge",
   resistance: "electrical resistance",
   inductance: "inductance",
   magnetic: "magnetic flux density",
+  currency: "currency amount",
+  numbers: "number",
+  velocity_angular: "angular velocity",
+  acceleration: "acceleration",
+  acceleration_angular: "angular acceleration",
+  specific_volume: "specific volume",
+  moment_of_inertia: "moment of inertia",
+  moment_of_force: "moment of force",
+  fuel_efficiency_mass: "fuel efficiency",
+  fuel_efficiency_volume: "fuel efficiency",
+  temperature_interval: "temperature interval",
+  thermal_expansion: "thermal expansion",
+  thermal_resistance: "thermal resistance",
+  thermal_conductivity: "thermal conductivity",
+  specific_heat_capacity: "specific heat capacity",
+  heat_density: "heat density",
+  heat_flux_density: "heat flux density",
+  heat_transfer_coefficient: "heat transfer coefficient",
+  flow_mass: "mass flow rate",
+  flow_molar: "molar flow rate",
+  mass_flux_density: "mass flux density",
+  concentration_molar: "molar concentration",
+  concentration_solution: "solution concentration",
+  viscosity_dynamic: "dynamic viscosity",
+  viscosity_kinematic: "kinematic viscosity",
+  surface_tension: "surface tension",
+  permeability: "permeability",
+  luminance: "luminance",
+  luminous_intensity: "luminous intensity",
+  illumination: "illumination",
+  digital_image_resolution: "image resolution",
+  charge_linear: "linear charge density",
+  charge_surface: "surface charge density",
+  charge_volume: "volume charge density",
+  current_linear: "linear current density",
+  current_surface: "surface current density",
+  electric_field: "electric field strength",
+  electric_resistivity: "electrical resistivity",
+  electric_conductance: "electrical conductance",
+  electric_conductivity: "electrical conductivity",
+  magnetomotive_force: "magnetomotive force",
+  magnetic_field_strength: "magnetic field strength",
+  magnetic_flux: "magnetic flux",
+  radiation: "radiation dose",
+  radiation_activity: "radioactive activity",
+  radiation_exposure: "radiation exposure",
+  radiation_absorbed_dose: "absorbed radiation dose",
+  prefixes: "prefix value",
+  sound: "sound level",
+  typography: "typographical length",
+  volume_lumber: "lumber volume",
 };
 
 const CATEGORY_MEASURING_INSTRUMENTS: Record<string, string> = {
@@ -179,11 +233,11 @@ function getIndefiniteArticle(word: string): "a" | "an" {
 }
 
 function cleanUnitSingular(unit: Unit): string {
-  return unit.name.replace(/\s*\(.*?\)\s*/g, "").trim();
+  return unit.name.replace(/\s+\([^)]*\)/g, "").trim();
 }
 
 function cleanUnitPlural(unit: Unit): string {
-  return unit.plural.replace(/\s*\(.*?\)\s*/g, "").trim();
+  return unit.plural.replace(/\s+\([^)]*\)/g, "").trim();
 }
 
 /**
@@ -207,24 +261,20 @@ export function formatCleanNumber(val: number): string {
 
 /**
  * Generates the exact 1-sentence actionable subheading requested by the user:
- * e.g. "Enter the length in inches below to convert it to nanometers."
+ * e.g. "Enter the length in millimeters below to convert it to inches."
  */
 export function getActionableSubheading(
   pair: ConversionPairInfo,
   fromUnit: Unit,
   toUnit: Unit
 ): string {
-  if (pair.intro && pair.intro.trim().length > 0) {
-    return pair.intro.trim();
-  }
-  const dimension = CATEGORY_DIMENSION_NOUN[pair.categoryId] || "measurement";
+  const dimension =
+    CATEGORY_DIMENSION_NOUN[pair.categoryId] ||
+    CATEGORY_MAP.get(pair.categoryId)?.name.toLowerCase() ||
+    "measurement";
   const fromPluralLower = cleanUnitPlural(fromUnit).toLowerCase();
   const toPluralLower = cleanUnitPlural(toUnit).toLowerCase();
-  const oneForward = convertUnits(1, fromUnit.id, toUnit.id, "auto");
-  const oneReverse = convertUnits(1, toUnit.id, fromUnit.id, "auto");
-  const factorStr = formatCleanNumber(oneForward.rawValue);
-  const revFactorStr = formatCleanNumber(oneReverse.rawValue);
-  return `Convert ${fromPluralLower} (${fromUnit.symbol}) to ${toPluralLower} (${toUnit.symbol}) instantly using the exact relation 1 ${toUnit.symbol} = ${revFactorStr} ${fromUnit.symbol} (1 ${fromUnit.symbol} = ${factorStr} ${toUnit.symbol}).`;
+  return `Enter the ${dimension} in ${fromPluralLower} below to convert it to ${toPluralLower}.`;
 }
 
 /**
@@ -243,7 +293,7 @@ export function getCleanH1Title(
 }
 
 /**
- * Builds the rich multi-paragraph "What Is a/an [Unit]?" encyclopedia entry for any unit across all 25 categories
+ * Builds the rich multi-paragraph "What Is a/an [Unit]?" encyclopedia entry for any unit across all 78 categories
  */
 export function buildUnitEncyclopediaEntry(unit: Unit): UnitEncyclopediaEntry {
   const category = CATEGORY_MAP.get(unit.categoryId);
@@ -262,7 +312,7 @@ export function buildUnitEncyclopediaEntry(unit: Unit): UnitEncyclopediaEntry {
     return {
       heading: "What Is an Inch?",
       definitionParagraph:
-        "An inch is a unit of length equal to 1/12 of a foot or 1/36 of a yard. Because the international yard is legally defined as exactly 0.9144 meters under the 1959 International Yard and Pound Agreement, one inch equals exactly 2.54 centimeters (25.4 millimeters or 25,400,000 nanometers).[1]",
+        "An inch is a unit of length equal to 1/12 of a foot or 1/36 of a yard. Because the international yard is legally defined as exactly 0.9144 meters under the 1959 International Yard and Pound Agreement, one inch equals exactly 2.54 centimeters (25.4 millimeters or 25,400,000 nanometers).",
       systemAndSymbolParagraph:
         "The inch is a US customary and imperial unit of length. Inches can be abbreviated as in; for example, 1 inch can be written as 1 in.",
       notationOrPrefixParagraph:
@@ -280,7 +330,7 @@ export function buildUnitEncyclopediaEntry(unit: Unit): UnitEncyclopediaEntry {
     return {
       heading: "What Is a Nanometer?",
       definitionParagraph:
-        "One nanometer is equal to one-billionth (1/1,000,000,000) of a meter, which is defined as the distance light travels in a vacuum in a 1/299,792,458 second time interval.[1]",
+        "One nanometer is equal to one-billionth (1/1,000,000,000) of a meter, which is defined as the distance light travels in a vacuum in a 1/299,792,458 second time interval.",
       systemAndSymbolParagraph:
         "The nanometer, or nanometre, is a multiple of the meter, the SI base unit for length. In the metric system, \"nano\" is the prefix for billionths, or 10⁻⁹. Nanometers can be abbreviated as nm; for example, 1 nanometer can be written as 1 nm.",
       notationOrPrefixParagraph:
@@ -298,7 +348,7 @@ export function buildUnitEncyclopediaEntry(unit: Unit): UnitEncyclopediaEntry {
     return {
       heading: "What Is a Centimeter?",
       definitionParagraph:
-        "A centimeter is a metric unit of length equal to one-hundredth (1/100) of a meter, which is the International System of Units (SI) base unit of length.[1] One centimeter is also equal to 10 millimeters or approximately 0.39370079 inches.",
+        "A centimeter is a metric unit of length equal to one-hundredth (1/100) of a meter, which is the International System of Units (SI) base unit of length. One centimeter is also equal to 10 millimeters or approximately 0.39370079 inches.",
       systemAndSymbolParagraph:
         "The centimeter, or centimetre, is part of the SI metric system used worldwide for everyday, scientific, and clinical measurements. Centimeters can be abbreviated as cm; for example, 1 centimeter can be written as 1 cm.",
       notationOrPrefixParagraph:
@@ -316,7 +366,7 @@ export function buildUnitEncyclopediaEntry(unit: Unit): UnitEncyclopediaEntry {
     return {
       heading: "What Is a Millimeter?",
       definitionParagraph:
-        "A millimeter is a metric unit of length equal to one-thousandth (1/1,000) of a meter or one-tenth (1/10) of a centimeter.[1] By international definition, there are exactly 25.4 millimeters in one inch.",
+        "A millimeter is a metric unit of length equal to one-thousandth (1/1,000) of a meter or one-tenth (1/10) of a centimeter. By international definition, there are exactly 25.4 millimeters in one inch.",
       systemAndSymbolParagraph:
         "The millimeter, or millimetre, is a standard SI metric unit of length. Millimeters can be abbreviated as mm; for example, 1 millimeter can be written as 1 mm.",
       notationOrPrefixParagraph:
@@ -334,7 +384,7 @@ export function buildUnitEncyclopediaEntry(unit: Unit): UnitEncyclopediaEntry {
     return {
       heading: "What Is a Meter?",
       definitionParagraph:
-        "The meter (or metre) is the fundamental base unit of length in the International System of Units (SI), officially defined by the BIPM as the length of the path traveled by light in a vacuum during a time interval of 1/299,792,458 of a second.[1]",
+        "The meter (or metre) is the fundamental base unit of length in the International System of Units (SI), officially defined by the BIPM as the length of the path traveled by light in a vacuum during a time interval of 1/299,792,458 of a second.",
       systemAndSymbolParagraph:
         "All metric units of length—from nanometers and millimeters to kilometers—are derived as decimal powers of the meter. Meters can be abbreviated as m; for example, 1 meter can be written as 1 m.",
       notationOrPrefixParagraph:
@@ -352,7 +402,7 @@ export function buildUnitEncyclopediaEntry(unit: Unit): UnitEncyclopediaEntry {
     return {
       heading: "What Is a Foot?",
       definitionParagraph:
-        "A foot is a US customary and imperial unit of length equal to 12 inches or 1/3 of a yard. Under the 1959 International Yard and Pound Agreement, one foot is legally defined as exactly 0.3048 meters (30.48 centimeters).[1]",
+        "A foot is a US customary and imperial unit of length equal to 12 inches or 1/3 of a yard. Under the 1959 International Yard and Pound Agreement, one foot is legally defined as exactly 0.3048 meters (30.48 centimeters).",
       systemAndSymbolParagraph:
         "Feet are widely used in the United States, Canada, and the United Kingdom for human height, building construction, real estate floor plans, and aviation altitude. Feet can be abbreviated as ft; for example, 1 foot can be written as 1 ft.",
       notationOrPrefixParagraph:
@@ -372,12 +422,12 @@ export function buildUnitEncyclopediaEntry(unit: Unit): UnitEncyclopediaEntry {
     const ratioToBase = unit.toBase;
     const inverseRatio = 1 / ratioToBase;
     if (ratioToBase < 1 && Math.abs(Math.round(inverseRatio) - inverseRatio) < 1e-6) {
-      defPara = `${articleCap} ${singularLower} is a unit of ${dimension} equal to 1/${Math.round(inverseRatio).toLocaleString("en-US")} of ${getIndefiniteArticle(baseUnit.name)} ${cleanUnitSingular(baseUnit).toLowerCase()} (${formatCleanNumber(ratioToBase)} ${baseUnit.symbol}).[1] ${unit.description || ""}`;
+      defPara = `${articleCap} ${singularLower} is a unit of ${dimension} equal to 1/${Math.round(inverseRatio).toLocaleString("en-US")} of ${getIndefiniteArticle(baseUnit.name)} ${cleanUnitSingular(baseUnit).toLowerCase()} (${formatCleanNumber(ratioToBase)} ${baseUnit.symbol}). ${unit.description || ""}`.trim();
     } else {
-      defPara = `${articleCap} ${singularLower} is a unit of ${dimension} equal to ${formatCleanNumber(ratioToBase)} ${cleanUnitPlural(baseUnit).toLowerCase()} (${baseUnit.symbol}), the base unit for ${dimension}.[1] ${unit.description || ""}`;
+      defPara = `${articleCap} ${singularLower} is a unit of ${dimension} equal to ${formatCleanNumber(ratioToBase)} ${cleanUnitPlural(baseUnit).toLowerCase()} (${baseUnit.symbol}), the base unit for ${dimension}. ${unit.description || ""}`.trim();
     }
   } else if (unit.description) {
-    defPara = `${unit.description} It serves as a primary reference unit for measuring ${dimension} across scientific and practical applications.[1]`;
+    defPara = `${unit.description} It serves as a primary reference unit for measuring ${dimension} across scientific and practical applications.`;
   }
 
   const sysPara = `The ${singularLower} is classified as ${formatSystemLabelWithArticle(unit.system)} unit of ${dimension}. ${cleanUnitPlural(unit)} can be abbreviated as ${unit.symbol}; for example, 1 ${singularLower} can be written as 1 ${unit.symbol}.`;
@@ -386,19 +436,43 @@ export function buildUnitEncyclopediaEntry(unit: Unit): UnitEncyclopediaEntry {
     (p) => singularLower.startsWith(p.prefix) && singularLower !== p.prefix
   );
   let prefixPara: string;
-  if (matchedPrefix && baseUnit) {
-    prefixPara = `In the metric system, "${matchedPrefix.prefix}" is the standard SI prefix for ${matchedPrefix.factorText}, or ${matchedPrefix.powerText}. This makes the ${singularLower} (${unit.symbol}) a convenient decimal multiple of the ${cleanUnitSingular(baseUnit).toLowerCase()} (${baseUnit.symbol}).`;
+  if (unit.id === "kilogram") {
+    prefixPara = `Although the name "kilogram" begins with the SI prefix "kilo" (1,000 grams), the kilogram (kg) is the sole SI base unit whose definition includes a prefix for historical reasons established by the BIPM.`;
+  } else if (matchedPrefix && baseUnit && unit.id !== baseUnit.id) {
+    // Determine the true root unit name for the prefix (e.g. milligram -> gram, millibar -> bar, hectare -> are, kilocalorie -> calorie)
+    const rootNameHint = singularLower.slice(matchedPrefix.prefix.length).trim();
+    let rootDisplay = `${cleanUnitSingular(baseUnit).toLowerCase()} (${baseUnit.symbol})`;
+    if (rootNameHint === "gram" || unit.categoryId === "mass") {
+      rootDisplay = "gram (g)";
+    } else if (rootNameHint === "are" || unit.id === "hectare") {
+      rootDisplay = "are (100 m²)";
+    } else if (rootNameHint === "bar" || unit.id.endsWith("bar")) {
+      rootDisplay = "bar (100,000 Pa)";
+    } else if (rootNameHint === "calorie" || unit.id.endsWith("calorie")) {
+      rootDisplay = "calorie (cal)";
+    } else if (rootNameHint === "liter" || rootNameHint === "litre") {
+      rootDisplay = "liter (L)";
+    }
+    prefixPara = `In the metric system, "${matchedPrefix.prefix}" is the standard SI prefix for ${matchedPrefix.factorText}, or ${matchedPrefix.powerText}. This makes the ${singularLower} (${unit.symbol}) a convenient decimal multiple of the ${rootDisplay}.`;
   } else if (unit.id === "yard") {
     prefixPara = `One yard is defined as exactly 3 feet or 36 inches, and is legally anchored by international treaty as 0.9144 meters.`;
   } else if (unit.id === "mile") {
     prefixPara = `One statute mile is defined as 5,280 feet or 1,760 yards, which equals exactly 1,609.344 meters (1.609344 kilometers).`;
+  } else if (baseUnit && unit.id === baseUnit.id) {
+    prefixPara = `As the primary coherent reference unit for ${dimension} in this category, all other ${dimension} units are mathematically anchored to the ${singularLower} (${unit.symbol}).`;
   } else {
     prefixPara = `When working with ${pluralLower} (${unit.symbol}) in formulas or technical specifications, always verify whether your target system uses SI metric, US customary, or British imperial standards.`;
   }
 
-  const toolsPara =
-    CATEGORY_MEASURING_INSTRUMENTS[unit.categoryId] ||
-    `Measurements in ${pluralLower} (${unit.symbol}) are performed using calibrated laboratory and industrial instruments verified against national metrology standards.`;
+  let scaleContext = `standard ${dimension} applications`;
+  if (unit.toBase !== undefined) {
+    if (unit.toBase >= 1000) {
+      scaleContext = `large-scale industrial, bulk, and macro-level ${dimension} specifications`;
+    } else if (unit.toBase > 0 && unit.toBase <= 0.01) {
+      scaleContext = `fine-tolerance laboratory, analytical, and micro-scale ${dimension} measurements`;
+    }
+  }
+  const toolsPara = `In practice, ${pluralLower} (${unit.symbol}) are widely used across ${scaleContext} within ${formatSystemLabel(unit.system)} workflows, engineering documentation, and technical data sheets.`;
 
   return {
     heading: `What Is ${article} ${singularClean}?`,
@@ -540,9 +614,7 @@ export function generateEditorialContent(
 
   const fromUnitGuide = buildUnitEncyclopediaEntry(fromUnit);
   const toUnitGuide = buildUnitEncyclopediaEntry(toUnit);
-  const measuringAdviceParagraph =
-    CATEGORY_MEASURING_INSTRUMENTS[pair.categoryId] ||
-    `Always use a properly calibrated instrument when measuring ${dimensionNoun} in ${fromPluralLower} or ${toPluralLower}.`;
+  const measuringAdviceParagraph = `When converting ${dimensionNoun} between ${fromPluralLower} (${fromUnit.symbol}) and ${toPluralLower} (${toUnit.symbol}), keep full floating-point precision (${oneFromWithSymbol} = ${ratioFormatted} ${toUnit.symbol}; 1 ${toUnit.symbol} = ${reverseRatioFormatted} ${fromUnit.symbol}) during intermediate calculations and round only the final ${toSingularLower} figure to match your instrument tolerance.`;
 
   // Generate 6 comprehensive Google "People Also Ask" (PAA) FAQs for this exact pair
   const googlePaaFaqs = buildGooglePaaFaqs(

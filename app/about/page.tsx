@@ -2,32 +2,17 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Cpu, Globe, Layers, Code2 } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/config";
-import { CATEGORIES, UNITS } from "@/lib/conversions/units";
-import { CONVERSION_CATALOGUE } from "@/lib/conversions/catalogue";
+import { buildPageMetadata } from "@/lib/seo";
+import { CATEGORIES, UNITS, UNIT_MAP } from "@/lib/conversions/units";
+import { CONVERSION_CATALOGUE, getCategoryUrl } from "@/lib/conversions/catalogue";
 import LegalPageLayout, { TocItem } from "@/components/LegalPageLayout";
 
-export const metadata: Metadata = {
-  title: `About ${SITE_CONFIG.name} — Fast, Accessible Online Unit Converters`,
+export const metadata: Metadata = buildPageMetadata({
+  title: `About ${SITE_CONFIG.name}`,
   description:
-    "Learn about UnitConvertersGo: how our browser-based unit conversion calculators work, which measurement categories are supported, and how our formulas align with SI and NIST reference standards.",
-  alternates: {
-    canonical: `${SITE_CONFIG.canonicalDomain}/about`,
-  },
-  openGraph: {
-    title: `About ${SITE_CONFIG.name}`,
-    description:
-      "Discover the purpose of UnitConvertersGo, our supported measurement categories, and how our real-time conversion tools work across devices.",
-    url: `${SITE_CONFIG.canonicalDomain}/about`,
-    siteName: SITE_CONFIG.name,
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title: `About ${SITE_CONFIG.name}`,
-    description:
-      "Discover the purpose of UnitConvertersGo, our supported measurement categories, and how our real-time conversion tools work across devices.",
-  },
-};
+    "Learn about UnitConvertersGo: how our browser-based unit conversion calculators work, which 78 measurement categories are supported, and how our formulas align with SI and NIST standards.",
+  canonicalPath: "/about",
+});
 
 const ABOUT_TOC: TocItem[] = [
   { id: "purpose", label: "Purpose of UnitConvertersGo" },
@@ -137,23 +122,29 @@ export default function AboutPage() {
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 text-xs">
-          {CATEGORIES.map((cat) => (
-            <Link
-              key={cat.id}
-              href={`/conversions/${cat.id}`}
-              className="group flex items-center justify-between gap-2 p-3 rounded-xl bg-[#F7F9FC] dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-[#0D9488] dark:hover:border-[#2DD4BF] transition-all"
-            >
-              <div className="min-w-0">
-                <div className="font-bold text-[#16324F] dark:text-white group-hover:text-[#0D9488] dark:group-hover:text-[#2DD4BF] truncate">
-                  {cat.name}
+          {CATEGORIES.map((cat) => {
+            const baseUnit = UNIT_MAP.get(cat.baseUnitId);
+            const baseLabel = baseUnit
+              ? `${baseUnit.name} (${baseUnit.symbol})`
+              : cat.baseUnitId;
+            return (
+              <Link
+                key={cat.id}
+                href={getCategoryUrl(cat.id)}
+                className="group flex items-center justify-between gap-2 p-3 rounded-xl bg-[#F7F9FC] dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-[#0D9488] dark:hover:border-[#2DD4BF] transition-all"
+              >
+                <div className="min-w-0">
+                  <div className="font-bold text-[#16324F] dark:text-white group-hover:text-[#0D9488] dark:group-hover:text-[#2DD4BF] truncate">
+                    {cat.name}
+                  </div>
+                  <div className="text-[11px] text-slate-500 dark:text-slate-400 truncate mt-0.5">
+                    Base unit: {baseLabel}
+                  </div>
                 </div>
-                <div className="text-[11px] text-slate-500 dark:text-slate-400 truncate mt-0.5">
-                  Base unit: {cat.baseUnitId}
-                </div>
-              </div>
-              <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#0D9488] group-hover:translate-x-0.5 transition-all shrink-0" />
-            </Link>
-          ))}
+                <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#0D9488] group-hover:translate-x-0.5 transition-all shrink-0" />
+              </Link>
+            );
+          })}
         </div>
 
         <div className="pt-1">

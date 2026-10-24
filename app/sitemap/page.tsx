@@ -2,32 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight, Map } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/config";
+import { buildPageMetadata } from "@/lib/seo";
 import { CATEGORIES, UNITS } from "@/lib/conversions/units";
 import { SUPER_CATEGORIES } from "@/lib/conversions/extended-categories";
 import { CONVERSION_CATALOGUE } from "@/lib/conversions/catalogue";
 import SitemapDirectoryClient from "@/components/SitemapDirectoryClient";
 import TrustedSourcesSection from "@/components/TrustedSourcesSection";
 
-export const metadata: Metadata = {
-  title: "Sitemap — Complete Directory of 75+ Unit Converters | UnitConvertersGo",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Complete HTML Sitemap — 78+ Unit Converters",
   description:
-    "Complete HTML sitemap for UnitConvertersGo organized into Common, Engineering, Heat, Fluids, Light, Electricity, Magnetism, Radiology, and Other unit converters, plus direct unit-to-unit calculators and measurement system guides.",
-  alternates: {
-    canonical: `${SITE_CONFIG.baseUrl}/sitemap`,
-  },
-  openGraph: {
-    title: "Sitemap — All 75+ Unit Converters | UnitConvertersGo",
-    description:
-      "Browse all Common, Engineering, Heat, Fluids, Light, Electricity, Magnetism, Radiology, and Specialty unit converters on a single page.",
-    url: `${SITE_CONFIG.baseUrl}/sitemap`,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Sitemap — UnitConvertersGo",
-    description:
-      "Complete HTML sitemap of 75+ unit converters across 9 measurement domains.",
-  },
-};
+    "Complete HTML sitemap for UnitConvertersGo organized into Common, Engineering, Heat, Fluids, Light, Electricity, Magnetism, Radiology, and Specialty unit converters.",
+  canonicalPath: "/sitemap",
+});
 
 export default function HtmlSitemapPage() {
   const breadcrumbJsonLd = {
@@ -110,7 +97,7 @@ export default function HtmlSitemapPage() {
             UnitConvertersGo Complete Sitemap
           </h1>
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-            Explore our complete hierarchy of scientific, engineering, and everyday unit conversion calculators organized across 9 measurement domains—Common, Engineering, Heat, Fluids, Light, Electricity, Magnetism, Radiology, and Specialty converters.
+            Browse all unit conversion calculators, measurement categories, and reference tools in one place.
           </p>
         </header>
 

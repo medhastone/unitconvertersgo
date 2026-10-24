@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { SITE_CONFIG } from "@/lib/config";
+import { isObscureConversionPair } from "@/lib/seo";
 import { CATEGORIES } from "@/lib/conversions/units";
 import { CONVERSION_CATALOGUE } from "@/lib/conversions/catalogue";
 import { getPairUrl, getCategoryUrl } from "@/lib/conversions/url";
@@ -7,72 +8,79 @@ import { GUIDES } from "@/lib/conversions/guides";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SITE_CONFIG.baseUrl;
+  const stableLastModified = new Date(SITE_CONFIG.legalLastUpdatedIso);
 
-  // Static core routes
+  // Static core routes (only 200 indexable canonical URLs)
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: `${baseUrl}/directory`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/sitemap`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/guides`,
+      lastModified: stableLastModified,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/case-converter`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/widgets`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: "monthly",
       priority: 0.5,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: "monthly",
       priority: 0.4,
     },
     {
       url: `${baseUrl}/privacy-policy`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${baseUrl}/terms-of-use`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${baseUrl}/disclaimer`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${baseUrl}/cookie-policy`,
-      lastModified: new Date(),
+      lastModified: stableLastModified,
       changeFrequency: "yearly",
       priority: 0.3,
     },
@@ -81,23 +89,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Category hub pages (clean top-level /[category-slug])
   const categoryRoutes: MetadataRoute.Sitemap = CATEGORIES.map((cat) => ({
     url: `${baseUrl}${getCategoryUrl(cat.id)}`,
-    lastModified: new Date(),
+    lastModified: stableLastModified,
     changeFrequency: "weekly",
     priority: 0.8,
   }));
 
-  // Individual conversion landing pages (/[category]/[slug])
-  const conversionRoutes: MetadataRoute.Sitemap = CONVERSION_CATALOGUE.map((pair) => ({
+  // Indexable conversion landing pages (excluding noindex obscure scientific pairs)
+  const indexablePairs = CONVERSION_CATALOGUE.filter(
+    (pair) => !isObscureConversionPair(pair)
+  );
+
+  const conversionRoutes: MetadataRoute.Sitemap = indexablePairs.map((pair) => ({
     url: `${baseUrl}${getPairUrl(pair)}`,
-    lastModified: new Date(),
+    lastModified: stableLastModified,
     changeFrequency: "weekly",
     priority: 0.9,
   }));
 
-  // Widget Customizer Studio pages
-  const widgetRoutes: MetadataRoute.Sitemap = CONVERSION_CATALOGUE.map((pair) => ({
+  // Widget Customizer Studio pages for indexable pairs
+  const widgetRoutes: MetadataRoute.Sitemap = indexablePairs.map((pair) => ({
     url: `${baseUrl}/widgets/w/${pair.slug}`,
-    lastModified: new Date(),
+    lastModified: stableLastModified,
     changeFrequency: "monthly",
     priority: 0.7,
   }));
@@ -105,7 +117,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Educational guides
   const guideRoutes: MetadataRoute.Sitemap = GUIDES.map((g) => ({
     url: `${baseUrl}/guides/${g.slug}`,
-    lastModified: new Date(),
+    lastModified: stableLastModified,
     changeFrequency: "monthly",
     priority: 0.7,
   }));

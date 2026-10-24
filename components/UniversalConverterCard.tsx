@@ -13,7 +13,11 @@ import {
   Code2,
 } from "lucide-react";
 import { CATEGORIES, CATEGORY_MAP, getUnitsByCategory, UNIT_MAP } from "@/lib/conversions/units";
-import { CONVERSION_CATALOGUE, getPairUrl } from "@/lib/conversions/catalogue";
+import {
+  findDedicatedPair,
+  getConversionsByCategory,
+  getPairUrl,
+} from "@/lib/conversions/catalogue";
 import { convertUnits } from "@/lib/conversions/engine";
 import { ConversionOutput, PrecisionMode } from "@/lib/conversions/types";
 
@@ -66,9 +70,7 @@ export default function UniversalConverterCard({
 
   // Matching dedicated conversion page for current (fromUnitId, toUnitId)
   const matchingDedicatedPair = useMemo(() => {
-    return CONVERSION_CATALOGUE.find(
-      (p) => p.fromUnitId === fromUnitId && p.toUnitId === toUnitId
-    );
+    return findDedicatedPair(fromUnitId, toUnitId);
   }, [fromUnitId, toUnitId]);
 
   // When category changes, ensure fromUnit and toUnit belong to that category
@@ -79,7 +81,7 @@ export default function UniversalConverterCard({
       setToUnitId("foot");
       return;
     }
-    const catPairs = CONVERSION_CATALOGUE.filter((p) => p.categoryId === newCatId);
+    const catPairs = getConversionsByCategory(newCatId);
     if (catPairs.length > 0) {
       setFromUnitId(catPairs[0].fromUnitId);
       setToUnitId(catPairs[0].toUnitId);
@@ -199,6 +201,7 @@ export default function UniversalConverterCard({
 
   return (
     <div
+      suppressHydrationWarning
       className={`rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md p-4 sm:p-6 space-y-4 transition-all ${className}`}
     >
       {/* Card Header: Title + Instant Conversion Status */}
@@ -247,6 +250,7 @@ export default function UniversalConverterCard({
               </div>
             ) : (
               <select
+                suppressHydrationWarning
                 id="all-category-select"
                 value={categoryId}
                 onChange={(e) => handleCategoryChange(e.target.value)}
@@ -282,6 +286,7 @@ export default function UniversalConverterCard({
           </label>
           <div className="relative">
             <input
+              suppressHydrationWarning
               ref={inputRef}
               id="converter-input-value"
               type="number"
@@ -308,6 +313,7 @@ export default function UniversalConverterCard({
             From
           </label>
           <select
+            suppressHydrationWarning
             id="from-unit-select"
             value={fromUnitId}
             onChange={(e) => setFromUnitId(e.target.value)}
@@ -327,6 +333,7 @@ export default function UniversalConverterCard({
 
         {/* Large Accessible Swap Button (>= 44x44px touch target) */}
         <button
+          suppressHydrationWarning
           type="button"
           onClick={handleSwap}
           className={`min-w-[44px] min-h-[48px] px-3 rounded-xl bg-[#0D9488]/12 hover:bg-[#0D9488] dark:bg-[#0D9488]/20 dark:hover:bg-[#0D9488] text-[#16324F] hover:text-white dark:text-[#2DD4BF] dark:hover:text-slate-950 flex items-center justify-center transition-all duration-150 cursor-pointer shrink-0 ${
@@ -347,6 +354,7 @@ export default function UniversalConverterCard({
             To
           </label>
           <select
+            suppressHydrationWarning
             id="to-unit-select"
             value={toUnitId}
             onChange={(e) => setToUnitId(e.target.value)}

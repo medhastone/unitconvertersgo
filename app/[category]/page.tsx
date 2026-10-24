@@ -33,6 +33,7 @@ import {
 import { convertUnits } from "@/lib/conversions/engine";
 import { getTrustedReferencesForCategory } from "@/lib/conversions/references";
 import { SITE_CONFIG } from "@/lib/config";
+import { buildPageMetadata } from "@/lib/seo";
 import { ConversionPairInfo } from "@/lib/conversions/types";
 
 const CATEGORY_ALIAS_MAP: Record<string, string> = {
@@ -82,7 +83,7 @@ const CATEGORY_PROFILES: Record<string, CategorySeoProfile> = {
     displayName: "Length",
     heroTitle: "Length Converter",
     heroDescription:
-      "Convert between metric and imperial length units, including meters, kilometers, centimeters, millimeters, inches, feet, yards, and miles.",
+      "Enter a length below to convert between metric and imperial length units.",
     defaultFromId: "meter",
     defaultToId: "foot",
     defaultValue: 10,
@@ -119,7 +120,7 @@ const CATEGORY_PROFILES: Record<string, CategorySeoProfile> = {
     displayName: "Weight & Mass",
     heroTitle: "Weight & Mass Converter",
     heroDescription:
-      "Convert between metric, avoirdupois, and troy mass units, including kilograms, grams, milligrams, pounds, ounces, stones, and metric tons.",
+      "Enter a weight below to convert between metric, avoirdupois, and troy mass units.",
     defaultFromId: "kilogram",
     defaultToId: "pound",
     defaultValue: 10,
@@ -183,7 +184,7 @@ const CATEGORY_PROFILES: Record<string, CategorySeoProfile> = {
     displayName: "Volume",
     heroTitle: "Volume Converter",
     heroDescription:
-      "Convert between metric, US customary liquid, and UK Imperial volume units, including liters, milliliters, gallons, quarts, pints, cups, and fluid ounces.",
+      "Enter a volume below to convert between metric, US customary, and imperial liquid units.",
     defaultFromId: "liter",
     defaultToId: "us_gallon",
     defaultValue: 10,
@@ -210,7 +211,7 @@ const CATEGORY_PROFILES: Record<string, CategorySeoProfile> = {
     displayName: "Area",
     heroTitle: "Area Converter",
     heroDescription:
-      "Convert between metric and imperial land and surface area units, including square meters, square feet, acres, hectares, square kilometers, and square miles.",
+      "Enter an area below to convert between metric and imperial surface and land units.",
     defaultFromId: "sq_meter",
     defaultToId: "sq_foot",
     defaultValue: 100,
@@ -237,7 +238,7 @@ const CATEGORY_PROFILES: Record<string, CategorySeoProfile> = {
     displayName: "Speed",
     heroTitle: "Speed Converter",
     heroDescription:
-      "Convert between road, maritime, and aviation velocity units including kilometers per hour (km/h), miles per hour (mph), meters per second (m/s), knots, and Mach.",
+      "Enter a speed below to convert between road, maritime, and aviation velocity units.",
     defaultFromId: "km_per_h",
     defaultToId: "mph",
     defaultValue: 100,
@@ -264,7 +265,7 @@ const CATEGORY_PROFILES: Record<string, CategorySeoProfile> = {
     displayName: "Time",
     heroTitle: "Time Converter",
     heroDescription:
-      "Convert time durations across nanoseconds, milliseconds, seconds, minutes, hours, days, weeks, months, and Gregorian calendar years.",
+      "Enter a time duration below to convert between seconds, minutes, hours, days, and years.",
     defaultFromId: "hour",
     defaultToId: "minute",
     defaultValue: 24,
@@ -291,7 +292,7 @@ const CATEGORY_PROFILES: Record<string, CategorySeoProfile> = {
     displayName: "Pressure",
     heroTitle: "Pressure Converter",
     heroDescription:
-      "Convert between Pascals (Pa), kilopascals (kPa), bar, millibar, pounds per square inch (PSI), standard atmospheres (atm), Torr, and inches of mercury (inHg).",
+      "Enter a pressure reading below to convert between PSI, bar, Pascals, and atmospheres.",
     defaultFromId: "bar",
     defaultToId: "psi",
     defaultValue: 2,
@@ -318,7 +319,7 @@ const CATEGORY_PROFILES: Record<string, CategorySeoProfile> = {
     displayName: "Energy",
     heroTitle: "Energy Converter",
     heroDescription:
-      "Convert between Joules (J), kilojoules (kJ), calories, dietary kilocalories (kcal), watt-hours (Wh), kilowatt-hours (kWh), BTUs, foot-pounds, and electronvolts.",
+      "Enter an energy value below to convert between Joules, calories, kilowatt-hours, and BTUs.",
     defaultFromId: "kilojoule",
     defaultToId: "kilocalorie",
     defaultValue: 100,
@@ -345,7 +346,7 @@ const CATEGORY_PROFILES: Record<string, CategorySeoProfile> = {
     displayName: "Power",
     heroTitle: "Power Converter",
     heroDescription:
-      "Convert mechanical, electrical, and thermal power between Watts (W), kilowatts (kW), megawatts (MW), mechanical horsepower (hp), metric horsepower (PS), and BTU/h.",
+      "Enter a power value below to convert between Watts, kilowatts, horsepower, and BTU/h.",
     defaultFromId: "kilowatt",
     defaultToId: "horsepower_mechanical",
     defaultValue: 100,
@@ -372,7 +373,7 @@ const CATEGORY_PROFILES: Record<string, CategorySeoProfile> = {
     displayName: "Data Storage",
     heroTitle: "Data Storage Converter",
     heroDescription:
-      "Convert digital memory and file sizes between bits, bytes, decimal SI units (KB, MB, GB, TB, PB), and binary IEC units (KiB, MiB, GiB, TiB).",
+      "Enter a data size below to convert between bytes, kilobytes, megabytes, gigabytes, and terabytes.",
     defaultFromId: "gigabyte",
     defaultToId: "megabyte",
     defaultValue: 1,
@@ -1930,29 +1931,17 @@ export async function generateMetadata({
   const canonicalCategoryPath = getCategoryUrl(category.id);
   const profile = CATEGORY_PROFILES[category.id];
   const title = profile
-    ? `${profile.heroTitle} — Metric & Imperial ${profile.displayName} Units`
-    : `${category.pluralName} Converter — All Units & Formulas`;
+    ? profile.heroTitle
+    : `${category.name} Converter`;
   const description = profile
     ? `${profile.heroDescription} Instant real-time ${profile.displayName.toLowerCase()} calculator, unit directory, and verified formulas.`
-    : `Calculate and convert all ${category.name.toLowerCase()} measurements in real time. ${category.description} Verified NIST & SI formulas, comparison matrix, and tables.`;
+    : `Convert all ${category.name.toLowerCase()} units in real time. Includes verified NIST & SI formulas, unit comparison matrix, and reference tables.`;
 
-  return {
+  return buildPageMetadata({
     title,
     description,
-    alternates: {
-      canonical: `${SITE_CONFIG.baseUrl}${canonicalCategoryPath}`,
-    },
-    openGraph: {
-      title,
-      description,
-      url: `${SITE_CONFIG.baseUrl}${canonicalCategoryPath}`,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-    },
-  };
+    canonicalPath: canonicalCategoryPath,
+  });
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
@@ -2000,10 +1989,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const heroTitle = profile?.heroTitle || `${category.name} Converter`;
   const heroDescription =
     profile?.heroDescription ||
-    `${category.description} Convert between ${units
-      .slice(0, 6)
-      .map((u) => u.plural.toLowerCase())
-      .join(", ")}, and other supported ${category.name.toLowerCase()} units.`;
+    `Enter a value below to convert between metric, imperial, and standard ${category.name.toLowerCase()} units.`;
 
   const rawDefaultFrom =
     profile?.defaultFromId || conversionPairs[0]?.fromUnitId || units[0]?.id || "";
@@ -2128,19 +2114,22 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   };
 
   return (
-    <div className="w-full bg-[#F7F9FC]/65 dark:bg-slate-950 min-h-screen">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-7 sm:py-9 space-y-10">
+    <div suppressHydrationWarning className="w-full bg-[#F7F9FC]/65 dark:bg-slate-950 min-h-screen">
+      <div suppressHydrationWarning className="max-w-6xl mx-auto px-4 sm:px-6 py-7 sm:py-9 space-y-10">
         <script
+          suppressHydrationWarning
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
         />
         <script
+          suppressHydrationWarning
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(categoryArticleJsonLd),
           }}
         />
         <script
+          suppressHydrationWarning
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />

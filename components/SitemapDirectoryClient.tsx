@@ -165,7 +165,7 @@ export default function SitemapDirectoryClient() {
                 href: getPairUrl(p),
                 label:
                   fromU && toU
-                    ? `${fromU.name.replace(/\s*\(.*?\)\s*/g, "")} to ${toU.name.replace(/\s*\(.*?\)\s*/g, "")}`
+                    ? `${fromU.name.replace(/\s+\([^)]*\)/g, "")} to ${toU.name.replace(/\s+\([^)]*\)/g, "")}`
                     : (p.h1 || p.title).replace(" Converter", ""),
               };
             }),

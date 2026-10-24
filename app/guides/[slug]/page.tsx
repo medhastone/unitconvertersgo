@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, BookOpen, Clock, Calendar } from "lucide-react";
 import { GUIDES, GUIDES_MAP } from "@/lib/conversions/guides";
 import { SITE_CONFIG } from "@/lib/config";
+import { buildPageMetadata } from "@/lib/seo";
 import TrustedSourcesSection from "@/components/TrustedSourcesSection";
 
 interface GuidePageProps {
@@ -23,24 +24,12 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
   const guide = GUIDES_MAP.get(slug);
   if (!guide) return {};
 
-  return {
+  return buildPageMetadata({
     title: guide.title,
     description: guide.summary,
-    alternates: {
-      canonical: `${SITE_CONFIG.baseUrl}/guides/${guide.slug}`,
-    },
-    openGraph: {
-      title: guide.title,
-      description: guide.summary,
-      url: `${SITE_CONFIG.baseUrl}/guides/${guide.slug}`,
-      type: "article",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: guide.title,
-      description: guide.summary,
-    },
-  };
+    canonicalPath: `/guides/${guide.slug}`,
+    type: "article",
+  });
 }
 
 export default async function GuidePage({ params }: GuidePageProps) {

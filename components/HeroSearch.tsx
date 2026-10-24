@@ -57,8 +57,17 @@ export default function HeroSearch() {
 
   // Smart search across instant unit pairs, coupled formulas, 78 categories, and 500+ units
   const results = useMemo(() => {
+    if (!isFocused && !deferredQuery.trim()) {
+      return {
+        instantMatch: null,
+        specialTools: [],
+        conversions: [],
+        categories: [],
+        units: [],
+      };
+    }
     return runSmartSearch(deferredQuery, { conversions: 8, categories: 6, units: 4 });
-  }, [deferredQuery]);
+  }, [isFocused, deferredQuery]);
 
   const applyAnimatedExample = () => {
     const cleanPrompt = currentFullPrompt.replace(/\s*\([^)]*\)$/, "");
@@ -104,8 +113,9 @@ export default function HeroSearch() {
       Boolean(results.instantMatch));
 
   return (
-    <div ref={containerRef} className="relative w-full max-w-2xl mx-auto space-y-2">
+    <div suppressHydrationWarning ref={containerRef} className="relative w-full max-w-2xl mx-auto space-y-2">
       <div
+        suppressHydrationWarning
         className={`flex items-center gap-3 px-4 sm:px-5 min-h-[48px] py-2.5 rounded-full bg-white dark:bg-slate-900 border transition-all shadow-sm ${
           isFocused
             ? "border-[#0D9488] ring-3 ring-[#0D9488]/15 dark:border-[#0D9488]"
@@ -120,6 +130,7 @@ export default function HeroSearch() {
           Search units or converters
         </label>
         <input
+          suppressHydrationWarning
           ref={inputRef}
           id="hero-discovery-search"
           type="search"

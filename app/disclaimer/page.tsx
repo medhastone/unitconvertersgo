@@ -2,30 +2,15 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { AlertTriangle, CheckCircle2 } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/config";
+import { buildPageMetadata } from "@/lib/seo";
 import LegalPageLayout, { TocItem } from "@/components/LegalPageLayout";
 
-export const metadata: Metadata = {
-  title: `Disclaimer — Measurement Precision & Verification Notice | ${SITE_CONFIG.name}`,
+export const metadata: Metadata = buildPageMetadata({
+  title: "Disclaimer — Measurement Precision Notice",
   description:
     "Read the UnitConvertersGo Disclaimer. Understand the informational purpose of our conversion tools, how rounding and unit definitions work, and when to verify critical calculations.",
-  alternates: {
-    canonical: `${SITE_CONFIG.canonicalDomain}/disclaimer`,
-  },
-  openGraph: {
-    title: `Disclaimer | ${SITE_CONFIG.name}`,
-    description:
-      "Important information regarding measurement precision, significant-figure rounding, regional unit conventions, and independent verification for high-stakes applications.",
-    url: `${SITE_CONFIG.canonicalDomain}/disclaimer`,
-    siteName: SITE_CONFIG.name,
-    type: "website",
-  },
-  twitter: {
-    card: "summary",
-    title: `Disclaimer | ${SITE_CONFIG.name}`,
-    description:
-      "Important information regarding measurement precision, significant-figure rounding, regional unit conventions, and independent verification for high-stakes applications.",
-  },
-};
+  canonicalPath: "/disclaimer",
+});
 
 const DISCLAIMER_TOC: TocItem[] = [
   { id: "informational-purpose", label: "General Informational & Educational Purpose" },

@@ -2,24 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/config";
+import { buildPageMetadata } from "@/lib/seo";
 import CaseConverterClient from "@/components/CaseConverterClient";
 import CategoryExplorerHub from "@/components/CategoryExplorerHub";
 import ToolSearchBar from "@/components/ToolSearchBar";
 
-export const metadata: Metadata = {
-  title: "Case Converter — UPPERCASE, lowercase, Title Case & camelCase | UnitConvertersGo",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Text Case Converter Tool",
   description:
-    "Free online Case Converter tool. Convert text between Sentence case, lower case, UPPER CASE, Capitalized Case, Title Case, camelCase, PascalCase, snake_case, and kebab-case in your browser.",
-  alternates: {
-    canonical: `${SITE_CONFIG.baseUrl}/case-converter`,
-  },
-  openGraph: {
-    title: "Case Converter — UnitConvertersGo",
-    description:
-      "Convert text between Sentence case, UPPERCASE, lowercase, Title Case, camelCase, snake_case, and kebab-case.",
-    url: `${SITE_CONFIG.baseUrl}/case-converter`,
-  },
-};
+    "Free online Case Converter tool. Convert text between Sentence case, lower case, UPPER CASE, Title Case, camelCase, PascalCase, snake_case, and kebab-case in your browser.",
+  canonicalPath: "/case-converter",
+});
 
 export default function CaseConverterPage() {
   const breadcrumbJsonLd = {
@@ -85,7 +78,7 @@ export default function CaseConverterPage() {
             Case Converter
           </h1>
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-            Transform any text block between standard writing capitalization (Sentence case, Title Case, UPPERCASE, lowercase) and software engineering naming conventions (camelCase, PascalCase, snake_case, kebab-case, and CONSTANT_CASE) directly in your browser.
+            Enter your text below to convert it between uppercase, lowercase, title case, and developer formats.
           </p>
         </header>
 

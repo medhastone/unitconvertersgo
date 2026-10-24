@@ -48,8 +48,17 @@ export default function ToolSearchBar({
   }, []);
 
   const results = useMemo(() => {
+    if (!isFocused && !query.trim()) {
+      return {
+        instantMatch: null,
+        specialTools: [],
+        conversions: [],
+        categories: [],
+        units: [],
+      };
+    }
     return runSmartSearch(query, { conversions: 6, categories: 6, units: 4 });
-  }, [query]);
+  }, [isFocused, query]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Escape") {
@@ -98,8 +107,9 @@ export default function ToolSearchBar({
     results.units.length > 0;
 
   return (
-    <div ref={containerRef} className="relative w-full">
+    <div suppressHydrationWarning ref={containerRef} className="relative w-full">
       <div
+        suppressHydrationWarning
         className={`flex items-center gap-2.5 px-3.5 sm:px-4 min-h-[44px] py-2 rounded-xl bg-white dark:bg-slate-900 border transition-all shadow-2xs ${
           isFocused
             ? "border-[#0D9488] ring-2 ring-[#0D9488]/15 dark:border-[#0D9488]"
@@ -114,6 +124,7 @@ export default function ToolSearchBar({
           Search any unit conversion or measurement category
         </label>
         <input
+          suppressHydrationWarning
           ref={inputRef}
           id="inline-tool-smart-search"
           type="search"
@@ -131,6 +142,7 @@ export default function ToolSearchBar({
 
         {!query ? (
           <button
+            suppressHydrationWarning
             type="button"
             onClick={applyAnimatedExample}
             title={`Try searching "${currentFullPrompt}"`}

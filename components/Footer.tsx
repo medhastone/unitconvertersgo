@@ -138,11 +138,12 @@ export default function Footer() {
 
   return (
     <footer
+      suppressHydrationWarning
       id="site-footer"
       aria-label="Site footer"
       className="w-full border-t border-slate-200/90 dark:border-slate-800 bg-[#F7F9FC] dark:bg-slate-950 text-[#172033] dark:text-slate-200"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-8 sm:py-12 lg:py-14">
+      <div suppressHydrationWarning className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-8 sm:py-12 lg:py-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 items-stretch gap-y-2 sm:gap-x-8 sm:gap-y-10 lg:gap-x-8">
           {/* SECTION A — BRAND INTRODUCTION */}
           <div className="pb-6 mb-2 border-b border-slate-200/80 dark:border-slate-800/80 sm:pb-6 sm:mb-2 lg:pb-0 lg:mb-0 lg:border-b-0 sm:col-span-2 lg:col-span-4 lg:pr-6 flex flex-col justify-between h-full">
@@ -153,12 +154,13 @@ export default function Footer() {
                 aria-label="UnitConvertersGo — Home"
               >
                 <Image
+                  suppressHydrationWarning
                   src="/logo.webp"
                   alt="UnitConvertersGo"
-                  width={280}
+                  width={290}
                   height={48}
                   referrerPolicy="no-referrer"
-                  className="h-10 sm:h-11 lg:h-12 w-auto max-w-[230px] sm:max-w-[260px] lg:max-w-[285px] object-contain bg-transparent transition-opacity hover:opacity-95 motion-reduce:transition-none"
+                  className="h-10 sm:h-11 lg:h-12 w-auto max-w-[230px] sm:max-w-[260px] lg:max-w-[290px] object-contain bg-transparent transition-opacity hover:opacity-95 motion-reduce:transition-none"
                 />
               </Link>
 
@@ -419,7 +421,7 @@ export default function Footer() {
 
         {/* SECTION F — BOTTOM BAR */}
         <div className="mt-6 sm:mt-10 lg:mt-12 pt-6 border-t border-slate-200/80 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#64748B] dark:text-slate-400">
-          <p className="text-center sm:text-left">
+          <p suppressHydrationWarning className="text-center sm:text-left">
             © {currentYear} {SITE_CONFIG.name}. All rights reserved.
           </p>
 

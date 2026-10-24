@@ -14,6 +14,7 @@ import {
   resolveWidgetBySlug,
 } from "@/lib/widgets";
 import { SITE_CONFIG } from "@/lib/config";
+import { buildPageMetadata } from "@/lib/seo";
 
 interface WidgetStudioPageProps {
   params: Promise<{ slug: string }>;
@@ -26,26 +27,11 @@ export async function generateMetadata({
   const widget = resolveWidgetBySlug(slug);
   if (!widget) return {};
 
-  const title = `Add the ${widget.shortTitle} Widget to Your Website`;
-  const description = widget.description;
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical: `${SITE_CONFIG.baseUrl}${widget.widgetStudioHref}`,
-    },
-    openGraph: {
-      title,
-      description,
-      url: `${SITE_CONFIG.baseUrl}${widget.widgetStudioHref}`,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-    },
-  };
+  return buildPageMetadata({
+    title: `${widget.shortTitle} Widget`,
+    description: widget.description,
+    canonicalPath: widget.widgetStudioHref,
+  });
 }
 
 export default async function WidgetStudioPage({
@@ -149,7 +135,7 @@ export default async function WidgetStudioPage({
             Add the {widget.shortTitle} to Your Website
           </h1>
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-            {widget.description} Select a widget style below, customize colors and default values in real time, and copy the HTML embed snippet.
+            Customize the widget layout and default values below to generate your HTML embed code.
           </p>
         </div>
 

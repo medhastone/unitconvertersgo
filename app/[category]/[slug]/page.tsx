@@ -45,6 +45,7 @@ import { getTrustedReferencesForPair } from "@/lib/conversions/references";
 import { generateEditorialContentBundle } from "@/lib/conversions/editorial";
 import { generateLiveSolution } from "@/lib/conversions/solver";
 import { SITE_CONFIG } from "@/lib/config";
+import { buildPageMetadata, isObscureConversionPair } from "@/lib/seo";
 import { ConversionPairInfo } from "@/lib/conversions/types";
 
 interface HierarchicalConversionPageProps {
@@ -70,29 +71,20 @@ export async function generateMetadata({
   if (!pair) return {};
 
   const canonicalPath = getPairUrl(pair);
-  const keywords = [
-    pair.primaryKeyword,
-    ...(pair.relatedKeywords || []),
-  ].filter(Boolean) as string[];
+  const fromUnit = UNIT_MAP.get(pair.fromUnitId);
+  const toUnit = UNIT_MAP.get(pair.toUnitId);
+  const baseTitle =
+    fromUnit && toUnit
+      ? `${fromUnit.plural.replace(/\s+\([^)]*\)/g, "").trim()} to ${toUnit.plural.replace(/\s+\([^)]*\)/g, "").trim()} Converter`
+      : pair.title;
 
-  return {
-    title: pair.title,
+  return buildPageMetadata({
+    title: baseTitle,
     description: pair.metaDescription,
-    keywords,
-    alternates: {
-      canonical: `${SITE_CONFIG.baseUrl}${canonicalPath}`,
-    },
-    openGraph: {
-      title: pair.title,
-      description: pair.metaDescription,
-      url: `${SITE_CONFIG.baseUrl}${canonicalPath}`,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: pair.title,
-      description: pair.metaDescription,
-    },
-  };
+    canonicalPath,
+    type: "website",
+    noindex: isObscureConversionPair(pair),
+  });
 }
 
 export default async function HierarchicalConversionPage({
@@ -295,28 +287,33 @@ export default async function HierarchicalConversionPage({
       : null;
 
   return (
-    <div className="w-full bg-[#F7F9FC]/60 dark:bg-slate-950 min-h-screen">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-7 sm:py-9 space-y-8">
+    <div suppressHydrationWarning className="w-full bg-[#F7F9FC]/60 dark:bg-slate-950 min-h-screen">
+      <div suppressHydrationWarning className="max-w-6xl mx-auto px-4 sm:px-6 py-7 sm:py-9 space-y-8">
         <script
+          suppressHydrationWarning
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
         />
         <script
+          suppressHydrationWarning
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(articleAndAppJsonLd),
           }}
         />
         <script
+          suppressHydrationWarning
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
         />
         <script
+          suppressHydrationWarning
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }}
         />
         {faqJsonLd && (
           <script
+            suppressHydrationWarning
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
           />

@@ -1,6 +1,9 @@
 import type {NextConfig} from 'next';
+import {PHASE_DEVELOPMENT_SERVER} from 'next/constants';
 
-const nextConfig: NextConfig = {
+const nextConfig = (phase: string): NextConfig => ({
+  distDir: phase === PHASE_DEVELOPMENT_SERVER ? '.next/dev' : '.next',
+  cleanDistDir: false,
   reactStrictMode: true,
   trailingSlash: false,
   compress: true,
@@ -30,8 +33,9 @@ const nextConfig: NextConfig = {
   async headers() {
     const queryKeys = ['q', 'search', 'filter', 'value', 'from', 'to', 'category', 'page', 'sort'];
     const noindexRules = queryKeys.map((key) => ({
-      source: '/:path*',
+      source: '/((?!_next/|api/|favicon|icon|logo|apple-touch-icon|manifest).*)',
       has: [{ type: 'query' as const, key }],
+      missing: [{ type: 'query' as const, key: 'url' }],
       headers: [
         {
           key: 'X-Robots-Tag',
@@ -51,11 +55,24 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: '/:file(favicon\\.webp|favicon-48x48\\.webp|favicon-32x32\\.webp|favicon\\.ico|apple-touch-icon\\.png|logo\\.webp)',
+        source: '/_next/image',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow',
+          },
+        ],
+      },
+      {
+        source: '/:file(.*\\.(?:webp|png|ico|svg))',
         headers: [
           {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
+          },
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow',
           },
         ],
       },
@@ -72,6 +89,6 @@ const nextConfig: NextConfig = {
     }
     return config;
   },
-};
+});
 
 export default nextConfig;

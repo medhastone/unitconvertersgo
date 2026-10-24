@@ -129,7 +129,7 @@ export default function WidgetsDirectoryClient({
             </h1>
 
             <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
-              Add any of our high-precision unit conversion calculators directly to your website, blog, engineering documentation, or online classroom. Choose from <strong>Full-Width</strong>, <strong>Adjustable Sidebar</strong>, <strong>Popup Window</strong>, or <strong>Text Link</strong> formats—and customize themes and accent colors with one-click HTML snippets.
+              Select a calculator widget below to customize its layout and copy the HTML embed code for your website.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">

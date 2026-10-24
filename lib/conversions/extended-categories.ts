@@ -884,23 +884,23 @@ export const EXTENDED_UNITS: Unit[] = [
   // --- THERMAL RESISTANCE (Base: kelvin_per_watt) ---
   { id: "kelvin_per_watt", name: "Kelvin per Watt", plural: "Kelvins per Watt", symbol: "K/W", categoryId: "thermal_resistance", system: "si", aliases: ["k/w"], toBase: 1, description: "SI unit of absolute thermal resistance." },
   { id: "celsius_per_watt", name: "Degree Celsius per Watt", plural: "Degrees Celsius per Watt", symbol: "°C/W", categoryId: "thermal_resistance", system: "metric", aliases: ["c/w"], toBase: 1, description: "Electronics heatsink thermal resistance unit (1 °C/W = 1 K/W)." },
-  { id: "f_hr_per_btu", name: "Degree Fahrenheit Hour per BTU", plural: "°F·hr/BTU", symbol: "°F·h/BTU", categoryId: "thermal_resistance", system: "us_customary", aliases: [], toBase: 1.89563424, description: "US thermal resistance unit (≈ 1.8956 K/W)." },
-  { id: "f_sec_per_btu", name: "Degree Fahrenheit Second per BTU", plural: "°F·s/BTU", symbol: "°F·s/BTU", categoryId: "thermal_resistance", system: "us_customary", aliases: [], toBase: 0.000526565, description: "Equal to 1/3600 °F·h/BTU." },
+  { id: "f_hr_per_btu", name: "Degree Fahrenheit Hour per BTU", plural: "Degree Fahrenheit Hours per BTU", symbol: "°F·h/BTU", categoryId: "thermal_resistance", system: "us_customary", aliases: [], toBase: 1.89563424, description: "US thermal resistance unit (≈ 1.8956 K/W)." },
+  { id: "f_sec_per_btu", name: "Degree Fahrenheit Second per BTU", plural: "Degree Fahrenheit Seconds per BTU", symbol: "°F·s/BTU", categoryId: "thermal_resistance", system: "us_customary", aliases: [], toBase: 0.000526565, description: "Equal to 1/3600 °F·h/BTU." },
 
   // --- THERMAL CONDUCTIVITY (Base: w_per_mk) ---
   { id: "w_per_mk", name: "Watt per Meter-Kelvin", plural: "Watts per Meter-Kelvin", symbol: "W/(m·K)", categoryId: "thermal_conductivity", system: "si", aliases: ["w/mk"], toBase: 1, description: "Coherent SI unit of thermal conductivity." },
   { id: "w_per_cmc", name: "Watt per Centimeter-°C", plural: "Watts per Centimeter-°C", symbol: "W/(cm·°C)", categoryId: "thermal_conductivity", system: "metric", aliases: [], toBase: 100, description: "Equal to 100 W/(m·K)." },
   { id: "kw_per_mk", name: "Kilowatt per Meter-Kelvin", plural: "Kilowatts per Meter-Kelvin", symbol: "kW/(m·K)", categoryId: "thermal_conductivity", system: "metric", aliases: [], toBase: 1000, description: "Equal to 1,000 W/(m·K)." },
-  { id: "cal_per_scmc", name: "Calorie per Second-cm-°C", plural: "cal/(s·cm·°C)", symbol: "cal/(s·cm·°C)", categoryId: "thermal_conductivity", system: "metric", aliases: [], toBase: 418.4, description: "CGS thermal conductivity unit (418.4 W/(m·K))." },
-  { id: "btu_per_hftf", name: "BTU per Hour-Foot-°F", plural: "BTU/(h·ft·°F)", symbol: "BTU/(h·ft·°F)", categoryId: "thermal_conductivity", system: "us_customary", aliases: ["btu/hr ft f"], toBase: 1.73073467, description: "US HVAC thermal conductivity unit (≈ 1.7307 W/(m·K))." },
-  { id: "btu_in_per_hft2f", name: "BTU-Inch per Hour-Sq. Foot-°F", plural: "BTU·in/(h·ft²·°F)", symbol: "BTU·in/(h·ft²·°F)", categoryId: "thermal_conductivity", system: "us_customary", aliases: [], toBase: 0.144227889, description: "US building insulation k-factor unit (≈ 0.1442 W/(m·K))." },
+  { id: "cal_per_scmc", name: "Calorie per Second-cm-°C", plural: "Calories per Second-Centimeter-°C", symbol: "cal/(s·cm·°C)", categoryId: "thermal_conductivity", system: "metric", aliases: [], toBase: 418.4, description: "CGS thermal conductivity unit (418.4 W/(m·K))." },
+  { id: "btu_per_hftf", name: "BTU per Hour-Foot-°F", plural: "BTUs per Hour-Foot-°F", symbol: "BTU/(h·ft·°F)", categoryId: "thermal_conductivity", system: "us_customary", aliases: ["btu/hr ft f"], toBase: 1.73073467, description: "US HVAC thermal conductivity unit (≈ 1.7307 W/(m·K))." },
+  { id: "btu_in_per_hft2f", name: "BTU-Inch per Hour-Sq. Foot-°F", plural: "BTU-Inches per Hour-Sq. Foot-°F", symbol: "BTU·in/(h·ft²·°F)", categoryId: "thermal_conductivity", system: "us_customary", aliases: [], toBase: 0.144227889, description: "US building insulation k-factor unit (≈ 0.1442 W/(m·K))." },
 
   // --- SPECIFIC HEAT CAPACITY (Base: j_per_kgk) ---
   { id: "j_per_kgk", name: "Joule per Kilogram-Kelvin", plural: "Joules per Kilogram-Kelvin", symbol: "J/(kg·K)", categoryId: "specific_heat_capacity", system: "si", aliases: ["j/kg k", "j/kg c"], toBase: 1, description: "Coherent SI unit of specific heat capacity." },
   { id: "kj_per_kgk", name: "Kilojoule per Kilogram-Kelvin", plural: "Kilojoules per Kilogram-Kelvin", symbol: "kJ/(kg·K)", categoryId: "specific_heat_capacity", system: "metric", aliases: ["kj/kg k", "kj/kg c"], toBase: 1000, description: "Equal to 1,000 J/(kg·K)." },
   { id: "j_per_gc", name: "Joule per Gram-°C", plural: "Joules per Gram-°C", symbol: "J/(g·°C)", categoryId: "specific_heat_capacity", system: "metric", aliases: [], toBase: 1000, description: "Equal to 1,000 J/(kg·K)." },
   { id: "cal_per_gc", name: "Calorie per Gram-°C", plural: "Calories per Gram-°C", symbol: "cal/(g·°C)", categoryId: "specific_heat_capacity", system: "metric", aliases: ["cal/g c"], toBase: 4186.8, description: "Water specific heat benchmark (1 cal/(g·°C) = 4,186.8 J/(kg·K))." },
-  { id: "btu_per_lbf", name: "BTU per Pound-°F", plural: "BTU/(lb·°F)", symbol: "BTU/(lb·°F)", categoryId: "specific_heat_capacity", system: "us_customary", aliases: ["btu/lb f"], toBase: 4186.8, description: "Imperial/US specific heat capacity unit (4,186.8 J/(kg·K))." },
+  { id: "btu_per_lbf", name: "BTU per Pound-°F", plural: "BTUs per Pound-°F", symbol: "BTU/(lb·°F)", categoryId: "specific_heat_capacity", system: "us_customary", aliases: ["btu/lb f"], toBase: 4186.8, description: "Imperial/US specific heat capacity unit (4,186.8 J/(kg·K))." },
 
   // --- HEAT DENSITY (Base: j_per_m2) ---
   { id: "j_per_m2", name: "Joule per Square Meter", plural: "Joules per Square Meter", symbol: "J/m²", categoryId: "heat_density", system: "si", aliases: [], toBase: 1, description: "SI unit of areal heat density and radiant exposure." },
@@ -914,14 +914,14 @@ export const EXTENDED_UNITS: Unit[] = [
   { id: "kw_per_m2", name: "Kilowatt per Square Meter", plural: "Kilowatts per Square Meter", symbol: "kW/m²", categoryId: "heat_flux_density", system: "metric", aliases: ["kw/m2"], toBase: 1000, description: "Peak solar irradiance benchmark (1 kW/m² = 1,000 W/m²)." },
   { id: "w_per_cm2", name: "Watt per Square Centimeter", plural: "Watts per Square Centimeter", symbol: "W/cm²", categoryId: "heat_flux_density", system: "metric", aliases: ["w/cm2"], toBase: 10000, description: "Equal to 10,000 W/m²." },
   { id: "w_per_in2", name: "Watt per Square Inch", plural: "Watts per Square Inch", symbol: "W/in²", categoryId: "heat_flux_density", system: "us_customary", aliases: ["w/in2"], toBase: 1550.0031, description: "Heater element surface watt density unit (≈ 1,550 W/m²)." },
-  { id: "btu_per_hft2", name: "BTU per Hour-Square Foot", plural: "BTU/(h·ft²)", symbol: "BTU/(h·ft²)", categoryId: "heat_flux_density", system: "us_customary", aliases: ["btu/hr ft2"], toBase: 3.15459075, description: "US HVAC heat flux unit (≈ 3.1546 W/m²)." },
+  { id: "btu_per_hft2", name: "BTU per Hour-Square Foot", plural: "BTUs per Hour-Square Foot", symbol: "BTU/(h·ft²)", categoryId: "heat_flux_density", system: "us_customary", aliases: ["btu/hr ft2"], toBase: 3.15459075, description: "US HVAC heat flux unit (≈ 3.1546 W/m²)." },
 
   // --- HEAT TRANSFER COEFFICIENT (Base: w_per_m2k) ---
-  { id: "w_per_m2k", name: "Watt per Square Meter-Kelvin", plural: "W/(m²·K)", symbol: "W/(m²·K)", categoryId: "heat_transfer_coefficient", system: "si", aliases: ["u-value si"], toBase: 1, description: "SI unit of heat transfer coefficient and window U-value." },
-  { id: "w_per_m2c", name: "Watt per Square Meter-°C", plural: "W/(m²·°C)", symbol: "W/(m²·°C)", categoryId: "heat_transfer_coefficient", system: "metric", aliases: [], toBase: 1, description: "Equal to 1 W/(m²·K)." },
-  { id: "kw_per_m2k", name: "Kilowatt per Square Meter-Kelvin", plural: "kW/(m²·K)", symbol: "kW/(m²·K)", categoryId: "heat_transfer_coefficient", system: "metric", aliases: [], toBase: 1000, description: "Equal to 1,000 W/(m²·K)." },
-  { id: "btu_per_hft2f", name: "BTU per Hour-Sq. Foot-°F", plural: "BTU/(h·ft²·°F)", symbol: "BTU/(h·ft²·°F)", categoryId: "heat_transfer_coefficient", system: "us_customary", aliases: ["u-factor us"], toBase: 5.67826334, description: "US fenestration U-factor and heat exchanger coefficient (≈ 5.6783 W/(m²·K))." },
-  { id: "cal_per_scm2c", name: "Calorie per Second-Sq. cm-°C", plural: "cal/(s·cm²·°C)", symbol: "cal/(s·cm²·°C)", categoryId: "heat_transfer_coefficient", system: "metric", aliases: [], toBase: 41840, description: "CGS heat transfer coefficient equal to 41,840 W/(m²·K)." },
+  { id: "w_per_m2k", name: "Watt per Square Meter-Kelvin", plural: "Watts per Square Meter-Kelvin", symbol: "W/(m²·K)", categoryId: "heat_transfer_coefficient", system: "si", aliases: ["u-value si"], toBase: 1, description: "SI unit of heat transfer coefficient and window U-value." },
+  { id: "w_per_m2c", name: "Watt per Square Meter-°C", plural: "Watts per Square Meter-°C", symbol: "W/(m²·°C)", categoryId: "heat_transfer_coefficient", system: "metric", aliases: [], toBase: 1, description: "Equal to 1 W/(m²·K)." },
+  { id: "kw_per_m2k", name: "Kilowatt per Square Meter-Kelvin", plural: "Kilowatts per Square Meter-Kelvin", symbol: "kW/(m²·K)", categoryId: "heat_transfer_coefficient", system: "metric", aliases: [], toBase: 1000, description: "Equal to 1,000 W/(m²·K)." },
+  { id: "btu_per_hft2f", name: "BTU per Hour-Sq. Foot-°F", plural: "BTUs per Hour-Sq. Foot-°F", symbol: "BTU/(h·ft²·°F)", categoryId: "heat_transfer_coefficient", system: "us_customary", aliases: ["u-factor us"], toBase: 5.67826334, description: "US fenestration U-factor and heat exchanger coefficient (≈ 5.6783 W/(m²·K))." },
+  { id: "cal_per_scm2c", name: "Calorie per Second-Sq. cm-°C", plural: "Calories per Second-Sq. cm-°C", symbol: "cal/(s·cm²·°C)", categoryId: "heat_transfer_coefficient", system: "metric", aliases: [], toBase: 41840, description: "CGS heat transfer coefficient equal to 41,840 W/(m²·K)." },
 
   // --- FLOW - MASS (Base: kg_per_sec) ---
   { id: "kg_per_sec", name: "Kilogram per Second", plural: "Kilograms per Second", symbol: "kg/s", categoryId: "flow_mass", system: "si", aliases: [], toBase: 1, description: "SI unit of mass flow rate." },
@@ -943,11 +943,11 @@ export const EXTENDED_UNITS: Unit[] = [
   { id: "lbmol_per_hour", name: "Pound-mole per Hour", plural: "Pound-moles per Hour", symbol: "lbmol/h", categoryId: "flow_molar", system: "us_customary", aliases: [], toBase: 453.59237 / 3600, description: "US chemical engineering molar flow unit (≈ 0.126 mol/s)." },
 
   // --- MASS FLUX DENSITY (Base: kg_per_sm2) ---
-  { id: "kg_per_sm2", name: "Kilogram per Second-Sq. Meter", plural: "kg/(s·m²)", symbol: "kg/(s·m²)", categoryId: "mass_flux_density", system: "si", aliases: [], toBase: 1, description: "SI unit of mass flux density." },
-  { id: "kg_per_hm2", name: "Kilogram per Hour-Sq. Meter", plural: "kg/(h·m²)", symbol: "kg/(h·m²)", categoryId: "mass_flux_density", system: "metric", aliases: [], toBase: 1 / 3600, description: "Membrane and distillation mass flux unit." },
-  { id: "g_per_scm2", name: "Gram per Second-Sq. Centimeter", plural: "g/(s·cm²)", symbol: "g/(s·cm²)", categoryId: "mass_flux_density", system: "metric", aliases: [], toBase: 10, description: "CGS mass flux density equal to 10 kg/(s·m²)." },
-  { id: "lb_per_sft2", name: "Pound per Second-Sq. Foot", plural: "lb/(s·ft²)", symbol: "lb/(s·ft²)", categoryId: "mass_flux_density", system: "us_customary", aliases: [], toBase: 4.88242764, description: "Equal to 4.8824 kg/(s·m²)." },
-  { id: "lb_per_hft2", name: "Pound per Hour-Sq. Foot", plural: "lb/(h·ft²)", symbol: "lb/(h·ft²)", categoryId: "mass_flux_density", system: "us_customary", aliases: [], toBase: 4.88242764 / 3600, description: "Equal to 0.0013562 kg/(s·m²)." },
+  { id: "kg_per_sm2", name: "Kilogram per Second-Sq. Meter", plural: "Kilograms per Second-Sq. Meter", symbol: "kg/(s·m²)", categoryId: "mass_flux_density", system: "si", aliases: [], toBase: 1, description: "SI unit of mass flux density." },
+  { id: "kg_per_hm2", name: "Kilogram per Hour-Sq. Meter", plural: "Kilograms per Hour-Sq. Meter", symbol: "kg/(h·m²)", categoryId: "mass_flux_density", system: "metric", aliases: [], toBase: 1 / 3600, description: "Membrane and distillation mass flux unit." },
+  { id: "g_per_scm2", name: "Gram per Second-Sq. Centimeter", plural: "Grams per Second-Sq. Centimeter", symbol: "g/(s·cm²)", categoryId: "mass_flux_density", system: "metric", aliases: [], toBase: 10, description: "CGS mass flux density equal to 10 kg/(s·m²)." },
+  { id: "lb_per_sft2", name: "Pound per Second-Sq. Foot", plural: "Pounds per Second-Sq. Foot", symbol: "lb/(s·ft²)", categoryId: "mass_flux_density", system: "us_customary", aliases: [], toBase: 4.88242764, description: "Equal to 4.8824 kg/(s·m²)." },
+  { id: "lb_per_hft2", name: "Pound per Hour-Sq. Foot", plural: "Pounds per Hour-Sq. Foot", symbol: "lb/(h·ft²)", categoryId: "mass_flux_density", system: "us_customary", aliases: [], toBase: 4.88242764 / 3600, description: "Equal to 0.0013562 kg/(s·m²)." },
 
   // --- CONCENTRATION - MOLAR (Base: mol_per_m3) ---
   { id: "mol_per_m3", name: "Mole per Cubic Meter", plural: "Moles per Cubic Meter", symbol: "mol/m³", categoryId: "concentration_molar", system: "si", aliases: [], toBase: 1, description: "Coherent SI unit of molar concentration." },
@@ -969,8 +969,8 @@ export const EXTENDED_UNITS: Unit[] = [
   { id: "mpas", name: "Millipascal Second", plural: "Millipascal Seconds", symbol: "mPa·s", categoryId: "viscosity_dynamic", system: "metric", aliases: ["mpas"], toBase: 0.001, description: "Numerically identical to 1 centipoise (1 mPa·s = 1 cP)." },
   { id: "poise", name: "Poise", plural: "Poise", symbol: "P", categoryId: "viscosity_dynamic", system: "metric", aliases: ["dyne s/cm2"], toBase: 0.1, description: "CGS dynamic viscosity unit equal to 0.1 Pa·s." },
   { id: "centipoise", name: "Centipoise", plural: "Centipoise", symbol: "cP", categoryId: "viscosity_dynamic", system: "metric", aliases: ["cp"], toBase: 0.001, description: "Water at 20 °C has a viscosity of approximately 1 cP (0.001 Pa·s)." },
-  { id: "lb_per_fts", name: "Pound per Foot-Second", plural: "lb/(ft·s)", symbol: "lb/(ft·s)", categoryId: "viscosity_dynamic", system: "us_customary", aliases: [], toBase: 1.48816394, description: "Imperial dynamic viscosity unit (≈ 1.4882 Pa·s)." },
-  { id: "lbf_s_per_ft2", name: "Pound-force Second per Sq. Foot", plural: "lbf·s/ft²", symbol: "lbf·s/ft²", categoryId: "viscosity_dynamic", system: "us_customary", aliases: ["slug/ft s"], toBase: 47.88025898, description: "Gravitational US viscosity unit (≈ 47.88 Pa·s)." },
+  { id: "lb_per_fts", name: "Pound per Foot-Second", plural: "Pounds per Foot-Second", symbol: "lb/(ft·s)", categoryId: "viscosity_dynamic", system: "us_customary", aliases: [], toBase: 1.48816394, description: "Imperial dynamic viscosity unit (≈ 1.4882 Pa·s)." },
+  { id: "lbf_s_per_ft2", name: "Pound-force Second per Sq. Foot", plural: "Pound-force Seconds per Sq. Foot", symbol: "lbf·s/ft²", categoryId: "viscosity_dynamic", system: "us_customary", aliases: ["slug/ft s"], toBase: 47.88025898, description: "Gravitational US viscosity unit (≈ 47.88 Pa·s)." },
 
   // --- VISCOSITY - KINEMATIC (Base: m2_per_sec) ---
   { id: "m2_per_sec", name: "Square Meter per Second", plural: "Square Meters per Second", symbol: "m²/s", categoryId: "viscosity_kinematic", system: "si", aliases: ["m2/s"], toBase: 1, description: "Coherent SI unit of kinematic viscosity." },
@@ -983,8 +983,8 @@ export const EXTENDED_UNITS: Unit[] = [
   { id: "n_per_m", name: "Newton per Meter", plural: "Newtons per Meter", symbol: "N/m", categoryId: "surface_tension", system: "si", aliases: ["j/m2 surface"], toBase: 1, description: "SI unit of liquid surface tension." },
   { id: "mn_per_m", name: "Millinewton per Meter", plural: "Millinewtons per Meter", symbol: "mN/m", categoryId: "surface_tension", system: "metric", aliases: ["mn/m"], toBase: 0.001, description: "Equal to 1 dyne/cm (0.001 N/m). Water at 20 °C is ~72.8 mN/m." },
   { id: "dyne_per_cm", name: "Dyne per Centimeter", plural: "Dynes per Centimeter", symbol: "dyn/cm", categoryId: "surface_tension", system: "metric", aliases: ["erg/cm2"], toBase: 0.001, description: "CGS surface tension unit equal to 1 mN/m (0.001 N/m)." },
-  { id: "gf_per_cm", name: "Gram-force per Centimeter", plural: "gf/cm", symbol: "gf/cm", categoryId: "surface_tension", system: "metric", aliases: [], toBase: 0.980665, description: "Equal to 0.980665 N/m." },
-  { id: "lbf_per_in", name: "Pound-force per Inch", plural: "lbf/in", symbol: "lbf/in", categoryId: "surface_tension", system: "us_customary", aliases: [], toBase: 175.126835, description: "Equal to 175.127 N/m." },
+  { id: "gf_per_cm", name: "Gram-force per Centimeter", plural: "Grams-force per Centimeter", symbol: "gf/cm", categoryId: "surface_tension", system: "metric", aliases: [], toBase: 0.980665, description: "Equal to 0.980665 N/m." },
+  { id: "lbf_per_in", name: "Pound-force per Inch", plural: "Pounds-force per Inch", symbol: "lbf/in", categoryId: "surface_tension", system: "us_customary", aliases: [], toBase: 175.126835, description: "Equal to 175.127 N/m." },
 
   // --- PERMEABILITY (Base: perm_m2) ---
   { id: "perm_m2", name: "Square Meter (Permeability)", plural: "Square Meters (m²)", symbol: "m²", categoryId: "permeability", system: "si", aliases: [], toBase: 1, description: "SI unit of porous media intrinsic permeability." },
@@ -995,11 +995,11 @@ export const EXTENDED_UNITS: Unit[] = [
 
   // --- LUMINANCE (Base: cd_per_m2) ---
   { id: "cd_per_m2", name: "Candela per Square Meter (Nit)", plural: "Candelas per Sq. Meter (Nits)", symbol: "cd/m²", categoryId: "luminance", system: "si", aliases: ["nit", "nits"], toBase: 1, description: "SI display brightness and luminance unit (1 nit = 1 cd/m²)." },
-  { id: "kcd_per_m2", name: "Kilocandela per Square Meter", plural: "kcd/m²", symbol: "kcd/m²", categoryId: "luminance", system: "metric", aliases: [], toBase: 1000, description: "Equal to 1,000 nits (cd/m²)." },
+  { id: "kcd_per_m2", name: "Kilocandela per Square Meter", plural: "Kilocandelas per Square Meter", symbol: "kcd/m²", categoryId: "luminance", system: "metric", aliases: [], toBase: 1000, description: "Equal to 1,000 nits (cd/m²)." },
   { id: "stilb", name: "Stilb (cd/cm²)", plural: "Stilbs", symbol: "sb", categoryId: "luminance", system: "metric", aliases: ["cd/cm2"], toBase: 10000, description: "CGS luminance unit equal to 10,000 cd/m²." },
   { id: "lambert", name: "Lambert", plural: "Lamberts", symbol: "L", categoryId: "luminance", system: "metric", aliases: [], toBase: 10000 / Math.PI, description: "Equal to (10,000/π) ≈ 3,183.099 cd/m²." },
   { id: "foot_lambert", name: "Foot-lambert", plural: "Foot-lamberts", symbol: "fL", categoryId: "luminance", system: "us_customary", aliases: ["fl"], toBase: 3.4262591, description: "Cinema projection luminance unit (1/π cd/ft² ≈ 3.426 cd/m²)." },
-  { id: "cd_per_ft2", name: "Candela per Square Foot", plural: "cd/ft²", symbol: "cd/ft²", categoryId: "luminance", system: "us_customary", aliases: [], toBase: 10.7639104, description: "Equal to 10.7639 cd/m²." },
+  { id: "cd_per_ft2", name: "Candela per Square Foot", plural: "Candelas per Square Foot", symbol: "cd/ft²", categoryId: "luminance", system: "us_customary", aliases: [], toBase: 10.7639104, description: "Equal to 10.7639 cd/m²." },
 
   // --- LUMINOUS INTENSITY (Base: candela_unit) ---
   { id: "candela_unit", name: "Candela", plural: "Candelas", symbol: "cd", categoryId: "luminous_intensity", system: "si", aliases: ["candlepower"], toBase: 1, description: "Fundamental SI base unit of luminous intensity." },
@@ -1031,17 +1031,17 @@ export const EXTENDED_UNITS: Unit[] = [
 
   // --- SURFACE CHARGE DENSITY (Base: c_per_m2) ---
   { id: "c_per_m2", name: "Coulomb per Square Meter", plural: "Coulombs per Square Meter", symbol: "C/m²", categoryId: "charge_surface", system: "si", aliases: [], toBase: 1, description: "SI unit of surface electric charge density." },
-  { id: "mc_per_m2", name: "Millicoulomb per Square Meter", plural: "mC/m²", symbol: "mC/m²", categoryId: "charge_surface", system: "metric", aliases: [], toBase: 0.001, description: "Equal to 0.001 C/m²." },
-  { id: "uc_per_m2", name: "Microcoulomb per Square Meter", plural: "µC/m²", symbol: "µC/m²", categoryId: "charge_surface", system: "metric", aliases: [], toBase: 1e-6, description: "Equal to 10⁻⁶ C/m²." },
-  { id: "c_per_cm2", name: "Coulomb per Square Centimeter", plural: "C/cm²", symbol: "C/cm²", categoryId: "charge_surface", system: "metric", aliases: [], toBase: 10000, description: "Equal to 10,000 C/m²." },
-  { id: "c_per_in2", name: "Coulomb per Square Inch", plural: "C/in²", symbol: "C/in²", categoryId: "charge_surface", system: "us_customary", aliases: [], toBase: 1550.0031, description: "Equal to 1,550.003 C/m²." },
+  { id: "mc_per_m2", name: "Millicoulomb per Square Meter", plural: "Millicoulombs per Square Meter", symbol: "mC/m²", categoryId: "charge_surface", system: "metric", aliases: [], toBase: 0.001, description: "Equal to 0.001 C/m²." },
+  { id: "uc_per_m2", name: "Microcoulomb per Square Meter", plural: "Microcoulombs per Square Meter", symbol: "µC/m²", categoryId: "charge_surface", system: "metric", aliases: [], toBase: 1e-6, description: "Equal to 10⁻⁶ C/m²." },
+  { id: "c_per_cm2", name: "Coulomb per Square Centimeter", plural: "Coulombs per Square Centimeter", symbol: "C/cm²", categoryId: "charge_surface", system: "metric", aliases: [], toBase: 10000, description: "Equal to 10,000 C/m²." },
+  { id: "c_per_in2", name: "Coulomb per Square Inch", plural: "Coulombs per Square Inch", symbol: "C/in²", categoryId: "charge_surface", system: "us_customary", aliases: [], toBase: 1550.0031, description: "Equal to 1,550.003 C/m²." },
 
   // --- VOLUME CHARGE DENSITY (Base: c_per_m3) ---
   { id: "c_per_m3", name: "Coulomb per Cubic Meter", plural: "Coulombs per Cubic Meter", symbol: "C/m³", categoryId: "charge_volume", system: "si", aliases: [], toBase: 1, description: "SI unit of volumetric electric charge density." },
-  { id: "mc_per_m3", name: "Millicoulomb per Cubic Meter", plural: "mC/m³", symbol: "mC/m³", categoryId: "charge_volume", system: "metric", aliases: [], toBase: 0.001, description: "Equal to 0.001 C/m³." },
-  { id: "uc_per_m3", name: "Microcoulomb per Cubic Meter", plural: "µC/m³", symbol: "µC/m³", categoryId: "charge_volume", system: "metric", aliases: [], toBase: 1e-6, description: "Equal to 10⁻⁶ C/m³." },
-  { id: "c_per_cm3", name: "Coulomb per Cubic Centimeter", plural: "C/cm³", symbol: "C/cm³", categoryId: "charge_volume", system: "metric", aliases: [], toBase: 1e6, description: "Equal to 1,000,000 C/m³." },
-  { id: "c_per_in3", name: "Coulomb per Cubic Inch", plural: "C/in³", symbol: "C/in³", categoryId: "charge_volume", system: "us_customary", aliases: [], toBase: 61023.7441, description: "Equal to 61,023.74 C/m³." },
+  { id: "mc_per_m3", name: "Millicoulomb per Cubic Meter", plural: "Millicoulombs per Cubic Meter", symbol: "mC/m³", categoryId: "charge_volume", system: "metric", aliases: [], toBase: 0.001, description: "Equal to 0.001 C/m³." },
+  { id: "uc_per_m3", name: "Microcoulomb per Cubic Meter", plural: "Microcoulombs per Cubic Meter", symbol: "µC/m³", categoryId: "charge_volume", system: "metric", aliases: [], toBase: 1e-6, description: "Equal to 10⁻⁶ C/m³." },
+  { id: "c_per_cm3", name: "Coulomb per Cubic Centimeter", plural: "Coulombs per Cubic Centimeter", symbol: "C/cm³", categoryId: "charge_volume", system: "metric", aliases: [], toBase: 1e6, description: "Equal to 1,000,000 C/m³." },
+  { id: "c_per_in3", name: "Coulomb per Cubic Inch", plural: "Coulombs per Cubic Inch", symbol: "C/in³", categoryId: "charge_volume", system: "us_customary", aliases: [], toBase: 61023.7441, description: "Equal to 61,023.74 C/m³." },
 
   // --- LINEAR CURRENT DENSITY (Base: a_per_m) ---
   { id: "a_per_m", name: "Ampere per Meter", plural: "Amperes per Meter", symbol: "A/m", categoryId: "current_linear", system: "si", aliases: [], toBase: 1, description: "SI unit of linear current density." },
@@ -1052,10 +1052,10 @@ export const EXTENDED_UNITS: Unit[] = [
 
   // --- SURFACE CURRENT DENSITY (Base: a_per_m2) ---
   { id: "a_per_m2", name: "Ampere per Square Meter", plural: "Amperes per Square Meter", symbol: "A/m²", categoryId: "current_surface", system: "si", aliases: [], toBase: 1, description: "SI unit of areal current density." },
-  { id: "ka_per_m2", name: "Kiloampere per Square Meter", plural: "kA/m²", symbol: "kA/m²", categoryId: "current_surface", system: "metric", aliases: [], toBase: 1000, description: "Equal to 1,000 A/m²." },
-  { id: "a_per_cm2", name: "Ampere per Square Centimeter", plural: "A/cm²", symbol: "A/cm²", categoryId: "current_surface", system: "metric", aliases: [], toBase: 10000, description: "Semiconductor and electroplating current density unit (10,000 A/m²)." },
-  { id: "a_per_mm2", name: "Ampere per Square Millimeter", plural: "A/mm²", symbol: "A/mm²", categoryId: "current_surface", system: "metric", aliases: [], toBase: 1e6, description: "Wire ampacity current density unit (10⁶ A/m²)." },
-  { id: "a_per_in2", name: "Ampere per Square Inch", plural: "A/in²", symbol: "A/in²", categoryId: "current_surface", system: "us_customary", aliases: [], toBase: 1550.0031, description: "Equal to 1,550.003 A/m²." },
+  { id: "ka_per_m2", name: "Kiloampere per Square Meter", plural: "Kiloamperes per Square Meter", symbol: "kA/m²", categoryId: "current_surface", system: "metric", aliases: [], toBase: 1000, description: "Equal to 1,000 A/m²." },
+  { id: "a_per_cm2", name: "Ampere per Square Centimeter", plural: "Amperes per Square Centimeter", symbol: "A/cm²", categoryId: "current_surface", system: "metric", aliases: [], toBase: 10000, description: "Semiconductor and electroplating current density unit (10,000 A/m²)." },
+  { id: "a_per_mm2", name: "Ampere per Square Millimeter", plural: "Amperes per Square Millimeter", symbol: "A/mm²", categoryId: "current_surface", system: "metric", aliases: [], toBase: 1e6, description: "Wire ampacity current density unit (10⁶ A/m²)." },
+  { id: "a_per_in2", name: "Ampere per Square Inch", plural: "Amperes per Square Inch", symbol: "A/in²", categoryId: "current_surface", system: "us_customary", aliases: [], toBase: 1550.0031, description: "Equal to 1,550.003 A/m²." },
 
   // --- ELECTRIC FIELD STRENGTH (Base: v_per_m) ---
   { id: "v_per_m", name: "Volt per Meter", plural: "Volts per Meter", symbol: "V/m", categoryId: "electric_field", system: "si", aliases: ["v/m"], toBase: 1, description: "SI unit of electric field strength (1 V/m = 1 N/C)." },
@@ -1079,7 +1079,7 @@ export const EXTENDED_UNITS: Unit[] = [
   { id: "ohm_meter", name: "Ohm Meter", plural: "Ohm Meters", symbol: "Ω·m", categoryId: "electric_resistivity", system: "si", aliases: ["ohm m"], toBase: 1, description: "SI unit of electrical resistivity." },
   { id: "ohm_cm", name: "Ohm Centimeter", plural: "Ohm Centimeters", symbol: "Ω·cm", categoryId: "electric_resistivity", system: "metric", aliases: ["ohm cm"], toBase: 0.01, description: "Semiconductor wafer and soil resistivity unit (0.01 Ω·m)." },
   { id: "uohm_cm", name: "Microhm Centimeter", plural: "Microhm Centimeters", symbol: "µΩ·cm", categoryId: "electric_resistivity", system: "metric", aliases: ["microohm cm"], toBase: 1e-8, description: "Metal conductor resistivity unit (10⁻⁸ Ω·m)." },
-  { id: "ohm_mm2_per_m", name: "Ohm Sq. Millimeter per Meter", plural: "Ω·mm²/m", symbol: "Ω·mm²/m", categoryId: "electric_resistivity", system: "metric", aliases: [], toBase: 1e-6, description: "Cable conductor resistivity unit (10⁻⁶ Ω·m). Annealed copper is ~0.01724 Ω·mm²/m." },
+  { id: "ohm_mm2_per_m", name: "Ohm Sq. Millimeter per Meter", plural: "Ohm Sq. Millimeters per Meter", symbol: "Ω·mm²/m", categoryId: "electric_resistivity", system: "metric", aliases: [], toBase: 1e-6, description: "Cable conductor resistivity unit (10⁻⁶ Ω·m). Annealed copper is ~0.01724 Ω·mm²/m." },
   { id: "uohm_inch", name: "Microhm Inch", plural: "Microhm Inches", symbol: "µΩ·in", categoryId: "electric_resistivity", system: "us_customary", aliases: [], toBase: 2.54e-8, description: "Equal to 2.54×10⁻⁸ Ω·m." },
 
   // --- ELECTRIC CONDUCTANCE (Base: siemens_unit) ---
@@ -1095,7 +1095,7 @@ export const EXTENDED_UNITS: Unit[] = [
   { id: "ms_per_cm", name: "Millisiemens per Centimeter", plural: "Millisiemens per Centimeter", symbol: "mS/cm", categoryId: "electric_conductivity", system: "metric", aliases: ["ms/cm"], toBase: 0.1, description: "Salinity & hydroponics EC unit (1 mS/cm = 0.1 S/m)." },
   { id: "us_per_cm", name: "Microsiemens per Centimeter", plural: "Microsiemens per Centimeter", symbol: "µS/cm", categoryId: "electric_conductivity", system: "metric", aliases: ["us/cm"], toBase: 0.0001, description: "Drinking water & pure water EC unit (1 µS/cm = 0.0001 S/m)." },
   { id: "megasiemens_per_m", name: "Megasiemens per Meter", plural: "Megasiemens per Meter", symbol: "MS/m", categoryId: "electric_conductivity", system: "metric", aliases: ["ms_mega/m"], toBase: 1e6, description: "Metal alloy conductivity unit (10⁶ S/m)." },
-  { id: "iacs_percent", name: "Percent IACS (Annealed Copper)", plural: "% IACS", symbol: "% IACS", categoryId: "electric_conductivity", system: "other", aliases: ["iacs"], toBase: 580000, description: "International Annealed Copper Standard (100% IACS = 58 MS/m)." },
+  { id: "iacs_percent", name: "Percent IACS (Annealed Copper)", plural: "Percent IACS", symbol: "% IACS", categoryId: "electric_conductivity", system: "other", aliases: ["iacs"], toBase: 580000, description: "International Annealed Copper Standard (100% IACS = 58 MS/m)." },
 
   // --- MAGNETOMOTIVE FORCE (Base: ampere_turn) ---
   { id: "ampere_turn", name: "Ampere-turn", plural: "Ampere-turns", symbol: "At", categoryId: "magnetomotive_force", system: "si", aliases: ["ampere turns"], toBase: 1, description: "SI unit of magnetomotive force (MMF)." },
@@ -1167,7 +1167,7 @@ export const EXTENDED_UNITS: Unit[] = [
   { id: "sound_pa", name: "Pascal (Sound Pressure)", plural: "Pascals (Pa)", symbol: "Pa", categoryId: "sound", system: "si", aliases: [], toBase: 1, description: "SI unit of acoustic sound pressure (1 Pa ≈ 94 dB SPL)." },
   { id: "sound_mpa", name: "Millipascal", plural: "Millipascals (mPa)", symbol: "mPa", categoryId: "sound", system: "metric", aliases: [], toBase: 0.001, description: "Equal to 0.001 Pa." },
   { id: "sound_upa", name: "Micropascal", plural: "Micropascals (µPa)", symbol: "µPa", categoryId: "sound", system: "metric", aliases: [], toBase: 1e-6, description: "Acoustics reference pressure unit (20 µPa = 0 dB SPL threshold of human hearing)." },
-  { id: "barye", name: "Dyne per Sq. Centimeter (Barye)", plural: "Dynes/cm² (Microbars)", symbol: "µbar", categoryId: "sound", system: "metric", aliases: ["dyne/cm2", "microbar"], toBase: 0.1, description: "CGS acoustic pressure unit equal to 0.1 Pa." },
+  { id: "barye", name: "Dyne per Sq. Centimeter (Barye)", plural: "Baryes (Microbars)", symbol: "µbar", categoryId: "sound", system: "metric", aliases: ["dyne/cm2", "microbar"], toBase: 0.1, description: "CGS acoustic pressure unit equal to 0.1 Pa." },
 
   // --- TYPOGRAPHY (Base: typo_point) ---
   { id: "typo_point", name: "Point (DTP / PostScript)", plural: "Points (pt)", symbol: "pt", categoryId: "typography", system: "other", aliases: ["points", "pt"], toBase: 1, description: "Standard Desktop Publishing point equal to 1/72 of an international inch (0.352778 mm)." },

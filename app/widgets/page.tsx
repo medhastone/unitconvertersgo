@@ -8,21 +8,14 @@ import {
   WidgetDescriptor,
 } from "@/lib/widgets";
 import { SITE_CONFIG } from "@/lib/config";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Calculator & Unit Converter Widgets for Your Website",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Calculator & Unit Converter Widgets",
   description:
-    "Embed free, customizable unit conversion calculator widgets on your website, blog, or classroom. Includes Full-Width, Adjustable Sidebar, Popup Calculator, and Text Link embed codes.",
-  alternates: {
-    canonical: `${SITE_CONFIG.baseUrl}/widgets`,
-  },
-  openGraph: {
-    title: "Calculator & Unit Converter Widgets for Your Website | UnitConvertersGo",
-    description:
-      "Add free, interactive unit conversion calculators (including Ah to kWh, cm to inches, kg to lbs, and 240+ tools) to your website with one-click HTML embed codes.",
-    url: `${SITE_CONFIG.baseUrl}/widgets`,
-  },
-};
+    "Embed free, customizable unit conversion calculator widgets on your website, blog, or classroom. Includes Full-Width, Adjustable Sidebar, Popup Calculator, and Text Link embeds.",
+  canonicalPath: "/widgets",
+});
 
 export default function WidgetsDirectoryPage() {
   const allItems = getAllWidgetDirectoryItems();

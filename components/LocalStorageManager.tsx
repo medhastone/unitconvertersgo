@@ -41,9 +41,15 @@ function getStorageSnapshot(): StorageSummary {
   }
 }
 
+const INITIAL_STORAGE_SUMMARY: StorageSummary = {
+  theme: null,
+  recentCount: 0,
+  favoriteCount: 0,
+};
+
 export default function LocalStorageManager() {
-  const [summary, setSummary] = useState<StorageSummary>(() =>
-    getStorageSnapshot()
+  const [summary, setSummary] = useState<StorageSummary>(
+    INITIAL_STORAGE_SUMMARY
   );
   const [clearedNotice, setClearedNotice] = useState(false);
 
@@ -52,8 +58,14 @@ export default function LocalStorageManager() {
   }, []);
 
   useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      setSummary(getStorageSnapshot());
+    });
     window.addEventListener("storage", readStorageState);
-    return () => window.removeEventListener("storage", readStorageState);
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      window.removeEventListener("storage", readStorageState);
+    };
   }, [readStorageState]);
 
   const handleClearConversionStorage = () => {

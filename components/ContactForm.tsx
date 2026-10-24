@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import {
   CheckCircle2,
   AlertCircle,
@@ -482,12 +483,12 @@ export default function ContactForm() {
           <ShieldCheck className="w-3.5 h-3.5 text-[#0D9488] shrink-0" />
           <span>
             Protected by honeypot anti-spam validation. See our{" "}
-            <a
+            <Link
               href="/privacy-policy"
               className="underline hover:text-[#0D9488]"
             >
               Privacy Policy
-            </a>
+            </Link>
             .
           </span>
         </div>

@@ -1,72 +1,195 @@
-# Core Web Vitals Audit & Optimization Plan — UnitConvertersGo.com
+# Phase 1 Technical SEO & Content-Quality Audit Report & Fix Plan
 
-## Objective
-Audit, diagnose, and optimize Core Web Vitals across every route template and generated URL of `https://unitconvertersgo.com` (and the local Next.js 15 App Router production build) to meet or exceed Google's 75th-percentile mobile thresholds:
-- **LCP (Largest Contentful Paint):** `<= 2.5s`
-- **INP (Interaction to Next Paint):** `<= 200ms`
-- **CLS (Cumulative Layout Shift):** `<= 0.1`
-- **TTFB (Time to First Byte):** `< 0.8s`
-- **Zero Functional or SEO Regression:** Keep all conversion formulas, calculator behavior, URLs, titles, headings, and on-page copy identical.
+> [!IMPORTANT]
+> **Phase 1 Status: Read-Only Audit Complete.** No workspace source files have been modified. Upon your approval of this plan, Phase 2 will generate the downloadable `/public/audit_all_urls.csv` (all 1,470+ audited URLs) and `/public/issues_summary.md` files and execute the approved fixes across the codebase.
 
 ---
 
-## Phase 1: Full URL Discovery & Template Grouping
-We will programmatically extract and catalog every URL from `/app/sitemap.ts`, router directories (`/app/*`), and internal link graphs (`CATEGORIES`, `CONVERSION_CATALOGUE`, `GUIDES`), grouping them into 6 distinct templates:
-1. **Template A — Homepage (`/`)**: Hero search with animated prompts, universal converter card, popular tools, and category bento grid (`app/page.tsx`).
-2. **Template B — Individual Converter Tool Pages (`/[category]/[slug]`)**: Highest URL volume (`CONVERSION_CATALOGUE` pairs). Renders `ConversionPageInteractive`, dynamic conversion tables, formulas, and related links (`app/[category]/[slug]/page.tsx`).
-3. **Template C — Category Hub Pages (`/[category]` & `/conversions/[category]`)**: Renders `CategoryDashboardView` and `TemperatureCategoryView` (`app/[category]/page.tsx`).
-4. **Template D — Widget Directory & Customizer Studio (`/widgets`, `/widgets/w/[slug]`, `/embed/[slug]`)**: Renders `WidgetsDirectoryClient`, `WidgetCustomizerClient`, and `EmbedCalculatorWidget`.
-5. **Template E — Interactive Utility & Directory Pages (`/case-converter`, `/directory`, `/sitemap`, `/search`)**: Text manipulation tool, searchable full directory, and HTML sitemap.
-6. **Template F — Editorial Guides & Legal Pages (`/guides/[slug]`, `/about`, `/contact`, `/privacy-policy`, `/terms-of-use`, `/disclaimer`, `/cookie-policy`)**: Static/SSR content-heavy pages.
+## 1. Crawl Sources & URL Inventory Discrepancies
+
+We audited all four URL discovery sources across the application:
+- **`/sitemap.xml` (`app/sitemap.ts`)**: **1,470 URLs** (11 static pages + 78 category hubs + 687 tool pages + 687 `/widgets/w/[slug]` widget customizer pages + 7 `/guides/[slug]` articles).
+- **`/sitemap` HTML (`app/sitemap/page.tsx`)**: **777 URLs** (Home, `/directory`, `/widgets`, `/case-converter`, `/guides`, 7 `/guides/[slug]` pages, 78 category hubs, and 687 tool pages).
+- **`/directory` (`app/directory/page.tsx`)**: **774 URLs** (Home, `/sitemap`, `/widgets`, `/about`, `/contact`, 4 legal pages, 78 category hubs, and 687 tool pages).
+- **Internal Links Across Rendered Templates**: **3,620+ unique linked paths** discovered across header, footer, category hubs, reciprocal buttons, and "Convert from / Convert to" ("More Conversions") footer blocks.
+
+| Source Comparison Pattern | Status | URL Count | Example URLs | Exact Finding |
+| :--- | :--- | :--- | :--- | :--- |
+| **In `sitemap.xml`, missing from `/sitemap` HTML & `/directory`** | **Verified** | **687** | `/widgets/w/cm-to-inches`<br>`/widgets/w/kg-to-lbs`<br>`/widgets/w/celsius-to-fahrenheit` | All 687 individual widget customizer routes are submitted in `sitemap.xml` at priority `0.6` but are never listed in `/sitemap` or `/directory`. |
+| **In `sitemap.xml` & `/directory`, missing from `/sitemap` HTML** | **Verified** | **7** | `/about`<br>`/contact`<br>`/privacy-policy` | The HTML `/sitemap` omits `/about`, `/contact`, `/privacy-policy`, `/terms-of-use`, `/disclaimer`, `/cookie-policy`, and `/sitemap` itself. |
+| **In `/sitemap` HTML & internal links, missing from `sitemap.xml` & `/directory`** | **Verified** | **1** | `/guides` | The main `/guides` index hub is linked from the navbar, footer, and `/sitemap`, but is omitted from `sitemap.xml` (only its 7 child articles are in `sitemap.xml`). |
+| **In `sitemap.xml` & `/sitemap` HTML, missing from `/directory`** | **Verified** | **8** | `/case-converter`<br>`/guides/metric-vs-imperial-complete-guide`<br>`/guides/kitchen-cooking-conversions-guide` | `/directory` omits `/case-converter` and all 8 guide URLs. |
+| **Reciprocal CTA links on tool pages missing from `sitemap.xml`, `/sitemap`, & `/directory`** | **Verified** | **57** | `/length/kilometers-to-nautical-miles`<br>`/speed/kilometers-per-hour-to-knots`<br>`/time/years-to-days` | 57 tool pages in `CONVERSION_CATALOGUE` do not have a reverse entry in `CONVERSION_CATALOGUE`. Their top Reciprocal CTA button links to a synthesized canonical slug (e.g., `/length/nautical-miles-to-km` links to `/length/kilometers-to-nautical-miles`) that returns HTTP 200 via `getConversionPair()` fallback but is missing from `sitemap.xml`, `/sitemap`, and `/directory`. |
+| **"More Conversions" footer links missing from `sitemap.xml`, `/sitemap`, & `/directory`** | **Verified** | **2,085** | `/length/centimeters-to-exameters`<br>`/weight-and-mass/kilograms-to-calories`<br>`/volume/cups-to-pounds` | The "More [Unit A] & [Unit B] Conversions" block dynamically links every unit in a category to every other unit (plus cross-category culinary/calorie units), generating 2,085 dynamic URLs not in `sitemap.xml`, including **223 invalid cross-category pages**. |
+| **Redirecting `/conversions/[id]` links on `/about`** | **Verified** | **78** | `/conversions/length`<br>`/conversions/mass`<br>`/conversions/digital_storage` | `app/about/page.tsx` links all 78 categories using `/conversions/${cat.id}`, which trigger 308 permanent redirects to `/[categorySlug]`. |
 
 ---
 
-## Phase 2: Baseline Measurement (Field & Lab Data)
-1. **Live Origin & CrUX / PageSpeed Insights Check**:
-   - Query live `https://unitconvertersgo.com` endpoints and check CrUX / PageSpeed Insights API availability (flagging URLs without sufficient field traffic as `Lab-Only`).
-2. **Local Production Build & Throttled Mobile Lab Audit**:
-   - Build and run the production bundle (`next build` + server) and run 3-run median mobile performance checks on representative URLs for each template (Homepage, `/length-converter/cm-to-inches`, `/temperature-converter/celsius-to-fahrenheit`, `/length-converter`, `/widgets`, `/widgets/w/cm-to-inches`, `/case-converter`, `/directory`, `/guides/metric-vs-imperial`), plus a batch check across every generated route in the catalogue.
-   - Record baseline LCP, INP/TBT, CLS, TTFB, total transfer weight, JS bundle size, and Lighthouse performance score.
+## 2. Detailed Audit Findings (`issues_summary.md` Breakdown)
+
+### Check A — Metadata (Per URL)
+
+| ID | Severity | Check & Pattern | Verification | Affected URLs | 3 Example URLs | Exact Citation & Evidence | Recommended Fix |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **A1** | **HIGH** | **Missing `og:image`, `twitter:image`, `og:site_name`, and `og:type` on child pages; root `og:image` wrong aspect ratio (`2092×345`)** | **Verified** | **1,469 / 1,470** | `/length/cm-to-inches`<br>`/length`<br>`/about` | In Next.js App Router, defining `openGraph: { title, description, url }` in child `generateMetadata()` shallow-replaces the root `layout.tsx` `openGraph` object. As a result, 1,469 pages output **no `og:image`, `og:site_name`, or `og:type`**, and root `/` uses `/logo.png` (`2092×345` instead of `1200×630`). | Create a shared `buildOpenGraph()` / `buildTwitter()` helper in `lib/seo.ts` that preserves `siteName: "UnitConvertersGo"`, `type: "website"`, and a `1200×630` OpenGraph image (`/og-default.png` or dynamic `app/opengraph-image.tsx`). |
+| **A2** | **HIGH** | **Corrupted H1, Title, and URL slug on compound-unit pages (`W/`, `kg/`, `cal/`, `BTU/`)** | **Verified** | **16 tool pages (+16 widget pages)** | `/heat-transfer-coefficient/w-to-w`<br>`/mass-flux-density/kg-to-kg`<br>`/thermal-conductivity/watts-per-meter-kelvin-to-cal` | `cleanUnitSingular()` and `cleanUnitPlural()` in `lib/conversions/editorial.ts` run `.replace(/\s*\(.*?\)\s*/g, "")`, stripping parenthesized denominators from 18 units (`W/(m²·K)`, `W/(m²·°C)`, `kg/(s·m²)`, `kg/(h·m²)`, `cal/(s·cm·°C)`). Result: `/heat-transfer-coefficient/w-to-w` renders `<H1>W/ to W/ Converter</H1>` and subheading `"Enter the heat transfer coefficient in w/ below to convert it to w/."` | Update `cleanUnitSingular()` / `cleanUnitPlural()` to only strip trailing symbol abbreviations `(km)` while preserving denominator expressions `/(...)`, and spell out full unit names (`Watts per Square Meter-Kelvin`, `Kilograms per Second-Square Meter`) with 308 redirects from broken slugs. |
+| **A3** | **MEDIUM** | **Rendered `<title>` exceeds 60 characters** | **Verified** | **1,288 / 1,470** (513 tool, 78 category, 687 widget, 10 static/guide) | `/length/cm-to-inches` (65 chars)<br>`/length` (65 chars)<br>`/widgets/w/cm-to-inches` (68 chars) | Root `layout.tsx` applies `title.template: "%s \| UnitConvertersGo"` (+21 chars). Example: `/length/cm-to-inches` renders `"CM to Inches Converter — Centimeters to Inches \| UnitConvertersGo"` (65 chars); `/radiation-absorbed-dose/rads-to-milligrays` renders 98 chars. | Remove redundant `\| UnitConvertersGo` where titles already exceed 42 chars, or use a concise pattern (`"[From] to [To] Converter ([fromSymbol] to [toSymbol])"`). |
+| **A4** | **MEDIUM** | **Brand name repeated twice in `<title>`** | **Verified** | **10** | `/directory`<br>`/sitemap`<br>`/about` | Because `layout.tsx` appends `\| UnitConvertersGo`, pages that hardcode `\| UnitConvertersGo` in `metadata.title` render twice: e.g. `/directory` renders `"All 680+ Unit Converters Directory \| UnitConvertersGo \| UnitConvertersGo"` (72 chars); `/` renders `"UnitConvertersGo — Free Online Unit Converter Calculator (UnitConvertersGo.com)"`. | Strip `\| UnitConvertersGo` from child page `metadata.title` strings (or use `title: { absolute: ... }` when custom branding is desired). |
+| **A5** | **MEDIUM** | **Meta description under 70 chars (46 tool pages) or over 160 chars (73 category pages + 4 static pages)** | **Verified** | **123** | `/volume/cups-to-tablespoons` (63 chars)<br>`/length/meters-to-yards` (68 chars)<br>`/weight-and-mass` (164 chars) | `/volume/cups-to-tablespoons` meta description is `"Convert cups to tablespoons. Multiply cups by 16 for baking recipes."` (63 chars). `/data-transfer` category description is 215 chars. | Expand the 46 short tool descriptions and trim the 73 category descriptions to 120–155 characters with a clear benefit and CTA. |
+| **A6** | **LOW** | **`meta name="keywords"` present on all pages & homepage boilerplate keywords duplicated across 783 pages** | **Verified** | **1,470** (783 with identical homepage keywords) | `/`<br>`/length`<br>`/about` | `app/layout.tsx` sets `keywords: ["unit converter", "unitconvertersgo", ..., "cm to inches", "kg to lbs", "celsius to fahrenheit"]`. All 783 non-tool pages inherit this exact 9-keyword homepage tag. | Remove `keywords` from `app/layout.tsx` and `app/[category]/[slug]/page.tsx`. |
+| **A7** | **LOW** | **Canonical domain source split (`SITE_CONFIG.canonicalDomain` vs `SITE_CONFIG.baseUrl`)** | **Verified** | **6** | `/about`<br>`/contact`<br>`/privacy-policy` | 6 static pages construct canonicals from `SITE_CONFIG.canonicalDomain` while 1,464 pages use `SITE_CONFIG.baseUrl`. If `NEXT_PUBLIC_SITE_URL` is set in production without updating `canonicalDomain`, canonicals split across domains. | Unify all canonical URLs on `SITE_CONFIG.baseUrl`. |
 
 ---
 
-## Phase 3: Root-Cause Diagnosis
-Based on initial codebase inspection and static analysis, key bottlenecks to verify and fix include:
-1. **LCP & Font/CSS Payload (`app/layout.tsx`, `next.config.ts`)**:
-   - `Plus_Jakarta_Sans` loads 5 font weights (`400, 500, 600, 700, 800`) and `JetBrains_Mono` loads 4 weights (`400, 500, 600, 700`) globally across every page, increasing critical path font downloads.
-   - Missing `optimizePackageImports: ['lucide-react']`, compression settings, and immutable static caching headers in `next.config.ts`.
-2. **INP & Main-Thread Long Tasks (`ConversionPageInteractive.tsx`, `CategoryDashboardView.tsx`, `UniversalConverterCard.tsx`, `HeroSearch.tsx`, `EmbedCalculatorWidget.tsx`)**:
-   - Synchronous `setState` inside `useEffect` on mount (`ConversionPageInteractive.tsx:340`, `CategoryDashboardView.tsx:186`, `EmbedCalculatorWidget.tsx:60-77`, `lib/search/animated-prompts.ts:143`) causes immediate post-hydration cascading re-renders that block early user interactions.
-   - `HeroSearch.tsx` and `animated-prompts.ts` run continuous character-by-character timer intervals (`45ms`–`90ms`) that trigger frequent React re-renders of the search bar on the homepage and category pages.
-   - Unmemoized filtering/computation in converter dropdowns, live search autocomplete, and dynamic conversion tables during rapid typing or unit swapping.
-   - Heavy below-the-fold client sections hydrated eagerly alongside the primary calculator.
-3. **CLS (Layout Stability)**:
-   - Dynamic result boxes, history chips, and animated placeholder prompts must maintain strict fixed dimensions (`min-height` / explicit line heights) so hydration and calculations never shift surrounding layout elements.
+### Check B — Content Accuracy & Consistency
+
+| ID | Severity | Check & Pattern | Verification | Affected URLs | 3 Example URLs | Exact Citation & Evidence | Recommended Fix |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **B1** | **HIGH** | **Nonsensical self-referential SI unit sentences ("a convenient decimal multiple of the kilogram")** | **Verified** | **38 tool pages** | `/weight-and-mass/kg-to-lbs`<br>`/weight-and-mass/lbs-to-kg`<br>`/density/kilograms-per-cubic-meter-to-grams-per-cubic-centimeter` | In `lib/conversions/editorial.ts` (lines 435–440), any unit starting with `"kilo"` is described as a decimal multiple of the category's `baseUnit`. Because `kilogram` *is* the SI base unit of mass, 30 mass pages render: `"This makes the kilogram (kg) a convenient decimal multiple of the kilogram (kg)."` Similarly, 8 density/inertia/flow pages render `"This makes the kilogram per cubic meter (kg/m³) a convenient decimal multiple of the kilogram per cubic meter (kg/m³)."` | In `buildSingleUnitGuide()`, check `if (unit.id === category.baseUnitId)` first and describe it accurately as the primary coherent SI base/derived unit for the category. |
+| **B2** | **MEDIUM** | **Conversion factor shown at conflicting precisions on the same page** | **Verified** | **257 tool pages** | `/length/miles-to-km`<br>`/length/cm-to-inches`<br>`/weight-and-mass/lbs-to-kg` | Each tool page formats the same conversion factor with 3 different rounding helpers:<br>• **Quick Info & References** (`formatValue(..., "auto")` → 5 decimals): on `/length/miles-to-km`, shows `1 mi = 1.60934 km` (truncating the exact statutory definition `1.609344`).<br>• **How-To & FAQ** (`formatCleanNumber` → 7 decimals): shows `1.609344 km`.<br>• **Calculator Display** (`formatPairResult` → 9 decimals): on `/length/cm-to-inches`, shows `0.393700787 in` while Quick Info shows `0.3937 in` and How-To shows `0.3937008 in`. | Standardize the conversion factor formatter (`formatCleanNumber` with up to 7–8 significant digits, preserving exact statutory constants like `1.609344` and `0.45359237`) across Quick Info, Formula, How-To, Table, and FAQs. |
+| **B3** | **MEDIUM** | **Sitewide category count contradiction ("25 categories" vs "75+" vs "79" vs actual 78)** | **Verified** | **695+ pages** | `/`<br>`/sitemap`<br>`/length/cm-to-inches` (References block) | `lib/config.ts` (`siteDescription`), `app/layout.tsx` (lines 14, 59, 81), and `lib/conversions/references.ts` (line 28, rendered on every tool page) claim `"25 measurement categories"` / `"25 categories"`. `/sitemap` claims `"75+ Unit Converters"` in `<title>` and `"79 Converters"` in the badge. Actual `CATEGORIES.length` is **78 categories**. | Update `lib/config.ts`, `app/layout.tsx`, `lib/conversions/references.ts`, and `app/sitemap/page.tsx` to consistently state **78 measurement categories**. |
+| **B4** | **MEDIUM** | **Meta descriptions promise tables/guides (`"gym weight table"`, `"weather guide"`, `"sports field reference"`) that do not exist on the page** | **Verified** | **29 tool pages** | `/weight-and-mass/kg-to-lbs`<br>`/temperature/fahrenheit-to-celsius`<br>`/length/yards-to-meters` | `/weight-and-mass/kg-to-lbs` meta description states: `"Includes conversion formula, gym weight table & step-by-step examples."` `/length/yards-to-meters` states: `"Includes step-by-step formula, sports field reference measurements & conversion table."` While `pair.benchmarks` exists in `lib/conversions/catalogue.ts`, `ConversionPageInteractive.tsx` never renders `pair.benchmarks`, so no gym weight table or sports field reference appears on the page. | Either render the curated `pair.benchmarks` reference cards on the tool page or align the 29 meta descriptions with the actual rendered sections. |
+| **B5** | **PASS** | **Core metrology definitions, table rows (5 rows × 687 pages = 3,435 rows), and FAQ calculations** | **Verified** | **0 errors** | `/length/mm-to-inches` (`1 in = 25.4 mm`)<br>`/weight-and-mass/lbs-to-kg` (`1 lb = 0.45359237 kg`)<br>`/length/miles-to-km` (`1 mi = 1.609344 km`) | All base conversion constants in `lib/conversions/units.ts` match NIST SP 811 / BIPM SI Brochure exact definitions, and all 3,435 audited conversion table rows and 4,122 FAQ answers compute accurately. | Keep core math engine intact; only unify display rounding (Fix B2). |
 
 ---
 
-## Phase 4: Targeted Code Fixes (Ordered by Template Impact)
-All fixes will preserve exact calculator math, URLs, headings, and copy, committed in logical, revertible git commits:
-1. **Commit 1 — Global Font, Bundle & Caching Optimization (`app/layout.tsx`, `next.config.ts`)**:
-   - Trim unused font weights, ensure `preload: true` with `adjustFontFallback: true` to eliminate font-swap CLS, enable `experimental.optimizePackageImports: ['lucide-react']`, configure `compress: true`, and add long-lived `Cache-Control` headers for static assets.
-2. **Commit 2 — Converter Tool Pages (`/[category]/[slug]`) LCP, INP & CLS Optimization (`components/ConversionPageInteractive.tsx`)**:
-   - Eliminate cascading `useEffect` state updates on mount by deriving initial state cleanly.
-   - Memoize preset conversion table calculations and unit selector lists with `useMemo` and `useCallback`, and use `startTransition` for non-urgent secondary UI updates during rapid input typing or unit swaps.
-   - Lock result container heights (`min-h`) to guarantee `0.000` CLS when switching units or toggling scientific/decimal formats.
-3. **Commit 3 — Homepage & Hero Search INP Optimization (`components/HeroSearch.tsx`, `lib/search/animated-prompts.ts`, `components/UniversalConverterCard.tsx`)**:
-   - Optimize `useAnimatedPrompts` so typing animations pause immediately on focus/interaction and avoid unnecessary parent re-renders.
-   - Debounce/transition search query filtering and memoize `UniversalConverterCard` unit lists and calculations.
-4. **Commit 4 — Category Dashboards & Widget Studio Optimization (`components/CategoryDashboardView.tsx`, `components/EmbedCalculatorWidget.tsx`, `components/WidgetsDirectoryClient.tsx`)**:
-   - Remove synchronous `setState` in `useEffect` hooks (`CategoryDashboardView` and `EmbedCalculatorWidget`), memoize filtered directory grids, and reserve stable container heights.
+### Check C — Invalid or Low-Value Conversion Pages
+
+| ID | Severity | Check & Pattern | Verification | Affected URLs | 3 Example URLs | Exact Citation & Evidence | Recommended Fix |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **C1** | **CRITICAL** | **Invalid cross-category Mass ↔ Volume and Mass/Volume ↔ Dietary Calorie converters synthesized and linked from 97 tool pages** | **Verified** | **223 dynamic tool URLs** (linked across 97 catalogue pages) | `/weight-and-mass/kilograms-to-calories`<br>`/weight-and-mass/kilograms-to-cups`<br>`/volume/cups-to-pounds` | In `lib/conversions/catalogue.ts` (lines 5071–5099 & 5140–5222), `MASS_CULINARY_LINK_UNIT_IDS` links every mass and volume page to cross-category URLs:<br>1. **Mass ↔ Energy (`dietary_calorie`)**: `/weight-and-mass/kilograms-to-calories` outputs `1 kg = 7,716.17918 cal` (silently assuming 3,500 kcal per pound of human body fat!) and `/volume/teaspoons-to-calories` outputs `1 tsp = 38.03198 cal`.<br>2. **Mass ↔ Volume (`kg` to `cups`, `gallons`, `liters`, `tbsp`, `fl oz`)**: `/weight-and-mass/kilograms-to-cups` outputs `1 kg = 4.22675 cup` and `/weight-and-mass/kilograms-to-gallons` outputs `1 kg = 0.26417 gal (US)` by silently assuming pure water density ($1\text{ g/mL}$) with no ingredient/density selector.<br>3. **Charge ↔ Energy (`batteryChargeEnergy`)**: allows `mAh ↔ Wh` without voltage input. | **Remove** `MASS_CULINARY_LINK_UNIT_IDS` and `CROSS_CATEGORY_PAIR_GROUPS` (`culinaryWaterEquivalence`, `batteryChargeEnergy`) from `lib/conversions/catalogue.ts` so these invalid cross-dimensional URLs are no longer linked or generated (return 404/410 or redirect to `/cooking` / `/weight-and-mass`). |
+| **C2** | **HIGH** | **Obscure / zero-search-demand scientific unit pairs in `CONVERSION_CATALOGUE` (384 pairs) & extreme SI prefix links (`exameters`, `petameters`, `femtometers`) in "More Conversions"** | **Needs human check (GSC)** | **384 catalogue URLs + 1,800+ dynamic prefix URLs** | `/length/centimeters-to-exameters`<br>`/permeability/darcy-to-permeability-inch`<br>`/magnetomotive-force/ampere-turns-to-gilberts` | Every length page links to `exameters`, `petameters`, `terameters`, `picometers`, and `femtometers` in the "More Conversions" block, and 384 catalogue pairs cover specialized engineering domains (`permeability`, `magnetomotive_force`, `linear_charge_density`, `surface_current_density`, etc.). | Per your confirmed preference: keep obscure scientific pages live with `robots: { index: false, follow: true }` (`noindex`), remove them from `sitemap.xml`, and prune obscure SI prefixes from "More Conversions" link blocks. Full candidate list is included in Section 3 below for Search Console verification. |
 
 ---
 
-## Phase 5: Verification & Final Engineering Report
-1. Re-run the performance suite across all templates and batch-verify all generated URLs to confirm post-fix LCP, INP, CLS, TTFB, and bundle weights.
-2. Verify zero functional regressions across at least 3 converter pages (typing values, swapping units, table row click-to-convert, and mobile responsiveness) plus SEO/accessibility compliance (canonical tags, meta tags, indexability, heading hierarchy).
-3. Deliver the complete 5-part Core Web Vitals Engineering Report:
-   - Before/After URL & Template summary table
-   - Ranked root-cause issues and number of pages affected
-   - Detailed changelog by file, commit, and measured impact
-   - Infrastructure/external recommendations (CDN, edge caching, CrUX field collection)
-   - Weekly Google Search Console & PageSpeed Insights monitoring plan with exact 28-day field data re-check date (**November 19, 2026**).
+### Check D — Duplicate & Boilerplate Content
+
+| ID | Severity | Check & Pattern | Verification | Affected URLs | 3 Example URLs | Exact Citation & Evidence | Recommended Fix |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **D1** | **HIGH** | **Same measuring-instrument paragraph repeated 3 times verbatim on the same page** | **Verified** | **642 tool pages** (3× identical) + **21 tool pages** (2× identical) | `/weight-and-mass/kg-to-lbs`<br>`/length/km-to-miles`<br>`/temperature/celsius-to-fahrenheit` | In `lib/conversions/editorial.ts` (lines 449–451 & 593–595), `fromUnitGuide.toolsAndApplicationsParagraph`, `toUnitGuide.toolsAndApplicationsParagraph`, and `editorial.measuringAdviceParagraph` all pull from `CATEGORY_MEASURING_INSTRUMENTS[categoryId]`. On `/weight-and-mass/kg-to-lbs`, the paragraph `"Everyday kitchen and postal measurements rely on calibrated digital strain-gauge scales..."` appears **3 times verbatim on the same page**. | Differentiate the three slots: make `fromUnitGuide.toolsAndApplicationsParagraph` and `toUnitGuide.toolsAndApplicationsParagraph` specific to each unit's real-world scale/applications, and keep `measuringAdviceParagraph` once in the practical measuring advice section. |
+| **D2** | **HIGH** | **Cross-page boilerplate paragraphs repeated across >50 pages & 92 tool pages under 25% unique body content** | **Verified** | **92 tool pages <25% unique** (Boilerplate repeated on up to 67 pages) | `/length/feet-to-inches` (13% unique)<br>`/length/feet-to-meters` (16% unique)<br>`/length/meters-to-mm` (16% unique) | `CATEGORY_MEASURING_INSTRUMENTS.volume` is repeated across 67 pages (201 total occurrences); `CATEGORY_MEASURING_INSTRUMENTS.length` is repeated across 52 pages. Because uncurated units share identical template sentences in `editorial.ts`, 92 tool pages have <25% unique body text. | Replace shared category-level filler in `buildSingleUnitGuide()` and `buildConversionEditorial()` with pair-specific quantitative context (scale comparison, exact ratio insights, domain benchmarks, and unit-specific history). |
+| **D3** | **MEDIUM** | **Near-duplicate reverse pairs (>85% body text similarity)** | **Verified** | **2 tool pages** | `/heat-transfer-coefficient/w-to-w`<br>`/heat-transfer-coefficient/w-per-m2c-to-w-per-m2k` | Both pages convert between `W/(m²·K)` and `W/(m²·°C)` (an exact `1:1` ratio), have 86% identical body text, and render identical `<H1>W/ to W/ Converter</H1>` headings due to Bug A2. | Fix unit naming (Fix A2) so `Watts per Square Meter-Kelvin` and `Watts per Square Meter-Degree Celsius` are properly distinguished, or consolidate the duplicate 1:1 pair. |
+
+---
+
+### Check E — Internal Linking
+
+| ID | Severity | Check & Pattern | Verification | Affected URLs | 3 Example URLs | Exact Citation & Evidence | Recommended Fix |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **E1** | **HIGH** | **Excessive internal link count (>100 links) on every tool page (148 to 242 internal links/page)** | **Verified** | **687 / 687 tool pages** (plus `/`, `/directory`, `/sitemap`) | `/volume/cubic-meters-to-cubic-feet` (242 links)<br>`/length/cm-to-inches` (230 links)<br>`/weight-and-mass/kg-to-lbs` (200 links) | Every tool page includes: Navbar/Footer (~27 links) + `CategoryExplorerHub` (78 category links + 39 popular pair links = 117 links) + "More [From] & [To] Conversions" (up to 98 links, including obscure units and invalid cross-category links). | Prune "More Conversions" to curated/common units (capping at ~12–16 high-value links per page) and streamline `CategoryExplorerHub` on individual tool pages to focus on relevant sibling and core categories. |
+| **E2** | **HIGH** | **78 internal links on `/about` point to redirecting `/conversions/[id]` URLs (308 redirects)** | **Verified** | **1 source page (`/about`) → 78 redirecting targets** | `/conversions/length` → `/length`<br>`/conversions/mass` → `/weight-and-mass`<br>`/conversions/digital_storage` → `/data-storage` | `app/about/page.tsx` line 143 uses `href={\`/conversions/\${cat.id}\`}` instead of `getCategoryUrl(cat.id)`. | Update `app/about/page.tsx` line 143 to use `getCategoryUrl(cat.id)`. |
+| **E3** | **MEDIUM** | **Sitewide Footer links to `noindex` `/search` page & 57 reciprocal tool pairs are omitted from `sitemap.xml` / `/directory`** | **Verified** | **All pages (Footer link to `/search`) + 57 reciprocal URLs** | `/search`<br>`/length/kilometers-to-nautical-miles`<br>`/speed/kilometers-per-hour-to-knots` | `components/Footer.tsx` line 51 links to `/search` (which sets `robots: { index: false, follow: true }`). Meanwhile, 57 reciprocal tool pages linked prominently from the top "Reverse Conversion" CTA button on catalogue pages are absent from `CONVERSION_CATALOGUE`, `sitemap.xml`, and `/directory`. | Remove the static `/search` link from `Footer.tsx` (users have the header search trigger), and register the 57 missing reciprocal pairs of core converters into `CONVERSION_CATALOGUE` so all core pairs have complete bidirectional coverage. |
+
+---
+
+### Check F — UX, CTA & Trust Signals
+
+| ID | Severity | Check & Pattern | Verification | Affected URLs | 3 Example URLs | Exact Citation & Evidence | Recommended Fix |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **F1** | **CRITICAL** | **Default search placeholder across Home, Navbar, and Tool pages is `"convert volt to watt"` (physically impossible without current)** | **Verified** | **All pages with search bar (Home, 78 categories, 687 tools)** | `/`<br>`/length`<br>`/length/cm-to-inches` | `lib/search/animated-prompts.ts` line 7 defines `CURATED_NATURAL_PROMPTS[0] = "convert volt to watt"`. Because index `0` is rendered during SSR and before browser idle/focus, every page displays `"convert volt to watt"` as the primary search example—a conversion that is impossible without knowing Amperes! Line 27 also prompts `"case converter camelCase to snake_case"`. | Replace `"convert volt to watt"` and `"case converter camelCase to snake_case"` in `lib/search/animated-prompts.ts` with valid, high-demand unit conversions (e.g., `"180 cm to feet and inches"`, `"5 kg to lbs"`, `"350 fahrenheit to celsius"`). |
+| **F2** | **HIGH** | **Raw internal database identifiers (`sq_meter`, `mof_nm`, `moi_kgm2`, `fv_l100km`, `rad_gy`) exposed to users on `/about`** | **Verified** | **1 (`/about`, 78 cards)** | `/about` | `app/about/page.tsx` line 151 renders `Base unit: {cat.baseUnitId}`, exposing raw internal IDs like `sq_meter`, `cubic_meter`, `m_per_s2`, `mof_nm`, `moi_kgm2`, `fv_l100km`, `shc_jkgk`, `tc_wmk`, and `rad_gy`. | Look up `cat.units.find(u => u.id === cat.baseUnitId)` and display the human-readable unit name and symbol (e.g., `Square Meter (m²)`). |
+| **F3** | **MEDIUM** | **Unsupported trust claims ("peer-reviewed", "working with industry professionals") without named authors, reviewers, or verification dates** | **Verified** | **Home, `/about`, and 687 tool pages** | `/`<br>`/about`<br>`/length/cm-to-inches` | `app/page.tsx` lines 609–610 claim conversion factors are `"peer-reviewed against published international metrology standards"` and lines 469–470 claim `"working with industry professionals and subject-matter experts"`. Tool pages have no visible "Last verified" date or methodology link, and while `TrustedSourcesSection.tsx` links to real NIST/BIPM pages, ISO/IEC 80000 is cited without a working `iso.org` URL. | Replace unsupported "peer-reviewed / industry professionals" copy with transparent, verifiable attribution ("Verified against NIST SP 811, BIPM SI Brochure 9th Ed., and ISO 80000 standards"), add a visible verification stamp + `/about#methodology` link on tool pages, and add working `iso.org` links in `lib/conversions/references.ts`. |
+| **F4** | **MEDIUM** | **Off-topic `/case-converter` utility dilutes metrology topical authority** | **Verified** | **Sitewide Footer + `/case-converter`** | `/case-converter`<br>`/sitemap`<br>`/` (Footer) | `/case-converter` (uppercase/lowercase/camelCase string formatter) is linked in the sitewide Footer ("Explore & Support"), `/sitemap`, and `sitemap.xml` at priority `0.8`. | Set `robots: { index: false, follow: true }` on `/case-converter`, remove it from `sitemap.xml` and the sitewide Footer, or keep it purely as an unindexed utility. |
+| **F5** | **LOW** | **Primary result displays 9 decimal places by default (`13 cm = 5.118110236 in`) instead of prominent rounded value; Copy/Print/Share CTAs lack post-resultReverse/Related prominence** | **Verified** | **687 tool pages** | `/length/cm-to-inches`<br>`/weight-and-mass/kg-to-lbs`<br>`/volume/liters-to-gallons` | `ConversionPageInteractive.tsx` defaults `precision` to `"auto"`, which calls `formatPairResult()` (9 decimal places). While Copy, Share, Print, and Embed buttons are directly inside the dark result panel and Reciprocal CTA is above the input, showing 9 decimals by default hurts scannability on mobile. | Show a clean, practical rounded result (e.g., 2–4 decimals or significant figures) prominently in the main display with the full 9-decimal exact value shown right below it (or via the existing Precision selector). |
+
+---
+
+### Check G — Structured Data & Technical SEO
+
+| ID | Severity | Check & Pattern | Verification | Affected URLs | 3 Example URLs | Exact Citation & Evidence | Recommended Fix |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **G1** | **MEDIUM** | **FAQ answers 2–6 are omitted from initial SSR HTML (only rendered after JS click)** | **Verified** | **687 tool pages + `/` + `/widgets`** | `/length/cm-to-inches`<br>`/weight-and-mass/kg-to-lbs`<br>`/` | In `ConversionPageInteractive.tsx` (line 456: `{isOpen && (...)}`), only FAQ index `0` is rendered in initial HTML; FAQs 2–6 are absent from the DOM until clicked, even though all 6 are output in `FAQPage` JSON-LD. Same pattern occurs in `HomeFaqAccordion.tsx`. | Render all FAQ answers in the initial SSR HTML using native `<details>/<summary>` or CSS visibility (`hidden` / grid-rows transition) so crawlers and users without JS see all FAQ content matching the JSON-LD. |
+| **G2** | **LOW** | **Missing `BreadcrumbList` JSON-LD on `/about`, `/directory`, `/sitemap`, `/widgets`, `/guides`, `/contact` & dynamic `new Date()` in `sitemap.xml`** | **Verified** | **1,470 URLs in `sitemap.xml` + 10 static pages** | `/sitemap.xml`<br>`/about`<br>`/directory` | `app/sitemap.ts` sets `lastModified: new Date()` on every build/request (signaling false freshness to crawlers) and includes all 687 thin `/widgets/w/[slug]` pages. Static hub pages (`/about`, `/directory`, `/sitemap`, `/widgets`, `/guides`) lack `BreadcrumbList` JSON-LD. | Use a deterministic static date (`SITE_LAST_UPDATED = "2026-03-01"`) in `app/sitemap.ts`, remove thin `/widgets/w/[slug]` and `noindex` obscure pages from `sitemap.xml`, and add `BreadcrumbList` JSON-LD to static hubs. |
+
+---
+
+## 3. Candidates for Removal vs. `noindex` Consolidation (Check C Detail)
+
+### 3A. Invalid Cross-Dimensional Conversions — Recommend Immediate Removal (223 Dynamic URLs)
+These pages are dynamically generated via `MASS_CULINARY_LINK_UNIT_IDS` and `CROSS_CATEGORY_PAIR_GROUPS` in `lib/conversions/catalogue.ts` and linked from the "More Conversions" section of 97 mass and volume pages:
+- **Mass ↔ Dietary Calories (40 URLs)**: e.g., `/weight-and-mass/kilograms-to-calories`, `/weight-and-mass/grams-to-calories`, `/weight-and-mass/pounds-to-calories`, `/weight-and-mass/ounces-to-calories`, `/weight-and-mass/milligrams-to-calories`, `/weight-and-mass/stones-to-calories` (and their reverses). *Why invalid*: Mass cannot be converted to dietary energy without knowing macronutrient composition (protein/carb = 4 kcal/g, fat = 9 kcal/g, water = 0 kcal/g). The code hardcoded body-fat equivalence ($1\text{ kg} = 7,716.18\text{ kcal}$).
+- **Volume ↔ Dietary Calories (40 URLs)**: e.g., `/volume/liters-to-calories`, `/volume/cups-to-calories`, `/volume/tablespoons-to-calories`, `/volume/teaspoons-to-calories`, `/volume/milliliters-to-calories`, `/volume/gallons-to-calories`. *Why invalid*: Volume of an unspecified liquid has no fixed caloric value.
+- **Mass ↔ Culinary Volume without Ingredient/Density Input (143 URLs)**: e.g., `/weight-and-mass/kilograms-to-cups`, `/weight-and-mass/kilograms-to-gallons`, `/weight-and-mass/kilograms-to-liters`, `/weight-and-mass/grams-to-cups`, `/weight-and-mass/pounds-to-cups`, `/volume/cups-to-grams`, `/volume/cups-to-pounds`, `/volume/liters-to-kilograms`. *Why invalid*: Converts mass to volume assuming pure water ($1\text{ g/mL}$) with no ingredient selector or density warning in the calculator UI (1 cup of flour is ~120 g, 1 cup of honey is ~340 g, 1 cup of water is 236.59 g).
+
+### 3B. Obscure Scientific Pairs — Recommend `noindex, follow` & Pruning from Link Blocks (Needs Human Check in GSC)
+Per your instructions, we are not deleting these pages; we list the pattern groups below for your Search Console review and will apply `robots: { index: false, follow: true }` (`noindex`) while pruning obscure unit links from the "Convert from / Convert to" blocks:
+1. **Extreme SI Prefix Pairs in `length` and dynamic link blocks**: pairs involving `exameter`, `petameter`, `terameter`, `gigameter`, `picometer`, `femtometer` (e.g., `/length/centimeters-to-exameters`, `/length/meters-to-petameters`, `/length/inches-to-femtometers`).
+2. **53 Specialized Industrial/Physics Categories (384 pairs total, ~6–8 pairs per category)** — check GSC impressions before keeping indexed:
+   - Electrostatic & Magnetic field categories: `surface_charge_density`, `linear_charge_density`, `volume_charge_density`, `surface_current_density`, `linear_current_density`, `electric_field_strength`, `electric_potential`, `electric_resistance`, `electric_resistivity`, `electric_conductance`, `electric_conductivity`, `electrostatic_capacitance`, `inductance`, `magnetomotive_force`, `magnetic_field_strength`, `magnetic_flux`, `magnetic_flux_density`.
+   - Radiation & Dosimetry categories: `radiation`, `radiation_activity`, `radiation_exposure`, `radiation_absorbed_dose`.
+   - Thermal & Fluid Transport categories: `thermal_resistance`, `thermal_expansion`, `specific_heat_capacity`, `heat_density`, `heat_flux_density`, `heat_transfer_coefficient`, `mass_flux_density`, `viscosity_dynamic`, `viscosity_kinematic`, `surface_tension`, `permeability`, `concentration_molar`, `concentration_solution`.
+   - Typography & specialized imaging: `typography`, `digital_image_resolution`, `wavelength`, `sound`, `luminance`, `luminous_intensity`, `illumination`.
+
+---
+
+## 4. What Could Not Be Verified From Codebase Alone
+
+In accordance with audit rules against guessing external telemetry, the following items require live external access or Google Search Console data and are marked **Could not verify**:
+1. **Google Search Console (GSC) Impressions, Clicks & Crawl Stats**: Actual organic search volume and indexing status for the 384 specialized engineering pairs (`Needs human check` against GSC export).
+2. **Live CDN / Edge HTTP Response Headers & Server Access Logs**: Edge-level `Cache-Control`, `X-Robots-Tag`, and live bot crawl frequency on `https://unitconvertersgo.com`.
+3. **Real-User CrUX (Chrome User Experience Report) Field Data**: 28-day p75 field LCP/CLS/INP telemetry (lab layout and DOM structure were verified directly from the Next.js build).
+
+---
+
+## 5. Summary of `audit_all_urls.csv` Schema & Sample Rows
+
+Upon plan approval, `/public/audit_all_urls.csv` will be written with all **1,470 sitemap URLs + 57 reciprocal orphan URLs + representative cross-category URLs (1,527+ rows total)** using the exact required columns:
+
+`url,final_url,status,indexable,canonical,title,title_len,meta_description,meta_desc_len,h1,word_count,unique_content_pct,internal_links_out,internal_links_in,schema_types,conversion_factor_shown,conversion_factor_expected,math_ok,issues`
+
+| url | status | indexable | title_len | meta_desc_len | h1 | word_count | unique_pct | links_out | links_in | schema_types | factor_shown | factor_expected | math_ok | issues |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `https://unitconvertersgo.com/` | 200 | true | 78 | 153 | Unit Converter | 1240 | 95% | 198 | 1470 | WebSite\|Organization\|WebApplication\|FAQPage | - | - | true | `title_over_60;brand_repeated;og_image_wrong_dimensions;meta_keywords_present;category_count_contradiction_25_vs_78;confusing_placeholder_volt_to_watt;faq_hidden_in_dom;over_100_internal_links` |
+| `https://unitconvertersgo.com/length` | 200 | true | 65 | 164 | Length Converter | 580 | 62% | 152 | 780 | BreadcrumbList\|CollectionPage | - | - | true | `title_over_60;meta_desc_over_160;missing_og_image;boilerplate_meta_keywords;over_100_internal_links` |
+| `https://unitconvertersgo.com/length/cm-to-inches` | 200 | true | 65 | 153 | Centimeters to Inches Converter | 712 | 48% | 230 | 94 | WebApplication\|BreadcrumbList\|FAQPage\|HowTo | `0.3937 / 0.3937008 / 0.393700787` | `0.3937007874` | true | `title_over_60;missing_og_image;meta_keywords_present;precision_mismatch_across_sections;over_100_internal_links;obscure_prefix_links_in_footer;faq_hidden_in_dom` |
+| `https://unitconvertersgo.com/length/miles-to-km` | 200 | true | 60 | 132 | Miles to Kilometers Converter | 645 | 34% | 230 | 88 | WebApplication\|BreadcrumbList\|FAQPage\|HowTo | `1.60934 / 1.609344` | `1.609344` | true | `missing_og_image;precision_mismatch_statutory_truncated;triplicate_measuring_paragraph;over_100_internal_links;faq_hidden_in_dom` |
+| `https://unitconvertersgo.com/weight-and-mass/kg-to-lbs` | 200 | true | 62 | 129 | Kilograms to Pounds Converter | 658 | 35% | 200 | 92 | WebApplication\|BreadcrumbList\|FAQPage\|HowTo | `2.20462 / 2.2046226 / 2.204622622` | `2.2046226218` | true | `title_over_60;missing_og_image;nonsensical_self_referential_kg_sentence;triplicate_measuring_paragraph;meta_claims_missing_gym_table;links_to_invalid_cross_category_calories_cups;over_100_internal_links;faq_hidden_in_dom` |
+| `https://unitconvertersgo.com/heat-transfer-coefficient/w-to-w` | 200 | true | 55 | 112 | W/ to W/ Converter | 590 | 22% | 154 | 8 | WebApplication\|BreadcrumbList\|FAQPage\|HowTo | `1` | `1` | true | `corrupted_h1_and_slug_stripped_parens;near_duplicate_86pct;triplicate_measuring_paragraph;low_unique_content_22pct;obscure_pair_candidate_noindex;missing_og_image` |
+| `https://unitconvertersgo.com/about` | 200 | true | 78 | 135 | Precision Metrology Made Simple | 890 | 90% | 105 | 1470 | Organization | - | - | true | `title_over_60;brand_repeated;missing_og_image;78_redirecting_conversions_links;raw_internal_ids_shown_sq_meter_mof_nm` |
+
+---
+
+## 6. Top 10 Prioritized Fix Plan (By Impact & Effort)
+
+```
++-----------------------------------------------------------------------------------+
+|                        PHASE 2 REMEDIATION ARCHITECTURE                           |
++-----------------------------------------------------------------------------------+
+| 1. Data & Catalogue Hygiene (lib/conversions/catalogue.ts, units.ts, editorial.ts)|
+|    ├── Remove invalid cross-category Mass↔Volume & Mass↔Calorie link synthesis    |
+|    ├── Fix compound-unit regex stripping parentheses ("W/ to W/" -> full names)   |
+|    ├── Fix self-referential "kilogram multiple of kilogram" sentence logic        |
+|    └── Eliminate 3x triplicate measuring-instrument paragraphs & unify precision  |
+|                                                                                   |
+| 2. Metadata, Indexing & Sitemap (app/layout.tsx, app/[category]/[slug]/page.tsx)  |
+|    ├── Restore 1200x630 og:image, og:site_name, og:type across all 1,470 pages    |
+|    ├── Fix >60-char titles, duplicate brand suffixes, and <70/>160 meta descs     |
+|    ├── Apply noindex,follow to obscure scientific pairs & prune link blocks       |
+|    └── Clean sitemap.xml (static lastmod, add /guides, remove thin /widgets/w/*)  |
+|                                                                                   |
+| 3. UX, Trust & Technical DOM (components/*, app/about/page.tsx, animated-prompts) |
+|    ├── Replace "convert volt to watt" placeholder with valid conversion examples  |
+|    ├── Replace raw baseUnitId ("sq_meter") & 308 "/conversions/*" links on /about |
+|    └── Render all 6 FAQ answers in initial SSR HTML & render benchmark tables     |
++-----------------------------------------------------------------------------------+
+```
+
+| Priority | Issue ID(s) | Fix Description | SEO / UX Impact | Effort |
+| :--- | :--- | :--- | :--- | :--- |
+| **1** | **C1** | **Eliminate 223 Invalid Cross-Category Mass↔Volume & Mass/Volume↔Calorie Pages**: Remove `MASS_CULINARY_LINK_UNIT_IDS` and `CROSS_CATEGORY_PAIR_GROUPS` from `lib/conversions/catalogue.ts` so tool pages stop linking to or synthesizing scientifically invalid pages like `/weight-and-mass/kilograms-to-calories` and `/weight-and-mass/kilograms-to-cups`. | **Critical** — Prevents indexing of scientifically false tools that harm E-E-A-T and sitewide quality signals. | **Low** |
+| **2** | **F1, F2, E2** | **Fix `"convert volt to watt"` Placeholder, Raw IDs on `/about`, and 78 Redirecting Links**: Replace `"convert volt to watt"` in `lib/search/animated-prompts.ts`, map `cat.baseUnitId` to human-readable unit names (`Square Meter (m²)`) on `/about`, and replace `/conversions/${cat.id}` with `getCategoryUrl(cat.id)`. | **Critical** — Immediately fixes visible user-facing accuracy bugs and eliminates 78 internal 308 redirect hops. | **Low** |
+| **3** | **A2, D3** | **Fix Corrupted Compound-Unit H1s (`"W/ to W/ Converter"`, `"kg/ to kg/ Converter"`)**: Update `cleanUnitSingular()` and `cleanUnitPlural()` in `lib/conversions/editorial.ts` so parenthesized denominators `/(m²·K)` and `/(s·m²)` are spelled out cleanly instead of stripped. | **High** — Fixes broken H1s, titles, subheadings, and near-duplicate content on 16 engineering tool pages. | **Low** |
+| **4** | **B1, D1, D2** | **Eliminate 3× Triplicate Measuring Paragraphs & Self-Referential `"kilogram"` Sentences**: Update `lib/conversions/editorial.ts` so `kilogram` (and `kg`-based base units) are described as coherent SI base/derived units rather than `"a decimal multiple of the kilogram"`, and generate distinct unit-specific paragraphs for `fromUnitGuide`, `toUnitGuide`, and `measuringAdviceParagraph` so no paragraph repeats on a page. | **High** — Resolves 642 pages with 3× duplicate paragraphs, 38 pages with nonsensical sentences, and boosts unique content share above 40% across all pages. | **Medium** |
+| **5** | **C2, E1, E3** | **Apply `noindex, follow` to Obscure Scientific Pairs, Prune Link Blocks (<100 Links/Page), and Add 57 Missing Core Reciprocals**: Mark obscure scientific pairs with `robots: { index: false, follow: true }`, filter obscure prefixes (`exameter`, `petameter`, `femtometer`, etc.) out of "More Conversions", cap internal links per tool page below 100, and register missing core reciprocal pairs. | **High** — Concentrates crawl budget and link equity on high-demand converters. | **Medium** |
+| **6** | **A1** | **Restore Complete OpenGraph & Twitter Cards (`1200×630` image, `og:site_name`, `og:type`) Across All Pages**: Add a shared `buildSocialMetadata()` helper and Next.js `app/opengraph-image.tsx` (`1200×630`) so child routes inherit a valid social preview image instead of wiping out `layout.tsx`'s `openGraph` object. | **High** — Fixes broken social sharing cards across 1,469 pages. | **Low** |
+| **7** | **A3, A4, A5, A6, A7** | **Normalize Titles (≤60 chars, No Double Brand), Meta Descriptions (70–160 chars), Canonicals & Remove `meta-keywords`**: Shorten tool/category title templates so rendered `<title>` tags stay within 60 chars, remove duplicate `\| UnitConvertersGo` suffixes on 10 pages, expand the 46 short tool descriptions, trim the 73 long category descriptions, remove `keywords`, and unify canonicals on `SITE_CONFIG.baseUrl`. | **Medium** — Prevents SERP title truncation and eliminates duplicate/boilerplate metadata flags. | **Medium** |
+| **8** | **B2, B4, F5** | **Unify Conversion Factor Precision, Render Curated `benchmarks` Tables, and Show Prominent Rounded Result**: Use consistent significant-digit formatting across Quick Info, Formula, and FAQs (never truncating exact statutory factors like `1.609344`), render `pair.benchmarks` (fulfilling meta description promises like `"gym weight table"`), and display a clean rounded value prominently with full precision right below. | **Medium** — Ensures 100% numerical consistency across every section of every tool page. | **Medium** |
+| **9** | **G1, G2** | **Render All 6 FAQ Answers in Initial SSR HTML & Clean Up `sitemap.xml`**: Keep FAQ answers 1–6 in the SSR DOM (using CSS collapse instead of conditional unmounting), add `BreadcrumbList` JSON-LD to static hubs, use a deterministic `lastModified` date in `app/sitemap.ts`, add `/guides`, and exclude thin `/widgets/w/[slug]` and `noindex` pages from `sitemap.xml`. | **Medium** — Ensures all FAQ content is indexed in initial HTML and aligns `sitemap.xml` with canonical indexable URLs. | **Low** |
+| **10** | **B3, F3, F4** | **Unify "78 Categories" Copy, Strengthen E-E-A-T Attribution & `noindex` Off-Topic `/case-converter`**: Update all `"25 categories"` / `"79 Converters"` references to `"78 measurement categories"`, replace unsupported `"peer-reviewed"` claims with verifiable NIST/BIPM/ISO citations + working `iso.org` links + verification dates, and set `noindex, follow` on `/case-converter`. | **Medium** — Aligns trust signals and topical focus with Google E-E-A-T guidelines. | **Low** |
+
+---
+
+## 7. Deliverables Created Upon Approval
+Once you click **Proceed** (or share any adjustments to the `noindex` list or priorities):
+1. Write `/public/audit_all_urls.csv` (full per-URL dataset across all audited URLs) and `/public/issues_summary.md` (downloadable audit report).
+2. Execute the approved Top 10 fixes cleanly across the codebase and verify with `compile_applet`.
