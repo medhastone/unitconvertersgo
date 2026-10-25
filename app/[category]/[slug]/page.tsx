@@ -313,38 +313,25 @@ export default async function HierarchicalConversionPage({
         }
       : null;
 
+  const combinedPageJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      breadcrumbJsonLd,
+      articleAndAppJsonLd,
+      howToJsonLd,
+      webAppJsonLd,
+      ...(faqJsonLd ? [faqJsonLd] : []),
+    ],
+  };
+
   return (
     <div suppressHydrationWarning className="w-full bg-[#F7F9FC]/60 dark:bg-slate-950 min-h-screen">
       <div suppressHydrationWarning className="max-w-6xl mx-auto px-4 sm:px-6 py-7 sm:py-9 space-y-8">
         <script
           suppressHydrationWarning
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(combinedPageJsonLd) }}
         />
-        <script
-          suppressHydrationWarning
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(articleAndAppJsonLd),
-          }}
-        />
-        <script
-          suppressHydrationWarning
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
-        />
-        <script
-          suppressHydrationWarning
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }}
-        />
-        {faqJsonLd && (
-          <script
-            suppressHydrationWarning
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-          />
-        )}
 
         {/* Breadcrumbs & Inline Animated Smart Search Bar */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">

@@ -159,12 +159,20 @@ const nextConfig = (phase: string): NextConfig => {
       },
     ];
   },
-  webpack: (config, {dev}) => {
+  webpack: (config, {dev, isServer}) => {
     // HMR is disabled in AI Studio via DISABLE_HMR env var.
     // Do not modify—file watching is disabled to prevent flickering during agent edits.
     if (dev && process.env.DISABLE_HMR === 'true') {
       config.watchOptions = {
         ignored: /.*/,
+      };
+    }
+    if (!isServer) {
+      config.resolve = config.resolve || {};
+      config.resolve.alias = {
+        ...(config.resolve.alias || {}),
+        '../build/polyfills/polyfill-module': false,
+        'next/dist/build/polyfills/polyfill-module': false,
       };
     }
     return config;

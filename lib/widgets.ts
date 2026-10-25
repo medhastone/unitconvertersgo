@@ -301,12 +301,14 @@ export function buildWidgetQueryParams(options: WidgetCustomizationOptions, defa
 export function generateWidgetEmbedCode(
   widget: WidgetDescriptor,
   options: WidgetCustomizationOptions,
-  originUrl: string = SITE_CONFIG.baseUrl
+  originUrl: string = SITE_CONFIG.canonicalDomain
 ): string {
-  const base = originUrl.replace(/\/$/, "");
+  const embedBase = (originUrl || SITE_CONFIG.canonicalDomain).replace(/\/$/, "");
+  const canonicalBase = SITE_CONFIG.canonicalDomain.replace(/\/$/, "");
   const queryString = buildWidgetQueryParams(options, widget.exampleInput);
-  const embedUrl = `${base}${widget.embedEndpointPath}${queryString}`;
-  const fullConverterUrl = `${base}${widget.converterHref}`;
+  const embedUrl = `${embedBase}${widget.embedEndpointPath}${queryString}`;
+  const fullConverterUrl = `${canonicalBase}${widget.converterHref}`;
+  const brandHomeUrl = canonicalBase;
   const iframeHeight = widget.requiresVoltage
     ? options.showFormula
       ? 430
@@ -329,7 +331,7 @@ export function generateWidgetEmbedCode(
     return `<div class="ucg-calculator-widget" style="width:100%;max-width:${safeWidth}px;">
   <iframe src="${embedUrl}" width="100%" height="${iframeHeight}" style="border:1px solid #e2e8f0;border-radius:14px;display:block;overflow:hidden;" title="${widget.shortTitle}" loading="lazy"></iframe>
   <div style="text-align:right;font-family:system-ui,-apple-system,sans-serif;font-size:11px;margin-top:4px;color:#64748b;">
-    <a href="${fullConverterUrl}" target="_blank" rel="noopener" style="color:#0d9488;text-decoration:none;font-weight:600;">${widget.shortTitle}</a> by ${SITE_CONFIG.name}
+    <a href="${fullConverterUrl}" target="_blank" rel="noopener" style="color:#0d9488;text-decoration:none;font-weight:600;">${widget.shortTitle}</a> by <a href="${brandHomeUrl}" target="_blank" rel="noopener" style="color:#0d9488;text-decoration:none;font-weight:600;">${SITE_CONFIG.name}</a>
   </div>
 </div>`;
   }
@@ -338,7 +340,7 @@ export function generateWidgetEmbedCode(
   return `<div class="ucg-calculator-widget" style="width:100%;">
   <iframe src="${embedUrl}" width="100%" height="${iframeHeight}" style="border:1px solid #e2e8f0;border-radius:14px;display:block;overflow:hidden;" title="${widget.shortTitle}" loading="lazy"></iframe>
   <div style="text-align:right;font-family:system-ui,-apple-system,sans-serif;font-size:11px;margin-top:4px;color:#64748b;">
-    <a href="${fullConverterUrl}" target="_blank" rel="noopener" style="color:#0d9488;text-decoration:none;font-weight:600;">${widget.shortTitle}</a> by ${SITE_CONFIG.name}
+    <a href="${fullConverterUrl}" target="_blank" rel="noopener" style="color:#0d9488;text-decoration:none;font-weight:600;">${widget.shortTitle}</a> by <a href="${brandHomeUrl}" target="_blank" rel="noopener" style="color:#0d9488;text-decoration:none;font-weight:600;">${SITE_CONFIG.name}</a>
   </div>
 </div>`;
 }

@@ -148,16 +148,7 @@ export default function WidgetCustomizerClient({
     ]
   );
 
-  const [originUrl, setOriginUrl] = useState<string>(SITE_CONFIG.baseUrl);
-
-  useEffect(() => {
-    if (window.location?.origin) {
-      const frameId = window.requestAnimationFrame(() => {
-        setOriginUrl(window.location.origin);
-      });
-      return () => window.cancelAnimationFrame(frameId);
-    }
-  }, []);
+  const [originUrl] = useState<string>(SITE_CONFIG.canonicalDomain);
 
   const embedCode = useMemo(
     () => generateWidgetEmbedCode(widget, options, originUrl),
@@ -731,7 +722,14 @@ export default function WidgetCustomizerClient({
                     >
                       {widget.shortTitle}
                     </Link>{" "}
-                    by {SITE_CONFIG.name}
+                    by{" "}
+                    <Link
+                      href="/"
+                      prefetch={false}
+                      className="font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+                    >
+                      {SITE_CONFIG.name}
+                    </Link>
                   </div>
                 </div>
               )}

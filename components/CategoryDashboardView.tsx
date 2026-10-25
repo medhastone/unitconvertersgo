@@ -1348,6 +1348,36 @@ export default function CategoryDashboardView({
               ))}
             </nav>
           </div>
+
+          {/* 6. Embed Category Calculator Widget Card */}
+          <div className="rounded-2xl bg-[#F7F9FC] dark:bg-slate-900/90 border border-slate-200/90 dark:border-slate-800 p-5 shadow-xs space-y-3">
+            <div className="flex items-center gap-2.5">
+              <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF]">
+                <Code2 className="w-4 h-4" />
+              </span>
+              <div>
+                <h2 className="text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white">
+                  Add This Calculator to Your Site
+                </h2>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  Free HTML widget · 4 embed formats
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Embed the interactive <strong>{displayName} Converter</strong> widget on your blog, classroom, or documentation page.
+            </p>
+
+            <Link
+              href={`/widgets/w/${category.id.replace(/_/g, "-")}-converter`}
+              prefetch={false}
+              className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#16324F] hover:bg-[#0D9488] text-white text-sm font-extrabold transition-colors"
+            >
+              <Code2 className="w-4 h-4" />
+              <span>Customize &amp; Get Embed Code</span>
+            </Link>
+          </div>
         </aside>
       </div>
     </div>

@@ -182,13 +182,16 @@ export default function CategoryExplorerHub({
             </div>
           </div>
         </div>
-        <ArrowRight
-          className={`w-4 h-4 shrink-0 transition-transform group-hover:translate-x-0.5 ${
+        <span
+          aria-hidden="true"
+          className={`text-sm font-sans font-bold shrink-0 transition-transform group-hover:translate-x-0.5 ${
             isCurrent
               ? "text-[#0D9488] dark:text-[#2DD4BF]"
               : "text-slate-400 group-hover:text-[#0D9488] dark:group-hover:text-[#2DD4BF]"
           }`}
-        />
+        >
+          →
+        </span>
       </Link>
     );
   };
@@ -197,7 +200,7 @@ export default function CategoryExplorerHub({
     <section
       suppressHydrationWarning
       aria-label={`Browse All ${CATEGORIES.length} Measurement Categories`}
-      className="rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 sm:p-6 space-y-5 shadow-2xs"
+      className="cv-auto rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 sm:p-6 space-y-5 shadow-2xs"
     >
       {/* Top Header & Instant Filter Bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-4">

@@ -136,8 +136,15 @@ export function useTypewriterPlaceholder({
     "holding"
   );
 
-  // Defer prompt deck construction and typewriter animation until browser is idle after initial load
+  // Defer prompt deck construction and typewriter animation until browser is idle after initial load (desktop only)
   useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(max-width: 767px)").matches
+    ) {
+      return;
+    }
+
     let idleId: number | null = null;
     const delayTimer = setTimeout(() => {
       const startWhenIdle = () => {
@@ -167,7 +174,7 @@ export function useTypewriterPlaceholder({
       } else {
         startWhenIdle();
       }
-    }, 2200);
+    }, 3500);
 
     return () => {
       clearTimeout(delayTimer);

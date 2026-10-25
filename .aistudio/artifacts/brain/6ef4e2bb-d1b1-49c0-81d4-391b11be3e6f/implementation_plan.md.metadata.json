@@ -1,6 +1,6 @@
 {
-  "summary":  "Comprehensive implementation plan for sitewide SEO metadata standardization, dynamic category/converter counts, build-time 1200x630 OpenGraph & Twitter card images per category, JSON-LD structured data (BreadcrumbList, WebSite, WebApplication), removal of meta-keywords, and the Old vs. New URL Metadata CSV + /seo-audit review dashboard.",
-  "updatedAt":  "2026-10-25T08:53:36.413514719Z",
+  "summary":  "Implementation plan to optimize Mobile PageSpeed Insights performance (LCP, FCP, CLS, DOM size, forced reflows, and legacy JS polyfills) while preserving the desktop layout and performance.",
+  "updatedAt":  "2026-10-25T10:31:57.332479961Z",
   "requestFeedback":  true,
   "userFacing":  true
 }

@@ -1,9 +1,28 @@
 import type { Metadata } from "next";
+import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { SITE_CONFIG } from "@/lib/config";
 import { DEFAULT_OG_IMAGE } from "@/lib/seo";
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+  variable: "--font-jakarta",
+  preload: true,
+  adjustFontFallback: true,
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  display: "swap",
+  variable: "--font-jetbrains-mono",
+  preload: false,
+  adjustFontFallback: true,
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.baseUrl),
@@ -87,120 +106,6 @@ const themeInitScript = `
       document.documentElement.classList.remove('dark');
     }
   } catch (e) {}
-
-  try {
-    var extAttrs = [
-      'bis_skin_checked',
-      'bis_register',
-      'bis_id',
-      'data-new-gr-c-s-check-loaded',
-      'data-gr-ext-installed',
-      'cz-shortcut-listen',
-      'data-lt-installed',
-      'fdprocessedid'
-    ];
-    function isExtAttr(name) {
-      if (!name) return false;
-      var lower = name.toLowerCase();
-      return (
-        extAttrs.indexOf(lower) !== -1 ||
-        lower.indexOf('bis_') === 0 ||
-        lower.indexOf('__bis_') === 0 ||
-        lower.indexOf('data-gr-') === 0 ||
-        lower.indexOf('data-new-gr-') === 0 ||
-        lower.indexOf('data-lt-') === 0 ||
-        lower.indexOf('data-darkreader-') === 0
-      );
-    }
-    var attrDesc = Object.getOwnPropertyDescriptor(Element.prototype, 'attributes');
-    if (attrDesc && attrDesc.get) {
-      var origAttrGet = attrDesc.get;
-      Object.defineProperty(Element.prototype, 'attributes', {
-        configurable: true,
-        enumerable: true,
-        get: function() {
-          var map = origAttrGet.call(this);
-          if (map && map.length) {
-            for (var i = map.length - 1; i >= 0; i--) {
-              var item = map[i];
-              if (item && isExtAttr(item.name)) {
-                this.removeAttribute(item.name);
-              }
-            }
-          }
-          return map;
-        }
-      });
-    }
-  } catch (e) {}
-
-  try {
-    function isHydrationNoiseStr(str) {
-      if (!str || typeof str !== 'string') return false;
-      return (
-        str.indexOf("A tree hydrated but some attributes of the server rendered HTML didn't match") !== -1 ||
-        str.indexOf("Hydration failed because the server rendered") !== -1 ||
-        str.indexOf("didn't match the client. As a result this tree will be regenerated on the client") !== -1 ||
-        str.indexOf("There was an error while hydrating") !== -1 ||
-        str.indexOf("Text content does not match server-rendered HTML") !== -1 ||
-        str.indexOf("https://react.dev/link/hydration-mismatch") !== -1
-      );
-    }
-    function isHydrationAttrNoise(args) {
-      for (var i = 0; i < args.length; i++) {
-        var arg = args[i];
-        var str = typeof arg === 'string' ? arg : (arg && typeof arg.message === 'string' ? arg.message : '');
-        if (isHydrationNoiseStr(str)) {
-          return true;
-        }
-      }
-      return false;
-    }
-    function wrapErrorFn(fn) {
-      if (typeof fn !== 'function' || fn.__ucgWrapped) return fn;
-      var wrapped = function() {
-        if (isHydrationAttrNoise(arguments)) return;
-        return fn.apply(this, arguments);
-      };
-      wrapped.__ucgWrapped = true;
-      return wrapped;
-    }
-    var currentError = wrapErrorFn(console.error.bind(console));
-    Object.defineProperty(console, 'error', {
-      configurable: true,
-      enumerable: true,
-      get: function() { return currentError; },
-      set: function(newFn) { currentError = wrapErrorFn(newFn); }
-    });
-    if (typeof WeakMap !== 'undefined') {
-      var recMap = new WeakMap();
-      Object.defineProperty(Object.prototype, 'onRecoverableError', {
-        configurable: true,
-        enumerable: false,
-        get: function() {
-          return recMap.get(this);
-        },
-        set: function(fn) {
-          recMap.set(this, wrapErrorFn(fn));
-        }
-      });
-    }
-    window.addEventListener('error', function(event) {
-      var msg = (event && event.message) || (event && event.error && event.error.message) || '';
-      if (isHydrationNoiseStr(msg)) {
-        event.stopImmediatePropagation();
-        event.preventDefault();
-      }
-    }, true);
-    window.addEventListener('unhandledrejection', function(event) {
-      var reason = event && event.reason;
-      var msg = typeof reason === 'string' ? reason : (reason && typeof reason.message === 'string' ? reason.message : '');
-      if (isHydrationNoiseStr(msg)) {
-        event.stopImmediatePropagation();
-        event.preventDefault();
-      }
-    }, true);
-  } catch (e) {}
 })();
 `;
 
@@ -268,18 +173,12 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className="scroll-smooth"
+      className={`${plusJakartaSans.variable} ${jetbrainsMono.variable} scroll-smooth`}
     >
       <head suppressHydrationWarning>
         <script
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: themeInitScript }}
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         />
       </head>
       <body

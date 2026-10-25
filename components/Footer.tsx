@@ -72,9 +72,9 @@ export default function Footer() {
     Record<AccordionSectionId, boolean>
   >({
     categories: true,
-    popular: true,
-    explore: true,
-    legal: true,
+    popular: false,
+    explore: false,
+    legal: false,
   });
   const [isCookieModalOpen, setIsCookieModalOpen] = useState(false);
 
@@ -141,7 +141,7 @@ export default function Footer() {
       suppressHydrationWarning
       id="site-footer"
       aria-label="Site footer"
-      className="w-full border-t border-slate-200/90 dark:border-slate-800 bg-[#F7F9FC] dark:bg-slate-950 text-[#172033] dark:text-slate-200"
+      className="cv-auto w-full border-t border-slate-200/90 dark:border-slate-800 bg-[#F7F9FC] dark:bg-slate-950 text-[#172033] dark:text-slate-200"
     >
       <div suppressHydrationWarning className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-8 sm:py-12 lg:py-14">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 items-stretch gap-y-2 sm:gap-x-8 sm:gap-y-10 lg:gap-x-8">
@@ -157,10 +157,11 @@ export default function Footer() {
                   suppressHydrationWarning
                   src="/logo.webp"
                   alt="UnitConvertersGo"
-                  width={290}
-                  height={48}
+                  width={242}
+                  height={40}
+                  sizes="(max-width: 640px) 218px, 242px"
                   referrerPolicy="no-referrer"
-                  className="h-10 sm:h-11 lg:h-12 w-auto max-w-[230px] sm:max-w-[260px] lg:max-w-[290px] object-contain bg-transparent transition-opacity hover:opacity-95 motion-reduce:transition-none"
+                  className="w-[218px] h-[36px] sm:w-[242px] sm:h-[40px] object-contain bg-transparent shrink-0 transition-opacity hover:opacity-95 motion-reduce:transition-none"
                 />
               </Link>
 

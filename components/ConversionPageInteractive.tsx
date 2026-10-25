@@ -344,10 +344,22 @@ export default function ConversionPageInteractive({
     null | "print" | "png" | "pdf"
   >(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [isDesktopViewport, setIsDesktopViewport] = useState(false);
+  const [isMobileTableExpanded, setIsMobileTableExpanded] = useState(false);
+  const [isMobileLinksExpanded, setIsMobileLinksExpanded] = useState(false);
 
-  // Sync optional ?value= query parameter on mount/navigation so direct preset links pre-fill the converter
+  // Sync optional ?value= query parameter and desktop viewport detection on mount
   useEffect(() => {
     if (typeof window === "undefined") return;
+    const mql = window.matchMedia("(min-width: 768px)");
+    if (mql.matches) {
+      setIsDesktopViewport(true);
+    }
+    const handleMediaChange = (e: MediaQueryListEvent) => {
+      setIsDesktopViewport(e.matches);
+    };
+    mql.addEventListener("change", handleMediaChange);
+
     const syncFromUrl = () => {
       const params = new URLSearchParams(window.location.search);
       const qVal = params.get("value");
@@ -358,6 +370,7 @@ export default function ConversionPageInteractive({
     const rafId = window.requestAnimationFrame(syncFromUrl);
     window.addEventListener("popstate", syncFromUrl);
     return () => {
+      mql.removeEventListener("change", handleMediaChange);
       window.cancelAnimationFrame(rafId);
       window.removeEventListener("popstate", syncFromUrl);
     };
@@ -1237,7 +1250,7 @@ export default function ConversionPageInteractive({
         {/* 2. CONVERSION TABLE (Continuous 1–40 / 1–100 Chart with Fraction & Export for Length; Scale-Aware Table for Other Categories) */}
         <section
           aria-labelledby="common-conversions-table-heading"
-          className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-4"
+          className="cv-auto rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-4"
         >
           <div className="flex flex-col gap-3.5">
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
@@ -1268,7 +1281,10 @@ export default function ConversionPageInteractive({
                   <div className="inline-flex items-center p-1 bg-[#F7F9FC] dark:bg-slate-800 rounded-xl border border-slate-200/80 dark:border-slate-700 text-xs sm:text-sm">
                     <button
                       type="button"
-                      onClick={() => setLengthChartMaxN(40)}
+                      onClick={() => {
+                        setLengthChartMaxN(40);
+                        setIsMobileTableExpanded(true);
+                      }}
                       className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
                         lengthChartMaxN === 40
                           ? "bg-white dark:bg-slate-900 text-[#16324F] dark:text-white shadow-2xs"
@@ -1279,7 +1295,10 @@ export default function ConversionPageInteractive({
                     </button>
                     <button
                       type="button"
-                      onClick={() => setLengthChartMaxN(100)}
+                      onClick={() => {
+                        setLengthChartMaxN(100);
+                        setIsMobileTableExpanded(true);
+                      }}
                       className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
                         lengthChartMaxN === 100
                           ? "bg-white dark:bg-slate-900 text-[#16324F] dark:text-white shadow-2xs"
@@ -1302,7 +1321,10 @@ export default function ConversionPageInteractive({
                     <button
                       key={tab.id}
                       type="button"
-                      onClick={() => setTablePreset(tab.id)}
+                      onClick={() => {
+                        setTablePreset(tab.id);
+                        setIsMobileTableExpanded(true);
+                      }}
                       className={`px-2.5 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
                         tablePreset === tab.id
                           ? "bg-white dark:bg-slate-900 text-[#16324F] dark:text-white shadow-2xs"
@@ -1391,7 +1413,10 @@ export default function ConversionPageInteractive({
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-200/70 dark:divide-slate-800 text-[15px] sm:text-base font-mono tabular-nums">
-                    {continuousLengthRows.map((row) => {
+                    {(isDesktopViewport || isMobileTableExpanded
+                      ? continuousLengthRows
+                      : continuousLengthRows.slice(0, 12)
+                    ).map((row) => {
                       const isCurrentRow =
                         isValidInput && Math.abs(numericInput - row.n) < 1e-9;
                       return (
@@ -1434,13 +1459,14 @@ export default function ConversionPageInteractive({
                             <div className="flex items-center justify-between gap-2">
                               <span>{row.fraction16Display}</span>
                               <span
-                                className={`inline-flex items-center justify-center w-5 h-5 rounded-md border transition-all shrink-0 no-print ${
+                                aria-hidden="true"
+                                className={`inline-flex items-center justify-center w-5 h-5 rounded-md border text-xs font-sans font-bold transition-all shrink-0 no-print ${
                                   isCurrentRow
                                     ? "bg-[#0D9488] text-white border-[#0D9488]"
                                     : "bg-[#E6FAF8] dark:bg-teal-950/70 text-[#0D9488] dark:text-[#2DD4BF] border-[#0D9488]/30 group-hover/row:bg-[#0D9488] group-hover/row:text-white"
                                 }`}
                               >
-                                <ArrowRight className="w-3 h-3" />
+                                →
                               </span>
                             </div>
                           </td>
@@ -1450,6 +1476,25 @@ export default function ConversionPageInteractive({
                   </tbody>
                 </table>
               </div>
+
+              {!isDesktopViewport && continuousLengthRows.length > 12 && (
+                <button
+                  type="button"
+                  onClick={() => setIsMobileTableExpanded((prev) => !prev)}
+                  className="md:hidden no-print w-full py-2.5 px-4 rounded-xl bg-[#F7F9FC] dark:bg-slate-800 hover:bg-[#E6FAF8] dark:hover:bg-teal-950/50 border border-slate-200/90 dark:border-slate-700 text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                >
+                  <span>
+                    {isMobileTableExpanded
+                      ? "Show Compact Preview (12 Rows)"
+                      : `Show All ${continuousLengthRows.length} Conversion Rows`}
+                  </span>
+                  <ChevronDown
+                    className={`w-4 h-4 text-[#0D9488] transition-transform ${
+                      isMobileTableExpanded ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+              )}
 
               {/* Bottom Toggle + Branded Chart Footer (Site Name + URL) */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2 border-t border-slate-100 dark:border-slate-800 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
@@ -1465,9 +1510,10 @@ export default function ConversionPageInteractive({
 
                 <button
                   type="button"
-                  onClick={() =>
-                    setLengthChartMaxN((prev) => (prev === 40 ? 100 : 40))
-                  }
+                  onClick={() => {
+                    setLengthChartMaxN((prev) => (prev === 40 ? 100 : 40));
+                    setIsMobileTableExpanded(true);
+                  }}
                   className="no-print inline-flex items-center gap-1.5 font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline cursor-pointer self-start sm:self-auto"
                 >
                   <span>
@@ -1484,85 +1530,110 @@ export default function ConversionPageInteractive({
               </div>
             </>
           ) : (
-            <div className="overflow-x-auto rounded-xl border border-slate-200/90 dark:border-slate-800">
-              <table
-                className="w-full text-left border-collapse"
-                aria-label={editorial.tableHeading}
-              >
-                <thead>
-                  <tr className="bg-[#F7F9FC] dark:bg-slate-800/80 border-b border-slate-200/90 dark:border-slate-800 text-sm sm:text-[15px] font-extrabold text-[#16324F] dark:text-white">
-                    <th scope="col" className="py-3.5 px-4 w-1/2">
-                      {fromUnit.plural} ({fromUnit.symbol})
-                    </th>
-                    <th scope="col" className="py-3.5 px-4 w-1/2">
-                      {toUnit.plural} ({toUnit.symbol})
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-200/70 dark:divide-slate-800 text-[15px] sm:text-base font-mono tabular-nums">
-                  {tableRows.map((row) => {
-                    const isCurrentRow =
-                      isValidInput && Math.abs(numericInput - row.input) < 1e-9;
-                    return (
-                      <tr
-                        key={`${row.input}-${row.inputLabel}`}
-                        tabIndex={0}
-                        onClick={() => handleSelectValue(row.input, true)}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            e.preventDefault();
-                            handleSelectValue(row.input, true);
-                          }
-                        }}
-                        title={`Click to convert ${row.inputLabel} in calculator`}
-                        className={`group/row cursor-pointer transition-colors ${
-                          isCurrentRow
-                            ? "bg-[#E6FAF8]/60 dark:bg-teal-950/40 font-extrabold"
-                            : "hover:bg-[#F7F9FC] dark:hover:bg-slate-800/50"
-                        }`}
-                      >
-                        <td className="py-3 px-4 font-bold text-[#16324F] dark:text-slate-100 group-hover/row:text-[#0D9488] dark:group-hover/row:text-[#2DD4BF] transition-colors">
-                          {row.inputLabel}
-                        </td>
-                        <td className="py-3 px-4 font-bold text-[#0D9488] dark:text-[#2DD4BF]">
-                          <a
-                            href={`?value=${encodeURIComponent(
-                              String(row.input)
-                            )}#converter-tool-section`}
-                            onClick={(e) => {
+            <>
+              <div className="overflow-x-auto rounded-xl border border-slate-200/90 dark:border-slate-800">
+                <table
+                  className="w-full text-left border-collapse"
+                  aria-label={editorial.tableHeading}
+                >
+                  <thead>
+                    <tr className="bg-[#F7F9FC] dark:bg-slate-800/80 border-b border-slate-200/90 dark:border-slate-800 text-sm sm:text-[15px] font-extrabold text-[#16324F] dark:text-white">
+                      <th scope="col" className="py-3.5 px-4 w-1/2">
+                        {fromUnit.plural} ({fromUnit.symbol})
+                      </th>
+                      <th scope="col" className="py-3.5 px-4 w-1/2">
+                        {toUnit.plural} ({toUnit.symbol})
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200/70 dark:divide-slate-800 text-[15px] sm:text-base font-mono tabular-nums">
+                    {(isDesktopViewport || isMobileTableExpanded
+                      ? tableRows
+                      : tableRows.slice(0, 10)
+                    ).map((row) => {
+                      const isCurrentRow =
+                        isValidInput && Math.abs(numericInput - row.input) < 1e-9;
+                      return (
+                        <tr
+                          key={`${row.input}-${row.inputLabel}`}
+                          tabIndex={0}
+                          onClick={() => handleSelectValue(row.input, true)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
                               e.preventDefault();
-                              e.stopPropagation();
                               handleSelectValue(row.input, true);
-                            }}
-                            title={`Convert preset value ${row.inputLabel} in calculator`}
-                            aria-label={`Convert preset value ${row.inputLabel} in calculator`}
-                            className="flex items-center justify-between gap-2 w-full font-bold text-[#0D9488] dark:text-[#2DD4BF] cursor-pointer"
-                          >
-                            <span>{row.formatted6}</span>
-                            <span
-                              className={`inline-flex items-center justify-center w-5 h-5 rounded-md border transition-all shrink-0 ${
-                                isCurrentRow
-                                  ? "bg-[#0D9488] text-white border-[#0D9488]"
-                                  : "bg-[#E6FAF8] dark:bg-teal-950/70 text-[#0D9488] dark:text-[#2DD4BF] border-[#0D9488]/30 group-hover/row:bg-[#0D9488] group-hover/row:text-white group-hover/row:border-[#0D9488]"
-                              }`}
+                            }
+                          }}
+                          title={`Click to convert ${row.inputLabel} in calculator`}
+                          className={`group/row cursor-pointer transition-colors ${
+                            isCurrentRow
+                              ? "bg-[#E6FAF8]/60 dark:bg-teal-950/40 font-extrabold"
+                              : "hover:bg-[#F7F9FC] dark:hover:bg-slate-800/50"
+                          }`}
+                        >
+                          <td className="py-3 px-4 font-bold text-[#16324F] dark:text-slate-100 group-hover/row:text-[#0D9488] dark:group-hover/row:text-[#2DD4BF] transition-colors">
+                            {row.inputLabel}
+                          </td>
+                          <td className="py-3 px-4 font-bold text-[#0D9488] dark:text-[#2DD4BF]">
+                            <a
+                              href={`?value=${encodeURIComponent(
+                                String(row.input)
+                              )}#converter-tool-section`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                handleSelectValue(row.input, true);
+                              }}
+                              title={`Convert preset value ${row.inputLabel} in calculator`}
+                              aria-label={`Convert preset value ${row.inputLabel} in calculator`}
+                              className="flex items-center justify-between gap-2 w-full font-bold text-[#0D9488] dark:text-[#2DD4BF] cursor-pointer"
                             >
-                              <ArrowRight className="w-3 h-3" />
-                            </span>
-                          </a>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+                              <span>{row.formatted6}</span>
+                              <span
+                                aria-hidden="true"
+                                className={`inline-flex items-center justify-center w-5 h-5 rounded-md border text-xs font-sans font-bold transition-all shrink-0 ${
+                                  isCurrentRow
+                                    ? "bg-[#0D9488] text-white border-[#0D9488]"
+                                    : "bg-[#E6FAF8] dark:bg-teal-950/70 text-[#0D9488] dark:text-[#2DD4BF] border-[#0D9488]/30 group-hover/row:bg-[#0D9488] group-hover/row:text-white group-hover/row:border-[#0D9488]"
+                                }`}
+                              >
+                                →
+                              </span>
+                            </a>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+
+              {!isDesktopViewport && tableRows.length > 10 && (
+                <button
+                  type="button"
+                  onClick={() => setIsMobileTableExpanded((prev) => !prev)}
+                  className="md:hidden no-print w-full py-2.5 px-4 rounded-xl bg-[#F7F9FC] dark:bg-slate-800 hover:bg-[#E6FAF8] dark:hover:bg-teal-950/50 border border-slate-200/90 dark:border-slate-700 text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                >
+                  <span>
+                    {isMobileTableExpanded
+                      ? "Show Compact Preview (10 Rows)"
+                      : `Show All ${tableRows.length} Reference Rows`}
+                  </span>
+                  <ChevronDown
+                    className={`w-4 h-4 text-[#0D9488] transition-transform ${
+                      isMobileTableExpanded ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+              )}
+            </>
           )}
         </section>
 
         {/* 3. HOW TO CONVERT & HOW MANY SECTION (Competitor-Style Editorial Guide) */}
         <section
           aria-labelledby="how-to-convert-heading"
-          className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-6"
+          className="cv-auto rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-6"
         >
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
             <div className="flex items-center gap-3">
@@ -1656,7 +1727,7 @@ export default function ConversionPageInteractive({
         {isLengthCategory && fractionalInchesGuide && (
           <section
             aria-labelledby="fractional-inches-guide-heading"
-            className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-5"
+            className="cv-auto rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-5"
           >
             <div className="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
               <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF] shrink-0">
@@ -1844,7 +1915,7 @@ export default function ConversionPageInteractive({
         {/* 4. WHAT IS A [SOURCE UNIT] & WHAT IS A [TARGET UNIT] ENCYCLOPEDIA SECTIONS */}
         <section
           aria-labelledby="unit-definitions-heading"
-          className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-6"
+          className="cv-auto rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-6"
         >
           {/* Source Unit Encyclopedia Section */}
           <div className="space-y-3.5 text-base text-slate-700 dark:text-slate-300 leading-relaxed">
@@ -1929,7 +2000,7 @@ export default function ConversionPageInteractive({
         {/* 5. MORE [UNIT A] & [UNIT B] CONVERSIONS (Reverse Conversion Prose + Complete Internal Linking Lists) */}
         <section
           aria-labelledby="more-unit-conversions-heading"
-          className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-5"
+          className="cv-auto rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-5"
         >
           <div className="flex items-center gap-2.5 border-b border-slate-100 dark:border-slate-800 pb-3.5">
             <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF]">
@@ -2009,14 +2080,19 @@ export default function ConversionPageInteractive({
                 {moreUnitLinks.fromHeading}
               </h3>
               <ul className="space-y-2">
-                {moreUnitLinks.fromLinks.map((item) => (
+                {(isDesktopViewport || isMobileLinksExpanded
+                  ? moreUnitLinks.fromLinks
+                  : moreUnitLinks.fromLinks.slice(0, 6)
+                ).map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
                       prefetch={false}
                       className="inline-flex items-center gap-2 text-[15px] sm:text-base font-medium text-[#0D9488] dark:text-[#2DD4BF] hover:text-[#16324F] dark:hover:text-white hover:underline transition-colors py-1"
                     >
-                      <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
+                      <span aria-hidden="true" className="text-slate-400 font-bold shrink-0">
+                        ›
+                      </span>
                       <span>{item.label}</span>
                     </Link>
                   </li>
@@ -2030,14 +2106,19 @@ export default function ConversionPageInteractive({
                 {moreUnitLinks.toHeading}
               </h3>
               <ul className="space-y-2">
-                {moreUnitLinks.toLinks.map((item) => (
+                {(isDesktopViewport || isMobileLinksExpanded
+                  ? moreUnitLinks.toLinks
+                  : moreUnitLinks.toLinks.slice(0, 6)
+                ).map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
                       prefetch={false}
                       className="inline-flex items-center gap-2 text-[15px] sm:text-base font-medium text-[#0D9488] dark:text-[#2DD4BF] hover:text-[#16324F] dark:hover:text-white hover:underline transition-colors py-1"
                     >
-                      <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
+                      <span aria-hidden="true" className="text-slate-400 font-bold shrink-0">
+                        ›
+                      </span>
                       <span>{item.label}</span>
                     </Link>
                   </li>
@@ -2045,6 +2126,30 @@ export default function ConversionPageInteractive({
               </ul>
             </div>
           </div>
+
+          {!isDesktopViewport &&
+            (moreUnitLinks.fromLinks.length > 6 ||
+              moreUnitLinks.toLinks.length > 6) && (
+              <button
+                type="button"
+                onClick={() => setIsMobileLinksExpanded((prev) => !prev)}
+                className="md:hidden w-full py-2.5 px-4 rounded-xl bg-[#F7F9FC] dark:bg-slate-800 hover:bg-[#E6FAF8] dark:hover:bg-teal-950/50 border border-slate-200/90 dark:border-slate-700 text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer"
+              >
+                <span>
+                  {isMobileLinksExpanded
+                    ? "Show Fewer Unit Links"
+                    : `Show All ${
+                        moreUnitLinks.fromLinks.length +
+                        moreUnitLinks.toLinks.length
+                      } Unit Conversion Links`}
+                </span>
+                <ChevronDown
+                  className={`w-4 h-4 text-[#0D9488] transition-transform ${
+                    isMobileLinksExpanded ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+            )}
 
           {(pair.categoryId === "mass" || pair.categoryId === "volume") && (
             <div className="mt-4 pt-4 border-t border-slate-200/80 dark:border-slate-800 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 p-4 space-y-2.5">
@@ -2095,7 +2200,7 @@ export default function ConversionPageInteractive({
 
         {/* 6. FREQUENTLY ASKED QUESTIONS (Google "People Also Ask" Accordion) */}
         {editorial.googlePaaFaqs.length > 0 && (
-          <section aria-labelledby="pair-faq-heading" className="space-y-4">
+          <section aria-labelledby="pair-faq-heading" className="cv-auto space-y-4">
             <div className="flex items-center gap-2.5">
               <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-sky-100/90 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400">
                 <HelpCircle className="w-5 h-5" />
@@ -2129,16 +2234,11 @@ export default function ConversionPageInteractive({
                         }`}
                       />
                     </button>
-                    <div
-                      hidden={!isOpen}
-                      className={
-                        isOpen
-                          ? "px-5 pb-4 pt-2 text-[15px] sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/80"
-                          : "hidden"
-                      }
-                    >
-                      {faq.answer}
-                    </div>
+                    {isOpen && (
+                      <div className="px-5 pb-4 pt-2 text-[15px] sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/80">
+                        {faq.answer}
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -2150,7 +2250,7 @@ export default function ConversionPageInteractive({
       {/* =====================================================================
           RIGHT SIDEBAR COLUMN (4 cols on lg)
           ===================================================================== */}
-      <aside className="lg:col-span-4 space-y-6">
+      <aside className="cv-auto lg:col-span-4 space-y-6">
         {/* 1. Category Converter Pair Links */}
         <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 shadow-xs space-y-3.5">
           <div className="flex items-center gap-2.5 pb-1">

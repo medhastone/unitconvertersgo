@@ -8,8 +8,8 @@
     font-size: 16px;
     line-height: 1.6;
     -webkit-text-size-adjust: 100%;
-    --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --font-sans: var(--font-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   }
 
   body {
@@ -31,6 +31,13 @@
   html.dark select option {
     background-color: #0f172a;
     color: #f8fafc;
+  }
+}
+
+@media (max-width: 767px) {
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 420px;
   }
 }
 

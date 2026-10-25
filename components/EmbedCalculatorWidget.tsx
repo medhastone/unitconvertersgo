@@ -436,23 +436,28 @@ export default function EmbedCalculatorWidget({
           </div>
         </div>
 
-        {/* Formula & Quick Precision Strip */}
-        {showFormula && conversion && (
+        {/* Formula & Attribution Strip */}
+        {((showFormula && conversion) || showAttributionBar) && (
           <div
             className={`pt-2 border-t flex flex-wrap items-center justify-between gap-2 text-[11px] ${
               isDark ? "border-slate-800 text-slate-400" : "border-slate-100 text-slate-500"
             }`}
           >
-            <span className="font-mono font-semibold truncate">
-              Formula: {conversion.formulaDisplay}
-            </span>
+            {showFormula && conversion ? (
+              <span className="font-mono font-semibold truncate">
+                Formula: {conversion.formulaDisplay}
+              </span>
+            ) : (
+              <span className="font-mono font-semibold truncate">
+                {activeFromUnit.symbol} → {activeToUnit.symbol}
+              </span>
+            )}
 
             {showAttributionBar && (
-              <Link
-                href={widget.converterHref}
-                prefetch={false}
+              <a
+                href={`${SITE_CONFIG.canonicalDomain}${widget.converterHref}`}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 style={{
                   color: isDark ? palette.textAccentDark : palette.textAccentLight,
                 }}
@@ -460,7 +465,7 @@ export default function EmbedCalculatorWidget({
               >
                 <span>{SITE_CONFIG.name}</span>
                 <ExternalLink className="w-3 h-3" />
-              </Link>
+              </a>
             )}
           </div>
         )}

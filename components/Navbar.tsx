@@ -44,18 +44,8 @@ const GUIDE_SHORT_TITLES: Record<string, string> = {
 };
 
 function NavbarSearchPlaceholder({ isPaused }: { isPaused: boolean }) {
-  const [isMobileViewport, setIsMobileViewport] = useState(false);
-
-  useEffect(() => {
-    const mql = window.matchMedia("(max-width: 639px)");
-    const updateMatch = () => setIsMobileViewport(mql.matches);
-    updateMatch();
-    mql.addEventListener("change", updateMatch);
-    return () => mql.removeEventListener("change", updateMatch);
-  }, []);
-
   const { placeholder } = useTypewriterPlaceholder({
-    isPaused: isPaused || isMobileViewport,
+    isPaused,
     prefix: "",
   });
 
@@ -141,7 +131,7 @@ export default function Navbar() {
     <>
       <header suppressHydrationWarning className="relative z-40 w-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200/90 dark:border-slate-800 transition-colors duration-150">
         <div suppressHydrationWarning className="max-w-7xl mx-auto flex items-center justify-between gap-3 sm:gap-5 px-4 sm:px-6 h-[64px] sm:h-[70px]">
-          {/* Zone 1: Official Brand Logo - large, crisp, and responsive across mobile & desktop */}
+          {/* Zone 1: Official Brand Logo - explicit width & height at every breakpoint for zero CLS */}
           <Link
             href="/"
             className="inline-flex items-center shrink-0 hover:opacity-95 transition-opacity min-h-[44px]"
@@ -151,11 +141,12 @@ export default function Navbar() {
               suppressHydrationWarning
               src="/logo.webp"
               alt="UnitConvertersGo"
-              width={290}
-              height={48}
+              width={242}
+              height={40}
+              sizes="(max-width: 640px) 193px, (max-width: 1024px) 218px, 266px"
               priority
               referrerPolicy="no-referrer"
-              className="h-9 sm:h-10 md:h-10 lg:h-12 w-auto max-w-[205px] sm:max-w-[230px] md:max-w-[230px] lg:max-w-[290px] object-contain bg-transparent transition-all"
+              className="w-[193px] h-[32px] sm:w-[218px] sm:h-[36px] lg:w-[266px] lg:h-[44px] object-contain bg-transparent shrink-0"
             />
           </Link>
 

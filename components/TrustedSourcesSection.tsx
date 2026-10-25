@@ -37,7 +37,7 @@ export default function TrustedSourcesSection({
   return (
     <section
       aria-labelledby="references-standards-heading"
-      className="rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 sm:p-6 shadow-xs space-y-3.5"
+      className="cv-auto rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 sm:p-6 shadow-xs space-y-3.5"
     >
       {/* Compact Header */}
       <div className="flex items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-3">
