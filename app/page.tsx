@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   Ruler,
@@ -35,6 +36,8 @@ import {
 } from "lucide-react";
 import UniversalConverterCard from "@/components/UniversalConverterCard";
 import HeroSearch from "@/components/HeroSearch";
+import { SITE_CONFIG } from "@/lib/config";
+import { buildPageMetadata } from "@/lib/seo";
 import { CATEGORIES } from "@/lib/conversions/units";
 import {
   CONVERSION_CATALOGUE,
@@ -42,6 +45,13 @@ import {
   getPairUrl,
   getCategoryUrl,
 } from "@/lib/conversions/catalogue";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: SITE_CONFIG.homepageTitle,
+  description: SITE_CONFIG.description,
+  canonicalPath: "/",
+  useExactTitle: true,
+});
 
 const ICONS: Record<string, React.ReactNode> = {
   Ruler: <Ruler className="w-5 h-5" />,
@@ -226,19 +236,37 @@ const FREQUENTLY_USED_CONVERTERS = [
 ];
 
 export default function HomePage() {
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_CONFIG.baseUrl,
+      },
+    ],
+  };
+
   return (
     <div suppressHydrationWarning className="min-h-screen bg-[#F7F9FC]/60 dark:bg-slate-950">
+      <script
+        suppressHydrationWarning
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       {/* HERO + QUICK CONVERTER SECTION */}
       <section suppressHydrationWarning className="bg-gradient-to-b from-[#F7F9FC] to-white dark:from-slate-950 dark:to-slate-900/50 border-b border-slate-200/70 dark:border-slate-800/80 pt-6 sm:pt-10 pb-8 sm:pb-12 px-4 sm:px-6">
         <div suppressHydrationWarning className="max-w-4xl mx-auto space-y-5 sm:space-y-7">
           {/* Hero Heading, Supporting Text & Large Search Bar */}
           <div className="text-center space-y-2.5 sm:space-y-3.5 max-w-2xl mx-auto">
             <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#16324F] dark:text-white text-balance leading-tight">
-              Convert Units{" "}
+              Free Unit Converter — Convert Units{" "}
               <span className="text-[#0D9488] dark:text-[#2DD4BF]">Instantly</span>
             </h1>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-              Simple, accurate conversions for everyday measurements.
+            <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+              Simple, accurate conversions across {CATEGORIES.length} measurement categories and {CONVERSION_CATALOGUE.length} unit calculators.
             </p>
 
             {/* Large Search Field Immediately Below Heading */}
@@ -264,17 +292,17 @@ export default function HomePage() {
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2">
               <Flame className="w-5 h-5 text-orange-500 fill-orange-500 shrink-0" aria-hidden="true" />
-              <h2 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
                 Popular Conversions
               </h2>
             </div>
             <Link
               href="/directory"
               prefetch={false}
-              className="inline-flex items-center gap-1 min-h-[44px] px-2 text-xs sm:text-sm font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline shrink-0"
+              className="inline-flex items-center gap-1 min-h-[44px] px-2 text-sm font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline shrink-0"
             >
               <span>View All</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
@@ -296,10 +324,10 @@ export default function HomePage() {
                     {item.icon}
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-xs sm:text-sm font-bold text-[#16324F] dark:text-white group-hover:text-[#0D9488] dark:group-hover:text-[#2DD4BF] transition-colors leading-snug line-clamp-2">
+                    <h3 className="text-sm sm:text-[15px] font-bold text-[#16324F] dark:text-white group-hover:text-[#0D9488] dark:group-hover:text-[#2DD4BF] transition-colors leading-snug line-clamp-2">
                       {item.title}
                     </h3>
-                    <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5">
+                    <p className="text-xs sm:text-[13px] text-slate-500 dark:text-slate-400 truncate mt-0.5">
                       {item.subtitle}
                     </p>
                   </div>
@@ -316,17 +344,17 @@ export default function HomePage() {
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2">
               <LayoutGrid className="w-5 h-5 text-[#0D9488] shrink-0" aria-hidden="true" />
-              <h2 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
                 Browse by Category
               </h2>
             </div>
             <Link
               href="/directory"
               prefetch={false}
-              className="inline-flex items-center gap-1 min-h-[44px] px-2 text-xs sm:text-sm font-bold text-[#16324F] dark:text-slate-300 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors shrink-0"
+              className="inline-flex items-center gap-1 min-h-[44px] px-2 text-sm font-bold text-[#16324F] dark:text-slate-300 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors shrink-0"
             >
               <span>All {CATEGORIES.length} Categories</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
@@ -345,10 +373,10 @@ export default function HomePage() {
                     {ICONS[catInfo.iconName] || <Ruler className="w-5 h-5" />}
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-xs sm:text-sm font-bold text-[#16324F] dark:text-white group-hover:text-[#0D9488] dark:group-hover:text-[#2DD4BF] transition-colors leading-snug">
+                    <h3 className="text-sm sm:text-[15px] font-bold text-[#16324F] dark:text-white group-hover:text-[#0D9488] dark:group-hover:text-[#2DD4BF] transition-colors leading-snug">
                       {catInfo.displayName}
                     </h3>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-2 leading-tight mt-0.5">
+                    <p className="text-xs sm:text-[13px] text-slate-500 dark:text-slate-400 line-clamp-2 leading-tight mt-0.5">
                       {catInfo.subtitle}
                     </p>
                   </div>
@@ -356,6 +384,58 @@ export default function HomePage() {
                 <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#0D9488] dark:group-hover:text-[#2DD4BF] shrink-0" />
               </Link>
             ))}
+          </div>
+
+          {/* Dedicated Cooking & Ingredient Conversions Feature Card */}
+          <div className="rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-5 shadow-2xs space-y-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
+                  <Scale className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white">
+                    Cooking &amp; Ingredient Conversions (Density-Aware)
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                    Convert grams ↔ cups, tbsp, tsp, mL &amp; oz using verified USDA FoodData Central &amp; King Arthur Baking densities
+                  </p>
+                </div>
+              </div>
+              <Link
+                href="/cooking"
+                prefetch={false}
+                className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline shrink-0"
+              >
+                <span>Open Cooking Converter</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+
+            <div className="flex flex-wrap gap-1.5">
+              {[
+                { slug: "flour", label: "Flour" },
+                { slug: "sugar", label: "Granulated Sugar" },
+                { slug: "brown-sugar", label: "Brown Sugar" },
+                { slug: "powdered-sugar", label: "Powdered Sugar" },
+                { slug: "butter", label: "Butter" },
+                { slug: "rice", label: "Rice" },
+                { slug: "milk", label: "Milk" },
+                { slug: "water", label: "Water" },
+                { slug: "honey", label: "Honey" },
+                { slug: "oil", label: "Cooking Oil" },
+                { slug: "salt", label: "Salt" },
+              ].map((ing) => (
+                <Link
+                  key={ing.slug}
+                  href={`/cooking/${ing.slug}`}
+                  prefetch={false}
+                  className="px-3 py-1.5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/80 dark:border-slate-800 hover:border-[#0D9488] text-xs sm:text-[13px] font-bold text-[#16324F] dark:text-slate-200 hover:text-[#0D9488] transition-colors"
+                >
+                  {ing.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -371,24 +451,24 @@ export default function HomePage() {
                 <div className="w-9 h-9 rounded-xl bg-[#0D9488]/12 dark:bg-[#0D9488]/20 text-[#0D9488] dark:text-[#2DD4BF] flex items-center justify-center shrink-0">
                   <BookOpen className="w-5 h-5" aria-hidden="true" />
                 </div>
-                <h2 className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white">
+                <h2 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white">
                   How Online Unit Conversion Works
                 </h2>
               </div>
               <ChevronDown className="w-5 h-5 text-[#16324F] dark:text-slate-400 group-open:rotate-180 transition-transform shrink-0" />
             </summary>
 
-            <div className="px-4 sm:px-6 pb-5 pt-1 space-y-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            <div className="px-4 sm:px-6 pb-5 pt-1 space-y-4 text-[15px] sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
               <p>
                 Unit conversion uses a fixed mathematical relationship between two units. You enter a value, choose the units, and the tool multiplies or divides it by a conversion factor to give the result.
               </p>
 
               {/* Worked Example Box */}
-              <div className="rounded-xl bg-sky-50/70 dark:bg-slate-950 border border-sky-200/70 dark:border-slate-800 px-4 py-3 space-y-1">
-                <div className="font-bold text-[#16324F] dark:text-white text-xs sm:text-sm">
+              <div className="rounded-xl bg-sky-50/70 dark:bg-slate-950 border border-sky-200/70 dark:border-slate-800 px-4 py-3 space-y-1.5">
+                <div className="font-bold text-[#16324F] dark:text-white text-sm sm:text-base">
                   Example: Meters to Feet
                 </div>
-                <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-600 dark:text-slate-400 font-mono">
+                <div className="flex flex-wrap items-center justify-between gap-2 text-sm text-slate-700 dark:text-slate-300 font-mono">
                   <span>1 meter = 3.28084 feet</span>
                   <span>Formula: Feet = Meters × 3.28084</span>
                 </div>
@@ -397,7 +477,7 @@ export default function HomePage() {
               <Link
                 href="/guides/metric-to-imperial"
                 prefetch={false}
-                className="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-[#0D9488]/40 bg-[#0D9488]/5 hover:bg-[#0D9488]/10 text-xs sm:text-sm font-bold text-[#0D9488] dark:text-[#2DD4BF] flex items-center justify-center gap-2 transition-colors"
+                className="w-full min-h-[44px] px-4 py-2.5 rounded-xl border border-[#0D9488]/40 bg-[#0D9488]/5 hover:bg-[#0D9488]/10 text-sm sm:text-[15px] font-bold text-[#0D9488] dark:text-[#2DD4BF] flex items-center justify-center gap-2 transition-colors"
               >
                 <span>Learn more about unit conversion</span>
                 <ArrowRight className="w-4 h-4" />
@@ -408,13 +488,13 @@ export default function HomePage() {
           {/* Small List of Frequently Used Converters */}
           <div className="rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-6 space-y-3.5 shadow-2xs">
             <div className="flex items-center justify-between gap-2">
-              <h2 className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white">
+              <h2 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white">
                 Frequently Used Converters
               </h2>
               <Link
                 href="/directory"
                 prefetch={false}
-                className="text-xs font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+                className="text-sm font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
               >
                 Browse All Converters ({CONVERSION_CATALOGUE.length}) →
               </Link>
@@ -429,7 +509,7 @@ export default function HomePage() {
                   key={item.slug}
                   href={href}
                   prefetch={false}
-                  className="px-3.5 py-2.5 min-h-[44px] rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/70 dark:border-slate-800 hover:border-[#0D9488] text-xs sm:text-sm font-semibold text-[#16324F] dark:text-slate-200 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] flex items-center justify-between gap-2 transition-colors"
+                  className="px-3.5 py-2.5 min-h-[44px] rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/70 dark:border-slate-800 hover:border-[#0D9488] text-sm sm:text-[15px] font-semibold text-[#16324F] dark:text-slate-200 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] flex items-center justify-between gap-2 transition-colors"
                 >
                   <span className="truncate">{item.label}</span>
                   <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
@@ -449,7 +529,7 @@ export default function HomePage() {
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
                 About UnitConvertersGo
               </h2>
-              <div className="space-y-3.5 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              <div className="space-y-3.5 text-base text-slate-700 dark:text-slate-300 leading-relaxed">
                 <p>
                   We create accurate, easy-to-use calculators and conversion tools, paired with clear,
                   informative content, to help finance professionals, students, engineers, fitness
@@ -465,7 +545,7 @@ export default function HomePage() {
                   computational methods, conversion factors, and metrological assumptions behind our
                   calculators to understand how we calculate the results.
                 </p>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                <p className="text-sm sm:text-[15px] text-slate-500 dark:text-slate-400">
                   Every conversion factor and equation is cross-checked against official publications from NIST (Special Publication 811), the BIPM SI Brochure (9th Edition), and ISO/IEC 80000 standards.
                 </p>
               </div>
@@ -477,10 +557,10 @@ export default function HomePage() {
                 <div className="w-9 h-9 rounded-lg bg-teal-50 dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF] flex items-center justify-center shrink-0">
                   <Calculator className="w-5 h-5" />
                 </div>
-                <h3 className="text-sm font-bold text-[#16324F] dark:text-white">
+                <h3 className="text-base font-bold text-[#16324F] dark:text-white">
                   Transparent Formulas
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                   No black-box math. Every calculator displays explicit formulas, step-by-step worked examples,
                   and reverse equations so you can verify each calculation.
                 </p>
@@ -490,10 +570,10 @@ export default function HomePage() {
                 <div className="w-9 h-9 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
-                <h3 className="text-sm font-bold text-[#16324F] dark:text-white">
+                <h3 className="text-base font-bold text-[#16324F] dark:text-white">
                   Standardized Definitions
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                   Conversion factors are derived from internationally recognized metrology standards (NIST SP 811,
                   BIPM SI brochure, and ISO 80000) using exact physical constants.
                 </p>
@@ -503,10 +583,10 @@ export default function HomePage() {
                 <div className="w-9 h-9 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
                   <CheckCircle2 className="w-5 h-5" />
                 </div>
-                <h3 className="text-sm font-bold text-[#16324F] dark:text-white">
+                <h3 className="text-base font-bold text-[#16324F] dark:text-white">
                   Fast &amp; Distraction-Free
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                   Built for immediate productivity. Instant calculations that run client-side in your browser
                   with zero delays, intrusive modals, or paywalls.
                 </p>
@@ -516,10 +596,10 @@ export default function HomePage() {
             {/* Audience Personas: Who Uses UnitConvertersGo */}
             <div className="space-y-4 pt-2">
               <div className="space-y-1">
-                <h3 className="text-base sm:text-lg font-bold text-[#16324F] dark:text-white">
+                <h3 className="text-lg sm:text-xl font-bold text-[#16324F] dark:text-white">
                   Built to Help Real-World Problem Solvers
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
                   Whether you are estimating materials on a construction site or balancing an engineering equation,
                   our tools support your daily workflow:
                 </p>
@@ -527,65 +607,65 @@ export default function HomePage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
                 <div className="p-4 rounded-xl border border-slate-200/70 dark:border-slate-800 bg-white dark:bg-slate-900/60 space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-bold text-[#16324F] dark:text-white">
+                  <div className="flex items-center gap-2 text-sm font-bold text-[#16324F] dark:text-white">
                     <div className="p-1.5 rounded-md bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400">
                       <HardHat className="w-4 h-4" />
                     </div>
                     <span>Contractors &amp; Homeowners</span>
                   </div>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     Estimate framing lumber, square footage, tile area, drywall sheets, and concrete volume with quick
                     fraction-to-decimal and metric-to-imperial conversions.
                   </p>
                 </div>
 
                 <div className="p-4 rounded-xl border border-slate-200/70 dark:border-slate-800 bg-white dark:bg-slate-900/60 space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-bold text-[#16324F] dark:text-white">
+                  <div className="flex items-center gap-2 text-sm font-bold text-[#16324F] dark:text-white">
                     <div className="p-1.5 rounded-md bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400">
                       <Cpu className="w-4 h-4" />
                     </div>
                     <span>Engineers &amp; Technicians</span>
                   </div>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     Verify high-precision tolerances across pressure (psi to bar), flow rates, torque, thermal
                     conductivity, dynamic viscosity, and power output.
                   </p>
                 </div>
 
                 <div className="p-4 rounded-xl border border-slate-200/70 dark:border-slate-800 bg-white dark:bg-slate-900/60 space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-bold text-[#16324F] dark:text-white">
+                  <div className="flex items-center gap-2 text-sm font-bold text-[#16324F] dark:text-white">
                     <div className="p-1.5 rounded-md bg-purple-50 dark:bg-purple-950/50 text-purple-600 dark:text-purple-400">
                       <GraduationCap className="w-4 h-4" />
                     </div>
                     <span>Students &amp; Educators</span>
                   </div>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     Study dimensional analysis for physics and chemistry homework with unit cancellation breakdowns,
                     standard SI units, and scientific exponential notation.
                   </p>
                 </div>
 
                 <div className="p-4 rounded-xl border border-slate-200/70 dark:border-slate-800 bg-white dark:bg-slate-900/60 space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-bold text-[#16324F] dark:text-white">
+                  <div className="flex items-center gap-2 text-sm font-bold text-[#16324F] dark:text-white">
                     <div className="p-1.5 rounded-md bg-rose-50 dark:bg-rose-950/50 text-rose-600 dark:text-rose-400">
                       <Dumbbell className="w-4 h-4" />
                     </div>
                     <span>Fitness Enthusiasts &amp; Athletes</span>
                   </div>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     Convert gym barbell weights (kg to lbs), running paces (min/km to min/mi), triathlon distances,
                     and metabolic food energy between kilocalories and kilojoules.
                   </p>
                 </div>
 
                 <div className="p-4 rounded-xl border border-slate-200/70 dark:border-slate-800 bg-white dark:bg-slate-900/60 space-y-2 sm:col-span-2 lg:col-span-2">
-                  <div className="flex items-center gap-2 text-xs font-bold text-[#16324F] dark:text-white">
+                  <div className="flex items-center gap-2 text-sm font-bold text-[#16324F] dark:text-white">
                     <div className="p-1.5 rounded-md bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400">
                       <Briefcase className="w-4 h-4" />
                     </div>
                     <span>Finance, Logistics &amp; Trade Professionals</span>
                   </div>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                     Compute cargo gross weight thresholds, ocean freight container capacity (CBM to cubic feet),
                     fuel efficiency comparisons (mpg to L/100km), and tariff weight classifications for international shipping.
                   </p>
@@ -600,10 +680,10 @@ export default function HomePage() {
                   <Users className="w-5 h-5" />
                 </div>
                 <div className="space-y-1">
-                  <h4 className="text-xs sm:text-sm font-bold text-[#16324F] dark:text-white">
+                  <h4 className="text-sm sm:text-base font-bold text-[#16324F] dark:text-white">
                     Automated Verification &amp; Standards Alignment
                   </h4>
-                  <p className="text-xs text-slate-600 dark:text-slate-300">
+                  <p className="text-sm text-slate-600 dark:text-slate-300">
                     Our calculation engines are continuously validated against automated unit-conversion test suites and official NIST SP 811, BIPM SI, and ISO/IEC 80000 reference tables.
                   </p>
                 </div>
@@ -611,10 +691,10 @@ export default function HomePage() {
               <Link
                 href="/directory"
                 prefetch={false}
-                className="shrink-0 px-4 py-2 min-h-[40px] rounded-lg bg-[#0D9488] hover:bg-[#0B7A6F] text-white text-xs font-bold transition-colors flex items-center gap-1.5 self-stretch sm:self-auto justify-center"
+                className="shrink-0 px-4 py-2 min-h-[40px] rounded-lg bg-[#0D9488] hover:bg-[#0B7A6F] text-white text-sm font-bold transition-colors flex items-center gap-1.5 self-stretch sm:self-auto justify-center"
               >
                 <span>Browse All Converters</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </section>

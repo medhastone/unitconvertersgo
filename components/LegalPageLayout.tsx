@@ -13,6 +13,7 @@ import {
   BookOpen,
 } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/config";
+import { CATEGORIES } from "@/lib/conversions/units";
 
 export interface TocItem {
   id: string;
@@ -307,7 +308,7 @@ export default function LegalPageLayout({
                     Browse All Converters
                   </div>
                   <div className="text-[11px] text-slate-500 dark:text-slate-400 truncate">
-                    Explore all 75+ measurement categories
+                    Explore all {CATEGORIES.length} measurement categories
                   </div>
                 </div>
               </div>

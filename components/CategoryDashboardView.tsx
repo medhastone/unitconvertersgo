@@ -507,10 +507,10 @@ export default function CategoryDashboardView({
             {renderCategoryIcon(category.iconName, "w-8 h-8 stroke-[2.2]")}
           </div>
           <div className="space-y-1.5">
-            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#16324F] dark:text-white">
+            <h1 className="text-[26px] sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#16324F] dark:text-white leading-tight">
               {heroTitle}
             </h1>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            <p className="text-base sm:text-[17px] text-slate-600 dark:text-slate-300 leading-relaxed">
               {heroDescription}
             </p>
           </div>
@@ -557,16 +557,16 @@ export default function CategoryDashboardView({
                   <ArrowUpDown className="w-5 h-5" />
                 </span>
                 <div>
-                  <h2 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
+                  <h2 className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
                     Convert {displayName}
                   </h2>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                  <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400">
                     Enter a value and select the units to convert between {unitCol1.plural.toLowerCase()}, {unitCol2.plural.toLowerCase()}, and {unitCol3.plural.toLowerCase()}.
                   </p>
                 </div>
               </div>
 
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E6FAF8] dark:bg-teal-950/70 text-[#0F766E] dark:text-teal-300 text-xs font-bold">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E6FAF8] dark:bg-teal-950/70 text-[#0F766E] dark:text-teal-300 text-xs sm:text-sm font-bold">
                 <span className="w-2 h-2 rounded-full bg-[#0D9488] animate-pulse" />
                 <span>Instant conversion</span>
               </span>
@@ -578,7 +578,7 @@ export default function CategoryDashboardView({
               <div className="sm:col-span-3 space-y-1.5">
                 <label
                   htmlFor="cat-value-input"
-                  className="block text-xs font-bold text-[#16324F] dark:text-slate-200"
+                  className="block text-sm font-bold text-[#16324F] dark:text-slate-200"
                 >
                   Value
                 </label>
@@ -598,7 +598,7 @@ export default function CategoryDashboardView({
               <div className="sm:col-span-4 space-y-1.5">
                 <label
                   htmlFor="cat-from-select"
-                  className="block text-xs font-bold text-[#16324F] dark:text-slate-200"
+                  className="block text-sm font-bold text-[#16324F] dark:text-slate-200"
                 >
                   From
                 </label>
@@ -607,7 +607,7 @@ export default function CategoryDashboardView({
                   id="cat-from-select"
                   value={fromUnitId}
                   onChange={(e) => setFromUnitId(e.target.value)}
-                  className="w-full h-12 px-3.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-300/90 dark:border-slate-700 text-sm font-bold text-[#16324F] dark:text-white focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-all cursor-pointer"
+                  className="w-full h-12 px-3.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-300/90 dark:border-slate-700 text-base font-bold text-[#16324F] dark:text-white focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-all cursor-pointer"
                 >
                   {units.map((u) => (
                     <option key={u.id} value={u.id}>
@@ -628,7 +628,7 @@ export default function CategoryDashboardView({
                   className="w-full sm:w-12 h-11 sm:h-12 rounded-xl bg-[#E6FAF8] dark:bg-teal-950/70 hover:bg-[#0D9488] text-[#0F766E] dark:text-teal-300 hover:text-white border border-[#0D9488]/30 flex items-center justify-center gap-2 transition-colors cursor-pointer shrink-0"
                 >
                   <ArrowLeftRight className="w-4 h-4" />
-                  <span className="sm:hidden text-xs font-bold">Swap Units</span>
+                  <span className="sm:hidden text-sm font-bold">Swap Units</span>
                 </button>
               </div>
 
@@ -636,7 +636,7 @@ export default function CategoryDashboardView({
               <div className="sm:col-span-4 space-y-1.5">
                 <label
                   htmlFor="cat-to-select"
-                  className="block text-xs font-bold text-[#16324F] dark:text-slate-200"
+                  className="block text-sm font-bold text-[#16324F] dark:text-slate-200"
                 >
                   To
                 </label>
@@ -645,7 +645,7 @@ export default function CategoryDashboardView({
                   id="cat-to-select"
                   value={toUnitId}
                   onChange={(e) => setToUnitId(e.target.value)}
-                  className="w-full h-12 px-3.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-300/90 dark:border-slate-700 text-sm font-bold text-[#16324F] dark:text-white focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-all cursor-pointer"
+                  className="w-full h-12 px-3.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-300/90 dark:border-slate-700 text-base font-bold text-[#16324F] dark:text-white focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-all cursor-pointer"
                 >
                   {units.map((u) => (
                     <option key={u.id} value={u.id}>
@@ -718,17 +718,17 @@ export default function CategoryDashboardView({
               </div>
 
               {/* Equation & Simultaneous 3-Scale Summary Bar */}
-              <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300">
+              <div className="flex flex-wrap items-center justify-between gap-2 pt-1 text-sm sm:text-base font-semibold text-slate-600 dark:text-slate-300">
                 <span>{summaryEquationText}</span>
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
+                  <span className="text-xs sm:text-sm font-mono text-slate-500 dark:text-slate-400">
                     {allThreeScales.val1} {unitCol1.symbol} = {allThreeScales.val2}{" "}
                     {unitCol2.symbol} = {allThreeScales.val3} {unitCol3.symbol}
                   </span>
                   <Link
                     href={`/widgets/w/${category.id.replace(/_/g, "-")}-converter`}
                     prefetch={false}
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#F7F9FC] dark:bg-slate-800 hover:border-[#0D9488] border border-slate-200/90 dark:border-slate-700 text-xs font-extrabold text-[#16324F] dark:text-teal-300 transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F7F9FC] dark:bg-slate-800 hover:border-[#0D9488] border border-slate-200/90 dark:border-slate-700 text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-teal-300 transition-colors"
                   >
                     <Code2 className="w-3.5 h-3.5 text-[#0D9488] dark:text-[#2DD4BF]" />
                     <span>Get Widget</span>
@@ -738,7 +738,7 @@ export default function CategoryDashboardView({
             </div>
 
             {/* Compact Visual Unit Selector for the 3 Primary Units */}
-            <div className="space-y-2 pt-1">
+            <div className="space-y-2.5 pt-1">
               <div
                 role="group"
                 aria-label={`Quick ${displayName.toLowerCase()} unit selector`}
@@ -755,7 +755,7 @@ export default function CategoryDashboardView({
                       type="button"
                       onClick={() => handleVisualUnitClick(u.id)}
                       aria-pressed={isSource}
-                      className={`flex items-center justify-center gap-2 px-4 py-2.5 min-h-[44px] rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer border ${
+                      className={`flex items-center justify-center gap-2 px-4 py-2.5 min-h-[46px] rounded-xl text-sm sm:text-[15px] font-bold transition-all cursor-pointer border ${
                         isSource
                           ? "bg-[#E6FAF8]/90 dark:bg-teal-950/60 text-[#16324F] dark:text-white border-[#0D9488] shadow-2xs"
                           : isTarget
@@ -776,12 +776,12 @@ export default function CategoryDashboardView({
                         {u.name} ({u.symbol})
                       </span>
                       {isSource && (
-                        <span className="text-[10px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#0D9488] text-white shrink-0">
+                        <span className="text-[11px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#0D9488] text-white shrink-0">
                           From
                         </span>
                       )}
                       {isTarget && (
-                        <span className="text-[10px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-[#16324F] dark:text-slate-200 shrink-0">
+                        <span className="text-[11px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-[#16324F] dark:text-slate-200 shrink-0">
                           To
                         </span>
                       )}
@@ -790,8 +790,8 @@ export default function CategoryDashboardView({
                 })}
               </div>
 
-              <p className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
-                <Info className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
+              <p className="flex items-center gap-1.5 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                <Info className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" />
                 <span>
                   You can change the units using the dropdowns above or click on a unit button.
                 </span>
@@ -799,9 +799,9 @@ export default function CategoryDashboardView({
             </div>
 
             {/* Suggested Conversions inside Tool Box */}
-            <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80 space-y-2">
-              <div className="flex items-center gap-1.5 text-xs font-bold text-slate-500 dark:text-slate-400">
-                <Sparkles className="w-3.5 h-3.5 text-[#0D9488] shrink-0" />
+            <div className="pt-2.5 border-t border-slate-100 dark:border-slate-800/80 space-y-2.5">
+              <div className="flex items-center gap-1.5 text-sm font-bold text-slate-600 dark:text-slate-300">
+                <Sparkles className="w-4 h-4 text-[#0D9488] shrink-0" />
                 <span>Suggested Conversions</span>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -820,14 +820,14 @@ export default function CategoryDashboardView({
                             true
                           )
                         }
-                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer border ${
+                        className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer border ${
                           isSelected
                             ? "bg-[#0D9488] text-white border-[#0D9488] shadow-2xs"
                             : "bg-[#F7F9FC] dark:bg-slate-800/70 text-[#16324F] dark:text-slate-200 border-slate-200/90 dark:border-slate-700 hover:border-[#0D9488] hover:text-[#0D9488] dark:hover:text-[#2DD4BF]"
                         }`}
                       >
                         <span>{preset.label}</span>
-                        <ArrowUpRight className="w-3 h-3 opacity-75 shrink-0" />
+                        <ArrowUpRight className="w-3.5 h-3.5 opacity-75 shrink-0" />
                       </button>
                     );
                   }
@@ -845,14 +845,14 @@ export default function CategoryDashboardView({
               <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 shrink-0 mt-0.5">
                 <Table className="w-5 h-5" />
               </span>
-              <div>
+              <div className="space-y-1">
                 <h2
                   id="reference-points-heading"
-                  className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
+                  className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
                 >
                   Common {displayName} Reference Points
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
                   Here are some common {displayName.toLowerCase()} values in {unitCol1.name} ({unitCol1.symbol}), {unitCol2.name} ({unitCol2.symbol}), and {unitCol3.name} ({unitCol3.symbol}). Click any preset value or arrow to load it into the converter.
                 </p>
               </div>
@@ -861,20 +861,20 @@ export default function CategoryDashboardView({
             <div className="overflow-x-auto rounded-xl border border-slate-200/90 dark:border-slate-800">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-[#F7F9FC] dark:bg-slate-800/80 border-b border-slate-200/90 dark:border-slate-800 text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white">
-                    <th className="py-3 px-4">Description</th>
-                    <th className="py-3 px-4">
+                  <tr className="bg-[#F7F9FC] dark:bg-slate-800/80 border-b border-slate-200/90 dark:border-slate-800 text-sm sm:text-[15px] font-extrabold text-[#16324F] dark:text-white">
+                    <th className="py-3.5 px-4">Description</th>
+                    <th className="py-3.5 px-4">
                       {unitCol1.name} ({unitCol1.symbol})
                     </th>
-                    <th className="py-3 px-4">
+                    <th className="py-3.5 px-4">
                       {unitCol2.name} ({unitCol2.symbol})
                     </th>
-                    <th className="py-3 px-4">
+                    <th className="py-3.5 px-4">
                       {unitCol3.name} ({unitCol3.symbol})
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-200/70 dark:divide-slate-800 text-xs sm:text-sm">
+                <tbody className="divide-y divide-slate-200/70 dark:divide-slate-800 text-[15px] sm:text-base">
                   {referenceTableRows.map((row) => {
                     const isSelected =
                       fromUnitId === unitCol1.id &&
@@ -964,14 +964,14 @@ export default function CategoryDashboardView({
               <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF] shrink-0 mt-0.5">
                 <Calculator className="w-5 h-5" />
               </span>
-              <div>
+              <div className="space-y-1">
                 <h2
                   id="category-formulas-heading"
-                  className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
+                  className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
                 >
                   {displayName} Conversion Formulas
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
                   Use the following formulas to convert between {unitCol1.plural.toLowerCase()}, {unitCol2.plural.toLowerCase()}, and {unitCol3.plural.toLowerCase()}.
                 </p>
               </div>
@@ -985,10 +985,10 @@ export default function CategoryDashboardView({
                   {renderCategoryIcon(category.iconName, "w-5 h-5")}
                 </div>
                 <div className="min-w-0">
-                  <div className="text-xs font-extrabold text-[#16324F] dark:text-white truncate">
+                  <div className="text-sm font-extrabold text-[#16324F] dark:text-white truncate">
                     {formulaCards[0].label}
                   </div>
-                  <div className="mt-1 font-mono text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-rose-200 break-words">
+                  <div className="mt-1 font-mono text-sm sm:text-base font-extrabold text-[#16324F] dark:text-rose-200 break-words">
                     {formulaCards[0].equation}
                   </div>
                 </div>
@@ -1000,10 +1000,10 @@ export default function CategoryDashboardView({
                   {renderCategoryIcon(category.iconName, "w-5 h-5")}
                 </div>
                 <div className="min-w-0">
-                  <div className="text-xs font-extrabold text-[#16324F] dark:text-white truncate">
+                  <div className="text-sm font-extrabold text-[#16324F] dark:text-white truncate">
                     {formulaCards[1].label}
                   </div>
-                  <div className="mt-1 font-mono text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-sky-200 break-words">
+                  <div className="mt-1 font-mono text-sm sm:text-base font-extrabold text-[#16324F] dark:text-sky-200 break-words">
                     {formulaCards[1].equation}
                   </div>
                 </div>
@@ -1015,10 +1015,10 @@ export default function CategoryDashboardView({
                   {renderCategoryIcon(category.iconName, "w-5 h-5")}
                 </div>
                 <div className="min-w-0">
-                  <div className="text-xs font-extrabold text-[#16324F] dark:text-white truncate">
+                  <div className="text-sm font-extrabold text-[#16324F] dark:text-white truncate">
                     {formulaCards[2].label}
                   </div>
-                  <div className="mt-1 font-mono text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-emerald-200 break-words">
+                  <div className="mt-1 font-mono text-sm sm:text-base font-extrabold text-[#16324F] dark:text-emerald-200 break-words">
                     {formulaCards[2].equation}
                   </div>
                 </div>
@@ -1026,17 +1026,17 @@ export default function CategoryDashboardView({
             </div>
 
             {/* Worked Example Callout Box */}
-            <div className="p-4 sm:p-5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/70 border border-slate-200/90 dark:border-slate-800 space-y-1.5">
-              <div className="text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white">
+            <div className="p-4 sm:p-5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/70 border border-slate-200/90 dark:border-slate-800 space-y-2">
+              <div className="text-base font-extrabold text-[#16324F] dark:text-white">
                 {workedExample.title}
               </div>
-              <div className="font-mono text-xs sm:text-sm text-slate-700 dark:text-slate-300 space-y-1">
+              <div className="font-mono text-[15px] sm:text-base text-slate-700 dark:text-slate-300 space-y-1">
                 {workedExample.lines.map((line, i) => (
                   <div key={i}>{line}</div>
                 ))}
               </div>
               {workedExample.note && (
-                <p className="pt-1 text-xs text-slate-500 dark:text-slate-400">
+                <p className="pt-1 text-sm sm:text-[15px] text-slate-600 dark:text-slate-400 leading-relaxed">
                   {workedExample.note}
                 </p>
               )}
@@ -1052,12 +1052,12 @@ export default function CategoryDashboardView({
                 className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-5"
               >
                 <div className="flex items-center gap-2.5 border-b border-slate-100 dark:border-slate-800 pb-3.5">
-                  <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF]">
+                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF]">
                     <Link2 className="w-4 h-4" />
                   </span>
                   <h2
                     id="more-cat-unit-conversions-heading"
-                    className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
+                    className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
                   >
                     {moreLinks.sectionHeading}
                   </h2>
@@ -1066,18 +1066,18 @@ export default function CategoryDashboardView({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {/* Column 1: Convert from [FromUnit.plural] */}
                   <div className="space-y-3">
-                    <h3 className="text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white border-b border-slate-100 dark:border-slate-800 pb-2">
+                    <h3 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white border-b border-slate-100 dark:border-slate-800 pb-2">
                       {moreLinks.fromHeading}
                     </h3>
-                    <ul className="space-y-1.5">
+                    <ul className="space-y-2">
                       {moreLinks.fromLinks.map((item) => (
                         <li key={item.href}>
                           <Link
                             href={item.href}
                             prefetch={false}
-                            className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-[#0D9488] dark:text-[#2DD4BF] hover:text-[#16324F] dark:hover:text-white hover:underline transition-colors py-0.5"
+                            className="inline-flex items-center gap-2 text-[15px] sm:text-base font-medium text-[#0D9488] dark:text-[#2DD4BF] hover:text-[#16324F] dark:hover:text-white hover:underline transition-colors py-1"
                           >
-                            <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                            <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
                             <span>{item.label}</span>
                           </Link>
                         </li>
@@ -1087,18 +1087,18 @@ export default function CategoryDashboardView({
 
                   {/* Column 2: Convert to [ToUnit.plural] */}
                   <div className="space-y-3">
-                    <h3 className="text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white border-b border-slate-100 dark:border-slate-800 pb-2">
+                    <h3 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white border-b border-slate-100 dark:border-slate-800 pb-2">
                       {moreLinks.toHeading}
                     </h3>
-                    <ul className="space-y-1.5">
+                    <ul className="space-y-2">
                       {moreLinks.toLinks.map((item) => (
                         <li key={item.href}>
                           <Link
                             href={item.href}
                             prefetch={false}
-                            className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-[#0D9488] dark:text-[#2DD4BF] hover:text-[#16324F] dark:hover:text-white hover:underline transition-colors py-0.5"
+                            className="inline-flex items-center gap-2 text-[15px] sm:text-base font-medium text-[#0D9488] dark:text-[#2DD4BF] hover:text-[#16324F] dark:hover:text-white hover:underline transition-colors py-1"
                           >
-                            <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                            <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
                             <span>{item.label}</span>
                           </Link>
                         </li>
@@ -1114,12 +1114,12 @@ export default function CategoryDashboardView({
           {faqs.length > 0 && (
             <section aria-labelledby="cat-faq-heading" className="space-y-4">
               <div className="flex items-center gap-2.5">
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-sky-100/90 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400">
-                  <HelpCircle className="w-4 h-4" />
+                <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-sky-100/90 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400">
+                  <HelpCircle className="w-5 h-5" />
                 </span>
                 <h2
                   id="cat-faq-heading"
-                  className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
+                  className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
                 >
                   Frequently Asked Questions
                 </h2>
@@ -1137,11 +1137,11 @@ export default function CategoryDashboardView({
                         type="button"
                         onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
                         aria-expanded={isOpen}
-                        className="w-full px-5 py-4 flex items-center justify-between gap-3 text-left text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white hover:bg-[#F7F9FC] dark:hover:bg-slate-800/60 transition-colors cursor-pointer"
+                        className="w-full px-5 py-4 flex items-center justify-between gap-3 text-left text-base sm:text-[17px] font-extrabold text-[#16324F] dark:text-white hover:bg-[#F7F9FC] dark:hover:bg-slate-800/60 transition-colors cursor-pointer"
                       >
                         <span>{faq.question}</span>
                         <ChevronDown
-                          className={`w-4 h-4 text-slate-500 shrink-0 transition-transform ${
+                          className={`w-5 h-5 text-slate-500 shrink-0 transition-transform ${
                             isOpen ? "rotate-180 text-[#0D9488]" : ""
                           }`}
                         />
@@ -1150,7 +1150,7 @@ export default function CategoryDashboardView({
                         hidden={!isOpen}
                         className={
                           isOpen
-                            ? "px-5 pb-4 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/80"
+                            ? "px-5 pb-4 pt-2 text-[15px] sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/80"
                             : "hidden"
                         }
                       >
@@ -1172,16 +1172,16 @@ export default function CategoryDashboardView({
           <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 shadow-xs space-y-3.5">
             <div className="flex items-center gap-2.5 pb-1">
               <span
-                className={`inline-flex items-center justify-center w-7 h-7 rounded-lg ${sidebarIconClass}`}
+                className={`inline-flex items-center justify-center w-8 h-8 rounded-lg ${sidebarIconClass}`}
               >
                 {renderCategoryIcon(category.iconName, "w-4 h-4")}
               </span>
-              <h2 className="text-base font-extrabold text-[#16324F] dark:text-white">
+              <h2 className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white">
                 {heroTitle}
               </h2>
             </div>
 
-            <nav aria-label={`${displayName} pair converters`} className="space-y-1">
+            <nav aria-label={`${displayName} pair converters`} className="space-y-1.5">
               {sidebarPairLinks.map((pair, idx) => {
                 const pFrom = UNIT_MAP.get(pair.fromUnitId);
                 const pTo = UNIT_MAP.get(pair.toUnitId);
@@ -1194,7 +1194,7 @@ export default function CategoryDashboardView({
                     key={pair.slug}
                     href={getPairUrl(pair)}
                     prefetch={false}
-                    className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-colors ${
+                    className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm sm:text-[15px] font-bold transition-colors ${
                       idx === 0
                         ? "bg-sky-50/90 dark:bg-sky-950/50 text-[#16324F] dark:text-sky-300 border border-sky-200/70 dark:border-sky-800/60"
                         : "text-slate-700 dark:text-slate-300 hover:bg-[#F7F9FC] dark:hover:bg-slate-800 hover:text-[#0D9488]"
@@ -1212,12 +1212,12 @@ export default function CategoryDashboardView({
           <div className="rounded-2xl bg-amber-50/55 dark:bg-amber-950/20 border border-amber-200/70 dark:border-amber-900/50 p-5 shadow-2xs space-y-3">
             <div className="flex items-center gap-2.5">
               <Lightbulb className="w-5 h-5 text-amber-500 fill-amber-400 shrink-0" />
-              <h2 className="text-base font-extrabold text-[#16324F] dark:text-white">
+              <h2 className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white">
                 Quick Info
               </h2>
             </div>
 
-            <ul className="space-y-2.5 text-xs sm:text-[13px] text-slate-700 dark:text-slate-300 leading-relaxed list-disc pl-4">
+            <ul className="space-y-2.5 text-sm sm:text-[15px] text-slate-700 dark:text-slate-300 leading-relaxed list-disc pl-4">
               {quickInfoBullets.map((b, i) => (
                 <li key={i}>
                   <strong className="text-[#16324F] dark:text-white">
@@ -1232,8 +1232,8 @@ export default function CategoryDashboardView({
           {/* 3. Units / Scales Comparison Card */}
           <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 shadow-xs space-y-3.5">
             <div className="flex items-center gap-2.5">
-              <Scale className="w-4 h-4 text-[#0D9488]" />
-              <h2 className="text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white">
+              <Scale className="w-5 h-5 text-[#0D9488]" />
+              <h2 className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white">
                 {displayName} Units Comparison
               </h2>
             </div>
@@ -1265,11 +1265,11 @@ export default function CategoryDashboardView({
                     >
                       {renderCategoryIcon(category.iconName, "w-4 h-4")}
                     </div>
-                    <div className="space-y-0.5 min-w-0">
-                      <h3 className="text-xs font-extrabold text-[#16324F] dark:text-white">
+                    <div className="space-y-1 min-w-0">
+                      <h3 className="text-sm sm:text-[15px] font-extrabold text-[#16324F] dark:text-white">
                         {card.title}
                       </h3>
-                      <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                      <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                         {card.description}
                       </p>
                     </div>
@@ -1283,16 +1283,16 @@ export default function CategoryDashboardView({
           <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-4 sm:p-5 shadow-xs space-y-2.5">
             <div className="flex items-center gap-2 pb-1 border-b border-slate-100 dark:border-slate-800">
               <ShieldCheck className="w-4 h-4 text-[#0D9488] shrink-0" />
-              <h2 className="text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white">
+              <h2 className="text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white">
                 References
               </h2>
             </div>
 
-            <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+            <ul className="space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
               {getTrustedReferencesForCategory(category.id).map((ref, idx) => (
                 <li
                   key={idx}
-                  className="flex items-start justify-between gap-2 py-1 border-b border-slate-100/80 dark:border-slate-800/60 last:border-0"
+                  className="flex items-start justify-between gap-2 py-1.5 border-b border-slate-100/80 dark:border-slate-800/60 last:border-0"
                 >
                   <div className="min-w-0 leading-snug">
                     <span className="font-mono font-bold text-[#0D9488] dark:text-teal-400 mr-1.5">
@@ -1310,7 +1310,7 @@ export default function CategoryDashboardView({
                     href={ref.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline shrink-0"
+                    className="inline-flex items-center gap-1 text-xs font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline shrink-0"
                   >
                     <span>Source</span>
                     <ExternalLink className="w-3 h-3" />
@@ -1323,10 +1323,10 @@ export default function CategoryDashboardView({
           {/* 5. Related Categories Card */}
           <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 shadow-xs space-y-3">
             <div className="flex items-center gap-2.5 pb-1">
-              <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488]">
+              <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488]">
                 <Grid className="w-4 h-4" />
               </span>
-              <h2 className="text-base font-extrabold text-[#16324F] dark:text-white">
+              <h2 className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white">
                 Related Categories
               </h2>
             </div>
@@ -1340,7 +1340,7 @@ export default function CategoryDashboardView({
                   key={cat.id}
                   href={getCategoryUrl(cat.id)}
                   prefetch={false}
-                  className="flex items-center justify-between py-2.5 px-2 -mx-2 rounded-lg text-xs sm:text-sm font-bold text-[#16324F] dark:text-slate-200 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] hover:bg-[#F7F9FC] dark:hover:bg-slate-800/60 transition-colors"
+                  className="flex items-center justify-between py-2.5 px-2 -mx-2 rounded-lg text-sm sm:text-[15px] font-bold text-[#16324F] dark:text-slate-200 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] hover:bg-[#F7F9FC] dark:hover:bg-slate-800/60 transition-colors"
                 >
                   <span>{cat.label}</span>
                   <ChevronRight className="w-4 h-4 text-slate-400" />

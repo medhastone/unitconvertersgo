@@ -1,6 +1,6 @@
 {
   "name": "OmniConvert",
-  "description": "High-precision universal unit converter calculating length, mass, temperature, digital storage, volume, and 18+ categories in real time.",
+  "description": "Convert 685 unit pairs across 78 measurement categories instantly. Try our free unit converter for length, weight, volume, and temperature now!",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

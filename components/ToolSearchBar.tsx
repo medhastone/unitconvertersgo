@@ -14,6 +14,8 @@ import {
 import { useTypewriterPlaceholder } from "@/lib/search/animated-prompts";
 import { runSmartSearch } from "@/lib/search/smart-search";
 import { getPairUrl, getCategoryUrl } from "@/lib/conversions/url";
+import { CATEGORIES } from "@/lib/conversions/units";
+import { CONVERSION_CATALOGUE } from "@/lib/conversions/catalogue";
 
 interface ToolSearchBarProps {
   currentCategoryName?: string;
@@ -31,7 +33,7 @@ export default function ToolSearchBar({
   const isAnimationPaused = isFocused || query.trim().length > 0;
   const { placeholder, currentFullPrompt } = useTypewriterPlaceholder({
     isPaused: isAnimationPaused,
-    prefix: "Search 78 tools — e.g. ",
+    prefix: `Search ${CONVERSION_CATALOGUE.length} converters — e.g. `,
   });
 
   useEffect(() => {
@@ -293,11 +295,11 @@ export default function ToolSearchBar({
             </div>
           )}
 
-          {/* 4. Measurement Categories (All 78 searchable) */}
+          {/* 4. Measurement Categories */}
           {results.categories.length > 0 && (
             <div className="p-2">
               <div className="px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                Measurement Categories (78 Total)
+                Measurement Categories ({CATEGORIES.length} Total)
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-1">
                 {results.categories.map((cat) => (
@@ -381,7 +383,7 @@ export default function ToolSearchBar({
               onClick={() => setIsFocused(false)}
               className="font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
             >
-              All 78 Categories →
+              All {CATEGORIES.length} Categories →
             </Link>
           </div>
         </div>

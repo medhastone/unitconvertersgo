@@ -211,16 +211,16 @@ export default function UniversalConverterCard({
             <Zap className="w-5 h-5 fill-current" aria-hidden="true" />
           </div>
           <div>
-            <h2 className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white leading-tight">
+            <h2 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white leading-tight">
               Quick Unit Converter
             </h2>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
               Convert between units instantly.
             </p>
           </div>
         </div>
 
-        <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0D9488] dark:text-[#2DD4BF] shrink-0 pt-1">
+        <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#0D9488] dark:text-[#2DD4BF] shrink-0 pt-1">
           <Zap className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
           <span>Instant conversion</span>
         </span>
@@ -232,7 +232,7 @@ export default function UniversalConverterCard({
         <div className="space-y-1.5">
           <label
             htmlFor="all-category-select"
-            className="block text-xs font-semibold text-slate-600 dark:text-slate-300"
+            className="block text-sm font-semibold text-slate-700 dark:text-slate-300"
           >
             Category
           </label>
@@ -244,7 +244,7 @@ export default function UniversalConverterCard({
             {isLockedCategory ? (
               <div
                 id="all-category-select"
-                className="w-full min-h-[48px] pl-10 pr-3.5 py-2.5 text-sm sm:text-base font-bold rounded-xl border border-slate-200 dark:border-slate-700 bg-[#F7F9FC] dark:bg-slate-800 text-[#16324F] dark:text-white flex items-center"
+                className="w-full min-h-[48px] pl-10 pr-3.5 py-2.5 text-base font-bold rounded-xl border border-slate-200 dark:border-slate-700 bg-[#F7F9FC] dark:bg-slate-800 text-[#16324F] dark:text-white flex items-center"
               >
                 {CATEGORY_MAP.get(categoryId)?.name || "Length"}
               </div>
@@ -254,7 +254,7 @@ export default function UniversalConverterCard({
                 id="all-category-select"
                 value={categoryId}
                 onChange={(e) => handleCategoryChange(e.target.value)}
-                className="w-full min-h-[48px] pl-10 pr-8 py-2.5 text-sm sm:text-base font-bold rounded-xl border border-slate-200/90 dark:border-slate-700 bg-white dark:bg-slate-950 text-[#16324F] dark:text-white focus:outline-hidden focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 cursor-pointer shadow-2xs"
+                className="w-full min-h-[48px] pl-10 pr-8 py-2.5 text-base font-bold rounded-xl border border-slate-200/90 dark:border-slate-700 bg-white dark:bg-slate-950 text-[#16324F] dark:text-white focus:outline-hidden focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 cursor-pointer shadow-2xs"
               >
                 {CATEGORIES.map((c) => (
                   <option
@@ -280,7 +280,7 @@ export default function UniversalConverterCard({
         <div className="space-y-1.5">
           <label
             htmlFor="converter-input-value"
-            className="block text-xs font-semibold text-slate-600 dark:text-slate-300"
+            className="block text-sm font-semibold text-slate-700 dark:text-slate-300"
           >
             Enter value
           </label>
@@ -308,7 +308,7 @@ export default function UniversalConverterCard({
         <div className="space-y-1.5 min-w-0">
           <label
             htmlFor="from-unit-select"
-            className="block text-xs font-semibold text-slate-600 dark:text-slate-300"
+            className="block text-sm font-semibold text-slate-700 dark:text-slate-300"
           >
             From
           </label>
@@ -317,7 +317,7 @@ export default function UniversalConverterCard({
             id="from-unit-select"
             value={fromUnitId}
             onChange={(e) => setFromUnitId(e.target.value)}
-            className="w-full min-h-[48px] px-3 sm:px-3.5 py-2.5 text-sm sm:text-base font-bold rounded-xl border border-slate-200/90 dark:border-slate-700 bg-white dark:bg-slate-950 text-[#16324F] dark:text-white focus:outline-hidden focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 cursor-pointer shadow-2xs truncate"
+            className="w-full min-h-[48px] px-3 sm:px-3.5 py-2.5 text-base font-bold rounded-xl border border-slate-200/90 dark:border-slate-700 bg-white dark:bg-slate-950 text-[#16324F] dark:text-white focus:outline-hidden focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 cursor-pointer shadow-2xs truncate"
           >
             {unitsInCategory.map((u) => (
               <option
@@ -349,7 +349,7 @@ export default function UniversalConverterCard({
         <div className="space-y-1.5 min-w-0">
           <label
             htmlFor="to-unit-select"
-            className="block text-xs font-semibold text-slate-600 dark:text-slate-300"
+            className="block text-sm font-semibold text-slate-700 dark:text-slate-300"
           >
             To
           </label>
@@ -358,7 +358,7 @@ export default function UniversalConverterCard({
             id="to-unit-select"
             value={toUnitId}
             onChange={(e) => setToUnitId(e.target.value)}
-            className="w-full min-h-[48px] px-3 sm:px-3.5 py-2.5 text-sm sm:text-base font-bold rounded-xl border border-slate-200/90 dark:border-slate-700 bg-white dark:bg-slate-950 text-[#16324F] dark:text-white focus:outline-hidden focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 cursor-pointer shadow-2xs truncate"
+            className="w-full min-h-[48px] px-3 sm:px-3.5 py-2.5 text-base font-bold rounded-xl border border-slate-200/90 dark:border-slate-700 bg-white dark:bg-slate-950 text-[#16324F] dark:text-white focus:outline-hidden focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 cursor-pointer shadow-2xs truncate"
           >
             {unitsInCategory.map((u) => (
               <option
@@ -376,7 +376,7 @@ export default function UniversalConverterCard({
       {/* Row 3: Prominent Conversion Result + Copy Result Button */}
       <div className="space-y-1.5">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-semibold text-slate-600 dark:text-slate-300">
+          <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">
             Result
           </span>
           {copied && (
@@ -467,9 +467,9 @@ export default function UniversalConverterCard({
       </div>
 
       {/* Row 5: Unit Summary Line + Precision Controls + Dedicated Page Link */}
-      <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500 dark:text-slate-400">
+      <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
         {unitSummaryLine && (
-          <span className="font-medium text-slate-600 dark:text-slate-300">
+          <span className="font-medium text-slate-700 dark:text-slate-300">
             {unitSummaryLine}
           </span>
         )}

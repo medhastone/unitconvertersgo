@@ -8,6 +8,7 @@ import {
 } from "@/lib/widgets";
 import { PrecisionMode } from "@/lib/conversions/types";
 import { SITE_CONFIG } from "@/lib/config";
+import { buildPageMetadata } from "@/lib/seo";
 
 interface EmbedPageProps {
   params: Promise<{ slug: string }>;
@@ -27,17 +28,13 @@ export async function generateMetadata({ params }: EmbedPageProps): Promise<Meta
   const widget = resolveWidgetBySlug(slug);
   if (!widget) return {};
 
-  return {
+  return buildPageMetadata({
     title: `${widget.shortTitle} — Embeddable Widget`,
     description: widget.description,
-    robots: {
-      index: false,
-      follow: true,
-    },
-    alternates: {
-      canonical: `${SITE_CONFIG.baseUrl}${widget.converterHref}`,
-    },
-  };
+    canonicalPath: widget.converterHref,
+    noindex: true,
+    categoryId: widget.categoryId,
+  });
 }
 
 export default async function EmbedWidgetPage({
@@ -73,12 +70,60 @@ export default async function EmbedWidgetPage({
   const showFormula = sp.formula !== "0";
   const lockUnits = sp.lock === "1";
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_CONFIG.baseUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Calculator Widgets",
+        item: `${SITE_CONFIG.baseUrl}/widgets`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: widget.shortTitle,
+        item: `${SITE_CONFIG.baseUrl}${widget.converterHref}`,
+      },
+    ],
+  };
+
+  const webAppJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: `${widget.shortTitle} Widget`,
+    applicationCategory: "UtilityApplication",
+    operatingSystem: "All",
+    url: `${SITE_CONFIG.baseUrl}${widget.converterHref}`,
+    description: widget.description,
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+  };
+
   return (
     <div
       className={`min-h-screen w-full flex flex-col justify-start p-1.5 ${
         theme === "dark" ? "bg-slate-950" : "bg-transparent"
       }`}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }}
+      />
       <EmbedCalculatorWidget
         widget={widget}
         theme={theme}

@@ -155,7 +155,7 @@ export default function CategoryExplorerHub({
           </span>
           <div className="min-w-0">
             <div
-              className={`text-xs font-bold truncate transition-colors ${
+              className={`text-sm font-bold truncate transition-colors ${
                 isCurrent
                   ? "text-[#0D9488] dark:text-[#2DD4BF]"
                   : "group-hover:text-[#0D9488] dark:group-hover:text-[#2DD4BF]"
@@ -163,7 +163,7 @@ export default function CategoryExplorerHub({
             >
               {cat.name}
             </div>
-            <div className="flex items-center gap-1.5 text-[11px] text-slate-500 dark:text-slate-400 truncate">
+            <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 truncate">
               <span className="font-mono tabular-nums">{count} units</span>
               {groupLabel && (
                 <>
@@ -183,7 +183,7 @@ export default function CategoryExplorerHub({
           </div>
         </div>
         <ArrowRight
-          className={`w-3.5 h-3.5 shrink-0 transition-transform group-hover:translate-x-0.5 ${
+          className={`w-4 h-4 shrink-0 transition-transform group-hover:translate-x-0.5 ${
             isCurrent
               ? "text-[#0D9488] dark:text-[#2DD4BF]"
               : "text-slate-400 group-hover:text-[#0D9488] dark:group-hover:text-[#2DD4BF]"
@@ -215,7 +215,7 @@ export default function CategoryExplorerHub({
               {SUPER_CATEGORIES.length} Scientific Domains
             </span>
           </div>
-          <h2 className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white">
+          <h2 className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white">
             Browse All {CATEGORIES.length} Measurement Categories
           </h2>
         </div>
@@ -223,7 +223,7 @@ export default function CategoryExplorerHub({
         <div className="flex flex-col sm:flex-row sm:items-center gap-3">
           {/* Instant Search Filter */}
           <div suppressHydrationWarning className="relative w-full sm:w-72">
-            <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               suppressHydrationWarning
               type="text"
@@ -231,7 +231,7 @@ export default function CategoryExplorerHub({
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={placeholder}
               aria-label={`Filter ${CATEGORIES.length} measurement categories`}
-              className="w-full pl-8 pr-8 py-2 rounded-xl text-xs font-medium bg-[#F7F9FC] dark:bg-slate-950 text-[#16324F] dark:text-white placeholder:text-slate-400 border border-slate-200/90 dark:border-slate-800 focus:outline-none focus:border-[#0D9488] transition-colors truncate"
+              className="w-full pl-9 pr-8 py-2 rounded-xl text-sm font-medium bg-[#F7F9FC] dark:bg-slate-950 text-[#16324F] dark:text-white placeholder:text-slate-400 border border-slate-200/90 dark:border-slate-800 focus:outline-none focus:border-[#0D9488] transition-colors truncate"
             />
             {searchQuery && (
               <button
@@ -246,7 +246,7 @@ export default function CategoryExplorerHub({
             )}
           </div>
 
-          <div className="flex items-center gap-3 text-xs font-bold shrink-0">
+          <div className="flex items-center gap-3 text-sm font-bold shrink-0">
             <Link
               href="/directory"
               prefetch={false}
@@ -285,7 +285,7 @@ export default function CategoryExplorerHub({
                 type="button"
                 aria-selected={isSelected}
                 onClick={() => setActiveTab(group.id)}
-                className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold whitespace-nowrap shrink-0 transition-all cursor-pointer ${
+                className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-bold whitespace-nowrap shrink-0 transition-all cursor-pointer ${
                   isSelected
                     ? "bg-[#16324F] dark:bg-[#0D9488] text-white shadow-2xs"
                     : "bg-[#F7F9FC] dark:bg-slate-950 text-slate-600 dark:text-slate-300 hover:text-[#16324F] dark:hover:text-white border border-slate-200/80 dark:border-slate-800"
@@ -318,7 +318,7 @@ export default function CategoryExplorerHub({
             type="button"
             aria-selected={activeTab === "all"}
             onClick={() => setActiveTab("all")}
-            className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold whitespace-nowrap shrink-0 transition-all cursor-pointer ${
+            className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs sm:text-sm font-bold whitespace-nowrap shrink-0 transition-all cursor-pointer ${
               activeTab === "all"
                 ? "bg-[#16324F] dark:bg-[#0D9488] text-white shadow-2xs"
                 : "bg-[#F7F9FC] dark:bg-slate-950 text-slate-600 dark:text-slate-300 hover:text-[#16324F] dark:hover:text-white border border-slate-200/80 dark:border-slate-800"
@@ -424,7 +424,7 @@ export default function CategoryExplorerHub({
       ) : (
         selectedGroup && (
           <div className="space-y-3.5">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-600 dark:text-slate-300 bg-[#F7F9FC]/70 dark:bg-slate-950/60 px-3.5 py-2.5 rounded-xl border border-slate-200/70 dark:border-slate-800/80">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 bg-[#F7F9FC]/70 dark:bg-slate-950/60 px-3.5 py-2.5 rounded-xl border border-slate-200/70 dark:border-slate-800/80">
               <div className="flex flex-wrap items-center gap-1.5">
                 <span className="font-bold text-[#16324F] dark:text-white">
                   {selectedGroup.name}
@@ -437,7 +437,7 @@ export default function CategoryExplorerHub({
               <button
                 type="button"
                 onClick={() => setActiveTab("all")}
-                className="text-xs font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline whitespace-nowrap shrink-0 self-start sm:self-center cursor-pointer"
+                className="text-xs sm:text-sm font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline whitespace-nowrap shrink-0 self-start sm:self-center cursor-pointer"
               >
                 View All {CATEGORIES.length} Categories →
               </button>

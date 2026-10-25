@@ -44,6 +44,10 @@ import {
   ShieldCheck,
   Target,
   Code2,
+  Printer,
+  Download,
+  FileText,
+  Star,
 } from "lucide-react";
 import {
   ConversionOutput,
@@ -77,9 +81,13 @@ import {
   formatAsTapeFraction,
   formatFeetAndInches,
   getMultiUnitEquivalents,
+  generateContinuousLengthChartRows,
+  getFractionalInchesGuideData,
   STANDARD_TAPE_FRACTIONS,
   QUICK_FRACTION_CHIPS,
 } from "@/lib/conversions/fractions";
+import { SITE_CONFIG } from "@/lib/config";
+import TapeMeasureVisual from "@/components/TapeMeasureVisual";
 
 interface ConversionPageInteractiveProps {
   pair: ConversionPairInfo;
@@ -331,6 +339,10 @@ export default function ConversionPageInteractive({
   const [tablePreset, setTablePreset] = useState<"common" | "small" | "large">(
     "common"
   );
+  const [lengthChartMaxN, setLengthChartMaxN] = useState<40 | 100>(40);
+  const [isExporting, setIsExporting] = useState<
+    null | "print" | "png" | "pdf"
+  >(null);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   // Sync optional ?value= query parameter on mount/navigation so direct preset links pre-fill the converter
@@ -415,6 +427,7 @@ export default function ConversionPageInteractive({
       }
 
       const frac16 = formatAsTapeFraction(totalInches, 16);
+      const frac32 = formatAsTapeFraction(totalInches, 32);
       const frac64 = formatAsTapeFraction(totalInches, 64);
       const feetInches = formatFeetAndInches(totalInches);
 
@@ -422,6 +435,7 @@ export default function ConversionPageInteractive({
         totalInches,
         totalCm,
         frac16,
+        frac32,
         frac64,
         feetInches,
       };
@@ -650,6 +664,59 @@ export default function ConversionPageInteractive({
     }));
   }, [tablePreset, pair.commonValues, pair.categoryId, fromUnitId, toUnitId, fromUnit, toUnit, thirdVisualUnit]);
 
+  const isLengthCategory = pair.categoryId === "length";
+
+  const continuousLengthRows = useMemo(() => {
+    if (!isLengthCategory) return [];
+    return generateContinuousLengthChartRows(
+      fromUnitId,
+      toUnitId,
+      lengthChartMaxN
+    );
+  }, [isLengthCategory, fromUnitId, toUnitId, lengthChartMaxN]);
+
+  const fractionalInchesGuide = useMemo(() => {
+    if (!isLengthCategory) return null;
+    const sampleAmount =
+      isValidInput && numericInput > 0 ? numericInput : pair.exampleInput;
+    return getFractionalInchesGuideData(sampleAmount, fromUnitId);
+  }, [isLengthCategory, isValidInput, numericInput, pair.exampleInput, fromUnitId]);
+
+  const canonicalPageUrl = `${SITE_CONFIG.baseUrl}${getPairUrl(
+    matchingCanonicalPair || pair
+  )}`;
+
+  const handleExportChart = async (mode: "print" | "png" | "pdf") => {
+    if (isExporting || continuousLengthRows.length === 0) return;
+    setIsExporting(mode);
+    try {
+      const exportMod = await import("@/lib/conversions/chart-export");
+      const payload = {
+        slug: (matchingCanonicalPair || pair).slug,
+        title: `${fromUnit.plural} to ${toUnit.plural} Conversion Chart`,
+        fromUnitLabel: fromUnit.plural,
+        toUnitLabel: toUnit.plural,
+        fromSymbol: fromUnit.symbol,
+        toSymbol: toUnit.symbol,
+        formulaSubtitle: formulaDetails.factorText,
+        siteName: SITE_CONFIG.name,
+        pageUrl: canonicalPageUrl,
+        rows: continuousLengthRows,
+      };
+      if (mode === "print") {
+        await exportMod.printConversionChart(payload);
+      } else if (mode === "png") {
+        await exportMod.downloadChartAsPng(payload);
+      } else {
+        await exportMod.downloadChartAsPdf(payload);
+      }
+    } catch {
+      // ignore export error
+    } finally {
+      setIsExporting(null);
+    }
+  };
+
   // Sidebar links in the same category
   const sidebarCategoryPairs = useMemo(() => {
     const allInCat = getConversionsByCategory(pair.categoryId);
@@ -694,10 +761,10 @@ export default function ConversionPageInteractive({
                 <ArrowUpDown className="w-5 h-5" />
               </span>
               <div>
-                <h2 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
+                <h2 className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
                   Convert {fromUnit.plural} to {toUnit.plural}
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400">
                   Enter a value in {fromUnit.plural.toLowerCase()} ({fromUnit.symbol}) to convert to {toUnit.plural.toLowerCase()} ({toUnit.symbol}).
                 </p>
               </div>
@@ -741,12 +808,12 @@ export default function ConversionPageInteractive({
               <div className="flex items-center justify-between">
                 <label
                   htmlFor="pair-numeric-input"
-                  className="block text-xs font-bold text-[#16324F] dark:text-slate-200"
+                  className="block text-sm font-bold text-[#16324F] dark:text-slate-200"
                 >
                   Value ({fromUnit.symbol})
                 </label>
                 {supportsFractionalInput && (
-                  <span className="text-[10px] font-mono font-semibold text-[#0D9488] dark:text-teal-400">
+                  <span className="text-xs font-mono font-semibold text-[#0D9488] dark:text-teal-400">
                     Dec or Frac
                   </span>
                 )}
@@ -767,7 +834,7 @@ export default function ConversionPageInteractive({
             <div className="sm:col-span-4 space-y-1.5">
               <label
                 htmlFor="pair-from-unit"
-                className="block text-xs font-bold text-[#16324F] dark:text-slate-200"
+                className="block text-sm font-bold text-[#16324F] dark:text-slate-200"
               >
                 From
               </label>
@@ -776,7 +843,7 @@ export default function ConversionPageInteractive({
                 id="pair-from-unit"
                 value={fromUnitId}
                 onChange={(e) => setFromUnitId(e.target.value)}
-                className="w-full h-12 px-3.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-300/90 dark:border-slate-700 text-sm font-bold text-[#16324F] dark:text-white focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-all cursor-pointer"
+                className="w-full h-12 px-3.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-300/90 dark:border-slate-700 text-base font-bold text-[#16324F] dark:text-white focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-all cursor-pointer"
               >
                 {categoryUnits.map((u) => (
                   <option key={u.id} value={u.id}>
@@ -797,7 +864,7 @@ export default function ConversionPageInteractive({
                 className="w-full sm:w-12 h-11 sm:h-12 rounded-xl bg-[#E6FAF8] dark:bg-teal-950/70 hover:bg-[#0D9488] text-[#0F766E] dark:text-teal-300 hover:text-white border border-[#0D9488]/30 flex items-center justify-center gap-2 transition-colors cursor-pointer shrink-0"
               >
                 <ArrowLeftRight className="w-4 h-4" />
-                <span className="sm:hidden text-xs font-bold">Swap Units</span>
+                <span className="sm:hidden text-sm font-bold">Swap Units</span>
               </button>
             </div>
 
@@ -805,7 +872,7 @@ export default function ConversionPageInteractive({
             <div className="sm:col-span-4 space-y-1.5">
               <label
                 htmlFor="pair-to-unit"
-                className="block text-xs font-bold text-[#16324F] dark:text-slate-200"
+                className="block text-sm font-bold text-[#16324F] dark:text-slate-200"
               >
                 To
               </label>
@@ -814,7 +881,7 @@ export default function ConversionPageInteractive({
                 id="pair-to-unit"
                 value={toUnitId}
                 onChange={(e) => setToUnitId(e.target.value)}
-                className="w-full h-12 px-3.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-300/90 dark:border-slate-700 text-sm font-bold text-[#16324F] dark:text-white focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-all cursor-pointer"
+                className="w-full h-12 px-3.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-300/90 dark:border-slate-700 text-base font-bold text-[#16324F] dark:text-white focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-all cursor-pointer"
               >
                 {categoryUnits.map((u) => (
                   <option key={u.id} value={u.id}>
@@ -931,27 +998,34 @@ export default function ConversionPageInteractive({
             </div>
 
             {/* Tape-Measure Fractional Inch & Feet+Inches Breakdown (for Length Conversions) */}
-            {inchBreakdown && (toUnitId === "inch" || fromUnitId === "inch" || toUnitId === "foot" || fromUnitId === "foot") && (
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+            {inchBreakdown && isLengthCategory && (
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
                 {inchBreakdown.frac16 && (
                   <div className="p-2.5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/80 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                      Nearest 1/16&Prime; Ruler Fraction
+                      Nearest 1/16&Prime; Tape
                     </span>
-                    <span className="font-mono text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white mt-0.5">
-                      {inchBreakdown.frac16.display} in{" "}
-                      <span className="text-[11px] font-normal text-slate-500">
-                        ({Number(inchBreakdown.frac16.exactDecimal.toFixed(4))}&Prime;)
-                      </span>
+                    <span className="font-mono text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white mt-0.5 tabular-nums">
+                      {inchBreakdown.frac16.display} in
+                    </span>
+                  </div>
+                )}
+                {inchBreakdown.frac32 && (
+                  <div className="p-2.5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/80 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                      Nearest 1/32&Prime; Fine
+                    </span>
+                    <span className="font-mono text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white mt-0.5 tabular-nums">
+                      {inchBreakdown.frac32.display} in
                     </span>
                   </div>
                 )}
                 {inchBreakdown.frac64 && (
                   <div className="p-2.5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/80 border border-slate-200/80 dark:border-slate-800 flex flex-col justify-between">
                     <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                      Nearest 1/64&Prime; Machinist Fraction
+                      Nearest 1/64&Prime; Machinist
                     </span>
-                    <span className="font-mono text-xs sm:text-sm font-extrabold text-[#0D9488] dark:text-[#2DD4BF] mt-0.5">
+                    <span className="font-mono text-xs sm:text-sm font-extrabold text-[#0D9488] dark:text-[#2DD4BF] mt-0.5 tabular-nums">
                       {inchBreakdown.frac64.display} in
                     </span>
                   </div>
@@ -961,7 +1035,7 @@ export default function ConversionPageInteractive({
                     <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                       Feet &amp; Inches (ft + in)
                     </span>
-                    <span className="font-mono text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white mt-0.5">
+                    <span className="font-mono text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white mt-0.5 tabular-nums">
                       {inchBreakdown.feetInches}
                     </span>
                   </div>
@@ -969,31 +1043,39 @@ export default function ConversionPageInteractive({
               </div>
             )}
 
+            {/* Interactive 1/16" Tape Measure Visual inside the Live Calculator Card */}
+            {inchBreakdown && isLengthCategory && (
+              <TapeMeasureVisual
+                inchesValue={inchBreakdown.totalInches}
+                cmValue={inchBreakdown.totalCm}
+              />
+            )}
+
             {/* Below Result: Equation Statement + Automatic Update Indicator */}
             <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
               {isValidInput ? (
-                <div className="font-mono text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white">
+                <div className="font-mono text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white">
                   {inputStr.trim() !== String(numericInput)
                     ? `${inputStr.trim()} (${numericInput}) ${fromUnit.symbol}`
                     : `${numericInput} ${fromUnit.symbol}`}{" "}
                   = {highPrecisionFormatted} {toUnit.symbol}
                 </div>
               ) : (
-                <div className="text-xs font-semibold text-amber-700 dark:text-amber-300">
+                <div className="text-sm font-semibold text-amber-700 dark:text-amber-300">
                   Waiting for numeric input...
                 </div>
               )}
 
               <div className="flex flex-wrap items-center gap-3">
-                <div className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-500 dark:text-slate-400">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#0D9488] dark:text-[#2DD4BF] shrink-0" />
+                <div className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">
+                  <CheckCircle2 className="w-4 h-4 text-[#0D9488] dark:text-[#2DD4BF] shrink-0" />
                   <span>Result updates automatically</span>
                 </div>
 
                 <Link
                   href={`/widgets/w/${matchingCanonicalPair?.slug || pair.slug}`}
                   prefetch={false}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F7F9FC] dark:bg-slate-800 hover:bg-[#E6FAF8] dark:hover:bg-teal-950/60 border border-slate-200/90 dark:border-slate-700 hover:border-[#0D9488] text-xs font-extrabold text-[#16324F] dark:text-teal-300 transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F7F9FC] dark:bg-slate-800 hover:bg-[#E6FAF8] dark:hover:bg-teal-950/60 border border-slate-200/90 dark:border-slate-700 hover:border-[#0D9488] text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-teal-300 transition-colors"
                   title={`Embed this ${fromUnit.plural} to ${toUnit.plural} calculator widget on your website`}
                 >
                   <Code2 className="w-3.5 h-3.5 text-[#0D9488] dark:text-[#2DD4BF]" />
@@ -1005,22 +1087,22 @@ export default function ConversionPageInteractive({
 
           {/* Simultaneous Multi-Unit Equivalents Strip */}
           {multiUnitEquivalents.length > 0 && (
-            <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80 space-y-2">
+            <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80 space-y-2.5">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                <span className="text-xs font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   Equivalent Measurements Across Units
                 </span>
-                <span className="text-[11px] font-mono text-slate-400 dark:text-slate-500">
+                <span className="text-xs font-mono text-slate-400 dark:text-slate-500">
                   For {numericInput} {fromUnit.symbol}
                 </span>
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                 {multiUnitEquivalents.map((eq) => (
                   <div
                     key={eq.unitId}
-                    className="px-3 py-2 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between gap-2 text-xs"
+                    className="px-3.5 py-2.5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/60 border border-slate-200/80 dark:border-slate-800 flex items-center justify-between gap-2 text-xs sm:text-sm"
                   >
-                    <span className="text-slate-500 dark:text-slate-400 font-medium truncate">
+                    <span className="text-slate-600 dark:text-slate-400 font-medium truncate">
                       {eq.name}
                     </span>
                     <span className="font-mono font-bold text-[#16324F] dark:text-white shrink-0">
@@ -1028,101 +1110,6 @@ export default function ConversionPageInteractive({
                     </span>
                   </div>
                 ))}
-              </div>
-            </div>
-          )}
-
-          {/* Interactive Dual-Scale Ruler Graphic (Inches vs. Centimeters) for Length Tools */}
-          {inchBreakdown && (fromUnitId === "inch" || toUnitId === "inch" || fromUnitId === "centimeter" || toUnitId === "centimeter") && (
-            <div className="p-3.5 sm:p-4 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/70 border border-slate-200/90 dark:border-slate-800 space-y-2.5">
-              <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
-                <span className="font-extrabold text-[#16324F] dark:text-white flex items-center gap-1.5">
-                  <Ruler className="w-4 h-4 text-[#0D9488]" />
-                  <span>Visual Scale Comparison: Inches (in) vs. Centimeters (cm)</span>
-                </span>
-                <span className="font-mono text-[11px] font-bold text-[#0D9488] dark:text-[#2DD4BF]">
-                  1 in = 2.54 cm (exact)
-                </span>
-              </div>
-
-              {/* Dual Ruler SVG / CSS Scale (0 to 4 inches = 0 to 10.16 cm) */}
-              <div className="relative rounded-lg bg-white dark:bg-slate-900 border border-slate-300/80 dark:border-slate-700 p-3 overflow-hidden select-none">
-                {/* Top Edge: Inches (0" to 4" with 1/4" ticks) */}
-                <div className="space-y-1 pb-2 border-b border-slate-200 dark:border-slate-800">
-                  <div className="flex justify-between text-[10px] font-mono font-bold text-[#16324F] dark:text-slate-200">
-                    <span>0 in</span>
-                    <span>1 in</span>
-                    <span>2 in</span>
-                    <span>3 in</span>
-                    <span>4 in</span>
-                  </div>
-                  <div className="relative h-3 w-full flex justify-between items-start">
-                    {Array.from({ length: 17 }).map((_, i) => {
-                      const isWhole = i % 4 === 0;
-                      const isHalf = i % 2 === 0;
-                      return (
-                        <div
-                          key={i}
-                          className={`w-px ${
-                            isWhole
-                              ? "h-3 bg-[#16324F] dark:bg-white"
-                              : isHalf
-                              ? "h-2 bg-slate-500"
-                              : "h-1.5 bg-slate-300 dark:bg-slate-600"
-                          }`}
-                        />
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Highlight Bar for Active Value (clamped to 0 - 4 in visual window) */}
-                {inchBreakdown.totalInches > 0 && (
-                  <div className="py-1.5">
-                    <div className="w-full h-2.5 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
-                      <div
-                        className="h-full bg-gradient-to-r from-[#0D9488] to-[#16324F] rounded-full transition-all duration-300"
-                        style={{
-                          width: `${Math.min(100, Math.max(3, (inchBreakdown.totalInches / 4) * 100))}%`,
-                        }}
-                      />
-                    </div>
-                    <div className="flex items-center justify-between text-[10px] font-mono text-slate-500 dark:text-slate-400 mt-1">
-                      <span>
-                        Active: <strong className="text-[#16324F] dark:text-white">{Number(inchBreakdown.totalInches.toFixed(3))} in</strong> ({inchBreakdown.frac16?.display}&Prime;)
-                      </span>
-                      <span>
-                        = <strong className="text-[#0D9488] dark:text-[#2DD4BF]">{Number(inchBreakdown.totalCm.toFixed(3))} cm</strong> ({Number((inchBreakdown.totalCm * 10).toFixed(1))} mm)
-                      </span>
-                    </div>
-                  </div>
-                )}
-
-                {/* Bottom Edge: Centimeters (0 cm to 10.16 cm) */}
-                <div className="space-y-1 pt-1 border-t border-slate-200 dark:border-slate-800">
-                  <div className="relative h-3 w-full flex justify-between items-end">
-                    {Array.from({ length: 21 }).map((_, i) => {
-                      const isWholeCm = i % 2 === 0;
-                      return (
-                        <div
-                          key={i}
-                          className={`w-px ${
-                            isWholeCm
-                              ? "h-3 bg-[#0D9488] dark:bg-[#2DD4BF]"
-                              : "h-1.5 bg-teal-300 dark:bg-teal-700"
-                          }`}
-                        />
-                      );
-                    })}
-                  </div>
-                  <div className="flex justify-between text-[10px] font-mono font-bold text-[#0F766E] dark:text-[#2DD4BF]">
-                    <span>0 cm</span>
-                    <span>2.54 cm</span>
-                    <span>5.08 cm</span>
-                    <span>7.62 cm</span>
-                    <span>10.16 cm</span>
-                  </div>
-                </div>
               </div>
             </div>
           )}
@@ -1143,7 +1130,7 @@ export default function ConversionPageInteractive({
                     type="button"
                     onClick={() => handleVisualUnitClick(u.id)}
                     aria-pressed={isSource}
-                    className={`flex items-center justify-center gap-2 px-4 py-2.5 min-h-[44px] rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer border ${
+                    className={`flex items-center justify-center gap-2 px-4 py-2.5 min-h-[46px] rounded-xl text-sm sm:text-[15px] font-bold transition-all cursor-pointer border ${
                       isSource
                         ? "bg-[#E6FAF8]/90 dark:bg-teal-950/60 text-[#16324F] dark:text-white border-[#0D9488] shadow-2xs"
                         : isTarget
@@ -1164,12 +1151,12 @@ export default function ConversionPageInteractive({
                       {u.plural} ({u.symbol})
                     </span>
                     {isSource && (
-                      <span className="text-[10px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#0D9488] text-white shrink-0">
+                      <span className="text-[11px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#0D9488] text-white shrink-0">
                         From
                       </span>
                     )}
                     {isTarget && (
-                      <span className="text-[10px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-[#16324F] dark:text-slate-200 shrink-0">
+                      <span className="text-[11px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-[#16324F] dark:text-slate-200 shrink-0">
                         To
                       </span>
                     )}
@@ -1179,9 +1166,9 @@ export default function ConversionPageInteractive({
             </div>
 
             {/* Suggested Conversions & Benchmark Chips */}
-            <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80 space-y-2">
+            <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80 space-y-2.5">
               <div className="flex items-center justify-between gap-2">
-                <span className="text-xs font-extrabold text-[#16324F] dark:text-slate-200 flex items-center gap-1.5">
+                <span className="text-sm font-extrabold text-[#16324F] dark:text-slate-200 flex items-center gap-1.5">
                   <Sparkles className="w-4 h-4 text-[#0D9488]" />
                   <span>Suggested Conversions</span>
                 </span>
@@ -1189,13 +1176,13 @@ export default function ConversionPageInteractive({
                   matchingCanonicalPair.slug !== pair.slug && (
                     <Link
                       href={getPairUrl(matchingCanonicalPair)}
-                      className="inline-flex items-center gap-1 text-xs font-bold text-[#0D9488] dark:text-teal-400 hover:underline"
+                      className="inline-flex items-center gap-1 text-sm font-bold text-[#0D9488] dark:text-teal-400 hover:underline"
                     >
                       <span>
                         Open{" "}
                         {matchingCanonicalPair.title.replace(" Converter", "")}
                       </span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <ArrowRight className="w-4 h-4" />
                     </Link>
                   )}
               </div>
@@ -1210,14 +1197,14 @@ export default function ConversionPageInteractive({
                       type="button"
                       onClick={() => handleSelectValue(preset.value, true)}
                       title={`Load ${preset.label} into calculator`}
-                      className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer flex items-center gap-1.5 ${
+                      className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold border transition-all cursor-pointer flex items-center gap-1.5 ${
                         isSelected
                           ? "bg-[#16324F] text-white border-[#16324F] shadow-sm font-bold scale-[1.02]"
                           : "bg-[#F7F9FC] dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border-slate-200/90 dark:border-slate-700 hover:border-[#0D9488] hover:text-[#0D9488] hover:bg-[#E6FAF8]/50"
                       }`}
                     >
                       <span className="font-mono">{preset.label}</span>
-                      <ArrowUpRight className="w-3 h-3 opacity-75 shrink-0" />
+                      <ArrowUpRight className="w-3.5 h-3.5 opacity-75 shrink-0" />
                     </button>
                   );
                 })}
@@ -1226,9 +1213,9 @@ export default function ConversionPageInteractive({
 
             {/* Clean Standard Reference Attribution Footer (No Author Box) */}
             {primaryReferences.length > 0 && (
-              <div className="pt-2.5 border-t border-slate-100 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500 dark:text-slate-400">
+              <div className="pt-2.5 border-t border-slate-100 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
                 <div className="flex items-center gap-1.5 min-w-0">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#0D9488] shrink-0" />
+                  <ShieldCheck className="w-4 h-4 text-[#0D9488] shrink-0" />
                   <span className="font-semibold text-slate-700 dark:text-slate-300">
                     Reference:
                   </span>
@@ -1247,124 +1234,329 @@ export default function ConversionPageInteractive({
           </div>
         </section>
 
-        {/* 2. SCALE-AWARE CONVERSION TABLE */}
+        {/* 2. CONVERSION TABLE (Continuous 1–40 / 1–100 Chart with Fraction & Export for Length; Scale-Aware Table for Other Categories) */}
         <section
           aria-labelledby="common-conversions-table-heading"
           className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-4"
         >
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div className="flex items-start gap-3">
-              <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 shrink-0 mt-0.5">
-                <Table className="w-5 h-5" />
-              </span>
-              <div>
-                <h2
-                  id="common-conversions-table-heading"
-                  className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
-                >
-                  {editorial.tableHeading}
-                </h2>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                  {editorial.tableSubheading} Click any preset value or arrow to load it into the converter.
-                </p>
+          <div className="flex flex-col gap-3.5">
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+              <div className="flex items-start gap-3">
+                <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 shrink-0 mt-0.5">
+                  <Table className="w-5 h-5" />
+                </span>
+                <div className="space-y-1">
+                  <h2
+                    id="common-conversions-table-heading"
+                    className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
+                  >
+                    {isLengthCategory
+                      ? `${fromUnit.plural} to ${toUnit.plural} Conversion Chart (1–${lengthChartMaxN} Continuous)`
+                      : editorial.tableHeading}
+                  </h2>
+                  <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+                    {isLengthCategory
+                      ? `Continuous 1 to ${lengthChartMaxN} ${fromUnit.plural.toLowerCase()} lookup table with exact decimals and reduced nearest 1/64 fractions. Highlighted rows mark common shop and ruler values.`
+                      : `${editorial.tableSubheading} Click any preset value or arrow to load it into the converter.`}
+                  </p>
+                </div>
               </div>
-            </div>
 
-            {/* Scale Range Tabs */}
-            <div className="flex items-center gap-1 p-1 bg-[#F7F9FC] dark:bg-slate-800 rounded-xl border border-slate-200/80 dark:border-slate-700 text-xs self-start sm:self-auto shrink-0">
-              {(
-                [
-                  { id: "common", label: "Scale-Aware" },
-                  { id: "small", label: "Fractions / Micro" },
-                  { id: "large", label: "Standard (1–100)" },
-                ] as const
-              ).map((tab) => (
-                <button
-                  key={tab.id}
-                  type="button"
-                  onClick={() => setTablePreset(tab.id)}
-                  className={`px-2.5 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
-                    tablePreset === tab.id
-                      ? "bg-white dark:bg-slate-900 text-[#16324F] dark:text-white shadow-2xs"
-                      : "text-slate-500 dark:text-slate-400 hover:text-[#16324F]"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="overflow-x-auto rounded-xl border border-slate-200/90 dark:border-slate-800">
-            <table
-              className="w-full text-left border-collapse"
-              aria-label={editorial.tableHeading}
-            >
-              <thead>
-                <tr className="bg-[#F7F9FC] dark:bg-slate-800/80 border-b border-slate-200/90 dark:border-slate-800 text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white">
-                  <th scope="col" className="py-3 px-4 w-1/2">
-                    {fromUnit.plural} ({fromUnit.symbol})
-                  </th>
-                  <th scope="col" className="py-3 px-4 w-1/2">
-                    {toUnit.plural} ({toUnit.symbol})
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-200/70 dark:divide-slate-800 text-xs sm:text-sm font-mono tabular-nums">
-                {tableRows.map((row) => {
-                  const isCurrentRow =
-                    isValidInput && Math.abs(numericInput - row.input) < 1e-9;
-                  return (
-                    <tr
-                      key={`${row.input}-${row.inputLabel}`}
-                      tabIndex={0}
-                      onClick={() => handleSelectValue(row.input, true)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          handleSelectValue(row.input, true);
-                        }
-                      }}
-                      title={`Click to convert ${row.inputLabel} in calculator`}
-                      className={`group/row cursor-pointer transition-colors ${
-                        isCurrentRow
-                          ? "bg-[#E6FAF8]/60 dark:bg-teal-950/40 font-extrabold"
-                          : "hover:bg-[#F7F9FC] dark:hover:bg-slate-800/50"
+              {/* Range Toggle Controls */}
+              {isLengthCategory ? (
+                <div className="flex flex-wrap items-center gap-2 shrink-0 no-print">
+                  <div className="inline-flex items-center p-1 bg-[#F7F9FC] dark:bg-slate-800 rounded-xl border border-slate-200/80 dark:border-slate-700 text-xs sm:text-sm">
+                    <button
+                      type="button"
+                      onClick={() => setLengthChartMaxN(40)}
+                      className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
+                        lengthChartMaxN === 40
+                          ? "bg-white dark:bg-slate-900 text-[#16324F] dark:text-white shadow-2xs"
+                          : "text-slate-500 dark:text-slate-400 hover:text-[#16324F]"
                       }`}
                     >
-                      <td className="py-3 px-4 font-bold text-[#16324F] dark:text-slate-100 group-hover/row:text-[#0D9488] dark:group-hover/row:text-[#2DD4BF] transition-colors">
-                        {row.inputLabel}
-                      </td>
-                      <td className="py-3 px-4 font-bold text-[#0D9488] dark:text-[#2DD4BF]">
-                        <a
-                          href={`?value=${encodeURIComponent(String(row.input))}#converter-tool-section`}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            handleSelectValue(row.input, true);
-                          }}
-                          title={`Convert preset value ${row.inputLabel} in calculator`}
-                          aria-label={`Convert preset value ${row.inputLabel} in calculator`}
-                          className="flex items-center justify-between gap-2 w-full font-bold text-[#0D9488] dark:text-[#2DD4BF] cursor-pointer"
-                        >
-                          <span>{row.formatted6}</span>
-                          <span
-                            className={`inline-flex items-center justify-center w-5 h-5 rounded-md border transition-all shrink-0 ${
-                              isCurrentRow
-                                ? "bg-[#0D9488] text-white border-[#0D9488]"
-                                : "bg-[#E6FAF8] dark:bg-teal-950/70 text-[#0D9488] dark:text-[#2DD4BF] border-[#0D9488]/30 group-hover/row:bg-[#0D9488] group-hover/row:text-white group-hover/row:border-[#0D9488]"
-                            }`}
-                          >
-                            <ArrowRight className="w-3 h-3" />
-                          </span>
-                        </a>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+                      1–40
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setLengthChartMaxN(100)}
+                      className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
+                        lengthChartMaxN === 100
+                          ? "bg-white dark:bg-slate-900 text-[#16324F] dark:text-white shadow-2xs"
+                          : "text-slate-500 dark:text-slate-400 hover:text-[#16324F]"
+                      }`}
+                    >
+                      1–100
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center gap-1 p-1 bg-[#F7F9FC] dark:bg-slate-800 rounded-xl border border-slate-200/80 dark:border-slate-700 text-xs sm:text-sm self-start sm:self-auto shrink-0">
+                  {(
+                    [
+                      { id: "common", label: "Scale-Aware" },
+                      { id: "small", label: "Fractions / Micro" },
+                      { id: "large", label: "Standard (1–100)" },
+                    ] as const
+                  ).map((tab) => (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      onClick={() => setTablePreset(tab.id)}
+                      className={`px-2.5 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
+                        tablePreset === tab.id
+                          ? "bg-white dark:bg-slate-900 text-[#16324F] dark:text-white shadow-2xs"
+                          : "text-slate-500 dark:text-slate-400 hover:text-[#16324F]"
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Print / Download PNG / Download PDF Action Toolbar for Length Charts */}
+            {isLengthCategory && (
+              <div className="flex flex-wrap items-center justify-between gap-2.5 pt-2 border-t border-slate-100 dark:border-slate-800 no-print">
+                <div className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300">
+                  <Star className="w-3.5 h-3.5 text-[#0D9488] fill-[#0D9488]" />
+                  <span>
+                    Common values highlighted · Round-half-up &amp; reduced to lowest terms
+                  </span>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => handleExportChart("print")}
+                    disabled={isExporting !== null}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200/90 dark:border-slate-700 bg-[#F7F9FC] dark:bg-slate-800 hover:border-[#0D9488] text-xs sm:text-sm font-bold text-[#16324F] dark:text-white transition-colors cursor-pointer disabled:opacity-60"
+                  >
+                    <Printer className="w-3.5 h-3.5 text-[#0D9488]" />
+                    <span>
+                      {isExporting === "print" ? "Preparing..." : "Print Chart"}
+                    </span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => handleExportChart("png")}
+                    disabled={isExporting !== null}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200/90 dark:border-slate-700 bg-[#F7F9FC] dark:bg-slate-800 hover:border-[#0D9488] text-xs sm:text-sm font-bold text-[#16324F] dark:text-white transition-colors cursor-pointer disabled:opacity-60"
+                  >
+                    <Download className="w-3.5 h-3.5 text-[#0D9488]" />
+                    <span>
+                      {isExporting === "png" ? "Exporting..." : "Download PNG"}
+                    </span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => handleExportChart("pdf")}
+                    disabled={isExporting !== null}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#16324F] hover:bg-[#1E4268] text-xs sm:text-sm font-bold text-white transition-colors cursor-pointer shadow-2xs disabled:opacity-60"
+                  >
+                    <FileText className="w-3.5 h-3.5 text-[#2DD4BF]" />
+                    <span>
+                      {isExporting === "pdf" ? "Generating..." : "Download PDF"}
+                    </span>
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
+
+          {isLengthCategory ? (
+            <>
+              <div className="overflow-x-auto rounded-xl border border-slate-200/90 dark:border-slate-800">
+                <table
+                  className="w-full text-left border-collapse"
+                  aria-label={`${fromUnit.plural} to ${toUnit.plural} Continuous Conversion Chart`}
+                >
+                  <thead>
+                    <tr className="bg-[#F7F9FC] dark:bg-slate-800/80 border-b border-slate-200/90 dark:border-slate-800 text-xs sm:text-sm uppercase tracking-wider font-extrabold text-[#16324F] dark:text-white">
+                      <th scope="col" className="py-3.5 px-4">
+                        {fromUnit.plural} ({fromUnit.symbol})
+                      </th>
+                      <th scope="col" className="py-3.5 px-4">
+                        Decimal ({toUnit.symbol})
+                      </th>
+                      <th scope="col" className="py-3.5 px-4">
+                        Fraction — Nearest 1/64 (Reduced)
+                      </th>
+                      <th scope="col" className="py-3.5 px-4">
+                        Nearest 1/16 (Tape)
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200/70 dark:divide-slate-800 text-[15px] sm:text-base font-mono tabular-nums">
+                    {continuousLengthRows.map((row) => {
+                      const isCurrentRow =
+                        isValidInput && Math.abs(numericInput - row.n) < 1e-9;
+                      return (
+                        <tr
+                          key={row.n}
+                          tabIndex={0}
+                          onClick={() => handleSelectValue(row.n, true)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault();
+                              handleSelectValue(row.n, true);
+                            }
+                          }}
+                          title={`Click to load ${row.inputLabel} into calculator`}
+                          className={`group/row cursor-pointer transition-colors ${
+                            isCurrentRow
+                              ? "bg-[#E6FAF8] dark:bg-teal-950/60 font-extrabold"
+                              : row.isCommon
+                              ? "bg-teal-50/45 dark:bg-teal-950/25 hover:bg-[#E6FAF8]/60 dark:hover:bg-teal-950/40"
+                              : "hover:bg-[#F7F9FC] dark:hover:bg-slate-800/50"
+                          }`}
+                        >
+                          <td className="py-3 px-4 font-bold text-[#16324F] dark:text-slate-100">
+                            <div className="flex items-center gap-2">
+                              <span>{row.inputLabel}</span>
+                              {row.isCommon && (
+                                <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-[#0D9488]/15 dark:bg-[#0D9488]/25 text-[#0F766E] dark:text-[#2DD4BF] font-sans text-[11px] font-extrabold">
+                                  ★ Common
+                                </span>
+                              )}
+                            </div>
+                          </td>
+                          <td className="py-3 px-4 font-semibold text-slate-800 dark:text-slate-200">
+                            {row.decimalFormatted}
+                          </td>
+                          <td className="py-3 px-4 font-bold text-[#0D9488] dark:text-[#2DD4BF]">
+                            {row.fraction64Display}
+                          </td>
+                          <td className="py-3 px-4 text-slate-700 dark:text-slate-300">
+                            <div className="flex items-center justify-between gap-2">
+                              <span>{row.fraction16Display}</span>
+                              <span
+                                className={`inline-flex items-center justify-center w-5 h-5 rounded-md border transition-all shrink-0 no-print ${
+                                  isCurrentRow
+                                    ? "bg-[#0D9488] text-white border-[#0D9488]"
+                                    : "bg-[#E6FAF8] dark:bg-teal-950/70 text-[#0D9488] dark:text-[#2DD4BF] border-[#0D9488]/30 group-hover/row:bg-[#0D9488] group-hover/row:text-white"
+                                }`}
+                              >
+                                <ArrowRight className="w-3 h-3" />
+                              </span>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Bottom Toggle + Branded Chart Footer (Site Name + URL) */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2 border-t border-slate-100 dark:border-slate-800 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+                <div>
+                  <strong className="font-bold text-[#16324F] dark:text-white">
+                    {SITE_CONFIG.name}
+                  </strong>{" "}
+                  ·{" "}
+                  <span className="font-mono text-[#0D9488] dark:text-[#2DD4BF]">
+                    {canonicalPageUrl}
+                  </span>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setLengthChartMaxN((prev) => (prev === 40 ? 100 : 40))
+                  }
+                  className="no-print inline-flex items-center gap-1.5 font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline cursor-pointer self-start sm:self-auto"
+                >
+                  <span>
+                    {lengthChartMaxN === 40
+                      ? `Expand Full 1–100 ${fromUnit.plural} Chart (100 Rows)`
+                      : `Show Compact 1–40 ${fromUnit.plural} Chart (40 Rows)`}
+                  </span>
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform ${
+                      lengthChartMaxN === 100 ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+              </div>
+            </>
+          ) : (
+            <div className="overflow-x-auto rounded-xl border border-slate-200/90 dark:border-slate-800">
+              <table
+                className="w-full text-left border-collapse"
+                aria-label={editorial.tableHeading}
+              >
+                <thead>
+                  <tr className="bg-[#F7F9FC] dark:bg-slate-800/80 border-b border-slate-200/90 dark:border-slate-800 text-sm sm:text-[15px] font-extrabold text-[#16324F] dark:text-white">
+                    <th scope="col" className="py-3.5 px-4 w-1/2">
+                      {fromUnit.plural} ({fromUnit.symbol})
+                    </th>
+                    <th scope="col" className="py-3.5 px-4 w-1/2">
+                      {toUnit.plural} ({toUnit.symbol})
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200/70 dark:divide-slate-800 text-[15px] sm:text-base font-mono tabular-nums">
+                  {tableRows.map((row) => {
+                    const isCurrentRow =
+                      isValidInput && Math.abs(numericInput - row.input) < 1e-9;
+                    return (
+                      <tr
+                        key={`${row.input}-${row.inputLabel}`}
+                        tabIndex={0}
+                        onClick={() => handleSelectValue(row.input, true)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            handleSelectValue(row.input, true);
+                          }
+                        }}
+                        title={`Click to convert ${row.inputLabel} in calculator`}
+                        className={`group/row cursor-pointer transition-colors ${
+                          isCurrentRow
+                            ? "bg-[#E6FAF8]/60 dark:bg-teal-950/40 font-extrabold"
+                            : "hover:bg-[#F7F9FC] dark:hover:bg-slate-800/50"
+                        }`}
+                      >
+                        <td className="py-3 px-4 font-bold text-[#16324F] dark:text-slate-100 group-hover/row:text-[#0D9488] dark:group-hover/row:text-[#2DD4BF] transition-colors">
+                          {row.inputLabel}
+                        </td>
+                        <td className="py-3 px-4 font-bold text-[#0D9488] dark:text-[#2DD4BF]">
+                          <a
+                            href={`?value=${encodeURIComponent(
+                              String(row.input)
+                            )}#converter-tool-section`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleSelectValue(row.input, true);
+                            }}
+                            title={`Convert preset value ${row.inputLabel} in calculator`}
+                            aria-label={`Convert preset value ${row.inputLabel} in calculator`}
+                            className="flex items-center justify-between gap-2 w-full font-bold text-[#0D9488] dark:text-[#2DD4BF] cursor-pointer"
+                          >
+                            <span>{row.formatted6}</span>
+                            <span
+                              className={`inline-flex items-center justify-center w-5 h-5 rounded-md border transition-all shrink-0 ${
+                                isCurrentRow
+                                  ? "bg-[#0D9488] text-white border-[#0D9488]"
+                                  : "bg-[#E6FAF8] dark:bg-teal-950/70 text-[#0D9488] dark:text-[#2DD4BF] border-[#0D9488]/30 group-hover/row:bg-[#0D9488] group-hover/row:text-white group-hover/row:border-[#0D9488]"
+                              }`}
+                            >
+                              <ArrowRight className="w-3 h-3" />
+                            </span>
+                          </a>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )}
         </section>
 
         {/* 3. HOW TO CONVERT & HOW MANY SECTION (Competitor-Style Editorial Guide) */}
@@ -1379,7 +1571,7 @@ export default function ConversionPageInteractive({
               </span>
               <h2
                 id="how-to-convert-heading"
-                className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
+                className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
               >
                 {editorial.howToHeading}
               </h2>
@@ -1389,7 +1581,7 @@ export default function ConversionPageInteractive({
               <button
                 type="button"
                 onClick={handleCopyFormula}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-[#F7F9FC] dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-[#0D9488] hover:text-[#0D9488] transition-all cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold border border-slate-200 dark:border-slate-700 bg-[#F7F9FC] dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-[#0D9488] hover:text-[#0D9488] transition-all cursor-pointer"
               >
                 {copiedFormula ? (
                   <>
@@ -1406,7 +1598,7 @@ export default function ConversionPageInteractive({
               <button
                 type="button"
                 onClick={handleCopySolution}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-[#16324F] hover:bg-[#1E4268] text-white transition-all cursor-pointer shadow-2xs"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-[#16324F] hover:bg-[#1E4268] text-white transition-all cursor-pointer shadow-2xs"
               >
                 {copiedSolution ? (
                   <>
@@ -1424,33 +1616,33 @@ export default function ConversionPageInteractive({
           </div>
 
           {/* How to Convert Narrative & Formula Box */}
-          <div className="space-y-3.5 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+          <div className="space-y-4 text-base text-slate-700 dark:text-slate-300 leading-relaxed">
             <p>{editorial.howToRatioParagraph}</p>
             <p>{editorial.howToFormulaIntro}</p>
 
-            <div className="p-4 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/90 dark:border-slate-800 font-mono text-sm sm:text-base font-extrabold text-[#16324F] dark:text-teal-300 text-center shadow-2xs">
+            <div className="p-4 sm:p-5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/90 dark:border-slate-800 font-mono text-base sm:text-lg font-extrabold text-[#16324F] dark:text-teal-300 text-center shadow-2xs">
               {editorial.howToFormulaBox}
             </div>
 
             <p>{editorial.howToSentenceExplanation}</p>
             <p>{editorial.howToExampleIntro}</p>
 
-            <div className="p-4 rounded-xl bg-[#E6FAF8]/65 dark:bg-teal-950/35 border border-[#0D9488]/30 font-mono text-sm sm:text-base font-extrabold text-[#0F766E] dark:text-[#2DD4BF] text-center shadow-2xs">
+            <div className="p-4 sm:p-5 rounded-xl bg-[#E6FAF8]/65 dark:bg-teal-950/35 border border-[#0D9488]/30 font-mono text-base sm:text-lg font-extrabold text-[#0F766E] dark:text-[#2DD4BF] text-center shadow-2xs">
               {editorial.howToExampleBox}
             </div>
           </div>
 
           {/* How Many [ToPlural] Are in a/an [FromSingular]? */}
-          <div className="pt-5 border-t border-slate-100 dark:border-slate-800 space-y-3.5 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-            <h3 className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white tracking-tight">
+          <div className="pt-5 border-t border-slate-100 dark:border-slate-800 space-y-4 text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            <h3 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
               {editorial.howManyHeading}
             </h3>
             <p>{editorial.howManyParagraph1}</p>
 
-            <div className="p-4 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/90 dark:border-slate-800 flex flex-wrap items-center justify-center gap-4 font-mono text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white">
+            <div className="p-4 sm:p-5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/90 dark:border-slate-800 flex flex-wrap items-center justify-center gap-4 font-mono text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white">
               <span>{editorial.howManyEquivalenceBox}</span>
               <span className="text-slate-300 dark:text-slate-700">|</span>
-              <span className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm font-bold">
+              <span className="text-slate-600 dark:text-slate-400 text-sm sm:text-base font-bold">
                 {editorial.howManyInverseNote}
               </span>
             </div>
@@ -1460,16 +1652,205 @@ export default function ConversionPageInteractive({
           </div>
         </section>
 
+        {/* 3B. HOW TO CONVERT [UNIT] TO FRACTIONAL INCHES (1/16, 1/32, 1/64 Plain-Language Step-by-Step Guide) */}
+        {isLengthCategory && fractionalInchesGuide && (
+          <section
+            aria-labelledby="fractional-inches-guide-heading"
+            className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-5"
+          >
+            <div className="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
+              <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF] shrink-0">
+                <Ruler className="w-5 h-5" />
+              </span>
+              <div>
+                <h2
+                  id="fractional-inches-guide-heading"
+                  className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
+                >
+                  How to Convert {fromUnit.plural} to Fractional Inches (1/16&Prime;, 1/32&Prime; &amp; 1/64&Prime;)
+                </h2>
+                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
+                  Plain-language method for turning decimal inches into a standard tape-measure or machinist ruler fraction
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-4 text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+              <p>
+                Calculators give you a <strong>decimal number</strong> (such as{" "}
+                <span className="font-mono font-bold text-[#16324F] dark:text-white">
+                  {fractionalInchesGuide.decimalInchesFormatted} in
+                </span>
+                ), but tape measures and woodworking rulers are marked in{" "}
+                <strong>binary fractions of an inch</strong>—most commonly{" "}
+                <strong>1/16&Prime;</strong> on carpenter tapes,{" "}
+                <strong>1/32&Prime;</strong> on fine woodworking rules, and{" "}
+                <strong>1/64&Prime;</strong> on machinist scales.
+              </p>
+
+              <p>
+                Here is the step-by-step worked example for converting{" "}
+                <strong className="text-[#16324F] dark:text-white">
+                  {fractionalInchesGuide.inputAmount}{" "}
+                  {fractionalInchesGuide.fromUnitPlural} (
+                  {fractionalInchesGuide.fromUnitSymbol})
+                </strong>{" "}
+                into fractional inches:
+              </p>
+
+              {/* 4 Plain-Language Steps */}
+              <ol className="space-y-3 list-decimal list-inside rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/90 dark:border-slate-800 p-4 sm:p-5">
+                <li>
+                  <strong className="text-[#16324F] dark:text-white">
+                    Find the decimal inches result:
+                  </strong>{" "}
+                  Convert{" "}
+                  <span className="font-mono font-semibold">
+                    {fractionalInchesGuide.inputAmount}{" "}
+                    {fractionalInchesGuide.fromUnitSymbol}
+                  </span>{" "}
+                  to inches to get{" "}
+                  <span className="font-mono font-bold text-[#0D9488] dark:text-[#2DD4BF]">
+                    {fractionalInchesGuide.decimalInchesFormatted} in
+                  </span>
+                  .
+                </li>
+                <li>
+                  <strong className="text-[#16324F] dark:text-white">
+                    Separate the whole inches from the decimal part:
+                  </strong>{" "}
+                  Keep the whole number{" "}
+                  <span className="font-mono font-bold text-[#16324F] dark:text-white">
+                    {fractionalInchesGuide.wholeInches}
+                  </span>{" "}
+                  aside, leaving the decimal remainder{" "}
+                  <span className="font-mono font-bold text-[#0D9488] dark:text-[#2DD4BF]">
+                    {fractionalInchesGuide.decimalRemainderFormatted}
+                  </span>
+                  .
+                </li>
+                <li>
+                  <strong className="text-[#16324F] dark:text-white">
+                    Multiply the decimal part by your desired fraction denominator
+                    (16, 32, or 64) and round half up:
+                  </strong>{" "}
+                  Multiply{" "}
+                  <span className="font-mono">
+                    {fractionalInchesGuide.decimalRemainderFormatted}
+                  </span>{" "}
+                  by 16, 32, or 64, then round to the nearest whole number (values
+                  ending in .5 round up).
+                </li>
+                <li>
+                  <strong className="text-[#16324F] dark:text-white">
+                    Reduce the fraction to lowest terms:
+                  </strong>{" "}
+                  If the rounded top number (numerator) is even, divide both top and
+                  bottom by 2 (or their Greatest Common Divisor) until the top number
+                  is odd, then combine with your whole inches.
+                </li>
+              </ol>
+
+              {/* Side-by-Side 1/16, 1/32, and 1/64 Worked Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 pt-1">
+                {/* Nearest 1/16 */}
+                <div className="rounded-xl border border-slate-200/90 dark:border-slate-800 bg-[#F7F9FC] dark:bg-slate-950 p-4 space-y-2">
+                  <div className="text-xs font-extrabold uppercase tracking-wider text-slate-500">
+                    Nearest 1/16&Prime; (Tape Measure)
+                  </div>
+                  <div className="font-mono text-xs sm:text-sm text-slate-700 dark:text-slate-300 space-y-1">
+                    <div>
+                      {fractionalInchesGuide.decimalRemainderFormatted} × 16 ={" "}
+                      <strong>{fractionalInchesGuide.rawProduct16}</strong>
+                    </div>
+                    <div>
+                      Round half up →{" "}
+                      <strong>
+                        {fractionalInchesGuide.frac16.unreducedNumerator}/16
+                      </strong>
+                    </div>
+                    <div>
+                      Reduced:{" "}
+                      <strong>
+                        {fractionalInchesGuide.frac16.fractionOnlyDisplay}
+                      </strong>
+                    </div>
+                  </div>
+                  <div className="pt-2 border-t border-slate-200/70 dark:border-slate-800 font-mono text-lg font-extrabold text-[#16324F] dark:text-white tabular-nums">
+                    = {fractionalInchesGuide.frac16.display} in
+                  </div>
+                </div>
+
+                {/* Nearest 1/32 */}
+                <div className="rounded-xl border border-slate-200/90 dark:border-slate-800 bg-[#F7F9FC] dark:bg-slate-950 p-4 space-y-2">
+                  <div className="text-xs font-extrabold uppercase tracking-wider text-slate-500">
+                    Nearest 1/32&Prime; (Woodworking Rule)
+                  </div>
+                  <div className="font-mono text-xs sm:text-sm text-slate-700 dark:text-slate-300 space-y-1">
+                    <div>
+                      {fractionalInchesGuide.decimalRemainderFormatted} × 32 ={" "}
+                      <strong>{fractionalInchesGuide.rawProduct32}</strong>
+                    </div>
+                    <div>
+                      Round half up →{" "}
+                      <strong>
+                        {fractionalInchesGuide.frac32.unreducedNumerator}/32
+                      </strong>
+                    </div>
+                    <div>
+                      Reduced:{" "}
+                      <strong>
+                        {fractionalInchesGuide.frac32.fractionOnlyDisplay}
+                      </strong>
+                    </div>
+                  </div>
+                  <div className="pt-2 border-t border-slate-200/70 dark:border-slate-800 font-mono text-lg font-extrabold text-[#16324F] dark:text-white tabular-nums">
+                    = {fractionalInchesGuide.frac32.display} in
+                  </div>
+                </div>
+
+                {/* Nearest 1/64 */}
+                <div className="rounded-xl border border-slate-200/90 dark:border-slate-800 bg-[#F7F9FC] dark:bg-slate-950 p-4 space-y-2">
+                  <div className="text-xs font-extrabold uppercase tracking-wider text-[#0D9488] dark:text-[#2DD4BF]">
+                    Nearest 1/64&Prime; (Machinist Scale)
+                  </div>
+                  <div className="font-mono text-xs sm:text-sm text-slate-700 dark:text-slate-300 space-y-1">
+                    <div>
+                      {fractionalInchesGuide.decimalRemainderFormatted} × 64 ={" "}
+                      <strong>{fractionalInchesGuide.rawProduct64}</strong>
+                    </div>
+                    <div>
+                      Round half up →{" "}
+                      <strong>
+                        {fractionalInchesGuide.frac64.unreducedNumerator}/64
+                      </strong>
+                    </div>
+                    <div>
+                      Reduced:{" "}
+                      <strong>
+                        {fractionalInchesGuide.frac64.fractionOnlyDisplay}
+                      </strong>
+                    </div>
+                  </div>
+                  <div className="pt-2 border-t border-slate-200/70 dark:border-slate-800 font-mono text-lg font-extrabold text-[#0D9488] dark:text-[#2DD4BF] tabular-nums">
+                    = {fractionalInchesGuide.frac64.display} in
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* 4. WHAT IS A [SOURCE UNIT] & WHAT IS A [TARGET UNIT] ENCYCLOPEDIA SECTIONS */}
         <section
           aria-labelledby="unit-definitions-heading"
           className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-6"
         >
           {/* Source Unit Encyclopedia Section */}
-          <div className="space-y-3 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+          <div className="space-y-3.5 text-base text-slate-700 dark:text-slate-300 leading-relaxed">
             <h2
               id="unit-definitions-heading"
-              className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
+              className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
             >
               {editorial.fromUnitGuide.heading}
             </h2>
@@ -1477,7 +1858,7 @@ export default function ConversionPageInteractive({
               {editorial.fromUnitGuide.definitionParagraph}{" "}
               <a
                 href="#references-standards-heading"
-                className="font-mono text-xs font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+                className="font-mono text-xs sm:text-sm font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
               >
                 [1]
               </a>
@@ -1486,7 +1867,7 @@ export default function ConversionPageInteractive({
             <p>{editorial.fromUnitGuide.notationOrPrefixParagraph}</p>
 
             {editorial.fromUnitGuide.benchmarkCallout && (
-              <div className="p-3.5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/70 border-l-4 border-[#0D9488] text-xs sm:text-sm font-semibold text-[#16324F] dark:text-slate-200">
+              <div className="p-4 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/70 border-l-4 border-[#0D9488] text-[15px] sm:text-base font-semibold text-[#16324F] dark:text-slate-200 leading-relaxed">
                 {editorial.fromUnitGuide.benchmarkCallout}
               </div>
             )}
@@ -1496,24 +1877,24 @@ export default function ConversionPageInteractive({
               <Link
                 href={editorial.fromUnitGuide.categoryHref}
                 prefetch={false}
-                className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+                className="inline-flex items-center gap-1.5 text-sm sm:text-base font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
               >
                 <span>{editorial.fromUnitGuide.categoryLinkLabel}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
 
           {/* Target Unit Encyclopedia Section */}
-          <div className="pt-5 border-t border-slate-100 dark:border-slate-800 space-y-3 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-            <h2 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
+          <div className="pt-5 border-t border-slate-100 dark:border-slate-800 space-y-3.5 text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            <h2 className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
               {editorial.toUnitGuide.heading}
             </h2>
             <p>
               {editorial.toUnitGuide.definitionParagraph}{" "}
               <a
                 href="#references-standards-heading"
-                className="font-mono text-xs font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+                className="font-mono text-xs sm:text-sm font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
               >
                 [2]
               </a>
@@ -1522,7 +1903,7 @@ export default function ConversionPageInteractive({
             <p>{editorial.toUnitGuide.notationOrPrefixParagraph}</p>
 
             {editorial.toUnitGuide.benchmarkCallout && (
-              <div className="p-3.5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/70 border-l-4 border-[#0D9488] text-xs sm:text-sm font-semibold text-[#16324F] dark:text-slate-200">
+              <div className="p-4 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/70 border-l-4 border-[#0D9488] text-[15px] sm:text-base font-semibold text-[#16324F] dark:text-slate-200 leading-relaxed">
                 {editorial.toUnitGuide.benchmarkCallout}
               </div>
             )}
@@ -1532,14 +1913,14 @@ export default function ConversionPageInteractive({
               <Link
                 href={editorial.toUnitGuide.categoryHref}
                 prefetch={false}
-                className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+                className="inline-flex items-center gap-1.5 text-sm sm:text-base font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
               >
                 <span>{editorial.toUnitGuide.categoryLinkLabel}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
 
-            <p className="pt-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800/70">
+            <p className="pt-3 text-sm sm:text-[15px] text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800/70 leading-relaxed">
               {editorial.measuringAdviceParagraph}
             </p>
           </div>
@@ -1551,12 +1932,12 @@ export default function ConversionPageInteractive({
           className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-5"
         >
           <div className="flex items-center gap-2.5 border-b border-slate-100 dark:border-slate-800 pb-3.5">
-            <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF]">
+            <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF]">
               <Link2 className="w-4 h-4" />
             </span>
             <h2
               id="more-unit-conversions-heading"
-              className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
+              className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
             >
               {moreUnitLinks.sectionHeading}
             </h2>
@@ -1570,7 +1951,7 @@ export default function ConversionPageInteractive({
               .filter((p) => p.slug !== pair.slug && p.slug !== reversePair?.slug)
               .slice(0, 3);
             return (
-              <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+              <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
                 Need to calculate in the opposite direction? Use our{" "}
                 {reversePair ? (
                   <Link
@@ -1624,18 +2005,18 @@ export default function ConversionPageInteractive({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {/* Column 1: Convert from [FromUnit.plural] */}
             <div className="space-y-3">
-              <h3 className="text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white border-b border-slate-100 dark:border-slate-800 pb-2">
+              <h3 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white border-b border-slate-100 dark:border-slate-800 pb-2">
                 {moreUnitLinks.fromHeading}
               </h3>
-              <ul className="space-y-1.5">
+              <ul className="space-y-2">
                 {moreUnitLinks.fromLinks.map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
                       prefetch={false}
-                      className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-[#0D9488] dark:text-[#2DD4BF] hover:text-[#16324F] dark:hover:text-white hover:underline transition-colors py-0.5"
+                      className="inline-flex items-center gap-2 text-[15px] sm:text-base font-medium text-[#0D9488] dark:text-[#2DD4BF] hover:text-[#16324F] dark:hover:text-white hover:underline transition-colors py-1"
                     >
-                      <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                      <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
                       <span>{item.label}</span>
                     </Link>
                   </li>
@@ -1645,18 +2026,18 @@ export default function ConversionPageInteractive({
 
             {/* Column 2: Convert to [ToUnit.plural] */}
             <div className="space-y-3">
-              <h3 className="text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white border-b border-slate-100 dark:border-slate-800 pb-2">
+              <h3 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white border-b border-slate-100 dark:border-slate-800 pb-2">
                 {moreUnitLinks.toHeading}
               </h3>
-              <ul className="space-y-1.5">
+              <ul className="space-y-2">
                 {moreUnitLinks.toLinks.map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
                       prefetch={false}
-                      className="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-[#0D9488] dark:text-[#2DD4BF] hover:text-[#16324F] dark:hover:text-white hover:underline transition-colors py-0.5"
+                      className="inline-flex items-center gap-2 text-[15px] sm:text-base font-medium text-[#0D9488] dark:text-[#2DD4BF] hover:text-[#16324F] dark:hover:text-white hover:underline transition-colors py-1"
                     >
-                      <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                      <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
                       <span>{item.label}</span>
                     </Link>
                   </li>
@@ -1664,18 +2045,64 @@ export default function ConversionPageInteractive({
               </ul>
             </div>
           </div>
+
+          {(pair.categoryId === "mass" || pair.categoryId === "volume") && (
+            <div className="mt-4 pt-4 border-t border-slate-200/80 dark:border-slate-800 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 p-4 space-y-2.5">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="text-sm sm:text-[15px] font-extrabold text-[#16324F] dark:text-white">
+                  Converting Grams or Ounces to Cups, Tbsp &amp; Tsp?
+                </div>
+                <Link
+                  href="/cooking"
+                  prefetch={false}
+                  className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+                >
+                  <span>Open Cooking &amp; Ingredient Converter</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Weight and volume require ingredient density (g/mL). Choose a
+                USDA FoodData Central verified ingredient below:
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {[
+                  { slug: "flour", label: "Flour (125 g/cup)" },
+                  { slug: "sugar", label: "Granulated Sugar (200 g/cup)" },
+                  { slug: "brown-sugar", label: "Brown Sugar (220 g/cup)" },
+                  { slug: "powdered-sugar", label: "Powdered Sugar (120 g/cup)" },
+                  { slug: "butter", label: "Butter (227 g/cup)" },
+                  { slug: "rice", label: "Rice (185 g/cup)" },
+                  { slug: "milk", label: "Milk (244 g/cup)" },
+                  { slug: "water", label: "Water (236.6 g/cup)" },
+                  { slug: "honey", label: "Honey (339 g/cup)" },
+                  { slug: "oil", label: "Cooking Oil (218 g/cup)" },
+                  { slug: "salt", label: "Salt (292 g/cup)" },
+                ].map((ing) => (
+                  <Link
+                    key={ing.slug}
+                    href={`/cooking/${ing.slug}`}
+                    prefetch={false}
+                    className="px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-[#0D9488] text-xs font-semibold text-[#16324F] dark:text-slate-200 hover:text-[#0D9488] transition-colors"
+                  >
+                    {ing.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
 
         {/* 6. FREQUENTLY ASKED QUESTIONS (Google "People Also Ask" Accordion) */}
         {editorial.googlePaaFaqs.length > 0 && (
           <section aria-labelledby="pair-faq-heading" className="space-y-4">
             <div className="flex items-center gap-2.5">
-              <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-sky-100/90 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400">
-                <HelpCircle className="w-4 h-4" />
+              <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-sky-100/90 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400">
+                <HelpCircle className="w-5 h-5" />
               </span>
               <h2
                 id="pair-faq-heading"
-                className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
+                className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
               >
                 Frequently Asked Questions
               </h2>
@@ -1693,11 +2120,11 @@ export default function ConversionPageInteractive({
                       type="button"
                       onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
                       aria-expanded={isOpen}
-                      className="w-full px-5 py-4 flex items-center justify-between gap-3 text-left text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white hover:bg-[#F7F9FC] dark:hover:bg-slate-800/60 transition-colors cursor-pointer"
+                      className="w-full px-5 py-4 flex items-center justify-between gap-3 text-left text-base sm:text-[17px] font-extrabold text-[#16324F] dark:text-white hover:bg-[#F7F9FC] dark:hover:bg-slate-800/60 transition-colors cursor-pointer"
                     >
                       <span>{faq.question}</span>
                       <ChevronDown
-                        className={`w-4 h-4 text-slate-500 shrink-0 transition-transform ${
+                        className={`w-5 h-5 text-slate-500 shrink-0 transition-transform ${
                           isOpen ? "rotate-180 text-[#0D9488]" : ""
                         }`}
                       />
@@ -1706,7 +2133,7 @@ export default function ConversionPageInteractive({
                       hidden={!isOpen}
                       className={
                         isOpen
-                          ? "px-5 pb-4 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/80"
+                          ? "px-5 pb-4 pt-2 text-[15px] sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/80"
                           : "hidden"
                       }
                     >
@@ -1728,18 +2155,18 @@ export default function ConversionPageInteractive({
         <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 shadow-xs space-y-3.5">
           <div className="flex items-center gap-2.5 pb-1">
             <span
-              className={`inline-flex items-center justify-center w-7 h-7 rounded-lg ${theme.sidebarBadge}`}
+              className={`inline-flex items-center justify-center w-8 h-8 rounded-lg ${theme.sidebarBadge}`}
             >
               {renderCategoryIcon(iconName, "w-4 h-4")}
             </span>
-            <h2 className="text-base font-extrabold text-[#16324F] dark:text-white">
+            <h2 className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white">
               {category ? `${category.name} Converter` : "Unit Converter"}
             </h2>
           </div>
 
           <nav
             aria-label={`${category?.name || "Unit"} conversion links`}
-            className="space-y-1"
+            className="space-y-1.5"
           >
             {sidebarCategoryPairs.map((p) => {
               const pFrom = UNIT_MAP.get(p.fromUnitId);
@@ -1754,7 +2181,7 @@ export default function ConversionPageInteractive({
                   key={p.slug}
                   href={getPairUrl(p)}
                   prefetch={false}
-                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-colors ${
+                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm sm:text-[15px] font-bold transition-colors ${
                     isActive
                       ? "bg-sky-50/90 dark:bg-sky-950/50 text-[#16324F] dark:text-sky-300 border border-sky-200/70 dark:border-sky-800/60"
                       : "text-slate-700 dark:text-slate-300 hover:bg-[#F7F9FC] dark:hover:bg-slate-800 hover:text-[#0D9488]"
@@ -1772,12 +2199,12 @@ export default function ConversionPageInteractive({
         <div className="rounded-2xl bg-amber-50/55 dark:bg-amber-950/20 border border-amber-200/70 dark:border-amber-900/50 p-5 shadow-2xs space-y-3">
           <div className="flex items-center gap-2.5">
             <Lightbulb className="w-5 h-5 text-amber-500 fill-amber-400 shrink-0" />
-            <h2 className="text-base font-extrabold text-[#16324F] dark:text-white">
+            <h2 className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white">
               Quick Info
             </h2>
           </div>
 
-          <ul className="space-y-2.5 text-xs sm:text-[13px] text-slate-700 dark:text-slate-300 leading-relaxed list-disc pl-4">
+          <ul className="space-y-2.5 text-sm sm:text-[15px] text-slate-700 dark:text-slate-300 leading-relaxed list-disc pl-4">
             <li>
               <strong className="text-[#16324F] dark:text-white">
                 Direct Factor:
@@ -1821,8 +2248,8 @@ export default function ConversionPageInteractive({
         {/* 3. Units Comparison Card */}
         <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 shadow-xs space-y-3.5">
           <div className="flex items-center gap-2.5">
-            <Scale className="w-4 h-4 text-[#0D9488]" />
-            <h2 className="text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white">
+            <Scale className="w-5 h-5 text-[#0D9488]" />
+            <h2 className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white">
               Units Comparison
             </h2>
           </div>
@@ -1833,11 +2260,11 @@ export default function ConversionPageInteractive({
               <div className="w-8 h-8 rounded-lg bg-white dark:bg-slate-900 text-sky-600 flex items-center justify-center shrink-0 shadow-2xs mt-0.5">
                 {renderCategoryIcon(iconName, "w-4 h-4")}
               </div>
-              <div className="space-y-0.5 min-w-0">
-                <h3 className="text-xs font-extrabold text-[#16324F] dark:text-white">
+              <div className="space-y-1 min-w-0">
+                <h3 className="text-sm sm:text-[15px] font-extrabold text-[#16324F] dark:text-white">
                   {fromUnit.name} ({fromUnit.symbol})
                 </h3>
-                <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   {fromUnit.description ||
                     `Standard source unit of ${
                       category?.name.toLowerCase() || "measurement"
@@ -1851,11 +2278,11 @@ export default function ConversionPageInteractive({
               <div className="w-8 h-8 rounded-lg bg-white dark:bg-slate-900 text-rose-500 flex items-center justify-center shrink-0 shadow-2xs mt-0.5">
                 {renderCategoryIcon(iconName, "w-4 h-4")}
               </div>
-              <div className="space-y-0.5 min-w-0">
-                <h3 className="text-xs font-extrabold text-[#16324F] dark:text-white">
+              <div className="space-y-1 min-w-0">
+                <h3 className="text-sm sm:text-[15px] font-extrabold text-[#16324F] dark:text-white">
                   {toUnit.name} ({toUnit.symbol})
                 </h3>
-                <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   {toUnit.description ||
                     `Standard target unit of ${
                       category?.name.toLowerCase() || "measurement"
@@ -1871,11 +2298,11 @@ export default function ConversionPageInteractive({
                   <div className="w-8 h-8 rounded-lg bg-white dark:bg-slate-900 text-emerald-600 flex items-center justify-center shrink-0 shadow-2xs mt-0.5">
                     {renderCategoryIcon(iconName, "w-4 h-4")}
                   </div>
-                  <div className="space-y-0.5 min-w-0">
-                    <h3 className="text-xs font-extrabold text-[#16324F] dark:text-white">
+                  <div className="space-y-1 min-w-0">
+                    <h3 className="text-sm sm:text-[15px] font-extrabold text-[#16324F] dark:text-white">
                       {thirdVisualUnit.name} ({thirdVisualUnit.symbol})
                     </h3>
-                    <p className="text-[11px] sm:text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                       {thirdVisualUnit.description ||
                         `Reference unit in ${
                           category?.name.toLowerCase() || "this category"
@@ -1893,17 +2320,17 @@ export default function ConversionPageInteractive({
             <ShieldCheck className="w-4 h-4 text-[#0D9488] shrink-0" />
             <h2
               id="references-standards-heading"
-              className="text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white"
+              className="text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white"
             >
               References
             </h2>
           </div>
 
-          <ul className="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+          <ul className="space-y-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
             {getTrustedReferencesForPair(pair, fromUnit, toUnit).map((ref, idx) => (
               <li
                 key={idx}
-                className="flex items-start justify-between gap-2 py-1 border-b border-slate-100/80 dark:border-slate-800/60 last:border-0"
+                className="flex items-start justify-between gap-2 py-1.5 border-b border-slate-100/80 dark:border-slate-800/60 last:border-0"
               >
                 <div className="min-w-0 leading-snug">
                   <span className="font-mono font-bold text-[#0D9488] dark:text-teal-400 mr-1.5">
@@ -1921,7 +2348,7 @@ export default function ConversionPageInteractive({
                   href={ref.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-[11px] font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline shrink-0"
+                  className="inline-flex items-center gap-1 text-xs font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline shrink-0"
                 >
                   <span>Source</span>
                   <ExternalLink className="w-3 h-3" />
@@ -1934,10 +2361,10 @@ export default function ConversionPageInteractive({
         {/* 5. Related Categories Card */}
         <div className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 shadow-xs space-y-3">
           <div className="flex items-center gap-2.5 pb-1">
-            <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488]">
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488]">
               <Grid className="w-4 h-4" />
             </span>
-            <h2 className="text-base font-extrabold text-[#16324F] dark:text-white">
+            <h2 className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white">
               Related Categories
             </h2>
           </div>
@@ -1951,7 +2378,7 @@ export default function ConversionPageInteractive({
                 key={cat.id}
                 href={getCategoryUrl(cat.id)}
                 prefetch={false}
-                className="flex items-center justify-between py-2.5 px-2 -mx-2 rounded-lg text-xs sm:text-sm font-bold text-[#16324F] dark:text-slate-200 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] hover:bg-[#F7F9FC] dark:hover:bg-slate-800/60 transition-colors"
+                className="flex items-center justify-between py-2.5 px-2 -mx-2 rounded-lg text-sm sm:text-[15px] font-bold text-[#16324F] dark:text-slate-200 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] hover:bg-[#F7F9FC] dark:hover:bg-slate-800/60 transition-colors"
               >
                 <span>{cat.name} Converter</span>
                 <ChevronRight className="w-4 h-4 text-slate-400" />
@@ -1967,25 +2394,25 @@ export default function ConversionPageInteractive({
               <Code2 className="w-4 h-4" />
             </span>
             <div>
-              <h2 className="text-sm font-extrabold text-[#16324F] dark:text-white">
+              <h2 className="text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white">
                 Add This Calculator to Your Site
               </h2>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+              <p className="text-xs text-slate-500 dark:text-slate-400">
                 Free HTML widget · 4 embed formats
               </p>
             </div>
           </div>
 
-          <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+          <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
             Embed the interactive <strong>{fromUnit.plural} to {toUnit.plural}</strong> converter on your blog, classroom, or documentation page.
           </p>
 
           <Link
             href={`/widgets/w/${matchingCanonicalPair?.slug || pair.slug}`}
             prefetch={false}
-            className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#16324F] hover:bg-[#0D9488] text-white text-xs font-extrabold transition-colors"
+            className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#16324F] hover:bg-[#0D9488] text-white text-sm font-extrabold transition-colors"
           >
-            <Code2 className="w-3.5 h-3.5" />
+            <Code2 className="w-4 h-4" />
             <span>Customize &amp; Get Embed Code</span>
           </Link>
         </div>

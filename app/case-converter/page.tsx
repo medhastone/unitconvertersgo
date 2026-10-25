@@ -12,6 +12,7 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Free online Case Converter tool. Convert text between Sentence case, lower case, UPPER CASE, Title Case, camelCase, PascalCase, snake_case, and kebab-case in your browser.",
   canonicalPath: "/case-converter",
+  noindex: true,
 });
 
 export default function CaseConverterPage() {
@@ -34,11 +35,37 @@ export default function CaseConverterPage() {
     ],
   };
 
+  const webAppJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Text Case Converter Tool",
+    applicationCategory: "UtilityApplication",
+    operatingSystem: "All",
+    url: `${SITE_CONFIG.baseUrl}/case-converter`,
+    description:
+      "Free online Case Converter tool. Convert text between Sentence case, lower case, UPPER CASE, Title Case, camelCase, PascalCase, snake_case, and kebab-case in your browser.",
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": `${SITE_CONFIG.baseUrl}/#website`,
+      name: SITE_CONFIG.name,
+      url: SITE_CONFIG.baseUrl,
+    },
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+  };
+
   return (
     <div className="min-h-screen bg-[#F7F9FC]/60 dark:bg-slate-950">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }}
       />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-7 sm:py-10 space-y-8">

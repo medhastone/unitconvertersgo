@@ -53,10 +53,10 @@ export default function CategoryMultiMatrix({ categoryId }: CategoryMultiMatrixP
             <Grid className="w-4 h-4" />
           </div>
           <div>
-            <h2 className="text-base font-semibold text-slate-900 dark:text-white">
+            <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
               Category Conversion Matrix
             </h2>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
               Simultaneous comparison of {units.length} units in this category
             </p>
           </div>
@@ -74,7 +74,7 @@ export default function CategoryMultiMatrix({ categoryId }: CategoryMultiMatrixP
             value={inputValue}
             onChange={(e) => setInputValue(parseFloat(e.target.value) || 0)}
             aria-label="Enter value for simultaneous category matrix comparison"
-            className="w-24 px-3 py-1.5 text-sm font-mono rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+            className="w-24 px-3 py-1.5 text-base font-mono rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
           />
           <label htmlFor={`matrix-unit-${categoryId}`} className="sr-only">
             Matrix base unit
@@ -85,7 +85,7 @@ export default function CategoryMultiMatrix({ categoryId }: CategoryMultiMatrixP
             value={selectedUnitId}
             onChange={(e) => setSelectedUnitId(e.target.value)}
             aria-label="Select base unit for category conversion matrix"
-            className="px-3 py-1.5 text-sm rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white font-medium focus:outline-hidden focus:ring-2 focus:ring-emerald-500 cursor-pointer"
+            className="px-3 py-1.5 text-base rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white font-medium focus:outline-hidden focus:ring-2 focus:ring-emerald-500 cursor-pointer"
           >
             {units.map((u) => (
               <option
@@ -112,10 +112,10 @@ export default function CategoryMultiMatrix({ categoryId }: CategoryMultiMatrixP
             }`}
           >
             <div className="min-w-0 pr-2">
-              <div className="text-[11px] font-medium text-slate-500 dark:text-slate-400 truncate">
+              <div className="text-xs sm:text-[13px] font-medium text-slate-500 dark:text-slate-400 truncate">
                 {unit.name} ({unit.symbol})
               </div>
-              <div className="text-sm font-mono font-semibold text-slate-900 dark:text-white tabular-nums truncate">
+              <div className="text-sm sm:text-base font-mono font-semibold text-slate-900 dark:text-white tabular-nums truncate">
                 {value}
               </div>
             </div>

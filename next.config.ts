@@ -1,8 +1,11 @@
 import type {NextConfig} from 'next';
 import {PHASE_DEVELOPMENT_SERVER} from 'next/constants';
 
-const nextConfig = (phase: string): NextConfig => ({
-  distDir: phase === PHASE_DEVELOPMENT_SERVER ? '.next/dev' : '.next',
+const nextConfig = (phase: string): NextConfig => {
+  const isDev = phase === PHASE_DEVELOPMENT_SERVER;
+  return {
+  distDir: isDev ? '.next/dev' : '.next',
+  deploymentId: 'ucg-v3',
   cleanDistDir: false,
   reactStrictMode: true,
   trailingSlash: false,
@@ -50,7 +53,9 @@ const nextConfig = (phase: string): NextConfig => ({
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            value: isDev
+              ? 'no-store, no-cache, must-revalidate'
+              : 'public, max-age=31536000, immutable',
           },
         ],
       },
@@ -68,7 +73,9 @@ const nextConfig = (phase: string): NextConfig => ({
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            value: isDev
+              ? 'no-cache, must-revalidate'
+              : 'public, max-age=31536000, immutable',
           },
           {
             key: 'X-Robots-Tag',
@@ -77,6 +84,79 @@ const nextConfig = (phase: string): NextConfig => ({
         ],
       },
       ...noindexRules,
+    ];
+  },
+  async redirects() {
+    return [
+      // 1. PPM in /density -> /concentration-solution or /density
+      {
+        source: '/density/ppm-to-mg-per-liter',
+        destination: '/concentration-solution',
+        statusCode: 301,
+      },
+      {
+        source: '/density/mg-per-liter-to-ppm',
+        destination: '/concentration-solution',
+        statusCode: 301,
+      },
+      {
+        source: '/density/ppm-to-:unit',
+        destination: '/density',
+        statusCode: 301,
+      },
+      {
+        source: '/density/:unit-to-ppm',
+        destination: '/density',
+        statusCode: 301,
+      },
+      // 2. Mass ↔ Calories & Volume ↔ Calories -> /energy/calories-to-joules, /weight-and-mass, or /volume
+      {
+        source: '/weight-and-mass/:unit(kilograms|grams|pounds|ounces|kg|g|lb|lbs|oz)-to-calories',
+        destination: '/energy/calories-to-joules',
+        statusCode: 301,
+      },
+      {
+        source: '/weight-and-mass/calories-to-:unit(kilograms|grams|pounds|ounces|kg|g|lb|lbs|oz)',
+        destination: '/energy/calories-to-joules',
+        statusCode: 301,
+      },
+      {
+        source: '/weight-and-mass/:unit-to-calories',
+        destination: '/weight-and-mass',
+        statusCode: 301,
+      },
+      {
+        source: '/weight-and-mass/calories-to-:unit',
+        destination: '/energy',
+        statusCode: 301,
+      },
+      {
+        source: '/volume/:unit-to-calories',
+        destination: '/volume',
+        statusCode: 301,
+      },
+      // 3. Culinary Mass ↔ Volume -> /cooking (density-aware ingredient converter)
+      {
+        source: '/weight-and-mass/:mass(grams|kilograms|ounces|pounds|g|kg|oz|lb|lbs)-to-:vol(teaspoons|tablespoons|fluid-ounces|cups|pints|quarts|gallons|milliliters|liters|tsp|tbsp|fl-oz|cup|pt|qt|gal|ml|l)',
+        destination: '/cooking',
+        statusCode: 301,
+      },
+      {
+        source: '/volume/:vol(teaspoons|tablespoons|fluid-ounces|cups|pints|quarts|gallons|milliliters|liters|tsp|tbsp|fl-oz|cup|pt|qt|gal|ml|l)-to-:mass(grams|kilograms|ounces|pounds|g|kg|oz|lb|lbs)',
+        destination: '/cooking',
+        statusCode: 301,
+      },
+      // 4. Industrial / Non-culinary Mass ↔ Volume -> /weight-and-mass or /volume
+      {
+        source: '/weight-and-mass/:mass(milligrams|micrograms|tons|metric-tons|long-tons|carats|mg|mcg|ct)-to-:vol(teaspoons|tablespoons|fluid-ounces|cups|pints|quarts|gallons|milliliters|liters|tsp|tbsp|fl-oz|cup|pt|qt|gal|ml|l)',
+        destination: '/weight-and-mass',
+        statusCode: 301,
+      },
+      {
+        source: '/volume/:vol(teaspoons|tablespoons|fluid-ounces|cups|pints|quarts|gallons|milliliters|liters|tsp|tbsp|fl-oz|cup|pt|qt|gal|ml|l)-to-:mass(milligrams|micrograms|tons|metric-tons|long-tons|carats|mg|mcg|ct)',
+        destination: '/volume',
+        statusCode: 301,
+      },
     ];
   },
   webpack: (config, {dev}) => {
@@ -89,6 +169,8 @@ const nextConfig = (phase: string): NextConfig => ({
     }
     return config;
   },
-});
+  };
+};
 
 export default nextConfig;
+

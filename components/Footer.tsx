@@ -44,11 +44,11 @@ const FOOTER_POPULAR_SLUGS: string[] = [
 
 const EXPLORE_SUPPORT_LINKS = [
   { href: "/directory", label: "All Converters" },
+  { href: "/cooking", label: "Cooking & Ingredients" },
   { href: "/#popular", label: "Popular Converters" },
   { href: "/guides", label: "Measurement Guides" },
   { href: "/widgets", label: "Calculator Widgets" },
   { href: "/case-converter", label: "Text Case Converter" },
-  { href: "/search", label: "Search Converters" },
   { href: "/about", label: "About Us" },
   { href: "/contact", label: "Contact Us" },
 ];

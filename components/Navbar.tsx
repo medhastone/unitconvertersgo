@@ -139,8 +139,8 @@ export default function Navbar() {
 
   return (
     <>
-      <header suppressHydrationWarning className="sticky top-0 z-40 w-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200/90 dark:border-slate-800 transition-colors duration-150">
-        <div suppressHydrationWarning className="max-w-7xl mx-auto flex items-center justify-between gap-3 sm:gap-6 px-4 sm:px-6 h-[64px] sm:h-[70px]">
+      <header suppressHydrationWarning className="relative z-40 w-full bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200/90 dark:border-slate-800 transition-colors duration-150">
+        <div suppressHydrationWarning className="max-w-7xl mx-auto flex items-center justify-between gap-3 sm:gap-5 px-4 sm:px-6 h-[64px] sm:h-[70px]">
           {/* Zone 1: Official Brand Logo - large, crisp, and responsive across mobile & desktop */}
           <Link
             href="/"
@@ -155,7 +155,7 @@ export default function Navbar() {
               height={48}
               priority
               referrerPolicy="no-referrer"
-              className="h-9 sm:h-10 md:h-11 lg:h-12 w-auto max-w-[205px] sm:max-w-[240px] md:max-w-[265px] lg:max-w-[290px] object-contain bg-transparent transition-all"
+              className="h-9 sm:h-10 md:h-10 lg:h-12 w-auto max-w-[205px] sm:max-w-[230px] md:max-w-[230px] lg:max-w-[290px] object-contain bg-transparent transition-all"
             />
           </Link>
 
@@ -163,7 +163,7 @@ export default function Navbar() {
           <nav
             suppressHydrationWarning
             aria-label="Primary Navigation"
-            className="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-600 dark:text-slate-300"
+            className="hidden md:flex items-center gap-4 lg:gap-6 text-sm font-semibold text-slate-600 dark:text-slate-300"
           >
             <Link
               href="/"
@@ -176,6 +176,12 @@ export default function Navbar() {
               className="hover:text-[#16324F] dark:hover:text-white transition-colors whitespace-nowrap shrink-0 py-2"
             >
               Categories
+            </Link>
+            <Link
+              href="/cooking"
+              className="hover:text-[#16324F] dark:hover:text-white transition-colors whitespace-nowrap shrink-0 py-2"
+            >
+              Cooking
             </Link>
 
             {/* Guides Dropdown Menu */}
@@ -338,6 +344,15 @@ export default function Navbar() {
               className="flex items-center justify-between px-3 py-3 min-h-[44px] rounded-xl text-sm font-bold text-[#16324F] dark:text-slate-100 hover:bg-[#F7F9FC] dark:hover:bg-slate-800 transition-colors"
             >
               <span>Browse Categories</span>
+              <ChevronRight className="w-4 h-4 text-slate-400" />
+            </Link>
+
+            <Link
+              href="/cooking"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-3 py-3 min-h-[44px] rounded-xl text-sm font-bold text-[#16324F] dark:text-slate-100 hover:bg-[#F7F9FC] dark:hover:bg-slate-800 transition-colors"
+            >
+              <span>Cooking &amp; Ingredient Conversions</span>
               <ChevronRight className="w-4 h-4 text-slate-400" />
             </Link>
 

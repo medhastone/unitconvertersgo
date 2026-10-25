@@ -9,8 +9,7 @@ import LegalPageLayout, { TocItem } from "@/components/LegalPageLayout";
 
 export const metadata: Metadata = buildPageMetadata({
   title: `About ${SITE_CONFIG.name}`,
-  description:
-    "Learn about UnitConvertersGo: how our browser-based unit conversion calculators work, which 78 measurement categories are supported, and how our formulas align with SI and NIST standards.",
+  description: `Learn about UnitConvertersGo: how our ${CONVERSION_CATALOGUE.length} browser-based unit converters across ${CATEGORIES.length} measurement categories work and align with SI and NIST standards.`,
   canonicalPath: "/about",
 });
 

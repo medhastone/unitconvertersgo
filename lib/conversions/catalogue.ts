@@ -3366,26 +3366,6 @@ const RAW_CONVERSION_CATALOGUE: ConversionPairInfo[] = [
 
   // --- ADDITIONAL DENSITY & CONCENTRATION ---
   {
-    slug: "ppm-to-mg-per-liter",
-    fromUnitId: "ppm",
-    toUnitId: "mg_per_l",
-    categoryId: "density",
-    title: "PPM to mg/L Converter (Parts per Million to Milligrams per Liter)",
-    metaDescription: "Convert ppm to mg/L for water quality, hydroponics, and environmental chemistry (1:1 equivalence in water).",
-    formulaDescription: "In dilute aqueous solutions at standard temperature, 1 part per million (ppm) is equivalent to 1 milligram per liter (mg/L).",
-    exampleInput: 500,
-  },
-  {
-    slug: "mg-per-liter-to-ppm",
-    fromUnitId: "mg_per_l",
-    toUnitId: "ppm",
-    categoryId: "density",
-    title: "mg/L to PPM Converter (Milligrams per Liter to Parts per Million)",
-    metaDescription: "Convert mg/L to parts per million (ppm) for water treatment and chemistry.",
-    formulaDescription: "1 mg/L in water equals 1 part per million (ppm).",
-    exampleInput: 250,
-  },
-  {
     slug: "kg-per-m3-to-lb-per-ft3",
     fromUnitId: "kg_per_m3",
     toUnitId: "lb_per_ft3",
@@ -4778,7 +4758,6 @@ const FRIENDLY_SINGULAR_OVERRIDES: Record<string, string> = {
   kilogram: "Kilogram",
   milligram: "Milligram",
   microgram: "Microgram",
-  dietary_calorie: "Calorie",
   carat: "Carat",
   quarter_us: "US Quarter",
   quarter_uk: "UK Quarter",
@@ -4824,7 +4803,6 @@ const FRIENDLY_PLURAL_OVERRIDES: Record<string, string> = {
   kilogram: "Kilograms",
   milligram: "Milligrams",
   microgram: "Micrograms",
-  dietary_calorie: "Calories",
   carat: "Carats",
   quarter_us: "US Quarters",
   quarter_uk: "UK Quarters",
@@ -5096,34 +5074,9 @@ export function getConversionPair(
     if (!fromUnit) fromUnit = tokenMap.get(leftToken);
     if (!toUnit) toUnit = tokenMap.get(rightToken);
 
-    // Special disambiguation for "calorie" / "calories":
-    // When paired with a mass or volume unit, resolve to "dietary_calorie" (mass);
-    // when paired with an energy unit, resolve to "calorie" (energy).
-    if (
-      (leftToken === "calorie" || leftToken === "calories") &&
-      toUnit &&
-      (toUnit.categoryId === "mass" || toUnit.categoryId === "volume")
-    ) {
-      fromUnit = UNIT_MAP.get("dietary_calorie") || fromUnit;
-    }
-    if (
-      (rightToken === "calorie" || rightToken === "calories") &&
-      fromUnit &&
-      (fromUnit.categoryId === "mass" || fromUnit.categoryId === "volume")
-    ) {
-      toUnit = UNIT_MAP.get("dietary_calorie") || toUnit;
-    }
-
     if (fromUnit && toUnit && fromUnit.id !== toUnit.id) {
       const sameCategory = fromUnit.categoryId === toUnit.categoryId;
-      const culinaryMassVolume =
-        (fromUnit.categoryId === "mass" && toUnit.categoryId === "volume") ||
-        (fromUnit.categoryId === "volume" && toUnit.categoryId === "mass");
-      const batteryChargeEnergy =
-        (fromUnit.categoryId === "charge" && toUnit.categoryId === "energy") ||
-        (fromUnit.categoryId === "energy" && toUnit.categoryId === "charge");
-
-      if (sameCategory || culinaryMassVolume || batteryChargeEnergy) {
+      if (sameCategory) {
         return synthesizeDynamicPair(fromUnit, toUnit);
       }
     }
@@ -5165,51 +5118,36 @@ export function getConversionsByCategory(categoryId: string): ConversionPairInfo
  * two-column internal linking lists ("Convert from [FromPlural]" and "Convert to [ToPlural]")
  * with lowercase labels (e.g., "grams to tons", "grams to pounds", "tons to ounces", etc.).
  */
-const MASS_CULINARY_LINK_UNIT_IDS = [
-  "us_ton",
-  "pound",
-  "metric_ton",
+const MASS_PRIORITY_LINK_UNIT_IDS = [
   "kilogram",
   "gram",
+  "pound",
   "ounce",
   "milligram",
   "microgram",
-  "dietary_calorie",
+  "us_ton",
+  "metric_ton",
   "imperial_ton",
-  "carat",
-  "us_teaspoon",
-  "us_tablespoon",
-  "us_fluid_ounce",
-  "us_cup",
-  "us_pint",
-  "us_quart",
-  "us_gallon",
-  "milliliter",
-  "liter",
+  "stone",
 ];
 
-const CULINARY_MASS_VOLUME_SET = new Set<string>([
-  "gram",
-  "ounce",
-  "pound",
-  "kilogram",
-  "milligram",
-  "microgram",
-  "us_ton",
-  "metric_ton",
-  "imperial_ton",
-  "carat",
-  "dietary_calorie",
-  "us_teaspoon",
-  "us_tablespoon",
-  "us_fluid_ounce",
-  "us_cup",
-  "us_pint",
-  "us_quart",
-  "us_gallon",
-  "milliliter",
+const VOLUME_PRIORITY_LINK_UNIT_IDS = [
   "liter",
-]);
+  "milliliter",
+  "us_gallon",
+  "us_quart",
+  "us_pint",
+  "us_cup",
+  "us_fluid_ounce",
+  "us_tablespoon",
+  "us_teaspoon",
+  "cubic_meter",
+  "cubic_foot",
+  "cubic_inch",
+];
+
+const MASS_PRIORITY_SET = new Set<string>(MASS_PRIORITY_LINK_UNIT_IDS);
+const VOLUME_PRIORITY_SET = new Set<string>(VOLUME_PRIORITY_LINK_UNIT_IDS);
 
 export interface MoreUnitConversionsBundle {
   sectionHeading: string;
@@ -5234,10 +5172,21 @@ export function getMoreUnitConversionLinks(
     const result: Unit[] = [];
     const seen = new Set<string>([anchorUnit.id]);
 
-    // If this unit is a culinary/everyday weight or volume unit (e.g. Grams, Ounces, Pounds, Cups, Liters),
-    // use the exact Inch Calculator priority list (tons, pounds, metric tons, kg, mg, mcg, calories, long tons, carats, tsp, tbsp, fl oz, cups, pints, quarts, gallons, mL, L)
-    if (CULINARY_MASS_VOLUME_SET.has(anchorUnit.id)) {
-      for (const id of MASS_CULINARY_LINK_UNIT_IDS) {
+    if (MASS_PRIORITY_SET.has(anchorUnit.id)) {
+      for (const id of MASS_PRIORITY_LINK_UNIT_IDS) {
+        if (!seen.has(id)) {
+          const u = UNIT_MAP.get(id);
+          if (u) {
+            seen.add(id);
+            result.push(u);
+          }
+        }
+      }
+      return result;
+    }
+
+    if (VOLUME_PRIORITY_SET.has(anchorUnit.id)) {
+      for (const id of VOLUME_PRIORITY_LINK_UNIT_IDS) {
         if (!seen.has(id)) {
           const u = UNIT_MAP.get(id);
           if (u) {

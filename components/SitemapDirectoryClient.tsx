@@ -33,12 +33,14 @@ import {
   Type,
 } from "lucide-react";
 import {
+  CATEGORIES,
   CATEGORY_MAP,
   UNIT_MAP,
   getUnitsByCategory,
 } from "@/lib/conversions/units";
 import { SUPER_CATEGORIES } from "@/lib/conversions/extended-categories";
 import {
+  CONVERSION_CATALOGUE,
   CATALOGUE_MAP,
   getConversionsByCategory,
   getPairUrl,
@@ -123,7 +125,7 @@ export default function SitemapDirectoryClient() {
   const [activeGroupFilter, setActiveGroupFilter] = useState<string>("all");
   const { placeholder } = useTypewriterPlaceholder({
     isPaused: query.trim().length > 0,
-    prefix: "Filter 78+ tools — e.g. ",
+    prefix: `Filter ${CATEGORIES.length} categories & ${CONVERSION_CATALOGUE.length} converters — e.g. `,
   });
 
   const normalizedQuery = query.trim().toLowerCase();

@@ -3,12 +3,16 @@
  * Provides a single source of truth for site URLs, metadata, brand details, and AdSense settings.
  */
 
+import { CATEGORIES } from "./conversions/units";
+
+export const TOTAL_CATEGORIES_COUNT = CATEGORIES.length;
+
 export const SITE_CONFIG = {
   name: "UnitConvertersGo",
   domain: "UnitConvertersGo.com",
-  tagline: "High-Precision Real-Time Unit Converter",
-  description:
-    "Fast, accurate, mobile-first unit conversion platform calculating length, mass, temperature, digital storage, pressure, and 78 measurement categories in real time.",
+  tagline: "Free Online Unit Converter & Measurement Calculator",
+  homepageTitle: "UnitConvertersGo – Free Online Unit Converter",
+  description: `Convert 685 unit pairs across ${CATEGORIES.length} measurement categories instantly. Try our free unit converter for length, weight, volume, and temperature now!`,
   // Production or runtime app URL without trailing slash
   baseUrl: (
     process.env.APP_URL ||

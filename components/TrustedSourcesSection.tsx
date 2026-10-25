@@ -47,18 +47,18 @@ export default function TrustedSourcesSection({
           </span>
           <h2
             id="references-standards-heading"
-            className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white tracking-tight"
+            className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
           >
             References
           </h2>
         </div>
-        <span className="text-[11px] font-mono font-semibold text-slate-500 dark:text-slate-400">
+        <span className="text-xs font-mono font-semibold text-slate-500 dark:text-slate-400">
           NIST · BIPM · ISO
         </span>
       </div>
 
       {/* Clean, High-Visibility Numbered Citation List */}
-      <ol className="divide-y divide-slate-100 dark:divide-slate-800/80 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
+      <ol className="divide-y divide-slate-100 dark:divide-slate-800/80 text-sm sm:text-[15px] text-slate-700 dark:text-slate-300">
         {references.map((ref, idx) => (
           <li
             key={`cite-${idx}`}
@@ -84,10 +84,10 @@ export default function TrustedSourcesSection({
               href={ref.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-xs font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline shrink-0 self-start sm:self-center"
+              className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline shrink-0 self-start sm:self-center"
             >
               <span>{ref.linkLabel || "Official Source"}</span>
-              <ExternalLink className="w-3 h-3" />
+              <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </li>
         ))}

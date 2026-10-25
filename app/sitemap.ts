@@ -5,6 +5,7 @@ import { CATEGORIES } from "@/lib/conversions/units";
 import { CONVERSION_CATALOGUE } from "@/lib/conversions/catalogue";
 import { getPairUrl, getCategoryUrl } from "@/lib/conversions/url";
 import { GUIDES } from "@/lib/conversions/guides";
+import { COOKING_INGREDIENTS } from "@/lib/conversions/cooking";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SITE_CONFIG.baseUrl;
@@ -26,6 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/sitemap`,
+      lastModified: stableLastModified,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/cooking`,
       lastModified: stableLastModified,
       changeFrequency: "weekly",
       priority: 0.9,
@@ -94,6 +101,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // Cooking & Ingredient density conversion pages (/cooking/[ingredient])
+  const cookingRoutes: MetadataRoute.Sitemap = COOKING_INGREDIENTS.map(
+    (item) => ({
+      url: `${baseUrl}/cooking/${item.slug}`,
+      lastModified: stableLastModified,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    })
+  );
+
   // Indexable conversion landing pages (excluding noindex obscure scientific pairs)
   const indexablePairs = CONVERSION_CATALOGUE.filter(
     (pair) => !isObscureConversionPair(pair)
@@ -125,6 +142,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticRoutes,
     ...categoryRoutes,
+    ...cookingRoutes,
     ...conversionRoutes,
     ...widgetRoutes,
     ...guideRoutes,

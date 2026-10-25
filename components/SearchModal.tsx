@@ -14,6 +14,7 @@ import {
 import { useTypewriterPlaceholder } from "@/lib/search/animated-prompts";
 import { runSmartSearch } from "@/lib/search/smart-search";
 import { getPairUrl, getCategoryUrl } from "@/lib/conversions/url";
+import { CATEGORIES } from "@/lib/conversions/units";
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -238,7 +239,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
           {results.categories.length > 0 && (
             <div>
               <div className="px-2 py-1 text-xs font-semibold uppercase tracking-wider text-slate-400">
-                Measurement Categories (78 Total)
+                Measurement Categories ({CATEGORIES.length} Total)
               </div>
               <div className="mt-1 grid grid-cols-1 sm:grid-cols-2 gap-1">
                 {results.categories.map((cat) => (

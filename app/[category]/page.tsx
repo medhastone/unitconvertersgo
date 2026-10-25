@@ -33,7 +33,11 @@ import {
 import { convertUnits } from "@/lib/conversions/engine";
 import { getTrustedReferencesForCategory } from "@/lib/conversions/references";
 import { SITE_CONFIG } from "@/lib/config";
-import { buildPageMetadata } from "@/lib/seo";
+import {
+  buildPageMetadata,
+  getCategoryOgImage,
+  OBSCURE_SCIENTIFIC_CATEGORY_IDS,
+} from "@/lib/seo";
 import { ConversionPairInfo } from "@/lib/conversions/types";
 
 const CATEGORY_ALIAS_MAP: Record<string, string> = {
@@ -1941,6 +1945,8 @@ export async function generateMetadata({
     title,
     description,
     canonicalPath: canonicalCategoryPath,
+    categoryId: category.id,
+    noindex: OBSCURE_SCIENTIFIC_CATEGORY_IDS.has(category.id),
   });
 }
 
@@ -2113,6 +2119,30 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     })),
   };
 
+  const categoryOgImg = getCategoryOgImage(category.id, heroTitle);
+
+  const webAppJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: heroTitle,
+    applicationCategory: "UtilityApplication",
+    operatingSystem: "All",
+    url: `${SITE_CONFIG.baseUrl}${canonicalCategoryPath}`,
+    description: heroDescription,
+    image: categoryOgImg.url,
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": `${SITE_CONFIG.baseUrl}/#website`,
+      name: SITE_CONFIG.name,
+      url: SITE_CONFIG.baseUrl,
+    },
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+  };
+
   return (
     <div suppressHydrationWarning className="w-full bg-[#F7F9FC]/65 dark:bg-slate-950 min-h-screen">
       <div suppressHydrationWarning className="max-w-6xl mx-auto px-4 sm:px-6 py-7 sm:py-9 space-y-10">
@@ -2131,6 +2161,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         <script
           suppressHydrationWarning
           type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }}
+        />
+        <script
+          suppressHydrationWarning
+          type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
 
@@ -2140,7 +2175,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
           <nav
             aria-label="Breadcrumbs"
-            className="flex flex-wrap items-center gap-1.5 text-xs sm:text-sm text-slate-500 dark:text-slate-400 shrink-0"
+            className="flex flex-wrap items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400 shrink-0"
           >
             <Link
               href="/"
@@ -2150,7 +2185,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               Home
             </Link>
             <ChevronRight
-              className="w-3.5 h-3.5 text-slate-400 shrink-0"
+              className="w-4 h-4 text-slate-400 shrink-0"
               aria-hidden="true"
             />
             <span className="text-[#16324F] dark:text-white font-bold">
@@ -2194,28 +2229,28 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             className="rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-2xs space-y-4 scroll-mt-20"
           >
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3.5">
-              <div>
-                <h2 className="text-lg font-extrabold text-[#16324F] dark:text-white">
+              <div className="space-y-1">
+                <h2 className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
                   All {displayName} Conversion Calculators ({conversionPairs.length})
                 </h2>
-                <p className="text-xs text-slate-500 dark:text-slate-400">
+                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
                   Select any dedicated {displayName.toLowerCase()} pair below for worked examples and printable tables
                 </p>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
               {conversionPairs.map((pair) => (
                 <Link
                   key={pair.slug}
                   href={getPairUrl(pair)}
                   prefetch={false}
-                  className="px-3.5 py-2.5 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-[#F7F9FC]/70 dark:bg-slate-950/50 hover:bg-white dark:hover:bg-slate-900 hover:border-[#0D9488] transition-all flex items-center justify-between group"
+                  className="px-4 py-3 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-[#F7F9FC]/70 dark:bg-slate-950/50 hover:bg-white dark:hover:bg-slate-900 hover:border-[#0D9488] transition-all flex items-center justify-between group"
                 >
-                  <span className="text-xs font-bold text-[#16324F] dark:text-slate-200 group-hover:text-[#0D9488] dark:group-hover:text-[#2DD4BF] truncate pr-2">
+                  <span className="text-sm sm:text-[15px] font-bold text-[#16324F] dark:text-slate-200 group-hover:text-[#0D9488] dark:group-hover:text-[#2DD4BF] truncate pr-2">
                     {pair.title.replace(" Converter", "")}
                   </span>
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#0D9488] shrink-0" />
+                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#0D9488] shrink-0" />
                 </Link>
               ))}
             </div>
@@ -2229,31 +2264,31 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
         {/* Complete Unit Definitions Reference */}
         <section className="rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-2xs space-y-4">
-          <div className="flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-3.5">
-            <BookOpen className="w-4 h-4 text-[#0D9488]" />
-            <h2 className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white">
+          <div className="flex items-center gap-2.5 border-b border-slate-100 dark:border-slate-800 pb-3.5">
+            <BookOpen className="w-5 h-5 text-[#0D9488]" />
+            <h2 className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
               {displayName} Unit Definitions &amp; Symbols
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {units.map((unit) => (
               <div
                 key={unit.id}
-                className="p-3.5 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-[#F7F9FC] dark:bg-slate-950/50 space-y-1"
+                className="p-4 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-[#F7F9FC] dark:bg-slate-950/50 space-y-1.5"
               >
                 <div className="flex items-center justify-between gap-2">
-                  <h3 className="text-sm font-bold text-[#16324F] dark:text-white">
+                  <h3 className="text-base sm:text-[17px] font-bold text-[#16324F] dark:text-white">
                     {unit.name} ({unit.symbol})
                   </h3>
                   {unit.system && (
-                    <span className="text-[11px] font-mono text-[#0D9488] dark:text-[#2DD4BF] font-semibold">
+                    <span className="text-xs font-mono text-[#0D9488] dark:text-[#2DD4BF] font-semibold">
                       {unit.system.replace("_", " ").toUpperCase()}
                     </span>
                   )}
                 </div>
                 {unit.description && (
-                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <p className="text-sm sm:text-[15px] text-slate-600 dark:text-slate-300 leading-relaxed">
                     {unit.description}
                   </p>
                 )}

@@ -8,11 +8,10 @@ import { DEFAULT_OG_IMAGE } from "@/lib/seo";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.baseUrl),
   title: {
-    default: "UnitConvertersGo — Universal Unit Converter",
+    default: SITE_CONFIG.homepageTitle,
     template: "%s | UnitConvertersGo",
   },
-  description:
-    "Fast, accurate unit conversion platform calculating length, mass, temperature, volume, digital storage, and 78 measurement categories in real time.",
+  description: SITE_CONFIG.description,
   authors: [{ name: SITE_CONFIG.author }],
   creator: SITE_CONFIG.author,
   publisher: SITE_CONFIG.name,
@@ -44,16 +43,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: SITE_CONFIG.baseUrl,
     siteName: SITE_CONFIG.name,
-    title: "UnitConvertersGo — Universal Unit Converter",
-    description:
-      "Fast, accurate unit conversion platform calculating length, mass, temperature, volume, digital storage, and 78 measurement categories in real time.",
+    title: SITE_CONFIG.homepageTitle,
+    description: SITE_CONFIG.description,
     images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "UnitConvertersGo — Universal Unit Converter",
-    description:
-      "Fast, accurate unit conversion platform calculating length, mass, temperature, volume, digital storage, and 78 measurement categories in real time.",
+    title: SITE_CONFIG.homepageTitle,
+    description: SITE_CONFIG.description,
     images: [DEFAULT_OG_IMAGE.url],
   },
 };
@@ -138,14 +135,22 @@ const themeInitScript = `
   } catch (e) {}
 
   try {
+    function isHydrationNoiseStr(str) {
+      if (!str || typeof str !== 'string') return false;
+      return (
+        str.indexOf("A tree hydrated but some attributes of the server rendered HTML didn't match") !== -1 ||
+        str.indexOf("Hydration failed because the server rendered") !== -1 ||
+        str.indexOf("didn't match the client. As a result this tree will be regenerated on the client") !== -1 ||
+        str.indexOf("There was an error while hydrating") !== -1 ||
+        str.indexOf("Text content does not match server-rendered HTML") !== -1 ||
+        str.indexOf("https://react.dev/link/hydration-mismatch") !== -1
+      );
+    }
     function isHydrationAttrNoise(args) {
       for (var i = 0; i < args.length; i++) {
         var arg = args[i];
         var str = typeof arg === 'string' ? arg : (arg && typeof arg.message === 'string' ? arg.message : '');
-        if (str && (
-          str.indexOf("A tree hydrated but some attributes of the server rendered HTML didn't match") !== -1 ||
-          str.indexOf("https://react.dev/link/hydration-mismatch") !== -1
-        )) {
+        if (isHydrationNoiseStr(str)) {
           return true;
         }
       }
@@ -167,6 +172,34 @@ const themeInitScript = `
       get: function() { return currentError; },
       set: function(newFn) { currentError = wrapErrorFn(newFn); }
     });
+    if (typeof WeakMap !== 'undefined') {
+      var recMap = new WeakMap();
+      Object.defineProperty(Object.prototype, 'onRecoverableError', {
+        configurable: true,
+        enumerable: false,
+        get: function() {
+          return recMap.get(this);
+        },
+        set: function(fn) {
+          recMap.set(this, wrapErrorFn(fn));
+        }
+      });
+    }
+    window.addEventListener('error', function(event) {
+      var msg = (event && event.message) || (event && event.error && event.error.message) || '';
+      if (isHydrationNoiseStr(msg)) {
+        event.stopImmediatePropagation();
+        event.preventDefault();
+      }
+    }, true);
+    window.addEventListener('unhandledrejection', function(event) {
+      var reason = event && event.reason;
+      var msg = typeof reason === 'string' ? reason : (reason && typeof reason.message === 'string' ? reason.message : '');
+      if (isHydrationNoiseStr(msg)) {
+        event.stopImmediatePropagation();
+        event.preventDefault();
+      }
+    }, true);
   } catch (e) {}
 })();
 `;

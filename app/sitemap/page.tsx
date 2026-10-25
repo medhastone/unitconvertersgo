@@ -10,9 +10,8 @@ import SitemapDirectoryClient from "@/components/SitemapDirectoryClient";
 import TrustedSourcesSection from "@/components/TrustedSourcesSection";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Complete HTML Sitemap — 78+ Unit Converters",
-  description:
-    "Complete HTML sitemap for UnitConvertersGo organized into Common, Engineering, Heat, Fluids, Light, Electricity, Magnetism, Radiology, and Specialty unit converters.",
+  title: `Complete HTML Sitemap — ${CATEGORIES.length} Categories`,
+  description: `Complete HTML sitemap for UnitConvertersGo covering ${CATEGORIES.length} measurement categories and ${CONVERSION_CATALOGUE.length} unit conversion calculators.`,
   canonicalPath: "/sitemap",
 });
 
@@ -86,11 +85,11 @@ export default function HtmlSitemapPage() {
             <Map className="w-3.5 h-3.5" />
             <span>9 Super-Categories</span>
             <span aria-hidden="true">•</span>
-            <span>{CATEGORIES.length + 1} Converters</span>
+            <span>{CATEGORIES.length} Categories</span>
             <span aria-hidden="true">•</span>
-            <span>{UNITS.length}+ Units</span>
+            <span>{UNITS.length} Units</span>
             <span aria-hidden="true">•</span>
-            <span>{CONVERSION_CATALOGUE.length}+ Dedicated Pair Pages</span>
+            <span>{CONVERSION_CATALOGUE.length} Converters</span>
           </div>
 
           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#16324F] dark:text-white">

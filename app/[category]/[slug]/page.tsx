@@ -45,8 +45,15 @@ import { getTrustedReferencesForPair } from "@/lib/conversions/references";
 import { generateEditorialContentBundle } from "@/lib/conversions/editorial";
 import { generateLiveSolution } from "@/lib/conversions/solver";
 import { SITE_CONFIG } from "@/lib/config";
-import { buildPageMetadata, isObscureConversionPair } from "@/lib/seo";
+import {
+  buildPageMetadata,
+  buildStandardToolTitle,
+  buildStandardToolDescription,
+  getCategoryOgImage,
+  isObscureConversionPair,
+} from "@/lib/seo";
 import { ConversionPairInfo } from "@/lib/conversions/types";
+import { resolveInvalidPairRedirect } from "@/lib/conversions/cooking";
 
 interface HierarchicalConversionPageProps {
   params: Promise<{
@@ -66,6 +73,9 @@ export async function generateMetadata({
   params,
 }: HierarchicalConversionPageProps): Promise<Metadata> {
   const { category: rawCat, slug } = await params;
+  if (resolveInvalidPairRedirect(rawCat, slug)) {
+    return {};
+  }
   const categoryIdHint = resolveCategoryIdFromUrlSlug(rawCat);
   const pair = getConversionPair(slug, categoryIdHint);
   if (!pair) return {};
@@ -73,17 +83,17 @@ export async function generateMetadata({
   const canonicalPath = getPairUrl(pair);
   const fromUnit = UNIT_MAP.get(pair.fromUnitId);
   const toUnit = UNIT_MAP.get(pair.toUnitId);
-  const baseTitle =
-    fromUnit && toUnit
-      ? `${fromUnit.plural.replace(/\s+\([^)]*\)/g, "").trim()} to ${toUnit.plural.replace(/\s+\([^)]*\)/g, "").trim()} Converter`
-      : pair.title;
+  const standardTitle = buildStandardToolTitle(pair, fromUnit, toUnit);
+  const standardDescription = buildStandardToolDescription(pair, fromUnit, toUnit);
 
   return buildPageMetadata({
-    title: baseTitle,
-    description: pair.metaDescription,
+    title: standardTitle,
+    description: standardDescription,
     canonicalPath,
     type: "website",
     noindex: isObscureConversionPair(pair),
+    categoryId: pair.categoryId,
+    useExactTitle: true,
   });
 }
 
@@ -91,6 +101,11 @@ export default async function HierarchicalConversionPage({
   params,
 }: HierarchicalConversionPageProps) {
   const { category: rawCat, slug } = await params;
+  const invalidRedirectTarget = resolveInvalidPairRedirect(rawCat, slug);
+  if (invalidRedirectTarget) {
+    permanentRedirect(invalidRedirectTarget);
+  }
+
   const categoryIdHint = resolveCategoryIdFromUrlSlug(rawCat);
   const pair = getConversionPair(slug, categoryIdHint);
 
@@ -197,12 +212,17 @@ export default async function HierarchicalConversionPage({
     ],
   };
 
+  const standardTitle = buildStandardToolTitle(pair, fromUnit, toUnit);
+  const standardDescription = buildStandardToolDescription(pair, fromUnit, toUnit);
+  const categoryOgImg = getCategoryOgImage(pair.categoryId, standardTitle);
+
   const articleAndAppJsonLd = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
-    headline: pair.title,
-    description: pair.metaDescription,
+    headline: standardTitle,
+    description: standardDescription,
     url: `${SITE_CONFIG.baseUrl}${canonicalPath}`,
+    image: categoryOgImg.url,
     publisher: {
       "@type": "Organization",
       name: SITE_CONFIG.name,
@@ -253,11 +273,18 @@ export default async function HierarchicalConversionPage({
   const webAppJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: pair.title,
+    name: standardTitle,
     applicationCategory: "UtilityApplication",
     operatingSystem: "All",
     url: `${SITE_CONFIG.baseUrl}${canonicalPath}`,
-    description: pair.metaDescription,
+    description: standardDescription,
+    image: categoryOgImg.url,
+    isPartOf: {
+      "@type": "WebSite",
+      "@id": `${SITE_CONFIG.baseUrl}/#website`,
+      name: SITE_CONFIG.name,
+      url: SITE_CONFIG.baseUrl,
+    },
     offers: {
       "@type": "Offer",
       price: "0",
@@ -323,7 +350,7 @@ export default async function HierarchicalConversionPage({
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
           <nav
             aria-label="Breadcrumbs"
-            className="flex flex-wrap items-center gap-1.5 text-xs sm:text-sm text-slate-500 dark:text-slate-400 shrink-0"
+            className="flex flex-wrap items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400 shrink-0"
           >
             <Link
               href="/"
@@ -333,7 +360,7 @@ export default async function HierarchicalConversionPage({
               Home
             </Link>
             <ChevronRight
-              className="w-3.5 h-3.5 text-slate-400 shrink-0"
+              className="w-4 h-4 text-slate-400 shrink-0"
               aria-hidden="true"
             />
             <Link
@@ -344,7 +371,7 @@ export default async function HierarchicalConversionPage({
               {category.name} Converter
             </Link>
             <ChevronRight
-              className="w-3.5 h-3.5 text-slate-400 shrink-0"
+              className="w-4 h-4 text-slate-400 shrink-0"
               aria-hidden="true"
             />
             <span className="text-[#16324F] dark:text-white font-bold">
@@ -401,11 +428,11 @@ export default async function HierarchicalConversionPage({
                 <ArrowLeftRight className="w-7 h-7 stroke-[2.2]" />
               )}
             </div>
-            <div className="space-y-1">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-[#16324F] dark:text-white">
+            <div className="space-y-1.5">
+              <h1 className="text-[26px] sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#16324F] dark:text-white leading-tight">
                 {editorial.h1}
               </h1>
-              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-base sm:text-[17px] text-slate-600 dark:text-slate-300 leading-relaxed">
                 {editorial.subheading}
               </p>
             </div>
@@ -430,7 +457,7 @@ export default async function HierarchicalConversionPage({
               <Link
                 href={getPairUrl(reciprocalPair)}
                 prefetch={false}
-                className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#16324F] dark:text-slate-200 bg-white dark:bg-slate-900 hover:border-[#0D9488] border border-slate-200/90 dark:border-slate-800 px-3.5 py-2 rounded-xl shadow-2xs transition-all group"
+                className="inline-flex items-center gap-2 text-sm font-bold text-[#16324F] dark:text-slate-200 bg-white dark:bg-slate-900 hover:border-[#0D9488] border border-slate-200/90 dark:border-slate-800 px-4 py-2.5 rounded-xl shadow-2xs transition-all group"
               >
                 <ArrowLeftRight className="w-4 h-4 text-[#0D9488] group-hover:rotate-180 transition-transform duration-300" />
                 <span>

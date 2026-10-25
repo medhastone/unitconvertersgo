@@ -11,7 +11,7 @@ import {
   Zap,
   Sparkles,
 } from "lucide-react";
-import { UNITS } from "@/lib/conversions/units";
+import { CATEGORIES, UNITS } from "@/lib/conversions/units";
 import {
   CONVERSION_CATALOGUE,
   getPairUrl,
@@ -311,7 +311,7 @@ export default function HeroSearch() {
             {results.categories.length > 0 && (
               <div className="pt-1 border-t border-slate-100 dark:border-slate-800">
                 <div className="px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-                  Categories (78 Total)
+                  Categories ({CATEGORIES.length} Total)
                 </div>
                 <div className="mt-1 flex flex-wrap gap-1.5 px-2">
                   {results.categories.map((cat) => (
@@ -377,7 +377,7 @@ export default function HeroSearch() {
 
           <div className="px-3.5 py-2 bg-[#F7F9FC] dark:bg-slate-950 border-t border-slate-200/80 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-500">
             <span>
-              Search across 78 categories, {CONVERSION_CATALOGUE.length} pairs &amp;{" "}
+              Search across {CATEGORIES.length} categories, {CONVERSION_CATALOGUE.length} pairs &amp;{" "}
               {UNITS.length} units
             </span>
             <span className="inline-flex items-center gap-1 font-medium text-[#16324F] dark:text-slate-300">

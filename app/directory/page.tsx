@@ -10,9 +10,8 @@ import AllConvertersDirectoryClient from "@/components/AllConvertersDirectoryCli
 import TrustedSourcesSection from "@/components/TrustedSourcesSection";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "All Unit Converters Directory",
-  description:
-    "Browse conversion tools by measurement category or find a specific unit conversion across Length, Weight & Mass, Temperature, Area, Volume, Speed, Time, Pressure, Energy, and Power.",
+  title: `All ${CATEGORIES.length} Unit Conversion Categories`,
+  description: `Browse ${CONVERSION_CATALOGUE.length} unit conversion calculators across ${CATEGORIES.length} measurement categories including Length, Weight, Temperature, Volume, Area, and Speed.`,
   canonicalPath: "/directory",
 });
 
