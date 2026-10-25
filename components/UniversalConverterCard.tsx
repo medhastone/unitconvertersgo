@@ -9,8 +9,8 @@ import {
   RotateCcw,
   Zap,
   ArrowRight,
-  Ruler,
   Code2,
+  ChevronDown,
 } from "lucide-react";
 import { CATEGORIES, CATEGORY_MAP, getUnitsByCategory, UNIT_MAP } from "@/lib/conversions/units";
 import {
@@ -229,7 +229,7 @@ export default function UniversalConverterCard({
       {/* Row 1: Category Dropdown + Numeric Input (2 columns on mobile & desktop) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         {/* Category Selector */}
-        <div className="space-y-1.5">
+        <div className="space-y-1.5 min-w-0">
           <label
             htmlFor="all-category-select"
             className="block text-sm font-semibold text-slate-700 dark:text-slate-300"
@@ -237,53 +237,62 @@ export default function UniversalConverterCard({
             Category
           </label>
           <div className="relative">
-            <Ruler
-              className="w-4 h-4 text-[#16324F] dark:text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
-              aria-hidden="true"
-            />
             {isLockedCategory ? (
               <div
                 id="all-category-select"
-                className="w-full min-h-[48px] pl-10 pr-3.5 py-2.5 text-base font-bold rounded-xl border border-slate-200 dark:border-slate-700 bg-[#F7F9FC] dark:bg-slate-800 text-[#16324F] dark:text-white flex items-center"
+                className="w-full min-h-[48px] px-3.5 py-2.5 text-base font-bold rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-[#16324F] dark:text-white flex items-center shadow-2xs"
               >
                 {CATEGORY_MAP.get(categoryId)?.name || "Length"}
               </div>
             ) : (
-              <select
-                suppressHydrationWarning
-                id="all-category-select"
-                value={categoryId}
-                onChange={(e) => handleCategoryChange(e.target.value)}
-                className="w-full min-h-[48px] pl-10 pr-8 py-2.5 text-base font-bold rounded-xl border border-slate-200/90 dark:border-slate-700 bg-white dark:bg-slate-950 text-[#16324F] dark:text-white focus:outline-hidden focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 cursor-pointer shadow-2xs"
-              >
-                {CATEGORIES.map((c) => (
-                  <option
-                    key={c.id}
-                    value={c.id}
-                    className="bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100"
-                  >
-                    {c.id === "mass"
-                      ? "Weight & Mass"
-                      : c.id === "digital_storage"
-                      ? "Data Storage"
-                      : c.id === "volume"
-                      ? "Volume"
-                      : c.name}
-                  </option>
-                ))}
-              </select>
+              <>
+                <select
+                  suppressHydrationWarning
+                  id="all-category-select"
+                  value={categoryId}
+                  onChange={(e) => handleCategoryChange(e.target.value)}
+                  className="w-full min-h-[48px] pl-3.5 pr-9 py-2.5 text-base font-bold rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-[#16324F] dark:text-white focus:outline-hidden focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 cursor-pointer shadow-2xs appearance-none truncate transition-colors"
+                >
+                  {CATEGORIES.map((c) => (
+                    <option
+                      key={c.id}
+                      value={c.id}
+                      className="bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100"
+                    >
+                      {c.id === "mass"
+                        ? "Weight & Mass"
+                        : c.id === "digital_storage"
+                        ? "Data Storage"
+                        : c.id === "volume"
+                        ? "Volume"
+                        : c.name}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown
+                  className="w-4 h-4 text-slate-400 dark:text-slate-500 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"
+                  aria-hidden="true"
+                />
+              </>
             )}
           </div>
         </div>
 
         {/* Numeric Value Input */}
-        <div className="space-y-1.5">
-          <label
-            htmlFor="converter-input-value"
-            className="block text-sm font-semibold text-slate-700 dark:text-slate-300"
-          >
-            Enter value
-          </label>
+        <div className="space-y-1.5 min-w-0">
+          <div className="flex items-center justify-between">
+            <label
+              htmlFor="converter-input-value"
+              className="block text-sm font-semibold text-slate-700 dark:text-slate-300"
+            >
+              Enter value
+            </label>
+            {UNIT_MAP.get(fromUnitId)?.symbol && (
+              <span className="text-xs font-mono font-semibold text-[#0D9488] dark:text-[#2DD4BF]">
+                {UNIT_MAP.get(fromUnitId)?.symbol}
+              </span>
+            )}
+          </div>
           <div className="relative">
             <input
               suppressHydrationWarning
@@ -295,7 +304,7 @@ export default function UniversalConverterCard({
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               placeholder="1"
-              className="w-full min-h-[48px] px-4 py-2.5 text-lg sm:text-xl font-extrabold rounded-xl border border-slate-200/90 dark:border-slate-700 bg-white dark:bg-slate-950 text-[#16324F] dark:text-white focus:outline-hidden focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 tabular-nums shadow-2xs transition-all"
+              className="w-full min-h-[48px] px-3.5 py-2.5 text-lg sm:text-xl font-extrabold rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-[#16324F] dark:text-white focus:outline-hidden focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 tabular-nums shadow-2xs transition-all [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               aria-label={`Enter ${UNIT_MAP.get(fromUnitId)?.name || "source"} value to convert`}
             />
           </div>
@@ -312,23 +321,29 @@ export default function UniversalConverterCard({
           >
             From
           </label>
-          <select
-            suppressHydrationWarning
-            id="from-unit-select"
-            value={fromUnitId}
-            onChange={(e) => setFromUnitId(e.target.value)}
-            className="w-full min-h-[48px] px-3 sm:px-3.5 py-2.5 text-base font-bold rounded-xl border border-slate-200/90 dark:border-slate-700 bg-white dark:bg-slate-950 text-[#16324F] dark:text-white focus:outline-hidden focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 cursor-pointer shadow-2xs truncate"
-          >
-            {unitsInCategory.map((u) => (
-              <option
-                key={u.id}
-                value={u.id}
-                className="bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100"
-              >
-                {u.name} ({u.symbol})
-              </option>
-            ))}
-          </select>
+          <div className="relative">
+            <select
+              suppressHydrationWarning
+              id="from-unit-select"
+              value={fromUnitId}
+              onChange={(e) => setFromUnitId(e.target.value)}
+              className="w-full min-h-[48px] pl-3.5 pr-8 py-2.5 text-base font-bold rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-[#16324F] dark:text-white focus:outline-hidden focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 cursor-pointer shadow-2xs truncate appearance-none transition-colors"
+            >
+              {unitsInCategory.map((u) => (
+                <option
+                  key={u.id}
+                  value={u.id}
+                  className="bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100"
+                >
+                  {u.name} ({u.symbol})
+                </option>
+              ))}
+            </select>
+            <ChevronDown
+              className="w-4 h-4 text-slate-400 dark:text-slate-500 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none"
+              aria-hidden="true"
+            />
+          </div>
         </div>
 
         {/* Large Accessible Swap Button (>= 44x44px touch target) */}
@@ -336,7 +351,7 @@ export default function UniversalConverterCard({
           suppressHydrationWarning
           type="button"
           onClick={handleSwap}
-          className={`min-w-[44px] min-h-[48px] px-3 rounded-xl bg-[#0D9488]/12 hover:bg-[#0D9488] dark:bg-[#0D9488]/20 dark:hover:bg-[#0D9488] text-[#16324F] hover:text-white dark:text-[#2DD4BF] dark:hover:text-slate-950 flex items-center justify-center transition-all duration-150 cursor-pointer shrink-0 ${
+          className={`min-w-[44px] min-h-[48px] px-3 rounded-xl bg-[#0D9488]/10 hover:bg-[#0D9488] dark:bg-[#0D9488]/20 dark:hover:bg-[#0D9488] text-[#0D9488] hover:text-white dark:text-[#2DD4BF] dark:hover:text-slate-950 border border-[#0D9488]/30 flex items-center justify-center transition-all duration-150 cursor-pointer shrink-0 ${
             isSwapping ? "rotate-180 scale-95" : ""
           }`}
           title="Swap From and To units"
@@ -353,23 +368,29 @@ export default function UniversalConverterCard({
           >
             To
           </label>
-          <select
-            suppressHydrationWarning
-            id="to-unit-select"
-            value={toUnitId}
-            onChange={(e) => setToUnitId(e.target.value)}
-            className="w-full min-h-[48px] px-3 sm:px-3.5 py-2.5 text-base font-bold rounded-xl border border-slate-200/90 dark:border-slate-700 bg-white dark:bg-slate-950 text-[#16324F] dark:text-white focus:outline-hidden focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 cursor-pointer shadow-2xs truncate"
-          >
-            {unitsInCategory.map((u) => (
-              <option
-                key={u.id}
-                value={u.id}
-                className="bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100"
-              >
-                {u.name} ({u.symbol})
-              </option>
-            ))}
-          </select>
+          <div className="relative">
+            <select
+              suppressHydrationWarning
+              id="to-unit-select"
+              value={toUnitId}
+              onChange={(e) => setToUnitId(e.target.value)}
+              className="w-full min-h-[48px] pl-3.5 pr-8 py-2.5 text-base font-bold rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-[#16324F] dark:text-white focus:outline-hidden focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 cursor-pointer shadow-2xs truncate appearance-none transition-colors"
+            >
+              {unitsInCategory.map((u) => (
+                <option
+                  key={u.id}
+                  value={u.id}
+                  className="bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100"
+                >
+                  {u.name} ({u.symbol})
+                </option>
+              ))}
+            </select>
+            <ChevronDown
+              className="w-4 h-4 text-slate-400 dark:text-slate-500 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none"
+              aria-hidden="true"
+            />
+          </div>
         </div>
       </div>
 
@@ -450,7 +471,7 @@ export default function UniversalConverterCard({
         <button
           type="button"
           onClick={handleReset}
-          className="min-h-[46px] px-4 py-2.5 rounded-xl border border-slate-200/90 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-[#F7F9FC] dark:hover:bg-slate-700 text-sm font-bold text-[#16324F] dark:text-white inline-flex items-center justify-center gap-2 transition-colors cursor-pointer"
+          className="min-h-[46px] px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-[#F7F9FC] dark:hover:bg-slate-700 text-sm font-bold text-[#16324F] dark:text-white inline-flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-2xs"
         >
           <RotateCcw className="w-4 h-4 text-slate-600 dark:text-slate-300" />
           <span>Reset</span>

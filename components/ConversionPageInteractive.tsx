@@ -352,27 +352,27 @@ export default function ConversionPageInteractive({
   useEffect(() => {
     if (typeof window === "undefined") return;
     const mql = window.matchMedia("(min-width: 768px)");
-    if (mql.matches) {
-      setIsDesktopViewport(true);
-    }
     const handleMediaChange = (e: MediaQueryListEvent) => {
       setIsDesktopViewport(e.matches);
     };
     mql.addEventListener("change", handleMediaChange);
 
-    const syncFromUrl = () => {
+    const syncState = () => {
+      if (mql.matches) {
+        setIsDesktopViewport(true);
+      }
       const params = new URLSearchParams(window.location.search);
       const qVal = params.get("value");
       if (qVal && Number.isFinite(parseFloat(qVal))) {
         setInputStr((prev) => (prev === qVal ? prev : qVal));
       }
     };
-    const rafId = window.requestAnimationFrame(syncFromUrl);
-    window.addEventListener("popstate", syncFromUrl);
+    const rafId = window.requestAnimationFrame(syncState);
+    window.addEventListener("popstate", syncState);
     return () => {
       mql.removeEventListener("change", handleMediaChange);
       window.cancelAnimationFrame(rafId);
-      window.removeEventListener("popstate", syncFromUrl);
+      window.removeEventListener("popstate", syncState);
     };
   }, []);
 
