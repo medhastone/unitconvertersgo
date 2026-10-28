@@ -17,6 +17,7 @@ const nextConfig = (phase: string): NextConfig => {
   typescript: {
     ignoreBuildErrors: false,
   },
+  htmlLimitedBots: /.*/,
   experimental: {
     optimizePackageImports: ['lucide-react'],
   },

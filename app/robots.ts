@@ -6,7 +6,22 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: ["Googlebot-Image", "Google-Favicon"],
-        allow: ["/", "/_next/image", "/_next/static/", "/favicon.ico", "/logo.png", "/logo.webp", "/icon.webp"],
+        allow: [
+          "/",
+          "/_next/image",
+          "/_next/static/",
+          "/favicon.ico",
+          "/favicon-48x48.png",
+          "/favicon-96x96.png",
+          "/favicon-144x144.png",
+          "/apple-touch-icon.png",
+          "/icon-192.png",
+          "/icon-512.png",
+          "/icon.webp",
+          "/logo.png",
+          "/logo.webp",
+          "/manifest.webmanifest",
+        ],
       },
       {
         userAgent: "*",
