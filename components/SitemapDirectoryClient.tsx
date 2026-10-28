@@ -604,6 +604,12 @@ export default function SitemapDirectoryClient() {
                 icon: <Code2 className="w-3.5 h-3.5 text-[#0D9488] shrink-0" />,
               },
               {
+                href: "/chrome-extension",
+                label: "Chrome Extension (Toolbar Calculator)",
+                badge: "Extension",
+                icon: <Sparkles className="w-3.5 h-3.5 text-[#0D9488] shrink-0" />,
+              },
+              {
                 href: "/about",
                 label: "About UnitConvertersGo",
                 badge: "Company",

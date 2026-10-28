@@ -50,7 +50,6 @@ import {
   buildStandardToolTitle,
   buildStandardToolDescription,
   getCategoryOgImage,
-  isObscureConversionPair,
 } from "@/lib/seo";
 import { ConversionPairInfo } from "@/lib/conversions/types";
 import { resolveInvalidPairRedirect } from "@/lib/conversions/cooking";
@@ -91,7 +90,7 @@ export async function generateMetadata({
     description: standardDescription,
     canonicalPath,
     type: "website",
-    noindex: isObscureConversionPair(pair),
+    noindex: false,
     categoryId: pair.categoryId,
     useExactTitle: true,
   });

@@ -533,11 +533,6 @@ export default function ConversionPageInteractive({
   const handleSelectValue = (val: number, scrollToConverter = false) => {
     setInputStr(String(val));
     if (scrollToConverter && typeof window !== "undefined") {
-      const targetUrl = `${window.location.pathname}?value=${encodeURIComponent(
-        String(val)
-      )}#converter-tool-section`;
-      window.history.replaceState(null, "", targetUrl);
-
       const converterEl = document.getElementById("converter-tool-section");
       if (converterEl) {
         converterEl.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1575,18 +1570,15 @@ export default function ConversionPageInteractive({
                             {row.inputLabel}
                           </td>
                           <td className="py-3 px-4 font-bold text-[#0D9488] dark:text-[#2DD4BF]">
-                            <a
-                              href={`?value=${encodeURIComponent(
-                                String(row.input)
-                              )}#converter-tool-section`}
+                            <button
+                              type="button"
                               onClick={(e) => {
-                                e.preventDefault();
                                 e.stopPropagation();
                                 handleSelectValue(row.input, true);
                               }}
                               title={`Convert preset value ${row.inputLabel} in calculator`}
                               aria-label={`Convert preset value ${row.inputLabel} in calculator`}
-                              className="flex items-center justify-between gap-2 w-full font-bold text-[#0D9488] dark:text-[#2DD4BF] cursor-pointer"
+                              className="flex items-center justify-between gap-2 w-full text-left font-bold text-[#0D9488] dark:text-[#2DD4BF] cursor-pointer"
                             >
                               <span>{row.formatted6}</span>
                               <span
@@ -1599,7 +1591,7 @@ export default function ConversionPageInteractive({
                               >
                                 →
                               </span>
-                            </a>
+                            </button>
                           </td>
                         </tr>
                       );

@@ -268,6 +268,12 @@ export default function Navbar() {
               <Code2 className="w-4 h-4" />
               <span>Widgets</span>
             </Link>
+            <Link
+              href="/chrome-extension"
+              className="hover:text-[#16324F] dark:hover:text-white transition-colors whitespace-nowrap shrink-0 py-2"
+            >
+              Extension
+            </Link>
           </nav>
 
           {/* Zone 3: Search Icon/Button + Theme Toggle + Mobile Menu Button (All >= 44x44px touch targets) */}
@@ -415,6 +421,15 @@ export default function Navbar() {
             >
               <span>Calculator Widgets (Embed)</span>
               <ChevronRight className="w-4 h-4 text-[#0D9488] dark:text-[#2DD4BF]" />
+            </Link>
+
+            <Link
+              href="/chrome-extension"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center justify-between px-3 py-3 min-h-[44px] rounded-xl text-sm font-bold text-[#16324F] dark:text-slate-100 hover:bg-[#F7F9FC] dark:hover:bg-slate-800 transition-colors"
+            >
+              <span>Chrome Extension (Toolbar Calculator)</span>
+              <ChevronRight className="w-4 h-4 text-slate-400" />
             </Link>
           </nav>
         )}

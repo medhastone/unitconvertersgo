@@ -27,6 +27,9 @@ export default function robots(): MetadataRoute.Robots {
         ],
         disallow: [
           "/search?*",
+          "/embed/",
+          "/*?value=*",
+          "/*?val=*",
           "/*?q=*",
           "/*?search=*",
           "/*?filter=*",

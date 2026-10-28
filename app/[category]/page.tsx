@@ -36,7 +36,6 @@ import { SITE_CONFIG } from "@/lib/config";
 import {
   buildPageMetadata,
   getCategoryOgImage,
-  OBSCURE_SCIENTIFIC_CATEGORY_IDS,
 } from "@/lib/seo";
 import { ConversionPairInfo } from "@/lib/conversions/types";
 
@@ -1946,7 +1945,7 @@ export async function generateMetadata({
     description,
     canonicalPath: canonicalCategoryPath,
     categoryId: category.id,
-    noindex: OBSCURE_SCIENTIFIC_CATEGORY_IDS.has(category.id),
+    noindex: false,
   });
 }
 

@@ -1,51 +1,58 @@
-# Mobile PageSpeed Insights (PSI) Optimization Plan
+# UnitConvertersGo Chrome Extension Page Plan (`/chrome-extension`)
 
-## 1. Objective
-Resolve all Mobile PageSpeed Insights bottlenecks identified on `/speed/kph-to-meters-per-second` and sitewide across `unitconvertersgo.com` while preserving the existing desktop layout and performance:
-- **Eliminate Render-Blocking Google Fonts (~750 ms + 415 ms critical path chain)** & **Reduce LCP Element Render Delay (1,280 ms)**.
-- **Fix Cumulative Layout Shift (CLS: 0.052)** caused by the header logo `<Image>` and font swap metric shifts.
-- **Reduce Mobile DOM Size (from 1,479 elements to <700 on initial load)** & **Main-Thread Hydration / Forced Reflows (42 ms)** using compact mobile row limits with an instant expand toggle and CSS `content-visibility: auto` on below-the-fold sections.
-- **Remove Legacy JavaScript Polyfills (~12 KiB savings)** by targeting modern Baseline browsers (`Array.prototype.at`, `flat`, `flatMap`, `Object.fromEntries`, `Object.hasOwn`, `String.prototype.trimStart/trimEnd`).
+## Overview
+Create a dedicated, SEO-optimized **Chrome Extension** landing page at `/chrome-extension` with an interactive browser toolbar popup simulator, an interactive right-click context menu demonstration, a downloadable Manifest V3 unpacked extension package, complete feature and 31-category breakdowns, privacy/permission guarantees, and sitewide navigation links in the Navbar, Footer, and Sitemap.
 
 ---
 
-## 2. Root Cause Analysis & Architecture Changes
+## Key Features & Architecture
 
-### A. Self-Host Fonts via `next/font/google` (`/app/layout.tsx` & `/app/globals.css`)
-- **Problem**: `/app/layout.tsx` currently injects a render-blocking `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />` tag in `<head>`, adding a 750 ms CSS request plus 415 ms chained `.woff2` downloads before the `<h1>` LCP element can render.
-- **Solution**:
-  - Replace the external Google Fonts `<link>` and `<link rel="preconnect">` tags with `Plus_Jakarta_Sans` and `JetBrains_Mono` from `next/font/google` configured with `display: 'swap'`, `preload: true`, and CSS variables (`--font-jakarta` and `--font-mono`).
-  - Bind `--font-sans: var(--font-jakarta)` and `--font-mono: var(--font-mono)` in `/app/globals.css` so fonts are self-hosted from the same origin with automatic `size-adjust` fallback metrics (zero font-induced CLS and zero third-party font network latency).
+### 1. Chrome Extension Page & SEO (`app/chrome-extension/page.tsx`)
+- **Metadata & Structured Data**:
+  - Standardized SEO title, meta description with CTA, canonical URL (`/chrome-extension`), OpenGraph/Twitter social card metadata, and JSON-LD (`BreadcrumbList` + `SoftwareApplication` with `applicationCategory: "BrowserApplication"` and free offer schema).
+- **Hero Section**:
+  - Clear headline, tagline, and exact product overview: *"UnitConvertersGo is a fast, simple unit calculator for your browser toolbar. Pick two units, type a number, and see the answer instantly. No sign-up and no internet connection needed."*
+  - Primary **Add to Chrome** CTA button alongside a **Download Unpacked Extension** action and `Alt+U` shortcut callout.
 
-### B. Fix Header Logo CLS & Forced Reflow (`/components/Navbar.tsx`)
-- **Problem**:
-  - PSI flagged `<img alt="UnitConvertersGo" width="290" height="48" class="h-9 sm:h-10 md:h-10 lg:h-12 w-auto ...">` as an unsized/shifting image contributing `0.052` CLS to the `<h2 class="text-xl sm:text-2xl font-extrabold...">` below the header.
-  - `NavbarSearchPlaceholder` starts a typewriter state timer immediately on mount.
-- **Solution**:
-  - Wrap the logo `<Image>` in a fixed-dimension/aspect-ratio container (`w-[180px] h-9 sm:w-[205px] sm:h-10 lg:w-[240px] lg:h-12`) with explicit `sizes="(max-width: 640px) 180px, (max-width: 1024px) 205px, 240px"` and `priority` so the browser reserves exact layout space before the image decodes.
-  - Reserve fixed heights on the mobile search bar and top navigation row so hydration never shifts elements below `<header>`.
+### 2. Interactive Toolbar Popup Simulator & Right-Click Demo (`components/ChromeExtensionPageClient.tsx`)
+- **Live Browser Extension Popup Simulator**:
+  - **Quick Search Box**: Type natural queries such as `"5 km to miles"`, `"72 f in c"`, or `"10 kg to lbs"` for instant answers.
+  - **Category & Unit Picker**: Choose a category, enter any number, and pick source/target units with live calculation as you type.
+  - **One-Click Copy**: Copy the formatted result to the clipboard immediately.
+  - **Last 5 Conversions History**: Automatically remembers and displays your last 5 conversions with one-click reload.
+  - **Popup Theme & Decimal Controls**: Toggle the simulated popup between Light and Dark themes and adjust decimal places (`Auto`, `2`, `4`, `6`).
+  - **Website Deep-Link**: Every conversion result includes a direct link to the matching detailed page on `unitconvertersgo.com` (opening in a new tab).
+- **Interactive Right-Click Context Menu Demo**:
+  - Lets visitors click or highlight sample webpage snippets (e.g., `"10 kg"`, `"5 km"`, `"72 °F"`, `"250 mL"`) to preview the browser right-click context menu converting the selected value in place.
+- **Unpacked Extension Package Download**:
+  - Allows users or reviewers to download a ready-to-load Manifest V3 Chrome extension bundle (`manifest.json`, `popup.html`, `popup.js`, `background.js`) directly from the page.
 
-### C. Reduce Mobile Initial DOM Size & Hydration Work (`/components/ConversionPageInteractive.tsx` & `/components/ContinuousConversionChart.tsx`)
-- **Problem**:
-  - Tool pages render 1,479 DOM nodes on initial paint because reference tables, multi-unit conversion grids, 30+ related converter links, and 8+ FAQ items all render expanded on mobile.
-  - Hydration of all below-the-fold interactive nodes causes two long main-thread tasks (102 ms and 70 ms) and a 42 ms forced reflow.
-- **Solution (Mobile-Only Compact View + Desktop Unchanged)**:
-  - **Quick Reference Table & Continuous Chart**: On mobile viewports, show the first 10 rows initially with a clean **"Show All Rows"** toggle button (while keeping the full table visible on desktop `md:` viewports or when expanded).
-  - **Related Converters & Category Grids**: On mobile, display the top 8 most relevant links initially with a **"Show All Converters"** expand toggle so hundreds of nested `<a><span><svg><path>` nodes are not mounted until requested on mobile.
-  - **Below-the-Fold CSS Containment**: Apply `content-visibility: auto; contain-intrinsic-size: 0 500px;` via utility class on below-the-fold sections (`#reference-table`, `#worked-examples`, `#faq-section`, `#related-converters`) so mobile browsers skip layout and paint work for offscreen sections during initial LCP render.
-  - **Eliminate Forced Reflows**: Avoid reading layout properties (`offsetWidth` / `getBoundingClientRect`) after DOM state mutations during initial mount.
+### 3. Content Sections (Matching Provided Copy & Structure)
+- **Supported Units (31 Categories)**:
+  - Structured into the 6 core groups with direct links to corresponding converters on `unitconvertersgo.com`:
+    - **Everyday**: length, weight, temperature, volume, area, speed, time
+    - **Technology**: data storage, data transfer rate, frequency
+    - **Home and kitchen**: cups, tablespoons, teaspoons, fluid ounces, gallons (US and UK)
+    - **Engineering**: pressure, energy, power, force, torque, flow, density, acceleration
+    - **Electrical**: current, voltage, resistance, capacitance, inductance, charge
+    - **Also**: angle, fuel economy, illumination, dry volume and more
+- **Features Breakdown**:
+  - Live results as you type, Quick search box (`"5 km to miles"` / `"72 f in c"`), Right-click selected value conversion (`"10 kg"`), One-click copy, Last 5 conversions memory, Light/dark theme + adjustable decimals, and `Alt+U` keyboard shortcut.
+- **How to Use (3-Step Visual Guide)**:
+  - Step 1: Click the extension icon (or press `Alt+U`).
+  - Step 2: Choose a category, enter a value, and pick your units.
+  - Step 3: Or select text on any page, right-click, and choose the UnitConvertersGo option.
+- **Website Link & Privacy Section**:
+  - Explains the deep-link from each result to the matching page on `unitconvertersgo.com`.
+  - Details the offline-first architecture, zero personal data collection, and the only two required permissions (`contextMenus` for the right-click menu and `storage` for local settings).
 
-### D. Remove Legacy JavaScript Polyfills (`/package.json`)
-- **Problem**: Next.js bundles ~12 KiB of polyfills (`Array.prototype.at`, `flat`, `flatMap`, `Object.fromEntries`, `Object.hasOwn`, `String.prototype.trimStart`, `trimEnd`) when no modern `browserslist` is defined.
-- **Solution**:
-  - Add a modern Baseline `browserslist` configuration to `/package.json` targeting `chrome >= 105`, `edge >= 105`, `firefox >= 115`, `safari >= 16`, `ios >= 16` so Next.js SWC skips unnecessary ES6+/Baseline polyfills.
+### 4. Sitewide Navigation & Sitemap Integration
+- **Navbar (`components/Navbar.tsx`)**: Add a **Chrome Extension** link to both the desktop navigation bar and the mobile navigation drawer.
+- **Footer (`components/Footer.tsx`)**: Add **Chrome Extension** to the **Explore & Support** column.
+- **XML & HTML Sitemaps (`app/sitemap.ts`, `components/SitemapDirectoryClient.tsx`)**: Register `/chrome-extension` so search engines and users can discover it easily.
 
 ---
 
-## 3. Files to Modify
-- `/app/layout.tsx`: Replace external `fonts.googleapis.com` stylesheet link with `next/font/google` (`Plus_Jakarta_Sans`, `JetBrains_Mono`).
-- `/app/globals.css`: Wire `--font-jakarta` and `--font-mono` variables and add `.cv-auto` (`content-visibility: auto`) helper for below-the-fold sections.
-- `/components/Navbar.tsx`: Fix `<Image>` aspect-ratio sizing and explicit `sizes` to eliminate the `0.052` layout shift.
-- `/components/ConversionPageInteractive.tsx`: Add mobile-compact row/link toggles (preserving full desktop rendering) and apply below-the-fold rendering optimizations to cut DOM node count and main-thread TBT.
-- `/components/ContinuousConversionChart.tsx`: Default to a compact initial row count on mobile with instant expand while preserving 40/100 rows on desktop and full print/export output.
-- `/package.json`: Add modern `browserslist` configuration to drop 12 KiB of legacy JS polyfills.
+## Verification Plan
+- Run `lint_applet` and `compile_applet` to ensure zero TypeScript, ESLint, or build issues.
+- Verify interactive popup simulator, natural query parser (`"5 km to miles"`, `"72 f in c"`), right-click preview, unpacked download, and navigation links across desktop and mobile layouts.

@@ -1,6 +1,5 @@
 import { MetadataRoute } from "next";
 import { SITE_CONFIG } from "@/lib/config";
-import { isObscureConversionPair } from "@/lib/seo";
 import { CATEGORIES } from "@/lib/conversions/units";
 import { CONVERSION_CATALOGUE } from "@/lib/conversions/catalogue";
 import { getPairUrl, getCategoryUrl } from "@/lib/conversions/url";
@@ -53,6 +52,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/widgets`,
       lastModified: stableLastModified,
       changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/chrome-extension`,
+      lastModified: stableLastModified,
+      changeFrequency: "monthly",
       priority: 0.9,
     },
     {
@@ -111,25 +116,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
-  // Indexable conversion landing pages (excluding noindex obscure scientific pairs)
-  const indexablePairs = CONVERSION_CATALOGUE.filter(
-    (pair) => !isObscureConversionPair(pair)
+  // Indexable conversion landing pages (all static pairs in CONVERSION_CATALOGUE)
+  const conversionRoutes: MetadataRoute.Sitemap = CONVERSION_CATALOGUE.map(
+    (pair) => ({
+      url: `${baseUrl}${getPairUrl(pair)}`,
+      lastModified: stableLastModified,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    })
   );
 
-  const conversionRoutes: MetadataRoute.Sitemap = indexablePairs.map((pair) => ({
-    url: `${baseUrl}${getPairUrl(pair)}`,
-    lastModified: stableLastModified,
-    changeFrequency: "weekly",
-    priority: 0.9,
-  }));
-
-  // Widget Customizer Studio pages for indexable pairs
-  const widgetRoutes: MetadataRoute.Sitemap = indexablePairs.map((pair) => ({
-    url: `${baseUrl}/widgets/w/${pair.slug}`,
-    lastModified: stableLastModified,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
+  // Widget Customizer Studio pages for conversion pairs
+  const widgetRoutes: MetadataRoute.Sitemap = CONVERSION_CATALOGUE.map(
+    (pair) => ({
+      url: `${baseUrl}/widgets/w/${pair.slug}`,
+      lastModified: stableLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    })
+  );
 
   // Educational guides
   const guideRoutes: MetadataRoute.Sitemap = GUIDES.map((g) => ({

@@ -135,34 +135,8 @@ export const OBSCURE_SCIENTIFIC_CATEGORY_IDS = new Set<string>([
   "prefixes",
 ]);
 
-export function isObscureConversionPair(pair: ConversionPairInfo): boolean {
-  if (OBSCURE_SCIENTIFIC_CATEGORY_IDS.has(pair.categoryId)) {
-    return true;
-  }
-  if (
-    OBSCURE_UNIT_IDS.has(pair.fromUnitId) &&
-    OBSCURE_UNIT_IDS.has(pair.toUnitId)
-  ) {
-    return true;
-  }
-  if (
-    pair.fromUnitId === "exameter" ||
-    pair.toUnitId === "exameter" ||
-    pair.fromUnitId === "petameter" ||
-    pair.toUnitId === "petameter" ||
-    pair.fromUnitId === "terameter" ||
-    pair.toUnitId === "terameter" ||
-    pair.fromUnitId === "gigameter" ||
-    pair.toUnitId === "gigameter" ||
-    pair.fromUnitId === "femtometer" ||
-    pair.toUnitId === "femtometer" ||
-    pair.fromUnitId === "picometer" ||
-    pair.toUnitId === "picometer" ||
-    pair.fromUnitId === "planck_length" ||
-    pair.toUnitId === "planck_length"
-  ) {
-    return true;
-  }
+export function isObscureConversionPair(_pair: ConversionPairInfo): boolean {
+  void _pair;
   return false;
 }
 
