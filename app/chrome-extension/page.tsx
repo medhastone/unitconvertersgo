@@ -40,6 +40,10 @@ export default function ChromeExtensionPage() {
     applicationCategory: "BrowserApplication",
     operatingSystem: "Chrome, Windows, macOS, Linux, ChromeOS",
     url: `${SITE_CONFIG.baseUrl}/chrome-extension`,
+    installUrl:
+      "https://chromewebstore.google.com/detail/kebpmckkmclfbncgkggcbofbhfghoilg?utm_source=item-share-cb",
+    downloadUrl:
+      "https://chromewebstore.google.com/detail/kebpmckkmclfbncgkggcbofbhfghoilg?utm_source=item-share-cb",
     image: DEFAULT_OG_IMAGE.url,
     description:
       "UnitConvertersGo is a fast, simple unit calculator for your browser toolbar. Pick two units, type a number, and see the answer instantly across 31 categories. Works 100% offline.",

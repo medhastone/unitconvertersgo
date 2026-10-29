@@ -21,7 +21,6 @@ import {
   SlidersHorizontal,
   ArrowRight,
   CheckCircle2,
-  FolderArchive,
   Zap,
   Ruler,
   Cpu,
@@ -328,7 +327,6 @@ export default function ChromeExtensionPageClient() {
   const [copiedResult, setCopiedResult] = useState(false);
   const [history, setHistory] = useState<HistoryEntry[]>(DEFAULT_HISTORY);
   const [activeContextId, setActiveContextId] = useState<string>("10kg");
-  const [showInstallModal, setShowInstallModal] = useState(false);
   const [downloadedBundle, setDownloadedBundle] = useState(false);
 
   // Listen for Alt+U keyboard shortcut on the page to focus the extension simulator
@@ -676,14 +674,15 @@ export default function ChromeExtensionPageClient() {
 
             {/* Primary CTA Buttons */}
             <div className="flex flex-wrap items-center gap-3.5 pt-2">
-              <button
-                type="button"
-                onClick={() => setShowInstallModal(true)}
+              <a
+                href="https://chromewebstore.google.com/detail/kebpmckkmclfbncgkggcbofbhfghoilg?utm_source=item-share-cb"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 min-h-[48px] rounded-xl bg-[#0D9488] hover:bg-[#0F766E] text-white text-sm sm:text-base font-extrabold shadow-sm transition-colors cursor-pointer"
               >
                 <Chrome className="w-5 h-5 shrink-0" />
                 <span>Add to Chrome — It&apos;s Free</span>
-              </button>
+              </a>
 
               <button
                 type="button"
@@ -1443,91 +1442,6 @@ export default function ChromeExtensionPageClient() {
           </div>
         </div>
       </section>
-
-      {/* =====================================================================
-          INSTALL / UNPACKED EXTENSION MODAL
-          ===================================================================== */}
-      {showInstallModal && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-xs"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="chrome-ext-modal-title"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              setShowInstallModal(false);
-            }
-          }}
-        >
-          <div className="w-full max-w-lg rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden p-6 space-y-5">
-            <div className="flex items-start justify-between gap-3">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-[#0D9488] text-white flex items-center justify-center shrink-0">
-                  <Chrome className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3
-                    id="chrome-ext-modal-title"
-                    className="text-lg font-extrabold text-[#16324F] dark:text-white"
-                  >
-                    Install UnitConvertersGo for Chrome
-                  </h3>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">
-                    Manifest V3 · Offline Toolbar Calculator · Alt+U
-                  </p>
-                </div>
-              </div>
-              <button
-                type="button"
-                onClick={() => setShowInstallModal(false)}
-                className="text-xs font-bold text-slate-500 hover:text-[#16324F] dark:hover:text-white px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 cursor-pointer"
-              >
-                Close
-              </button>
-            </div>
-
-            <div className="space-y-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              <p>
-                You can test the full extension popup right now using the interactive simulator on this page, or download the Manifest V3 configuration for local developer installation in{" "}
-                <code className="font-mono text-xs bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">
-                  chrome://extensions
-                </code>
-                .
-              </p>
-
-              <div className="p-4 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/80 dark:border-slate-800 space-y-2 text-xs">
-                <div className="font-extrabold text-[#16324F] dark:text-white flex items-center gap-1.5">
-                  <FolderArchive className="w-4 h-4 text-[#0D9488]" />
-                  <span>Quick Unpacked Load Steps:</span>
-                </div>
-                <ol className="list-decimal list-inside space-y-1 text-slate-600 dark:text-slate-400">
-                  <li>Open <code className="font-mono">chrome://extensions</code> in Chrome.</li>
-                  <li>Enable <strong>Developer mode</strong> in the top-right corner.</li>
-                  <li>Click <strong>Load unpacked</strong> and select your extension folder.</li>
-                </ol>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap items-center justify-end gap-2.5 pt-2 border-t border-slate-100 dark:border-slate-800">
-              <button
-                type="button"
-                onClick={handleDownloadExtensionManifest}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0D9488] hover:bg-[#0F766E] text-white text-xs font-extrabold cursor-pointer transition-colors"
-              >
-                <Download className="w-4 h-4" />
-                <span>Download Manifest V3 JSON</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setShowInstallModal(false)}
-                className="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-[#16324F] dark:text-white text-xs font-bold cursor-pointer"
-              >
-                Done
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
