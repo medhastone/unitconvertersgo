@@ -13,6 +13,23 @@ export const DEFAULT_OG_IMAGE = {
   type: "image/png",
 };
 
+export const SHARED_FAVICON_ICONS: NonNullable<Metadata["icons"]> = {
+  icon: [
+    { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+    { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+    { url: "/favicon-144x144.png", sizes: "144x144", type: "image/png" },
+    { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+    { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+    { url: "/favicon.ico", sizes: "48x48 32x32 16x16", type: "image/x-icon" },
+  ],
+  shortcut: [{ url: "/favicon.ico", type: "image/x-icon" }],
+  apple: [
+    { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+  ],
+};
+
 /**
  * Resolves the 1200x630 OpenGraph & Twitter card image for a specific category
  * (generated at build time under /public/og/category-[slug].png) or falls back to /og-default.png.
@@ -342,6 +359,7 @@ export function buildPageMetadata({
   return {
     title: useExactTitle ? { absolute: cleanTitle } : cleanTitle,
     description: cleanDescription,
+    icons: SHARED_FAVICON_ICONS,
     robots: noindex
       ? { index: false, follow: true }
       : { index: true, follow: true },

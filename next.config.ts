@@ -75,7 +75,7 @@ const nextConfig = (phase: string): NextConfig => {
           {
             key: 'Cache-Control',
             value: isDev
-              ? 'no-cache, must-revalidate'
+              ? 'public, max-age=3600'
               : 'public, max-age=31536000, immutable',
           },
           {
@@ -89,6 +89,18 @@ const nextConfig = (phase: string): NextConfig => {
   },
   async redirects() {
     return [
+      // 0. Canonicalize www.unitconvertersgo.com to https://unitconvertersgo.com
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.unitconvertersgo.com',
+          },
+        ],
+        destination: 'https://unitconvertersgo.com/:path*',
+        statusCode: 301,
+      },
       // 1. PPM in /density -> /concentration-solution or /density
       {
         source: '/density/ppm-to-mg-per-liter',

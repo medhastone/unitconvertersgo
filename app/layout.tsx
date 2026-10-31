@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { SITE_CONFIG } from "@/lib/config";
-import { DEFAULT_OG_IMAGE } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SHARED_FAVICON_ICONS } from "@/lib/seo";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -34,6 +34,8 @@ export const metadata: Metadata = {
   authors: [{ name: SITE_CONFIG.author }],
   creator: SITE_CONFIG.author,
   publisher: SITE_CONFIG.name,
+  manifest: "/manifest.webmanifest",
+  icons: SHARED_FAVICON_ICONS,
   robots: {
     index: true,
     follow: true,
@@ -115,13 +117,13 @@ export default function RootLayout({
           height: 345,
           caption: SITE_CONFIG.name,
         },
-        image: {
-          "@type": "ImageObject",
-          url: `${SITE_CONFIG.baseUrl}/icon-512.png`,
-          contentUrl: `${SITE_CONFIG.baseUrl}/icon-512.png`,
-          width: 512,
-          height: 512,
-        },
+        image: [
+          `${SITE_CONFIG.baseUrl}/icon-512.png`,
+          `${SITE_CONFIG.baseUrl}/icon-192.png`,
+          `${SITE_CONFIG.baseUrl}/favicon-144x144.png`,
+          `${SITE_CONFIG.baseUrl}/favicon-96x96.png`,
+          `${SITE_CONFIG.baseUrl}/favicon-48x48.png`,
+        ],
       },
       {
         "@type": "WebSite",
@@ -160,15 +162,6 @@ export default function RootLayout({
       className={`${plusJakartaSans.variable} ${jetbrainsMono.variable} scroll-smooth`}
     >
       <head suppressHydrationWarning>
-        <link rel="icon" href="/favicon.ico" sizes="48x48" type="image/x-icon" />
-        <link rel="icon" href="/favicon-48x48.png" sizes="48x48" type="image/png" />
-        <link rel="icon" href="/favicon-96x96.png" sizes="96x96" type="image/png" />
-        <link rel="icon" href="/favicon-144x144.png" sizes="144x144" type="image/png" />
-        <link rel="icon" href="/icon-192.png" sizes="192x192" type="image/png" />
-        <link rel="icon" href="/icon-512.png" sizes="512x512" type="image/png" />
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" type="image/png" />
-        <link rel="manifest" href="/manifest.webmanifest" />
         <script
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: themeInitScript }}
