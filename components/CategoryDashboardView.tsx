@@ -53,6 +53,7 @@ import {
 } from "@/lib/conversions/catalogue";
 import { getTrustedReferencesForCategory } from "@/lib/conversions/references";
 import { getPresetSearchQueries } from "@/lib/conversions/scenarios";
+import SharePageButton from "@/components/SharePageButton";
 
 export interface CategoryReferenceRow {
   description: string;
@@ -733,6 +734,7 @@ export default function CategoryDashboardView({
                     <Code2 className="w-3.5 h-3.5 text-[#0D9488] dark:text-[#2DD4BF]" />
                     <span>Get Widget</span>
                   </Link>
+                  <SharePageButton variant="button" label="Share" />
                 </div>
               </div>
             </div>

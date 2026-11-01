@@ -20,6 +20,7 @@ import {
 } from "@/lib/conversions/catalogue";
 import { convertUnits } from "@/lib/conversions/engine";
 import { ConversionOutput, PrecisionMode } from "@/lib/conversions/types";
+import SharePageButton from "@/components/SharePageButton";
 
 interface UniversalConverterCardProps {
   initialCategoryId?: string;
@@ -534,6 +535,14 @@ export default function UniversalConverterCard({
               </Link>
             </div>
           )}
+          <SharePageButton
+            variant="button"
+            label="Share"
+            customPath={
+              matchingDedicatedPair ? getPairUrl(matchingDedicatedPair) : undefined
+            }
+            customTitle={matchingDedicatedPair?.title}
+          />
         </div>
       </div>
     </div>

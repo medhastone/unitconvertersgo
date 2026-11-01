@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
+import EagleFlyby from "@/components/EagleFlyby";
 import { SITE_CONFIG } from "@/lib/config";
 import { DEFAULT_OG_IMAGE, SHARED_FAVICON_ICONS } from "@/lib/seo";
 
@@ -209,6 +210,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <EagleFlyby />
         <CookieConsentBanner />
         <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       </body>

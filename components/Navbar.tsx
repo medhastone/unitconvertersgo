@@ -30,6 +30,7 @@ import {
 import dynamic from "next/dynamic";
 import { useTypewriterPlaceholder } from "@/lib/search/animated-prompts";
 import { GUIDES } from "@/lib/conversions/guides";
+import SharePageButton from "./SharePageButton";
 
 const SearchModal = dynamic(() => import("./SearchModal"), { ssr: false });
 
@@ -294,6 +295,8 @@ export default function Navbar() {
                 ⌘K
               </kbd>
             </button>
+
+            <SharePageButton variant="icon" />
 
             <button
               suppressHydrationWarning

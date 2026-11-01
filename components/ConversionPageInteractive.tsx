@@ -88,6 +88,7 @@ import {
 } from "@/lib/conversions/fractions";
 import { SITE_CONFIG } from "@/lib/config";
 import TapeMeasureVisual from "@/components/TapeMeasureVisual";
+import SharePageButton from "@/components/SharePageButton";
 
 interface ConversionPageInteractiveProps {
   pair: ConversionPairInfo;
@@ -1089,6 +1090,13 @@ export default function ConversionPageInteractive({
                   <Code2 className="w-3.5 h-3.5 text-[#0D9488] dark:text-[#2DD4BF]" />
                   <span>Get Widget</span>
                 </Link>
+
+                <SharePageButton
+                  variant="button"
+                  label="Share"
+                  customPath={getPairUrl(matchingCanonicalPair || pair)}
+                  customTitle={matchingCanonicalPair?.title || pair.title}
+                />
               </div>
             </div>
           </div>
