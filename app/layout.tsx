@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CookieConsentBanner from "@/components/CookieConsentBanner";
 import { SITE_CONFIG } from "@/lib/config";
 import { DEFAULT_OG_IMAGE, SHARED_FAVICON_ICONS } from "@/lib/seo";
+
+const GA_MEASUREMENT_ID = "G-36PCW5PDH6";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -95,6 +99,15 @@ const themeInitScript = `
 })();
 `;
 
+const gaConsentInitScript = `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied'
+});
+`;
+
 export default function RootLayout({
   children,
 }: {
@@ -164,6 +177,10 @@ export default function RootLayout({
       <head suppressHydrationWarning>
         <script
           suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: gaConsentInitScript }}
+        />
+        <script
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: themeInitScript }}
         />
       </head>
@@ -192,6 +209,8 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <CookieConsentBanner />
+        <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       </body>
     </html>
   );
