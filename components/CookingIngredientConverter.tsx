@@ -169,16 +169,16 @@ export default function CookingIngredientConverter({
       {/* Main Calculator Card */}
       <div className="rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-md p-4 sm:p-6 space-y-5">
         {/* Card Header with Ingredient Selector + Density Badge */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100 dark:border-slate-800">
-          <div className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-xl bg-[#0D9488]/10 dark:bg-[#0D9488]/20 text-[#0D9488] dark:text-[#2DD4BF] flex items-center justify-center shrink-0">
+        <div className="flex flex-col gap-3 pb-3 border-b border-slate-100 dark:border-slate-800 w-full">
+          <div className="flex items-start gap-2.5 w-full">
+            <div className="w-10 h-10 rounded-xl bg-[#0D9488]/10 dark:bg-[#0D9488]/20 text-[#0D9488] dark:text-[#2DD4BF] flex items-center justify-center shrink-0 mt-0.5">
               <Scale className="w-5 h-5" aria-hidden="true" />
             </div>
-            <div>
+            <div className="flex-1 min-w-0">
               <h2 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white leading-tight">
                 {activeIngredient.name} Weight ↔ Volume Calculator
               </h2>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+              <p className="w-full text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                 Convert grams ↔ US cups (236.59 mL), Metric cups (250 mL), tbsp,
                 tsp, mL, and oz
               </p>

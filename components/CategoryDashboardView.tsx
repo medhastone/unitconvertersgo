@@ -843,18 +843,18 @@ export default function CategoryDashboardView({
             aria-labelledby="reference-points-heading"
             className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-4"
           >
-            <div className="flex items-start gap-3">
+            <div className="flex items-start gap-3 w-full">
               <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 shrink-0 mt-0.5">
                 <Table className="w-5 h-5" />
               </span>
-              <div className="space-y-1">
+              <div className="space-y-1 flex-1 min-w-0">
                 <h2
                   id="reference-points-heading"
                   className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
                 >
                   Common {displayName} Reference Points
                 </h2>
-                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+                <p className="w-full text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
                   Here are some common {displayName.toLowerCase()} values in {unitCol1.name} ({unitCol1.symbol}), {unitCol2.name} ({unitCol2.symbol}), and {unitCol3.name} ({unitCol3.symbol}). Click any preset value or arrow to load it into the converter.
                 </p>
               </div>

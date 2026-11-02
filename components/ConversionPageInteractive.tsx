@@ -95,6 +95,15 @@ interface ConversionPageInteractiveProps {
   featuredRelatedPairs?: ConversionPairInfo[];
 }
 
+function formatUnitWithSymbol(label: string, symbol: string): string {
+  const trimmedLabel = label.trim();
+  const suffix = `(${symbol.trim()})`;
+  if (trimmedLabel.toLowerCase().endsWith(suffix.toLowerCase())) {
+    return trimmedLabel;
+  }
+  return `${trimmedLabel} ${suffix}`;
+}
+
 const CATEGORY_THEME_BY_ID: Record<
   string,
   { heroBadge: string; sidebarBadge: string }
@@ -1164,7 +1173,7 @@ export default function ConversionPageInteractive({
                       {renderCategoryIcon(iconName, "w-4 h-4")}
                     </span>
                     <span className="truncate">
-                      {u.plural} ({u.symbol})
+                      {formatUnitWithSymbol(u.plural, u.symbol)}
                     </span>
                     {isSource && (
                       <span className="text-[11px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#0D9488] text-white shrink-0">
@@ -1255,65 +1264,63 @@ export default function ConversionPageInteractive({
           aria-labelledby="common-conversions-table-heading"
           className="cv-auto rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-4"
         >
-          <div className="flex flex-col gap-3.5">
-            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-              <div className="flex items-start gap-3">
-                <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 shrink-0 mt-0.5">
-                  <Table className="w-5 h-5" />
-                </span>
-                <div className="space-y-1">
-                  <h2
-                    id="common-conversions-table-heading"
-                    className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
-                  >
-                    {isLengthCategory
-                      ? `${fromUnit.plural} to ${toUnit.plural} Conversion Chart (1–${lengthChartMaxN} Continuous)`
-                      : editorial.tableHeading}
-                  </h2>
-                  <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-                    {isLengthCategory
-                      ? `Continuous 1 to ${lengthChartMaxN} ${fromUnit.plural.toLowerCase()} lookup table with exact decimals and reduced nearest 1/64 fractions. Highlighted rows mark common shop and ruler values.`
-                      : `${editorial.tableSubheading} Click any preset value or arrow to load it into the converter.`}
-                  </p>
-                </div>
+          <div className="flex flex-col gap-3.5 w-full">
+            <div className="flex items-start gap-3 w-full">
+              <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 shrink-0 mt-0.5">
+                <Table className="w-5 h-5" />
+              </span>
+              <div className="space-y-1 flex-1 min-w-0">
+                <h2
+                  id="common-conversions-table-heading"
+                  className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
+                >
+                  {isLengthCategory
+                    ? `${fromUnit.plural} to ${toUnit.plural} Conversion Chart (1–${lengthChartMaxN} Continuous)`
+                    : editorial.tableHeading}
+                </h2>
+                <p className="w-full text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+                  {isLengthCategory
+                    ? `Continuous 1 to ${lengthChartMaxN} ${fromUnit.plural.toLowerCase()} lookup table with exact decimals and reduced nearest 1/64 fractions. Highlighted rows mark common shop and ruler values.`
+                    : `${editorial.tableSubheading} Click any preset value or arrow to load it into the converter.`}
+                </p>
               </div>
+            </div>
 
-              {/* Range Toggle Controls */}
+            {/* Range Toggle Controls Bar (Full Container Width Alignment) */}
+            <div className="flex flex-wrap items-center justify-between gap-2.5 w-full no-print">
               {isLengthCategory ? (
-                <div className="flex flex-wrap items-center gap-2 shrink-0 no-print">
-                  <div className="inline-flex items-center p-1 bg-[#F7F9FC] dark:bg-slate-800 rounded-xl border border-slate-200/80 dark:border-slate-700 text-xs sm:text-sm">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setLengthChartMaxN(40);
-                        setIsMobileTableExpanded(true);
-                      }}
-                      className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
-                        lengthChartMaxN === 40
-                          ? "bg-white dark:bg-slate-900 text-[#16324F] dark:text-white shadow-2xs"
-                          : "text-slate-500 dark:text-slate-400 hover:text-[#16324F]"
-                      }`}
-                    >
-                      1–40
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setLengthChartMaxN(100);
-                        setIsMobileTableExpanded(true);
-                      }}
-                      className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
-                        lengthChartMaxN === 100
-                          ? "bg-white dark:bg-slate-900 text-[#16324F] dark:text-white shadow-2xs"
-                          : "text-slate-500 dark:text-slate-400 hover:text-[#16324F]"
-                      }`}
-                    >
-                      1–100
-                    </button>
-                  </div>
+                <div className="inline-flex items-center p-1 bg-[#F7F9FC] dark:bg-slate-800 rounded-xl border border-slate-200/80 dark:border-slate-700 text-xs sm:text-sm">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setLengthChartMaxN(40);
+                      setIsMobileTableExpanded(true);
+                    }}
+                    className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
+                      lengthChartMaxN === 40
+                        ? "bg-white dark:bg-slate-900 text-[#16324F] dark:text-white shadow-2xs"
+                        : "text-slate-500 dark:text-slate-400 hover:text-[#16324F]"
+                    }`}
+                  >
+                    1–40
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setLengthChartMaxN(100);
+                      setIsMobileTableExpanded(true);
+                    }}
+                    className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
+                      lengthChartMaxN === 100
+                        ? "bg-white dark:bg-slate-900 text-[#16324F] dark:text-white shadow-2xs"
+                        : "text-slate-500 dark:text-slate-400 hover:text-[#16324F]"
+                    }`}
+                  >
+                    1–100
+                  </button>
                 </div>
               ) : (
-                <div className="flex items-center gap-1 p-1 bg-[#F7F9FC] dark:bg-slate-800 rounded-xl border border-slate-200/80 dark:border-slate-700 text-xs sm:text-sm self-start sm:self-auto shrink-0">
+                <div className="inline-flex flex-wrap items-center gap-1 p-1 bg-[#F7F9FC] dark:bg-slate-800 rounded-xl border border-slate-200/80 dark:border-slate-700 text-xs sm:text-sm">
                   {(
                     [
                       { id: "common", label: "Scale-Aware" },
@@ -1328,7 +1335,7 @@ export default function ConversionPageInteractive({
                         setTablePreset(tab.id);
                         setIsMobileTableExpanded(true);
                       }}
-                      className={`px-2.5 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
+                      className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${
                         tablePreset === tab.id
                           ? "bg-white dark:bg-slate-900 text-[#16324F] dark:text-white shadow-2xs"
                           : "text-slate-500 dark:text-slate-400 hover:text-[#16324F]"
@@ -1402,7 +1409,7 @@ export default function ConversionPageInteractive({
                   <thead>
                     <tr className="bg-[#F7F9FC] dark:bg-slate-800/80 border-b border-slate-200/90 dark:border-slate-800 text-xs sm:text-sm uppercase tracking-wider font-extrabold text-[#16324F] dark:text-white">
                       <th scope="col" className="py-3.5 px-4">
-                        {fromUnit.plural} ({fromUnit.symbol})
+                        {formatUnitWithSymbol(fromUnit.plural, fromUnit.symbol)}
                       </th>
                       <th scope="col" className="py-3.5 px-4">
                         Decimal ({toUnit.symbol})
@@ -1542,10 +1549,10 @@ export default function ConversionPageInteractive({
                   <thead>
                     <tr className="bg-[#F7F9FC] dark:bg-slate-800/80 border-b border-slate-200/90 dark:border-slate-800 text-sm sm:text-[15px] font-extrabold text-[#16324F] dark:text-white">
                       <th scope="col" className="py-3.5 px-4 w-1/2">
-                        {fromUnit.plural} ({fromUnit.symbol})
+                        {formatUnitWithSymbol(fromUnit.plural, fromUnit.symbol)}
                       </th>
                       <th scope="col" className="py-3.5 px-4 w-1/2">
-                        {toUnit.plural} ({toUnit.symbol})
+                        {formatUnitWithSymbol(toUnit.plural, toUnit.symbol)}
                       </th>
                     </tr>
                   </thead>
@@ -2362,7 +2369,7 @@ export default function ConversionPageInteractive({
               </div>
               <div className="space-y-1 min-w-0">
                 <h3 className="text-sm sm:text-[15px] font-extrabold text-[#16324F] dark:text-white">
-                  {fromUnit.name} ({fromUnit.symbol})
+                  {formatUnitWithSymbol(fromUnit.name, fromUnit.symbol)}
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   {fromUnit.description ||
@@ -2380,7 +2387,7 @@ export default function ConversionPageInteractive({
               </div>
               <div className="space-y-1 min-w-0">
                 <h3 className="text-sm sm:text-[15px] font-extrabold text-[#16324F] dark:text-white">
-                  {toUnit.name} ({toUnit.symbol})
+                  {formatUnitWithSymbol(toUnit.name, toUnit.symbol)}
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   {toUnit.description ||
@@ -2400,7 +2407,7 @@ export default function ConversionPageInteractive({
                   </div>
                   <div className="space-y-1 min-w-0">
                     <h3 className="text-sm sm:text-[15px] font-extrabold text-[#16324F] dark:text-white">
-                      {thirdVisualUnit.name} ({thirdVisualUnit.symbol})
+                      {formatUnitWithSymbol(thirdVisualUnit.name, thirdVisualUnit.symbol)}
                     </h3>
                     <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                       {thirdVisualUnit.description ||

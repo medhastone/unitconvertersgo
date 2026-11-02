@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import {
   Share2,
@@ -35,7 +36,6 @@ export default function SharePageButton({
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const resolvedPath = customPath || pathname || "/";
   const origin =
@@ -58,25 +58,14 @@ export default function SharePageButton({
   useEffect(() => {
     if (!isOpen) return;
 
-    const handleClickOutside = (e: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(e.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setIsOpen(false);
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
     window.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen]);
@@ -123,37 +112,133 @@ export default function SharePageButton({
     {
       name: "WhatsApp",
       href: `https://api.whatsapp.com/send?text=${encodedText}`,
-      icon: <MessageCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />,
+      icon: <MessageCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />,
     },
     {
       name: "X (Twitter)",
       href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
-      icon: <Send className="w-4 h-4 text-sky-600 dark:text-sky-400" />,
+      icon: <Send className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" />,
     },
     {
       name: "LinkedIn",
       href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
-      icon: <Globe className="w-4 h-4 text-blue-600 dark:text-blue-400" />,
+      icon: <Globe className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />,
     },
     {
       name: "Facebook",
       href: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-      icon: <ExternalLink className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />,
+      icon: <ExternalLink className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />,
     },
     {
       name: "Reddit",
       href: `https://www.reddit.com/submit?url=${encodedUrl}&title=${encodedTitle}`,
-      icon: <Share2 className="w-4 h-4 text-orange-600 dark:text-orange-400" />,
+      icon: <Share2 className="w-4 h-4 text-orange-600 dark:text-orange-400 shrink-0" />,
     },
     {
       name: "Email",
       href: `mailto:?subject=${encodedTitle}&body=${encodedText}`,
-      icon: <Mail className="w-4 h-4 text-teal-600 dark:text-teal-400" />,
+      icon: <Mail className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" />,
     },
   ];
 
+  const shareModal =
+    isOpen && typeof document !== "undefined"
+      ? createPortal(
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Share this tool page"
+            onClick={(e) => {
+              if (e.target === e.currentTarget) {
+                setIsOpen(false);
+              }
+            }}
+            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-3 sm:p-4 bg-slate-950/55 backdrop-blur-xs"
+          >
+            <div className="w-full max-w-[360px] rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl p-4 sm:p-5 space-y-4">
+              <div className="flex items-start justify-between gap-2">
+                <div className="min-w-0">
+                  <p className="text-xs font-extrabold uppercase tracking-wider text-[#0D9488] dark:text-[#2DD4BF]">
+                    Share Tool Page
+                  </p>
+                  <p className="text-xs sm:text-sm font-bold text-[#16324F] dark:text-white truncate mt-0.5">
+                    {pageTitle}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Close share menu"
+                  className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer shrink-0"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Copy Direct URL Bar */}
+              <div className="flex items-center gap-1.5 p-1.5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/90 dark:border-slate-800">
+                <input
+                  type="text"
+                  readOnly
+                  value={pageUrl}
+                  aria-label="Page URL to share"
+                  onFocus={(e) => e.currentTarget.select()}
+                  className="w-full min-w-0 bg-transparent px-2 py-1 text-xs font-mono text-slate-600 dark:text-slate-300 focus:outline-hidden truncate"
+                />
+                <button
+                  type="button"
+                  onClick={handleCopyLink}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#0D9488] hover:bg-[#0F766E] text-white text-xs font-bold transition-colors cursor-pointer shrink-0"
+                >
+                  {copied ? (
+                    <>
+                      <Check className="w-3.5 h-3.5" />
+                      <span>Copied</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>Copy</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {/* Direct Social & Messaging Share Grid */}
+              <div className="grid grid-cols-2 gap-2">
+                {shareTargets.map((target) => (
+                  <a
+                    key={target.name}
+                    href={target.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center gap-2 px-3 py-2.5 min-h-[42px] rounded-xl bg-[#F7F9FC] dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/70 dark:border-slate-700/80 text-xs font-bold text-[#16324F] dark:text-slate-200 transition-colors"
+                  >
+                    {target.icon}
+                    <span className="truncate">{target.name}</span>
+                  </a>
+                ))}
+              </div>
+
+              {canNativeShare && (
+                <button
+                  type="button"
+                  onClick={handleNativeShare}
+                  className="w-full inline-flex items-center justify-center gap-2 px-3 py-2.5 min-h-[42px] rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-xs font-bold text-[#16324F] dark:text-slate-200 transition-colors cursor-pointer"
+                >
+                  <Share2 className="w-3.5 h-3.5 text-[#0D9488] dark:text-[#2DD4BF]" />
+                  <span>More Device Share Options</span>
+                </button>
+              )}
+            </div>
+          </div>,
+          document.body
+        )
+      : null;
+
   return (
-    <div ref={containerRef} className="relative inline-block">
+    <>
       {variant === "icon" ? (
         <button
           suppressHydrationWarning
@@ -180,90 +265,7 @@ export default function SharePageButton({
           <span>{label}</span>
         </button>
       )}
-
-      {isOpen && (
-        <div
-          role="dialog"
-          aria-label="Share this tool page"
-          className="absolute right-0 mt-2 w-[300px] sm:w-[340px] rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl p-4 z-50 space-y-3.5"
-        >
-          <div className="flex items-start justify-between gap-2">
-            <div className="min-w-0">
-              <p className="text-xs font-extrabold uppercase tracking-wider text-[#0D9488] dark:text-[#2DD4BF]">
-                Share Tool Page
-              </p>
-              <p className="text-xs font-bold text-[#16324F] dark:text-white truncate mt-0.5">
-                {pageTitle}
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={() => setIsOpen(false)}
-              aria-label="Close share menu"
-              className="p-1 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer shrink-0"
-            >
-              <X className="w-4 h-4" />
-            </button>
-          </div>
-
-          {/* Copy Direct URL Bar */}
-          <div className="flex items-center gap-1.5 p-1.5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/90 dark:border-slate-800">
-            <input
-              type="text"
-              readOnly
-              value={pageUrl}
-              aria-label="Page URL to share"
-              onFocus={(e) => e.currentTarget.select()}
-              className="w-full min-w-0 bg-transparent px-2 py-1 text-xs font-mono text-slate-600 dark:text-slate-300 focus:outline-hidden truncate"
-            />
-            <button
-              type="button"
-              onClick={handleCopyLink}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0D9488] hover:bg-[#0F766E] text-white text-xs font-bold transition-colors cursor-pointer shrink-0"
-            >
-              {copied ? (
-                <>
-                  <Check className="w-3.5 h-3.5" />
-                  <span>Copied</span>
-                </>
-              ) : (
-                <>
-                  <Copy className="w-3.5 h-3.5" />
-                  <span>Copy</span>
-                </>
-              )}
-            </button>
-          </div>
-
-          {/* Direct Social & Messaging Share Grid */}
-          <div className="grid grid-cols-2 gap-2">
-            {shareTargets.map((target) => (
-              <a
-                key={target.name}
-                href={target.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsOpen(false)}
-                className="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#F7F9FC] dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/70 dark:border-slate-700/80 text-xs font-bold text-[#16324F] dark:text-slate-200 transition-colors"
-              >
-                {target.icon}
-                <span className="truncate">{target.name}</span>
-              </a>
-            ))}
-          </div>
-
-          {canNativeShare && (
-            <button
-              type="button"
-              onClick={handleNativeShare}
-              className="w-full inline-flex items-center justify-center gap-2 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-xs font-bold text-[#16324F] dark:text-slate-200 transition-colors cursor-pointer"
-            >
-              <Share2 className="w-3.5 h-3.5 text-[#0D9488] dark:text-[#2DD4BF]" />
-              <span>More Device Share Options</span>
-            </button>
-          )}
-        </div>
-      )}
-    </div>
+      {shareModal}
+    </>
   );
 }

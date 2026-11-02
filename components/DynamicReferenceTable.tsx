@@ -44,23 +44,23 @@ export default function DynamicReferenceTable({
 
   return (
     <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 sm:p-6 shadow-xs">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-        <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+      <div className="flex flex-col gap-3 w-full mb-4">
+        <div className="flex items-start gap-2.5 w-full">
+          <div className="p-1.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 shrink-0 mt-0.5">
             <Table className="w-4 h-4" />
           </div>
-          <div>
-            <h2 className="text-base font-semibold text-slate-900 dark:text-white">
+          <div className="flex-1 min-w-0">
+            <h2 className="text-base sm:text-lg font-semibold text-slate-900 dark:text-white">
               {fromUnit.name} to {toUnit.name} Conversion Table
             </h2>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
+            <p className="w-full text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
               Click or press Enter on any row to test value in calculator
             </p>
           </div>
         </div>
 
         {/* Preset segmented buttons */}
-        <div className="flex items-center gap-1 p-1 bg-slate-100 dark:bg-slate-800/80 rounded-lg text-xs self-start sm:self-auto">
+        <div className="inline-flex flex-wrap items-center gap-1 p-1 bg-slate-100 dark:bg-slate-800/80 rounded-lg text-xs self-start">
           <button
             onClick={() => setActivePreset("standard")}
             className={`px-2.5 py-1 font-medium rounded-md transition-colors cursor-pointer ${
