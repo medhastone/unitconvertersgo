@@ -519,6 +519,7 @@ export default function UniversalConverterCard({
               <Link
                 href={`/widgets/w/${matchingDedicatedPair.slug}`}
                 prefetch={false}
+                rel="nofollow"
                 className="inline-flex items-center gap-1 font-semibold text-slate-600 dark:text-slate-300 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] shrink-0"
                 title="Embed this calculator widget on your site"
               >

@@ -34,9 +34,12 @@ import { convertUnits } from "@/lib/conversions/engine";
 import { getTrustedReferencesForCategory } from "@/lib/conversions/references";
 import { SITE_CONFIG } from "@/lib/config";
 import {
+  buildCategorySeoDescription,
+  buildCategorySeoTitle,
   buildPageMetadata,
   getCategoryOgImage,
 } from "@/lib/seo";
+import { isIndexableCategory } from "@/lib/seo-config";
 import { ConversionPairInfo } from "@/lib/conversions/types";
 
 const CATEGORY_ALIAS_MAP: Record<string, string> = {
@@ -142,7 +145,7 @@ const CATEGORY_PROFILES: Record<string, CategorySeoProfile> = {
       {
         question: "How many pounds are in 1 kilogram?",
         answer:
-          "1 kilogram equals approximately 2.20462262 pounds, based on the exact legal definition of 1 avoirdupois pound = 0.45359237 kilograms.",
+          "1 kilogram equals approximately 2.20462 pounds, based on the exact legal definition of 1 avoirdupois pound = 0.45359237 kilograms.",
       },
       {
         question: "What is the difference between a standard ounce and a troy ounce?",
@@ -196,7 +199,7 @@ const CATEGORY_PROFILES: Record<string, CategorySeoProfile> = {
       {
         question: "What is the difference between a US gallon and a UK Imperial gallon?",
         answer:
-          "A US liquid gallon is defined as 231 cubic inches (3.785411784 liters), whereas a UK Imperial gallon is defined as 4.54609 liters—making the Imperial gallon about 20.1% larger.",
+          "A US liquid gallon is defined as 231 cubic inches (3.78541 liters), whereas a UK Imperial gallon is defined as 4.54609 liters—making the Imperial gallon about 20.1% larger.",
       },
       {
         question: "How many milliliters are in a US fluid ounce?",
@@ -250,7 +253,7 @@ const CATEGORY_PROFILES: Record<string, CategorySeoProfile> = {
       {
         question: "How do I convert km/h to mph?",
         answer:
-          "Divide the speed in kilometers per hour by 1.609344 (or multiply by 0.62137119) to convert to miles per hour. For example, 100 km/h equals 62.1371 mph.",
+          "Divide the speed in kilometers per hour by 1.609344 (or multiply by 0.621371) to convert to miles per hour. For example, 100 km/h equals 62.1371 mph.",
       },
       {
         question: "What is 1 knot in mph and km/h?",
@@ -304,7 +307,7 @@ const CATEGORY_PROFILES: Record<string, CategorySeoProfile> = {
       {
         question: "How many PSI are in 1 bar of pressure?",
         answer:
-          "1 bar (100,000 Pascals) equals approximately 14.5037738 pounds per square inch (PSI).",
+          "1 bar (100,000 Pascals) equals approximately 14.50377 pounds per square inch (PSI).",
       },
       {
         question: "What is standard atmospheric pressure at sea level?",
@@ -424,7 +427,7 @@ const CATEGORY_DASHBOARD_CONFIGS: Record<string, CategoryDashboardConfig> = {
     ],
     workedExampleTitle: "Example: Convert 10 Meters to Feet",
     workedExampleLines: [
-      "ft = 10 × 3.280839895",
+      "ft = 10 × 3.28084",
       "ft = 32.8084 ft",
     ],
     workedExampleNote:
@@ -490,8 +493,8 @@ const CATEGORY_DASHBOARD_CONFIGS: Record<string, CategoryDashboardConfig> = {
     ],
     workedExampleTitle: "Example: Convert 10 Kilograms to Pounds",
     workedExampleLines: [
-      "lb = 10 × 2.20462262",
-      "lb = 22.046226 lb",
+      "lb = 10 × 2.20462",
+      "lb = 22.0462 lb",
     ],
     workedExampleNote:
       "1 avoirdupois pound is legally defined as exactly 0.45359237 kilograms (and 1 pound = 16 ounces).",
@@ -556,8 +559,8 @@ const CATEGORY_DASHBOARD_CONFIGS: Record<string, CategoryDashboardConfig> = {
     ],
     workedExampleTitle: "Example: Convert 10 Liters to US Gallons",
     workedExampleLines: [
-      "gal (US) = 10 ÷ 3.785411784",
-      "gal (US) = 2.641721 gal (US)",
+      "gal (US) = 10 ÷ 3.78541",
+      "gal (US) = 2.64172 gal (US)",
     ],
     workedExampleNote:
       "Note the distinction between US Liquid Gallons (3.78541 L) and UK Imperial Gallons (4.54609 L).",
@@ -1932,20 +1935,16 @@ export async function generateMetadata({
   if (!category) return {};
 
   const canonicalCategoryPath = getCategoryUrl(category.id);
-  const profile = CATEGORY_PROFILES[category.id];
-  const title = profile
-    ? profile.heroTitle
-    : `${category.name} Converter`;
-  const description = profile
-    ? `${profile.heroDescription} Instant real-time ${profile.displayName.toLowerCase()} calculator, unit directory, and verified formulas.`
-    : `Convert all ${category.name.toLowerCase()} units in real time. Includes verified NIST & SI formulas, unit comparison matrix, and reference tables.`;
+  const title = buildCategorySeoTitle(category.id);
+  const description = buildCategorySeoDescription(category.id);
 
   return buildPageMetadata({
     title,
     description,
     canonicalPath: canonicalCategoryPath,
     categoryId: category.id,
-    noindex: false,
+    noindex: !isIndexableCategory(category.id),
+    useExactTitle: true,
   });
 }
 
@@ -2239,19 +2238,27 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-              {conversionPairs.map((pair) => (
-                <Link
-                  key={pair.slug}
-                  href={getPairUrl(pair)}
-                  prefetch={false}
-                  className="px-4 py-3 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-[#F7F9FC]/70 dark:bg-slate-950/50 hover:bg-white dark:hover:bg-slate-900 hover:border-[#0D9488] transition-all flex items-center justify-between group"
-                >
-                  <span className="text-sm sm:text-[15px] font-bold text-[#16324F] dark:text-slate-200 group-hover:text-[#0D9488] dark:group-hover:text-[#2DD4BF] truncate pr-2">
-                    {pair.title.replace(" Converter", "")}
-                  </span>
-                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#0D9488] shrink-0" />
-                </Link>
-              ))}
+              {conversionPairs.map((pair) => {
+                const pFrom = UNIT_MAP.get(pair.fromUnitId);
+                const pTo = UNIT_MAP.get(pair.toUnitId);
+                const descriptiveLabel =
+                  pFrom && pTo
+                    ? `${pFrom.plural} to ${pTo.plural} Converter (${pFrom.symbol} to ${pTo.symbol})`
+                    : pair.title;
+                return (
+                  <Link
+                    key={pair.slug}
+                    href={getPairUrl(pair)}
+                    prefetch={false}
+                    className="px-4 py-3 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-[#F7F9FC]/70 dark:bg-slate-950/50 hover:bg-white dark:hover:bg-slate-900 hover:border-[#0D9488] transition-all flex items-center justify-between group"
+                  >
+                    <span className="text-sm sm:text-[15px] font-bold text-[#16324F] dark:text-slate-200 group-hover:text-[#0D9488] dark:group-hover:text-[#2DD4BF] truncate pr-2">
+                      {descriptiveLabel}
+                    </span>
+                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#0D9488] shrink-0" />
+                  </Link>
+                );
+              })}
             </div>
           </section>
         )}

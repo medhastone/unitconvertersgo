@@ -51,6 +51,7 @@ import {
   buildStandardToolDescription,
   getCategoryOgImage,
 } from "@/lib/seo";
+import { isIndexableCategory } from "@/lib/seo-config";
 import { ConversionPairInfo } from "@/lib/conversions/types";
 import { resolveInvalidPairRedirect } from "@/lib/conversions/cooking";
 
@@ -90,8 +91,9 @@ export async function generateMetadata({
     description: standardDescription,
     canonicalPath,
     type: "website",
-    noindex: false,
+    noindex: !isIndexableCategory(pair.categoryId),
     categoryId: pair.categoryId,
+    pairSlug: pair.slug,
     useExactTitle: true,
   });
 }
@@ -117,7 +119,7 @@ export default async function HierarchicalConversionPage({
     slug
   ).trim()}`;
 
-  // Canonicalize any non-.htm or alias category/slug URL to the single canonical /[category]/[slug].htm URL
+  // Canonicalize any non-.htm or alias category/slug URL to the single canonical /[category]/[slug] URL
   if (currentPath !== canonicalPath) {
     permanentRedirect(canonicalPath);
   }
@@ -151,9 +153,9 @@ export default async function HierarchicalConversionPage({
   // 4. Other conversions in same category
   const relatedConversions = getConversionsByCategory(pair.categoryId)
     .filter((p) => p.slug !== pair.slug)
-    .slice(0, 8);
+    .slice(0, 10);
 
-  // Featured "Related Converters" card grid
+  // Featured "Related Converters" (5–8 related converters in the same category)
   const featuredRelatedPairs: ConversionPairInfo[] = [];
   if (pair.slug === "cm-to-inches") {
     const preferredSlugs = [
@@ -162,6 +164,8 @@ export default async function HierarchicalConversionPage({
       "meters-to-feet",
       "feet-to-inches",
       "cm-to-feet",
+      "feet-to-meters",
+      "km-to-miles",
     ];
     for (const s of preferredSlugs) {
       const found = CATALOGUE_MAP.get(s);
@@ -171,12 +175,12 @@ export default async function HierarchicalConversionPage({
     const seen = new Set<string>([pair.slug]);
     const candidates = [
       ...(reciprocalPair ? [reciprocalPair] : []),
-      ...sameTargetConversions.slice(0, 2),
-      ...sameSourceConversions.slice(0, 2),
+      ...sameTargetConversions.slice(0, 3),
+      ...sameSourceConversions.slice(0, 3),
       ...relatedConversions,
     ];
     for (const c of candidates) {
-      if (!seen.has(c.slug) && featuredRelatedPairs.length < 5) {
+      if (!seen.has(c.slug) && featuredRelatedPairs.length < 8) {
         seen.add(c.slug);
         featuredRelatedPairs.push(c);
       }
@@ -213,7 +217,7 @@ export default async function HierarchicalConversionPage({
 
   const standardTitle = buildStandardToolTitle(pair, fromUnit, toUnit);
   const standardDescription = buildStandardToolDescription(pair, fromUnit, toUnit);
-  const categoryOgImg = getCategoryOgImage(pair.categoryId, standardTitle);
+  const categoryOgImg = getCategoryOgImage(pair.categoryId, standardTitle, pair.slug);
 
   const articleAndAppJsonLd = {
     "@context": "https://schema.org",

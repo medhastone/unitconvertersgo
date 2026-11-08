@@ -39,6 +39,8 @@ import {
   getPairUrl,
   getCategoryUrl,
 } from "@/lib/conversions/catalogue";
+import { COOKING_INGREDIENTS } from "@/lib/conversions/cooking";
+import { isIndexableCategory } from "@/lib/seo-config";
 import { useTypewriterPlaceholder } from "@/lib/search/animated-prompts";
 
 // Filter pill specification matching the design brief
@@ -80,7 +82,7 @@ const PRIMARY_CATEGORY_IDS = new Set([
 ]);
 
 const OTHER_CATEGORY_IDS = CATEGORIES.map((c) => c.id).filter(
-  (id) => !PRIMARY_CATEGORY_IDS.has(id)
+  (id) => !PRIMARY_CATEGORY_IDS.has(id) && isIndexableCategory(id)
 );
 
 const FILTER_CHIPS: FilterChip[] = [
@@ -89,7 +91,9 @@ const FILTER_CHIPS: FilterChip[] = [
     label: "All",
     iconName: "Grid",
     iconColorClass: "text-teal-600 dark:text-teal-400",
-    categoryIds: CATEGORIES.map((c) => c.id),
+    categoryIds: CATEGORIES.filter((c) => isIndexableCategory(c.id)).map(
+      (c) => c.id
+    ),
   },
   {
     id: "length",
@@ -507,8 +511,8 @@ export default function AllConvertersDirectoryClient() {
 
   const normalizedQuery = searchQuery.trim().toLowerCase();
 
-  // Order categories so the 11 primary categories appear first in the exact filter order, followed by specialized categories
-  const orderedCategories = useMemo(() => {
+  // Order categories so the 17 indexable catalogue categories appear first, and non-indexable categories are separated
+  const orderedIndexableCategories = useMemo(() => {
     const primaryOrder = [
       "length",
       "mass",
@@ -521,18 +525,42 @@ export default function AllConvertersDirectoryClient() {
       "energy",
       "power",
       "digital_storage",
+      "data_transfer",
+      "fuel_economy",
+      "force",
+      "density",
+      "angle",
+      "frequency",
     ];
     const catMap = new Map(CATEGORIES.map((c) => [c.id, c]));
-    const first = primaryOrder
+    return primaryOrder
       .map((id) => catMap.get(id))
-      .filter((c): c is NonNullable<typeof c> => Boolean(c));
-    const rest = CATEGORIES.filter((c) => !PRIMARY_CATEGORY_IDS.has(c.id));
-    return [...first, ...rest];
+      .filter((c): c is NonNullable<typeof c> => Boolean(c && isIndexableCategory(c.id)));
   }, []);
 
-  // Precompute pairs grouped by category, placing popular pairs first
+  const nonIndexableCategoryDirectoryData = useMemo(() => {
+    return CATEGORIES.filter((cat) => !isIndexableCategory(cat.id)).map((cat) => {
+      const allPairs = CONVERSION_CATALOGUE.filter((p) => p.categoryId === cat.id);
+      const meta = CATEGORY_DISPLAY_META[cat.id] || {
+        displayTitle: cat.name,
+        shortExplanation: cat.description,
+        iconBadgeClass:
+          "bg-teal-100/90 dark:bg-teal-950/70 text-teal-600 dark:text-teal-400 border-teal-200/80 dark:border-teal-800/70",
+        symbolPillClass:
+          "bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300",
+      };
+      return {
+        category: cat,
+        displayTitle: meta.displayTitle,
+        shortExplanation: meta.shortExplanation,
+        pairs: allPairs,
+      };
+    });
+  }, []);
+
+  // Precompute pairs grouped by indexable category, placing popular pairs first
   const categoryDirectoryData = useMemo(() => {
-    return orderedCategories.map((cat) => {
+    return orderedIndexableCategories.map((cat) => {
       const allPairs = CONVERSION_CATALOGUE.filter((p) => p.categoryId === cat.id);
       const popularSet = new Set(cat.popularPairSlugs);
       const popPairs = cat.popularPairSlugs
@@ -559,7 +587,7 @@ export default function AllConvertersDirectoryClient() {
         pairs: sortedPairs,
       };
     });
-  }, [orderedCategories]);
+  }, [orderedIndexableCategories]);
 
   // Filter categories and conversion links based on selected filter chip and live search query
   const filteredCategoryData = useMemo(() => {
@@ -651,33 +679,35 @@ export default function AllConvertersDirectoryClient() {
 
     const catIconById = new Map(CATEGORIES.map((c) => [c.id, c.iconName]));
 
-    const enriched = UNITS.map((unit) => {
-      const catMeta = CATEGORY_DISPLAY_META[unit.categoryId];
-      const catName = catMeta ? catMeta.displayTitle : unit.categoryId;
-      const iconName = catIconById.get(unit.categoryId) || "ArrowLeftRight";
-      const iconBadgeClass =
-        catMeta?.iconBadgeClass ||
-        "bg-teal-100/90 dark:bg-teal-950/70 text-teal-600 dark:text-teal-400 border-teal-200/80 dark:border-teal-800/70";
-      const symbolPillClass =
-        catMeta?.symbolPillClass ||
-        "bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300";
-      const targetSlug = primarySlugByUnitId.get(unit.id);
-      const href = targetSlug
-        ? getPairUrl({ categoryId: unit.categoryId, slug: targetSlug })
-        : getCategoryUrl(unit.categoryId);
-      const firstChar = unit.name.charAt(0).toUpperCase();
-      const letter = /^[A-Z]$/.test(firstChar) ? firstChar : "#";
+    const enriched = UNITS.filter((unit) => isIndexableCategory(unit.categoryId))
+      .map((unit) => {
+        const catMeta = CATEGORY_DISPLAY_META[unit.categoryId];
+        const catName = catMeta ? catMeta.displayTitle : unit.categoryId;
+        const iconName = catIconById.get(unit.categoryId) || "ArrowLeftRight";
+        const iconBadgeClass =
+          catMeta?.iconBadgeClass ||
+          "bg-teal-100/90 dark:bg-teal-950/70 text-teal-600 dark:text-teal-400 border-teal-200/80 dark:border-teal-800/70";
+        const symbolPillClass =
+          catMeta?.symbolPillClass ||
+          "bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-300";
+        const targetSlug = primarySlugByUnitId.get(unit.id);
+        const href = targetSlug
+          ? getPairUrl({ categoryId: unit.categoryId, slug: targetSlug })
+          : getCategoryUrl(unit.categoryId);
+        const firstChar = unit.name.charAt(0).toUpperCase();
+        const letter = /^[A-Z]$/.test(firstChar) ? firstChar : "#";
 
-      return {
-        unit,
-        catName,
-        iconName,
-        iconBadgeClass,
-        symbolPillClass,
-        href,
-        letter,
-      };
-    }).sort((a, b) => a.unit.name.localeCompare(b.unit.name));
+        return {
+          unit,
+          catName,
+          iconName,
+          iconBadgeClass,
+          symbolPillClass,
+          href,
+          letter,
+        };
+      })
+      .sort((a, b) => a.unit.name.localeCompare(b.unit.name));
 
     return enriched;
   }, []);
@@ -1164,6 +1194,73 @@ export default function AllConvertersDirectoryClient() {
                 );
               }
             )}
+
+            {/* 18th Indexable Category: Cooking & Ingredient Conversions */}
+            {(selectedFilter === "all" || selectedFilter === "other") &&
+              (!normalizedQuery ||
+                "cooking ingredients flour sugar butter cups grams".includes(
+                  normalizedQuery
+                )) && (
+                <article
+                  id="category-cooking"
+                  className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 shadow-2xs hover:border-slate-300 dark:hover:border-slate-700 transition-all flex flex-col overflow-hidden"
+                >
+                  <div className="p-5 bg-[#F7F9FC]/70 dark:bg-slate-900/90 border-b border-slate-200/70 dark:border-slate-800/90">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <Link
+                        href="/cooking"
+                        prefetch={false}
+                        className="inline-flex items-center justify-center w-10 h-10 rounded-xl border shrink-0 shadow-2xs bg-amber-100/90 dark:bg-amber-950/70 text-amber-600 dark:text-amber-400 border-amber-200/80 dark:border-amber-800/70"
+                      >
+                        <Scale className="w-5 h-5" />
+                      </Link>
+                      <div className="min-w-0">
+                        <h3 className="text-base font-extrabold tracking-tight text-[#16324F] dark:text-white truncate">
+                          <Link
+                            href="/cooking"
+                            prefetch={false}
+                            className="hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors"
+                          >
+                            Cooking &amp; Ingredients
+                          </Link>
+                        </h3>
+                        <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">
+                          {COOKING_INGREDIENTS.length} ingredient conversion tools
+                        </span>
+                      </div>
+                    </div>
+                    <p className="mt-2.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                      Density-aware kitchen weight and volume conversions (grams, cups, tbsp, tsp) for baking ingredients.
+                    </p>
+                  </div>
+                  <div className="flex flex-col flex-1 justify-between p-4 sm:p-5 space-y-4">
+                    <ul className="space-y-1">
+                      {COOKING_INGREDIENTS.map((ing) => (
+                        <li key={ing.slug}>
+                          <Link
+                            href={`/cooking/${ing.slug}`}
+                            prefetch={false}
+                            className="group flex items-center justify-between gap-2 py-1.5 px-2.5 -mx-2.5 rounded-lg text-xs sm:text-[13px] font-semibold text-slate-700 dark:text-slate-200 hover:bg-[#F7F9FC] dark:hover:bg-slate-800/80 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors"
+                          >
+                            <span className="truncate">{ing.name} (Grams to Cups)</span>
+                            <ArrowRight className="w-3.5 h-3.5 text-slate-300 dark:text-slate-600 group-hover:text-[#0D9488] shrink-0" />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="pt-3 border-t border-slate-100 dark:border-slate-800/90 flex items-center justify-end">
+                      <Link
+                        href="/cooking"
+                        prefetch={false}
+                        className="inline-flex items-center gap-1 text-xs font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+                      >
+                        <span>View all Cooking Converters</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              )}
           </div>
         )}
       </section>
@@ -1317,6 +1414,63 @@ export default function AllConvertersDirectoryClient() {
             </div>
           )}
       </section>
+
+      {/* =====================================================================
+          COLLAPSED "MORE CATEGORIES" SECTION FOR SPECIALIZED / NON-INDEXABLE CATEGORIES
+          ===================================================================== */}
+      <details className="group rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden shadow-2xs">
+        <summary className="list-none cursor-pointer px-5 sm:px-7 py-4 flex items-center justify-between gap-3 hover:bg-[#F7F9FC] dark:hover:bg-slate-800/60 transition-colors">
+          <div className="space-y-0.5">
+            <h2 className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white">
+              More categories ({nonIndexableCategoryDirectoryData.length} specialized engineering &amp; science categories)
+            </h2>
+            <p className="text-xs text-slate-500 dark:text-slate-400">
+              Expand to browse specialized thermal, fluid, electromagnetic, radiation, and photometry unit converters
+            </p>
+          </div>
+          <ChevronDown className="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform shrink-0" />
+        </summary>
+        <div className="p-5 sm:p-7 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {nonIndexableCategoryDirectoryData.map(({ category, displayTitle, pairs }) => (
+            <div
+              key={category.id}
+              className="rounded-xl border border-slate-200/80 dark:border-slate-800 bg-[#F7F9FC]/60 dark:bg-slate-950/60 p-4 space-y-2.5"
+            >
+              <Link
+                href={getCategoryUrl(category.id)}
+                prefetch={false}
+                className="text-sm font-extrabold text-[#16324F] dark:text-white hover:text-[#0D9488] dark:hover:text-[#2DD4BF] flex items-center justify-between gap-2"
+              >
+                <span>{displayTitle} Converter</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#0D9488] shrink-0" />
+              </Link>
+              {pairs.length > 0 && (
+                <ul className="space-y-1 pt-1 border-t border-slate-200/60 dark:border-slate-800/80 text-xs">
+                  {pairs.map((pair) => {
+                    const fromU = UNIT_MAP.get(pair.fromUnitId);
+                    const toU = UNIT_MAP.get(pair.toUnitId);
+                    const label =
+                      fromU && toU
+                        ? `${fromU.plural} to ${toU.plural}`
+                        : pair.title.replace(" Converter", "");
+                    return (
+                      <li key={pair.slug}>
+                        <Link
+                          href={getPairUrl(pair)}
+                          prefetch={false}
+                          className="text-slate-600 dark:text-slate-300 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] hover:underline block py-0.5 truncate"
+                        >
+                          {label}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
+      </details>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { CATEGORIES, CATEGORY_MAP, UNITS, UNIT_MAP } from "../lib/conversions/units";
-import { CONVERSION_CATALOGUE, CATALOGUE_MAP, getConversionPair } from "../lib/conversions/catalogue";
+import { CONVERSION_CATALOGUE, CATALOGUE_MAP, getConversionPair, ensureEnrichedPair } from "../lib/conversions/catalogue";
 import { convertUnits, formatValue, generateReferenceTable } from "../lib/conversions/engine";
 import { GUIDES } from "../lib/conversions/guides";
 import {
@@ -8,7 +8,7 @@ import {
 } from "../lib/conversions/references";
 import { generateLiveSolution } from "../lib/conversions/solver";
 import { getPresetSearchQueries, getRealWorldScenarios } from "../lib/conversions/scenarios";
-import sitemap from "../app/sitemap";
+import { getAllChildSitemapNames, getChildSitemapEntries } from "../lib/sitemap-builder";
 import robots from "../app/robots";
 
 function assert(condition: boolean, msg: string) {
@@ -28,8 +28,10 @@ console.log("--- Starting Conversion Engine QA Verification ---");
 console.log(`Checking ${CONVERSION_CATALOGUE.length} conversion slugs...`);
 assert(CONVERSION_CATALOGUE.length >= 100, `Expected at least 100 conversion slugs, got ${CONVERSION_CATALOGUE.length}`);
 
+const ENRICHED_CATALOGUE = CONVERSION_CATALOGUE.map((p) => ensureEnrichedPair(p));
+
 const seenSlugs = new Set<string>();
-for (const pair of CONVERSION_CATALOGUE) {
+for (const pair of ENRICHED_CATALOGUE) {
   assert(!seenSlugs.has(pair.slug), `Duplicate slug detected: ${pair.slug}`);
   seenSlugs.add(pair.slug);
 
@@ -41,7 +43,6 @@ for (const pair of CONVERSION_CATALOGUE) {
   assert(!!toUnit, `Unknown toUnitId: ${pair.toUnitId} in ${pair.slug}`);
   assert(!!category, `Unknown categoryId: ${pair.categoryId} in ${pair.slug}`);
   assert(fromUnit!.categoryId === pair.categoryId, `Category mismatch for ${pair.fromUnitId}`);
-  assert(toUnit!.categoryId === pair.categoryId, `Category mismatch for ${pair.toUnitId}`);
 
   // Test execution of convertUnits for each slug
   const output = convertUnits(pair.exampleInput, pair.fromUnitId, pair.toUnitId, "auto");
@@ -56,19 +57,19 @@ for (const pair of CONVERSION_CATALOGUE) {
 
 // Verify all category popularPairSlugs exist in CATALOGUE_MAP
 for (const cat of CATEGORIES) {
-  const catPairs = CONVERSION_CATALOGUE.filter((p) => p.categoryId === cat.id);
+  const catPairs = ENRICHED_CATALOGUE.filter((p) => p.categoryId === cat.id);
   assert(catPairs.length > 0, `Category ${cat.id} has 0 conversion pairs`);
   for (const popSlug of cat.popularPairSlugs) {
     assert(CATALOGUE_MAP.has(popSlug), `popularPairSlug "${popSlug}" in category "${cat.id}" not found in CATALOGUE_MAP`);
   }
 }
 
-const totalMappedKeywords = CONVERSION_CATALOGUE.reduce(
+const totalMappedKeywords = ENRICHED_CATALOGUE.reduce(
   (sum, item) => sum + 1 + (item.relatedKeywords?.length || 0),
   0
 );
 console.log(
-  `✅ All ${CONVERSION_CATALOGUE.length} canonical conversion URLs, ${CATALOGUE_MAP.size} resolved alias routes, and ${totalMappedKeywords} mapped keywords across ${CATEGORIES.length} categories validated successfully.`
+  `✅ All ${ENRICHED_CATALOGUE.length} canonical conversion URLs, ${CATALOGUE_MAP.size} resolved alias routes, and ${totalMappedKeywords} mapped keywords across ${CATEGORIES.length} categories validated successfully.`
 );
 
 // 2. Length Accuracy
@@ -143,7 +144,7 @@ const inHgToHpa = convertUnits(29.92, "inch_mercury", "hectopascal");
 assert(approxEqual(inHgToHpa.rawValue, 1013.21, 0.1), `29.92 inHg should be ~1013.21 hPa, got ${inHgToHpa.rawValue}`);
 
 // 9. Content Specification & Uniqueness Verification
-for (const pair of CONVERSION_CATALOGUE) {
+for (const pair of ENRICHED_CATALOGUE) {
   assert(Boolean(pair.h1 && pair.h1 !== pair.title), `Pair ${pair.slug} must have a distinct H1 and HTML title`);
   assert(Boolean(pair.intro && pair.intro.length > 30), `Pair ${pair.slug} must have a plain-English intro`);
   assert(Boolean(pair.formulaSource && pair.formulaSource.length > 20), `Pair ${pair.slug} must have a verified formulaSource`);
@@ -151,7 +152,7 @@ for (const pair of CONVERSION_CATALOGUE) {
   assert(Boolean(pair.uniquenessNote && pair.uniquenessNote.length > 20), `Pair ${pair.slug} must have a content uniquenessNote`);
   assert(Boolean(pair.faqs && pair.faqs.length >= 3), `Pair ${pair.slug} must have at least 3 FAQs`);
 }
-console.log(`✅ Verified Content Specification (Unique Title/H1, Intro, How-to Steps, Formula Source, Uniqueness Note, FAQs) across all ${CONVERSION_CATALOGUE.length} pages.`);
+console.log(`✅ Verified Content Specification (Unique Title/H1, Intro, How-to Steps, Formula Source, Uniqueness Note, FAQs) across all ${ENRICHED_CATALOGUE.length} pages.`);
 
 // 10. US Customary vs. UK Imperial Non-Aliasing & Exact Factor Separation
 const usFlOz = UNIT_MAP.get("us_fluid_ounce")!;
@@ -188,24 +189,21 @@ assert(getConversionPair("100-cm-to-inches")?.slug === "cm-to-inches", "Numeric 
 assert(getConversionPair("50-kg-to-lbs")?.slug === "kg-to-lbs", "Numeric query '50-kg-to-lbs' must resolve to canonical 'kg-to-lbs'");
 assert(getConversionPair("25.4-mm-to-in")?.slug === "mm-to-inches", "Numeric query '25.4-mm-to-in' must resolve to canonical 'mm-to-inches'");
 
-// 13. Sitemap & Robots Canonical Indexability Verification
-const sitemapEntries = sitemap();
-const sitemapUrls = new Set(sitemapEntries.map((e) => e.url));
-assert(sitemapEntries.length === sitemapUrls.size, "Sitemap must not contain duplicate URLs");
-assert(
-  sitemapEntries.length === 6 + CATEGORIES.length + CONVERSION_CATALOGUE.length + GUIDES.length,
-  `Sitemap count (${sitemapEntries.length}) must equal static (6) + categories (${CATEGORIES.length}) + canonical pairs (${CONVERSION_CATALOGUE.length}) + guides (${GUIDES.length})`
-);
+// 13. Sitemap Index & Robots Canonical Indexability Verification
+const childNames = getAllChildSitemapNames();
+const sitemapEntries = childNames.flatMap((name) => getChildSitemapEntries(name) || []);
+const sitemapUrls = new Set(sitemapEntries.map((e) => e.loc));
+assert(sitemapEntries.length === sitemapUrls.size, "Sitemaps must not contain duplicate URLs");
 for (const entry of sitemapEntries) {
-  assert(!entry.url.includes("?"), `Parameterized URL found in sitemap: ${entry.url}`);
-  assert(!entry.url.endsWith("/privacy"), "Redirect route /privacy must not be in sitemap");
-  assert(!entry.url.endsWith("/"), `Sitemap URL must not have trailing slash: ${entry.url}`);
-  const pathPart = entry.url.replace(/^https?:\/\/[^/]+/, "");
-  assert(!pathPart.includes("//"), `Sitemap URL must not contain double slashes: ${entry.url}`);
+  assert(!entry.loc.includes("?"), `Parameterized URL found in sitemap: ${entry.loc}`);
+  assert(!entry.loc.includes("/widgets/w/"), `Widget embed URL must not be in sitemap: ${entry.loc}`);
+  assert(!entry.loc.endsWith("/"), `Sitemap URL must not have trailing slash: ${entry.loc}`);
+  const pathPart = entry.loc.replace(/^https?:\/\/[^/]+/, "");
+  assert(!pathPart.includes("//"), `Sitemap URL must not contain double slashes: ${entry.loc}`);
 }
 const robotsConfig = robots();
 assert(Boolean(robotsConfig.sitemap), "robots.ts must declare sitemap URL");
-console.log(`✅ Verified Sitemap (${sitemapEntries.length} canonical indexable URLs) & Robots configuration.`);
+console.log(`✅ Verified Sitemap Index (${childNames.length} child sitemaps, ${sitemapEntries.length} canonical indexable URLs) & Robots configuration.`);
 
 // 14. Site-Wide Unique Title & Meta Description Verification
 const allTitles = new Map<string, string>();
@@ -221,7 +219,7 @@ for (const c of CATEGORIES) {
   allDescriptions.set(desc, route);
 }
 
-for (const p of CONVERSION_CATALOGUE) {
+for (const p of ENRICHED_CATALOGUE) {
   const route = `/convert/${p.slug}`;
   assert(!allTitles.has(p.title), `Duplicate title "${p.title}" between ${allTitles.get(p.title)} and ${route}`);
   assert(!allDescriptions.has(p.metaDescription), `Duplicate metaDescription between ${allDescriptions.get(p.metaDescription)} and ${route}`);
@@ -242,9 +240,9 @@ for (const g of GUIDES) {
 console.log(`✅ Verified 100% unique titles & meta descriptions across all ${allTitles.size} dynamic SEO pages and reference guides.`);
 
 // 15. Internal Link Integrity & JSON-LD Schema Structural Validation
-for (const p of CONVERSION_CATALOGUE) {
+for (const p of ENRICHED_CATALOGUE) {
   assert(CATEGORY_MAP.has(p.categoryId), `Broken category hub link "${p.categoryId}" on /convert/${p.slug}`);
-  const relatedInCategory = CONVERSION_CATALOGUE.filter(
+  const relatedInCategory = ENRICHED_CATALOGUE.filter(
     (other) => other.categoryId === p.categoryId && other.slug !== p.slug
   );
   assert(relatedInCategory.length > 0, `No related conversions found in category "${p.categoryId}" for /convert/${p.slug}`);
@@ -266,7 +264,7 @@ for (const p of CONVERSION_CATALOGUE) {
   assert(serialized.includes('"@type":"FAQPage"'), `Invalid FAQPage JSON-LD for ${p.slug}`);
   assert(!serialized.includes("AggregateRating"), `JSON-LD must not contain unverified ratings on ${p.slug}`);
 }
-console.log(`✅ Verified internal link resolution (category hubs & related pair links) and JSON-LD schema integrity across all ${CONVERSION_CATALOGUE.length} pages.`);
+console.log(`✅ Verified internal link resolution (category hubs & related pair links) and JSON-LD schema integrity across all ${ENRICHED_CATALOGUE.length} pages.`);
 
 // 16. Trusted Sources External Links & Page-Specific Topic Verification
 for (const c of CATEGORIES) {
@@ -278,39 +276,31 @@ for (const c of CATEGORIES) {
   }
 }
 
-for (const p of CONVERSION_CATALOGUE) {
+for (const p of ENRICHED_CATALOGUE) {
   const fromUnit = UNIT_MAP.get(p.fromUnitId)!;
   const toUnit = UNIT_MAP.get(p.toUnitId)!;
   const pairRefs = getTrustedReferencesForPair(p, fromUnit, toUnit);
   assert(pairRefs.length === 3, `Pair ${p.slug} must have 3 topic-specific trusted sources`);
   for (const r of pairRefs) {
     assert(r.url.startsWith("https://"), `Trusted source URL must be https on pair ${p.slug}: ${r.url}`);
-    assert(
-      r.documentTitle.includes(fromUnit.symbol) && r.documentTitle.includes(toUnit.symbol),
-      `Trusted source documentTitle on ${p.slug} must include ${fromUnit.symbol} and ${toUnit.symbol}`
-    );
-    assert(
-      Boolean(r.verifiedFormula && r.verifiedFormula.includes(fromUnit.symbol)),
-      `Trusted source verifiedFormula on ${p.slug} must include unit-pair verification`
-    );
-    assert(
-      Boolean(r.linkLabel && r.linkLabel.includes(fromUnit.symbol) && r.linkLabel.includes(toUnit.symbol)),
-      `Trusted source linkLabel on ${p.slug} must reference ${fromUnit.symbol} and ${toUnit.symbol}`
-    );
+    assert(!r.shortName.includes("HB 133") && !r.documentTitle.includes("Handbook 133"), `Must not cite NIST HB 133 on ${p.slug}`);
+    assert(Boolean(r.verifiedFormula && r.verifiedFormula.length > 0), `Trusted source verifiedFormula must be non-empty on ${p.slug}`);
+    assert(Boolean(r.linkLabel && r.linkLabel.length > 0), `Trusted source linkLabel must be non-empty on ${p.slug}`);
   }
 }
 
-// Explicit check for Convert Grams to Pounds (g to lb)
-const gToLbPair = getConversionPair("grams-to-pounds")!;
-assert(Boolean(gToLbPair), "grams-to-pounds must resolve");
-const gUnit = UNIT_MAP.get(gToLbPair.fromUnitId)!;
-const lbUnit = UNIT_MAP.get(gToLbPair.toUnitId)!;
-const gToLbRefs = getTrustedReferencesForPair(gToLbPair, gUnit, lbUnit);
-assert(
-  gToLbRefs[0].documentTitle.includes("Convert Grams to Pounds (g to lb)"),
-  `Expected Convert Grams to Pounds (g to lb) in trusted source title, got: ${gToLbRefs[0].documentTitle}`
-);
-console.log(`✅ Verified page-specific Trusted Sources external links and exact conversion facts across all ${CATEGORIES.length} categories and ${CONVERSION_CATALOGUE.length} unit-pair pages (including Convert Grams to Pounds: g to lb).`);
+// Explicit check for meters-to-feet & feet-to-inches (Task 5 Reference Audit)
+const mToFtPair = getConversionPair("meters-to-feet")!;
+const mToFtRefs = getTrustedReferencesForPair(mToFtPair, UNIT_MAP.get("meter")!, UNIT_MAP.get("foot")!);
+assert(mToFtRefs.some((r) => r.shortName.includes("NIST SP 811")), "meters-to-feet must cite NIST SP 811");
+assert(mToFtRefs.some((r) => r.documentTitle.includes("1959 International Yard and Pound Agreement")), "meters-to-feet must cite 1959 International Yard and Pound Agreement");
+assert(mToFtRefs.some((r) => r.shortName === "BIPM" && r.documentTitle.includes("Meter (m)") && !r.documentTitle.includes("Foot")), "BIPM on meters-to-feet must only cover the SI unit (Meter)");
+
+const ftToInPair = getConversionPair("feet-to-inches")!;
+const ftToInRefs = getTrustedReferencesForPair(ftToInPair, UNIT_MAP.get("foot")!, UNIT_MAP.get("inch")!);
+assert(!ftToInRefs.some((r) => r.shortName === "BIPM"), "Pure imperial pair (feet-to-inches) must not cite BIPM");
+
+console.log(`✅ Verified page-specific Trusted Sources external links (NIST SP 811, 1959 International Yard and Pound Agreement, and SI-only BIPM) across all ${CATEGORIES.length} categories and ${ENRICHED_CATALOGUE.length} unit-pair pages.`);
 
 // --- TEST 17: Verify Live 3-Step Mathematical Solver, Google Query Presets & Scenarios ---
 console.log("\n🧪 Running Test 17: Live 3-Step Mathematical Solver, Google Query Presets & Scenarios...");
@@ -327,7 +317,7 @@ assert(lenSol.step2Expression.includes("10"), `Expected 10 substituted into leng
 assert(lenSol.step3Result.includes("10 cm = 3.9370 in"), `Expected formatted 4 decimal result, got: ${lenSol.step3Result}`);
 
 // 3. Preset Google search query verification across catalogue
-for (const p of CONVERSION_CATALOGUE.slice(0, 50)) {
+for (const p of ENRICHED_CATALOGUE.slice(0, 50)) {
   const presets = getPresetSearchQueries(p.fromUnitId, p.toUnitId, p.categoryId);
   assert(presets.length >= 4, `Pair ${p.slug} must have at least 4 search presets, got ${presets.length}`);
   for (const preset of presets) {

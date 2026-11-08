@@ -30,7 +30,9 @@ export async function generateMetadata({
   return buildPageMetadata({
     title: `${widget.shortTitle} Widget`,
     description: widget.description,
-    canonicalPath: widget.widgetStudioHref,
+    canonicalPath: widget.converterHref,
+    noindex: true,
+    categoryId: widget.categoryId,
   });
 }
 

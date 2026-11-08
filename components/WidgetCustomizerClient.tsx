@@ -811,6 +811,7 @@ export default function WidgetCustomizerClient({
                 key={item.slug}
                 href={`/widgets/w/${item.slug}`}
                 prefetch={false}
+                rel="nofollow"
                 className="group p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 hover:border-[#0D9488] transition-all flex flex-col justify-between gap-3 shadow-2xs"
               >
                 <div className="space-y-1.5">

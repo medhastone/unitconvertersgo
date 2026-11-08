@@ -47,7 +47,6 @@ import { Category, Unit, ConversionPairInfo } from "@/lib/conversions/types";
 import { convertUnits, formatValue } from "@/lib/conversions/engine";
 import { UNIT_MAP } from "@/lib/conversions/units";
 import {
-  getMoreUnitConversionLinks,
   getPairUrl,
   getCategoryUrl,
 } from "@/lib/conversions/catalogue";
@@ -431,11 +430,6 @@ export default function CategoryDashboardView({
     if (targetUnitId) setToUnitId(targetUnitId);
     setInputValue(String(val));
     if (scrollToConverter && typeof window !== "undefined") {
-      const targetUrl = `${window.location.pathname}?value=${encodeURIComponent(
-        String(val)
-      )}#converter-tool-section`;
-      window.history.replaceState(null, "", targetUrl);
-
       const converterEl = document.getElementById("converter-tool-section");
       if (converterEl) {
         converterEl.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -729,6 +723,7 @@ export default function CategoryDashboardView({
                   <Link
                     href={`/widgets/w/${category.id.replace(/_/g, "-")}-converter`}
                     prefetch={false}
+                    rel="nofollow"
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F7F9FC] dark:bg-slate-800 hover:border-[#0D9488] border border-slate-200/90 dark:border-slate-700 text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-teal-300 transition-colors"
                   >
                     <Code2 className="w-3.5 h-3.5 text-[#0D9488] dark:text-[#2DD4BF]" />
@@ -765,6 +760,16 @@ export default function CategoryDashboardView({
                           : "bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-300 border-slate-200/90 dark:border-slate-800 hover:border-[#0D9488]/60"
                       }`}
                     >
+                      {isSource && (
+                        <span className="text-[11px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#0D9488] text-white shrink-0">
+                          From:
+                        </span>
+                      )}
+                      {isTarget && (
+                        <span className="text-[11px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-[#16324F] dark:text-slate-200 shrink-0">
+                          To:
+                        </span>
+                      )}
                       <span
                         className={
                           isSource
@@ -777,16 +782,6 @@ export default function CategoryDashboardView({
                       <span className="truncate">
                         {u.name} ({u.symbol})
                       </span>
-                      {isSource && (
-                        <span className="text-[11px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#0D9488] text-white shrink-0">
-                          From
-                        </span>
-                      )}
-                      {isTarget && (
-                        <span className="text-[11px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-[#16324F] dark:text-slate-200 shrink-0">
-                          To
-                        </span>
-                      )}
                     </button>
                   );
                 })}
@@ -921,10 +916,9 @@ export default function CategoryDashboardView({
                           {row.col2}
                         </td>
                         <td className="py-3 px-4 font-mono tabular-nums text-slate-700 dark:text-slate-300">
-                          <a
-                            href={`?value=${encodeURIComponent(String(row.rawVal1))}#converter-tool-section`}
+                          <button
+                            type="button"
                             onClick={(e) => {
-                              e.preventDefault();
                               e.stopPropagation();
                               handleSelectPresetValue(
                                 row.rawVal1,
@@ -947,7 +941,7 @@ export default function CategoryDashboardView({
                             >
                               <ArrowRight className="w-3 h-3" />
                             </span>
-                          </a>
+                          </button>
                         </td>
                       </tr>
                     );
@@ -1045,72 +1039,53 @@ export default function CategoryDashboardView({
             </div>
           </section>
 
-          {/* 4. MORE [UNIT A] & [UNIT B] CONVERSIONS (Complete Internal Linking Lists) */}
-          {(() => {
-            const moreLinks = getMoreUnitConversionLinks(fromUnit, toUnit);
-            return (
-              <section
-                aria-labelledby="more-cat-unit-conversions-heading"
-                className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-5"
-              >
-                <div className="flex items-center gap-2.5 border-b border-slate-100 dark:border-slate-800 pb-3.5">
-                  <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF]">
-                    <Link2 className="w-4 h-4" />
-                  </span>
+          {/* 4. POPULAR <CATEGORY> CONVERSIONS (Server-Rendered Category Links) */}
+          {sidebarPairLinks.length > 0 && (
+            <section
+              aria-labelledby="popular-cat-conversions-heading"
+              className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-5"
+            >
+              <div className="flex items-center gap-2.5 border-b border-slate-100 dark:border-slate-800 pb-3.5">
+                <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF]">
+                  <Link2 className="w-4 h-4" />
+                </span>
+                <div className="space-y-0.5">
                   <h2
-                    id="more-cat-unit-conversions-heading"
+                    id="popular-cat-conversions-heading"
                     className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
                   >
-                    {moreLinks.sectionHeading}
+                    Popular {displayName} Conversions
                   </h2>
+                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                    Most frequently used {displayName.toLowerCase()} unit converters with step-by-step formulas and tables
+                  </p>
                 </div>
+              </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {/* Column 1: Convert from [FromUnit.plural] */}
-                  <div className="space-y-3">
-                    <h3 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white border-b border-slate-100 dark:border-slate-800 pb-2">
-                      {moreLinks.fromHeading}
-                    </h3>
-                    <ul className="space-y-2">
-                      {moreLinks.fromLinks.map((item) => (
-                        <li key={item.href}>
-                          <Link
-                            href={item.href}
-                            prefetch={false}
-                            className="inline-flex items-center gap-2 text-[15px] sm:text-base font-medium text-[#0D9488] dark:text-[#2DD4BF] hover:text-[#16324F] dark:hover:text-white hover:underline transition-colors py-1"
-                          >
-                            <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
-                            <span>{item.label}</span>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Column 2: Convert to [ToUnit.plural] */}
-                  <div className="space-y-3">
-                    <h3 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white border-b border-slate-100 dark:border-slate-800 pb-2">
-                      {moreLinks.toHeading}
-                    </h3>
-                    <ul className="space-y-2">
-                      {moreLinks.toLinks.map((item) => (
-                        <li key={item.href}>
-                          <Link
-                            href={item.href}
-                            prefetch={false}
-                            className="inline-flex items-center gap-2 text-[15px] sm:text-base font-medium text-[#0D9488] dark:text-[#2DD4BF] hover:text-[#16324F] dark:hover:text-white hover:underline transition-colors py-1"
-                          >
-                            <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
-                            <span>{item.label}</span>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </section>
-            );
-          })()}
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {sidebarPairLinks.map((pair) => {
+                  const pFrom = UNIT_MAP.get(pair.fromUnitId);
+                  const pTo = UNIT_MAP.get(pair.toUnitId);
+                  const anchorLabel =
+                    pFrom && pTo
+                      ? `${pFrom.plural} to ${pTo.plural} Converter (${pFrom.symbol} to ${pTo.symbol})`
+                      : pair.title;
+                  return (
+                    <li key={pair.slug}>
+                      <Link
+                        href={getPairUrl(pair)}
+                        prefetch={false}
+                        className="flex items-center justify-between px-4 py-3 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-[#F7F9FC]/70 dark:bg-slate-950/50 hover:bg-white dark:hover:bg-slate-900 hover:border-[#0D9488] text-sm sm:text-[15px] font-bold text-[#16324F] dark:text-slate-200 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-all"
+                      >
+                        <span className="truncate pr-2">{anchorLabel}</span>
+                        <ArrowRight className="w-4 h-4 text-slate-400 shrink-0" />
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          )}
 
           {/* 5. FREQUENTLY ASKED QUESTIONS (Interactive Accordion) */}
           {faqs.length > 0 && (
@@ -1374,6 +1349,7 @@ export default function CategoryDashboardView({
             <Link
               href={`/widgets/w/${category.id.replace(/_/g, "-")}-converter`}
               prefetch={false}
+              rel="nofollow"
               className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#16324F] hover:bg-[#0D9488] text-white text-sm font-extrabold transition-colors"
             >
               <Code2 className="w-4 h-4" />

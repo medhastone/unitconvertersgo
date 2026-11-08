@@ -87,6 +87,10 @@ import {
   QUICK_FRACTION_CHIPS,
 } from "@/lib/conversions/fractions";
 import { SITE_CONFIG } from "@/lib/config";
+import {
+  TOP_20_POPULAR_CONVERTERS,
+  isIndexableCategory,
+} from "@/lib/seo-config";
 import TapeMeasureVisual from "@/components/TapeMeasureVisual";
 import SharePageButton from "@/components/SharePageButton";
 
@@ -228,27 +232,14 @@ function renderCategoryIcon(iconName: string, className = "w-5 h-5") {
 }
 
 /**
- * Formats a conversion result with up to 9 decimal places in "auto" mode on pair pages
- * so e.g. 10 cm -> 3.937007874 inches while keeping integer/exact results clean.
+ * Formats a conversion result consistently with formatValue so the displayed
+ * conversion factor matches across the calculator, formula box, and prose,
+ * while all internal arithmetic uses the exact floating-point value.
  */
 function formatPairResult(rawValue: number, precision: PrecisionMode): string {
   if (!Number.isFinite(rawValue)) return "Invalid Input";
   if (rawValue === 0) return "0";
-
-  if (precision !== "auto") {
-    return formatValue(rawValue, precision);
-  }
-
-  const abs = Math.abs(rawValue);
-  if (abs >= 1e9 || (abs > 0 && abs < 1e-6)) {
-    return rawValue.toExponential(6).replace(/\.?0+e/, "e");
-  }
-
-  // Round to 9 decimal places to eliminate floating-point noise while preserving 3.937007874
-  const rounded9 = Number(rawValue.toFixed(9));
-  const parts = rounded9.toString().split(".");
-  const intPart = Number(parts[0]).toLocaleString("en-US");
-  return parts[1] ? `${intPart}.${parts[1]}` : intPart;
+  return formatValue(rawValue, precision);
 }
 
 /**
@@ -757,7 +748,9 @@ export default function ConversionPageInteractive({
   );
 
   const sidebarRelatedCategories = useMemo(() => {
-    return CATEGORIES.filter((c) => c.id !== pair.categoryId).slice(0, 6);
+    return CATEGORIES.filter(
+      (c) => c.id !== pair.categoryId && isIndexableCategory(c.id)
+    ).slice(0, 6);
   }, [pair.categoryId]);
 
   return (
@@ -1092,6 +1085,7 @@ export default function ConversionPageInteractive({
 
                 <Link
                   href={`/widgets/w/${matchingCanonicalPair?.slug || pair.slug}`}
+                  rel="nofollow"
                   prefetch={false}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F7F9FC] dark:bg-slate-800 hover:bg-[#E6FAF8] dark:hover:bg-teal-950/60 border border-slate-200/90 dark:border-slate-700 hover:border-[#0D9488] text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-teal-300 transition-colors"
                   title={`Embed this ${fromUnit.plural} to ${toUnit.plural} calculator widget on your website`}
@@ -1172,19 +1166,19 @@ export default function ConversionPageInteractive({
                     >
                       {renderCategoryIcon(iconName, "w-4 h-4")}
                     </span>
-                    <span className="truncate">
-                      {formatUnitWithSymbol(u.plural, u.symbol)}
-                    </span>
                     {isSource && (
                       <span className="text-[11px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-[#0D9488] text-white shrink-0">
-                        From
+                        From:
                       </span>
                     )}
                     {isTarget && (
                       <span className="text-[11px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-[#16324F] dark:text-slate-200 shrink-0">
-                        To
+                        To:
                       </span>
                     )}
+                    <span className="truncate">
+                      {formatUnitWithSymbol(u.plural, u.symbol)}
+                    </span>
                   </button>
                 );
               })}
@@ -2027,56 +2021,66 @@ export default function ConversionPageInteractive({
             );
             const otherRelated = (featuredRelatedPairs || [])
               .filter((p) => p.slug !== pair.slug && p.slug !== reversePair?.slug)
-              .slice(0, 3);
+              .slice(0, 7);
             return (
-              <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-                Need to calculate in the opposite direction? Use our{" "}
-                {reversePair ? (
-                  <Link
-                    href={getPairUrl(reversePair)}
-                    prefetch={false}
-                    className="font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
-                  >
-                    {toUnit.plural.toLowerCase()} to {fromUnit.plural.toLowerCase()} converter ({toUnit.symbol} to {fromUnit.symbol})
-                  </Link>
-                ) : (
-                  <span>
-                    {toUnit.plural.toLowerCase()} to {fromUnit.plural.toLowerCase()} calculator
-                  </span>
-                )}{" "}
-                to switch your starting unit immediately.
+              <div className="space-y-4">
+                <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+                  Need to calculate in the opposite direction? Use our{" "}
+                  {reversePair ? (
+                    <Link
+                      href={getPairUrl(reversePair)}
+                      prefetch={false}
+                      className="font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+                    >
+                      {toUnit.plural.toLowerCase()} to {fromUnit.plural.toLowerCase()} converter
+                    </Link>
+                  ) : (
+                    <span>
+                      {toUnit.plural.toLowerCase()} to {fromUnit.plural.toLowerCase()} converter
+                    </span>
+                  )}{" "}
+                  ({toUnit.symbol} to {fromUnit.symbol}), or browse our complete{" "}
+                  {category && (
+                    <Link
+                      href={getCategoryUrl(category.id)}
+                      prefetch={false}
+                      className="font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+                    >
+                      {category.name.toLowerCase()} converter
+                    </Link>
+                  )}{" "}
+                  hub.
+                </p>
+
                 {otherRelated.length > 0 && (
-                  <>
-                    {" "}
-                    You can also explore related tools such as{" "}
-                    {otherRelated.map((rel, idx) => {
-                      const rFrom = UNIT_MAP.get(rel.fromUnitId);
-                      const rTo = UNIT_MAP.get(rel.toUnitId);
-                      const anchorLabel =
-                        rFrom && rTo
-                          ? `converting ${rFrom.plural.toLowerCase()} to ${rTo.plural.toLowerCase()}`
-                          : rel.title.replace(/\s*Converter.*$/i, "").toLowerCase();
-                      return (
-                        <span key={rel.slug}>
-                          {idx > 0 && idx === otherRelated.length - 1
-                            ? ", or "
-                            : idx > 0
-                            ? ", "
-                            : ""}
+                  <div className="space-y-2">
+                    <h3 className="text-sm font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                      Related {category?.name} Converters
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {otherRelated.map((rel) => {
+                        const rFrom = UNIT_MAP.get(rel.fromUnitId);
+                        const rTo = UNIT_MAP.get(rel.toUnitId);
+                        const anchorLabel =
+                          rFrom && rTo
+                            ? `${rFrom.plural.toLowerCase()} to ${rTo.plural.toLowerCase()} converter`
+                            : `${rel.title.replace(/\s*Converter.*$/i, "").toLowerCase()} converter`;
+                        return (
                           <Link
+                            key={rel.slug}
                             href={getPairUrl(rel)}
                             prefetch={false}
-                            className="font-semibold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+                            className="inline-flex items-center justify-between gap-2 px-3.5 py-2 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/80 dark:border-slate-800 hover:border-[#0D9488] text-sm font-bold text-[#16324F] dark:text-slate-200 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors capitalize"
                           >
-                            {anchorLabel}
+                            <span>{anchorLabel}</span>
+                            <ArrowRight className="w-3.5 h-3.5 text-[#0D9488] shrink-0" />
                           </Link>
-                        </span>
-                      );
-                    })}
-                    .
-                  </>
+                        );
+                      })}
+                    </div>
+                  </div>
                 )}
-              </p>
+              </div>
             );
           })()}
 
@@ -2087,11 +2091,13 @@ export default function ConversionPageInteractive({
                 {moreUnitLinks.fromHeading}
               </h3>
               <ul className="space-y-2">
-                {(isDesktopViewport || isMobileLinksExpanded
-                  ? moreUnitLinks.fromLinks
-                  : moreUnitLinks.fromLinks.slice(0, 6)
-                ).map((item) => (
-                  <li key={item.href}>
+                {moreUnitLinks.fromLinks.map((item, idx) => (
+                  <li
+                    key={item.href}
+                    className={
+                      !isMobileLinksExpanded && idx >= 6 ? "hidden md:block" : ""
+                    }
+                  >
                     <Link
                       href={item.href}
                       prefetch={false}
@@ -2113,11 +2119,13 @@ export default function ConversionPageInteractive({
                 {moreUnitLinks.toHeading}
               </h3>
               <ul className="space-y-2">
-                {(isDesktopViewport || isMobileLinksExpanded
-                  ? moreUnitLinks.toLinks
-                  : moreUnitLinks.toLinks.slice(0, 6)
-                ).map((item) => (
-                  <li key={item.href}>
+                {moreUnitLinks.toLinks.map((item, idx) => (
+                  <li
+                    key={item.href}
+                    className={
+                      !isMobileLinksExpanded && idx >= 6 ? "hidden md:block" : ""
+                    }
+                  >
                     <Link
                       href={item.href}
                       prefetch={false}
@@ -2157,6 +2165,39 @@ export default function ConversionPageInteractive({
                 />
               </button>
             )}
+
+          {/* Popular Converters Across Categories + Link to Homepage Popular List */}
+          <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2.5">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h3 className="text-sm font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                Most Popular Unit Converters
+              </h3>
+              <Link
+                href="/#popular-converters"
+                prefetch={false}
+                className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+              >
+                <span>View all popular unit converters</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {TOP_20_POPULAR_CONVERTERS.filter(
+                (pop) => !pop.href.endsWith(`/${pair.slug}`)
+              )
+                .slice(0, 8)
+                .map((pop) => (
+                  <Link
+                    key={pop.href}
+                    href={pop.href}
+                    prefetch={false}
+                    className="px-3 py-1.5 rounded-lg bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/80 dark:border-slate-800 hover:border-[#0D9488] text-xs sm:text-sm font-semibold text-[#16324F] dark:text-slate-300 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors capitalize"
+                  >
+                    {pop.anchorText}
+                  </Link>
+                ))}
+            </div>
+          </div>
 
           {(pair.categoryId === "mass" || pair.categoryId === "volume") && (
             <div className="mt-4 pt-4 border-t border-slate-200/80 dark:border-slate-800 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 p-4 space-y-2.5">
@@ -2241,11 +2282,16 @@ export default function ConversionPageInteractive({
                         }`}
                       />
                     </button>
-                    {isOpen && (
-                      <div className="px-5 pb-4 pt-2 text-[15px] sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/80">
-                        {faq.answer}
-                      </div>
-                    )}
+                    <div
+                      hidden={!isOpen}
+                      className={
+                        isOpen
+                          ? "px-5 pb-4 pt-2 text-[15px] sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/80"
+                          : "hidden"
+                      }
+                    >
+                      {faq.answer}
+                    </div>
                   </div>
                 );
               })}
@@ -2516,6 +2562,7 @@ export default function ConversionPageInteractive({
 
           <Link
             href={`/widgets/w/${matchingCanonicalPair?.slug || pair.slug}`}
+            rel="nofollow"
             prefetch={false}
             className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#16324F] hover:bg-[#0D9488] text-white text-sm font-extrabold transition-colors"
           >

@@ -38,6 +38,7 @@ import UniversalConverterCard from "@/components/UniversalConverterCard";
 import HeroSearch from "@/components/HeroSearch";
 import { SITE_CONFIG } from "@/lib/config";
 import { buildPageMetadata } from "@/lib/seo";
+import { TOP_20_POPULAR_CONVERTERS } from "@/lib/seo-config";
 import { CATEGORIES } from "@/lib/conversions/units";
 import {
   CONVERSION_CATALOGUE,
@@ -133,7 +134,7 @@ const FEATURED_POPULAR_CONVERSIONS = [
   },
 ];
 
-const CORE_12_CATEGORIES = [
+const CORE_INDEXABLE_CATEGORIES = [
   {
     id: "length",
     displayName: "Length",
@@ -212,27 +213,47 @@ const CORE_12_CATEGORIES = [
     tint: "bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400",
   },
   {
+    id: "data_transfer",
+    displayName: "Data Transfer",
+    subtitle: "Mbps, Gbps, MB/s and more",
+    iconName: "ArrowDownUp",
+    tint: "bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400",
+  },
+  {
     id: "fuel_economy",
-    displayName: "Fuel Economy",
+    displayName: "Fuel Consumption",
     subtitle: "US MPG, UK MPG, L/100km",
     iconName: "Fuel",
     tint: "bg-teal-50 dark:bg-teal-950/50 text-teal-600 dark:text-teal-400",
   },
-];
-
-const FREQUENTLY_USED_CONVERTERS = [
-  { slug: "inches-to-cm", label: "Inches to Centimeters (in to cm)" },
-  { slug: "lbs-to-kg", label: "Pounds to Kilograms (lbs to kg)" },
-  { slug: "fahrenheit-to-celsius", label: "Fahrenheit to Celsius (°F to °C)" },
-  { slug: "feet-to-meters", label: "Feet to Meters (ft to m)" },
-  { slug: "miles-to-km", label: "Miles to Kilometers (mi to km)" },
-  { slug: "gallons-to-liters", label: "Gallons to Liters (gal to L)" },
-  { slug: "grams-to-ounces", label: "Grams to Ounces (g to oz)" },
-  { slug: "psi-to-bar", label: "PSI to Bar Pressure" },
-  { slug: "mph-to-kph", label: "MPH to km/h Speed" },
-  { slug: "acres-to-sq-feet", label: "Acres to Square Feet" },
-  { slug: "gb-to-mb", label: "Gigabytes to Megabytes (GB to MB)" },
-  { slug: "mpg-to-l-100km", label: "MPG to L/100km Fuel Economy" },
+  {
+    id: "force",
+    displayName: "Force",
+    subtitle: "Newtons, kilonewtons, lbf",
+    iconName: "Flame",
+    tint: "bg-rose-50 dark:bg-rose-950/50 text-rose-600 dark:text-rose-400",
+  },
+  {
+    id: "density",
+    displayName: "Density",
+    subtitle: "kg/m³, g/cm³, lb/ft³",
+    iconName: "Layers",
+    tint: "bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400",
+  },
+  {
+    id: "angle",
+    displayName: "Angle",
+    subtitle: "Degrees, radians, gradians",
+    iconName: "Compass",
+    tint: "bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400",
+  },
+  {
+    id: "frequency",
+    displayName: "Frequency",
+    subtitle: "Hertz, kHz, MHz, GHz, RPM",
+    iconName: "Radio",
+    tint: "bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400",
+  },
 ];
 
 export default function HomePage() {
@@ -359,7 +380,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3.5">
-            {CORE_12_CATEGORIES.map((catInfo) => (
+            {CORE_INDEXABLE_CATEGORIES.map((catInfo) => (
               <Link
                 key={catInfo.id}
                 href={getCategoryUrl(catInfo.id)}
@@ -374,7 +395,7 @@ export default function HomePage() {
                   </div>
                   <div className="min-w-0">
                     <h3 className="text-sm sm:text-[15px] font-bold text-[#16324F] dark:text-white group-hover:text-[#0D9488] dark:group-hover:text-[#2DD4BF] transition-colors leading-snug">
-                      {catInfo.displayName}
+                      {catInfo.displayName} Converter
                     </h3>
                     <p className="text-xs sm:text-[13px] text-slate-500 dark:text-slate-400 line-clamp-2 leading-tight mt-0.5">
                       {catInfo.subtitle}
@@ -439,7 +460,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* CONTENT SECTION — HOW ONLINE UNIT CONVERSION WORKS (Collapsible) + FREQUENTLY USED CONVERTERS */}
+        {/* CONTENT SECTION — HOW ONLINE UNIT CONVERSION WORKS (Collapsible) + TOP 20 MOST POPULAR CONVERTERS */}
         <section className="space-y-4">
           {/* Collapsible Educational Card */}
           <details
@@ -485,37 +506,36 @@ export default function HomePage() {
             </div>
           </details>
 
-          {/* Small List of Frequently Used Converters */}
-          <div className="rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-6 space-y-3.5 shadow-2xs">
+          {/* Server-Rendered Top 20 Most Popular Converters */}
+          <div
+            id="popular-converters"
+            className="scroll-mt-24 rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-6 space-y-3.5 shadow-2xs"
+          >
             <div className="flex items-center justify-between gap-2">
               <h2 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white">
-                Frequently Used Converters
+                Top 20 Most Popular Unit Converters
               </h2>
               <Link
                 href="/directory"
                 prefetch={false}
                 className="text-sm font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
               >
-                Browse All Converters ({CONVERSION_CATALOGUE.length}) →
+                Browse All Converters →
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-              {FREQUENTLY_USED_CONVERTERS.map((item) => {
-                const pairObj = CATALOGUE_MAP.get(item.slug);
-                const href = pairObj ? getPairUrl(pairObj) : `/length/${item.slug}`;
-                return (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+              {TOP_20_POPULAR_CONVERTERS.map((item) => (
                 <Link
-                  key={item.slug}
-                  href={href}
+                  key={item.href}
+                  href={item.href}
                   prefetch={false}
-                  className="px-3.5 py-2.5 min-h-[44px] rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/70 dark:border-slate-800 hover:border-[#0D9488] text-sm sm:text-[15px] font-semibold text-[#16324F] dark:text-slate-200 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] flex items-center justify-between gap-2 transition-colors"
+                  className="px-3.5 py-2.5 min-h-[44px] rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/70 dark:border-slate-800 hover:border-[#0D9488] text-sm font-semibold text-[#16324F] dark:text-slate-200 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] flex items-center justify-between gap-2 transition-colors capitalize"
                 >
-                  <span className="truncate">{item.label}</span>
+                  <span className="truncate">{item.anchorText}</span>
                   <ChevronRight className="w-4 h-4 text-slate-400 shrink-0" />
                 </Link>
-                );
-              })}
+              ))}
             </div>
           </div>
 

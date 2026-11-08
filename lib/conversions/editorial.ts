@@ -245,18 +245,7 @@ function cleanUnitPlural(unit: Unit): string {
  */
 export function formatCleanNumber(val: number): string {
   if (!Number.isFinite(val)) return "—";
-  if (val === 0) return "0";
-  const abs = Math.abs(val);
-  if (abs >= 1e12 || (abs > 0 && abs < 1e-8)) {
-    return val.toExponential(6).replace(/\.?0+e/, "e");
-  }
-  if (abs < 0.001) {
-    return val.toFixed(9).replace(/\.?0+$/, "");
-  }
-  const rounded = Number(val.toFixed(7));
-  const parts = rounded.toString().split(".");
-  const intPart = Number(parts[0]).toLocaleString("en-US");
-  return parts[1] ? `${intPart}.${parts[1]}` : intPart;
+  return formatValue(val, "auto");
 }
 
 /**

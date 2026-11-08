@@ -31,6 +31,7 @@ import {
   ShieldCheck,
   Code2,
   Type,
+  ChevronDown,
 } from "lucide-react";
 import {
   CATEGORIES,
@@ -38,7 +39,6 @@ import {
   UNIT_MAP,
   getUnitsByCategory,
 } from "@/lib/conversions/units";
-import { SUPER_CATEGORIES } from "@/lib/conversions/extended-categories";
 import {
   CONVERSION_CATALOGUE,
   CATALOGUE_MAP,
@@ -46,6 +46,8 @@ import {
   getPairUrl,
   getCategoryUrl,
 } from "@/lib/conversions/catalogue";
+import { COOKING_INGREDIENTS } from "@/lib/conversions/cooking";
+import { isIndexableCategory } from "@/lib/seo-config";
 import { GUIDES } from "@/lib/conversions/guides";
 import { useTypewriterPlaceholder } from "@/lib/search/animated-prompts";
 
@@ -110,8 +112,6 @@ const COMPETITOR_POPULAR_UNIT_PAIRS: { slug: string; label: string }[] = [
   { slug: "cups-to-ml", label: "cups to mL" },
   { slug: "psi-to-bar", label: "psi to bar" },
   { slug: "bar-to-psi", label: "bar to psi" },
-  { slug: "nm-to-ft-lb", label: "Nm to ft-lb" },
-  { slug: "ft-lb-to-nm", label: "ft-lb to Nm" },
   { slug: "kj-to-kcal", label: "kJ to kcal" },
   { slug: "kcal-to-kj", label: "kcal to kJ" },
   { slug: "gb-to-mb", label: "GB to MB" },
@@ -122,109 +122,126 @@ const COMPETITOR_POPULAR_UNIT_PAIRS: { slug: string; label: string }[] = [
 
 export default function SitemapDirectoryClient() {
   const [query, setQuery] = useState("");
-  const [activeGroupFilter, setActiveGroupFilter] = useState<string>("all");
   const { placeholder } = useTypewriterPlaceholder({
     isPaused: query.trim().length > 0,
-    prefix: `Filter ${CATEGORIES.length} categories & ${CONVERSION_CATALOGUE.length} converters — e.g. `,
+    prefix: "Filter indexable categories & converters — e.g. ",
   });
 
   const normalizedQuery = query.trim().toLowerCase();
 
-  // Enrich each super-category with its resolved category objects, unit counts, and top pairs
-  const superCategoryTree = useMemo(() => {
-    return SUPER_CATEGORIES.map((group) => {
-      const items = group.categoryIds
-        .map((catId) => {
-          const cat = CATEGORY_MAP.get(catId);
-          if (!cat) return null;
-          const units = getUnitsByCategory(cat.id);
-          const allCatPairs = getConversionsByCategory(cat.id);
-          const topPairs = (
-            cat.popularPairSlugs.length > 0
-              ? cat.popularPairSlugs
-                  .map((s) => CATALOGUE_MAP.get(s))
-                  .filter((p): p is NonNullable<typeof p> => Boolean(p))
-              : allCatPairs
-          ).slice(0, 4);
+  // Build indexable categories with all of their converter pages
+  const indexableCategoriesList = useMemo(() => {
+    const orderedIds = [
+      "length",
+      "mass",
+      "temperature",
+      "volume",
+      "area",
+      "speed",
+      "time",
+      "pressure",
+      "energy",
+      "power",
+      "digital_storage",
+      "data_transfer",
+      "fuel_economy",
+      "force",
+      "density",
+      "angle",
+      "frequency",
+    ];
+    const list = orderedIds
+      .map((catId) => {
+        const cat = CATEGORY_MAP.get(catId);
+        if (!cat || !isIndexableCategory(cat.id)) return null;
+        const units = getUnitsByCategory(cat.id);
+        const allCatPairs = getConversionsByCategory(cat.id);
+        return {
+          id: cat.id,
+          name: `${cat.name} Converter`,
+          shortName: cat.name,
+          href: getCategoryUrl(cat.id),
+          description: cat.description,
+          iconName: cat.iconName,
+          unitCount: units.length,
+          pairs: allCatPairs.map((p) => {
+            const fromU = UNIT_MAP.get(p.fromUnitId);
+            const toU = UNIT_MAP.get(p.toUnitId);
+            return {
+              slug: p.slug,
+              href: getPairUrl(p),
+              label:
+                fromU && toU
+                  ? `${fromU.plural} to ${toU.plural} Converter`
+                  : p.title,
+            };
+          }),
+        };
+      })
+      .filter((item): item is NonNullable<typeof item> => Boolean(item));
 
-          return {
-            id: cat.id,
-            name: `${cat.name} Converter`,
-            shortName: cat.name,
-            href: getCategoryUrl(cat.id),
-            description: cat.description,
-            iconName: cat.iconName,
-            unitCount: units.length,
-            unitPreview: units
-              .slice(0, 5)
-              .map((u) => u.symbol)
-              .join(", "),
-            topPairs: topPairs.map((p) => {
-              const fromU = UNIT_MAP.get(p.fromUnitId);
-              const toU = UNIT_MAP.get(p.toUnitId);
-              return {
-                slug: p.slug,
-                href: getPairUrl(p),
-                label:
-                  fromU && toU
-                    ? `${fromU.name.replace(/\s+\([^)]*\)/g, "")} to ${toU.name.replace(/\s+\([^)]*\)/g, "")}`
-                    : (p.h1 || p.title).replace(" Converter", ""),
-              };
-            }),
-          };
-        })
-        .filter((item): item is NonNullable<typeof item> => Boolean(item));
+    // Add Cooking & Ingredients (18th indexable category)
+    list.push({
+      id: "cooking",
+      name: "Cooking & Ingredient Converter",
+      shortName: "Cooking",
+      href: "/cooking",
+      description:
+        "Convert kitchen weights and volumes (grams, cups, tbsp, tsp, oz, mL) across verified baking ingredients.",
+      iconName: "Scale",
+      unitCount: COOKING_INGREDIENTS.length,
+      pairs: COOKING_INGREDIENTS.map((ing) => ({
+        slug: ing.slug,
+        href: `/cooking/${ing.slug}`,
+        label: `${ing.name} Weight to Volume Converter`,
+      })),
+    });
 
-      // Include Case Converter under Common Converters just like unitconverters.net/sitemap.php
-      if (group.id === "common") {
-        items.push({
-          id: "case_converter",
-          name: "Case Converter",
-          shortName: "Case Converter",
-          href: "/case-converter",
-          description:
-            "Convert text between Sentence case, UPPERCASE, lowercase, Title Case, camelCase, snake_case, and kebab-case.",
-          iconName: "Type",
-          unitCount: 12,
-          unitPreview: "UPPER, lower, Title, camelCase, snake_case",
-          topPairs: [],
-        });
-      }
+    return list;
+  }, []);
 
+  const nonIndexableCategoriesList = useMemo(() => {
+    return CATEGORIES.filter((cat) => !isIndexableCategory(cat.id)).map((cat) => {
+      const allCatPairs = getConversionsByCategory(cat.id);
       return {
-        ...group,
-        items,
+        id: cat.id,
+        name: `${cat.name} Converter`,
+        href: getCategoryUrl(cat.id),
+        pairs: allCatPairs.map((p) => {
+          const fromU = UNIT_MAP.get(p.fromUnitId);
+          const toU = UNIT_MAP.get(p.toUnitId);
+          return {
+            slug: p.slug,
+            href: getPairUrl(p),
+            label:
+              fromU && toU
+                ? `${fromU.plural} to ${toU.plural}`
+                : p.title.replace(" Converter", ""),
+          };
+        }),
       };
     });
   }, []);
 
-  // Filtered super-category tree based on search query and selected group pill
-  const filteredTree = useMemo(() => {
-    return superCategoryTree
-      .filter(
-        (group) =>
-          activeGroupFilter === "all" || group.id === activeGroupFilter
-      )
-      .map((group) => {
-        if (!normalizedQuery) return group;
-        const matchingItems = group.items.filter((item) => {
-          const inName = item.name.toLowerCase().includes(normalizedQuery);
-          const inDesc = item.description.toLowerCase().includes(normalizedQuery);
-          const inUnits = item.unitPreview.toLowerCase().includes(normalizedQuery);
-          const inPairs = item.topPairs.some(
-            (p) =>
-              p.label.toLowerCase().includes(normalizedQuery) ||
-              p.slug.toLowerCase().includes(normalizedQuery)
-          );
-          return inName || inDesc || inUnits || inPairs;
-        });
+  const filteredIndexableCategories = useMemo(() => {
+    if (!normalizedQuery) return indexableCategoriesList;
+    return indexableCategoriesList
+      .map((cat) => {
+        const catMatches =
+          cat.name.toLowerCase().includes(normalizedQuery) ||
+          cat.description.toLowerCase().includes(normalizedQuery);
+        const matchingPairs = cat.pairs.filter(
+          (p) =>
+            p.label.toLowerCase().includes(normalizedQuery) ||
+            p.slug.toLowerCase().includes(normalizedQuery)
+        );
         return {
-          ...group,
-          items: matchingItems,
+          ...cat,
+          pairs: catMatches && matchingPairs.length === 0 ? cat.pairs : matchingPairs,
         };
       })
-      .filter((group) => group.items.length > 0);
-  }, [superCategoryTree, activeGroupFilter, normalizedQuery]);
+      .filter((cat) => cat.pairs.length > 0);
+  }, [indexableCategoriesList, normalizedQuery]);
 
   const filteredPopularPairs = useMemo(() => {
     if (!normalizedQuery) return COMPETITOR_POPULAR_UNIT_PAIRS;
@@ -238,7 +255,7 @@ export default function SitemapDirectoryClient() {
   return (
     <div className="space-y-10">
       {/* =====================================================================
-          1.STICKY FILTER SEARCH & 9 SUPER-CATEGORY JUMP BAR
+          1. FILTER SEARCH & SECTION JUMP BAR
          ===================================================================== */}
       <div className="rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-5 shadow-2xs space-y-4">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
@@ -266,10 +283,16 @@ export default function SitemapDirectoryClient() {
 
           <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500 dark:text-slate-400 shrink-0">
             <a
+              href="#indexable-categories"
+              className="px-3 py-2 rounded-xl bg-[#F7F9FC] dark:bg-slate-800 hover:text-[#0D9488] font-semibold transition-colors"
+            >
+              Core Categories (18)
+            </a>
+            <a
               href="#popular-unit-pairs"
               className="px-3 py-2 rounded-xl bg-[#F7F9FC] dark:bg-slate-800 hover:text-[#0D9488] font-semibold transition-colors"
             >
-              Unit-to-Unit Pairs
+              Popular Pairs
             </a>
             <a
               href="#unit-systems-guides"
@@ -285,183 +308,65 @@ export default function SitemapDirectoryClient() {
             </a>
           </div>
         </div>
-
-        {/* Super-Category Filter Pills */}
-        <div
-          role="tablist"
-          aria-label="Filter by Converter Super-Category"
-          className="flex flex-wrap items-center gap-1.5 pt-1"
-        >
-          <button
-            type="button"
-            role="tab"
-            aria-selected={activeGroupFilter === "all"}
-            onClick={() => setActiveGroupFilter("all")}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              activeGroupFilter === "all"
-                ? "bg-[#16324F] dark:bg-[#0D9488] text-white shadow-2xs"
-                : "bg-[#F7F9FC] dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:border-[#0D9488] border border-slate-200/80 dark:border-slate-700"
-            }`}
-          >
-            All 9 Converter Groups ({superCategoryTree.reduce((sum, g) => sum + g.items.length, 0)})
-          </button>
-
-          {superCategoryTree.map((group) => {
-            const isSelected = activeGroupFilter === group.id;
-            return (
-              <button
-                key={group.id}
-                type="button"
-                role="tab"
-                aria-selected={isSelected}
-                onClick={() => setActiveGroupFilter(group.id)}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer border ${
-                  isSelected
-                    ? "bg-[#0D9488] text-white border-[#0D9488] shadow-2xs"
-                    : "bg-[#F7F9FC] dark:bg-slate-800/80 text-[#16324F] dark:text-slate-200 border-slate-200/80 dark:border-slate-700 hover:border-[#0D9488]"
-                }`}
-              >
-                <span>{group.shortName}</span>
-                <span
-                  className={`px-1.5 py-0.2 rounded-md text-[10px] font-mono ${
-                    isSelected
-                      ? "bg-white/20 text-white"
-                      : "bg-slate-200/70 dark:bg-slate-700 text-slate-600 dark:text-slate-300"
-                  }`}
-                >
-                  {group.items.length}
-                </span>
-              </button>
-            );
-          })}
-        </div>
       </div>
 
       {/* =====================================================================
-          2. MULTI-COLUMN SUPER-CATEGORY TREE (ALL 9 CONVERTER GROUPS)
+          2. INDEXABLE CATEGORIES & ALL CONVERTERS GROUPED BY CATEGORY
          ===================================================================== */}
-      {filteredTree.length === 0 ? (
-        <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-8 text-center space-y-3">
-          <p className="text-sm font-bold text-[#16324F] dark:text-white">
-            No converters matched &ldquo;{query}&rdquo;
-          </p>
-          <button
-            type="button"
-            onClick={() => {
-              setQuery("");
-              setActiveGroupFilter("all");
-            }}
-            className="px-4 py-2 rounded-xl bg-[#0D9488] text-white text-xs font-bold cursor-pointer"
+      <section id="indexable-categories" className="space-y-6">
+        {filteredIndexableCategories.map((cat) => (
+          <div
+            key={cat.id}
+            id={`sitemap-category-${cat.id}`}
+            className="rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 sm:p-7 shadow-2xs space-y-4"
           >
-            Reset Filter
-          </button>
-        </div>
-      ) : (
-        <div className="space-y-8">
-          {filteredTree.map((group) => (
-            <section
-              key={group.id}
-              id={`group-${group.id}`}
-              aria-labelledby={`heading-${group.id}`}
-              className="rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden shadow-2xs scroll-mt-24"
-            >
-              {/* Group Header */}
-              <div
-                className={`px-5 sm:px-7 py-4 sm:py-5 border-b border-slate-200/80 dark:border-slate-800 bg-gradient-to-r ${group.headerBgClass} flex flex-wrap items-center justify-between gap-3`}
-              >
-                <div className="space-y-1 max-w-3xl min-w-0">
-                  <div className="flex flex-wrap items-center gap-2.5">
-                    <span
-                      className={`inline-flex items-center justify-center w-8 h-8 rounded-xl border shrink-0 ${group.badgeClass}`}
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-3.5">
+              <div className="flex items-center gap-2.5">
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-xl bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF]">
+                  {ICON_MAP[cat.iconName] || <Ruler className="w-4 h-4" />}
+                </span>
+                <div>
+                  <h2 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white">
+                    <Link
+                      href={cat.href}
+                      prefetch={false}
+                      className="hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors"
                     >
-                      {ICON_MAP[group.iconName] || <Ruler className="w-4 h-4" />}
-                    </span>
-                    <h2
-                      id={`heading-${group.id}`}
-                      className="text-lg sm:text-xl font-extrabold tracking-tight text-[#16324F] dark:text-white break-words"
-                    >
-                      {group.name}
-                    </h2>
-                    <span
-                      className={`px-2 py-0.5 rounded-md text-xs font-mono font-bold border shrink-0 ${group.badgeClass}`}
-                    >
-                      {group.items.length} Converters
-                    </span>
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                    {group.description}
+                      {cat.name}
+                    </Link>
+                  </h2>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    {cat.description}
                   </p>
                 </div>
               </div>
+              <Link
+                href={cat.href}
+                prefetch={false}
+                className="inline-flex items-center gap-1 text-xs font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline shrink-0"
+              >
+                <span>Open {cat.shortName} Hub ({cat.pairs.length})</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
 
-              {/* Multi-Column Tree Grid of Converters in this Super-Category */}
-              <div className="p-5 sm:p-7 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {group.items.map((item) => (
-                  <div
-                    key={item.id}
-                    className="rounded-xl border border-slate-200/80 dark:border-slate-800 bg-[#F7F9FC]/60 dark:bg-slate-950/60 hover:border-[#0D9488]/70 transition-all p-4 flex flex-col justify-between gap-3 min-w-0 overflow-hidden"
+            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 text-xs sm:text-sm">
+              {cat.pairs.map((pair) => (
+                <li key={pair.slug} className="min-w-0">
+                  <Link
+                    href={pair.href}
+                    prefetch={false}
+                    className="px-3 py-2 rounded-xl border border-slate-200/70 dark:border-slate-800 bg-[#F7F9FC] dark:bg-slate-950 hover:border-[#0D9488] text-slate-700 dark:text-slate-200 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] font-semibold flex items-center justify-between gap-2 transition-colors"
                   >
-                    <div className="space-y-2 min-w-0">
-                      {/* Primary Category Converter Link */}
-                      <div className="flex items-start justify-between gap-2 min-w-0">
-                        <Link
-                          href={item.href}
-                          prefetch={false}
-                          className="group/title flex items-start gap-2 min-w-0 flex-1 text-sm sm:text-[15px] font-extrabold text-[#16324F] dark:text-white hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors leading-snug"
-                        >
-                          <span className="text-[#0D9488] dark:text-[#2DD4BF] shrink-0 mt-0.5">
-                            {ICON_MAP[item.iconName] || (
-                              <Ruler className="w-4 h-4" />
-                            )}
-                          </span>
-                          <span className="break-words min-w-0">{item.name}</span>
-                        </Link>
-                        <span className="px-2 py-0.5 rounded bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 text-[11px] font-mono font-semibold text-slate-500 dark:text-slate-400 shrink-0 whitespace-nowrap">
-                          {item.unitCount} units
-                        </span>
-                      </div>
-
-                      {/* Supported Symbols Preview */}
-                      <div className="text-[11px] font-mono text-slate-500 dark:text-slate-400 break-words line-clamp-2 leading-relaxed">
-                        Units: {item.unitPreview}
-                      </div>
-
-                      {/* Nested Popular Unit-to-Unit Pairs Tree */}
-                      {item.topPairs.length > 0 && (
-                        <ul className="pt-1.5 border-t border-slate-200/60 dark:border-slate-800/80 space-y-1 text-xs min-w-0">
-                          {item.topPairs.map((pair) => (
-                            <li key={pair.slug} className="min-w-0">
-                              <Link
-                                href={pair.href}
-                                prefetch={false}
-                                className="flex items-center gap-1.5 min-w-0 w-full text-slate-600 dark:text-slate-300 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors py-0.5"
-                              >
-                                <ChevronRight className="w-3 h-3 text-[#0D9488] shrink-0" />
-                                <span className="truncate min-w-0">{pair.label}</span>
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-
-                    <div className="pt-2 border-t border-slate-200/50 dark:border-slate-800/60 flex items-center justify-between text-xs min-w-0">
-                      <Link
-                        href={item.href}
-                        prefetch={false}
-                        className="font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline flex items-center gap-1 min-w-0 max-w-full"
-                      >
-                        <span className="truncate">Open {item.shortName} Calculator</span>
-                        <ArrowRight className="w-3 h-3 shrink-0" />
-                      </Link>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
-      )}
+                    <span className="truncate">{pair.label}</span>
+                    <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </section>
 
       {/* =====================================================================
           3. POPULAR UNIT-TO-UNIT CONVERSIONS (COMPETITOR SITEMAP TREE)
@@ -664,6 +569,55 @@ export default function SitemapDirectoryClient() {
           </div>
         </section>
       </div>
+
+      {/* =====================================================================
+          5. COLLAPSED "MORE CATEGORIES" SECTION FOR NON-INDEXABLE CATEGORIES
+         ===================================================================== */}
+      <details className="group rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden shadow-2xs">
+        <summary className="list-none cursor-pointer px-5 sm:px-7 py-4 flex items-center justify-between gap-3 hover:bg-[#F7F9FC] dark:hover:bg-slate-800/60 transition-colors">
+          <div className="space-y-0.5">
+            <h2 className="text-base sm:text-lg font-extrabold text-[#16324F] dark:text-white">
+              More categories ({nonIndexableCategoriesList.length} specialized engineering &amp; science categories)
+            </h2>
+            <p className="text-xs text-slate-500 dark:text-slate-400">
+              Expand to view specialized thermal, fluid, electromagnetic, radiation, and photometry categories and converters
+            </p>
+          </div>
+          <ChevronDown className="w-5 h-5 text-slate-500 group-open:rotate-180 transition-transform shrink-0" />
+        </summary>
+        <div className="p-5 sm:p-7 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {nonIndexableCategoriesList.map((cat) => (
+            <div
+              key={cat.id}
+              className="rounded-xl border border-slate-200/80 dark:border-slate-800 bg-[#F7F9FC]/60 dark:bg-slate-950/60 p-4 space-y-2.5"
+            >
+              <Link
+                href={cat.href}
+                prefetch={false}
+                className="text-sm font-extrabold text-[#16324F] dark:text-white hover:text-[#0D9488] dark:hover:text-[#2DD4BF] flex items-center justify-between gap-2"
+              >
+                <span>{cat.name}</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#0D9488] shrink-0" />
+              </Link>
+              {cat.pairs.length > 0 && (
+                <ul className="space-y-1 pt-1 border-t border-slate-200/60 dark:border-slate-800/80 text-xs">
+                  {cat.pairs.map((pair) => (
+                    <li key={pair.slug}>
+                      <Link
+                        href={pair.href}
+                        prefetch={false}
+                        className="text-slate-600 dark:text-slate-300 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] hover:underline block py-0.5 truncate"
+                      >
+                        {pair.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
+        </div>
+      </details>
     </div>
   );
 }

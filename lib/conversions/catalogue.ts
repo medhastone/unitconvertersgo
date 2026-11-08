@@ -4378,7 +4378,8 @@ function enrichConversionPair(pair: ConversionPairInfo, index: number): Conversi
   const dimensionNoun = dimensionNounMap[pair.categoryId] || "measurement";
 
   // Clean H1 heading (e.g. "Inches to Nanometers Converter")
-  const h1 = pair.h1 || `${fromPluralClean} to ${toPluralClean} Converter`;
+  const rawH1 = pair.h1 || `${fromPluralClean} to ${toPluralClean} Converter`;
+  const h1 = rawH1 === pair.title ? `Convert ${fromPluralClean} to ${toPluralClean}` : rawH1;
 
   // Verified calculations for auto-benchmarks, worked examples, and FAQs
   const unitOneOut = convertUnits(1, pair.fromUnitId, pair.toUnitId, "auto");

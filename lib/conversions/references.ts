@@ -15,22 +15,109 @@ export interface TrustedReference {
   citationText?: string;
 }
 
+const NON_SI_IMPERIAL_US_UNIT_IDS = new Set<string>([
+  "inch",
+  "foot",
+  "yard",
+  "mile",
+  "nautical_mile",
+  "fathom",
+  "furlong",
+  "chain",
+  "rod",
+  "league",
+  "mil",
+  "microinch",
+  "sqin",
+  "sqft",
+  "sqyd",
+  "sqmi",
+  "acre",
+  "ounce",
+  "pound",
+  "stone",
+  "ton_us",
+  "ton_uk",
+  "grain",
+  "dram",
+  "hundredweight_us",
+  "hundredweight_uk",
+  "troy_ounce",
+  "troy_pound",
+  "pennyweight",
+  "tsp_us",
+  "tbsp_us",
+  "floz_us",
+  "cup_us",
+  "pint_us",
+  "quart_us",
+  "gallon_us",
+  "floz_uk",
+  "pint_uk",
+  "quart_uk",
+  "gallon_uk",
+  "cuin",
+  "cuft",
+  "cuyd",
+  "mph",
+  "fps",
+  "knot",
+  "psi",
+  "psf",
+  "inhg",
+  "inwg",
+  "btu",
+  "ftlb",
+  "hp",
+  "hp_uk",
+  "lbf",
+  "ozf",
+  "poundal",
+  "kip",
+  "lb_ft3",
+  "lb_in3",
+  "lb_gal_us",
+  "mpg_us",
+  "mpg_uk",
+  "fahrenheit",
+  "rankine",
+]);
+
+function isNonSiUnit(unitId: string): boolean {
+  return NON_SI_IMPERIAL_US_UNIT_IDS.has(unitId);
+}
+
 export const GLOBAL_TRUSTED_REFERENCES: TrustedReference[] = [
   {
-    organization:
-      "National Institute of Standards and Technology (U.S. Department of Commerce)",
-    shortName: "NIST",
+    organization: "National Institute of Standards and Technology (NIST)",
+    shortName: "NIST SP 811",
     documentTitle:
-      "Checking the Net Contents of Packaged Goods, Handbook 133 - 2019 Edition & NIST SP 811",
-    standardCode: "NIST HB 133 / SP 811",
-    url: "https://nvlpubs.nist.gov/nistpubs/hb/2019/NIST.HB.133-2019.pdf",
+      "NIST Guide to the SI, Appendix B.9: Factors for Units Listed by Kind of Quantity or Field of Science",
+    standardCode: "NIST SP 811 App. B.9",
+    url: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
     verificationNote:
-      "Official U.S. federal conversion factors between SI metric and U.S. Customary measurement units across all 25 categories.",
-    topicBadge: "SI & U.S. Customary Conversion Factors",
-    verifiedFormula: "1 in = 2.54 cm · 1 lb = 0.45359237 kg · 1 gal = 3.785411784 L",
-    linkLabel: "NIST HB 133 Standard",
+      "Authoritative U.S. federal conversion factors between SI metric and U.S. Customary / Imperial measurement units across physical quantities.",
+    topicBadge: "Conversion Factors by Category",
+    verifiedFormula: "NIST Special Publication 811 Appendix B.8 & B.9",
+    linkLabel: "NIST SP 811 Appendix B.9",
     citationText:
-      "National Institute of Standards and Technology, Checking the Net Contents of Packaged Goods, Handbook 133 - 2019 Edition",
+      "National Institute of Standards and Technology, Guide for the Use of the International System of Units (SI), SP 811 Appendix B.9",
+  },
+  {
+    organization:
+      "National Bureau of Standards (NIST) & International Standards Laboratories",
+    shortName: "1959 Yard & Pound Agreement",
+    documentTitle:
+      "Refinement of Values for the Yard and the Pound (1959 International Yard and Pound Agreement)",
+    standardCode: "1959 Int'l Yard & Pound Agreement",
+    url: "https://www.nist.gov/pml/owm/si-units-length",
+    verificationNote:
+      "International treaty among the US, UK, Canada, Australia, New Zealand, and South Africa defining 1 yard = 0.9144 m (1 ft = 0.3048 m, 1 in = 25.4 mm, 1 mi = 1,609.344 m) and 1 pound = 0.45359237 kg exactly.",
+    topicBadge: "Foot, Inch, Mile & Pound Exact Definitions",
+    verifiedFormula: "1 yd = 0.9144 m · 1 ft = 0.3048 m · 1 in = 2.54 cm · 1 lb = 0.45359237 kg",
+    linkLabel: "1959 Yard & Pound Standard",
+    citationText:
+      "Refinement of Values for the Yard and the Pound, Federal Register Doc. 59-5442 (1959 International Yard and Pound Agreement)",
   },
   {
     organization:
@@ -40,34 +127,15 @@ export const GLOBAL_TRUSTED_REFERENCES: TrustedReference[] = [
     standardCode: "BIPM SI-9",
     url: "https://www.bipm.org/en/publications/si-brochure",
     verificationNote:
-      "International treaty definitions for the 7 base SI units (meter, kilogram, second, ampere, kelvin, mole, candela) and 22 coherent derived units.",
+      "International treaty definitions for the 7 base SI units (metre, kilogram, second, ampere, kelvin, mole, candela) and 22 coherent derived SI units.",
     topicBadge: "International SI Base & Derived Units",
     verifiedFormula: "Exact fundamental constants (c, h, e, k, N_A)",
     linkLabel: "BIPM SI Brochure",
     citationText:
       "Bureau International des Poids et Mesures, The International System of Units (SI Brochure, 9th Edition)",
   },
-  {
-    organization: "National Institute of Standards and Technology (NIST)",
-    shortName: "NIST SP 811",
-    documentTitle:
-      "NIST Guide to the SI, Appendix B.9: Factors for Units Listed by Kind of Quantity or Field of Science",
-    standardCode: "NIST SP 811 App. B.9",
-    url: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
-    verificationNote:
-      "Authoritative conversion factors organized by physical quantity and engineering discipline.",
-    topicBadge: "Conversion Factors by Category",
-    verifiedFormula: "NIST Special Publication 811 Appendix B.9",
-    linkLabel: "NIST SP 811 Appendix B.9",
-    citationText:
-      "National Institute of Standards and Technology, Guide for the Use of the International System of Units (SI), SP 811 Appendix B.9",
-  },
 ];
 
-/**
- * Primary topic-specific external reference URLs by category and specialized unit domains.
- * Every URL below has been verified to return HTTP 200 OK and is publicly accessible.
- */
 const CATEGORY_PRIMARY_AUTHORITY: Record<
   string,
   {
@@ -87,27 +155,31 @@ const CATEGORY_PRIMARY_AUTHORITY: Record<
 > = {
   length: {
     primaryOrg: "National Institute of Standards and Technology (NIST)",
-    primaryShort: "NIST OWM",
-    primaryCode: "SI Units — Length",
-    primaryUrl: "https://www.nist.gov/pml/owm/si-units-length",
-    secondaryOrg: "Bureau International des Poids et Mesures (BIPM)",
-    secondaryShort: "BIPM",
-    secondaryCode: "SI Base Unit: Metre (m)",
-    secondaryUrl: "https://www.bipm.org/en/si-base-units/metre",
-    tertiaryOrg: "National Institute of Standards and Technology (NIST)",
-    tertiaryShort: "NIST HB 133",
-    tertiaryCode: "NIST Handbook 133 (2019 Ed.)",
-    tertiaryUrl: "https://nvlpubs.nist.gov/nistpubs/hb/2019/NIST.HB.133-2019.pdf",
+    primaryShort: "NIST SP 811",
+    primaryCode: "NIST SP 811 App. B.9 (Length)",
+    primaryUrl:
+      "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+    secondaryOrg:
+      "National Bureau of Standards (NIST) & International Standards Laboratories",
+    secondaryShort: "1959 Yard & Pound Agreement",
+    secondaryCode: "1959 International Yard and Pound Agreement",
+    secondaryUrl: "https://www.nist.gov/pml/owm/si-units-length",
+    tertiaryOrg: "Bureau International des Poids et Mesures (BIPM)",
+    tertiaryShort: "BIPM",
+    tertiaryCode: "SI Base Unit: Metre (m)",
+    tertiaryUrl: "https://www.bipm.org/en/si-base-units/metre",
   },
   mass: {
     primaryOrg: "National Institute of Standards and Technology (NIST)",
-    primaryShort: "NIST OWM",
-    primaryCode: "SI Units — Mass",
-    primaryUrl: "https://www.nist.gov/pml/owm/si-units-mass",
-    secondaryOrg: "NIST Office of Weights and Measures (OWM)",
-    secondaryShort: "NIST HB 44",
-    secondaryCode: "NIST Handbook 44 (Current Ed.)",
-    secondaryUrl: "https://www.nist.gov/pml/owm/nist-handbook-44-current-edition",
+    primaryShort: "NIST SP 811",
+    primaryCode: "NIST SP 811 App. B.9 (Mass)",
+    primaryUrl:
+      "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+    secondaryOrg:
+      "National Bureau of Standards (NIST) & International Standards Laboratories",
+    secondaryShort: "1959 Yard & Pound Agreement",
+    secondaryCode: "1959 International Yard and Pound Agreement (1 lb = 0.45359237 kg)",
+    secondaryUrl: "https://www.nist.gov/pml/owm/si-units-mass",
     tertiaryOrg: "Bureau International des Poids et Mesures (BIPM)",
     tertiaryShort: "BIPM",
     tertiaryCode: "SI Base Unit: Kilogram (kg)",
@@ -145,18 +217,19 @@ const CATEGORY_PRIMARY_AUTHORITY: Record<
   },
   area: {
     primaryOrg: "National Institute of Standards and Technology (NIST)",
-    primaryShort: "NIST OWM",
-    primaryCode: "SI Units — Length & Area",
-    primaryUrl: "https://www.nist.gov/pml/owm/si-units-length",
-    secondaryOrg: "NIST Office of Weights and Measures (OWM)",
-    secondaryShort: "NIST HB 44",
-    secondaryCode: "Acre, Hectare & Land Survey Tables",
-    secondaryUrl: "https://www.nist.gov/pml/owm/nist-handbook-44-current-edition",
-    tertiaryOrg: "National Institute of Standards and Technology (NIST)",
-    tertiaryShort: "NIST SP 811",
-    tertiaryCode: "NIST SP 811 App. B.9 (Area)",
-    tertiaryUrl:
+    primaryShort: "NIST SP 811",
+    primaryCode: "NIST SP 811 App. B.9 (Area)",
+    primaryUrl:
       "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+    secondaryOrg:
+      "National Bureau of Standards (NIST) & International Standards Laboratories",
+    secondaryShort: "1959 Yard & Pound Agreement",
+    secondaryCode: "1959 International Yard and Pound Agreement (Area Units)",
+    secondaryUrl: "https://www.nist.gov/pml/owm/si-units-length",
+    tertiaryOrg: "NIST Office of Weights and Measures (OWM)",
+    tertiaryShort: "NIST HB 44",
+    tertiaryCode: "Acre, Hectare & Land Survey Tables",
+    tertiaryUrl: "https://www.nist.gov/pml/owm/nist-handbook-44-current-edition",
   },
   speed: {
     primaryOrg: "National Institute of Standards and Technology (NIST)",
@@ -458,80 +531,82 @@ export const CATEGORY_TRUSTED_REFERENCES: Record<string, TrustedReference[]> = {
   length: [
     {
       organization: "National Institute of Standards and Technology (NIST)",
-      shortName: "NIST OWM",
+      shortName: "NIST SP 811",
       documentTitle:
-        "SI Units — Length: Official U.S. Metrology Definitions & International Yard Agreement",
-      standardCode: "NIST SI Length",
+        "NIST Guide to the SI, Appendix B.9: Factors for Units Listed by Kind of Quantity — Length",
+      standardCode: "NIST SP 811 App. B.9",
+      url: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+      verificationNote:
+        "Official U.S. federal conversion factors between SI length units and U.S. Customary / Imperial length units.",
+      topicBadge: "Length Conversion Factors",
+      verifiedFormula: "1 ft = 0.3048 m · 1 in = 2.54 cm · 1 mi = 1.609344 km",
+      linkLabel: "NIST SP 811 Appendix B.9",
+      citationText:
+        "National Institute of Standards and Technology, Guide for the Use of the International System of Units (SI), SP 811 Appendix B.9",
+    },
+    {
+      organization:
+        "National Bureau of Standards (NIST) & International Standards Laboratories",
+      shortName: "1959 Yard & Pound Agreement",
+      documentTitle:
+        "Refinement of Values for the Yard and the Pound (1959 International Yard and Pound Agreement)",
+      standardCode: "1959 Int'l Yard & Pound Agreement",
       url: "https://www.nist.gov/pml/owm/si-units-length",
       verificationNote:
-        "Verifies the 1959 International Yard and Pound Agreement (1 yard = 0.9144 m, 1 foot = 0.3048 m, 1 inch = 25.4 mm = 2.54 cm).",
-      topicBadge: "Length & Distance Metrology",
-      verifiedFormula: "1 in = 2.54 cm · 1 ft = 0.3048 m · 1 mi = 1.609344 km",
-      linkLabel: "NIST SI Length",
+        "Establishes the exact international definitions for the yard (0.9144 m), foot (0.3048 m), inch (25.4 mm = 2.54 cm), and international mile (1,609.344 m).",
+      topicBadge: "Foot, Inch, Yard & Mile Standard",
+      verifiedFormula: "1 yd = 0.9144 m · 1 ft = 0.3048 m · 1 in = 25.4 mm",
+      linkLabel: "1959 International Yard Agreement",
       citationText:
-        "National Institute of Standards and Technology, Office of Weights and Measures — SI Units: Length",
+        "Refinement of Values for the Yard and the Pound, Federal Register Doc. 59-5442 (1959 International Yard and Pound Agreement)",
     },
     {
       organization: "Bureau International des Poids et Mesures (BIPM)",
       shortName: "BIPM",
       documentTitle:
-        "SI Base Unit: The Metre (m) — Official Definition & Realization",
+        "SI Base Unit: The Metre (m) — Official SI Definition & Realization",
       standardCode: "BIPM SI-9",
       url: "https://www.bipm.org/en/si-base-units/metre",
       verificationNote:
-        "Defines the metre (m) via the fixed numerical value of the speed of light in vacuum c = 299,792,458 m/s.",
+        "Defines the SI base unit metre (m) and its decimal multiples (km, cm, mm, µm, nm) via the fixed numerical value of the speed of light in vacuum c = 299,792,458 m/s.",
       topicBadge: "SI Base Unit: Metre (m)",
       verifiedFormula: "1 km = 1,000 m · 1 m = 100 cm = 1,000 mm = 10⁹ nm",
       linkLabel: "BIPM Metre Standard",
       citationText:
         "Bureau International des Poids et Mesures, SI Base Unit: Metre (m)",
     },
-    {
-      organization: "National Institute of Standards and Technology (NIST)",
-      shortName: "NIST HB 133",
-      documentTitle:
-        "Checking the Net Contents of Packaged Goods, Handbook 133 (2019 Edition)",
-      standardCode: "NIST HB 133",
-      url: "https://nvlpubs.nist.gov/nistpubs/hb/2019/NIST.HB.133-2019.pdf",
-      verificationNote:
-        "Authoritative U.S. federal handbook for linear, area, mass, and volumetric commercial conversions.",
-      topicBadge: "U.S. Customary & Metric Tables",
-      verifiedFormula: "1 in = 25,400,000 nm · 1 yd = 0.9144 m",
-      linkLabel: "NIST Handbook 133 PDF",
-      citationText:
-        "National Institute of Standards and Technology, Checking the Net Contents of Packaged Goods, Handbook 133 - 2019 Edition",
-    },
   ],
   mass: [
     {
       organization: "National Institute of Standards and Technology (NIST)",
-      shortName: "NIST OWM",
+      shortName: "NIST SP 811",
       documentTitle:
-        "SI Units — Mass: Avoirdupois, Metric & Commercial Weight Standards",
-      standardCode: "NIST SI Mass",
-      url: "https://www.nist.gov/pml/owm/si-units-mass",
+        "NIST Guide to the SI, Appendix B.9: Factors for Units Listed by Kind of Quantity — Mass",
+      standardCode: "NIST SP 811 App. B.9",
+      url: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
       verificationNote:
-        "Verifies the exact legal definition of the international avoirdupois pound: 1 lb = 0.45359237 kg (453.59237 g) and 1 oz = 28.349523125 g.",
+        "Verifies exact conversion factors between SI mass units and avoirdupois/troy units.",
       topicBadge: "Mass & Weight Metrology",
-      verifiedFormula: "1 lb = 453.59237 g · 1 kg = 2.20462262 lb · 1 lb = 16 oz",
-      linkLabel: "NIST SI Mass",
+      verifiedFormula: "1 lb = 0.45359237 kg · 1 kg = 2.204623 lb · 1 oz = 28.34952 g",
+      linkLabel: "NIST SP 811 Appendix B.9",
       citationText:
-        "National Institute of Standards and Technology, Office of Weights and Measures — SI Units: Mass",
+        "National Institute of Standards and Technology, Guide for the Use of the International System of Units (SI), SP 811 Appendix B.9",
     },
     {
-      organization: "NIST Office of Weights and Measures",
-      shortName: "NIST HB 44",
+      organization:
+        "National Bureau of Standards (NIST) & International Standards Laboratories",
+      shortName: "1959 Yard & Pound Agreement",
       documentTitle:
-        "NIST Handbook 44 (Current Edition) — Specifications, Tolerances & Mass Conversion Tables",
-      standardCode: "NIST HB 44",
-      url: "https://www.nist.gov/pml/owm/nist-handbook-44-current-edition",
+        "Refinement of Values for the Yard and the Pound (1959 International Yard and Pound Agreement)",
+      standardCode: "1959 Int'l Yard & Pound Agreement",
+      url: "https://www.nist.gov/pml/owm/si-units-mass",
       verificationNote:
-        "Distinguishes commercial avoirdupois weight (1 lb = 7,000 grains = 453.59237 g) from precious-metal Troy weight (1 oz t = 31.1034768 g).",
-      topicBadge: "Avoirdupois vs. Troy & Metric Tons",
-      verifiedFormula: "1 oz = 28.3495 g · 1 oz t = 31.1035 g · 1 t = 1,000 kg",
-      linkLabel: "NIST Handbook 44",
+        "Defines the international avoirdupois pound as exactly 0.45359237 kilograms (453.59237 g) and 1 ounce as 28.349523125 g.",
+      topicBadge: "Pound & Ounce Exact Definition",
+      verifiedFormula: "1 lb = 0.45359237 kg · 1 oz = 28.349523125 g",
+      linkLabel: "1959 International Pound Agreement",
       citationText:
-        "National Institute of Standards and Technology, Specifications, Tolerances, and Other Technical Requirements for Weighing and Measuring Devices, Handbook 44",
+        "Refinement of Values for the Yard and the Pound, Federal Register Doc. 59-5442 (1959 International Yard and Pound Agreement)",
     },
     {
       organization: "Bureau International des Poids et Mesures (BIPM)",
@@ -541,7 +616,7 @@ export const CATEGORY_TRUSTED_REFERENCES: Record<string, TrustedReference[]> = {
       standardCode: "BIPM SI-9",
       url: "https://www.bipm.org/en/si-base-units/kilogram",
       verificationNote:
-        "Defines the kilogram (kg) and decimal submultiples (gram, milligram, microgram) used in laboratory, medical, and industrial weighing.",
+        "Defines the SI base unit kilogram (kg) and decimal submultiples (gram, milligram, microgram).",
       topicBadge: "SI Base Unit: Kilogram (kg)",
       verifiedFormula: "1 kg = 1,000 g = 1,000,000 mg",
       linkLabel: "BIPM Kilogram Standard",
@@ -632,7 +707,9 @@ export function getTrustedReferencesForCategory(
 }
 
 /**
- * Generates 3 page-specific TrustedReference items tailored to a specific unit conversion pair
+ * Generates 3 page-specific TrustedReference items tailored to a specific unit conversion pair.
+ * Uses NIST SP 811 and the 1959 International Yard and Pound Agreement for non-SI Imperial/US units
+ * (foot, inch, mile, yard, pound, ounce, etc.), and restricts BIPM citations strictly to SI units.
  */
 export function getTrustedReferencesForPair(
   pair: ConversionPairInfo,
@@ -656,6 +733,91 @@ export function getTrustedReferencesForPair(
   const pairTopicTitle = `Convert ${fromUnit.plural} to ${toUnit.plural} (${fromUnit.symbol} to ${toUnit.symbol})`;
   const catName = cat?.name || "Measurement";
 
+  const fromIsNonSi = isNonSiUnit(fromUnit.id);
+  const toIsNonSi = isNonSiUnit(toUnit.id);
+  const involvesNonSi = fromIsNonSi || toIsNonSi;
+  const siUnitsInPair = [fromUnit, toUnit].filter((u) => !isNonSiUnit(u.id));
+
+  if (involvesNonSi) {
+    const nonSiUnits = [fromUnit, toUnit].filter((u) => isNonSiUnit(u.id));
+    const nonSiLabel = nonSiUnits.map((u) => `${u.name} (${u.symbol})`).join(" & ");
+
+    const ref1: TrustedReference = {
+      organization: "National Institute of Standards and Technology (NIST)",
+      shortName: "NIST SP 811",
+      documentTitle: `NIST Guide to the SI, Appendix B.9 — ${fromUnit.plural} (${fromUnit.symbol}) to ${toUnit.plural} (${toUnit.symbol}) Conversion Factor`,
+      standardCode: "NIST SP 811 App. B.9",
+      url: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+      verificationNote: `Official NIST Special Publication 811 conversion factor for ${pairTopicTitle}. Verifies 1 ${fromUnit.name.toLowerCase()} (${fromUnit.symbol}) = ${oneForward.formattedValue} ${toUnit.plural.toLowerCase()} (${toUnit.symbol}).`,
+      topicBadge: `${fromUnit.plural} to ${toUnit.plural} (${fromUnit.symbol} → ${toUnit.symbol})`,
+      verifiedFormula: `1 ${fromUnit.symbol} = ${oneForward.formattedValue} ${toUnit.symbol} · 1 ${toUnit.symbol} = ${oneReverse.formattedValue} ${fromUnit.symbol}`,
+      linkLabel: "NIST SP 811 Appendix B.9",
+      citationText:
+        "National Institute of Standards and Technology, Guide for the Use of the International System of Units (SI), SP 811 Appendix B.9",
+    };
+
+    const ref2: TrustedReference = {
+      organization:
+        "National Bureau of Standards (NIST) & International Standards Laboratories",
+      shortName: "1959 Yard & Pound Agreement",
+      documentTitle: `1959 International Yard and Pound Agreement — Legal Definition of ${nonSiLabel}`,
+      standardCode: "1959 Int'l Yard & Pound Agreement",
+      url:
+        pair.categoryId === "mass"
+          ? "https://www.nist.gov/pml/owm/si-units-mass"
+          : "https://www.nist.gov/pml/owm/si-units-length",
+      verificationNote: `Establishes the exact international standard for ${nonSiLabel} under the 1959 International Yard and Pound Agreement (1 yard = 0.9144 m, 1 foot = 0.3048 m, 1 inch = 25.4 mm, 1 mile = 1,609.344 m, 1 pound = 0.45359237 kg).`,
+      topicBadge: `${nonSiLabel} Standard`,
+      verifiedFormula: `Example: ${pair.exampleInput} ${fromUnit.symbol} = ${exampleOut.formattedValue} ${toUnit.symbol}`,
+      linkLabel: "1959 International Yard & Pound Standard",
+      citationText:
+        "Refinement of Values for the Yard and the Pound, Federal Register Doc. 59-5442 (1959 International Yard and Pound Agreement)",
+    };
+
+    const ref3: TrustedReference =
+      siUnitsInPair.length > 0
+        ? {
+            organization: "Bureau International des Poids et Mesures (BIPM)",
+            shortName: "BIPM",
+            documentTitle: `SI Unit Definition: ${siUnitsInPair
+              .map((u) => `${u.name} (${u.symbol})`)
+              .join(" & ")} — SI Brochure (9th Edition)`,
+            standardCode: "BIPM SI-9",
+            url:
+              pair.categoryId === "length"
+                ? "https://www.bipm.org/en/si-base-units/metre"
+                : pair.categoryId === "mass"
+                  ? "https://www.bipm.org/en/si-base-units/kilogram"
+                  : "https://www.bipm.org/en/publications/si-brochure",
+            verificationNote: `Official BIPM SI definition for ${siUnitsInPair
+              .map((u) => `${u.name} (${u.symbol})`)
+              .join(" and ")}.`,
+            topicBadge: `SI Standard: ${siUnitsInPair.map((u) => u.symbol).join(", ")}`,
+            verifiedFormula: oneForward.formulaDisplay,
+            linkLabel: "BIPM SI Brochure",
+            citationText: `Bureau International des Poids et Mesures, The International System of Units (SI Brochure, 9th Ed.) — ${siUnitsInPair
+              .map((u) => u.name)
+              .join(", ")}`,
+          }
+        : {
+            organization: "NIST Office of Weights and Measures (OWM)",
+            shortName: "NIST OWM",
+            documentTitle: `U.S. Customary & Imperial ${catName} Unit Specifications (${fromUnit.symbol} to ${toUnit.symbol})`,
+            standardCode: "NIST Handbook 44",
+            url: "https://www.nist.gov/pml/owm/nist-handbook-44-current-edition",
+            verificationNote: `${pair.formulaDescription}${
+              pair.regionalNote ? ` ${pair.regionalNote}` : ""
+            }`,
+            topicBadge: `${fromUnit.symbol} to ${toUnit.symbol} Mathematical Basis`,
+            verifiedFormula: oneForward.formulaDisplay,
+            linkLabel: "NIST Handbook 44",
+            citationText:
+              "National Institute of Standards and Technology, Office of Weights and Measures, NIST Handbook 44",
+          };
+
+    return [ref1, ref2, ref3];
+  }
+
   return [
     {
       organization: auth.primaryOrg,
@@ -672,7 +834,7 @@ export function getTrustedReferencesForPair(
     {
       organization: auth.secondaryOrg,
       shortName: auth.secondaryShort,
-      documentTitle: `Unit Specifications: ${fromUnit.name} (${fromUnit.symbol}) & ${toUnit.name} (${toUnit.symbol})`,
+      documentTitle: `SI Unit Specifications: ${fromUnit.name} (${fromUnit.symbol}) & ${toUnit.name} (${toUnit.symbol})`,
       standardCode: auth.secondaryCode,
       url: auth.secondaryUrl,
       verificationNote: `Defines ${fromUnit.name} (${fromUnit.symbol}): ${

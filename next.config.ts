@@ -172,6 +172,16 @@ const nextConfig = (phase: string): NextConfig => {
       },
     ];
   },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: '/sitemap-:name.xml',
+          destination: '/api/sitemaps/:name',
+        },
+      ],
+    };
+  },
   webpack: (config, {dev, isServer}) => {
     // HMR is disabled in AI Studio via DISABLE_HMR env var.
     // Do not modify—file watching is disabled to prevent flickering during agent edits.

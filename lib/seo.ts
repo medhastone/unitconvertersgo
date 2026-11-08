@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { SITE_CONFIG } from "./config";
 import type { ConversionPairInfo, Unit } from "./conversions/types";
-import { CATEGORY_MAP, UNIT_MAP } from "./conversions/units";
+import { CATEGORY_MAP, UNIT_MAP, getUnitsByCategory } from "./conversions/units";
 import { convertUnits } from "./conversions/engine";
 import { getCategoryUrlSlug } from "./conversions/url";
+import { isIndexableCategory } from "./seo-config";
 
 export const DEFAULT_OG_IMAGE = {
   url: `${SITE_CONFIG.baseUrl}/og-default.png`,
@@ -31,10 +32,115 @@ export const SHARED_FAVICON_ICONS: NonNullable<Metadata["icons"]> = {
 };
 
 /**
- * Resolves the 1200x630 OpenGraph & Twitter card image for a specific category
- * (generated at build time under /public/og/category-[slug].png) or falls back to /og-default.png.
+ * Curated top 4 unit display labels per category for the standardized category title:
+ * "<Category> Converter – <top 4 units> & More"
  */
-export function getCategoryOgImage(categoryId?: string, altOverride?: string) {
+const CATEGORY_TOP_FOUR_UNITS: Record<string, string[]> = {
+  length: ["Meters", "Feet", "Inches", "Miles"],
+  mass: ["Kilograms", "Pounds", "Grams", "Ounces"],
+  temperature: ["Celsius", "Fahrenheit", "Kelvin", "Rankine"],
+  volume: ["Liters", "Gallons", "Milliliters", "Cups"],
+  area: ["Square Meters", "Square Feet", "Acres", "Hectares"],
+  speed: ["km/h", "mph", "Meters per Second", "Knots"],
+  time: ["Seconds", "Minutes", "Hours", "Days"],
+  pressure: ["PSI", "Bar", "Pascals", "Atmospheres"],
+  energy: ["Joules", "Kilowatt-Hours", "Calories", "BTU"],
+  power: ["Watts", "Kilowatts", "Horsepower", "BTU/h"],
+  digital_storage: ["Bytes", "Kilobytes", "Megabytes", "Gigabytes"],
+  data_transfer: ["Mbps", "Gbps", "MB/s", "KB/s"],
+  fuel_economy: ["MPG", "L/100km", "km/L", "Imperial MPG"],
+  force: ["Newtons", "Kilonewtons", "Pound-Force", "Dynes"],
+  density: ["kg/m³", "g/cm³", "lb/ft³", "lb/gal"],
+  angle: ["Degrees", "Radians", "Gradians", "Arcminutes"],
+  frequency: ["Hertz", "Kilohertz", "Megahertz", "RPM"],
+  cooking: ["Cups", "Grams", "Ounces", "Tablespoons"],
+};
+
+/**
+ * Builds the standardized Category page title:
+ * "<Category> Converter – <top 4 units> & More"
+ * e.g. "Length Converter – Meters, Feet, Inches, Miles & More"
+ */
+export function buildCategorySeoTitle(categoryId: string): string {
+  if (categoryId === "cooking") {
+    return "Cooking Converter – Cups, Grams, Ounces, Tablespoons & More";
+  }
+
+  const cat = CATEGORY_MAP.get(categoryId);
+  if (!cat) {
+    return "Unit Converter – Metric & Imperial Measurement Tools";
+  }
+
+  const curated = CATEGORY_TOP_FOUR_UNITS[cat.id];
+  const allUnits = getUnitsByCategory(cat.id);
+  const topUnits =
+    curated && curated.length > 0
+      ? curated.slice(0, 4)
+      : allUnits
+          .slice(0, 4)
+          .map((u) => cleanUnitDisplayName(u.plural));
+
+  if (topUnits.length === 0) {
+    return `${cat.name} Converter`;
+  }
+
+  const hasMore = allUnits.length > topUnits.length;
+  return `${cat.name} Converter – ${topUnits.join(", ")}${hasMore ? " & More" : ""}`;
+}
+
+/**
+ * Builds a clear, benefit-led meta description for a Category page.
+ */
+export function buildCategorySeoDescription(categoryId: string): string {
+  if (categoryId === "cooking") {
+    return formatSeoDescription(
+      "Convert cooking and baking ingredients between cups, grams, ounces, tablespoons, and milliliters instantly for free with US and Metric cup reference charts."
+    );
+  }
+
+  const cat = CATEGORY_MAP.get(categoryId);
+  if (!cat) {
+    return SITE_CONFIG.description;
+  }
+
+  const curated = CATEGORY_TOP_FOUR_UNITS[cat.id];
+  const allUnits = getUnitsByCategory(cat.id);
+  const topUnits =
+    curated && curated.length > 0
+      ? curated.slice(0, 4).map((s) => s.toLowerCase())
+      : allUnits
+          .slice(0, 4)
+          .map((u) => cleanUnitDisplayName(u.plural).toLowerCase());
+
+  const unitsList =
+    topUnits.length >= 2
+      ? `${topUnits.slice(0, -1).join(", ")}, and ${topUnits[topUnits.length - 1]}`
+      : topUnits[0] || cat.name.toLowerCase();
+
+  return formatSeoDescription(
+    `Convert ${cat.name.toLowerCase()} units including ${unitsList} instantly for free. Includes a live calculator, exact conversion formulas, and reference tables.`
+  );
+}
+
+/**
+ * Resolves the 1200x630 OpenGraph & Twitter card image for a specific converter pair
+ * (via the dynamic /api/og generator) or falls back to the category's /og/category-[slug].png image.
+ */
+export function getCategoryOgImage(
+  categoryId?: string,
+  altOverride?: string,
+  pairSlug?: string
+) {
+  if (pairSlug) {
+    return {
+      url: `${SITE_CONFIG.baseUrl}/api/og?slug=${encodeURIComponent(pairSlug)}`,
+      width: 1200,
+      height: 630,
+      alt: altOverride || `${pairSlug.replace(/-/g, " ")} — ${SITE_CONFIG.name}`,
+      type: "image/png",
+    };
+  }
+
   if (!categoryId) {
     return altOverride
       ? { ...DEFAULT_OG_IMAGE, alt: altOverride }
@@ -72,7 +178,7 @@ export function getCategoryOgImage(categoryId?: string, altOverride?: string) {
 
 /**
  * Obscure scientific unit IDs (extreme SI prefixes) that should be excluded from
- * "More Conversions" footer link blocks and marked noindex,follow when accessed directly.
+ * "More Conversions" footer link blocks.
  */
 export const OBSCURE_UNIT_IDS = new Set<string>([
   "exameter",
@@ -128,33 +234,10 @@ export const OBSCURE_UNIT_IDS = new Set<string>([
 ]);
 
 /**
- * Specialized niche physics/engineering categories flagged as low/zero organic search demand
- * candidates to keep live with `robots: { index: false, follow: true }`.
+ * Non-indexable category helper delegating to centralized lib/seo-config.ts.
  */
-export const OBSCURE_SCIENTIFIC_CATEGORY_IDS = new Set<string>([
-  "permeability",
-  "magnetomotive_force",
-  "charge_linear",
-  "charge_surface",
-  "charge_volume",
-  "current_linear",
-  "current_surface",
-  "heat_density",
-  "heat_flux_density",
-  "heat_transfer_coefficient",
-  "mass_flux_density",
-  "specific_volume",
-  "acceleration_angular",
-  "thermal_expansion",
-  "thermal_resistance",
-  "radiation_exposure",
-  "sound",
-  "prefixes",
-]);
-
-export function isObscureConversionPair(_pair: ConversionPairInfo): boolean {
-  void _pair;
-  return false;
+export function isObscureConversionPair(pair: ConversionPairInfo): boolean {
+  return !isIndexableCategory(pair.categoryId);
 }
 
 /**
@@ -331,6 +414,7 @@ export function buildPageMetadata({
   type,
   noindex = false,
   categoryId,
+  pairSlug,
   useExactTitle = false,
 }: {
   title: string;
@@ -340,6 +424,7 @@ export function buildPageMetadata({
   type?: "website" | "article";
   noindex?: boolean;
   categoryId?: string;
+  pairSlug?: string;
   useExactTitle?: boolean;
 }): Metadata {
   const resolvedOgType = ogType ?? type ?? "website";
@@ -354,7 +439,7 @@ export function buildPageMetadata({
         canonicalPath.startsWith("/") ? canonicalPath : `/${canonicalPath}`
       }`;
 
-  const ogImage = getCategoryOgImage(categoryId, socialTitle);
+  const ogImage = getCategoryOgImage(categoryId, socialTitle, pairSlug);
 
   return {
     title: useExactTitle ? { absolute: cleanTitle } : cleanTitle,

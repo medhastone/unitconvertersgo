@@ -171,6 +171,7 @@ export default function WidgetsDirectoryClient({
               <Link
                 href="/widgets/w/ah-to-kwh"
                 prefetch={false}
+                rel="nofollow"
                 className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-[#F7F9FC] dark:bg-slate-800 hover:border-[#0D9488] border border-slate-200/90 dark:border-slate-700 text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white transition-colors"
               >
                 <Zap className="w-4 h-4 text-[#0D9488]" />
@@ -266,6 +267,7 @@ export default function WidgetsDirectoryClient({
                 <Link
                   href={activeDemoWidget.widgetStudioHref}
                   prefetch={false}
+                  rel="nofollow"
                   className="inline-flex items-center gap-1.5 text-xs font-extrabold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
                 >
                   <span>Customize &amp; Get Embed Code</span>
@@ -484,6 +486,7 @@ function WidgetCatalogCard({ item }: { item: WidgetDirectoryItem }) {
         <Link
           href={`/widgets/w/${item.slug}`}
           prefetch={false}
+          rel="nofollow"
           className="block text-sm font-extrabold text-[#16324F] dark:text-white hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors"
         >
           {item.title}
@@ -494,6 +497,7 @@ function WidgetCatalogCard({ item }: { item: WidgetDirectoryItem }) {
         <Link
           href={`/widgets/w/${item.slug}`}
           prefetch={false}
+          rel="nofollow"
           className="inline-flex items-center gap-1.5 text-xs font-extrabold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
         >
           <Code2 className="w-3.5 h-3.5" />
