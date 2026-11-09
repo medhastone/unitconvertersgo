@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "ml-to-tablespoons",
+  "category": "volume",
+  "categoryId": "volume",
+  "fromUnitId": "milliliter",
+  "toUnitId": "us_tablespoon",
+  "fromSymbol": "mL",
+  "toSymbol": "tbsp",
+  "intro": "Professionals and everyday users convert milliliters (mL) to tablespoons (us) (tbsp) when working across metric and us_customary standards in culinary recipe scaling, beverage bottling, laboratory reagent preparation, and fluid tank capacity sizing. One milliliter equals 0.067628 tablespoons (us), while 1 tablespoon (us) equals 14.786765 milliliters. Whether you are verifying volume & liquid specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    5,
+    15,
+    30,
+    60,
+    100,
+    120,
+    240,
+    250,
+    500,
+    1000
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Milliliter Benchmark (30 mL)",
+      "scenario": "Convert 30 milliliters (mL) into tablespoons (us) (tbsp) for technical comparison and documentation.",
+      "inputValue": 30,
+      "outputValue": "2.028841 tbsp",
+      "stepByStep": "30 mL × 0.067628 = 2.028841 tbsp (rounds to 2.03 tbsp)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (120 mL)",
+      "scenario": "Convert 120 milliliters (mL) into tablespoons (us) (tbsp) for technical comparison and documentation.",
+      "inputValue": 120,
+      "outputValue": "8.115365 tbsp",
+      "stepByStep": "120 mL × 0.067628 = 8.115365 tbsp (rounds to 8.12 tbsp)."
+    },
+    {
+      "title": "Higher-Capacity Specification (500 mL)",
+      "scenario": "Convert 500 milliliters (mL) into tablespoons (us) (tbsp) for technical comparison and documentation.",
+      "inputValue": 500,
+      "outputValue": "33.814023 tbsp",
+      "stepByStep": "500 mL × 0.067628 = 33.814023 tbsp (rounds to 33.81 tbsp)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "US Customary vs. British Imperial Liquid Volume Trap",
+    "items": [
+      "US Customary and UK Imperial liquid units share identical names but have different physical volumes: 1 US Gallon is 3.78541 L (128 US fl oz), whereas 1 UK Imperial Gallon is 4.54609 L (160 Imp fl oz) — a 20.1% difference.",
+      "Similarly, 1 US Pint contains 16 US fluid ounces (473.18 mL), while 1 British Imperial Pint contains 20 Imperial fluid ounces (568.26 mL). Always verify whether your recipe, pump datasheet, or vehicle spec sheet uses US or UK standards."
+    ]
+  },
+  "formula": {
+    "equation": "tbsp = mL × 0.06762805",
+    "exactFactor": "0.06762805",
+    "roundedFactor": "0.0676",
+    "inverseFactor": "14.786765"
+  },
+  "internalLinks": [
+    {
+      "label": "Tablespoons (US) to Milliliters (tbsp to mL)",
+      "href": "/volume/tablespoons-to-ml",
+      "type": "reverse"
+    },
+    {
+      "label": "Liters to Gallons (US) (L to gal (US))",
+      "href": "/volume/liters-to-gallons",
+      "type": "related"
+    },
+    {
+      "label": "Gallons (US) to Liters (gal (US) to L)",
+      "href": "/volume/gallons-to-liters",
+      "type": "related"
+    },
+    {
+      "label": "Milliliters to Fluid Ounces (US) (mL to fl oz)",
+      "href": "/volume/ml-to-fluid-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Fluid Ounces (US) to Milliliters (fl oz to mL)",
+      "href": "/volume/fluid-ounces-to-ml",
+      "type": "related"
+    },
+    {
+      "label": "Volume & Liquid Conversions Hub",
+      "href": "/volume",
+      "type": "hub"
+    },
+    {
+      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "href": "/guides/us-vs-imperial-fluid-ounces",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many tablespoons (us) (tbsp) are in 1 milliliter (mL)?",
+      "answer": "There are 0.06762805 tablespoons (us) (tbsp) in 1 milliliter (mL), which rounds to 0.0676 tbsp for everyday calculations. Conversely, 1 tablespoon (us) equals 14.786765 milliliters."
+    },
+    {
+      "question": "How do I convert milliliters to tablespoons (us) (mL to tbsp)?",
+      "answer": "To convert milliliters to tablespoons (us), use the formula: tbsp = mL × 0.06762805. For example, converting 100 mL gives 6.7628 tbsp."
+    },
+    {
+      "question": "What is 100 milliliters in tablespoons (us)?",
+      "answer": "100 milliliters (mL) equals exactly 6.7628 tablespoons (us) (tbsp) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

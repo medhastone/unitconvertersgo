@@ -91,12 +91,15 @@ import {
   TOP_20_POPULAR_CONVERTERS,
   isIndexableCategory,
 } from "@/lib/seo-config";
+import type { PairContentData } from "@/lib/pair-content";
 import TapeMeasureVisual from "@/components/TapeMeasureVisual";
 import SharePageButton from "@/components/SharePageButton";
 
 interface ConversionPageInteractiveProps {
   pair: ConversionPairInfo;
   featuredRelatedPairs?: ConversionPairInfo[];
+  pairContent?: PairContentData | null;
+  curatedCommonValues?: number[];
 }
 
 function formatUnitWithSymbol(label: string, symbol: string): string {
@@ -328,12 +331,15 @@ function getHumanFormulaAndExample(
 export default function ConversionPageInteractive({
   pair,
   featuredRelatedPairs = [],
+  pairContent = null,
+  curatedCommonValues,
 }: ConversionPageInteractiveProps) {
   const [fromUnitId, setFromUnitId] = useState<string>(pair.fromUnitId);
   const [toUnitId, setToUnitId] = useState<string>(pair.toUnitId);
   const [inputStr, setInputStr] = useState<string>(String(pair.exampleInput));
   const deferredInputStr = useDeferredValue(inputStr);
   const [precision, setPrecision] = useState<PrecisionMode>("auto");
+  const [selectedVoltage, setSelectedVoltage] = useState<number>(12);
   const [copied, setCopied] = useState(false);
   const [copiedFormula, setCopiedFormula] = useState(false);
   const [copiedSolution, setCopiedSolution] = useState(false);
@@ -407,9 +413,18 @@ export default function ConversionPageInteractive({
   const isDeferredValid = Number.isFinite(deferredNumericInput);
   const deferredEffectiveInput = isDeferredValid ? deferredNumericInput : 0;
 
+  const isCrossDimensionBatteryPair = useMemo(() => {
+    const energyIds = new Set(["watt_hour", "kilowatt_hour"]);
+    const chargeIds = new Set(["ampere_hour", "milliampere_hour", "coulomb"]);
+    return (
+      (chargeIds.has(fromUnitId) && energyIds.has(toUnitId)) ||
+      (energyIds.has(fromUnitId) && chargeIds.has(toUnitId))
+    );
+  }, [fromUnitId, toUnitId]);
+
   const activeOutput: ConversionOutput = useMemo(() => {
-    return convertUnits(effectiveInput, fromUnitId, toUnitId, precision);
-  }, [effectiveInput, fromUnitId, toUnitId, precision]);
+    return convertUnits(effectiveInput, fromUnitId, toUnitId, precision, selectedVoltage);
+  }, [effectiveInput, fromUnitId, toUnitId, precision, selectedVoltage]);
 
   const highPrecisionFormatted = useMemo(() => {
     if (!isValidInput) return "—";
@@ -658,12 +673,14 @@ export default function ConversionPageInteractive({
         : tablePreset === "small"
         ? "fractions"
         : "standard";
+    const effectiveCommonValues =
+      pairContent?.commonValues || curatedCommonValues || pair.commonValues;
     const generated = generateScaleAwareTableRows(
       fromUnit,
       toUnit,
       thirdVisualUnit,
       mode,
-      pair.commonValues
+      effectiveCommonValues
     );
     return generated.map((r) => ({
       input: r.input,
@@ -671,7 +688,7 @@ export default function ConversionPageInteractive({
       formatted6: r.outputDisplay,
       formattedThird: r.thirdUnitDisplay || "",
     }));
-  }, [tablePreset, pair.commonValues, pair.categoryId, fromUnitId, toUnitId, fromUnit, toUnit, thirdVisualUnit]);
+  }, [tablePreset, pairContent?.commonValues, curatedCommonValues, pair.commonValues, pair.categoryId, fromUnitId, toUnitId, fromUnit, toUnit, thirdVisualUnit]);
 
   const isLengthCategory = pair.categoryId === "length";
 
@@ -933,6 +950,47 @@ export default function ConversionPageInteractive({
             </div>
           )}
 
+          {/* Cross-Dimension Assumption Box for Battery Charge (Ah/mAh) <-> Energy (Wh/kWh) (Task 3) */}
+          {isCrossDimensionBatteryPair && (
+            <div className="p-4 rounded-xl bg-amber-50/90 dark:bg-amber-950/40 border border-amber-300/80 dark:border-amber-800/70 space-y-2.5">
+              <div className="flex items-start gap-2.5">
+                <Info className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                <div className="text-xs sm:text-sm text-amber-950 dark:text-amber-200 leading-relaxed">
+                  <strong>Physical Assumption Required (Nominal DC System Voltage):</strong>{" "}
+                  {fromUnit.plural} ({fromUnit.symbol}) measure <em>electric charge</em> (A·h), while{" "}
+                  {toUnit.plural} ({toUnit.symbol}) measure <em>electrical energy</em> (W·h). Converting
+                  between them requires specifying the battery&apos;s nominal voltage (
+                  <code className="font-mono font-bold">Wh = Ah × V</code>).
+                </div>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 pt-1">
+                <span className="text-xs font-extrabold text-amber-900 dark:text-amber-300">
+                  Select Battery Voltage:
+                </span>
+                {[
+                  { v: 3.7, label: "3.7 V (Li-ion Cell)" },
+                  { v: 12, label: "12 V (Automotive / RV)" },
+                  { v: 24, label: "24 V (Marine / Truck)" },
+                  { v: 36, label: "36 V (E-Bike / Golf)" },
+                  { v: 48, label: "48 V (Solar / Server)" },
+                ].map((opt) => (
+                  <button
+                    key={opt.v}
+                    type="button"
+                    onClick={() => setSelectedVoltage(opt.v)}
+                    className={`px-3 py-1 rounded-lg text-xs font-mono font-bold border transition-all cursor-pointer ${
+                      selectedVoltage === opt.v
+                        ? "bg-amber-600 text-white border-amber-600"
+                        : "bg-white dark:bg-slate-900 text-amber-900 dark:text-amber-200 border-amber-300 dark:border-amber-700 hover:border-amber-500"
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Validation Notice when empty/invalid */}
           {!isValidInput && (
             <div
@@ -1082,17 +1140,6 @@ export default function ConversionPageInteractive({
                   <CheckCircle2 className="w-4 h-4 text-[#0D9488] dark:text-[#2DD4BF] shrink-0" />
                   <span>Result updates automatically</span>
                 </div>
-
-                <Link
-                  href={`/widgets/w/${matchingCanonicalPair?.slug || pair.slug}`}
-                  rel="nofollow"
-                  prefetch={false}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#F7F9FC] dark:bg-slate-800 hover:bg-[#E6FAF8] dark:hover:bg-teal-950/60 border border-slate-200/90 dark:border-slate-700 hover:border-[#0D9488] text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-teal-300 transition-colors"
-                  title={`Embed this ${fromUnit.plural} to ${toUnit.plural} calculator widget on your website`}
-                >
-                  <Code2 className="w-3.5 h-3.5 text-[#0D9488] dark:text-[#2DD4BF]" />
-                  <span>Get Widget</span>
-                </Link>
 
                 <SharePageButton
                   variant="button"
@@ -1252,6 +1299,18 @@ export default function ConversionPageInteractive({
             )}
           </div>
         </section>
+
+        {/* 1B. PAIR-SPECIFIC INTRO OVERVIEW (60-100 words, Task 5 Gate #1) */}
+        {pairContent?.intro && (
+          <section
+            aria-label={`About converting ${fromUnit.plural} to ${toUnit.plural}`}
+            className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-6 shadow-xs"
+          >
+            <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+              {pairContent.intro}
+            </p>
+          </section>
+        )}
 
         {/* 2. CONVERSION TABLE (Continuous 1–40 / 1–100 Chart with Fraction & Export for Length; Scale-Aware Table for Other Categories) */}
         <section
@@ -1722,6 +1781,50 @@ export default function ConversionPageInteractive({
             <p>{editorial.howManySystemParagraph}</p>
             <p>{editorial.howManyTransitionParagraph}</p>
           </div>
+
+          {/* 3 Worked Examples with Real-World Context (Task 5 Gate #3) */}
+          {pairContent?.workedExamples && pairContent.workedExamples.length >= 3 && (
+            <div className="pt-5 border-t border-slate-100 dark:border-slate-800 space-y-4">
+              <h3 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
+                3 Real-World Worked Examples ({fromUnit.symbol} to {toUnit.symbol})
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+                {pairContent.workedExamples.map((ex, idx) => (
+                  <div
+                    key={idx}
+                    className="p-4 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/90 dark:border-slate-800 space-y-2"
+                  >
+                    <div className="text-xs font-extrabold uppercase tracking-wider text-[#0D9488] dark:text-[#2DD4BF]">
+                      Example {idx + 1}: {ex.title}
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                      {ex.scenario}
+                    </p>
+                    <div className="p-2.5 rounded-lg bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-800 font-mono text-xs sm:text-sm font-bold text-[#16324F] dark:text-teal-300">
+                      {ex.stepByStep}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Conditional Mistakes & Edge Cases Block (Task 5 Gate #4: rendered only when real edge case exists) */}
+          {pairContent?.mistakesAndEdgeCases && (
+            <div className="pt-5 border-t border-slate-100 dark:border-slate-800">
+              <div className="p-4 sm:p-5 rounded-xl bg-amber-50/75 dark:bg-amber-950/30 border border-amber-200/90 dark:border-amber-800/60 space-y-2.5">
+                <div className="flex items-center gap-2 text-amber-900 dark:text-amber-300 font-extrabold text-base sm:text-lg">
+                  <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0" />
+                  <h3>Mistakes &amp; Edge Cases: {pairContent.mistakesAndEdgeCases.title}</h3>
+                </div>
+                <ul className="space-y-2 text-sm sm:text-[15px] text-amber-950/90 dark:text-amber-200/90 list-disc pl-5 leading-relaxed">
+                  {pairContent.mistakesAndEdgeCases.items.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
         </section>
 
         {/* 3B. HOW TO CONVERT [UNIT] TO FRACTIONAL INCHES (1/16, 1/32, 1/64 Plain-Language Step-by-Step Guide) */}
@@ -2080,91 +2183,86 @@ export default function ConversionPageInteractive({
                     </div>
                   </div>
                 )}
+
+                {/* Curated Hub & Guide Internal Links (Task 5 Gate #6) */}
+                {pairContent?.internalLinks && pairContent.internalLinks.length > 0 && (
+                  <div className="pt-2 flex flex-wrap items-center gap-2.5">
+                    {pairContent.internalLinks
+                      .filter((l) => l.type === "guide" || l.type === "hub")
+                      .map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          prefetch={false}
+                          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#E6FAF8]/70 dark:bg-teal-950/40 border border-[#0D9488]/30 text-xs sm:text-sm font-extrabold text-[#0F766E] dark:text-[#2DD4BF] hover:bg-[#0D9488] hover:text-white transition-colors"
+                        >
+                          <span>{link.label}</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </Link>
+                      ))}
+                  </div>
+                )}
               </div>
             );
           })()}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {/* Column 1: Convert from [FromUnit.plural] */}
-            <div className="space-y-3">
-              <h3 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white border-b border-slate-100 dark:border-slate-800 pb-2">
-                {moreUnitLinks.fromHeading}
-              </h3>
-              <ul className="space-y-2">
-                {moreUnitLinks.fromLinks.map((item, idx) => (
-                  <li
-                    key={item.href}
-                    className={
-                      !isMobileLinksExpanded && idx >= 6 ? "hidden md:block" : ""
-                    }
-                  >
-                    <Link
-                      href={item.href}
-                      prefetch={false}
-                      className="inline-flex items-center gap-2 text-[15px] sm:text-base font-medium text-[#0D9488] dark:text-[#2DD4BF] hover:text-[#16324F] dark:hover:text-white hover:underline transition-colors py-1"
-                    >
-                      <span aria-hidden="true" className="text-slate-400 font-bold shrink-0">
-                        ›
-                      </span>
-                      <span>{item.label}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* Collapsed All Conversions (<details>) for Extended / Tier C Unit Links (Task 7) */}
+          <details className="group rounded-xl border border-slate-200/80 dark:border-slate-800 bg-[#F7F9FC]/70 dark:bg-slate-950/50 p-4">
+            <summary className="cursor-pointer list-none flex items-center justify-between text-sm font-extrabold text-[#16324F] dark:text-slate-200">
+              <span>
+                All conversions for {fromUnit.plural} &amp; {toUnit.plural} (
+                {moreUnitLinks.fromLinks.length + moreUnitLinks.toLinks.length} pairs)
+              </span>
+              <ChevronDown className="w-4 h-4 text-[#0D9488] group-open:rotate-180 transition-transform" />
+            </summary>
+            <div className="mt-4 pt-4 border-t border-slate-200/70 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Column 1: Convert from [FromUnit.plural] */}
+              <div className="space-y-3">
+                <h3 className="text-base font-extrabold text-[#16324F] dark:text-white border-b border-slate-100 dark:border-slate-800 pb-2">
+                  {moreUnitLinks.fromHeading}
+                </h3>
+                <ul className="space-y-1.5">
+                  {moreUnitLinks.fromLinks.map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        prefetch={false}
+                        className="inline-flex items-center gap-2 text-sm font-medium text-[#0D9488] dark:text-[#2DD4BF] hover:text-[#16324F] dark:hover:text-white hover:underline transition-colors py-0.5"
+                      >
+                        <span aria-hidden="true" className="text-slate-400 font-bold shrink-0">
+                          ›
+                        </span>
+                        <span>{item.label}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            {/* Column 2: Convert to [ToUnit.plural] */}
-            <div className="space-y-3">
-              <h3 className="text-lg sm:text-xl font-extrabold text-[#16324F] dark:text-white border-b border-slate-100 dark:border-slate-800 pb-2">
-                {moreUnitLinks.toHeading}
-              </h3>
-              <ul className="space-y-2">
-                {moreUnitLinks.toLinks.map((item, idx) => (
-                  <li
-                    key={item.href}
-                    className={
-                      !isMobileLinksExpanded && idx >= 6 ? "hidden md:block" : ""
-                    }
-                  >
-                    <Link
-                      href={item.href}
-                      prefetch={false}
-                      className="inline-flex items-center gap-2 text-[15px] sm:text-base font-medium text-[#0D9488] dark:text-[#2DD4BF] hover:text-[#16324F] dark:hover:text-white hover:underline transition-colors py-1"
-                    >
-                      <span aria-hidden="true" className="text-slate-400 font-bold shrink-0">
-                        ›
-                      </span>
-                      <span>{item.label}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              {/* Column 2: Convert to [ToUnit.plural] */}
+              <div className="space-y-3">
+                <h3 className="text-base font-extrabold text-[#16324F] dark:text-white border-b border-slate-100 dark:border-slate-800 pb-2">
+                  {moreUnitLinks.toHeading}
+                </h3>
+                <ul className="space-y-1.5">
+                  {moreUnitLinks.toLinks.map((item) => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        prefetch={false}
+                        className="inline-flex items-center gap-2 text-sm font-medium text-[#0D9488] dark:text-[#2DD4BF] hover:text-[#16324F] dark:hover:text-white hover:underline transition-colors py-0.5"
+                      >
+                        <span aria-hidden="true" className="text-slate-400 font-bold shrink-0">
+                          ›
+                        </span>
+                        <span>{item.label}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </div>
-
-          {!isDesktopViewport &&
-            (moreUnitLinks.fromLinks.length > 6 ||
-              moreUnitLinks.toLinks.length > 6) && (
-              <button
-                type="button"
-                onClick={() => setIsMobileLinksExpanded((prev) => !prev)}
-                className="md:hidden w-full py-2.5 px-4 rounded-xl bg-[#F7F9FC] dark:bg-slate-800 hover:bg-[#E6FAF8] dark:hover:bg-teal-950/50 border border-slate-200/90 dark:border-slate-700 text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer"
-              >
-                <span>
-                  {isMobileLinksExpanded
-                    ? "Show Fewer Unit Links"
-                    : `Show All ${
-                        moreUnitLinks.fromLinks.length +
-                        moreUnitLinks.toLinks.length
-                      } Unit Conversion Links`}
-                </span>
-                <ChevronDown
-                  className={`w-4 h-4 text-[#0D9488] transition-transform ${
-                    isMobileLinksExpanded ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-            )}
+          </details>
 
           {/* Popular Converters Across Categories + Link to Homepage Popular List */}
           <div className="pt-4 border-t border-slate-100 dark:border-slate-800 space-y-2.5">
@@ -2246,8 +2344,8 @@ export default function ConversionPageInteractive({
           )}
         </section>
 
-        {/* 6. FREQUENTLY ASKED QUESTIONS (Google "People Also Ask" Accordion) */}
-        {editorial.googlePaaFaqs.length > 0 && (
+        {/* 6. FREQUENTLY ASKED QUESTIONS (Server-Rendered in Initial HTML, Task 5 Gate #7) */}
+        {(pairContent?.faqs?.length || editorial.googlePaaFaqs.length > 0) && (
           <section aria-labelledby="pair-faq-heading" className="cv-auto space-y-4">
             <div className="flex items-center gap-2.5">
               <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-sky-100/90 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400">
@@ -2262,8 +2360,11 @@ export default function ConversionPageInteractive({
             </div>
 
             <div className="space-y-2.5">
-              {editorial.googlePaaFaqs.map((faq, idx) => {
-                const isOpen = openFaqIndex === idx;
+              {(pairContent?.faqs && pairContent.faqs.length >= 2
+                ? pairContent.faqs
+                : editorial.googlePaaFaqs
+              ).map((faq, idx) => {
+                const isOpen = openFaqIndex === null || openFaqIndex === idx;
                 return (
                   <div
                     key={faq.question}
@@ -2271,7 +2372,7 @@ export default function ConversionPageInteractive({
                   >
                     <button
                       type="button"
-                      onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
+                      onClick={() => setOpenFaqIndex(openFaqIndex === idx ? -1 : idx)}
                       aria-expanded={isOpen}
                       className="w-full px-5 py-4 flex items-center justify-between gap-3 text-left text-base sm:text-[17px] font-extrabold text-[#16324F] dark:text-white hover:bg-[#F7F9FC] dark:hover:bg-slate-800/60 transition-colors cursor-pointer"
                     >
@@ -2282,14 +2383,7 @@ export default function ConversionPageInteractive({
                         }`}
                       />
                     </button>
-                    <div
-                      hidden={!isOpen}
-                      className={
-                        isOpen
-                          ? "px-5 pb-4 pt-2 text-[15px] sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/80"
-                          : "hidden"
-                      }
-                    >
+                    <div className="px-5 pb-4 pt-2 text-[15px] sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/80">
                       {faq.answer}
                     </div>
                   </div>

@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "hp-to-ps",
+  "category": "power",
+  "categoryId": "power",
+  "fromUnitId": "horsepower_mechanical",
+  "toUnitId": "horsepower_metric",
+  "fromSymbol": "hp",
+  "toSymbol": "PS",
+  "intro": "Professionals and everyday users convert horsepower (hp) (hp) to metric horsepower (PS) when working across imperial and metric standards in automotive engine output ratings, electric motor sizing, solar inverter specifications, and appliance load planning. One horsepower (mechanical) equals 1.01387 metric horsepower, while 1 horsepower (metric ps) equals 0.98632 horsepower (hp). Whether you are verifying power specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Horsepower (Mechanical) Benchmark (2 hp)",
+      "scenario": "Convert 2 horsepower (hp) (hp) into metric horsepower (PS) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "2.027739 PS",
+      "stepByStep": "2 hp × 1.01387 = 2.027739 PS (rounds to 2.03 PS)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 hp)",
+      "scenario": "Convert 20 horsepower (hp) (hp) into metric horsepower (PS) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "20.277393 PS",
+      "stepByStep": "20 hp × 1.01387 = 20.277393 PS (rounds to 20.28 PS)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 hp)",
+      "scenario": "Convert 75 horsepower (hp) (hp) into metric horsepower (PS) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "76.040225 PS",
+      "stepByStep": "75 hp × 1.01387 = 76.040225 PS (rounds to 76.04 PS)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Horsepower (Mechanical) to Horsepower (Metric PS) is 1.01386967, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "PS = hp × 1.01386967",
+    "exactFactor": "1.01386967",
+    "roundedFactor": "1.0139",
+    "inverseFactor": "0.98632"
+  },
+  "internalLinks": [
+    {
+      "label": "Metric Horsepower to Horsepower (hp) (PS to hp)",
+      "href": "/power/ps-to-hp",
+      "type": "reverse"
+    },
+    {
+      "label": "Watts to Kilowatts (W to kW)",
+      "href": "/power/watts-to-kw",
+      "type": "related"
+    },
+    {
+      "label": "Kilowatts to Watts (kW to W)",
+      "href": "/power/kw-to-watts",
+      "type": "related"
+    },
+    {
+      "label": "Horsepower (hp) to Kilowatts (hp to kW)",
+      "href": "/power/hp-to-kw",
+      "type": "related"
+    },
+    {
+      "label": "Kilowatts to Horsepower (hp) (kW to hp)",
+      "href": "/power/kw-to-horsepower",
+      "type": "related"
+    },
+    {
+      "label": "Power Conversions Hub",
+      "href": "/power",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many metric horsepower (PS) are in 1 horsepower (mechanical) (hp)?",
+      "answer": "There are 1.01386967 metric horsepower (PS) in 1 horsepower (mechanical) (hp), which rounds to 1.0139 PS for everyday calculations. Conversely, 1 horsepower (metric ps) equals 0.98632 horsepower (hp)."
+    },
+    {
+      "question": "How do I convert horsepower (hp) to metric horsepower (hp to PS)?",
+      "answer": "To convert horsepower (hp) to metric horsepower, use the formula: PS = hp × 1.01386967. For example, converting 10 hp gives 10.1387 PS."
+    },
+    {
+      "question": "What is 10 horsepower (hp) in metric horsepower?",
+      "answer": "10 horsepower (hp) (hp) equals exactly 10.1387 metric horsepower (PS) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

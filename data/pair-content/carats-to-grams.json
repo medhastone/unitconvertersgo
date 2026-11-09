@@ -1,0 +1,99 @@
+{
+  "status": "draft-needs-review",
+  "slug": "carats-to-grams",
+  "category": "weight-and-mass",
+  "categoryId": "mass",
+  "fromUnitId": "carat",
+  "toUnitId": "gram",
+  "fromSymbol": "ct",
+  "toSymbol": "g",
+  "intro": "Professionals and everyday users convert carats (ct) to grams (g) when working across metric and metric standards in engineering specifications, international trade documentation, and technical measurements. One metric carat equals 0.2 grams, while 1 gram equals 5 carats. Whether you are verifying mass & weight specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Metric Carat Benchmark (2 ct)",
+      "scenario": "Convert 2 carats (ct) into grams (g) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "0.4 g",
+      "stepByStep": "2 ct × 0.2 = 0.4 g (rounds to 0.4 g)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 ct)",
+      "scenario": "Convert 20 carats (ct) into grams (g) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "4 g",
+      "stepByStep": "20 ct × 0.2 = 4 g (rounds to 4 g)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 ct)",
+      "scenario": "Convert 75 carats (ct) into grams (g) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "15 g",
+      "stepByStep": "75 ct × 0.2 = 15 g (rounds to 15 g)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "g = ct × 0.2",
+    "exactFactor": "0.2",
+    "roundedFactor": "0.2",
+    "inverseFactor": "5"
+  },
+  "internalLinks": [
+    {
+      "label": "Kilograms to Pounds (kg to lb)",
+      "href": "/weight-and-mass/kg-to-lbs",
+      "type": "related"
+    },
+    {
+      "label": "Pounds to Kilograms (lb to kg)",
+      "href": "/weight-and-mass/lbs-to-kg",
+      "type": "related"
+    },
+    {
+      "label": "Grams to Ounces (g to oz)",
+      "href": "/weight-and-mass/grams-to-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Ounces to Grams (oz to g)",
+      "href": "/weight-and-mass/ounces-to-grams",
+      "type": "related"
+    },
+    {
+      "label": "Mass & Weight Conversions Hub",
+      "href": "/weight-and-mass",
+      "type": "hub"
+    },
+    {
+      "label": "Troy Ounces vs. Regular Avoirdupois Ounces Weight Guide",
+      "href": "/guides/avoirdupois-vs-troy-weight",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many grams (g) are in 1 metric carat (ct)?",
+      "answer": "There are 0.2 grams (g) in 1 metric carat (ct), which rounds to 0.2 g for everyday calculations. Conversely, 1 gram equals 5 carats."
+    },
+    {
+      "question": "How do I convert carats to grams (ct to g)?",
+      "answer": "To convert carats to grams, use the formula: g = ct × 0.2. For example, converting 10 ct gives 2 g."
+    },
+    {
+      "question": "What is 10 carats in grams?",
+      "answer": "10 carats (ct) equals exactly 2 grams (g) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

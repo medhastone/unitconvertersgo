@@ -1,0 +1,97 @@
+{
+  "slug": "bytes-to-bits",
+  "categoryId": "digital_storage",
+  "fromUnitId": "byte",
+  "toUnitId": "bit",
+  "status": "draft-needs-review",
+  "intro": "Converting bytes (B) to bits (b) is essential when translating measurements across engineering specifications, technical documentation, and international trade. One byte equals 8 bits, while one bit equals 0.125 bytes. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
+  "referenceValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    100,
+    250
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 1 B to b",
+      "context": "Baseline reference check when comparing a single byte specification against bits",
+      "inputValue": 1,
+      "calculation": "1 B × 8 = 8 b",
+      "result": "1 B = 8 b"
+    },
+    {
+      "title": "Convert 10 B to b",
+      "context": "Mid-range practical measurement commonly encountered in digital storage workflows and equipment sheets",
+      "inputValue": 10,
+      "calculation": "10 B × 8 = 80 b",
+      "result": "10 B = 80 b"
+    },
+    {
+      "title": "Convert 50 B to b",
+      "context": "Larger scale calculation for commercial, industrial, or bulk digital storage planning",
+      "inputValue": 50,
+      "calculation": "50 B × 8 = 400 b",
+      "result": "50 B = 400 b"
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "exactFactor": "8",
+    "roundedFactor": "8",
+    "equation": "b = B × 8",
+    "inverseEquation": "B = b × 1",
+    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 B = 8 b)."
+  },
+  "internalLinks": [
+    {
+      "href": "/data-storage/bits-to-bytes",
+      "label": "Bits to Bytes (b to B)",
+      "type": "reverse"
+    },
+    {
+      "href": "/data-storage/kb-to-mb",
+      "label": "Kilobytes to Megabytes (KB to MB)",
+      "type": "related"
+    },
+    {
+      "href": "/data-storage/tb-to-gb",
+      "label": "Terabytes to Gigabytes (TB to GB)",
+      "type": "related"
+    },
+    {
+      "href": "/data-storage/mb-to-gb",
+      "label": "Megabytes to Gigabytes (MB to GB)",
+      "type": "related"
+    },
+    {
+      "href": "/undefined",
+      "label": "Digital Storage Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/metric-vs-imperial",
+      "label": "Metric vs. Imperial System: Complete Engineering Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many bits are in 1 byte?",
+      "answer": "There are 8 bits (b) in 1 byte (B). To convert B to b, use the exact conversion factor 8."
+    },
+    {
+      "question": "How do I convert bytes to bits manually?",
+      "answer": "Multiply your byte value by 8 (exact factor: 8). For example, 10 B × 8 = 80 b."
+    },
+    {
+      "question": "What is 50 B in b?",
+      "answer": "50 bytes (B) equals 400 bits (b)."
+    }
+  ]
+}

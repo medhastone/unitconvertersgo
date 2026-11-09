@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "hz-to-khz",
+  "category": "frequency",
+  "categoryId": "frequency",
+  "fromUnitId": "hertz",
+  "toUnitId": "kilohertz",
+  "fromSymbol": "Hz",
+  "toSymbol": "kHz",
+  "intro": "Professionals and everyday users convert hertz (Hz) to kilohertz (kHz) when working across si and metric standards in processor clock speeds, RF wireless spectrum allocation, audio signal processing, and rotational machinery RPM. One hertz equals 0.001 kilohertz, while 1 kilohertz equals 1,000 hertz. Whether you are verifying frequency specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Hertz Benchmark (2 Hz)",
+      "scenario": "Convert 2 hertz (Hz) into kilohertz (kHz) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "0.002 kHz",
+      "stepByStep": "2 Hz × 0.001 = 0.002 kHz (rounds to 0 kHz)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 Hz)",
+      "scenario": "Convert 20 hertz (Hz) into kilohertz (kHz) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "0.02 kHz",
+      "stepByStep": "20 Hz × 0.001 = 0.02 kHz (rounds to 0.02 kHz)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 Hz)",
+      "scenario": "Convert 75 hertz (Hz) into kilohertz (kHz) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "0.075 kHz",
+      "stepByStep": "75 Hz × 0.001 = 0.075 kHz (rounds to 0.08 kHz)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Hertz to Kilohertz is 0.001, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "kHz = Hz × 0.001",
+    "exactFactor": "0.001",
+    "roundedFactor": "0.001",
+    "inverseFactor": "1,000"
+  },
+  "internalLinks": [
+    {
+      "label": "Kilohertz to Hertz (kHz to Hz)",
+      "href": "/frequency/khz-to-hz",
+      "type": "reverse"
+    },
+    {
+      "label": "Megahertz to Gigahertz (MHz to GHz)",
+      "href": "/frequency/mhz-to-ghz",
+      "type": "related"
+    },
+    {
+      "label": "Gigahertz to Megahertz (GHz to MHz)",
+      "href": "/frequency/ghz-to-mhz",
+      "type": "related"
+    },
+    {
+      "label": "RPM to Hertz (RPM to Hz)",
+      "href": "/frequency/rpm-to-hz",
+      "type": "related"
+    },
+    {
+      "label": "Kilohertz to Megahertz (kHz to MHz)",
+      "href": "/frequency/khz-to-mhz",
+      "type": "related"
+    },
+    {
+      "label": "Frequency Conversions Hub",
+      "href": "/frequency",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many kilohertz (kHz) are in 1 hertz (Hz)?",
+      "answer": "There are 0.001 kilohertz (kHz) in 1 hertz (Hz), which rounds to 0.001 kHz for everyday calculations. Conversely, 1 kilohertz equals 1,000 hertz."
+    },
+    {
+      "question": "How do I convert hertz to kilohertz (Hz to kHz)?",
+      "answer": "To convert hertz to kilohertz, use the formula: kHz = Hz × 0.001. For example, converting 10 Hz gives 0.01 kHz."
+    },
+    {
+      "question": "What is 10 hertz in kilohertz?",
+      "answer": "10 hertz (Hz) equals exactly 0.01 kilohertz (kHz) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

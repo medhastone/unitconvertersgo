@@ -1,0 +1,79 @@
+{
+  "category": "luminous-intensity",
+  "categoryId": "luminous_intensity",
+  "defaultValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "unitDefaults": {
+    "candela_unit": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ],
+    "millicandela": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ],
+    "kilocandela": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ],
+    "lumen_per_sr": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ],
+    "hefnerkerze": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ]
+  },
+  "pairOverrides": {}
+}

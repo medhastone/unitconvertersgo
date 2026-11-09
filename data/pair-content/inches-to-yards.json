@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "inches-to-yards",
+  "category": "length",
+  "categoryId": "length",
+  "fromUnitId": "inch",
+  "toUnitId": "yard",
+  "fromSymbol": "in",
+  "toSymbol": "yd",
+  "intro": "Professionals and everyday users convert inches (in) to yards (yd) when working across imperial and imperial standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One inch equals 0.027778 yards, while 1 yard equals 36 inches. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    2,
+    4,
+    6,
+    8,
+    12,
+    18,
+    24,
+    36,
+    48
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Inch Benchmark (4 in)",
+      "scenario": "Convert 4 inches (in) into yards (yd) for technical comparison and documentation.",
+      "inputValue": 4,
+      "outputValue": "0.111111 yd",
+      "stepByStep": "4 in × 0.027778 = 0.111111 yd (rounds to 0.11 yd)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (12 in)",
+      "scenario": "Convert 12 inches (in) into yards (yd) for technical comparison and documentation.",
+      "inputValue": 12,
+      "outputValue": "0.333333 yd",
+      "stepByStep": "12 in × 0.027778 = 0.333333 yd (rounds to 0.33 yd)."
+    },
+    {
+      "title": "Higher-Capacity Specification (36 in)",
+      "scenario": "Convert 36 inches (in) into yards (yd) for technical comparison and documentation.",
+      "inputValue": 36,
+      "outputValue": "1 yd",
+      "stepByStep": "36 in × 0.027778 = 1 yd (rounds to 1 yd)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "yd = in × 0.02777778",
+    "exactFactor": "0.02777778",
+    "roundedFactor": "0.0278",
+    "inverseFactor": "36"
+  },
+  "internalLinks": [
+    {
+      "label": "Yards to Inches (yd to in)",
+      "href": "/length/yards-to-inches",
+      "type": "reverse"
+    },
+    {
+      "label": "Centimeters to Inches (cm to in)",
+      "href": "/length/cm-to-inches",
+      "type": "related"
+    },
+    {
+      "label": "Inches to Centimeters (in to cm)",
+      "href": "/length/inches-to-cm",
+      "type": "related"
+    },
+    {
+      "label": "Feet to Meters (ft to m)",
+      "href": "/length/feet-to-meters",
+      "type": "related"
+    },
+    {
+      "label": "Meters to Feet (m to ft)",
+      "href": "/length/meters-to-feet",
+      "type": "related"
+    },
+    {
+      "label": "Length Conversions Hub",
+      "href": "/length",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many yards (yd) are in 1 inch (in)?",
+      "answer": "There are 0.02777778 yards (yd) in 1 inch (in), which rounds to 0.0278 yd for everyday calculations. Conversely, 1 yard equals 36 inches."
+    },
+    {
+      "question": "How do I convert inches to yards (in to yd)?",
+      "answer": "To convert inches to yards, use the formula: yd = in × 0.02777778. For example, converting 8 in gives 0.2222 yd."
+    },
+    {
+      "question": "What is 8 inches in yards?",
+      "answer": "8 inches (in) equals exactly 0.2222 yards (yd) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

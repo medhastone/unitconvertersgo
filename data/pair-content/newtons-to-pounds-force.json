@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "newtons-to-pounds-force",
+  "category": "force",
+  "categoryId": "force",
+  "fromUnitId": "newton",
+  "toUnitId": "pound_force",
+  "fromSymbol": "N",
+  "toSymbol": "lbf",
+  "intro": "Professionals and everyday users convert newtons (N) to pounds-force (lbf) when working across si and imperial standards in structural beam load analysis, fastener tensile testing, aerospace thrust ratings, and mechanical engineering. One newton equals 0.224809 pounds-force, while 1 pound-force equals 4.448222 newtons. Whether you are verifying force specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    5,
+    10,
+    25,
+    50,
+    75,
+    100,
+    150,
+    250,
+    500
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Newton Benchmark (10 N)",
+      "scenario": "Convert 10 newtons (N) into pounds-force (lbf) for technical comparison and documentation.",
+      "inputValue": 10,
+      "outputValue": "2.248089 lbf",
+      "stepByStep": "10 N × 0.224809 = 2.248089 lbf (rounds to 2.25 lbf)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (75 N)",
+      "scenario": "Convert 75 newtons (N) into pounds-force (lbf) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "16.860671 lbf",
+      "stepByStep": "75 N × 0.224809 = 16.860671 lbf (rounds to 16.86 lbf)."
+    },
+    {
+      "title": "Higher-Capacity Specification (250 N)",
+      "scenario": "Convert 250 newtons (N) into pounds-force (lbf) for technical comparison and documentation.",
+      "inputValue": 250,
+      "outputValue": "56.202236 lbf",
+      "stepByStep": "250 N × 0.224809 = 56.202236 lbf (rounds to 56.2 lbf)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Newton to Pound-force is 0.22480894, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "lbf = N × 0.22480894",
+    "exactFactor": "0.22480894",
+    "roundedFactor": "0.2248",
+    "inverseFactor": "4.448222"
+  },
+  "internalLinks": [
+    {
+      "label": "Pounds-force to Newtons (lbf to N)",
+      "href": "/force/pounds-force-to-newtons",
+      "type": "reverse"
+    },
+    {
+      "label": "Kilonewtons to Newtons (kN to N)",
+      "href": "/force/kilonewtons-to-newtons",
+      "type": "related"
+    },
+    {
+      "label": "Kilograms-force to Newtons (kgf to N)",
+      "href": "/force/kgf-to-newtons",
+      "type": "related"
+    },
+    {
+      "label": "Newtons to Kilograms-force (N to kgf)",
+      "href": "/force/newtons-to-kgf",
+      "type": "related"
+    },
+    {
+      "label": "Kilonewtons to Pounds-force (kN to lbf)",
+      "href": "/force/kilonewton-to-pound-force",
+      "type": "related"
+    },
+    {
+      "label": "Force Conversions Hub",
+      "href": "/force",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many pounds-force (lbf) are in 1 newton (N)?",
+      "answer": "There are 0.22480894 pounds-force (lbf) in 1 newton (N), which rounds to 0.2248 lbf for everyday calculations. Conversely, 1 pound-force equals 4.448222 newtons."
+    },
+    {
+      "question": "How do I convert newtons to pounds-force (N to lbf)?",
+      "answer": "To convert newtons to pounds-force, use the formula: lbf = N × 0.22480894. For example, converting 50 N gives 11.2404 lbf."
+    },
+    {
+      "question": "What is 50 newtons in pounds-force?",
+      "answer": "50 newtons (N) equals exactly 11.2404 pounds-force (lbf) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

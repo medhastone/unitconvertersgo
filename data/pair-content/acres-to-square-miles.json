@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "acres-to-square-miles",
+  "category": "area",
+  "categoryId": "area",
+  "fromUnitId": "acre",
+  "toUnitId": "sq_mile",
+  "fromSymbol": "ac",
+  "toSymbol": "mi²",
+  "intro": "Professionals and everyday users convert acres (ac) to square miles (mi²) when working across imperial and imperial standards in real estate property deeds, agricultural land surveying, commercial floor plan leases, and civil zoning. One acre equals 0.001563 square miles, while 1 square mile equals 640 acres. Whether you are verifying area specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.25,
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    25,
+    50,
+    100,
+    500
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Acre Benchmark (1 ac)",
+      "scenario": "Convert 1 acres (ac) into square miles (mi²) for technical comparison and documentation.",
+      "inputValue": 1,
+      "outputValue": "0.001563 mi²",
+      "stepByStep": "1 ac × 0.001563 = 0.001563 mi² (rounds to 0 mi²)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (10 ac)",
+      "scenario": "Convert 10 acres (ac) into square miles (mi²) for technical comparison and documentation.",
+      "inputValue": 10,
+      "outputValue": "0.015625 mi²",
+      "stepByStep": "10 ac × 0.001563 = 0.015625 mi² (rounds to 0.02 mi²)."
+    },
+    {
+      "title": "Higher-Capacity Specification (100 ac)",
+      "scenario": "Convert 100 acres (ac) into square miles (mi²) for technical comparison and documentation.",
+      "inputValue": 100,
+      "outputValue": "0.15625 mi²",
+      "stepByStep": "100 ac × 0.001563 = 0.15625 mi² (rounds to 0.16 mi²)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "mi² = ac × 0.0015625",
+    "exactFactor": "0.0015625",
+    "roundedFactor": "0.0016",
+    "inverseFactor": "640"
+  },
+  "internalLinks": [
+    {
+      "label": "Square Miles to Acres (mi² to ac)",
+      "href": "/area/square-miles-to-acres",
+      "type": "reverse"
+    },
+    {
+      "label": "Square Feet to Square Meters (ft² to m²)",
+      "href": "/area/sq-feet-to-sq-meters",
+      "type": "related"
+    },
+    {
+      "label": "Square Meters to Square Feet (m² to ft²)",
+      "href": "/area/sq-meters-to-sq-feet",
+      "type": "related"
+    },
+    {
+      "label": "Acres to Square Feet (ac to ft²)",
+      "href": "/area/acres-to-sq-feet",
+      "type": "related"
+    },
+    {
+      "label": "Square Feet to Acres (ft² to ac)",
+      "href": "/area/sq-feet-to-acres",
+      "type": "related"
+    },
+    {
+      "label": "Area Conversions Hub",
+      "href": "/area",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many square miles (mi²) are in 1 acre (ac)?",
+      "answer": "There are 0.0015625 square miles (mi²) in 1 acre (ac), which rounds to 0.0016 mi² for everyday calculations. Conversely, 1 square mile equals 640 acres."
+    },
+    {
+      "question": "How do I convert acres to square miles (ac to mi²)?",
+      "answer": "To convert acres to square miles, use the formula: mi² = ac × 0.0015625. For example, converting 5 ac gives 0.0078 mi²."
+    },
+    {
+      "question": "What is 5 acres in square miles?",
+      "answer": "5 acres (ac) equals exactly 0.0078 square miles (mi²) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

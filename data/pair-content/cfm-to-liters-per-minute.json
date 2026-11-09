@@ -1,0 +1,105 @@
+{
+  "status": "draft-needs-review",
+  "slug": "cfm-to-liters-per-minute",
+  "category": "flow",
+  "categoryId": "flow",
+  "fromUnitId": "cubic_foot_per_min",
+  "toUnitId": "liter_per_min",
+  "fromSymbol": "CFM",
+  "toSymbol": "L/min",
+  "intro": "Professionals and everyday users convert cubic feet per minute (CFM) to liters per minute (L/min) when working across us_customary and metric standards in pump selection, municipal water pipe sizing, HVAC airflow balancing, and welding shielding gas regulation. One cubic feet per minute (cfm) equals 28.316847 liters per minute, while 1 liters per minute equals 0.035315 cubic feet per minute. Whether you are verifying flow rate specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Cubic Feet per Minute (CFM) Benchmark (2 CFM)",
+      "scenario": "Convert 2 cubic feet per minute (CFM) into liters per minute (L/min) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "56.633693 L/min",
+      "stepByStep": "2 CFM × 28.316847 = 56.633693 L/min (rounds to 56.63 L/min)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 CFM)",
+      "scenario": "Convert 20 cubic feet per minute (CFM) into liters per minute (L/min) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "566.336932 L/min",
+      "stepByStep": "20 CFM × 28.316847 = 566.336932 L/min (rounds to 566.34 L/min)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 CFM)",
+      "scenario": "Convert 75 cubic feet per minute (CFM) into liters per minute (L/min) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "2,123.763494 L/min",
+      "stepByStep": "75 CFM × 28.316847 = 2,123.763494 L/min (rounds to 2,123.76 L/min)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Cubic Feet per Minute (CFM) to Liters per Minute is 28.31684659, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "L/min = CFM × 28.31684659",
+    "exactFactor": "28.31684659",
+    "roundedFactor": "28.3168",
+    "inverseFactor": "0.035315"
+  },
+  "internalLinks": [
+    {
+      "label": "Liters per Minute to US Gallons per Minute (L/min to GPM)",
+      "href": "/flow/liters-per-minute-to-us-gallons-per-minute",
+      "type": "related"
+    },
+    {
+      "label": "US Gallons per Minute to Liters per Minute (GPM to L/min)",
+      "href": "/flow/us-gallons-per-minute-to-liters-per-minute",
+      "type": "related"
+    },
+    {
+      "label": "Cubic Feet per Minute to Cubic Meters per Hour (CFM to m³/h)",
+      "href": "/flow/cfm-to-cubic-meters-per-hour",
+      "type": "related"
+    },
+    {
+      "label": "Cubic Feet per Hour to Liters per Minute (CFH to L/min)",
+      "href": "/flow/cubic-feet-per-hour-to-liters-per-minute",
+      "type": "related"
+    },
+    {
+      "label": "Flow Rate Conversions Hub",
+      "href": "/flow",
+      "type": "hub"
+    },
+    {
+      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "href": "/guides/us-vs-imperial-fluid-ounces",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many liters per minute (L/min) are in 1 cubic feet per minute (cfm) (CFM)?",
+      "answer": "There are 28.31684659 liters per minute (L/min) in 1 cubic feet per minute (cfm) (CFM), which rounds to 28.3168 L/min for everyday calculations. Conversely, 1 liters per minute equals 0.035315 cubic feet per minute."
+    },
+    {
+      "question": "How do I convert cubic feet per minute to liters per minute (CFM to L/min)?",
+      "answer": "To convert cubic feet per minute to liters per minute, use the formula: L/min = CFM × 28.31684659. For example, converting 10 CFM gives 283.1685 L/min."
+    },
+    {
+      "question": "What is 10 cubic feet per minute in liters per minute?",
+      "answer": "10 cubic feet per minute (CFM) equals exactly 283.1685 liters per minute (L/min) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

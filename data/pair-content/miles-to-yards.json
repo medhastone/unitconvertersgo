@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "miles-to-yards",
+  "category": "length",
+  "categoryId": "length",
+  "fromUnitId": "mile",
+  "toUnitId": "yard",
+  "fromSymbol": "mi",
+  "toSymbol": "yd",
+  "intro": "Professionals and everyday users convert miles (mi) to yards (yd) when working across imperial and imperial standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One mile (statute) equals 1,760 yards, while 1 yard equals 0.000568 miles. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.25,
+    0.5,
+    1,
+    1.5,
+    2,
+    3,
+    5,
+    10,
+    13.1,
+    26.2
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Mile (Statute) Benchmark (1 mi)",
+      "scenario": "Convert 1 miles (mi) into yards (yd) for technical comparison and documentation.",
+      "inputValue": 1,
+      "outputValue": "1,760 yd",
+      "stepByStep": "1 mi × 1,760 = 1,760 yd (rounds to 1,760 yd)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (3 mi)",
+      "scenario": "Convert 3 miles (mi) into yards (yd) for technical comparison and documentation.",
+      "inputValue": 3,
+      "outputValue": "5,280 yd",
+      "stepByStep": "3 mi × 1,760 = 5,280 yd (rounds to 5,280 yd)."
+    },
+    {
+      "title": "Higher-Capacity Specification (13.1 mi)",
+      "scenario": "Convert 13.1 miles (mi) into yards (yd) for technical comparison and documentation.",
+      "inputValue": 13.1,
+      "outputValue": "23,056 yd",
+      "stepByStep": "13.1 mi × 1,760 = 23,056 yd (rounds to 23,056 yd)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "yd = mi × 1,760",
+    "exactFactor": "1,760",
+    "roundedFactor": "1,760",
+    "inverseFactor": "0.000568"
+  },
+  "internalLinks": [
+    {
+      "label": "Yards to Miles (yd to mi)",
+      "href": "/length/yards-to-miles",
+      "type": "reverse"
+    },
+    {
+      "label": "Centimeters to Inches (cm to in)",
+      "href": "/length/cm-to-inches",
+      "type": "related"
+    },
+    {
+      "label": "Inches to Centimeters (in to cm)",
+      "href": "/length/inches-to-cm",
+      "type": "related"
+    },
+    {
+      "label": "Feet to Meters (ft to m)",
+      "href": "/length/feet-to-meters",
+      "type": "related"
+    },
+    {
+      "label": "Meters to Feet (m to ft)",
+      "href": "/length/meters-to-feet",
+      "type": "related"
+    },
+    {
+      "label": "Length Conversions Hub",
+      "href": "/length",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many yards (yd) are in 1 mile (statute) (mi)?",
+      "answer": "There are 1,760 yards (yd) in 1 mile (statute) (mi), which rounds to 1,760 yd for everyday calculations. Conversely, 1 yard equals 0.000568 miles."
+    },
+    {
+      "question": "How do I convert miles to yards (mi to yd)?",
+      "answer": "To convert miles to yards, use the formula: yd = mi × 1,760. For example, converting 2 mi gives 3,520 yd."
+    },
+    {
+      "question": "What is 2 miles in yards?",
+      "answer": "2 miles (mi) equals exactly 3,520 yards (yd) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

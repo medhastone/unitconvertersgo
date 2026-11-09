@@ -1,0 +1,105 @@
+{
+  "status": "draft-needs-review",
+  "slug": "kilonewton-to-pound-force",
+  "category": "force",
+  "categoryId": "force",
+  "fromUnitId": "kilonewton",
+  "toUnitId": "pound_force",
+  "fromSymbol": "kN",
+  "toSymbol": "lbf",
+  "intro": "Professionals and everyday users convert kilonewtons (kN) to pounds-force (lbf) when working across metric and imperial standards in structural beam load analysis, fastener tensile testing, aerospace thrust ratings, and mechanical engineering. One kilonewton equals 224.808943 pounds-force, while 1 pound-force equals 0.004448 kilonewtons. Whether you are verifying force specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    5,
+    10,
+    25,
+    50,
+    75,
+    100,
+    150,
+    250,
+    500
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Kilonewton Benchmark (10 kN)",
+      "scenario": "Convert 10 kilonewtons (kN) into pounds-force (lbf) for technical comparison and documentation.",
+      "inputValue": 10,
+      "outputValue": "2,248.089431 lbf",
+      "stepByStep": "10 kN × 224.808943 = 2,248.089431 lbf (rounds to 2,248.09 lbf)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (75 kN)",
+      "scenario": "Convert 75 kilonewtons (kN) into pounds-force (lbf) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "16,860.670732 lbf",
+      "stepByStep": "75 kN × 224.808943 = 16,860.670732 lbf (rounds to 16,860.67 lbf)."
+    },
+    {
+      "title": "Higher-Capacity Specification (250 kN)",
+      "scenario": "Convert 250 kilonewtons (kN) into pounds-force (lbf) for technical comparison and documentation.",
+      "inputValue": 250,
+      "outputValue": "56,202.235775 lbf",
+      "stepByStep": "250 kN × 224.808943 = 56,202.235775 lbf (rounds to 56,202.24 lbf)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Kilonewton to Pound-force is 224.8089431, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "lbf = kN × 224.8089431",
+    "exactFactor": "224.8089431",
+    "roundedFactor": "224.8089",
+    "inverseFactor": "0.004448"
+  },
+  "internalLinks": [
+    {
+      "label": "Newtons to Pounds-force (N to lbf)",
+      "href": "/force/newtons-to-pounds-force",
+      "type": "related"
+    },
+    {
+      "label": "Pounds-force to Newtons (lbf to N)",
+      "href": "/force/pounds-force-to-newtons",
+      "type": "related"
+    },
+    {
+      "label": "Kilonewtons to Newtons (kN to N)",
+      "href": "/force/kilonewtons-to-newtons",
+      "type": "related"
+    },
+    {
+      "label": "Kilograms-force to Newtons (kgf to N)",
+      "href": "/force/kgf-to-newtons",
+      "type": "related"
+    },
+    {
+      "label": "Force Conversions Hub",
+      "href": "/force",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many pounds-force (lbf) are in 1 kilonewton (kN)?",
+      "answer": "There are 224.8089431 pounds-force (lbf) in 1 kilonewton (kN), which rounds to 224.8089 lbf for everyday calculations. Conversely, 1 pound-force equals 0.004448 kilonewtons."
+    },
+    {
+      "question": "How do I convert kilonewtons to pounds-force (kN to lbf)?",
+      "answer": "To convert kilonewtons to pounds-force, use the formula: lbf = kN × 224.8089431. For example, converting 50 kN gives 11,240.4472 lbf."
+    },
+    {
+      "question": "What is 50 kilonewtons in pounds-force?",
+      "answer": "50 kilonewtons (kN) equals exactly 11,240.4472 pounds-force (lbf) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

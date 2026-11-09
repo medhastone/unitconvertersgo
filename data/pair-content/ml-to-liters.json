@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "ml-to-liters",
+  "category": "volume",
+  "categoryId": "volume",
+  "fromUnitId": "milliliter",
+  "toUnitId": "liter",
+  "fromSymbol": "mL",
+  "toSymbol": "L",
+  "intro": "Professionals and everyday users convert milliliters (mL) to liters (L) when working across metric and metric standards in culinary recipe scaling, beverage bottling, laboratory reagent preparation, and fluid tank capacity sizing. One milliliter equals 0.001 liters, while 1 liter equals 1,000 milliliters. Whether you are verifying volume & liquid specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    5,
+    15,
+    30,
+    60,
+    100,
+    120,
+    240,
+    250,
+    500,
+    1000
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Milliliter Benchmark (30 mL)",
+      "scenario": "Convert 30 milliliters (mL) into liters (L) for technical comparison and documentation.",
+      "inputValue": 30,
+      "outputValue": "0.03 L",
+      "stepByStep": "30 mL × 0.001 = 0.03 L (rounds to 0.03 L)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (120 mL)",
+      "scenario": "Convert 120 milliliters (mL) into liters (L) for technical comparison and documentation.",
+      "inputValue": 120,
+      "outputValue": "0.12 L",
+      "stepByStep": "120 mL × 0.001 = 0.12 L (rounds to 0.12 L)."
+    },
+    {
+      "title": "Higher-Capacity Specification (500 mL)",
+      "scenario": "Convert 500 milliliters (mL) into liters (L) for technical comparison and documentation.",
+      "inputValue": 500,
+      "outputValue": "0.5 L",
+      "stepByStep": "500 mL × 0.001 = 0.5 L (rounds to 0.5 L)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "L = mL × 0.001",
+    "exactFactor": "0.001",
+    "roundedFactor": "0.001",
+    "inverseFactor": "1,000"
+  },
+  "internalLinks": [
+    {
+      "label": "Liters to Milliliters (L to mL)",
+      "href": "/volume/liters-to-ml",
+      "type": "reverse"
+    },
+    {
+      "label": "Liters to Gallons (US) (L to gal (US))",
+      "href": "/volume/liters-to-gallons",
+      "type": "related"
+    },
+    {
+      "label": "Gallons (US) to Liters (gal (US) to L)",
+      "href": "/volume/gallons-to-liters",
+      "type": "related"
+    },
+    {
+      "label": "Milliliters to Fluid Ounces (US) (mL to fl oz)",
+      "href": "/volume/ml-to-fluid-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Fluid Ounces (US) to Milliliters (fl oz to mL)",
+      "href": "/volume/fluid-ounces-to-ml",
+      "type": "related"
+    },
+    {
+      "label": "Volume & Liquid Conversions Hub",
+      "href": "/volume",
+      "type": "hub"
+    },
+    {
+      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "href": "/guides/us-vs-imperial-fluid-ounces",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many liters (L) are in 1 milliliter (mL)?",
+      "answer": "There are 0.001 liters (L) in 1 milliliter (mL), which rounds to 0.001 L for everyday calculations. Conversely, 1 liter equals 1,000 milliliters."
+    },
+    {
+      "question": "How do I convert milliliters to liters (mL to L)?",
+      "answer": "To convert milliliters to liters, use the formula: L = mL × 0.001. For example, converting 100 mL gives 0.1 L."
+    },
+    {
+      "question": "What is 100 milliliters in liters?",
+      "answer": "100 milliliters (mL) equals exactly 0.1 liters (L) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

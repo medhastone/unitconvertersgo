@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "lbs-to-stone",
+  "category": "weight-and-mass",
+  "categoryId": "mass",
+  "fromUnitId": "pound",
+  "toUnitId": "stone",
+  "fromSymbol": "lb",
+  "toSymbol": "st",
+  "intro": "Professionals and everyday users convert pounds (lb) to stones (st) when working across imperial and imperial standards in engineering specifications, international trade documentation, and technical measurements. One pound (avoirdupois) equals 0.071429 stones, while 1 stone (uk) equals 14 pounds. Whether you are verifying mass & weight specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    2,
+    5,
+    10,
+    25,
+    45,
+    50,
+    100,
+    150,
+    200
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Pound (Avoirdupois) Benchmark (5 lb)",
+      "scenario": "Convert 5 pounds (lb) into stones (st) for technical comparison and documentation.",
+      "inputValue": 5,
+      "outputValue": "0.357143 st",
+      "stepByStep": "5 lb × 0.071429 = 0.357143 st (rounds to 0.36 st)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (45 lb)",
+      "scenario": "Convert 45 pounds (lb) into stones (st) for technical comparison and documentation.",
+      "inputValue": 45,
+      "outputValue": "3.214286 st",
+      "stepByStep": "45 lb × 0.071429 = 3.214286 st (rounds to 3.21 st)."
+    },
+    {
+      "title": "Higher-Capacity Specification (150 lb)",
+      "scenario": "Convert 150 pounds (lb) into stones (st) for technical comparison and documentation.",
+      "inputValue": 150,
+      "outputValue": "10.714286 st",
+      "stepByStep": "150 lb × 0.071429 = 10.714286 st (rounds to 10.71 st)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "st = lb × 0.07142857",
+    "exactFactor": "0.07142857",
+    "roundedFactor": "0.0714",
+    "inverseFactor": "14"
+  },
+  "internalLinks": [
+    {
+      "label": "Stones to Pounds (st to lb)",
+      "href": "/weight-and-mass/stone-to-lbs",
+      "type": "reverse"
+    },
+    {
+      "label": "Kilograms to Pounds (kg to lb)",
+      "href": "/weight-and-mass/kg-to-lbs",
+      "type": "related"
+    },
+    {
+      "label": "Pounds to Kilograms (lb to kg)",
+      "href": "/weight-and-mass/lbs-to-kg",
+      "type": "related"
+    },
+    {
+      "label": "Grams to Ounces (g to oz)",
+      "href": "/weight-and-mass/grams-to-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Ounces to Grams (oz to g)",
+      "href": "/weight-and-mass/ounces-to-grams",
+      "type": "related"
+    },
+    {
+      "label": "Mass & Weight Conversions Hub",
+      "href": "/weight-and-mass",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many stones (st) are in 1 pound (avoirdupois) (lb)?",
+      "answer": "There are 0.07142857 stones (st) in 1 pound (avoirdupois) (lb), which rounds to 0.0714 st for everyday calculations. Conversely, 1 stone (uk) equals 14 pounds."
+    },
+    {
+      "question": "How do I convert pounds to stones (lb to st)?",
+      "answer": "To convert pounds to stones, use the formula: st = lb × 0.07142857. For example, converting 25 lb gives 1.7857 st."
+    },
+    {
+      "question": "What is 25 pounds in stones?",
+      "answer": "25 pounds (lb) equals exactly 1.7857 stones (st) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

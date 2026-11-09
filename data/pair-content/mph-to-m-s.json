@@ -1,0 +1,97 @@
+{
+  "slug": "mph-to-m-s",
+  "categoryId": "speed",
+  "fromUnitId": "mph",
+  "toUnitId": "m_per_s",
+  "status": "draft-needs-review",
+  "intro": "Converting miles per hour (mph) to meters per second (m/s) is essential when translating measurements across automotive speedometer readings, aviation airspeed logs, maritime navigation, and meteorological wind reports. One miles per hour equals 0.44704 meters per second, while one meters per second equals 2.23694 miles per hour. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
+  "referenceValues": [
+    5,
+    10,
+    25,
+    30,
+    50,
+    60,
+    70,
+    80,
+    100,
+    120
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 10 mph to m/s",
+      "context": "Baseline reference check when comparing a single miles per hour specification against meters per second",
+      "inputValue": 10,
+      "calculation": "10 mph × 0.44704 = 4.4704 m/s",
+      "result": "10 mph = 4.4704 m/s"
+    },
+    {
+      "title": "Convert 50 mph to m/s",
+      "context": "Mid-range practical measurement commonly encountered in speed workflows and equipment sheets",
+      "inputValue": 50,
+      "calculation": "50 mph × 0.44704 = 22.352 m/s",
+      "result": "50 mph = 22.352 m/s"
+    },
+    {
+      "title": "Convert 80 mph to m/s",
+      "context": "Larger scale calculation for commercial, industrial, or bulk speed planning",
+      "inputValue": 80,
+      "calculation": "80 mph × 0.44704 = 35.7632 m/s",
+      "result": "80 mph = 35.7632 m/s"
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "exactFactor": "0.44704",
+    "roundedFactor": "0.44704",
+    "equation": "m/s = mph × 0.44704",
+    "inverseEquation": "mph = m/s × 1",
+    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 mph = 0.44704 m/s)."
+  },
+  "internalLinks": [
+    {
+      "href": "/speed/meters-per-second-to-mph",
+      "label": "Meters per Second to Miles per Hour (m/s to mph)",
+      "type": "reverse"
+    },
+    {
+      "href": "/speed/kph-to-mph",
+      "label": "Kilometers per Hour to Miles per Hour (km/h to mph)",
+      "type": "related"
+    },
+    {
+      "href": "/speed/mph-to-kph",
+      "label": "Miles per Hour to Kilometers per Hour (mph to km/h)",
+      "type": "related"
+    },
+    {
+      "href": "/speed/knots-to-mph",
+      "label": "Knots to Miles per Hour (kn to mph)",
+      "type": "related"
+    },
+    {
+      "href": "/undefined",
+      "label": "Speed Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/si-prefixes",
+      "label": "SI Prefixes & Scientific Notation Reference Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many meters per second are in 1 miles per hour?",
+      "answer": "There are 0.44704 meters per second (m/s) in 1 miles per hour (mph). To convert mph to m/s, use the exact conversion factor 0.44704."
+    },
+    {
+      "question": "How do I convert miles per hour to meters per second manually?",
+      "answer": "Multiply your miles per hour value by 0.44704 (exact factor: 0.44704). For example, 50 mph × 0.44704 = 22.352 m/s."
+    },
+    {
+      "question": "What is 80 mph in m/s?",
+      "answer": "80 miles per hour (mph) equals 35.7632 meters per second (m/s)."
+    }
+  ]
+}

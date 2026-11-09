@@ -1,0 +1,106 @@
+{
+  "status": "draft-needs-review",
+  "slug": "mb-to-kb",
+  "category": "data-storage",
+  "categoryId": "digital_storage",
+  "fromUnitId": "megabyte",
+  "toUnitId": "kilobyte",
+  "fromSymbol": "MB",
+  "toSymbol": "KB",
+  "intro": "Professionals and everyday users convert megabytes (MB) to kilobytes (KB) when working across metric and metric standards in engineering specifications, international trade documentation, and technical measurements. One megabyte (decimal) equals 1,000 kilobytes, while 1 kilobyte (decimal) equals 0.001 megabytes. Whether you are verifying digital storage specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64,
+    128,
+    256,
+    512,
+    1000,
+    1024
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Megabyte (Decimal) Benchmark (4 MB)",
+      "scenario": "Convert 4 megabytes (MB) into kilobytes (KB) for technical comparison and documentation.",
+      "inputValue": 4,
+      "outputValue": "4,000 KB",
+      "stepByStep": "4 MB × 1,000 = 4,000 KB (rounds to 4,000 KB)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (32 MB)",
+      "scenario": "Convert 32 megabytes (MB) into kilobytes (KB) for technical comparison and documentation.",
+      "inputValue": 32,
+      "outputValue": "32,000 KB",
+      "stepByStep": "32 MB × 1,000 = 32,000 KB (rounds to 32,000 KB)."
+    },
+    {
+      "title": "Higher-Capacity Specification (256 MB)",
+      "scenario": "Convert 256 megabytes (MB) into kilobytes (KB) for technical comparison and documentation.",
+      "inputValue": 256,
+      "outputValue": "256,000 KB",
+      "stepByStep": "256 MB × 1,000 = 256,000 KB (rounds to 256,000 KB)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "KB = MB × 1,000",
+    "exactFactor": "1,000",
+    "roundedFactor": "1,000",
+    "inverseFactor": "0.001"
+  },
+  "internalLinks": [
+    {
+      "label": "Kilobytes to Megabytes (KB to MB)",
+      "href": "/data-storage/kb-to-mb",
+      "type": "reverse"
+    },
+    {
+      "label": "Megabytes to Gigabytes (MB to GB)",
+      "href": "/data-storage/mb-to-gb",
+      "type": "related"
+    },
+    {
+      "label": "Gigabytes to Megabytes (GB to MB)",
+      "href": "/data-storage/gb-to-mb",
+      "type": "related"
+    },
+    {
+      "label": "Gigabytes to Terabytes (GB to TB)",
+      "href": "/data-storage/gb-to-tb",
+      "type": "related"
+    },
+    {
+      "label": "Terabytes to Gigabytes (TB to GB)",
+      "href": "/data-storage/tb-to-gb",
+      "type": "related"
+    },
+    {
+      "label": "Digital Storage Conversions Hub",
+      "href": "/data-storage",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many kilobytes (KB) are in 1 megabyte (decimal) (MB)?",
+      "answer": "There are 1,000 kilobytes (KB) in 1 megabyte (decimal) (MB), which rounds to 1,000 KB for everyday calculations. Conversely, 1 kilobyte (decimal) equals 0.001 megabytes."
+    },
+    {
+      "question": "How do I convert megabytes to kilobytes (MB to KB)?",
+      "answer": "To convert megabytes to kilobytes, use the formula: KB = MB × 1,000. For example, converting 16 MB gives 16,000 KB."
+    },
+    {
+      "question": "What is 16 megabytes in kilobytes?",
+      "answer": "16 megabytes (MB) equals exactly 16,000 kilobytes (KB) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

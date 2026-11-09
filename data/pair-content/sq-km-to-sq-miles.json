@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "sq-km-to-sq-miles",
+  "category": "area",
+  "categoryId": "area",
+  "fromUnitId": "sq_km",
+  "toUnitId": "sq_mile",
+  "fromSymbol": "km²",
+  "toSymbol": "mi²",
+  "intro": "Professionals and everyday users convert square kilometers (km²) to square miles (mi²) when working across si and imperial standards in real estate property deeds, agricultural land surveying, commercial floor plan leases, and civil zoning. One square kilometer equals 0.386102 square miles, while 1 square mile equals 2.589988 square kilometers. Whether you are verifying area specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.25,
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    25,
+    50,
+    100,
+    500
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Square Kilometer Benchmark (1 km²)",
+      "scenario": "Convert 1 square kilometers (km²) into square miles (mi²) for technical comparison and documentation.",
+      "inputValue": 1,
+      "outputValue": "0.386102 mi²",
+      "stepByStep": "1 km² × 0.386102 = 0.386102 mi² (rounds to 0.39 mi²)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (10 km²)",
+      "scenario": "Convert 10 square kilometers (km²) into square miles (mi²) for technical comparison and documentation.",
+      "inputValue": 10,
+      "outputValue": "3.861022 mi²",
+      "stepByStep": "10 km² × 0.386102 = 3.861022 mi² (rounds to 3.86 mi²)."
+    },
+    {
+      "title": "Higher-Capacity Specification (100 km²)",
+      "scenario": "Convert 100 square kilometers (km²) into square miles (mi²) for technical comparison and documentation.",
+      "inputValue": 100,
+      "outputValue": "38.610216 mi²",
+      "stepByStep": "100 km² × 0.386102 = 38.610216 mi² (rounds to 38.61 mi²)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Square Kilometer to Square Mile is 0.38610216, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "mi² = km² × 0.38610216",
+    "exactFactor": "0.38610216",
+    "roundedFactor": "0.3861",
+    "inverseFactor": "2.589988"
+  },
+  "internalLinks": [
+    {
+      "label": "Square Miles to Square Kilometers (mi² to km²)",
+      "href": "/area/sq-miles-to-sq-km",
+      "type": "reverse"
+    },
+    {
+      "label": "Square Feet to Square Meters (ft² to m²)",
+      "href": "/area/sq-feet-to-sq-meters",
+      "type": "related"
+    },
+    {
+      "label": "Square Meters to Square Feet (m² to ft²)",
+      "href": "/area/sq-meters-to-sq-feet",
+      "type": "related"
+    },
+    {
+      "label": "Acres to Square Feet (ac to ft²)",
+      "href": "/area/acres-to-sq-feet",
+      "type": "related"
+    },
+    {
+      "label": "Square Feet to Acres (ft² to ac)",
+      "href": "/area/sq-feet-to-acres",
+      "type": "related"
+    },
+    {
+      "label": "Area Conversions Hub",
+      "href": "/area",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many square miles (mi²) are in 1 square kilometer (km²)?",
+      "answer": "There are 0.38610216 square miles (mi²) in 1 square kilometer (km²), which rounds to 0.3861 mi² for everyday calculations. Conversely, 1 square mile equals 2.589988 square kilometers."
+    },
+    {
+      "question": "How do I convert square kilometers to square miles (km² to mi²)?",
+      "answer": "To convert square kilometers to square miles, use the formula: mi² = km² × 0.38610216. For example, converting 5 km² gives 1.9305 mi²."
+    },
+    {
+      "question": "What is 5 square kilometers in square miles?",
+      "answer": "5 square kilometers (km²) equals exactly 1.9305 square miles (mi²) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "category": "temperature-interval",
+  "categoryId": "temperature_interval",
+  "defaultValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "unitDefaults": {
+    "delta_kelvin": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ],
+    "delta_celsius": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ],
+    "delta_fahrenheit": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ],
+    "delta_rankine": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ]
+  },
+  "pairOverrides": {}
+}

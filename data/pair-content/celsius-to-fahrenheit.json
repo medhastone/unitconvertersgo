@@ -1,0 +1,111 @@
+{
+  "status": "draft-needs-review",
+  "slug": "celsius-to-fahrenheit",
+  "category": "temperature",
+  "categoryId": "temperature",
+  "fromUnitId": "celsius",
+  "toUnitId": "fahrenheit",
+  "fromSymbol": "°C",
+  "toSymbol": "°F",
+  "intro": "Professionals and everyday users convert celsius (°C) to fahrenheit (°F) when working across si and us_customary standards in meteorological weather reports, culinary oven calibration, HVAC setpoints, and clinical thermometry. One celsius equals 33.8 fahrenheit, while 1 fahrenheit equals -17.222222 celsius. Whether you are verifying temperature specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    -40,
+    -18,
+    0,
+    10,
+    20,
+    25,
+    30,
+    37,
+    100,
+    180,
+    200
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Celsius Benchmark (1 °C)",
+      "scenario": "Convert 1 celsius (°C) into fahrenheit (°F) for technical comparison and documentation.",
+      "inputValue": 1,
+      "outputValue": "33.8 °F",
+      "stepByStep": "(1 °C × 9/5) + 32 = 1.8 + 32 = 33.8 °F."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (25 °C)",
+      "scenario": "Convert 25 celsius (°C) into fahrenheit (°F) for technical comparison and documentation.",
+      "inputValue": 25,
+      "outputValue": "77 °F",
+      "stepByStep": "(25 °C × 9/5) + 32 = 45 + 32 = 77 °F."
+    },
+    {
+      "title": "Higher-Capacity Specification (100 °C)",
+      "scenario": "Convert 100 celsius (°C) into fahrenheit (°F) for technical comparison and documentation.",
+      "inputValue": 100,
+      "outputValue": "212 °F",
+      "stepByStep": "(100 °C × 9/5) + 32 = 180 + 32 = 212 °F."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Temperature Offset vs. Temperature Interval Trap",
+    "items": [
+      "Converting a specific thermometer reading between Celsius (°C) and Fahrenheit (°F) requires applying the zero-point offset (+32 or +273.15). However, when converting a temperature change or difference (ΔT, such as a 10° rise), you must use only the scale ratio (1 °C = 1.8 °F = 1 K) without adding the offset.",
+      "Remember that -40 °C and -40 °F are the exact crossover point where both relative scales read the same value."
+    ]
+  },
+  "formula": {
+    "equation": "°F = (°C × 9/5) + 32",
+    "exactFactor": "33.8",
+    "roundedFactor": "33.8",
+    "inverseFactor": "-17.222222"
+  },
+  "internalLinks": [
+    {
+      "label": "Fahrenheit to Celsius (°F to °C)",
+      "href": "/temperature/fahrenheit-to-celsius",
+      "type": "reverse"
+    },
+    {
+      "label": "Celsius to Kelvin (°C to K)",
+      "href": "/temperature/celsius-to-kelvin",
+      "type": "related"
+    },
+    {
+      "label": "Kelvin to Celsius (K to °C)",
+      "href": "/temperature/kelvin-to-celsius",
+      "type": "related"
+    },
+    {
+      "label": "Fahrenheit to Kelvin (°F to K)",
+      "href": "/temperature/fahrenheit-to-kelvin",
+      "type": "related"
+    },
+    {
+      "label": "Kelvin to Fahrenheit (K to °F)",
+      "href": "/temperature/kelvin-to-fahrenheit",
+      "type": "related"
+    },
+    {
+      "label": "Temperature Conversions Hub",
+      "href": "/temperature",
+      "type": "hub"
+    },
+    {
+      "label": "Celsius vs. Fahrenheit vs. Kelvin Temperature Scales Guide",
+      "href": "/guides/temperature-scales-explained",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many fahrenheit (°F) are in 1 celsius (°C)?",
+      "answer": "There are 33.8 fahrenheit (°F) in 1 celsius (°C), which rounds to 33.8 °F for everyday calculations. Conversely, 1 fahrenheit equals -17.222222 celsius."
+    },
+    {
+      "question": "How do I convert celsius to fahrenheit (°C to °F)?",
+      "answer": "To convert celsius to fahrenheit, use the formula: °F = (°C × 9/5) + 32. For example, converting 20 °C gives 68 °F."
+    },
+    {
+      "question": "What is 20 celsius in fahrenheit?",
+      "answer": "20 celsius (°C) equals exactly 68 fahrenheit (°F) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

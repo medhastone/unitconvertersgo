@@ -1,0 +1,105 @@
+{
+  "status": "draft-needs-review",
+  "slug": "mach-to-kph",
+  "category": "speed",
+  "categoryId": "speed",
+  "fromUnitId": "mach",
+  "toUnitId": "km_per_h",
+  "fromSymbol": "Mach",
+  "toSymbol": "km/h",
+  "intro": "Professionals and everyday users convert mach (Mach) to kilometers per hour (km/h) when working across other and metric standards in automotive speedometer readings, aviation airspeed navigation, maritime chart plotting, and meteorology. One mach (si standard sea level) equals 1,225.044 kilometers per hour, while 1 kilometers per hour equals 0.000816 mach. Whether you are verifying speed specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    0.8,
+    0.85,
+    1,
+    1.2,
+    1.5,
+    2,
+    2.5,
+    3,
+    5
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Mach (SI Standard Sea Level) Benchmark (0.85 Mach)",
+      "scenario": "Convert 0.85 mach (Mach) into kilometers per hour (km/h) for technical comparison and documentation.",
+      "inputValue": 0.85,
+      "outputValue": "1,041.2874 km/h",
+      "stepByStep": "0.85 Mach × 1,225.044 = 1,041.2874 km/h (rounds to 1,041.29 km/h)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (1.5 Mach)",
+      "scenario": "Convert 1.5 mach (Mach) into kilometers per hour (km/h) for technical comparison and documentation.",
+      "inputValue": 1.5,
+      "outputValue": "1,837.566 km/h",
+      "stepByStep": "1.5 Mach × 1,225.044 = 1,837.566 km/h (rounds to 1,837.57 km/h)."
+    },
+    {
+      "title": "Higher-Capacity Specification (3 Mach)",
+      "scenario": "Convert 3 mach (Mach) into kilometers per hour (km/h) for technical comparison and documentation.",
+      "inputValue": 3,
+      "outputValue": "3,675.132 km/h",
+      "stepByStep": "3 Mach × 1,225.044 = 3,675.132 km/h (rounds to 3,675.13 km/h)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Speed of Sound (Mach) Temperature & Altitude Dependence",
+    "items": [
+      "Standard Mach conversions use the ICAO International Standard Atmosphere sea-level speed of sound at 15 °C (59 °F): Mach 1 = 340.29 m/s = 1,225.04 km/h (or 343 m/s = 1,234.8 km/h at 20 °C dry air).",
+      "At commercial jet cruising altitude (35,000 ft / 10,668 m, where ambient air is -54 °C), the local speed of sound drops to ~295 m/s (1,062 km/h)."
+    ]
+  },
+  "formula": {
+    "equation": "km/h = Mach × 1,225.044",
+    "exactFactor": "1,225.044",
+    "roundedFactor": "1,225.044",
+    "inverseFactor": "0.000816"
+  },
+  "internalLinks": [
+    {
+      "label": "Miles per Hour to Kilometers per Hour (mph to km/h)",
+      "href": "/speed/mph-to-kph",
+      "type": "related"
+    },
+    {
+      "label": "Kilometers per Hour to Miles per Hour (km/h to mph)",
+      "href": "/speed/kph-to-mph",
+      "type": "related"
+    },
+    {
+      "label": "Meters per Second to Kilometers per Hour (m/s to km/h)",
+      "href": "/speed/meters-per-second-to-kph",
+      "type": "related"
+    },
+    {
+      "label": "Kilometers per Hour to Meters per Second (km/h to m/s)",
+      "href": "/speed/kph-to-meters-per-second",
+      "type": "related"
+    },
+    {
+      "label": "Speed Conversions Hub",
+      "href": "/speed",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many kilometers per hour (km/h) are in 1 mach (si standard sea level) (Mach)?",
+      "answer": "There are 1,225.044 kilometers per hour (km/h) in 1 mach (si standard sea level) (Mach), which rounds to 1,225.044 km/h for everyday calculations. Conversely, 1 kilometers per hour equals 0.000816 mach."
+    },
+    {
+      "question": "How do I convert mach to kilometers per hour (Mach to km/h)?",
+      "answer": "To convert mach to kilometers per hour, use the formula: km/h = Mach × 1,225.044. For example, converting 1.2 Mach gives 1,470.0528 km/h."
+    },
+    {
+      "question": "What is 1.2 mach in kilometers per hour?",
+      "answer": "1.2 mach (Mach) equals exactly 1,470.0528 kilometers per hour (km/h) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

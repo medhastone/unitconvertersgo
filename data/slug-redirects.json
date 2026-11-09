@@ -1,0 +1,1427 @@
+[
+  {
+    "source": "/radiation",
+    "destination": "/specialty",
+    "permanent": true
+  },
+  {
+    "source": "/digital-image-resolution",
+    "destination": "/specialty",
+    "permanent": true
+  },
+  {
+    "source": "/concentration-molar",
+    "destination": "/specialty",
+    "permanent": true
+  },
+  {
+    "source": "/fuel-consumption",
+    "destination": "/specialty",
+    "permanent": true
+  },
+  {
+    "source": "/conversions/radiation",
+    "destination": "/specialty",
+    "permanent": true
+  },
+  {
+    "source": "/conversions/digital-image-resolution",
+    "destination": "/specialty",
+    "permanent": true
+  },
+  {
+    "source": "/conversions/concentration-molar",
+    "destination": "/specialty",
+    "permanent": true
+  },
+  {
+    "source": "/conversions/fuel-consumption",
+    "destination": "/specialty",
+    "permanent": true
+  },
+  {
+    "source": "/conversions",
+    "destination": "/directory",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-m-to-lb-ft",
+    "destination": "/density/grams-per-cubic-meter-to-pounds-per-cubic-foot",
+    "permanent": true
+  },
+  {
+    "source": "/density/lb-ft-to-g-m",
+    "destination": "/density/pounds-per-cubic-foot-to-grams-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-m-to-g-ml",
+    "destination": "/density/grams-per-cubic-meter-to-grams-per-milliliter",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-ml-to-g-m",
+    "destination": "/density/grams-per-milliliter-to-grams-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/kgf-m-to-feet-of-water",
+    "destination": "/pressure/kilograms-force-per-square-meter-to-feet-of-water",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/feet-of-water-to-kgf-m",
+    "destination": "/pressure/feet-of-water-to-kilograms-force-per-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/pascals-to-kgf-cm",
+    "destination": "/pressure/pascals-to-kilograms-force-per-square-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/kgf-cm-to-pascals",
+    "destination": "/pressure/kilograms-force-per-square-centimeter-to-pascals",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/dynes-cm-to-pascals",
+    "destination": "/pressure/dynes-per-square-centimeter-to-pascals",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/pascals-to-dynes-cm",
+    "destination": "/pressure/pascals-to-dynes-per-square-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/power/terawatts-to-ft-lbf-s",
+    "destination": "/power/terawatts-to-foot-pounds-per-second",
+    "permanent": true
+  },
+  {
+    "source": "/power/ft-lbf-s-to-terawatts",
+    "destination": "/power/foot-pounds-per-second-to-terawatts",
+    "permanent": true
+  },
+  {
+    "source": "/density/kg-per-m3-to-g-per-cm3",
+    "destination": "/density/kilograms-per-cubic-meter-to-grams-per-cubic-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-per-cm3-to-kg-per-m3",
+    "destination": "/density/grams-per-cubic-centimeter-to-kilograms-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/density/lb-per-ft3-to-kg-per-m3",
+    "destination": "/density/pounds-per-cubic-foot-to-kilograms-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-per-ml-to-g-per-cm3",
+    "destination": "/density/grams-per-milliliter-to-grams-per-cubic-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/torque/kgf-m-to-nm",
+    "destination": "/torque/kilogram-force-meters-to-newton-meters",
+    "permanent": true
+  },
+  {
+    "source": "/density/kg-per-m3-to-lb-per-ft3",
+    "destination": "/density/kilograms-per-cubic-meter-to-pounds-per-cubic-foot",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-per-cm3-to-lb-per-ft3",
+    "destination": "/density/grams-per-cubic-centimeter-to-pounds-per-cubic-foot",
+    "permanent": true
+  },
+  {
+    "source": "/torque/nm-to-kgf-m",
+    "destination": "/torque/newton-meters-to-kilogram-force-meters",
+    "permanent": true
+  },
+  {
+    "source": "/flow/liter-minute-to-gallon-us-minute",
+    "destination": "/flow/liters-per-minute-to-us-gallons-per-minute",
+    "permanent": true
+  },
+  {
+    "source": "/flow/gallon-us-minute-to-liter-minute",
+    "destination": "/flow/us-gallons-per-minute-to-liters-per-minute",
+    "permanent": true
+  },
+  {
+    "source": "/flow/cubic-foot-hour-to-liter-minute",
+    "destination": "/flow/cubic-feet-per-hour-to-liters-per-minute",
+    "permanent": true
+  },
+  {
+    "source": "/flow/liter-hour-to-gallon-us-hour",
+    "destination": "/flow/liters-per-hour-to-us-gallons-per-hour",
+    "permanent": true
+  },
+  {
+    "source": "/flow/gallon-us-minute-to-cubic-meter-second",
+    "destination": "/flow/us-gallons-per-minute-to-cubic-meters-per-second",
+    "permanent": true
+  },
+  {
+    "source": "/flow/cfm-to-liter-minute",
+    "destination": "/flow/cfm-to-liters-per-minute",
+    "permanent": true
+  },
+  {
+    "source": "/flow/cfm-to-cubic-meter-hour",
+    "destination": "/flow/cfm-to-cubic-meters-per-hour",
+    "permanent": true
+  },
+  {
+    "source": "/flow/gpm-to-cubic-meter-hour",
+    "destination": "/flow/gpm-to-cubic-meters-per-hour",
+    "permanent": true
+  },
+  {
+    "source": "/charge/amp-hours-to-kilowatt-hours",
+    "destination": "/charge/ah-to-kwh",
+    "permanent": true
+  },
+  {
+    "source": "/charge/ampere-hours-to-kilowatt-hours",
+    "destination": "/charge/ah-to-kwh",
+    "permanent": true
+  },
+  {
+    "source": "/charge/ah-to-kilowatt-hours",
+    "destination": "/charge/ah-to-kwh",
+    "permanent": true
+  },
+  {
+    "source": "/energy/kilowatt-hours-to-amp-hours",
+    "destination": "/energy/kwh-to-ah",
+    "permanent": true
+  },
+  {
+    "source": "/energy/kilowatt-hours-to-ampere-hours",
+    "destination": "/energy/kwh-to-ah",
+    "permanent": true
+  },
+  {
+    "source": "/energy/kwh-to-amp-hours",
+    "destination": "/energy/kwh-to-ah",
+    "permanent": true
+  },
+  {
+    "source": "/charge/amp-hours-to-watt-hours",
+    "destination": "/charge/ah-to-wh",
+    "permanent": true
+  },
+  {
+    "source": "/charge/ampere-hours-to-watt-hours",
+    "destination": "/charge/ah-to-wh",
+    "permanent": true
+  },
+  {
+    "source": "/energy/watt-hours-to-amp-hours",
+    "destination": "/energy/wh-to-ah",
+    "permanent": true
+  },
+  {
+    "source": "/energy/watt-hours-to-ampere-hours",
+    "destination": "/energy/wh-to-ah",
+    "permanent": true
+  },
+  {
+    "source": "/charge/milliamp-hours-to-watt-hours",
+    "destination": "/charge/mah-to-wh",
+    "permanent": true
+  },
+  {
+    "source": "/charge/milliampere-hours-to-watt-hours",
+    "destination": "/charge/mah-to-wh",
+    "permanent": true
+  },
+  {
+    "source": "/length/centimeters-to-inches",
+    "destination": "/length/cm-to-inches",
+    "permanent": true
+  },
+  {
+    "source": "/length/inches-to-centimeters",
+    "destination": "/length/inches-to-cm",
+    "permanent": true
+  },
+  {
+    "source": "/length/kilometers-to-miles",
+    "destination": "/length/km-to-miles",
+    "permanent": true
+  },
+  {
+    "source": "/length/miles-to-kilometers",
+    "destination": "/length/miles-to-km",
+    "permanent": true
+  },
+  {
+    "source": "/length/millimeters-to-inches",
+    "destination": "/length/mm-to-inches",
+    "permanent": true
+  },
+  {
+    "source": "/length/inches-to-millimeters",
+    "destination": "/length/inches-to-mm",
+    "permanent": true
+  },
+  {
+    "source": "/length/nautical-miles-to-kilometers",
+    "destination": "/length/nautical-miles-to-km",
+    "permanent": true
+  },
+  {
+    "source": "/length/micrometers-to-millimeters",
+    "destination": "/length/micrometers-to-mm",
+    "permanent": true
+  },
+  {
+    "source": "/length/centimeters-to-feet",
+    "destination": "/length/cm-to-feet",
+    "permanent": true
+  },
+  {
+    "source": "/length/feet-to-centimeters",
+    "destination": "/length/feet-to-cm",
+    "permanent": true
+  },
+  {
+    "source": "/length/centimeters-to-meters",
+    "destination": "/length/cm-to-meters",
+    "permanent": true
+  },
+  {
+    "source": "/length/meters-to-centimeters",
+    "destination": "/length/meters-to-cm",
+    "permanent": true
+  },
+  {
+    "source": "/length/meters-to-millimeters",
+    "destination": "/length/meters-to-mm",
+    "permanent": true
+  },
+  {
+    "source": "/length/millimeters-to-meters",
+    "destination": "/length/mm-to-meters",
+    "permanent": true
+  },
+  {
+    "source": "/length/feet-to-kilometers",
+    "destination": "/length/feet-to-km",
+    "permanent": true
+  },
+  {
+    "source": "/length/kilometers-to-feet",
+    "destination": "/length/km-to-feet",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/kilograms-to-pounds",
+    "destination": "/weight-and-mass/kg-to-lbs",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/pounds-to-kilograms",
+    "destination": "/weight-and-mass/lbs-to-kg",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/kilograms-to-grams",
+    "destination": "/weight-and-mass/kg-to-grams",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/grams-to-kilograms",
+    "destination": "/weight-and-mass/grams-to-kg",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/stones-to-pounds",
+    "destination": "/weight-and-mass/stone-to-lbs",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/pounds-to-stones",
+    "destination": "/weight-and-mass/lbs-to-stone",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/metric-tons-to-tons",
+    "destination": "/weight-and-mass/metric-tons-to-us-tons",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/milligrams-to-grams",
+    "destination": "/weight-and-mass/mg-to-grams",
+    "permanent": true
+  },
+  {
+    "source": "/area/square-feet-to-square-meters",
+    "destination": "/area/sq-feet-to-sq-meters",
+    "permanent": true
+  },
+  {
+    "source": "/area/square-meters-to-square-feet",
+    "destination": "/area/sq-meters-to-sq-feet",
+    "permanent": true
+  },
+  {
+    "source": "/area/square-miles-to-square-kilometers",
+    "destination": "/area/sq-miles-to-sq-km",
+    "permanent": true
+  },
+  {
+    "source": "/area/square-kilometers-to-square-miles",
+    "destination": "/area/sq-km-to-sq-miles",
+    "permanent": true
+  },
+  {
+    "source": "/area/acres-to-square-feet",
+    "destination": "/area/acres-to-sq-feet",
+    "permanent": true
+  },
+  {
+    "source": "/area/square-inches-to-square-centimeters",
+    "destination": "/area/sq-inches-to-sq-cm",
+    "permanent": true
+  },
+  {
+    "source": "/volume/milliliters-to-fluid-ounces",
+    "destination": "/volume/ml-to-fluid-ounces",
+    "permanent": true
+  },
+  {
+    "source": "/volume/fluid-ounces-to-milliliters",
+    "destination": "/volume/fluid-ounces-to-ml",
+    "permanent": true
+  },
+  {
+    "source": "/volume/cups-to-milliliters",
+    "destination": "/volume/cups-to-ml",
+    "permanent": true
+  },
+  {
+    "source": "/volume/milliliters-to-cups",
+    "destination": "/volume/ml-to-cups",
+    "permanent": true
+  },
+  {
+    "source": "/volume/gallons-to-imperial-gallons",
+    "destination": "/volume/gallons-us-to-gallons-imperial",
+    "permanent": true
+  },
+  {
+    "source": "/volume/cubic-centimeters-to-milliliters",
+    "destination": "/volume/cc-to-ml",
+    "permanent": true
+  },
+  {
+    "source": "/volume/milliliters-to-cubic-centimeters",
+    "destination": "/volume/ml-to-cc",
+    "permanent": true
+  },
+  {
+    "source": "/volume/teaspoons-to-milliliters",
+    "destination": "/volume/teaspoons-to-ml",
+    "permanent": true
+  },
+  {
+    "source": "/volume/milliliters-to-teaspoons",
+    "destination": "/volume/ml-to-teaspoons",
+    "permanent": true
+  },
+  {
+    "source": "/volume/pints-to-milliliters",
+    "destination": "/volume/pints-to-ml",
+    "permanent": true
+  },
+  {
+    "source": "/volume/milliliters-to-pints",
+    "destination": "/volume/ml-to-pints",
+    "permanent": true
+  },
+  {
+    "source": "/volume/quarts-to-milliliters",
+    "destination": "/volume/quarts-to-ml",
+    "permanent": true
+  },
+  {
+    "source": "/volume/milliliters-to-quarts",
+    "destination": "/volume/ml-to-quarts",
+    "permanent": true
+  },
+  {
+    "source": "/speed/miles-per-hour-to-kilometers-per-hour",
+    "destination": "/speed/mph-to-kph",
+    "permanent": true
+  },
+  {
+    "source": "/speed/kilometers-per-hour-to-miles-per-hour",
+    "destination": "/speed/kph-to-mph",
+    "permanent": true
+  },
+  {
+    "source": "/speed/meters-per-second-to-kilometers-per-hour",
+    "destination": "/speed/meters-per-second-to-kph",
+    "permanent": true
+  },
+  {
+    "source": "/speed/knots-to-miles-per-hour",
+    "destination": "/speed/knots-to-mph",
+    "permanent": true
+  },
+  {
+    "source": "/speed/knots-to-kilometers-per-hour",
+    "destination": "/speed/knots-to-kph",
+    "permanent": true
+  },
+  {
+    "source": "/speed/feet-per-second-to-miles-per-hour",
+    "destination": "/speed/fps-to-mph",
+    "permanent": true
+  },
+  {
+    "source": "/speed/mach-to-kilometers-per-hour",
+    "destination": "/speed/mach-to-kph",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/psi-to-bars",
+    "destination": "/pressure/psi-to-bar",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/bars-to-psi",
+    "destination": "/pressure/bar-to-psi",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/kilopascals-to-psi",
+    "destination": "/pressure/kpa-to-psi",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/psi-to-kilopascals",
+    "destination": "/pressure/psi-to-kpa",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/megapascals-to-psi",
+    "destination": "/pressure/megapascal-to-psi",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/psi-to-megapascals",
+    "destination": "/pressure/psi-to-megapascal",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/hectopascals-to-pascals",
+    "destination": "/pressure/hectopascal-to-pascal",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/pascals-to-hectopascals",
+    "destination": "/pressure/pascal-to-hectopascal",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/pascals-to-psi",
+    "destination": "/pressure/pascal-to-psi",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/atmospheres-to-bars",
+    "destination": "/pressure/atm-to-bar",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/atmospheres-to-psi",
+    "destination": "/pressure/atm-to-psi",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/bars-to-atmospheres",
+    "destination": "/pressure/bar-to-atm",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/torr-to-atmospheres",
+    "destination": "/pressure/torr-to-atm",
+    "permanent": true
+  },
+  {
+    "source": "/energy/kilojoules-to-joules",
+    "destination": "/energy/kj-to-j",
+    "permanent": true
+  },
+  {
+    "source": "/energy/joules-to-kilojoules",
+    "destination": "/energy/j-to-kj",
+    "permanent": true
+  },
+  {
+    "source": "/energy/kilowatt-hours-to-joules",
+    "destination": "/energy/kwh-to-joules",
+    "permanent": true
+  },
+  {
+    "source": "/energy/btus-to-joules",
+    "destination": "/energy/btu-to-joules",
+    "permanent": true
+  },
+  {
+    "source": "/energy/kilowatt-hours-to-btus",
+    "destination": "/energy/kwh-to-btu",
+    "permanent": true
+  },
+  {
+    "source": "/energy/electronvolts-to-joules",
+    "destination": "/energy/ev-to-joules",
+    "permanent": true
+  },
+  {
+    "source": "/power/kilowatts-to-horsepower",
+    "destination": "/power/kw-to-horsepower",
+    "permanent": true
+  },
+  {
+    "source": "/power/horsepower-to-kilowatts",
+    "destination": "/power/hp-to-kw",
+    "permanent": true
+  },
+  {
+    "source": "/power/btu-h-to-watts",
+    "destination": "/power/btu-per-hour-to-watts",
+    "permanent": true
+  },
+  {
+    "source": "/power/megawatts-to-kilowatts",
+    "destination": "/power/mw-to-kw",
+    "permanent": true
+  },
+  {
+    "source": "/data-storage/megabytes-to-gigabytes",
+    "destination": "/data-storage/mb-to-gb",
+    "permanent": true
+  },
+  {
+    "source": "/data-storage/gigabytes-to-terabytes",
+    "destination": "/data-storage/gb-to-tb",
+    "permanent": true
+  },
+  {
+    "source": "/data-storage/kilobytes-to-megabytes",
+    "destination": "/data-storage/kb-to-mb",
+    "permanent": true
+  },
+  {
+    "source": "/data-storage/gigabytes-to-megabytes",
+    "destination": "/data-storage/gb-to-mb",
+    "permanent": true
+  },
+  {
+    "source": "/data-storage/terabytes-to-gigabytes",
+    "destination": "/data-storage/tb-to-gb",
+    "permanent": true
+  },
+  {
+    "source": "/data-storage/mebibytes-to-megabytes",
+    "destination": "/data-storage/mib-to-mb",
+    "permanent": true
+  },
+  {
+    "source": "/data-transfer/megabits-per-second-to-gigabits-per-second",
+    "destination": "/data-transfer/mbps-to-gbps",
+    "permanent": true
+  },
+  {
+    "source": "/data-transfer/kilobits-per-second-to-megabits-per-second",
+    "destination": "/data-transfer/kbps-to-mbps",
+    "permanent": true
+  },
+  {
+    "source": "/data-transfer/megabits-per-second-to-megabytes-per-second",
+    "destination": "/data-transfer/mbps-to-mbytes-per-sec",
+    "permanent": true
+  },
+  {
+    "source": "/data-transfer/gigabits-per-second-to-megabits-per-second",
+    "destination": "/data-transfer/gbps-to-mbps",
+    "permanent": true
+  },
+  {
+    "source": "/data-transfer/megabytes-per-second-to-megabits-per-second",
+    "destination": "/data-transfer/mbytes-per-sec-to-mbps",
+    "permanent": true
+  },
+  {
+    "source": "/data-transfer/bits-per-second-to-kilobits-per-second",
+    "destination": "/data-transfer/bps-to-kbps",
+    "permanent": true
+  },
+  {
+    "source": "/density/kg-m-to-g-cm",
+    "destination": "/density/kilograms-per-cubic-meter-to-grams-per-cubic-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-cm-to-kg-m",
+    "destination": "/density/grams-per-cubic-centimeter-to-kilograms-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/density/lb-ft-to-kg-m",
+    "destination": "/density/pounds-per-cubic-foot-to-kilograms-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-ml-to-g-cm",
+    "destination": "/density/grams-per-milliliter-to-grams-per-cubic-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/torque/newton-meters-to-pound-feet",
+    "destination": "/torque/nm-to-lb-ft",
+    "permanent": true
+  },
+  {
+    "source": "/torque/pound-feet-to-newton-meters",
+    "destination": "/torque/lb-ft-to-nm",
+    "permanent": true
+  },
+  {
+    "source": "/torque/newton-meters-to-pound-inches",
+    "destination": "/torque/nm-to-lb-in",
+    "permanent": true
+  },
+  {
+    "source": "/torque/kgf-m-to-newton-meters",
+    "destination": "/torque/kilogram-force-meters-to-newton-meters",
+    "permanent": true
+  },
+  {
+    "source": "/frequency/hertz-to-kilohertz",
+    "destination": "/frequency/hz-to-khz",
+    "permanent": true
+  },
+  {
+    "source": "/frequency/kilohertz-to-megahertz",
+    "destination": "/frequency/khz-to-mhz",
+    "permanent": true
+  },
+  {
+    "source": "/frequency/megahertz-to-gigahertz",
+    "destination": "/frequency/mhz-to-ghz",
+    "permanent": true
+  },
+  {
+    "source": "/frequency/rpm-to-hertz",
+    "destination": "/frequency/rpm-to-hz",
+    "permanent": true
+  },
+  {
+    "source": "/fuel-consumption/miles-per-gallon-us-to-liters-per-100-kilometers",
+    "destination": "/fuel-consumption/mpg-to-l-100km",
+    "permanent": true
+  },
+  {
+    "source": "/fuel-consumption/liters-per-100-kilometers-to-miles-per-gallon-us",
+    "destination": "/fuel-consumption/l-100km-to-mpg",
+    "permanent": true
+  },
+  {
+    "source": "/fuel-consumption/miles-per-gallon-us-to-mpg",
+    "destination": "/fuel-consumption/mpg-us-to-mpg-imperial",
+    "permanent": true
+  },
+  {
+    "source": "/fuel-consumption/kilometers-per-liter-to-miles-per-gallon-us",
+    "destination": "/fuel-consumption/km-per-l-to-mpg",
+    "permanent": true
+  },
+  {
+    "source": "/fuel-consumption/miles-per-gallon-us-to-kilometers-per-liter",
+    "destination": "/fuel-consumption/mpg-to-km-per-l",
+    "permanent": true
+  },
+  {
+    "source": "/fuel-consumption/kilometers-per-liter-to-liters-per-100-kilometers",
+    "destination": "/fuel-consumption/km-per-l-to-l-100km",
+    "permanent": true
+  },
+  {
+    "source": "/fuel-consumption/liters-per-100-kilometers-to-kilometers-per-liter",
+    "destination": "/fuel-consumption/l-100km-to-km-per-l",
+    "permanent": true
+  },
+  {
+    "source": "/fuel-consumption/mpg-to-miles-per-gallon-us",
+    "destination": "/fuel-consumption/mpg-imperial-to-mpg-us",
+    "permanent": true
+  },
+  {
+    "source": "/length/centimeters-to-millimeters",
+    "destination": "/length/cm-to-mm",
+    "permanent": true
+  },
+  {
+    "source": "/length/millimeters-to-centimeters",
+    "destination": "/length/mm-to-cm",
+    "permanent": true
+  },
+  {
+    "source": "/length/kilometers-to-meters",
+    "destination": "/length/km-to-meters",
+    "permanent": true
+  },
+  {
+    "source": "/length/meters-to-kilometers",
+    "destination": "/length/meters-to-km",
+    "permanent": true
+  },
+  {
+    "source": "/length/mils-to-millimeters",
+    "destination": "/length/mil-to-mm",
+    "permanent": true
+  },
+  {
+    "source": "/length/millimeters-to-mils",
+    "destination": "/length/mm-to-mil",
+    "permanent": true
+  },
+  {
+    "source": "/length/millimeters-to-nanometers",
+    "destination": "/length/mm-to-nanometers",
+    "permanent": true
+  },
+  {
+    "source": "/length/nanometers-to-millimeters",
+    "destination": "/length/nanometers-to-mm",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/grams-to-milligrams",
+    "destination": "/weight-and-mass/grams-to-mg",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/kilograms-to-stones",
+    "destination": "/weight-and-mass/kg-to-stone",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/stones-to-kilograms",
+    "destination": "/weight-and-mass/stone-to-kg",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/kilograms-to-ounces",
+    "destination": "/weight-and-mass/kg-to-ounces",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/ounces-to-kilograms",
+    "destination": "/weight-and-mass/ounces-to-kg",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/kilograms-to-metric-tons",
+    "destination": "/weight-and-mass/kg-to-metric-tons",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/metric-tons-to-kilograms",
+    "destination": "/weight-and-mass/metric-tons-to-kg",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/pounds-to-tons",
+    "destination": "/weight-and-mass/lbs-to-tons",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/tons-to-pounds",
+    "destination": "/weight-and-mass/tons-to-lbs",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/tons-to-metric-tons",
+    "destination": "/weight-and-mass/us-tons-to-metric-tons",
+    "permanent": true
+  },
+  {
+    "source": "/volume/liters-to-milliliters",
+    "destination": "/volume/liters-to-ml",
+    "permanent": true
+  },
+  {
+    "source": "/volume/milliliters-to-liters",
+    "destination": "/volume/ml-to-liters",
+    "permanent": true
+  },
+  {
+    "source": "/volume/tablespoons-to-milliliters",
+    "destination": "/volume/tablespoons-to-ml",
+    "permanent": true
+  },
+  {
+    "source": "/volume/milliliters-to-tablespoons",
+    "destination": "/volume/ml-to-tablespoons",
+    "permanent": true
+  },
+  {
+    "source": "/area/square-feet-to-acres",
+    "destination": "/area/sq-feet-to-acres",
+    "permanent": true
+  },
+  {
+    "source": "/area/square-feet-to-square-yards",
+    "destination": "/area/sq-feet-to-sq-yards",
+    "permanent": true
+  },
+  {
+    "source": "/area/square-yards-to-square-feet",
+    "destination": "/area/sq-yards-to-sq-feet",
+    "permanent": true
+  },
+  {
+    "source": "/area/square-centimeters-to-square-inches",
+    "destination": "/area/sq-cm-to-sq-inches",
+    "permanent": true
+  },
+  {
+    "source": "/area/hectares-to-square-meters",
+    "destination": "/area/hectares-to-sq-meters",
+    "permanent": true
+  },
+  {
+    "source": "/area/square-meters-to-hectares",
+    "destination": "/area/sq-meters-to-hectares",
+    "permanent": true
+  },
+  {
+    "source": "/speed/meters-per-second-to-miles-per-hour",
+    "destination": "/speed/meters-per-second-to-mph",
+    "permanent": true
+  },
+  {
+    "source": "/speed/miles-per-hour-to-meters-per-second",
+    "destination": "/speed/mph-to-meters-per-second",
+    "permanent": true
+  },
+  {
+    "source": "/speed/miles-per-hour-to-knots",
+    "destination": "/speed/mph-to-knots",
+    "permanent": true
+  },
+  {
+    "source": "/speed/kilometers-per-hour-to-meters-per-second",
+    "destination": "/speed/kph-to-meters-per-second",
+    "permanent": true
+  },
+  {
+    "source": "/speed/miles-per-hour-to-feet-per-second",
+    "destination": "/speed/mph-to-fps",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/pascals-to-megapascals",
+    "destination": "/pressure/pascal-to-megapascal",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/megapascals-to-pascals",
+    "destination": "/pressure/megapascal-to-pascal",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/bars-to-kilopascals",
+    "destination": "/pressure/bar-to-kpa",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/kilopascals-to-bars",
+    "destination": "/pressure/kpa-to-bar",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/bars-to-megapascals",
+    "destination": "/pressure/bar-to-megapascal",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/megapascals-to-bars",
+    "destination": "/pressure/megapascal-to-bar",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/ksi-to-megapascals",
+    "destination": "/pressure/ksi-to-megapascal",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/megapascals-to-ksi",
+    "destination": "/pressure/megapascal-to-ksi",
+    "permanent": true
+  },
+  {
+    "source": "/energy/kilojoules-to-kilocalories",
+    "destination": "/energy/kj-to-kcal",
+    "permanent": true
+  },
+  {
+    "source": "/energy/kilocalories-to-kilojoules",
+    "destination": "/energy/kcal-to-kj",
+    "permanent": true
+  },
+  {
+    "source": "/energy/btus-to-kilowatt-hours",
+    "destination": "/energy/btu-to-kwh",
+    "permanent": true
+  },
+  {
+    "source": "/power/watts-to-kilowatts",
+    "destination": "/power/watts-to-kw",
+    "permanent": true
+  },
+  {
+    "source": "/power/kilowatts-to-watts",
+    "destination": "/power/kw-to-watts",
+    "permanent": true
+  },
+  {
+    "source": "/power/tons-of-refrigeration-to-btu-h",
+    "destination": "/power/tons-refrigeration-to-btu-per-hour",
+    "permanent": true
+  },
+  {
+    "source": "/power/btu-h-to-tons-of-refrigeration",
+    "destination": "/power/btu-per-hour-to-tons-refrigeration",
+    "permanent": true
+  },
+  {
+    "source": "/data-storage/megabytes-to-kilobytes",
+    "destination": "/data-storage/mb-to-kb",
+    "permanent": true
+  },
+  {
+    "source": "/data-storage/kilobytes-to-gigabytes",
+    "destination": "/data-storage/kb-to-gb",
+    "permanent": true
+  },
+  {
+    "source": "/data-storage/gigabytes-to-kilobytes",
+    "destination": "/data-storage/gb-to-kb",
+    "permanent": true
+  },
+  {
+    "source": "/data-storage/bytes-to-megabytes",
+    "destination": "/data-storage/bytes-to-mb",
+    "permanent": true
+  },
+  {
+    "source": "/data-storage/gibibytes-to-gigabytes",
+    "destination": "/data-storage/gib-to-gb",
+    "permanent": true
+  },
+  {
+    "source": "/data-transfer/megabits-per-second-to-kilobits-per-second",
+    "destination": "/data-transfer/mbps-to-kbps",
+    "permanent": true
+  },
+  {
+    "source": "/force/kilograms-force-to-newtons",
+    "destination": "/force/kgf-to-newtons",
+    "permanent": true
+  },
+  {
+    "source": "/force/newtons-to-kilograms-force",
+    "destination": "/force/newtons-to-kgf",
+    "permanent": true
+  },
+  {
+    "source": "/force/kilonewtons-to-pounds-force",
+    "destination": "/force/kilonewton-to-pound-force",
+    "permanent": true
+  },
+  {
+    "source": "/force/grams-force-to-newtons",
+    "destination": "/force/gram-force-to-newton",
+    "permanent": true
+  },
+  {
+    "source": "/density/kg-m-to-lb-ft",
+    "destination": "/density/kilograms-per-cubic-meter-to-pounds-per-cubic-foot",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-cm-to-lb-ft",
+    "destination": "/density/grams-per-cubic-centimeter-to-pounds-per-cubic-foot",
+    "permanent": true
+  },
+  {
+    "source": "/torque/pound-inches-to-newton-meters",
+    "destination": "/torque/lb-in-to-nm",
+    "permanent": true
+  },
+  {
+    "source": "/torque/pound-feet-to-pound-inches",
+    "destination": "/torque/lb-ft-to-lb-in",
+    "permanent": true
+  },
+  {
+    "source": "/torque/pound-inches-to-pound-feet",
+    "destination": "/torque/lb-in-to-lb-ft",
+    "permanent": true
+  },
+  {
+    "source": "/torque/newton-meters-to-kgf-m",
+    "destination": "/torque/newton-meters-to-kilogram-force-meters",
+    "permanent": true
+  },
+  {
+    "source": "/frequency/megahertz-to-hertz",
+    "destination": "/frequency/mhz-to-hz",
+    "permanent": true
+  },
+  {
+    "source": "/frequency/hertz-to-megahertz",
+    "destination": "/frequency/hz-to-mhz",
+    "permanent": true
+  },
+  {
+    "source": "/frequency/kilohertz-to-hertz",
+    "destination": "/frequency/khz-to-hz",
+    "permanent": true
+  },
+  {
+    "source": "/frequency/gigahertz-to-hertz",
+    "destination": "/frequency/ghz-to-hz",
+    "permanent": true
+  },
+  {
+    "source": "/frequency/gigahertz-to-megahertz",
+    "destination": "/frequency/ghz-to-mhz",
+    "permanent": true
+  },
+  {
+    "source": "/angle/radians-to-revolutions",
+    "destination": "/angle/radian-to-revolution",
+    "permanent": true
+  },
+  {
+    "source": "/angle/angular-mils-to-degrees",
+    "destination": "/angle/mil-to-degree",
+    "permanent": true
+  },
+  {
+    "source": "/flow/cubic-feet-per-minute-to-liters-per-minute",
+    "destination": "/flow/cfm-to-liters-per-minute",
+    "permanent": true
+  },
+  {
+    "source": "/flow/cubic-feet-per-minute-to-cubic-meters-per-hour",
+    "destination": "/flow/cfm-to-cubic-meters-per-hour",
+    "permanent": true
+  },
+  {
+    "source": "/flow/us-gallons-per-minute-to-cubic-meters-per-hour",
+    "destination": "/flow/gpm-to-cubic-meters-per-hour",
+    "permanent": true
+  },
+  {
+    "source": "/current/milliamperes-to-amperes",
+    "destination": "/current/milliamps-to-amps",
+    "permanent": true
+  },
+  {
+    "source": "/current/amperes-to-milliamperes",
+    "destination": "/current/amps-to-milliamps",
+    "permanent": true
+  },
+  {
+    "source": "/current/microamperes-to-milliamperes",
+    "destination": "/current/microamps-to-milliamps",
+    "permanent": true
+  },
+  {
+    "source": "/current/kiloamperes-to-amperes",
+    "destination": "/current/kiloamps-to-amps",
+    "permanent": true
+  },
+  {
+    "source": "/electrostatic-capacitance/microfarads-to-farads",
+    "destination": "/electrostatic-capacitance/microfarad-to-farad",
+    "permanent": true
+  },
+  {
+    "source": "/electrostatic-capacitance/picofarads-to-farads",
+    "destination": "/electrostatic-capacitance/picofarad-to-farad",
+    "permanent": true
+  },
+  {
+    "source": "/electrostatic-capacitance/picofarads-to-microfarads",
+    "destination": "/electrostatic-capacitance/picofarad-to-microfarad",
+    "permanent": true
+  },
+  {
+    "source": "/electrostatic-capacitance/nanofarads-to-microfarads",
+    "destination": "/electrostatic-capacitance/nanofarad-to-microfarad",
+    "permanent": true
+  },
+  {
+    "source": "/electrostatic-capacitance/microfarads-to-nanofarads",
+    "destination": "/electrostatic-capacitance/microfarad-to-nanofarad",
+    "permanent": true
+  },
+  {
+    "source": "/charge/microcoulombs-to-coulombs",
+    "destination": "/charge/microcoulomb-to-coulomb",
+    "permanent": true
+  },
+  {
+    "source": "/charge/nanocoulombs-to-coulombs",
+    "destination": "/charge/nanocoulomb-to-coulomb",
+    "permanent": true
+  },
+  {
+    "source": "/charge/milliampere-hours-to-ampere-hours",
+    "destination": "/charge/mah-to-ah",
+    "permanent": true
+  },
+  {
+    "source": "/charge/ampere-hours-to-milliampere-hours",
+    "destination": "/charge/ah-to-mah",
+    "permanent": true
+  },
+  {
+    "source": "/charge/milliampere-hours-to-coulombs",
+    "destination": "/charge/mah-to-coulombs",
+    "permanent": true
+  },
+  {
+    "source": "/electric-resistance/megohms-to-ohms",
+    "destination": "/electric-resistance/megohm-to-ohm",
+    "permanent": true
+  },
+  {
+    "source": "/electric-resistance/ohms-to-megohms",
+    "destination": "/electric-resistance/ohm-to-megohm",
+    "permanent": true
+  },
+  {
+    "source": "/electric-resistance/kiloohms-to-ohms",
+    "destination": "/electric-resistance/kiloohm-to-ohm",
+    "permanent": true
+  },
+  {
+    "source": "/electric-resistance/ohms-to-kiloohms",
+    "destination": "/electric-resistance/ohm-to-kiloohm",
+    "permanent": true
+  },
+  {
+    "source": "/inductance/millihenries-to-henries",
+    "destination": "/inductance/millihenry-to-henry",
+    "permanent": true
+  },
+  {
+    "source": "/inductance/henries-to-millihenries",
+    "destination": "/inductance/henry-to-millihenry",
+    "permanent": true
+  },
+  {
+    "source": "/inductance/microhenries-to-millihenries",
+    "destination": "/inductance/microhenry-to-millihenry",
+    "permanent": true
+  },
+  {
+    "source": "/inductance/microhenries-to-henries",
+    "destination": "/inductance/microhenry-to-henry",
+    "permanent": true
+  },
+  {
+    "source": "/magnetic-flux-density/gauss-to-teslas",
+    "destination": "/magnetic-flux-density/gauss-to-tesla",
+    "permanent": true
+  },
+  {
+    "source": "/magnetic-flux-density/teslas-to-gauss",
+    "destination": "/magnetic-flux-density/tesla-to-gauss",
+    "permanent": true
+  },
+  {
+    "source": "/magnetic-flux-density/milliteslas-to-gauss",
+    "destination": "/magnetic-flux-density/millitesla-to-gauss",
+    "permanent": true
+  },
+  {
+    "source": "/magnetic-flux-density/gauss-to-milliteslas",
+    "destination": "/magnetic-flux-density/gauss-to-millitesla",
+    "permanent": true
+  },
+  {
+    "source": "/volume/metric-cups-to-milliliters",
+    "destination": "/volume/metric-cups-to-ml",
+    "permanent": true
+  },
+  {
+    "source": "/volume/cups-to-metric-cups",
+    "destination": "/volume/us-cups-to-metric-cups",
+    "permanent": true
+  },
+  {
+    "source": "/power/metric-horsepower-to-horsepower",
+    "destination": "/power/ps-to-hp",
+    "permanent": true
+  },
+  {
+    "source": "/power/horsepower-to-metric-horsepower",
+    "destination": "/power/hp-to-ps",
+    "permanent": true
+  },
+  {
+    "source": "/power/metric-horsepower-to-kilowatts",
+    "destination": "/power/ps-to-kw",
+    "permanent": true
+  },
+  {
+    "source": "/power/kilowatts-to-metric-horsepower",
+    "destination": "/power/kw-to-ps",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/inches-of-mercury-to-hectopascals",
+    "destination": "/pressure/inhg-to-hpa",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/hectopascals-to-inches-of-mercury",
+    "destination": "/pressure/hpa-to-inhg",
+    "permanent": true
+  },
+  {
+    "source": "/volume/imperial-gallons-to-gallons",
+    "destination": "/volume/gallons-imperial-to-gallons-us",
+    "permanent": true
+  },
+  {
+    "source": "/volume/fluid-ounces-to-imperial-fluid-ounces",
+    "destination": "/volume/us-fluid-ounces-to-imperial-fluid-ounces",
+    "permanent": true
+  },
+  {
+    "source": "/volume/imperial-fluid-ounces-to-fluid-ounces",
+    "destination": "/volume/imperial-fluid-ounces-to-us-fluid-ounces",
+    "permanent": true
+  },
+  {
+    "source": "/volume/imperial-fluid-ounces-to-milliliters",
+    "destination": "/volume/imperial-fluid-ounces-to-ml",
+    "permanent": true
+  },
+  {
+    "source": "/volume/milliliters-to-imperial-fluid-ounces",
+    "destination": "/volume/ml-to-imperial-fluid-ounces",
+    "permanent": true
+  },
+  {
+    "source": "/volume/milliliters-to-metric-cups",
+    "destination": "/volume/ml-to-metric-cups",
+    "permanent": true
+  },
+  {
+    "source": "/volume/metric-cups-to-cups",
+    "destination": "/volume/metric-cups-to-us-cups",
+    "permanent": true
+  },
+  {
+    "source": "/fuel-consumption/mpg-to-liters-per-100-kilometers",
+    "destination": "/fuel-consumption/mpg-imperial-to-l-100km",
+    "permanent": true
+  },
+  {
+    "source": "/fuel-consumption/liters-per-100-kilometers-to-mpg",
+    "destination": "/fuel-consumption/l-100km-to-mpg-imperial",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/metric-tons-to-long-tons",
+    "destination": "/weight-and-mass/metric-tons-to-imperial-tons",
+    "permanent": true
+  },
+  {
+    "source": "/weight-and-mass/long-tons-to-metric-tons",
+    "destination": "/weight-and-mass/imperial-tons-to-metric-tons",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/kg-to-g",
+    "destination": "/weight-and-mass/kg-to-grams",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/g-to-kg",
+    "destination": "/weight-and-mass/grams-to-kg",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/kg-to-lb",
+    "destination": "/weight-and-mass/kg-to-lbs",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/lb-to-kg",
+    "destination": "/weight-and-mass/lbs-to-kg",
+    "permanent": true
+  },
+  {
+    "source": "/volume/pints-to-metric-tons",
+    "destination": "/cooking",
+    "permanent": true
+  },
+  {
+    "source": "/volume/metric-tons-to-pints",
+    "destination": "/cooking",
+    "permanent": true
+  },
+  {
+    "source": "/volume/cups-to-grams",
+    "destination": "/cooking/cups-to-grams",
+    "permanent": true
+  },
+  {
+    "source": "/volume/grams-to-cups",
+    "destination": "/cooking/grams-to-cups",
+    "permanent": true
+  },
+  {
+    "source": "/volume/tablespoons-to-grams",
+    "destination": "/cooking/tablespoons-to-grams",
+    "permanent": true
+  },
+  {
+    "source": "/volume/teaspoons-to-grams",
+    "destination": "/cooking/teaspoons-to-grams",
+    "permanent": true
+  },
+  {
+    "source": "/volume/ml-to-grams",
+    "destination": "/cooking/ml-to-grams",
+    "permanent": true
+  },
+  {
+    "source": "/volume/grams-to-ml",
+    "destination": "/cooking/grams-to-ml",
+    "permanent": true
+  }
+]

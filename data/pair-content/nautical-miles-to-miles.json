@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "nautical-miles-to-miles",
+  "category": "length",
+  "categoryId": "length",
+  "fromUnitId": "nautical_mile",
+  "toUnitId": "mile",
+  "fromSymbol": "nmi",
+  "toSymbol": "mi",
+  "intro": "Professionals and everyday users convert nautical miles (nmi) to miles (mi) when working across other and imperial standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One nautical mile equals 1.150779 miles, while 1 mile (statute) equals 0.868976 nautical miles. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Nautical Mile Benchmark (2 nmi)",
+      "scenario": "Convert 2 nautical miles (nmi) into miles (mi) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "2.301559 mi",
+      "stepByStep": "2 nmi × 1.150779 = 2.301559 mi (rounds to 2.3 mi)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 nmi)",
+      "scenario": "Convert 20 nautical miles (nmi) into miles (mi) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "23.015589 mi",
+      "stepByStep": "20 nmi × 1.150779 = 23.015589 mi (rounds to 23.02 mi)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 nmi)",
+      "scenario": "Convert 75 nautical miles (nmi) into miles (mi) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "86.308459 mi",
+      "stepByStep": "75 nmi × 1.150779 = 86.308459 mi (rounds to 86.31 mi)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Nautical Mile to Mile (Statute) is 1.15077945, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "mi = nmi × 1.15077945",
+    "exactFactor": "1.15077945",
+    "roundedFactor": "1.1508",
+    "inverseFactor": "0.868976"
+  },
+  "internalLinks": [
+    {
+      "label": "Miles to Nautical Miles (mi to nmi)",
+      "href": "/length/miles-to-nautical-miles",
+      "type": "reverse"
+    },
+    {
+      "label": "Centimeters to Inches (cm to in)",
+      "href": "/length/cm-to-inches",
+      "type": "related"
+    },
+    {
+      "label": "Inches to Centimeters (in to cm)",
+      "href": "/length/inches-to-cm",
+      "type": "related"
+    },
+    {
+      "label": "Feet to Meters (ft to m)",
+      "href": "/length/feet-to-meters",
+      "type": "related"
+    },
+    {
+      "label": "Meters to Feet (m to ft)",
+      "href": "/length/meters-to-feet",
+      "type": "related"
+    },
+    {
+      "label": "Length Conversions Hub",
+      "href": "/length",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many miles (mi) are in 1 nautical mile (nmi)?",
+      "answer": "There are 1.15077945 miles (mi) in 1 nautical mile (nmi), which rounds to 1.1508 mi for everyday calculations. Conversely, 1 mile (statute) equals 0.868976 nautical miles."
+    },
+    {
+      "question": "How do I convert nautical miles to miles (nmi to mi)?",
+      "answer": "To convert nautical miles to miles, use the formula: mi = nmi × 1.15077945. For example, converting 10 nmi gives 11.5078 mi."
+    },
+    {
+      "question": "What is 10 nautical miles in miles?",
+      "answer": "10 nautical miles (nmi) equals exactly 11.5078 miles (mi) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

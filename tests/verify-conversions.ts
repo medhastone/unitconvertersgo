@@ -8,8 +8,20 @@ import {
 } from "../lib/conversions/references";
 import { generateLiveSolution } from "../lib/conversions/solver";
 import { getPresetSearchQueries, getRealWorldScenarios } from "../lib/conversions/scenarios";
-import { getAllChildSitemapNames, getChildSitemapEntries } from "../lib/sitemap-builder";
+import { getAllChildSitemapNames, getChildSitemapEntries, buildSitemapIndexXml } from "../lib/sitemap-builder";
 import robots from "../app/robots";
+import {
+  getConverterTier,
+  isPairIndexable,
+  isCategoryHubIndexable,
+  checkDimensionMatch,
+  checkSlugHasExponentLoss,
+  getDuplicateOf,
+} from "../lib/seo-tiers";
+import { evaluateContentGate } from "../lib/content-gate";
+import { getPairUrl } from "../lib/conversions/url";
+import slugRedirectsData from "../data/slug-redirects.json";
+
 
 function assert(condition: boolean, msg: string) {
   if (!condition) {
@@ -339,6 +351,153 @@ for (const cat of CATEGORIES) {
 }
 console.log("✅ Verified Live 3-Step Mathematical Solver, Google Query Presets, and Real-World Scenarios.");
 
+// --- TEST 18: Task 7 Technical SEO, Tier Gating, Redirects, Content Gate & Unit Symbols ---
+console.log("\n🧪 Running Test 18: Technical SEO Tiers, Redirects, Content Gate & Unit Symbols (a–f)...");
+
+// Trigger buildSitemapIndexXml() to verify build-time logging per sitemap and per tier
+const indexXml = buildSitemapIndexXml();
+assert(indexXml.includes("<sitemapindex"), "Sitemap index XML must be valid");
+
+// Load redirect maps
+const redirectList: Array<{ source: string; destination: string; permanent: boolean }> = Array.isArray(slugRedirectsData)
+  ? slugRedirectsData
+  : (slugRedirectsData as { redirects: Array<{ source: string; destination: string; permanent: boolean }> }).redirects;
+const redirectSources = new Set<string>(redirectList.map((r) => r.source));
+
+// (a) No sitemap URL has noindex or redirects
+for (const entry of sitemapEntries) {
+  const urlPath = entry.loc.replace(/^https?:\/\/[^/]+/, "") || "/";
+  assert(
+    !redirectSources.has(urlPath),
+    `(a) Sitemap URL must not be a 301 redirect source: ${urlPath}`
+  );
+  // Check category or pair indexability
+  const segments = urlPath.split("/").filter(Boolean);
+  if (segments.length === 1) {
+    const seg = segments[0];
+    if (!["directory", "about", "contact", "widgets", "guides", "cooking", "specialty"].includes(seg)) {
+      assert(
+        isCategoryHubIndexable(seg),
+        `(a) Sitemap category hub ${urlPath} must be indexable (not noindex or merged thin hub)`
+      );
+    }
+  } else if (segments.length === 2 && segments[0] !== "guides" && segments[0] !== "cooking") {
+    const pairSlug = segments[1];
+    const pair = CATALOGUE_MAP.get(pairSlug);
+    assert(Boolean(pair), `(a) Sitemap converter URL ${urlPath} must exist in CATALOGUE_MAP`);
+    assert(
+      isPairIndexable(pair!),
+      `(a) Sitemap converter URL ${urlPath} must be indexable (not Tier C / noindex)`
+    );
+  }
+}
+console.log(`✅ (a) Verified 0 noindex or redirecting URLs across all ${sitemapEntries.length} sitemap entries.`);
+
+// (b) No indexable page has a duplicate canonical target
+const indexableCanonicals = new Map<string, string>();
+for (const pair of ENRICHED_CATALOGUE) {
+  if (!isPairIndexable(pair)) continue;
+  assert(
+    getDuplicateOf(pair) === null,
+    `(b) Indexable pair ${pair.slug} must not be a duplicate loser`
+  );
+  const canonicalPath = getPairUrl(pair);
+  assert(
+    !indexableCanonicals.has(canonicalPath),
+    `(b) Duplicate canonical target ${canonicalPath} between ${indexableCanonicals.get(canonicalPath)} and ${pair.slug}`
+  );
+  indexableCanonicals.set(canonicalPath, pair.slug);
+}
+console.log(`✅ (b) Verified ${indexableCanonicals.size} indexable converter pages have 100% unique canonical targets and 0 physical-pair duplicates.`);
+
+// (c) All redirects in data/slug-redirects.json resolve with a single 301 and no chains
+assert(redirectList.length >= 25, "(c) Expected at least 25 301 redirects in data/slug-redirects.json");
+for (const rule of redirectList) {
+  assert(rule.permanent === true, `(c) Redirect ${rule.source} -> ${rule.destination} must be permanent (301)`);
+  assert(rule.source !== rule.destination, `(c) Self-redirect detected: ${rule.source}`);
+  assert(
+    !redirectSources.has(rule.destination),
+    `(c) Redirect chain detected: ${rule.source} -> ${rule.destination} (destination is also a redirect source)`
+  );
+}
+console.log(`✅ (c) Verified all ${redirectList.length} redirects in data/slug-redirects.json resolve in a single 301 hop with 0 chains.`);
+
+// (d) Content gate fails on a page with generic boilerplate and passes on all indexable converter pages
+const boilerplateGateResult = evaluateContentGate({
+  slug: "cm-to-inches",
+  intro: "A centimeter is a unit of length in the metric system. Convert centimeters to inches easily with our calculator.",
+  commonValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], // sequential 1..10 boilerplate
+  workedExamples: [
+    { title: "Ex 1", scenario: "Short", inputValue: 10, stepByStep: "10 / 2.54", outputValue: "3.937 in" },
+  ],
+  formula: {
+    equation: "in = cm ÷ 2.54",
+    exactFactor: "1 cm = 0.39370079 in",
+    roundedFactor: "1 cm ≈ 0.3937 in",
+  },
+  internalLinks: [{ label: "Length", href: "/length", type: "hub" }],
+  faqs: [{ question: "How many inches in a cm?", answer: "0.3937 inches." }],
+});
+assert(
+  boilerplateGateResult.passed === false,
+  "(d) Content gate MUST fail on generic boilerplate intro ('is a unit of'), sequential 1..10 table values, < 3 examples, and < 2 FAQs"
+);
+assert(
+  boilerplateGateResult.reasons.length >= 3,
+  `(d) Expected multiple failure reasons on boilerplate content, got: ${boilerplateGateResult.reasons.join("; ")}`
+);
+
+for (const pair of ENRICHED_CATALOGUE) {
+  if (isPairIndexable(pair)) {
+    const gate = evaluateContentGate(pair);
+    assert(
+      gate.passed === true,
+      `(d) Indexable pair ${pair.slug} (Tier ${getConverterTier(pair)}) failed content gate: ${gate.reasons.join("; ")}`
+    );
+  }
+}
+console.log("✅ (d) Verified Content Gate rejects generic boilerplate and passes on 100% of indexable Tier A/B pages.");
+
+// (e) No indexable page mixes dimensions
+for (const pair of ENRICHED_CATALOGUE) {
+  if (!isPairIndexable(pair)) continue;
+  const fromU = UNIT_MAP.get(pair.fromUnitId)!;
+  const toU = UNIT_MAP.get(pair.toUnitId)!;
+  const dim = checkDimensionMatch(fromU, toU, pair.slug);
+  assert(
+    dim.matches === true,
+    `(e) Indexable page ${pair.slug} mixes dimensions: ${dim.reason}`
+  );
+  assert(
+    !checkSlugHasExponentLoss(pair.slug, fromU, toU),
+    `(e) Indexable page ${pair.slug} has exponent loss in slug`
+  );
+}
+console.log("✅ (e) Verified 0 indexable pages mix physical dimensions or have exponent-loss slugs.");
+
+// (f) Titles and H1s contain proper unit symbols (g/m³, kgf/cm², kg/(s·m²)), not slug fragments
+const symbolChecks = [
+  { slug: "grams-per-cubic-meter-to-pounds-per-cubic-foot", expectedSymbols: ["g/m³", "lb/ft³"] },
+  { slug: "pascals-to-kilogram-force-per-square-centimeter", expectedSymbols: ["Pa", "kgf/cm²"] },
+  { slug: "kilogram-force-per-square-meter-to-feet-of-water", expectedSymbols: ["kgf/m²", "ftH₂O"] },
+  { slug: "grams-per-cubic-meter-to-grams-per-milliliter", expectedSymbols: ["g/m³", "g/mL"] },
+];
+for (const check of symbolChecks) {
+  const pair = getConversionPair(check.slug);
+  assert(Boolean(pair), `(f) Expected repaired slug ${check.slug} to exist`);
+  const enriched = ensureEnrichedPair(pair!);
+  const fromU = UNIT_MAP.get(enriched.fromUnitId)!;
+  const toU = UNIT_MAP.get(enriched.toUnitId)!;
+  for (const sym of check.expectedSymbols) {
+    assert(
+      fromU.symbol === sym || toU.symbol === sym || enriched.title.includes(sym) || Boolean(enriched.h1?.includes(sym)),
+      `(f) Expected proper symbol "${sym}" on ${check.slug} (fromSymbol=${fromU.symbol}, toSymbol=${toU.symbol}, title="${enriched.title}")`
+    );
+  }
+}
+console.log("✅ (f) Verified titles, H1s, and unit labels display proper mathematical unit symbols (g/m³, kgf/cm², kgf/m², ftH₂O).");
+
 console.log("🎉 ALL TESTS PASSED! Conversion engine, canonical routing, and site-wide Technical SEO specifications are verified.");
+
 
 

@@ -1,0 +1,67 @@
+{
+  "category": "thermal-resistance",
+  "categoryId": "thermal_resistance",
+  "defaultValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "unitDefaults": {
+    "kelvin_per_watt": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ],
+    "celsius_per_watt": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ],
+    "f_hr_per_btu": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ],
+    "f_sec_per_btu": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ]
+  },
+  "pairOverrides": {}
+}

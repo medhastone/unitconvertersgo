@@ -104,12 +104,31 @@ export function getCategoryUrlSlug(categoryId: string): string {
   return cleanId.replace(/_/g, "-");
 }
 
+const MERGED_TO_SPECIALTY_HUB = new Set([
+  "radiation",
+  "digital_image_resolution",
+  "digital-image-resolution",
+  "concentration_molar",
+  "concentration-molar",
+  "fuel_economy",
+  "fuel-consumption",
+]);
+
 /**
  * Builds the canonical clean top-level category hub URL:
- * e.g., "/length", "/weight-and-mass", "/temperature", "/data-storage"
+ * e.g., "/length", "/weight-and-mass", "/temperature", "/data-storage",
+ * or "/specialty" for merged thin category hubs.
  */
 export function getCategoryUrl(categoryId: string): string {
-  return `/${getCategoryUrlSlug(categoryId)}`;
+  const cleanId = categoryId.trim().toLowerCase();
+  if (MERGED_TO_SPECIALTY_HUB.has(cleanId)) {
+    return "/specialty";
+  }
+  const slug = getCategoryUrlSlug(cleanId);
+  if (MERGED_TO_SPECIALTY_HUB.has(slug)) {
+    return "/specialty";
+  }
+  return `/${slug}`;
 }
 
 /**
@@ -165,3 +184,12 @@ export function stripHtmExtension(rawSlug: string): string {
     .trim()
     .replace(/\.html?$/i, "");
 }
+
+export function getCanonicalConverterPath(categoryId: string, slug: string): string {
+  return getPairUrl({ categoryId, slug });
+}
+
+export function getInternalCategoryId(rawSegment: string): string {
+  return resolveCategoryIdFromUrlSlug(rawSegment) || rawSegment;
+}
+

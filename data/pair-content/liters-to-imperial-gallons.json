@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "liters-to-imperial-gallons",
+  "category": "volume",
+  "categoryId": "volume",
+  "fromUnitId": "liter",
+  "toUnitId": "imperial_gallon",
+  "fromSymbol": "L",
+  "toSymbol": "gal (UK)",
+  "intro": "Professionals and everyday users convert liters (L) to gallons (uk) (gal (UK)) when working across metric and imperial standards in culinary recipe scaling, beverage bottling, laboratory reagent preparation, and fluid tank capacity sizing. One liter equals 0.219969 gallons (uk), while 1 gallon (uk imperial) equals 4.54609 liters. Whether you are verifying volume & liquid specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.25,
+    0.5,
+    0.75,
+    1,
+    1.5,
+    2,
+    3,
+    5,
+    10,
+    20
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Liter Benchmark (0.75 L)",
+      "scenario": "Convert 0.75 liters (L) into gallons (uk) (gal (UK)) for technical comparison and documentation.",
+      "inputValue": 0.75,
+      "outputValue": "0.164977 gal (UK)",
+      "stepByStep": "0.75 L × 0.219969 = 0.164977 gal (UK) (rounds to 0.16 gal (UK))."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (2 L)",
+      "scenario": "Convert 2 liters (L) into gallons (uk) (gal (UK)) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "0.439938 gal (UK)",
+      "stepByStep": "2 L × 0.219969 = 0.439938 gal (UK) (rounds to 0.44 gal (UK))."
+    },
+    {
+      "title": "Higher-Capacity Specification (10 L)",
+      "scenario": "Convert 10 liters (L) into gallons (uk) (gal (UK)) for technical comparison and documentation.",
+      "inputValue": 10,
+      "outputValue": "2.199692 gal (UK)",
+      "stepByStep": "10 L × 0.219969 = 2.199692 gal (UK) (rounds to 2.2 gal (UK))."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "US Customary vs. British Imperial Liquid Volume Trap",
+    "items": [
+      "US Customary and UK Imperial liquid units share identical names but have different physical volumes: 1 US Gallon is 3.78541 L (128 US fl oz), whereas 1 UK Imperial Gallon is 4.54609 L (160 Imp fl oz) — a 20.1% difference.",
+      "Similarly, 1 US Pint contains 16 US fluid ounces (473.18 mL), while 1 British Imperial Pint contains 20 Imperial fluid ounces (568.26 mL). Always verify whether your recipe, pump datasheet, or vehicle spec sheet uses US or UK standards."
+    ]
+  },
+  "formula": {
+    "equation": "gal (UK) = L × 0.21996925",
+    "exactFactor": "0.21996925",
+    "roundedFactor": "0.22",
+    "inverseFactor": "4.54609"
+  },
+  "internalLinks": [
+    {
+      "label": "Gallons (UK) to Liters (gal (UK) to L)",
+      "href": "/volume/imperial-gallons-to-liters",
+      "type": "reverse"
+    },
+    {
+      "label": "Liters to Gallons (US) (L to gal (US))",
+      "href": "/volume/liters-to-gallons",
+      "type": "related"
+    },
+    {
+      "label": "Gallons (US) to Liters (gal (US) to L)",
+      "href": "/volume/gallons-to-liters",
+      "type": "related"
+    },
+    {
+      "label": "Milliliters to Fluid Ounces (US) (mL to fl oz)",
+      "href": "/volume/ml-to-fluid-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Fluid Ounces (US) to Milliliters (fl oz to mL)",
+      "href": "/volume/fluid-ounces-to-ml",
+      "type": "related"
+    },
+    {
+      "label": "Volume & Liquid Conversions Hub",
+      "href": "/volume",
+      "type": "hub"
+    },
+    {
+      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "href": "/guides/us-vs-imperial-fluid-ounces",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many gallons (uk) (gal (UK)) are in 1 liter (L)?",
+      "answer": "There are 0.21996925 gallons (uk) (gal (UK)) in 1 liter (L), which rounds to 0.22 gal (UK) for everyday calculations. Conversely, 1 gallon (uk imperial) equals 4.54609 liters."
+    },
+    {
+      "question": "How do I convert liters to gallons (uk) (L to gal (UK))?",
+      "answer": "To convert liters to gallons (uk), use the formula: gal (UK) = L × 0.21996925. For example, converting 1.5 L gives 0.33 gal (UK)."
+    },
+    {
+      "question": "What is 1.5 liters in gallons (uk)?",
+      "answer": "1.5 liters (L) equals exactly 0.33 gallons (uk) (gal (UK)) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

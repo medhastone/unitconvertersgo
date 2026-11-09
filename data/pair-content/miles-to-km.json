@@ -1,0 +1,111 @@
+{
+  "status": "draft-needs-review",
+  "slug": "miles-to-km",
+  "category": "length",
+  "categoryId": "length",
+  "fromUnitId": "mile",
+  "toUnitId": "kilometer",
+  "fromSymbol": "mi",
+  "toSymbol": "km",
+  "intro": "Professionals and everyday users convert miles (mi) to kilometers (km) when working across imperial and si standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One mile (statute) equals 1.609344 kilometers, while 1 kilometer equals 0.621371 miles. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    3.1,
+    5,
+    6.2,
+    10,
+    13.1,
+    26.2,
+    50,
+    60,
+    70,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Mile (Statute) Benchmark (5 mi)",
+      "scenario": "Convert 5 miles (mi) into kilometers (km) for technical comparison and documentation.",
+      "inputValue": 5,
+      "outputValue": "8.04672 km",
+      "stepByStep": "5 mi × 1.609344 = 8.04672 km (rounds to 8.05 km)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (13.1 mi)",
+      "scenario": "Convert 13.1 miles (mi) into kilometers (km) for technical comparison and documentation.",
+      "inputValue": 13.1,
+      "outputValue": "21.082406 km",
+      "stepByStep": "13.1 mi × 1.609344 = 21.082406 km (rounds to 21.08 km)."
+    },
+    {
+      "title": "Higher-Capacity Specification (60 mi)",
+      "scenario": "Convert 60 miles (mi) into kilometers (km) for technical comparison and documentation.",
+      "inputValue": 60,
+      "outputValue": "96.56064 km",
+      "stepByStep": "60 mi × 1.609344 = 96.56064 km (rounds to 96.56 km)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Mile (Statute) to Kilometer is 1.609344, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "km = mi × 1.609344",
+    "exactFactor": "1.609344",
+    "roundedFactor": "1.6093",
+    "inverseFactor": "0.621371"
+  },
+  "internalLinks": [
+    {
+      "label": "Kilometers to Miles (km to mi)",
+      "href": "/length/km-to-miles",
+      "type": "reverse"
+    },
+    {
+      "label": "Centimeters to Inches (cm to in)",
+      "href": "/length/cm-to-inches",
+      "type": "related"
+    },
+    {
+      "label": "Inches to Centimeters (in to cm)",
+      "href": "/length/inches-to-cm",
+      "type": "related"
+    },
+    {
+      "label": "Feet to Meters (ft to m)",
+      "href": "/length/feet-to-meters",
+      "type": "related"
+    },
+    {
+      "label": "Meters to Feet (m to ft)",
+      "href": "/length/meters-to-feet",
+      "type": "related"
+    },
+    {
+      "label": "Length Conversions Hub",
+      "href": "/length",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many kilometers (km) are in 1 mile (statute) (mi)?",
+      "answer": "There are 1.609344 kilometers (km) in 1 mile (statute) (mi), which rounds to 1.6093 km for everyday calculations. Conversely, 1 kilometer equals 0.621371 miles."
+    },
+    {
+      "question": "How do I convert miles to kilometers (mi to km)?",
+      "answer": "To convert miles to kilometers, use the formula: km = mi × 1.609344. For example, converting 10 mi gives 16.0934 km."
+    },
+    {
+      "question": "What is 10 miles in kilometers?",
+      "answer": "10 miles (mi) equals exactly 16.0934 kilometers (km) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

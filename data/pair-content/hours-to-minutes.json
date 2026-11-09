@@ -1,0 +1,106 @@
+{
+  "status": "draft-needs-review",
+  "slug": "hours-to-minutes",
+  "category": "time",
+  "categoryId": "time",
+  "fromUnitId": "hour",
+  "toUnitId": "minute",
+  "fromSymbol": "hr",
+  "toSymbol": "min",
+  "intro": "Professionals and everyday users convert hours (hr) to minutes (min) when working across other and other standards in project scheduling, payroll timecards, scientific interval logging, and server uptime SLAs. One hour equals 60 minutes, while 1 minute equals 0.016667 hours. Whether you are verifying time specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    2,
+    4,
+    6,
+    8,
+    12,
+    16,
+    24,
+    36,
+    48,
+    72,
+    168
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Hour Benchmark (4 hr)",
+      "scenario": "Convert 4 hours (hr) into minutes (min) for technical comparison and documentation.",
+      "inputValue": 4,
+      "outputValue": "240 min",
+      "stepByStep": "4 hr × 60 = 240 min (rounds to 240 min)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (12 hr)",
+      "scenario": "Convert 12 hours (hr) into minutes (min) for technical comparison and documentation.",
+      "inputValue": 12,
+      "outputValue": "720 min",
+      "stepByStep": "12 hr × 60 = 720 min (rounds to 720 min)."
+    },
+    {
+      "title": "Higher-Capacity Specification (36 hr)",
+      "scenario": "Convert 36 hours (hr) into minutes (min) for technical comparison and documentation.",
+      "inputValue": 36,
+      "outputValue": "2,160 min",
+      "stepByStep": "36 hr × 60 = 2,160 min (rounds to 2,160 min)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "min = hr × 60",
+    "exactFactor": "60",
+    "roundedFactor": "60",
+    "inverseFactor": "0.016667"
+  },
+  "internalLinks": [
+    {
+      "label": "Minutes to Hours (min to hr)",
+      "href": "/time/minutes-to-hours",
+      "type": "reverse"
+    },
+    {
+      "label": "Minutes to Seconds (min to s)",
+      "href": "/time/minutes-to-seconds",
+      "type": "related"
+    },
+    {
+      "label": "Seconds to Minutes (s to min)",
+      "href": "/time/seconds-to-minutes",
+      "type": "related"
+    },
+    {
+      "label": "Days to Hours (d to hr)",
+      "href": "/time/days-to-hours",
+      "type": "related"
+    },
+    {
+      "label": "Hours to Days (hr to d)",
+      "href": "/time/hours-to-days",
+      "type": "related"
+    },
+    {
+      "label": "Time Conversions Hub",
+      "href": "/time",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many minutes (min) are in 1 hour (hr)?",
+      "answer": "There are 60 minutes (min) in 1 hour (hr), which rounds to 60 min for everyday calculations. Conversely, 1 minute equals 0.016667 hours."
+    },
+    {
+      "question": "How do I convert hours to minutes (hr to min)?",
+      "answer": "To convert hours to minutes, use the formula: min = hr × 60. For example, converting 8 hr gives 480 min."
+    },
+    {
+      "question": "What is 8 hours in minutes?",
+      "answer": "8 hours (hr) equals exactly 480 minutes (min) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

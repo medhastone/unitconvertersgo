@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "newtons-to-kgf",
+  "category": "force",
+  "categoryId": "force",
+  "fromUnitId": "newton",
+  "toUnitId": "kilogram_force",
+  "fromSymbol": "N",
+  "toSymbol": "kgf",
+  "intro": "Professionals and everyday users convert newtons (N) to kilograms-force (kgf) when working across si and metric standards in structural beam load analysis, fastener tensile testing, aerospace thrust ratings, and mechanical engineering. One newton equals 0.101972 kilograms-force, while 1 kilogram-force (kilopond) equals 9.80665 newtons. Whether you are verifying force specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    5,
+    10,
+    25,
+    50,
+    75,
+    100,
+    150,
+    250,
+    500
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Newton Benchmark (10 N)",
+      "scenario": "Convert 10 newtons (N) into kilograms-force (kgf) for technical comparison and documentation.",
+      "inputValue": 10,
+      "outputValue": "1.019716 kgf",
+      "stepByStep": "10 N × 0.101972 = 1.019716 kgf (rounds to 1.02 kgf)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (75 N)",
+      "scenario": "Convert 75 newtons (N) into kilograms-force (kgf) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "7.647872 kgf",
+      "stepByStep": "75 N × 0.101972 = 7.647872 kgf (rounds to 7.65 kgf)."
+    },
+    {
+      "title": "Higher-Capacity Specification (250 N)",
+      "scenario": "Convert 250 newtons (N) into kilograms-force (kgf) for technical comparison and documentation.",
+      "inputValue": 250,
+      "outputValue": "25.492905 kgf",
+      "stepByStep": "250 N × 0.101972 = 25.492905 kgf (rounds to 25.49 kgf)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Newton to Kilogram-force (Kilopond) is 0.10197162, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "kgf = N × 0.10197162",
+    "exactFactor": "0.10197162",
+    "roundedFactor": "0.102",
+    "inverseFactor": "9.80665"
+  },
+  "internalLinks": [
+    {
+      "label": "Kilograms-force to Newtons (kgf to N)",
+      "href": "/force/kgf-to-newtons",
+      "type": "reverse"
+    },
+    {
+      "label": "Newtons to Pounds-force (N to lbf)",
+      "href": "/force/newtons-to-pounds-force",
+      "type": "related"
+    },
+    {
+      "label": "Pounds-force to Newtons (lbf to N)",
+      "href": "/force/pounds-force-to-newtons",
+      "type": "related"
+    },
+    {
+      "label": "Kilonewtons to Newtons (kN to N)",
+      "href": "/force/kilonewtons-to-newtons",
+      "type": "related"
+    },
+    {
+      "label": "Kilonewtons to Pounds-force (kN to lbf)",
+      "href": "/force/kilonewton-to-pound-force",
+      "type": "related"
+    },
+    {
+      "label": "Force Conversions Hub",
+      "href": "/force",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many kilograms-force (kgf) are in 1 newton (N)?",
+      "answer": "There are 0.10197162 kilograms-force (kgf) in 1 newton (N), which rounds to 0.102 kgf for everyday calculations. Conversely, 1 kilogram-force (kilopond) equals 9.80665 newtons."
+    },
+    {
+      "question": "How do I convert newtons to kilograms-force (N to kgf)?",
+      "answer": "To convert newtons to kilograms-force, use the formula: kgf = N × 0.10197162. For example, converting 50 N gives 5.0986 kgf."
+    },
+    {
+      "question": "What is 50 newtons in kilograms-force?",
+      "answer": "50 newtons (N) equals exactly 5.0986 kilograms-force (kgf) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

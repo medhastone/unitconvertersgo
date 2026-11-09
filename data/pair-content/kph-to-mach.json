@@ -1,0 +1,103 @@
+{
+  "slug": "kph-to-mach",
+  "categoryId": "speed",
+  "fromUnitId": "km_per_h",
+  "toUnitId": "mach",
+  "status": "draft-needs-review",
+  "intro": "Converting kilometers per hour (km/h) to mach (Mach) is essential when translating measurements across automotive speedometer readings, aviation airspeed logs, maritime navigation, and meteorological wind reports. One kilometers per hour equals 0.00081629 mach, while one mach equals 1,225.044 kilometers per hour. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
+  "referenceValues": [
+    300,
+    500,
+    800,
+    900,
+    1000,
+    1234.8,
+    1500,
+    2000,
+    2500,
+    3500
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 500 km/h to Mach",
+      "context": "Baseline reference check when comparing a single kilometers per hour specification against mach",
+      "inputValue": 500,
+      "calculation": "500 km/h × 0.00081629 = 0.40815 Mach",
+      "result": "500 km/h = 0.40815 Mach"
+    },
+    {
+      "title": "Convert 1000 km/h to Mach",
+      "context": "Mid-range practical measurement commonly encountered in speed workflows and equipment sheets",
+      "inputValue": 1000,
+      "calculation": "1000 km/h × 0.00081629 = 0.8163 Mach",
+      "result": "1000 km/h = 0.8163 Mach"
+    },
+    {
+      "title": "Convert 2000 km/h to Mach",
+      "context": "Larger scale calculation for commercial, industrial, or bulk speed planning",
+      "inputValue": 2000,
+      "calculation": "2000 km/h × 0.00081629 = 1.63259 Mach",
+      "result": "2000 km/h = 1.63259 Mach"
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Altitude and Temperature Dependence of Mach Number",
+    "items": [
+      "Standard Mach conversions assume the ICAO International Standard Atmosphere (ISA) sea-level speed of sound at 15 °C (59 °F), where Mach 1 = 1,225.044 km/h (340.29 m/s or 761.21 mph).",
+      "At commercial cruising altitudes (35,000 ft / 10,668 m) where ambient air temperature drops to −54 °C, the local speed of sound decreases to ~1,062 km/h (660 mph)."
+    ]
+  },
+  "formula": {
+    "exactFactor": "0.00081629",
+    "roundedFactor": "0.00081629",
+    "equation": "Mach = km/h × 0.00081629",
+    "inverseEquation": "km/h = Mach × 1",
+    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 km/h = 0.00081629 Mach)."
+  },
+  "internalLinks": [
+    {
+      "href": "/speed/mach-to-kph",
+      "label": "Mach to Kilometers per Hour (Mach to km/h)",
+      "type": "reverse"
+    },
+    {
+      "href": "/speed/kph-to-mph",
+      "label": "Kilometers per Hour to Miles per Hour (km/h to mph)",
+      "type": "related"
+    },
+    {
+      "href": "/speed/mph-to-kph",
+      "label": "Miles per Hour to Kilometers per Hour (mph to km/h)",
+      "type": "related"
+    },
+    {
+      "href": "/speed/knots-to-mph",
+      "label": "Knots to Miles per Hour (kn to mph)",
+      "type": "related"
+    },
+    {
+      "href": "/undefined",
+      "label": "Speed Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/si-prefixes",
+      "label": "SI Prefixes & Scientific Notation Reference Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many mach are in 1 kilometers per hour?",
+      "answer": "There are 0.00081629 mach (Mach) in 1 kilometers per hour (km/h). To convert km/h to Mach, use the exact conversion factor 0.00081629."
+    },
+    {
+      "question": "How do I convert kilometers per hour to mach manually?",
+      "answer": "Multiply your kilometers per hour value by 0.00081629 (exact factor: 0.00081629). For example, 1000 km/h × 0.00081629 = 0.8163 Mach."
+    },
+    {
+      "question": "What is 2000 km/h in Mach?",
+      "answer": "2000 kilometers per hour (km/h) equals 1.63259 mach (Mach)."
+    }
+  ]
+}

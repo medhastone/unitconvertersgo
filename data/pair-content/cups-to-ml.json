@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "cups-to-ml",
+  "category": "volume",
+  "categoryId": "volume",
+  "fromUnitId": "us_cup",
+  "toUnitId": "milliliter",
+  "fromSymbol": "cup",
+  "toSymbol": "mL",
+  "intro": "Professionals and everyday users convert cups (us) (cup) to milliliters (mL) when working across us_customary and metric standards in culinary recipe scaling, beverage bottling, laboratory reagent preparation, and fluid tank capacity sizing. One cup (us customary) equals 236.588237 milliliters, while 1 milliliter equals 0.004227 cups (us). Whether you are verifying volume & liquid specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.25,
+    0.333,
+    0.5,
+    0.667,
+    0.75,
+    1,
+    1.5,
+    2,
+    3,
+    4
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Cup (US Customary) Benchmark (0.5 cup)",
+      "scenario": "Convert 0.5 cups (us) (cup) into milliliters (mL) for technical comparison and documentation.",
+      "inputValue": 0.5,
+      "outputValue": "118.294118 mL",
+      "stepByStep": "0.5 cup × 236.588237 = 118.294118 mL (rounds to 118.29 mL)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (1 cup)",
+      "scenario": "Convert 1 cups (us) (cup) into milliliters (mL) for technical comparison and documentation.",
+      "inputValue": 1,
+      "outputValue": "236.588237 mL",
+      "stepByStep": "1 cup × 236.588237 = 236.588237 mL (rounds to 236.59 mL)."
+    },
+    {
+      "title": "Higher-Capacity Specification (3 cup)",
+      "scenario": "Convert 3 cups (us) (cup) into milliliters (mL) for technical comparison and documentation.",
+      "inputValue": 3,
+      "outputValue": "709.76471 mL",
+      "stepByStep": "3 cup × 236.588237 = 709.76471 mL (rounds to 709.76 mL)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "US Customary vs. British Imperial Liquid Volume Trap",
+    "items": [
+      "US Customary and UK Imperial liquid units share identical names but have different physical volumes: 1 US Gallon is 3.78541 L (128 US fl oz), whereas 1 UK Imperial Gallon is 4.54609 L (160 Imp fl oz) — a 20.1% difference.",
+      "Similarly, 1 US Pint contains 16 US fluid ounces (473.18 mL), while 1 British Imperial Pint contains 20 Imperial fluid ounces (568.26 mL). Always verify whether your recipe, pump datasheet, or vehicle spec sheet uses US or UK standards."
+    ]
+  },
+  "formula": {
+    "equation": "mL = cup × 236.5882365",
+    "exactFactor": "236.5882365",
+    "roundedFactor": "236.5882",
+    "inverseFactor": "0.004227"
+  },
+  "internalLinks": [
+    {
+      "label": "Milliliters to Cups (US) (mL to cup)",
+      "href": "/volume/ml-to-cups",
+      "type": "reverse"
+    },
+    {
+      "label": "Liters to Gallons (US) (L to gal (US))",
+      "href": "/volume/liters-to-gallons",
+      "type": "related"
+    },
+    {
+      "label": "Gallons (US) to Liters (gal (US) to L)",
+      "href": "/volume/gallons-to-liters",
+      "type": "related"
+    },
+    {
+      "label": "Milliliters to Fluid Ounces (US) (mL to fl oz)",
+      "href": "/volume/ml-to-fluid-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Fluid Ounces (US) to Milliliters (fl oz to mL)",
+      "href": "/volume/fluid-ounces-to-ml",
+      "type": "related"
+    },
+    {
+      "label": "Volume & Liquid Conversions Hub",
+      "href": "/volume",
+      "type": "hub"
+    },
+    {
+      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "href": "/guides/us-vs-imperial-fluid-ounces",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many milliliters (mL) are in 1 cup (us customary) (cup)?",
+      "answer": "There are 236.5882365 milliliters (mL) in 1 cup (us customary) (cup), which rounds to 236.5882 mL for everyday calculations. Conversely, 1 milliliter equals 0.004227 cups (us)."
+    },
+    {
+      "question": "How do I convert cups (us) to milliliters (cup to mL)?",
+      "answer": "To convert cups (us) to milliliters, use the formula: mL = cup × 236.5882365. For example, converting 0.75 cup gives 177.4412 mL."
+    },
+    {
+      "question": "What is 0.75 cups (us) in milliliters?",
+      "answer": "0.75 cups (us) (cup) equals exactly 177.4412 milliliters (mL) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

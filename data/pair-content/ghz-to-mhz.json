@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "ghz-to-mhz",
+  "category": "frequency",
+  "categoryId": "frequency",
+  "fromUnitId": "gigahertz",
+  "toUnitId": "megahertz",
+  "fromSymbol": "GHz",
+  "toSymbol": "MHz",
+  "intro": "Professionals and everyday users convert gigahertz (GHz) to megahertz (MHz) when working across metric and metric standards in processor clock speeds, RF wireless spectrum allocation, audio signal processing, and rotational machinery RPM. One gigahertz equals 1,000 megahertz, while 1 megahertz equals 0.001 gigahertz. Whether you are verifying frequency specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Gigahertz Benchmark (2 GHz)",
+      "scenario": "Convert 2 gigahertz (GHz) into megahertz (MHz) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "2,000 MHz",
+      "stepByStep": "2 GHz × 1,000 = 2,000 MHz (rounds to 2,000 MHz)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 GHz)",
+      "scenario": "Convert 20 gigahertz (GHz) into megahertz (MHz) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "20,000 MHz",
+      "stepByStep": "20 GHz × 1,000 = 20,000 MHz (rounds to 20,000 MHz)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 GHz)",
+      "scenario": "Convert 75 gigahertz (GHz) into megahertz (MHz) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "75,000 MHz",
+      "stepByStep": "75 GHz × 1,000 = 75,000 MHz (rounds to 75,000 MHz)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "MHz = GHz × 1,000",
+    "exactFactor": "1,000",
+    "roundedFactor": "1,000",
+    "inverseFactor": "0.001"
+  },
+  "internalLinks": [
+    {
+      "label": "Megahertz to Gigahertz (MHz to GHz)",
+      "href": "/frequency/mhz-to-ghz",
+      "type": "reverse"
+    },
+    {
+      "label": "Hertz to Kilohertz (Hz to kHz)",
+      "href": "/frequency/hz-to-khz",
+      "type": "related"
+    },
+    {
+      "label": "Kilohertz to Hertz (kHz to Hz)",
+      "href": "/frequency/khz-to-hz",
+      "type": "related"
+    },
+    {
+      "label": "RPM to Hertz (RPM to Hz)",
+      "href": "/frequency/rpm-to-hz",
+      "type": "related"
+    },
+    {
+      "label": "Kilohertz to Megahertz (kHz to MHz)",
+      "href": "/frequency/khz-to-mhz",
+      "type": "related"
+    },
+    {
+      "label": "Frequency Conversions Hub",
+      "href": "/frequency",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many megahertz (MHz) are in 1 gigahertz (GHz)?",
+      "answer": "There are 1,000 megahertz (MHz) in 1 gigahertz (GHz), which rounds to 1,000 MHz for everyday calculations. Conversely, 1 megahertz equals 0.001 gigahertz."
+    },
+    {
+      "question": "How do I convert gigahertz to megahertz (GHz to MHz)?",
+      "answer": "To convert gigahertz to megahertz, use the formula: MHz = GHz × 1,000. For example, converting 10 GHz gives 10,000 MHz."
+    },
+    {
+      "question": "What is 10 gigahertz in megahertz?",
+      "answer": "10 gigahertz (GHz) equals exactly 10,000 megahertz (MHz) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

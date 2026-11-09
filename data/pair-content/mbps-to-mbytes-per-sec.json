@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "mbps-to-mbytes-per-sec",
+  "category": "data-transfer",
+  "categoryId": "data_transfer",
+  "fromUnitId": "mbps",
+  "toUnitId": "mb_per_sec",
+  "fromSymbol": "Mbps",
+  "toSymbol": "MB/s",
+  "intro": "Professionals and everyday users convert megabits per second (Mbps) to megabytes per second (MB/s) when working across metric and metric standards in engineering specifications, international trade documentation, and technical measurements. One megabits per second equals 0.125 megabytes per second, while 1 megabytes per second equals 8 megabits per second. Whether you are verifying data transfer specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Megabits per Second Benchmark (2 Mbps)",
+      "scenario": "Convert 2 megabits per second (Mbps) into megabytes per second (MB/s) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "0.25 MB/s",
+      "stepByStep": "2 Mbps × 0.125 = 0.25 MB/s (rounds to 0.25 MB/s)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 Mbps)",
+      "scenario": "Convert 20 megabits per second (Mbps) into megabytes per second (MB/s) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "2.5 MB/s",
+      "stepByStep": "20 Mbps × 0.125 = 2.5 MB/s (rounds to 2.5 MB/s)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 Mbps)",
+      "scenario": "Convert 75 megabits per second (Mbps) into megabytes per second (MB/s) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "9.375 MB/s",
+      "stepByStep": "75 Mbps × 0.125 = 9.375 MB/s (rounds to 9.38 MB/s)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "MB/s = Mbps × 0.125",
+    "exactFactor": "0.125",
+    "roundedFactor": "0.125",
+    "inverseFactor": "8"
+  },
+  "internalLinks": [
+    {
+      "label": "Megabytes per Second to Megabits per Second (MB/s to Mbps)",
+      "href": "/data-transfer/mbytes-per-sec-to-mbps",
+      "type": "reverse"
+    },
+    {
+      "label": "Gigabits per Second to Megabits per Second (Gbps to Mbps)",
+      "href": "/data-transfer/gbps-to-mbps",
+      "type": "related"
+    },
+    {
+      "label": "Megabits per Second to Gigabits per Second (Mbps to Gbps)",
+      "href": "/data-transfer/mbps-to-gbps",
+      "type": "related"
+    },
+    {
+      "label": "Kilobits per Second to Megabits per Second (Kbps to Mbps)",
+      "href": "/data-transfer/kbps-to-mbps",
+      "type": "related"
+    },
+    {
+      "label": "Bits per Second to Kilobits per Second (bps to Kbps)",
+      "href": "/data-transfer/bps-to-kbps",
+      "type": "related"
+    },
+    {
+      "label": "Data Transfer Conversions Hub",
+      "href": "/data-transfer",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many megabytes per second (MB/s) are in 1 megabits per second (Mbps)?",
+      "answer": "There are 0.125 megabytes per second (MB/s) in 1 megabits per second (Mbps), which rounds to 0.125 MB/s for everyday calculations. Conversely, 1 megabytes per second equals 8 megabits per second."
+    },
+    {
+      "question": "How do I convert megabits per second to megabytes per second (Mbps to MB/s)?",
+      "answer": "To convert megabits per second to megabytes per second, use the formula: MB/s = Mbps × 0.125. For example, converting 10 Mbps gives 1.25 MB/s."
+    },
+    {
+      "question": "What is 10 megabits per second in megabytes per second?",
+      "answer": "10 megabits per second (Mbps) equals exactly 1.25 megabytes per second (MB/s) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

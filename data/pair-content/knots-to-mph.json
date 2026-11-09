@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "knots-to-mph",
+  "category": "speed",
+  "categoryId": "speed",
+  "fromUnitId": "knot",
+  "toUnitId": "mph",
+  "fromSymbol": "kn",
+  "toSymbol": "mph",
+  "intro": "Professionals and everyday users convert knots (kn) to miles per hour (mph) when working across other and imperial standards in automotive speedometer readings, aviation airspeed navigation, maritime chart plotting, and meteorology. One knot equals 1.150779 miles per hour, while 1 miles per hour equals 0.868976 knots. Whether you are verifying speed specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    5,
+    10,
+    25,
+    35,
+    50,
+    60,
+    70,
+    80,
+    100,
+    120
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Knot Benchmark (25 kn)",
+      "scenario": "Convert 25 knots (kn) into miles per hour (mph) for technical comparison and documentation.",
+      "inputValue": 25,
+      "outputValue": "28.769486 mph",
+      "stepByStep": "25 kn × 1.150779 = 28.769486 mph (rounds to 28.77 mph)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (60 kn)",
+      "scenario": "Convert 60 knots (kn) into miles per hour (mph) for technical comparison and documentation.",
+      "inputValue": 60,
+      "outputValue": "69.046767 mph",
+      "stepByStep": "60 kn × 1.150779 = 69.046767 mph (rounds to 69.05 mph)."
+    },
+    {
+      "title": "Higher-Capacity Specification (100 kn)",
+      "scenario": "Convert 100 knots (kn) into miles per hour (mph) for technical comparison and documentation.",
+      "inputValue": 100,
+      "outputValue": "115.077945 mph",
+      "stepByStep": "100 kn × 1.150779 = 115.077945 mph (rounds to 115.08 mph)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Knot to Miles per Hour is 1.15077945, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "mph = kn × 1.15077945",
+    "exactFactor": "1.15077945",
+    "roundedFactor": "1.1508",
+    "inverseFactor": "0.868976"
+  },
+  "internalLinks": [
+    {
+      "label": "Miles per Hour to Knots (mph to kn)",
+      "href": "/speed/mph-to-knots",
+      "type": "reverse"
+    },
+    {
+      "label": "Miles per Hour to Kilometers per Hour (mph to km/h)",
+      "href": "/speed/mph-to-kph",
+      "type": "related"
+    },
+    {
+      "label": "Kilometers per Hour to Miles per Hour (km/h to mph)",
+      "href": "/speed/kph-to-mph",
+      "type": "related"
+    },
+    {
+      "label": "Meters per Second to Kilometers per Hour (m/s to km/h)",
+      "href": "/speed/meters-per-second-to-kph",
+      "type": "related"
+    },
+    {
+      "label": "Kilometers per Hour to Meters per Second (km/h to m/s)",
+      "href": "/speed/kph-to-meters-per-second",
+      "type": "related"
+    },
+    {
+      "label": "Speed Conversions Hub",
+      "href": "/speed",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many miles per hour (mph) are in 1 knot (kn)?",
+      "answer": "There are 1.15077945 miles per hour (mph) in 1 knot (kn), which rounds to 1.1508 mph for everyday calculations. Conversely, 1 miles per hour equals 0.868976 knots."
+    },
+    {
+      "question": "How do I convert knots to miles per hour (kn to mph)?",
+      "answer": "To convert knots to miles per hour, use the formula: mph = kn × 1.15077945. For example, converting 50 kn gives 57.539 mph."
+    },
+    {
+      "question": "What is 50 knots in miles per hour?",
+      "answer": "50 knots (kn) equals exactly 57.539 miles per hour (mph) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

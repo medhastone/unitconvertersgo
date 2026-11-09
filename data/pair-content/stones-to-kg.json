@@ -1,0 +1,103 @@
+{
+  "slug": "stones-to-kg",
+  "categoryId": "mass",
+  "fromUnitId": "stone",
+  "toUnitId": "kilogram",
+  "status": "draft-needs-review",
+  "intro": "Converting stones (st) to kilograms (kg) is essential when translating measurements across international freight shipping, gym barbell loading, laboratory formulation, and commercial food packaging. One stone equals 6.35029 kilograms, while one kilogram equals 0.15747 stones. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
+  "referenceValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    100,
+    250
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 1 st to kg",
+      "context": "Baseline reference check when comparing a single stone specification against kilograms",
+      "inputValue": 1,
+      "calculation": "1 st × 6.35029 = 6.35029 kg",
+      "result": "1 st = 6.35029 kg"
+    },
+    {
+      "title": "Convert 10 st to kg",
+      "context": "Mid-range practical measurement commonly encountered in mass & weight workflows and equipment sheets",
+      "inputValue": 10,
+      "calculation": "10 st × 6.35029 = 63.50293 kg",
+      "result": "10 st = 63.50293 kg"
+    },
+    {
+      "title": "Convert 50 st to kg",
+      "context": "Larger scale calculation for commercial, industrial, or bulk mass & weight planning",
+      "inputValue": 50,
+      "calculation": "50 st × 6.35029 = 317.51466 kg",
+      "result": "50 st = 317.51466 kg"
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Short Ton, Long Ton, Metric Tonne & Troy vs. Avoirdupois Weight",
+    "items": [
+      "In the United States, \"ton\" without qualification refers to the US short ton (2,000 lb = 907.18474 kg), whereas the metric tonne equals 1,000 kg (2,204.62 lb) and the UK long ton equals 2,240 lb (1,016.05 kg).",
+      "Everyday weight conversions use the Avoirdupois ounce (28.349523125 g) and pound (16 oz = 453.59237 g); precious metals like gold and silver use the heavier Troy ounce (31.1034768 g)."
+    ]
+  },
+  "formula": {
+    "exactFactor": "6.35029",
+    "roundedFactor": "6.35029",
+    "equation": "kg = st × 6.35029",
+    "inverseEquation": "st = kg × 1",
+    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 st = 6.35029 kg)."
+  },
+  "internalLinks": [
+    {
+      "href": "/weight-and-mass/kg-to-stone",
+      "label": "Kilograms to Stones (kg to st)",
+      "type": "reverse"
+    },
+    {
+      "href": "/weight-and-mass/kg-to-lbs",
+      "label": "Kilograms to Pounds (kg to lb)",
+      "type": "related"
+    },
+    {
+      "href": "/weight-and-mass/lbs-to-kg",
+      "label": "Pounds to Kilograms (lb to kg)",
+      "type": "related"
+    },
+    {
+      "href": "/weight-and-mass/grams-to-kg",
+      "label": "Grams to Kilograms (g to kg)",
+      "type": "related"
+    },
+    {
+      "href": "/undefined",
+      "label": "Mass & Weight Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/metric-vs-imperial",
+      "label": "Metric vs. Imperial System: Complete Engineering Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many kilograms are in 1 stone?",
+      "answer": "There are 6.35029 kilograms (kg) in 1 stone (st). To convert st to kg, use the exact conversion factor 6.35029."
+    },
+    {
+      "question": "How do I convert stones to kilograms manually?",
+      "answer": "Multiply your stone value by 6.35029 (exact factor: 6.35029). For example, 10 st × 6.35029 = 63.50293 kg."
+    },
+    {
+      "question": "What is 50 st in kg?",
+      "answer": "50 stones (st) equals 317.51466 kilograms (kg)."
+    }
+  ]
+}

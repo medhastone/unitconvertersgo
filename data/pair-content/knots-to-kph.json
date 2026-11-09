@@ -1,0 +1,105 @@
+{
+  "status": "draft-needs-review",
+  "slug": "knots-to-kph",
+  "category": "speed",
+  "categoryId": "speed",
+  "fromUnitId": "knot",
+  "toUnitId": "km_per_h",
+  "fromSymbol": "kn",
+  "toSymbol": "km/h",
+  "intro": "Professionals and everyday users convert knots (kn) to kilometers per hour (km/h) when working across other and metric standards in automotive speedometer readings, aviation airspeed navigation, maritime chart plotting, and meteorology. One knot equals 1.852 kilometers per hour, while 1 kilometers per hour equals 0.539957 knots. Whether you are verifying speed specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    5,
+    10,
+    25,
+    35,
+    50,
+    60,
+    70,
+    80,
+    100,
+    120
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Knot Benchmark (25 kn)",
+      "scenario": "Convert 25 knots (kn) into kilometers per hour (km/h) for technical comparison and documentation.",
+      "inputValue": 25,
+      "outputValue": "46.3 km/h",
+      "stepByStep": "25 kn × 1.852 = 46.3 km/h (rounds to 46.3 km/h)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (60 kn)",
+      "scenario": "Convert 60 knots (kn) into kilometers per hour (km/h) for technical comparison and documentation.",
+      "inputValue": 60,
+      "outputValue": "111.12 km/h",
+      "stepByStep": "60 kn × 1.852 = 111.12 km/h (rounds to 111.12 km/h)."
+    },
+    {
+      "title": "Higher-Capacity Specification (100 kn)",
+      "scenario": "Convert 100 knots (kn) into kilometers per hour (km/h) for technical comparison and documentation.",
+      "inputValue": 100,
+      "outputValue": "185.2 km/h",
+      "stepByStep": "100 kn × 1.852 = 185.2 km/h (rounds to 185.2 km/h)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Knot to Kilometers per Hour is 1.852, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "km/h = kn × 1.852",
+    "exactFactor": "1.852",
+    "roundedFactor": "1.852",
+    "inverseFactor": "0.539957"
+  },
+  "internalLinks": [
+    {
+      "label": "Miles per Hour to Kilometers per Hour (mph to km/h)",
+      "href": "/speed/mph-to-kph",
+      "type": "related"
+    },
+    {
+      "label": "Kilometers per Hour to Miles per Hour (km/h to mph)",
+      "href": "/speed/kph-to-mph",
+      "type": "related"
+    },
+    {
+      "label": "Meters per Second to Kilometers per Hour (m/s to km/h)",
+      "href": "/speed/meters-per-second-to-kph",
+      "type": "related"
+    },
+    {
+      "label": "Kilometers per Hour to Meters per Second (km/h to m/s)",
+      "href": "/speed/kph-to-meters-per-second",
+      "type": "related"
+    },
+    {
+      "label": "Speed Conversions Hub",
+      "href": "/speed",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many kilometers per hour (km/h) are in 1 knot (kn)?",
+      "answer": "There are 1.852 kilometers per hour (km/h) in 1 knot (kn), which rounds to 1.852 km/h for everyday calculations. Conversely, 1 kilometers per hour equals 0.539957 knots."
+    },
+    {
+      "question": "How do I convert knots to kilometers per hour (kn to km/h)?",
+      "answer": "To convert knots to kilometers per hour, use the formula: km/h = kn × 1.852. For example, converting 50 kn gives 92.6 km/h."
+    },
+    {
+      "question": "What is 50 knots in kilometers per hour?",
+      "answer": "50 knots (kn) equals exactly 92.6 kilometers per hour (km/h) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

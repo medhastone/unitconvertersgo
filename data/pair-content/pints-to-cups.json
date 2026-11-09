@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "pints-to-cups",
+  "category": "volume",
+  "categoryId": "volume",
+  "fromUnitId": "us_pint",
+  "toUnitId": "us_cup",
+  "fromSymbol": "pt",
+  "toSymbol": "cup",
+  "intro": "Professionals and everyday users convert pints (us) (pt) to cups (us) (cup) when working across us_customary and us_customary standards in culinary recipe scaling, beverage bottling, laboratory reagent preparation, and fluid tank capacity sizing. One pint (us liquid) equals 2 cups (us), while 1 cup (us customary) equals 0.5 pints (us). Whether you are verifying volume & liquid specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Pint (US Liquid) Benchmark (2 pt)",
+      "scenario": "Convert 2 pints (us) (pt) into cups (us) (cup) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "4 cup",
+      "stepByStep": "2 pt × 2 = 4 cup (rounds to 4 cup)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 pt)",
+      "scenario": "Convert 20 pints (us) (pt) into cups (us) (cup) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "40 cup",
+      "stepByStep": "20 pt × 2 = 40 cup (rounds to 40 cup)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 pt)",
+      "scenario": "Convert 75 pints (us) (pt) into cups (us) (cup) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "150 cup",
+      "stepByStep": "75 pt × 2 = 150 cup (rounds to 150 cup)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "US Customary vs. British Imperial Liquid Volume Trap",
+    "items": [
+      "US Customary and UK Imperial liquid units share identical names but have different physical volumes: 1 US Gallon is 3.78541 L (128 US fl oz), whereas 1 UK Imperial Gallon is 4.54609 L (160 Imp fl oz) — a 20.1% difference.",
+      "Similarly, 1 US Pint contains 16 US fluid ounces (473.18 mL), while 1 British Imperial Pint contains 20 Imperial fluid ounces (568.26 mL). Always verify whether your recipe, pump datasheet, or vehicle spec sheet uses US or UK standards."
+    ]
+  },
+  "formula": {
+    "equation": "cup = pt × 2",
+    "exactFactor": "2",
+    "roundedFactor": "2",
+    "inverseFactor": "0.5"
+  },
+  "internalLinks": [
+    {
+      "label": "Cups (US) to Pints (US) (cup to pt)",
+      "href": "/volume/cups-to-pints",
+      "type": "reverse"
+    },
+    {
+      "label": "Liters to Gallons (US) (L to gal (US))",
+      "href": "/volume/liters-to-gallons",
+      "type": "related"
+    },
+    {
+      "label": "Gallons (US) to Liters (gal (US) to L)",
+      "href": "/volume/gallons-to-liters",
+      "type": "related"
+    },
+    {
+      "label": "Milliliters to Fluid Ounces (US) (mL to fl oz)",
+      "href": "/volume/ml-to-fluid-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Fluid Ounces (US) to Milliliters (fl oz to mL)",
+      "href": "/volume/fluid-ounces-to-ml",
+      "type": "related"
+    },
+    {
+      "label": "Volume & Liquid Conversions Hub",
+      "href": "/volume",
+      "type": "hub"
+    },
+    {
+      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "href": "/guides/us-vs-imperial-fluid-ounces",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many cups (us) (cup) are in 1 pint (us liquid) (pt)?",
+      "answer": "There are 2 cups (us) (cup) in 1 pint (us liquid) (pt), which rounds to 2 cup for everyday calculations. Conversely, 1 cup (us customary) equals 0.5 pints (us)."
+    },
+    {
+      "question": "How do I convert pints (us) to cups (us) (pt to cup)?",
+      "answer": "To convert pints (us) to cups (us), use the formula: cup = pt × 2. For example, converting 10 pt gives 20 cup."
+    },
+    {
+      "question": "What is 10 pints (us) in cups (us)?",
+      "answer": "10 pints (us) (pt) equals exactly 20 cups (us) (cup) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

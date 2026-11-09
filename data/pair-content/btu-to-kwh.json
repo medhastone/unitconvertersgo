@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "btu-to-kwh",
+  "category": "energy",
+  "categoryId": "energy",
+  "fromUnitId": "btu",
+  "toUnitId": "kilowatt_hour",
+  "fromSymbol": "BTU",
+  "toSymbol": "kWh",
+  "intro": "Professionals and everyday users convert btus (BTU) to kilowatt-hours (kWh) when working across imperial and metric standards in residential electricity billing, HVAC heating load calculations, battery storage sizing, and nutritional energy tracking. One british thermal unit (btu) equals 0.000293 kilowatt-hours, while 1 kilowatt-hour equals 3,412.141633 btus. Whether you are verifying energy specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    10,
+    50,
+    100,
+    250,
+    500,
+    1000,
+    2000,
+    3600,
+    5000,
+    10000
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard British Thermal Unit (BTU) Benchmark (100 BTU)",
+      "scenario": "Convert 100 btus (BTU) into kilowatt-hours (kWh) for technical comparison and documentation.",
+      "inputValue": 100,
+      "outputValue": "0.029307 kWh",
+      "stepByStep": "100 BTU × 0.000293 = 0.029307 kWh (rounds to 0.03 kWh)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (1000 BTU)",
+      "scenario": "Convert 1000 btus (BTU) into kilowatt-hours (kWh) for technical comparison and documentation.",
+      "inputValue": 1000,
+      "outputValue": "0.293071 kWh",
+      "stepByStep": "1000 BTU × 0.000293 = 0.293071 kWh (rounds to 0.29 kWh)."
+    },
+    {
+      "title": "Higher-Capacity Specification (5000 BTU)",
+      "scenario": "Convert 5000 btus (BTU) into kilowatt-hours (kWh) for technical comparison and documentation.",
+      "inputValue": 5000,
+      "outputValue": "1.465355 kWh",
+      "stepByStep": "5000 BTU × 0.000293 = 1.465355 kWh (rounds to 1.47 kWh)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from British Thermal Unit (BTU) to Kilowatt-hour is 0.00029307, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "kWh = BTU × 0.00029307",
+    "exactFactor": "0.00029307",
+    "roundedFactor": "0.0003",
+    "inverseFactor": "3,412.141633"
+  },
+  "internalLinks": [
+    {
+      "label": "Kilowatt-hours to BTUs (kWh to BTU)",
+      "href": "/energy/kwh-to-btu",
+      "type": "reverse"
+    },
+    {
+      "label": "Joules to Kilojoules (J to kJ)",
+      "href": "/energy/j-to-kj",
+      "type": "related"
+    },
+    {
+      "label": "Kilojoules to Joules (kJ to J)",
+      "href": "/energy/kj-to-j",
+      "type": "related"
+    },
+    {
+      "label": "Kilocalories to Kilojoules (kcal to kJ)",
+      "href": "/energy/kcal-to-kj",
+      "type": "related"
+    },
+    {
+      "label": "Kilojoules to Kilocalories (kJ to kcal)",
+      "href": "/energy/kj-to-kcal",
+      "type": "related"
+    },
+    {
+      "label": "Energy Conversions Hub",
+      "href": "/energy",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many kilowatt-hours (kWh) are in 1 british thermal unit (btu) (BTU)?",
+      "answer": "There are 0.00029307 kilowatt-hours (kWh) in 1 british thermal unit (btu) (BTU), which rounds to 0.0003 kWh for everyday calculations. Conversely, 1 kilowatt-hour equals 3,412.141633 btus."
+    },
+    {
+      "question": "How do I convert btus to kilowatt-hours (BTU to kWh)?",
+      "answer": "To convert btus to kilowatt-hours, use the formula: kWh = BTU × 0.00029307. For example, converting 500 BTU gives 0.1465 kWh."
+    },
+    {
+      "question": "What is 500 btus in kilowatt-hours?",
+      "answer": "500 btus (BTU) equals exactly 0.1465 kilowatt-hours (kWh) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "fluid-ounces-to-cups",
+  "category": "volume",
+  "categoryId": "volume",
+  "fromUnitId": "us_fluid_ounce",
+  "toUnitId": "us_cup",
+  "fromSymbol": "fl oz",
+  "toSymbol": "cup",
+  "intro": "Professionals and everyday users convert fluid ounces (us) (fl oz) to cups (us) (cup) when working across us_customary and us_customary standards in culinary recipe scaling, beverage bottling, laboratory reagent preparation, and fluid tank capacity sizing. One fluid ounce (us) equals 0.125 cups (us), while 1 cup (us customary) equals 8 fluid ounces (us). Whether you are verifying volume & liquid specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    2,
+    4,
+    6,
+    8,
+    12,
+    16,
+    20,
+    24,
+    32
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Fluid Ounce (US) Benchmark (4 fl oz)",
+      "scenario": "Convert 4 fluid ounces (us) (fl oz) into cups (us) (cup) for technical comparison and documentation.",
+      "inputValue": 4,
+      "outputValue": "0.5 cup",
+      "stepByStep": "4 fl oz × 0.125 = 0.5 cup (rounds to 0.5 cup)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (12 fl oz)",
+      "scenario": "Convert 12 fluid ounces (us) (fl oz) into cups (us) (cup) for technical comparison and documentation.",
+      "inputValue": 12,
+      "outputValue": "1.5 cup",
+      "stepByStep": "12 fl oz × 0.125 = 1.5 cup (rounds to 1.5 cup)."
+    },
+    {
+      "title": "Higher-Capacity Specification (24 fl oz)",
+      "scenario": "Convert 24 fluid ounces (us) (fl oz) into cups (us) (cup) for technical comparison and documentation.",
+      "inputValue": 24,
+      "outputValue": "3 cup",
+      "stepByStep": "24 fl oz × 0.125 = 3 cup (rounds to 3 cup)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "US Customary vs. British Imperial Liquid Volume Trap",
+    "items": [
+      "US Customary and UK Imperial liquid units share identical names but have different physical volumes: 1 US Gallon is 3.78541 L (128 US fl oz), whereas 1 UK Imperial Gallon is 4.54609 L (160 Imp fl oz) — a 20.1% difference.",
+      "Similarly, 1 US Pint contains 16 US fluid ounces (473.18 mL), while 1 British Imperial Pint contains 20 Imperial fluid ounces (568.26 mL). Always verify whether your recipe, pump datasheet, or vehicle spec sheet uses US or UK standards."
+    ]
+  },
+  "formula": {
+    "equation": "cup = fl oz × 0.125",
+    "exactFactor": "0.125",
+    "roundedFactor": "0.125",
+    "inverseFactor": "8"
+  },
+  "internalLinks": [
+    {
+      "label": "Cups (US) to Fluid Ounces (US) (cup to fl oz)",
+      "href": "/volume/cups-to-fluid-ounces",
+      "type": "reverse"
+    },
+    {
+      "label": "Liters to Gallons (US) (L to gal (US))",
+      "href": "/volume/liters-to-gallons",
+      "type": "related"
+    },
+    {
+      "label": "Gallons (US) to Liters (gal (US) to L)",
+      "href": "/volume/gallons-to-liters",
+      "type": "related"
+    },
+    {
+      "label": "Milliliters to Fluid Ounces (US) (mL to fl oz)",
+      "href": "/volume/ml-to-fluid-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Fluid Ounces (US) to Milliliters (fl oz to mL)",
+      "href": "/volume/fluid-ounces-to-ml",
+      "type": "related"
+    },
+    {
+      "label": "Volume & Liquid Conversions Hub",
+      "href": "/volume",
+      "type": "hub"
+    },
+    {
+      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "href": "/guides/us-vs-imperial-fluid-ounces",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many cups (us) (cup) are in 1 fluid ounce (us) (fl oz)?",
+      "answer": "There are 0.125 cups (us) (cup) in 1 fluid ounce (us) (fl oz), which rounds to 0.125 cup for everyday calculations. Conversely, 1 cup (us customary) equals 8 fluid ounces (us)."
+    },
+    {
+      "question": "How do I convert fluid ounces (us) to cups (us) (fl oz to cup)?",
+      "answer": "To convert fluid ounces (us) to cups (us), use the formula: cup = fl oz × 0.125. For example, converting 8 fl oz gives 1 cup."
+    },
+    {
+      "question": "What is 8 fluid ounces (us) in cups (us)?",
+      "answer": "8 fluid ounces (us) (fl oz) equals exactly 1 cups (us) (cup) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

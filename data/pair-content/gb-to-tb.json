@@ -1,0 +1,106 @@
+{
+  "status": "draft-needs-review",
+  "slug": "gb-to-tb",
+  "category": "data-storage",
+  "categoryId": "digital_storage",
+  "fromUnitId": "gigabyte",
+  "toUnitId": "terabyte",
+  "fromSymbol": "GB",
+  "toSymbol": "TB",
+  "intro": "Professionals and everyday users convert gigabytes (GB) to terabytes (TB) when working across metric and metric standards in engineering specifications, international trade documentation, and technical measurements. One gigabyte (decimal) equals 0.001 terabytes, while 1 terabyte (decimal) equals 1,000 gigabytes. Whether you are verifying digital storage specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64,
+    128,
+    256,
+    512,
+    1000,
+    1024
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Gigabyte (Decimal) Benchmark (4 GB)",
+      "scenario": "Convert 4 gigabytes (GB) into terabytes (TB) for technical comparison and documentation.",
+      "inputValue": 4,
+      "outputValue": "0.004 TB",
+      "stepByStep": "4 GB × 0.001 = 0.004 TB (rounds to 0 TB)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (32 GB)",
+      "scenario": "Convert 32 gigabytes (GB) into terabytes (TB) for technical comparison and documentation.",
+      "inputValue": 32,
+      "outputValue": "0.032 TB",
+      "stepByStep": "32 GB × 0.001 = 0.032 TB (rounds to 0.03 TB)."
+    },
+    {
+      "title": "Higher-Capacity Specification (256 GB)",
+      "scenario": "Convert 256 gigabytes (GB) into terabytes (TB) for technical comparison and documentation.",
+      "inputValue": 256,
+      "outputValue": "0.256 TB",
+      "stepByStep": "256 GB × 0.001 = 0.256 TB (rounds to 0.26 TB)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "TB = GB × 0.001",
+    "exactFactor": "0.001",
+    "roundedFactor": "0.001",
+    "inverseFactor": "1,000"
+  },
+  "internalLinks": [
+    {
+      "label": "Terabytes to Gigabytes (TB to GB)",
+      "href": "/data-storage/tb-to-gb",
+      "type": "reverse"
+    },
+    {
+      "label": "Megabytes to Gigabytes (MB to GB)",
+      "href": "/data-storage/mb-to-gb",
+      "type": "related"
+    },
+    {
+      "label": "Gigabytes to Megabytes (GB to MB)",
+      "href": "/data-storage/gb-to-mb",
+      "type": "related"
+    },
+    {
+      "label": "Kilobytes to Megabytes (KB to MB)",
+      "href": "/data-storage/kb-to-mb",
+      "type": "related"
+    },
+    {
+      "label": "Megabytes to Kilobytes (MB to KB)",
+      "href": "/data-storage/mb-to-kb",
+      "type": "related"
+    },
+    {
+      "label": "Digital Storage Conversions Hub",
+      "href": "/data-storage",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many terabytes (TB) are in 1 gigabyte (decimal) (GB)?",
+      "answer": "There are 0.001 terabytes (TB) in 1 gigabyte (decimal) (GB), which rounds to 0.001 TB for everyday calculations. Conversely, 1 terabyte (decimal) equals 1,000 gigabytes."
+    },
+    {
+      "question": "How do I convert gigabytes to terabytes (GB to TB)?",
+      "answer": "To convert gigabytes to terabytes, use the formula: TB = GB × 0.001. For example, converting 16 GB gives 0.016 TB."
+    },
+    {
+      "question": "What is 16 gigabytes in terabytes?",
+      "answer": "16 gigabytes (GB) equals exactly 0.016 terabytes (TB) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

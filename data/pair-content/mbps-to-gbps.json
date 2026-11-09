@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "mbps-to-gbps",
+  "category": "data-transfer",
+  "categoryId": "data_transfer",
+  "fromUnitId": "mbps",
+  "toUnitId": "gbps",
+  "fromSymbol": "Mbps",
+  "toSymbol": "Gbps",
+  "intro": "Professionals and everyday users convert megabits per second (Mbps) to gigabits per second (Gbps) when working across metric and metric standards in engineering specifications, international trade documentation, and technical measurements. One megabits per second equals 0.001 gigabits per second, while 1 gigabits per second equals 1,000 megabits per second. Whether you are verifying data transfer specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Megabits per Second Benchmark (2 Mbps)",
+      "scenario": "Convert 2 megabits per second (Mbps) into gigabits per second (Gbps) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "0.002 Gbps",
+      "stepByStep": "2 Mbps × 0.001 = 0.002 Gbps (rounds to 0 Gbps)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 Mbps)",
+      "scenario": "Convert 20 megabits per second (Mbps) into gigabits per second (Gbps) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "0.02 Gbps",
+      "stepByStep": "20 Mbps × 0.001 = 0.02 Gbps (rounds to 0.02 Gbps)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 Mbps)",
+      "scenario": "Convert 75 megabits per second (Mbps) into gigabits per second (Gbps) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "0.075 Gbps",
+      "stepByStep": "75 Mbps × 0.001 = 0.075 Gbps (rounds to 0.08 Gbps)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "Gbps = Mbps × 0.001",
+    "exactFactor": "0.001",
+    "roundedFactor": "0.001",
+    "inverseFactor": "1,000"
+  },
+  "internalLinks": [
+    {
+      "label": "Gigabits per Second to Megabits per Second (Gbps to Mbps)",
+      "href": "/data-transfer/gbps-to-mbps",
+      "type": "reverse"
+    },
+    {
+      "label": "Megabits per Second to Megabytes per Second (Mbps to MB/s)",
+      "href": "/data-transfer/mbps-to-mbytes-per-sec",
+      "type": "related"
+    },
+    {
+      "label": "Megabytes per Second to Megabits per Second (MB/s to Mbps)",
+      "href": "/data-transfer/mbytes-per-sec-to-mbps",
+      "type": "related"
+    },
+    {
+      "label": "Kilobits per Second to Megabits per Second (Kbps to Mbps)",
+      "href": "/data-transfer/kbps-to-mbps",
+      "type": "related"
+    },
+    {
+      "label": "Bits per Second to Kilobits per Second (bps to Kbps)",
+      "href": "/data-transfer/bps-to-kbps",
+      "type": "related"
+    },
+    {
+      "label": "Data Transfer Conversions Hub",
+      "href": "/data-transfer",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many gigabits per second (Gbps) are in 1 megabits per second (Mbps)?",
+      "answer": "There are 0.001 gigabits per second (Gbps) in 1 megabits per second (Mbps), which rounds to 0.001 Gbps for everyday calculations. Conversely, 1 gigabits per second equals 1,000 megabits per second."
+    },
+    {
+      "question": "How do I convert megabits per second to gigabits per second (Mbps to Gbps)?",
+      "answer": "To convert megabits per second to gigabits per second, use the formula: Gbps = Mbps × 0.001. For example, converting 10 Mbps gives 0.01 Gbps."
+    },
+    {
+      "question": "What is 10 megabits per second in gigabits per second?",
+      "answer": "10 megabits per second (Mbps) equals exactly 0.01 gigabits per second (Gbps) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

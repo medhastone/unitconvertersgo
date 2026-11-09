@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "sq-feet-to-sq-yards",
+  "category": "area",
+  "categoryId": "area",
+  "fromUnitId": "sq_foot",
+  "toUnitId": "sq_yard",
+  "fromSymbol": "ft²",
+  "toSymbol": "yd²",
+  "intro": "Professionals and everyday users convert square feet (ft²) to square yards (yd²) when working across imperial and imperial standards in real estate property deeds, agricultural land surveying, commercial floor plan leases, and civil zoning. One square foot equals 0.111111 square yards, while 1 square yard equals 9 square feet. Whether you are verifying area specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.25,
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    25,
+    50,
+    100,
+    500
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Square Foot Benchmark (1 ft²)",
+      "scenario": "Convert 1 square feet (ft²) into square yards (yd²) for technical comparison and documentation.",
+      "inputValue": 1,
+      "outputValue": "0.111111 yd²",
+      "stepByStep": "1 ft² × 0.111111 = 0.111111 yd² (rounds to 0.11 yd²)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (10 ft²)",
+      "scenario": "Convert 10 square feet (ft²) into square yards (yd²) for technical comparison and documentation.",
+      "inputValue": 10,
+      "outputValue": "1.111111 yd²",
+      "stepByStep": "10 ft² × 0.111111 = 1.111111 yd² (rounds to 1.11 yd²)."
+    },
+    {
+      "title": "Higher-Capacity Specification (100 ft²)",
+      "scenario": "Convert 100 square feet (ft²) into square yards (yd²) for technical comparison and documentation.",
+      "inputValue": 100,
+      "outputValue": "11.111111 yd²",
+      "stepByStep": "100 ft² × 0.111111 = 11.111111 yd² (rounds to 11.11 yd²)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "yd² = ft² × 0.11111111",
+    "exactFactor": "0.11111111",
+    "roundedFactor": "0.1111",
+    "inverseFactor": "9"
+  },
+  "internalLinks": [
+    {
+      "label": "Square Yards to Square Feet (yd² to ft²)",
+      "href": "/area/sq-yards-to-sq-feet",
+      "type": "reverse"
+    },
+    {
+      "label": "Square Feet to Square Meters (ft² to m²)",
+      "href": "/area/sq-feet-to-sq-meters",
+      "type": "related"
+    },
+    {
+      "label": "Square Meters to Square Feet (m² to ft²)",
+      "href": "/area/sq-meters-to-sq-feet",
+      "type": "related"
+    },
+    {
+      "label": "Acres to Square Feet (ac to ft²)",
+      "href": "/area/acres-to-sq-feet",
+      "type": "related"
+    },
+    {
+      "label": "Square Feet to Acres (ft² to ac)",
+      "href": "/area/sq-feet-to-acres",
+      "type": "related"
+    },
+    {
+      "label": "Area Conversions Hub",
+      "href": "/area",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many square yards (yd²) are in 1 square foot (ft²)?",
+      "answer": "There are 0.11111111 square yards (yd²) in 1 square foot (ft²), which rounds to 0.1111 yd² for everyday calculations. Conversely, 1 square yard equals 9 square feet."
+    },
+    {
+      "question": "How do I convert square feet to square yards (ft² to yd²)?",
+      "answer": "To convert square feet to square yards, use the formula: yd² = ft² × 0.11111111. For example, converting 5 ft² gives 0.5556 yd²."
+    },
+    {
+      "question": "What is 5 square feet in square yards?",
+      "answer": "5 square feet (ft²) equals exactly 0.5556 square yards (yd²) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

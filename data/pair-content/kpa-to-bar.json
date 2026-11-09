@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "kpa-to-bar",
+  "category": "pressure",
+  "categoryId": "pressure",
+  "fromUnitId": "kilopascal",
+  "toUnitId": "bar",
+  "fromSymbol": "kPa",
+  "toSymbol": "bar",
+  "intro": "Professionals and everyday users convert kilopascals (kPa) to bars (bar) when working across metric and metric standards in automotive tire inflation placards, hydraulic cylinder design, scuba diving tanks, and barometric weather tracking. One kilopascal equals 0.01 bars, while 1 bar equals 100 kilopascals. Whether you are verifying pressure specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    50,
+    100,
+    101.325,
+    150,
+    200,
+    220,
+    240,
+    250,
+    300,
+    500
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Kilopascal Benchmark (101.325 kPa)",
+      "scenario": "Convert 101.325 kilopascals (kPa) into bars (bar) for technical comparison and documentation.",
+      "inputValue": 101.325,
+      "outputValue": "1.01325 bar",
+      "stepByStep": "101.325 kPa × 0.01 = 1.01325 bar (rounds to 1.01 bar)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (220 kPa)",
+      "scenario": "Convert 220 kilopascals (kPa) into bars (bar) for technical comparison and documentation.",
+      "inputValue": 220,
+      "outputValue": "2.2 bar",
+      "stepByStep": "220 kPa × 0.01 = 2.2 bar (rounds to 2.2 bar)."
+    },
+    {
+      "title": "Higher-Capacity Specification (300 kPa)",
+      "scenario": "Convert 300 kilopascals (kPa) into bars (bar) for technical comparison and documentation.",
+      "inputValue": 300,
+      "outputValue": "3 bar",
+      "stepByStep": "300 kPa × 0.01 = 3 bar (rounds to 3 bar)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Gauge Pressure (psig) vs. Absolute Pressure (psia)",
+    "items": [
+      "This converter scales pressure magnitude directly between kPa and bar. In automotive tires, HVAC, and compressed air systems, gauges display Gauge Pressure (referenced to ambient atmospheric pressure, ~14.696 psi or 101.325 kPa at sea level).",
+      "For thermodynamic gas laws (PV = nRT) or vacuum chamber calculations, convert gauge pressure to absolute pressure by adding local barometric pressure before scaling."
+    ]
+  },
+  "formula": {
+    "equation": "bar = kPa × 0.01",
+    "exactFactor": "0.01",
+    "roundedFactor": "0.01",
+    "inverseFactor": "100"
+  },
+  "internalLinks": [
+    {
+      "label": "Bars to Kilopascals (bar to kPa)",
+      "href": "/pressure/bar-to-kpa",
+      "type": "reverse"
+    },
+    {
+      "label": "PSI to Bars (psi to bar)",
+      "href": "/pressure/psi-to-bar",
+      "type": "related"
+    },
+    {
+      "label": "Bars to PSI (bar to psi)",
+      "href": "/pressure/bar-to-psi",
+      "type": "related"
+    },
+    {
+      "label": "PSI to Kilopascals (psi to kPa)",
+      "href": "/pressure/psi-to-kpa",
+      "type": "related"
+    },
+    {
+      "label": "Kilopascals to PSI (kPa to psi)",
+      "href": "/pressure/kpa-to-psi",
+      "type": "related"
+    },
+    {
+      "label": "Pressure Conversions Hub",
+      "href": "/pressure",
+      "type": "hub"
+    },
+    {
+      "label": "PSI vs. Bar vs. kPa vs. Atmosphere Pressure Reference",
+      "href": "/guides/pressure-units-psi-bar-kpa-explained",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many bars (bar) are in 1 kilopascal (kPa)?",
+      "answer": "There are 0.01 bars (bar) in 1 kilopascal (kPa), which rounds to 0.01 bar for everyday calculations. Conversely, 1 bar equals 100 kilopascals."
+    },
+    {
+      "question": "How do I convert kilopascals to bars (kPa to bar)?",
+      "answer": "To convert kilopascals to bars, use the formula: bar = kPa × 0.01. For example, converting 200 kPa gives 2 bar."
+    },
+    {
+      "question": "What is 200 kilopascals in bars?",
+      "answer": "200 kilopascals (kPa) equals exactly 2 bars (bar) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

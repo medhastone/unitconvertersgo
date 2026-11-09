@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "ounces-to-pounds",
+  "category": "weight-and-mass",
+  "categoryId": "mass",
+  "fromUnitId": "ounce",
+  "toUnitId": "pound",
+  "fromSymbol": "oz",
+  "toSymbol": "lb",
+  "intro": "Professionals and everyday users convert ounces (oz) to pounds (lb) when working across imperial and imperial standards in engineering specifications, international trade documentation, and technical measurements. One ounce equals 0.0625 pounds, while 1 pound (avoirdupois) equals 16 ounces. Whether you are verifying mass & weight specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    4,
+    6,
+    8,
+    12,
+    16,
+    24,
+    32
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Ounce Benchmark (2 oz)",
+      "scenario": "Convert 2 ounces (oz) into pounds (lb) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "0.125 lb",
+      "stepByStep": "2 oz × 0.0625 = 0.125 lb (rounds to 0.13 lb)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (8 oz)",
+      "scenario": "Convert 8 ounces (oz) into pounds (lb) for technical comparison and documentation.",
+      "inputValue": 8,
+      "outputValue": "0.5 lb",
+      "stepByStep": "8 oz × 0.0625 = 0.5 lb (rounds to 0.5 lb)."
+    },
+    {
+      "title": "Higher-Capacity Specification (24 oz)",
+      "scenario": "Convert 24 ounces (oz) into pounds (lb) for technical comparison and documentation.",
+      "inputValue": 24,
+      "outputValue": "1.5 lb",
+      "stepByStep": "24 oz × 0.0625 = 1.5 lb (rounds to 1.5 lb)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Avoirdupois Ounces (oz) vs. Precious Metal Troy Ounces (oz t) vs. Fluid Ounces (fl oz)",
+    "items": [
+      "Standard grocery and postal scales use the Avoirdupois ounce (1 oz = 28.349523125 g). Gold, silver, and platinum bullion use the Troy ounce (1 oz t = 31.1034768 g), which is 9.7% heavier.",
+      "Never confuse dry weight ounces (oz) with liquid volume fluid ounces (fl oz); they only match numerically for pure water at standard density."
+    ]
+  },
+  "formula": {
+    "equation": "lb = oz × 0.0625",
+    "exactFactor": "0.0625",
+    "roundedFactor": "0.0625",
+    "inverseFactor": "16"
+  },
+  "internalLinks": [
+    {
+      "label": "Pounds to Ounces (lb to oz)",
+      "href": "/weight-and-mass/pounds-to-ounces",
+      "type": "reverse"
+    },
+    {
+      "label": "Kilograms to Pounds (kg to lb)",
+      "href": "/weight-and-mass/kg-to-lbs",
+      "type": "related"
+    },
+    {
+      "label": "Pounds to Kilograms (lb to kg)",
+      "href": "/weight-and-mass/lbs-to-kg",
+      "type": "related"
+    },
+    {
+      "label": "Grams to Ounces (g to oz)",
+      "href": "/weight-and-mass/grams-to-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Ounces to Grams (oz to g)",
+      "href": "/weight-and-mass/ounces-to-grams",
+      "type": "related"
+    },
+    {
+      "label": "Mass & Weight Conversions Hub",
+      "href": "/weight-and-mass",
+      "type": "hub"
+    },
+    {
+      "label": "Troy Ounces vs. Regular Avoirdupois Ounces Weight Guide",
+      "href": "/guides/avoirdupois-vs-troy-weight",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many pounds (lb) are in 1 ounce (oz)?",
+      "answer": "There are 0.0625 pounds (lb) in 1 ounce (oz), which rounds to 0.0625 lb for everyday calculations. Conversely, 1 pound (avoirdupois) equals 16 ounces."
+    },
+    {
+      "question": "How do I convert ounces to pounds (oz to lb)?",
+      "answer": "To convert ounces to pounds, use the formula: lb = oz × 0.0625. For example, converting 6 oz gives 0.375 lb."
+    },
+    {
+      "question": "What is 6 ounces in pounds?",
+      "answer": "6 ounces (oz) equals exactly 0.375 pounds (lb) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

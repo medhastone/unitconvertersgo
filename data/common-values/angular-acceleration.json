@@ -1,0 +1,67 @@
+{
+  "category": "angular-acceleration",
+  "categoryId": "acceleration_angular",
+  "defaultValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "unitDefaults": {
+    "rad_per_s2": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ],
+    "deg_per_s2": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ],
+    "rev_per_s2": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ],
+    "rev_per_min_s": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ]
+  },
+  "pairOverrides": {}
+}

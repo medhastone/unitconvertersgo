@@ -1,0 +1,97 @@
+{
+  "slug": "kph-to-m-s",
+  "categoryId": "speed",
+  "fromUnitId": "km_per_h",
+  "toUnitId": "m_per_s",
+  "status": "draft-needs-review",
+  "intro": "Converting kilometers per hour (km/h) to meters per second (m/s) is essential when translating measurements across automotive speedometer readings, aviation airspeed logs, maritime navigation, and meteorological wind reports. One kilometers per hour equals 0.27778 meters per second, while one meters per second equals 3.6 kilometers per hour. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
+  "referenceValues": [
+    5,
+    10,
+    25,
+    30,
+    50,
+    60,
+    70,
+    80,
+    100,
+    120
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 10 km/h to m/s",
+      "context": "Baseline reference check when comparing a single kilometers per hour specification against meters per second",
+      "inputValue": 10,
+      "calculation": "10 km/h × 0.27778 = 2.77778 m/s",
+      "result": "10 km/h = 2.77778 m/s"
+    },
+    {
+      "title": "Convert 50 km/h to m/s",
+      "context": "Mid-range practical measurement commonly encountered in speed workflows and equipment sheets",
+      "inputValue": 50,
+      "calculation": "50 km/h × 0.27778 = 13.88889 m/s",
+      "result": "50 km/h = 13.88889 m/s"
+    },
+    {
+      "title": "Convert 80 km/h to m/s",
+      "context": "Larger scale calculation for commercial, industrial, or bulk speed planning",
+      "inputValue": 80,
+      "calculation": "80 km/h × 0.27778 = 22.22222 m/s",
+      "result": "80 km/h = 22.22222 m/s"
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "exactFactor": "0.27778",
+    "roundedFactor": "0.27778",
+    "equation": "m/s = km/h × 0.27778",
+    "inverseEquation": "km/h = m/s × 1",
+    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 km/h = 0.27778 m/s)."
+  },
+  "internalLinks": [
+    {
+      "href": "/speed/meters-per-second-to-kph",
+      "label": "Meters per Second to Kilometers per Hour (m/s to km/h)",
+      "type": "reverse"
+    },
+    {
+      "href": "/speed/kph-to-mph",
+      "label": "Kilometers per Hour to Miles per Hour (km/h to mph)",
+      "type": "related"
+    },
+    {
+      "href": "/speed/mph-to-kph",
+      "label": "Miles per Hour to Kilometers per Hour (mph to km/h)",
+      "type": "related"
+    },
+    {
+      "href": "/speed/knots-to-mph",
+      "label": "Knots to Miles per Hour (kn to mph)",
+      "type": "related"
+    },
+    {
+      "href": "/undefined",
+      "label": "Speed Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/si-prefixes",
+      "label": "SI Prefixes & Scientific Notation Reference Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many meters per second are in 1 kilometers per hour?",
+      "answer": "There are 0.27778 meters per second (m/s) in 1 kilometers per hour (km/h). To convert km/h to m/s, use the exact conversion factor 0.27778."
+    },
+    {
+      "question": "How do I convert kilometers per hour to meters per second manually?",
+      "answer": "Multiply your kilometers per hour value by 0.27778 (exact factor: 0.27778). For example, 50 km/h × 0.27778 = 13.88889 m/s."
+    },
+    {
+      "question": "What is 80 km/h in m/s?",
+      "answer": "80 kilometers per hour (km/h) equals 22.22222 meters per second (m/s)."
+    }
+  ]
+}

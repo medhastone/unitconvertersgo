@@ -1,0 +1,99 @@
+{
+  "status": "draft-needs-review",
+  "slug": "bits-to-bytes",
+  "category": "data-storage",
+  "categoryId": "digital_storage",
+  "fromUnitId": "bit",
+  "toUnitId": "byte",
+  "fromSymbol": "b",
+  "toSymbol": "B",
+  "intro": "Professionals and everyday users convert bits (b) to bytes (B) when working across binary and binary standards in engineering specifications, international trade documentation, and technical measurements. One bit equals 0.125 bytes, while 1 byte equals 8 bits. Whether you are verifying digital storage specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Bit Benchmark (2 b)",
+      "scenario": "Convert 2 bits (b) into bytes (B) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "0.25 B",
+      "stepByStep": "2 b × 0.125 = 0.25 B (rounds to 0.25 B)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 b)",
+      "scenario": "Convert 20 bits (b) into bytes (B) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "2.5 B",
+      "stepByStep": "20 b × 0.125 = 2.5 B (rounds to 2.5 B)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 b)",
+      "scenario": "Convert 75 bits (b) into bytes (B) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "9.375 B",
+      "stepByStep": "75 b × 0.125 = 9.375 B (rounds to 9.38 B)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "B = b × 0.125",
+    "exactFactor": "0.125",
+    "roundedFactor": "0.125",
+    "inverseFactor": "8"
+  },
+  "internalLinks": [
+    {
+      "label": "Megabytes to Gigabytes (MB to GB)",
+      "href": "/data-storage/mb-to-gb",
+      "type": "related"
+    },
+    {
+      "label": "Gigabytes to Megabytes (GB to MB)",
+      "href": "/data-storage/gb-to-mb",
+      "type": "related"
+    },
+    {
+      "label": "Gigabytes to Terabytes (GB to TB)",
+      "href": "/data-storage/gb-to-tb",
+      "type": "related"
+    },
+    {
+      "label": "Terabytes to Gigabytes (TB to GB)",
+      "href": "/data-storage/tb-to-gb",
+      "type": "related"
+    },
+    {
+      "label": "Digital Storage Conversions Hub",
+      "href": "/data-storage",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many bytes (B) are in 1 bit (b)?",
+      "answer": "There are 0.125 bytes (B) in 1 bit (b), which rounds to 0.125 B for everyday calculations. Conversely, 1 byte equals 8 bits."
+    },
+    {
+      "question": "How do I convert bits to bytes (b to B)?",
+      "answer": "To convert bits to bytes, use the formula: B = b × 0.125. For example, converting 10 b gives 1.25 B."
+    },
+    {
+      "question": "What is 10 bits in bytes?",
+      "answer": "10 bits (b) equals exactly 1.25 bytes (B) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

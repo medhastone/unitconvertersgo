@@ -284,6 +284,28 @@ export default function CategoryExplorerHub({
                 →
               </span>
             </Link>
+            <Link
+              href="/specialty"
+              prefetch={false}
+              className="group flex items-center justify-between gap-2.5 px-3.5 py-2.5 rounded-xl border bg-[#F7F9FC]/80 dark:bg-slate-950/60 border-slate-200/80 dark:border-slate-800 hover:bg-white dark:hover:bg-slate-900 hover:border-[#0D9488] text-[#16324F] dark:text-slate-200 transition-all"
+            >
+              <div className="flex items-center gap-2.5 min-w-0">
+                <span className="shrink-0 text-slate-400 group-hover:text-[#0D9488]">
+                  <Fuel className="w-3.5 h-3.5" />
+                </span>
+                <div className="min-w-0">
+                  <div className="text-sm font-bold truncate group-hover:text-[#0D9488]">
+                    Specialty &amp; Fuel
+                  </div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400 truncate">
+                    MPG, DPI, molar &amp; radiation
+                  </div>
+                </div>
+              </div>
+              <span aria-hidden="true" className="text-sm font-bold text-slate-400 group-hover:text-[#0D9488]">
+                →
+              </span>
+            </Link>
           </div>
 
           <details className="group rounded-xl border border-slate-200/80 dark:border-slate-800 bg-[#F7F9FC]/50 dark:bg-slate-950/40 overflow-hidden">

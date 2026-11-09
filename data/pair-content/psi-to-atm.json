@@ -1,0 +1,103 @@
+{
+  "slug": "psi-to-atm",
+  "categoryId": "pressure",
+  "fromUnitId": "psi",
+  "toUnitId": "atmosphere",
+  "status": "draft-needs-review",
+  "intro": "Converting psi (psi) to atmospheres (atm) is essential when translating measurements across automotive tire inflation, scuba tank monitoring, hydraulic cylinder design, and vacuum chamber calibration. One pounds per square inch equals 0.06805 atmospheres, while one standard atmosphere equals 14.69595 psi. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
+  "referenceValues": [
+    1,
+    5,
+    10,
+    14.7,
+    25,
+    30,
+    35,
+    50,
+    100,
+    150
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 5 psi to atm",
+      "context": "Baseline reference check when comparing a single pounds per square inch specification against atmospheres",
+      "inputValue": 5,
+      "calculation": "5 psi × 0.06805 = 0.34023 atm",
+      "result": "5 psi = 0.34023 atm"
+    },
+    {
+      "title": "Convert 25 psi to atm",
+      "context": "Mid-range practical measurement commonly encountered in pressure workflows and equipment sheets",
+      "inputValue": 25,
+      "calculation": "25 psi × 0.06805 = 1.70115 atm",
+      "result": "25 psi = 1.70115 atm"
+    },
+    {
+      "title": "Convert 50 psi to atm",
+      "context": "Larger scale calculation for commercial, industrial, or bulk pressure planning",
+      "inputValue": 50,
+      "calculation": "50 psi × 0.06805 = 3.4023 atm",
+      "result": "50 psi = 3.4023 atm"
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Gauge Pressure (PSIG) vs. Absolute Pressure (PSIA)",
+    "items": [
+      "Direct unit conversions apply to the pressure magnitude itself. Ensure both values share the same reference datum before converting.",
+      "Tire pressure gauges and compressor dials read Gauge Pressure (PSIG, relative to ~14.696 psi sea-level atmosphere), whereas thermodynamic equations require Absolute Pressure (PSIA = PSIG + 14.696 psi)."
+    ]
+  },
+  "formula": {
+    "exactFactor": "0.06805",
+    "roundedFactor": "0.06805",
+    "equation": "atm = psi × 0.06805",
+    "inverseEquation": "psi = atm × 1",
+    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 psi = 0.06805 atm)."
+  },
+  "internalLinks": [
+    {
+      "href": "/pressure/atm-to-psi",
+      "label": "Atmospheres to PSI (atm to psi)",
+      "type": "reverse"
+    },
+    {
+      "href": "/pressure/bar-to-psi",
+      "label": "Bars to PSI (bar to psi)",
+      "type": "related"
+    },
+    {
+      "href": "/pressure/psi-to-bar",
+      "label": "PSI to Bars (psi to bar)",
+      "type": "related"
+    },
+    {
+      "href": "/pressure/kpa-to-psi",
+      "label": "Kilopascals to PSI (kPa to psi)",
+      "type": "related"
+    },
+    {
+      "href": "/undefined",
+      "label": "Pressure Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/pressure-units-guide",
+      "label": "PSI, Bar, kPa & Atmospheric Pressure Engineering Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many atmospheres are in 1 pounds per square inch?",
+      "answer": "There are 0.06805 atmospheres (atm) in 1 pounds per square inch (psi). To convert psi to atm, use the exact conversion factor 0.06805."
+    },
+    {
+      "question": "How do I convert psi to atmospheres manually?",
+      "answer": "Multiply your pounds per square inch value by 0.06805 (exact factor: 0.06805). For example, 25 psi × 0.06805 = 1.70115 atm."
+    },
+    {
+      "question": "What is 50 psi in atm?",
+      "answer": "50 psi (psi) equals 3.4023 atmospheres (atm)."
+    }
+  ]
+}

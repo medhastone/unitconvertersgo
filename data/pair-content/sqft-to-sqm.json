@@ -1,0 +1,97 @@
+{
+  "slug": "sqft-to-sqm",
+  "categoryId": "area",
+  "fromUnitId": "sq_foot",
+  "toUnitId": "sq_meter",
+  "status": "draft-needs-review",
+  "intro": "Converting square feet (ft²) to square meters (m²) is essential when translating measurements across real estate land deeds, agricultural plot surveying, flooring estimation, and architectural floor plans. One square foot equals 0.0929 square meters, while one square meter equals 10.76391 square feet. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
+  "referenceValues": [
+    100,
+    250,
+    500,
+    750,
+    1000,
+    1500,
+    2000,
+    2500,
+    3000,
+    5000
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 250 ft² to m²",
+      "context": "Baseline reference check when comparing a single square foot specification against square meters",
+      "inputValue": 250,
+      "calculation": "250 ft² × 0.0929 = 23.22576 m²",
+      "result": "250 ft² = 23.22576 m²"
+    },
+    {
+      "title": "Convert 1000 ft² to m²",
+      "context": "Mid-range practical measurement commonly encountered in area workflows and equipment sheets",
+      "inputValue": 1000,
+      "calculation": "1000 ft² × 0.0929 = 92.90304 m²",
+      "result": "1000 ft² = 92.90304 m²"
+    },
+    {
+      "title": "Convert 2500 ft² to m²",
+      "context": "Larger scale calculation for commercial, industrial, or bulk area planning",
+      "inputValue": 2500,
+      "calculation": "2500 ft² × 0.0929 = 232.2576 m²",
+      "result": "2500 ft² = 232.2576 m²"
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "exactFactor": "0.0929",
+    "roundedFactor": "0.0929",
+    "equation": "m² = ft² × 0.0929",
+    "inverseEquation": "ft² = m² × 1",
+    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 ft² = 0.0929 m²)."
+  },
+  "internalLinks": [
+    {
+      "href": "/area/sq-meters-to-sq-feet",
+      "label": "Square Meters to Square Feet (m² to ft²)",
+      "type": "reverse"
+    },
+    {
+      "href": "/area/acres-to-square-miles",
+      "label": "Acres to Square Miles (ac to mi²)",
+      "type": "related"
+    },
+    {
+      "href": "/area/square-miles-to-acres",
+      "label": "Square Miles to Acres (mi² to ac)",
+      "type": "related"
+    },
+    {
+      "href": "/area/sq-feet-to-sq-meters",
+      "label": "Square Feet to Square Meters (ft² to m²)",
+      "type": "related"
+    },
+    {
+      "href": "/undefined",
+      "label": "Area Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/metric-vs-imperial",
+      "label": "Metric vs. Imperial System: Complete Engineering Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many square meters are in 1 square foot?",
+      "answer": "There are 0.0929 square meters (m²) in 1 square foot (ft²). To convert ft² to m², use the exact conversion factor 0.0929."
+    },
+    {
+      "question": "How do I convert square feet to square meters manually?",
+      "answer": "Multiply your square foot value by 0.0929 (exact factor: 0.0929). For example, 1000 ft² × 0.0929 = 92.90304 m²."
+    },
+    {
+      "question": "What is 2500 ft² in m²?",
+      "answer": "2500 square feet (ft²) equals 232.2576 square meters (m²)."
+    }
+  ]
+}

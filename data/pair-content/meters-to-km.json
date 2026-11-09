@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "meters-to-km",
+  "category": "length",
+  "categoryId": "length",
+  "fromUnitId": "meter",
+  "toUnitId": "kilometer",
+  "fromSymbol": "m",
+  "toSymbol": "km",
+  "intro": "Professionals and everyday users convert meters (m) to kilometers (km) when working across si and si standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One meter equals 0.001 kilometers, while 1 kilometer equals 1,000 meters. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    1.5,
+    2,
+    3,
+    5,
+    10,
+    25,
+    50,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Meter Benchmark (1.5 m)",
+      "scenario": "Convert 1.5 meters (m) into kilometers (km) for technical comparison and documentation.",
+      "inputValue": 1.5,
+      "outputValue": "0.0015 km",
+      "stepByStep": "1.5 m × 0.001 = 0.0015 km (rounds to 0 km)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (5 m)",
+      "scenario": "Convert 5 meters (m) into kilometers (km) for technical comparison and documentation.",
+      "inputValue": 5,
+      "outputValue": "0.005 km",
+      "stepByStep": "5 m × 0.001 = 0.005 km (rounds to 0.01 km)."
+    },
+    {
+      "title": "Higher-Capacity Specification (50 m)",
+      "scenario": "Convert 50 meters (m) into kilometers (km) for technical comparison and documentation.",
+      "inputValue": 50,
+      "outputValue": "0.05 km",
+      "stepByStep": "50 m × 0.001 = 0.05 km (rounds to 0.05 km)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "km = m × 0.001",
+    "exactFactor": "0.001",
+    "roundedFactor": "0.001",
+    "inverseFactor": "1,000"
+  },
+  "internalLinks": [
+    {
+      "label": "Kilometers to Meters (km to m)",
+      "href": "/length/km-to-meters",
+      "type": "reverse"
+    },
+    {
+      "label": "Centimeters to Inches (cm to in)",
+      "href": "/length/cm-to-inches",
+      "type": "related"
+    },
+    {
+      "label": "Inches to Centimeters (in to cm)",
+      "href": "/length/inches-to-cm",
+      "type": "related"
+    },
+    {
+      "label": "Feet to Meters (ft to m)",
+      "href": "/length/feet-to-meters",
+      "type": "related"
+    },
+    {
+      "label": "Meters to Feet (m to ft)",
+      "href": "/length/meters-to-feet",
+      "type": "related"
+    },
+    {
+      "label": "Length Conversions Hub",
+      "href": "/length",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many kilometers (km) are in 1 meter (m)?",
+      "answer": "There are 0.001 kilometers (km) in 1 meter (m), which rounds to 0.001 km for everyday calculations. Conversely, 1 kilometer equals 1,000 meters."
+    },
+    {
+      "question": "How do I convert meters to kilometers (m to km)?",
+      "answer": "To convert meters to kilometers, use the formula: km = m × 0.001. For example, converting 3 m gives 0.003 km."
+    },
+    {
+      "question": "What is 3 meters in kilometers?",
+      "answer": "3 meters (m) equals exactly 0.003 kilometers (km) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

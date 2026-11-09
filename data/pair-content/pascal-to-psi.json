@@ -1,0 +1,105 @@
+{
+  "status": "draft-needs-review",
+  "slug": "pascal-to-psi",
+  "category": "pressure",
+  "categoryId": "pressure",
+  "fromUnitId": "pascal",
+  "toUnitId": "psi",
+  "fromSymbol": "Pa",
+  "toSymbol": "psi",
+  "intro": "Professionals and everyday users convert pascals (Pa) to psi (psi) when working across si and imperial standards in automotive tire inflation placards, hydraulic cylinder design, scuba diving tanks, and barometric weather tracking. One pascal equals 0.000145 psi, while 1 pounds per square inch equals 6,894.757293 pascals. Whether you are verifying pressure specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    10,
+    50,
+    100,
+    133.32,
+    500,
+    1000,
+    5000,
+    10000,
+    50000,
+    101325
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Pascal Benchmark (100 Pa)",
+      "scenario": "Convert 100 pascals (Pa) into psi (psi) for technical comparison and documentation.",
+      "inputValue": 100,
+      "outputValue": "0.014504 psi",
+      "stepByStep": "100 Pa × 0.000145 = 0.014504 psi (rounds to 0.01 psi)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (1000 Pa)",
+      "scenario": "Convert 1000 pascals (Pa) into psi (psi) for technical comparison and documentation.",
+      "inputValue": 1000,
+      "outputValue": "0.145038 psi",
+      "stepByStep": "1000 Pa × 0.000145 = 0.145038 psi (rounds to 0.15 psi)."
+    },
+    {
+      "title": "Higher-Capacity Specification (50000 Pa)",
+      "scenario": "Convert 50000 pascals (Pa) into psi (psi) for technical comparison and documentation.",
+      "inputValue": 50000,
+      "outputValue": "7.251887 psi",
+      "stepByStep": "50000 Pa × 0.000145 = 7.251887 psi (rounds to 7.25 psi)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Gauge Pressure (psig) vs. Absolute Pressure (psia)",
+    "items": [
+      "This converter scales pressure magnitude directly between Pa and psi. In automotive tires, HVAC, and compressed air systems, gauges display Gauge Pressure (referenced to ambient atmospheric pressure, ~14.696 psi or 101.325 kPa at sea level).",
+      "For thermodynamic gas laws (PV = nRT) or vacuum chamber calculations, convert gauge pressure to absolute pressure by adding local barometric pressure before scaling."
+    ]
+  },
+  "formula": {
+    "equation": "psi = Pa × 0.00014504",
+    "exactFactor": "0.00014504",
+    "roundedFactor": "0.0001",
+    "inverseFactor": "6,894.757293"
+  },
+  "internalLinks": [
+    {
+      "label": "PSI to Bars (psi to bar)",
+      "href": "/pressure/psi-to-bar",
+      "type": "related"
+    },
+    {
+      "label": "Bars to PSI (bar to psi)",
+      "href": "/pressure/bar-to-psi",
+      "type": "related"
+    },
+    {
+      "label": "PSI to Kilopascals (psi to kPa)",
+      "href": "/pressure/psi-to-kpa",
+      "type": "related"
+    },
+    {
+      "label": "Kilopascals to PSI (kPa to psi)",
+      "href": "/pressure/kpa-to-psi",
+      "type": "related"
+    },
+    {
+      "label": "Pressure Conversions Hub",
+      "href": "/pressure",
+      "type": "hub"
+    },
+    {
+      "label": "PSI vs. Bar vs. kPa vs. Atmosphere Pressure Reference",
+      "href": "/guides/pressure-units-psi-bar-kpa-explained",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many psi (psi) are in 1 pascal (Pa)?",
+      "answer": "There are 0.00014504 psi (psi) in 1 pascal (Pa), which rounds to 0.0001 psi for everyday calculations. Conversely, 1 pounds per square inch equals 6,894.757293 pascals."
+    },
+    {
+      "question": "How do I convert pascals to psi (Pa to psi)?",
+      "answer": "To convert pascals to psi, use the formula: psi = Pa × 0.00014504. For example, converting 500 Pa gives 0.0725 psi."
+    },
+    {
+      "question": "What is 500 pascals in psi?",
+      "answer": "500 pascals (Pa) equals exactly 0.0725 psi (psi) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

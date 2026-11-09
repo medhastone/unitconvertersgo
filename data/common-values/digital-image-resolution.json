@@ -1,0 +1,67 @@
+{
+  "category": "digital-image-resolution",
+  "categoryId": "digital_image_resolution",
+  "defaultValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "unitDefaults": {
+    "dot_per_meter": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ],
+    "dpi": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ],
+    "dpcm": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ],
+    "dpmm": [
+      0.5,
+      1,
+      2,
+      5,
+      10,
+      20,
+      25,
+      50,
+      75,
+      100
+    ]
+  },
+  "pairOverrides": {}
+}

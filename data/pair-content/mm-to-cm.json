@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "mm-to-cm",
+  "category": "length",
+  "categoryId": "length",
+  "fromUnitId": "millimeter",
+  "toUnitId": "centimeter",
+  "fromSymbol": "mm",
+  "toSymbol": "cm",
+  "intro": "Professionals and everyday users convert millimeters (mm) to centimeters (cm) when working across metric and metric standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One millimeter equals 0.1 centimeters, while 1 centimeter equals 10 millimeters. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    2,
+    5,
+    10,
+    12.7,
+    25.4,
+    50,
+    100,
+    250,
+    1000
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Millimeter Benchmark (5 mm)",
+      "scenario": "Convert 5 millimeters (mm) into centimeters (cm) for technical comparison and documentation.",
+      "inputValue": 5,
+      "outputValue": "0.5 cm",
+      "stepByStep": "5 mm × 0.1 = 0.5 cm (rounds to 0.5 cm)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (25.4 mm)",
+      "scenario": "Convert 25.4 millimeters (mm) into centimeters (cm) for technical comparison and documentation.",
+      "inputValue": 25.4,
+      "outputValue": "2.54 cm",
+      "stepByStep": "25.4 mm × 0.1 = 2.54 cm (rounds to 2.54 cm)."
+    },
+    {
+      "title": "Higher-Capacity Specification (250 mm)",
+      "scenario": "Convert 250 millimeters (mm) into centimeters (cm) for technical comparison and documentation.",
+      "inputValue": 250,
+      "outputValue": "25 cm",
+      "stepByStep": "250 mm × 0.1 = 25 cm (rounds to 25 cm)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "cm = mm × 0.1",
+    "exactFactor": "0.1",
+    "roundedFactor": "0.1",
+    "inverseFactor": "10"
+  },
+  "internalLinks": [
+    {
+      "label": "Centimeters to Millimeters (cm to mm)",
+      "href": "/length/cm-to-mm",
+      "type": "reverse"
+    },
+    {
+      "label": "Centimeters to Inches (cm to in)",
+      "href": "/length/cm-to-inches",
+      "type": "related"
+    },
+    {
+      "label": "Inches to Centimeters (in to cm)",
+      "href": "/length/inches-to-cm",
+      "type": "related"
+    },
+    {
+      "label": "Feet to Meters (ft to m)",
+      "href": "/length/feet-to-meters",
+      "type": "related"
+    },
+    {
+      "label": "Meters to Feet (m to ft)",
+      "href": "/length/meters-to-feet",
+      "type": "related"
+    },
+    {
+      "label": "Length Conversions Hub",
+      "href": "/length",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many centimeters (cm) are in 1 millimeter (mm)?",
+      "answer": "There are 0.1 centimeters (cm) in 1 millimeter (mm), which rounds to 0.1 cm for everyday calculations. Conversely, 1 centimeter equals 10 millimeters."
+    },
+    {
+      "question": "How do I convert millimeters to centimeters (mm to cm)?",
+      "answer": "To convert millimeters to centimeters, use the formula: cm = mm × 0.1. For example, converting 12.7 mm gives 1.27 cm."
+    },
+    {
+      "question": "What is 12.7 millimeters in centimeters?",
+      "answer": "12.7 millimeters (mm) equals exactly 1.27 centimeters (cm) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

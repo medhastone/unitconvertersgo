@@ -1,0 +1,105 @@
+{
+  "status": "draft-needs-review",
+  "slug": "cfm-to-cubic-meters-per-hour",
+  "category": "flow",
+  "categoryId": "flow",
+  "fromUnitId": "cubic_foot_per_min",
+  "toUnitId": "cubic_meter_per_hour",
+  "fromSymbol": "CFM",
+  "toSymbol": "m³/h",
+  "intro": "Professionals and everyday users convert cubic feet per minute (CFM) to cubic meters per hour (m³/h) when working across us_customary and metric standards in pump selection, municipal water pipe sizing, HVAC airflow balancing, and welding shielding gas regulation. One cubic feet per minute (cfm) equals 1.699011 cubic meters per hour, while 1 cubic meters per hour equals 0.588578 cubic feet per minute. Whether you are verifying flow rate specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Cubic Feet per Minute (CFM) Benchmark (2 CFM)",
+      "scenario": "Convert 2 cubic feet per minute (CFM) into cubic meters per hour (m³/h) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "3.398022 m³/h",
+      "stepByStep": "2 CFM × 1.699011 = 3.398022 m³/h (rounds to 3.4 m³/h)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 CFM)",
+      "scenario": "Convert 20 cubic feet per minute (CFM) into cubic meters per hour (m³/h) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "33.980216 m³/h",
+      "stepByStep": "20 CFM × 1.699011 = 33.980216 m³/h (rounds to 33.98 m³/h)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 CFM)",
+      "scenario": "Convert 75 cubic feet per minute (CFM) into cubic meters per hour (m³/h) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "127.42581 m³/h",
+      "stepByStep": "75 CFM × 1.699011 = 127.42581 m³/h (rounds to 127.43 m³/h)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Cubic Feet per Minute (CFM) to Cubic Meters per Hour is 1.6990108, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "m³/h = CFM × 1.6990108",
+    "exactFactor": "1.6990108",
+    "roundedFactor": "1.699",
+    "inverseFactor": "0.588578"
+  },
+  "internalLinks": [
+    {
+      "label": "Liters per Minute to US Gallons per Minute (L/min to GPM)",
+      "href": "/flow/liters-per-minute-to-us-gallons-per-minute",
+      "type": "related"
+    },
+    {
+      "label": "US Gallons per Minute to Liters per Minute (GPM to L/min)",
+      "href": "/flow/us-gallons-per-minute-to-liters-per-minute",
+      "type": "related"
+    },
+    {
+      "label": "Cubic Feet per Minute to Liters per Minute (CFM to L/min)",
+      "href": "/flow/cfm-to-liters-per-minute",
+      "type": "related"
+    },
+    {
+      "label": "Cubic Feet per Hour to Liters per Minute (CFH to L/min)",
+      "href": "/flow/cubic-feet-per-hour-to-liters-per-minute",
+      "type": "related"
+    },
+    {
+      "label": "Flow Rate Conversions Hub",
+      "href": "/flow",
+      "type": "hub"
+    },
+    {
+      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "href": "/guides/us-vs-imperial-fluid-ounces",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many cubic meters per hour (m³/h) are in 1 cubic feet per minute (cfm) (CFM)?",
+      "answer": "There are 1.6990108 cubic meters per hour (m³/h) in 1 cubic feet per minute (cfm) (CFM), which rounds to 1.699 m³/h for everyday calculations. Conversely, 1 cubic meters per hour equals 0.588578 cubic feet per minute."
+    },
+    {
+      "question": "How do I convert cubic feet per minute to cubic meters per hour (CFM to m³/h)?",
+      "answer": "To convert cubic feet per minute to cubic meters per hour, use the formula: m³/h = CFM × 1.6990108. For example, converting 10 CFM gives 16.9901 m³/h."
+    },
+    {
+      "question": "What is 10 cubic feet per minute in cubic meters per hour?",
+      "answer": "10 cubic feet per minute (CFM) equals exactly 16.9901 cubic meters per hour (m³/h) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

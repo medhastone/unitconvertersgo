@@ -1,0 +1,97 @@
+{
+  "slug": "sqft-to-acres",
+  "categoryId": "area",
+  "fromUnitId": "sq_foot",
+  "toUnitId": "acre",
+  "status": "draft-needs-review",
+  "intro": "Converting square feet (ft²) to acres (ac) is essential when translating measurements across real estate land deeds, agricultural plot surveying, flooring estimation, and architectural floor plans. One square foot equals 0.00002295 acres, while one acre equals 43,560 square feet. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
+  "referenceValues": [
+    1,
+    5,
+    10,
+    25,
+    50,
+    100,
+    250,
+    500,
+    1000,
+    5000
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 5 ft² to ac",
+      "context": "Baseline reference check when comparing a single square foot specification against acres",
+      "inputValue": 5,
+      "calculation": "5 ft² × 0.00002295 = 0.00011478 ac",
+      "result": "5 ft² = 0.00011478 ac"
+    },
+    {
+      "title": "Convert 50 ft² to ac",
+      "context": "Mid-range practical measurement commonly encountered in area workflows and equipment sheets",
+      "inputValue": 50,
+      "calculation": "50 ft² × 0.00002295 = 0.00114784 ac",
+      "result": "50 ft² = 0.00114784 ac"
+    },
+    {
+      "title": "Convert 500 ft² to ac",
+      "context": "Larger scale calculation for commercial, industrial, or bulk area planning",
+      "inputValue": 500,
+      "calculation": "500 ft² × 0.00002295 = 0.01148 ac",
+      "result": "500 ft² = 0.01148 ac"
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "exactFactor": "0.00002295",
+    "roundedFactor": "0.00002295",
+    "equation": "ac = ft² × 0.00002295",
+    "inverseEquation": "ft² = ac × 1",
+    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 ft² = 0.00002295 ac)."
+  },
+  "internalLinks": [
+    {
+      "href": "/area/acres-to-sq-feet",
+      "label": "Acres to Square Feet (ac to ft²)",
+      "type": "reverse"
+    },
+    {
+      "href": "/area/acres-to-square-miles",
+      "label": "Acres to Square Miles (ac to mi²)",
+      "type": "related"
+    },
+    {
+      "href": "/area/square-miles-to-acres",
+      "label": "Square Miles to Acres (mi² to ac)",
+      "type": "related"
+    },
+    {
+      "href": "/area/sq-feet-to-sq-meters",
+      "label": "Square Feet to Square Meters (ft² to m²)",
+      "type": "related"
+    },
+    {
+      "href": "/undefined",
+      "label": "Area Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/metric-vs-imperial",
+      "label": "Metric vs. Imperial System: Complete Engineering Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many acres are in 1 square foot?",
+      "answer": "There are 0.00002295 acres (ac) in 1 square foot (ft²). To convert ft² to ac, use the exact conversion factor 0.00002295."
+    },
+    {
+      "question": "How do I convert square feet to acres manually?",
+      "answer": "Multiply your square foot value by 0.00002295 (exact factor: 0.00002295). For example, 50 ft² × 0.00002295 = 0.00114784 ac."
+    },
+    {
+      "question": "What is 500 ft² in ac?",
+      "answer": "500 square feet (ft²) equals 0.01148 acres (ac)."
+    }
+  ]
+}

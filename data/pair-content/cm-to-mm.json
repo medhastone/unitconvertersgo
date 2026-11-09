@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "cm-to-mm",
+  "category": "length",
+  "categoryId": "length",
+  "fromUnitId": "centimeter",
+  "toUnitId": "millimeter",
+  "fromSymbol": "cm",
+  "toSymbol": "mm",
+  "intro": "Professionals and everyday users convert centimeters (cm) to millimeters (mm) when working across metric and metric standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One centimeter equals 10 millimeters, while 1 millimeter equals 0.1 centimeters. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    2.54,
+    5,
+    10,
+    15,
+    20,
+    30,
+    50,
+    100,
+    180
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Centimeter Benchmark (5 cm)",
+      "scenario": "Convert 5 centimeters (cm) into millimeters (mm) for technical comparison and documentation.",
+      "inputValue": 5,
+      "outputValue": "50 mm",
+      "stepByStep": "5 cm × 10 = 50 mm (rounds to 50 mm)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 cm)",
+      "scenario": "Convert 20 centimeters (cm) into millimeters (mm) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "200 mm",
+      "stepByStep": "20 cm × 10 = 200 mm (rounds to 200 mm)."
+    },
+    {
+      "title": "Higher-Capacity Specification (100 cm)",
+      "scenario": "Convert 100 centimeters (cm) into millimeters (mm) for technical comparison and documentation.",
+      "inputValue": 100,
+      "outputValue": "1,000 mm",
+      "stepByStep": "100 cm × 10 = 1,000 mm (rounds to 1,000 mm)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "mm = cm × 10",
+    "exactFactor": "10",
+    "roundedFactor": "10",
+    "inverseFactor": "0.1"
+  },
+  "internalLinks": [
+    {
+      "label": "Millimeters to Centimeters (mm to cm)",
+      "href": "/length/mm-to-cm",
+      "type": "reverse"
+    },
+    {
+      "label": "Centimeters to Inches (cm to in)",
+      "href": "/length/cm-to-inches",
+      "type": "related"
+    },
+    {
+      "label": "Inches to Centimeters (in to cm)",
+      "href": "/length/inches-to-cm",
+      "type": "related"
+    },
+    {
+      "label": "Feet to Meters (ft to m)",
+      "href": "/length/feet-to-meters",
+      "type": "related"
+    },
+    {
+      "label": "Meters to Feet (m to ft)",
+      "href": "/length/meters-to-feet",
+      "type": "related"
+    },
+    {
+      "label": "Length Conversions Hub",
+      "href": "/length",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many millimeters (mm) are in 1 centimeter (cm)?",
+      "answer": "There are 10 millimeters (mm) in 1 centimeter (cm), which rounds to 10 mm for everyday calculations. Conversely, 1 millimeter equals 0.1 centimeters."
+    },
+    {
+      "question": "How do I convert centimeters to millimeters (cm to mm)?",
+      "answer": "To convert centimeters to millimeters, use the formula: mm = cm × 10. For example, converting 15 cm gives 150 mm."
+    },
+    {
+      "question": "What is 15 centimeters in millimeters?",
+      "answer": "15 centimeters (cm) equals exactly 150 millimeters (mm) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

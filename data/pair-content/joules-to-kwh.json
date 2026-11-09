@@ -1,0 +1,97 @@
+{
+  "slug": "joules-to-kwh",
+  "categoryId": "energy",
+  "fromUnitId": "joule",
+  "toUnitId": "kilowatt_hour",
+  "status": "draft-needs-review",
+  "intro": "Converting joules (J) to kilowatt-hours (kWh) is essential when translating measurements across household electricity billing, HVAC thermal sizing, battery storage capacity, and dietary energy analysis. One joule equals 2.777778e-7 kilowatt-hours, while one kilowatt-hour equals 3,600,000 joules. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
+  "referenceValues": [
+    1,
+    10,
+    50,
+    100,
+    250,
+    500,
+    1000,
+    2000,
+    5000,
+    10000
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 10 J to kWh",
+      "context": "Baseline reference check when comparing a single joule specification against kilowatt-hours",
+      "inputValue": 10,
+      "calculation": "10 J × 2.777778e-7 = 0.00000277 kWh",
+      "result": "10 J = 0.00000277 kWh"
+    },
+    {
+      "title": "Convert 250 J to kWh",
+      "context": "Mid-range practical measurement commonly encountered in energy workflows and equipment sheets",
+      "inputValue": 250,
+      "calculation": "250 J × 2.777778e-7 = 0.00006944 kWh",
+      "result": "250 J = 0.00006944 kWh"
+    },
+    {
+      "title": "Convert 2000 J to kWh",
+      "context": "Larger scale calculation for commercial, industrial, or bulk energy planning",
+      "inputValue": 2000,
+      "calculation": "2000 J × 2.777778e-7 = 0.00055555 kWh",
+      "result": "2000 J = 0.00055555 kWh"
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "exactFactor": "2.777778e-7",
+    "roundedFactor": "2.777778e-7",
+    "equation": "kWh = J × 2.777778e-7",
+    "inverseEquation": "J = kWh × 1",
+    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 J = 2.777778e-7 kWh)."
+  },
+  "internalLinks": [
+    {
+      "href": "/energy/kwh-to-joules",
+      "label": "Kilowatt-hours to Joules (kWh to J)",
+      "type": "reverse"
+    },
+    {
+      "href": "/energy/kj-to-j",
+      "label": "Kilojoules to Joules (kJ to J)",
+      "type": "related"
+    },
+    {
+      "href": "/energy/j-to-kj",
+      "label": "Joules to Kilojoules (J to kJ)",
+      "type": "related"
+    },
+    {
+      "href": "/energy/joules-to-calories",
+      "label": "Joules to Calories (J to cal)",
+      "type": "related"
+    },
+    {
+      "href": "/undefined",
+      "label": "Energy Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/si-prefixes",
+      "label": "SI Prefixes & Scientific Notation Reference Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many kilowatt-hours are in 1 joule?",
+      "answer": "There are 2.777778e-7 kilowatt-hours (kWh) in 1 joule (J). To convert J to kWh, use the exact conversion factor 2.777778e-7."
+    },
+    {
+      "question": "How do I convert joules to kilowatt-hours manually?",
+      "answer": "Multiply your joule value by 2.777778e-7 (exact factor: 2.777778e-7). For example, 250 J × 2.777778e-7 = 0.00006944 kWh."
+    },
+    {
+      "question": "What is 2000 J in kWh?",
+      "answer": "2000 joules (J) equals 0.00055555 kilowatt-hours (kWh)."
+    }
+  ]
+}

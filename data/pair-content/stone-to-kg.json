@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "stone-to-kg",
+  "category": "weight-and-mass",
+  "categoryId": "mass",
+  "fromUnitId": "stone",
+  "toUnitId": "kilogram",
+  "fromSymbol": "st",
+  "toSymbol": "kg",
+  "intro": "Professionals and everyday users convert stones (st) to kilograms (kg) when working across imperial and si standards in engineering specifications, international trade documentation, and technical measurements. One stone (uk) equals 6.350293 kilograms, while 1 kilogram equals 0.157473 stones. Whether you are verifying mass & weight specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    5,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    20
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Stone (UK) Benchmark (9 st)",
+      "scenario": "Convert 9 stones (st) into kilograms (kg) for technical comparison and documentation.",
+      "inputValue": 9,
+      "outputValue": "57.152639 kg",
+      "stepByStep": "9 st × 6.350293 = 57.152639 kg (rounds to 57.15 kg)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (12 st)",
+      "scenario": "Convert 12 stones (st) into kilograms (kg) for technical comparison and documentation.",
+      "inputValue": 12,
+      "outputValue": "76.203518 kg",
+      "stepByStep": "12 st × 6.350293 = 76.203518 kg (rounds to 76.2 kg)."
+    },
+    {
+      "title": "Higher-Capacity Specification (15 st)",
+      "scenario": "Convert 15 stones (st) into kilograms (kg) for technical comparison and documentation.",
+      "inputValue": 15,
+      "outputValue": "95.254398 kg",
+      "stepByStep": "15 st × 6.350293 = 95.254398 kg (rounds to 95.25 kg)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Stone (UK) to Kilogram is 6.35029318, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "kg = st × 6.35029318",
+    "exactFactor": "6.35029318",
+    "roundedFactor": "6.3503",
+    "inverseFactor": "0.157473"
+  },
+  "internalLinks": [
+    {
+      "label": "Kilograms to Stones (kg to st)",
+      "href": "/weight-and-mass/kg-to-stone",
+      "type": "reverse"
+    },
+    {
+      "label": "Kilograms to Pounds (kg to lb)",
+      "href": "/weight-and-mass/kg-to-lbs",
+      "type": "related"
+    },
+    {
+      "label": "Pounds to Kilograms (lb to kg)",
+      "href": "/weight-and-mass/lbs-to-kg",
+      "type": "related"
+    },
+    {
+      "label": "Grams to Ounces (g to oz)",
+      "href": "/weight-and-mass/grams-to-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Ounces to Grams (oz to g)",
+      "href": "/weight-and-mass/ounces-to-grams",
+      "type": "related"
+    },
+    {
+      "label": "Mass & Weight Conversions Hub",
+      "href": "/weight-and-mass",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many kilograms (kg) are in 1 stone (uk) (st)?",
+      "answer": "There are 6.35029318 kilograms (kg) in 1 stone (uk) (st), which rounds to 6.3503 kg for everyday calculations. Conversely, 1 kilogram equals 0.157473 stones."
+    },
+    {
+      "question": "How do I convert stones to kilograms (st to kg)?",
+      "answer": "To convert stones to kilograms, use the formula: kg = st × 6.35029318. For example, converting 11 st gives 69.8532 kg."
+    },
+    {
+      "question": "What is 11 stones in kilograms?",
+      "answer": "11 stones (st) equals exactly 69.8532 kilograms (kg) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

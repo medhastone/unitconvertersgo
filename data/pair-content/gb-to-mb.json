@@ -1,0 +1,106 @@
+{
+  "status": "draft-needs-review",
+  "slug": "gb-to-mb",
+  "category": "data-storage",
+  "categoryId": "digital_storage",
+  "fromUnitId": "gigabyte",
+  "toUnitId": "megabyte",
+  "fromSymbol": "GB",
+  "toSymbol": "MB",
+  "intro": "Professionals and everyday users convert gigabytes (GB) to megabytes (MB) when working across metric and metric standards in engineering specifications, international trade documentation, and technical measurements. One gigabyte (decimal) equals 1,000 megabytes, while 1 megabyte (decimal) equals 0.001 gigabytes. Whether you are verifying digital storage specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64,
+    128,
+    256,
+    512,
+    1000,
+    1024
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Gigabyte (Decimal) Benchmark (4 GB)",
+      "scenario": "Convert 4 gigabytes (GB) into megabytes (MB) for technical comparison and documentation.",
+      "inputValue": 4,
+      "outputValue": "4,000 MB",
+      "stepByStep": "4 GB × 1,000 = 4,000 MB (rounds to 4,000 MB)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (32 GB)",
+      "scenario": "Convert 32 gigabytes (GB) into megabytes (MB) for technical comparison and documentation.",
+      "inputValue": 32,
+      "outputValue": "32,000 MB",
+      "stepByStep": "32 GB × 1,000 = 32,000 MB (rounds to 32,000 MB)."
+    },
+    {
+      "title": "Higher-Capacity Specification (256 GB)",
+      "scenario": "Convert 256 gigabytes (GB) into megabytes (MB) for technical comparison and documentation.",
+      "inputValue": 256,
+      "outputValue": "256,000 MB",
+      "stepByStep": "256 GB × 1,000 = 256,000 MB (rounds to 256,000 MB)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "MB = GB × 1,000",
+    "exactFactor": "1,000",
+    "roundedFactor": "1,000",
+    "inverseFactor": "0.001"
+  },
+  "internalLinks": [
+    {
+      "label": "Megabytes to Gigabytes (MB to GB)",
+      "href": "/data-storage/mb-to-gb",
+      "type": "reverse"
+    },
+    {
+      "label": "Gigabytes to Terabytes (GB to TB)",
+      "href": "/data-storage/gb-to-tb",
+      "type": "related"
+    },
+    {
+      "label": "Terabytes to Gigabytes (TB to GB)",
+      "href": "/data-storage/tb-to-gb",
+      "type": "related"
+    },
+    {
+      "label": "Kilobytes to Megabytes (KB to MB)",
+      "href": "/data-storage/kb-to-mb",
+      "type": "related"
+    },
+    {
+      "label": "Megabytes to Kilobytes (MB to KB)",
+      "href": "/data-storage/mb-to-kb",
+      "type": "related"
+    },
+    {
+      "label": "Digital Storage Conversions Hub",
+      "href": "/data-storage",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many megabytes (MB) are in 1 gigabyte (decimal) (GB)?",
+      "answer": "There are 1,000 megabytes (MB) in 1 gigabyte (decimal) (GB), which rounds to 1,000 MB for everyday calculations. Conversely, 1 megabyte (decimal) equals 0.001 gigabytes."
+    },
+    {
+      "question": "How do I convert gigabytes to megabytes (GB to MB)?",
+      "answer": "To convert gigabytes to megabytes, use the formula: MB = GB × 1,000. For example, converting 16 GB gives 16,000 MB."
+    },
+    {
+      "question": "What is 16 gigabytes in megabytes?",
+      "answer": "16 gigabytes (GB) equals exactly 16,000 megabytes (MB) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

@@ -1,5 +1,28 @@
 import type {NextConfig} from 'next';
 import {PHASE_DEVELOPMENT_SERVER} from 'next/constants';
+import fs from 'fs';
+import path from 'path';
+
+interface SlugRedirectEntry {
+  source: string;
+  destination: string;
+  permanent: boolean;
+}
+
+function loadSlugRedirects(): Array<{ source: string; destination: string; statusCode: 301 }> {
+  try {
+    const filePath = path.join(process.cwd(), 'data', 'slug-redirects.json');
+    if (!fs.existsSync(filePath)) return [];
+    const parsed = JSON.parse(fs.readFileSync(filePath, 'utf-8')) as SlugRedirectEntry[];
+    return parsed.map((r) => ({
+      source: r.source,
+      destination: r.destination,
+      statusCode: 301 as const,
+    }));
+  } catch {
+    return [];
+  }
+}
 
 const nextConfig = (phase: string): NextConfig => {
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
@@ -88,6 +111,7 @@ const nextConfig = (phase: string): NextConfig => {
     ];
   },
   async redirects() {
+    const slugRedirects = loadSlugRedirects();
     return [
       // 0. Canonicalize www.unitconvertersgo.com to https://unitconvertersgo.com
       {
@@ -99,6 +123,19 @@ const nextConfig = (phase: string): NextConfig => {
           },
         ],
         destination: 'https://unitconvertersgo.com/:path*',
+        statusCode: 301,
+      },
+      // 0b. Slug redirects, merged thin hubs (/radiation, /digital-image-resolution, /concentration-molar, /fuel-consumption -> /specialty), duplicate losers, and exponent-loss fixes
+      ...slugRedirects,
+      // 0c. Any remaining /conversions/:category -> /:category
+      {
+        source: '/conversions/:category/:slug',
+        destination: '/:category/:slug',
+        statusCode: 301,
+      },
+      {
+        source: '/conversions/:category',
+        destination: '/:category',
         statusCode: 301,
       },
       // 1. PPM in /density -> /concentration-solution or /density

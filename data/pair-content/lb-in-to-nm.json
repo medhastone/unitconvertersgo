@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "lb-in-to-nm",
+  "category": "torque",
+  "categoryId": "torque",
+  "fromUnitId": "lb_in",
+  "toUnitId": "nm",
+  "fromSymbol": "lb·in",
+  "toSymbol": "N·m",
+  "intro": "Professionals and everyday users convert pound-inches (lb·in) to newton-meters (N·m) when working across imperial and si standards in automotive lug nut torque wrench settings, engine dynamometer curves, and industrial fastener specifications. One pound-inch (in·lbf) equals 0.112985 newton-meters, while 1 newton-meter equals 8.850746 pound-inches. Whether you are verifying torque specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    5,
+    10,
+    25,
+    50,
+    75,
+    100,
+    150,
+    250,
+    500
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Pound-inch (in·lbf) Benchmark (10 lb·in)",
+      "scenario": "Convert 10 pound-inches (lb·in) into newton-meters (N·m) for technical comparison and documentation.",
+      "inputValue": 10,
+      "outputValue": "1.129848 N·m",
+      "stepByStep": "10 lb·in × 0.112985 = 1.129848 N·m (rounds to 1.13 N·m)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (75 lb·in)",
+      "scenario": "Convert 75 pound-inches (lb·in) into newton-meters (N·m) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "8.473862 N·m",
+      "stepByStep": "75 lb·in × 0.112985 = 8.473862 N·m (rounds to 8.47 N·m)."
+    },
+    {
+      "title": "Higher-Capacity Specification (250 lb·in)",
+      "scenario": "Convert 250 pound-inches (lb·in) into newton-meters (N·m) for technical comparison and documentation.",
+      "inputValue": 250,
+      "outputValue": "28.246207 N·m",
+      "stepByStep": "250 lb·in × 0.112985 = 28.246207 N·m (rounds to 28.25 N·m)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Pound-inch (in·lbf) to Newton-meter is 0.11298483, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "N·m = lb·in × 0.11298483",
+    "exactFactor": "0.11298483",
+    "roundedFactor": "0.113",
+    "inverseFactor": "8.850746"
+  },
+  "internalLinks": [
+    {
+      "label": "Newton-meters to Pound-inches (N·m to lb·in)",
+      "href": "/torque/nm-to-lb-in",
+      "type": "reverse"
+    },
+    {
+      "label": "Newton-meters to Pound-feet (N·m to lb·ft)",
+      "href": "/torque/nm-to-lb-ft",
+      "type": "related"
+    },
+    {
+      "label": "Pound-feet to Newton-meters (lb·ft to N·m)",
+      "href": "/torque/lb-ft-to-nm",
+      "type": "related"
+    },
+    {
+      "label": "Pound-feet to Pound-inches (lb·ft to lb·in)",
+      "href": "/torque/lb-ft-to-lb-in",
+      "type": "related"
+    },
+    {
+      "label": "Pound-inches to Pound-feet (lb·in to lb·ft)",
+      "href": "/torque/lb-in-to-lb-ft",
+      "type": "related"
+    },
+    {
+      "label": "Torque Conversions Hub",
+      "href": "/torque",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many newton-meters (N·m) are in 1 pound-inch (in·lbf) (lb·in)?",
+      "answer": "There are 0.11298483 newton-meters (N·m) in 1 pound-inch (in·lbf) (lb·in), which rounds to 0.113 N·m for everyday calculations. Conversely, 1 newton-meter equals 8.850746 pound-inches."
+    },
+    {
+      "question": "How do I convert pound-inches to newton-meters (lb·in to N·m)?",
+      "answer": "To convert pound-inches to newton-meters, use the formula: N·m = lb·in × 0.11298483. For example, converting 50 lb·in gives 5.6492 N·m."
+    },
+    {
+      "question": "What is 50 pound-inches in newton-meters?",
+      "answer": "50 pound-inches (lb·in) equals exactly 5.6492 newton-meters (N·m) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "degrees-to-radians",
+  "category": "angle",
+  "categoryId": "angle",
+  "fromUnitId": "degree",
+  "toUnitId": "radian",
+  "fromSymbol": "°",
+  "toSymbol": "rad",
+  "intro": "Professionals and everyday users convert degrees (°) to radians (rad) when working across other and si standards in CNC rotary indexing, optical alignment, trigonometric engineering, and surveying bearings. One degree equals 0.017453 radians, while 1 radian equals 57.29578 degrees. Whether you are verifying angle specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    15,
+    30,
+    45,
+    60,
+    90,
+    120,
+    135,
+    180,
+    270,
+    360
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Degree Benchmark (45 °)",
+      "scenario": "Convert 45 degrees (°) into radians (rad) for technical comparison and documentation.",
+      "inputValue": 45,
+      "outputValue": "0.785398 rad",
+      "stepByStep": "45 ° × 0.017453 = 0.785398 rad (rounds to 0.79 rad)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (120 °)",
+      "scenario": "Convert 120 degrees (°) into radians (rad) for technical comparison and documentation.",
+      "inputValue": 120,
+      "outputValue": "2.094395 rad",
+      "stepByStep": "120 ° × 0.017453 = 2.094395 rad (rounds to 2.09 rad)."
+    },
+    {
+      "title": "Higher-Capacity Specification (270 °)",
+      "scenario": "Convert 270 degrees (°) into radians (rad) for technical comparison and documentation.",
+      "inputValue": 270,
+      "outputValue": "4.712389 rad",
+      "stepByStep": "270 ° × 0.017453 = 4.712389 rad (rounds to 4.71 rad)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Degree to Radian is 0.01745329, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "rad = ° × 0.01745329",
+    "exactFactor": "0.01745329",
+    "roundedFactor": "0.0175",
+    "inverseFactor": "57.29578"
+  },
+  "internalLinks": [
+    {
+      "label": "Radians to Degrees (rad to °)",
+      "href": "/angle/radians-to-degrees",
+      "type": "reverse"
+    },
+    {
+      "label": "Degrees to Gradians (° to grad)",
+      "href": "/angle/degrees-to-gradians",
+      "type": "related"
+    },
+    {
+      "label": "Arcminutes to Degrees (′ to °)",
+      "href": "/angle/arcminutes-to-degrees",
+      "type": "related"
+    },
+    {
+      "label": "Radians to Revolutions (rad to rev)",
+      "href": "/angle/radian-to-revolution",
+      "type": "related"
+    },
+    {
+      "label": "Angular Mils to Degrees (mil to °)",
+      "href": "/angle/mil-to-degree",
+      "type": "related"
+    },
+    {
+      "label": "Angle Conversions Hub",
+      "href": "/angle",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many radians (rad) are in 1 degree (°)?",
+      "answer": "There are 0.01745329 radians (rad) in 1 degree (°), which rounds to 0.0175 rad for everyday calculations. Conversely, 1 radian equals 57.29578 degrees."
+    },
+    {
+      "question": "How do I convert degrees to radians (° to rad)?",
+      "answer": "To convert degrees to radians, use the formula: rad = ° × 0.01745329. For example, converting 90 ° gives 1.5708 rad."
+    },
+    {
+      "question": "What is 90 degrees in radians?",
+      "answer": "90 degrees (°) equals exactly 1.5708 radians (rad) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

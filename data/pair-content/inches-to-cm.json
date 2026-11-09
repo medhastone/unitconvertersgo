@@ -1,0 +1,111 @@
+{
+  "status": "draft-needs-review",
+  "slug": "inches-to-cm",
+  "category": "length",
+  "categoryId": "length",
+  "fromUnitId": "inch",
+  "toUnitId": "centimeter",
+  "fromSymbol": "in",
+  "toSymbol": "cm",
+  "intro": "Professionals and everyday users convert inches (in) to centimeters (cm) when working across imperial and metric standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One inch equals 2.54 centimeters, while 1 centimeter equals 0.393701 inches. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    2,
+    4,
+    6,
+    10,
+    12,
+    18,
+    24,
+    36,
+    48,
+    72
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Inch Benchmark (4 in)",
+      "scenario": "Convert 4 inches (in) into centimeters (cm) for technical comparison and documentation.",
+      "inputValue": 4,
+      "outputValue": "10.16 cm",
+      "stepByStep": "4 in × 2.54 = 10.16 cm (rounds to 10.16 cm)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (12 in)",
+      "scenario": "Convert 12 inches (in) into centimeters (cm) for technical comparison and documentation.",
+      "inputValue": 12,
+      "outputValue": "30.48 cm",
+      "stepByStep": "12 in × 2.54 = 30.48 cm (rounds to 30.48 cm)."
+    },
+    {
+      "title": "Higher-Capacity Specification (36 in)",
+      "scenario": "Convert 36 inches (in) into centimeters (cm) for technical comparison and documentation.",
+      "inputValue": 36,
+      "outputValue": "91.44 cm",
+      "stepByStep": "36 in × 2.54 = 91.44 cm (rounds to 91.44 cm)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Inch to Centimeter is 2.54, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "cm = in × 2.54",
+    "exactFactor": "2.54",
+    "roundedFactor": "2.54",
+    "inverseFactor": "0.393701"
+  },
+  "internalLinks": [
+    {
+      "label": "Centimeters to Inches (cm to in)",
+      "href": "/length/cm-to-inches",
+      "type": "reverse"
+    },
+    {
+      "label": "Feet to Meters (ft to m)",
+      "href": "/length/feet-to-meters",
+      "type": "related"
+    },
+    {
+      "label": "Meters to Feet (m to ft)",
+      "href": "/length/meters-to-feet",
+      "type": "related"
+    },
+    {
+      "label": "Kilometers to Miles (km to mi)",
+      "href": "/length/km-to-miles",
+      "type": "related"
+    },
+    {
+      "label": "Miles to Kilometers (mi to km)",
+      "href": "/length/miles-to-km",
+      "type": "related"
+    },
+    {
+      "label": "Length Conversions Hub",
+      "href": "/length",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many centimeters (cm) are in 1 inch (in)?",
+      "answer": "There are 2.54 centimeters (cm) in 1 inch (in), which rounds to 2.54 cm for everyday calculations. Conversely, 1 centimeter equals 0.393701 inches."
+    },
+    {
+      "question": "How do I convert inches to centimeters (in to cm)?",
+      "answer": "To convert inches to centimeters, use the formula: cm = in × 2.54. For example, converting 10 in gives 25.4 cm."
+    },
+    {
+      "question": "What is 10 inches in centimeters?",
+      "answer": "10 inches (in) equals exactly 25.4 centimeters (cm) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "khz-to-hz",
+  "category": "frequency",
+  "categoryId": "frequency",
+  "fromUnitId": "kilohertz",
+  "toUnitId": "hertz",
+  "fromSymbol": "kHz",
+  "toSymbol": "Hz",
+  "intro": "Professionals and everyday users convert kilohertz (kHz) to hertz (Hz) when working across metric and si standards in processor clock speeds, RF wireless spectrum allocation, audio signal processing, and rotational machinery RPM. One kilohertz equals 1,000 hertz, while 1 hertz equals 0.001 kilohertz. Whether you are verifying frequency specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Kilohertz Benchmark (2 kHz)",
+      "scenario": "Convert 2 kilohertz (kHz) into hertz (Hz) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "2,000 Hz",
+      "stepByStep": "2 kHz × 1,000 = 2,000 Hz (rounds to 2,000 Hz)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 kHz)",
+      "scenario": "Convert 20 kilohertz (kHz) into hertz (Hz) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "20,000 Hz",
+      "stepByStep": "20 kHz × 1,000 = 20,000 Hz (rounds to 20,000 Hz)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 kHz)",
+      "scenario": "Convert 75 kilohertz (kHz) into hertz (Hz) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "75,000 Hz",
+      "stepByStep": "75 kHz × 1,000 = 75,000 Hz (rounds to 75,000 Hz)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "Hz = kHz × 1,000",
+    "exactFactor": "1,000",
+    "roundedFactor": "1,000",
+    "inverseFactor": "0.001"
+  },
+  "internalLinks": [
+    {
+      "label": "Hertz to Kilohertz (Hz to kHz)",
+      "href": "/frequency/hz-to-khz",
+      "type": "reverse"
+    },
+    {
+      "label": "Megahertz to Gigahertz (MHz to GHz)",
+      "href": "/frequency/mhz-to-ghz",
+      "type": "related"
+    },
+    {
+      "label": "Gigahertz to Megahertz (GHz to MHz)",
+      "href": "/frequency/ghz-to-mhz",
+      "type": "related"
+    },
+    {
+      "label": "RPM to Hertz (RPM to Hz)",
+      "href": "/frequency/rpm-to-hz",
+      "type": "related"
+    },
+    {
+      "label": "Kilohertz to Megahertz (kHz to MHz)",
+      "href": "/frequency/khz-to-mhz",
+      "type": "related"
+    },
+    {
+      "label": "Frequency Conversions Hub",
+      "href": "/frequency",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many hertz (Hz) are in 1 kilohertz (kHz)?",
+      "answer": "There are 1,000 hertz (Hz) in 1 kilohertz (kHz), which rounds to 1,000 Hz for everyday calculations. Conversely, 1 hertz equals 0.001 kilohertz."
+    },
+    {
+      "question": "How do I convert kilohertz to hertz (kHz to Hz)?",
+      "answer": "To convert kilohertz to hertz, use the formula: Hz = kHz × 1,000. For example, converting 10 kHz gives 10,000 Hz."
+    },
+    {
+      "question": "What is 10 kilohertz in hertz?",
+      "answer": "10 kilohertz (kHz) equals exactly 10,000 hertz (Hz) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

@@ -51,9 +51,35 @@ import {
   buildStandardToolDescription,
   getCategoryOgImage,
 } from "@/lib/seo";
-import { isIndexableCategory } from "@/lib/seo-config";
+import { isMergedThinHub } from "@/lib/seo-config";
+import { isPairIndexable, getDuplicateOf } from "@/lib/seo-tiers";
+import { getPairContent, getCuratedCommonValues } from "@/lib/pair-content";
 import { ConversionPairInfo } from "@/lib/conversions/types";
 import { resolveInvalidPairRedirect } from "@/lib/conversions/cooking";
+import fs from "fs";
+import path from "path";
+
+let cachedSlugRedirectMap: Map<string, string> | null = null;
+function getSlugRedirectDestination(requestPath: string): string | undefined {
+  if (!cachedSlugRedirectMap) {
+    cachedSlugRedirectMap = new Map<string, string>();
+    try {
+      const p = path.join(process.cwd(), "data", "slug-redirects.json");
+      if (fs.existsSync(p)) {
+        const list = JSON.parse(fs.readFileSync(p, "utf-8")) as Array<{
+          source: string;
+          destination: string;
+        }>;
+        for (const item of list) {
+          cachedSlugRedirectMap.set(item.source.toLowerCase(), item.destination);
+        }
+      }
+    } catch {
+      // ignore
+    }
+  }
+  return cachedSlugRedirectMap.get(requestPath.toLowerCase());
+}
 
 interface HierarchicalConversionPageProps {
   params: Promise<{
@@ -76,11 +102,18 @@ export async function generateMetadata({
   if (resolveInvalidPairRedirect(rawCat, slug)) {
     return {};
   }
+  const currentPath = `/${decodeURIComponent(rawCat).trim()}/${decodeURIComponent(slug).trim()}`;
+  const explicitRedirect = getSlugRedirectDestination(currentPath);
+  if (explicitRedirect) {
+    return {};
+  }
+
   const categoryIdHint = resolveCategoryIdFromUrlSlug(rawCat);
   const pair = getConversionPair(slug, categoryIdHint);
   if (!pair) return {};
 
-  const canonicalPath = getPairUrl(pair);
+  const duplicateWinnerPath = getDuplicateOf(pair);
+  const canonicalPath = duplicateWinnerPath || getPairUrl(pair);
   const fromUnit = UNIT_MAP.get(pair.fromUnitId);
   const toUnit = UNIT_MAP.get(pair.toUnitId);
   const standardTitle = buildStandardToolTitle(pair, fromUnit, toUnit);
@@ -91,7 +124,7 @@ export async function generateMetadata({
     description: standardDescription,
     canonicalPath,
     type: "website",
-    noindex: !isIndexableCategory(pair.categoryId),
+    noindex: !isPairIndexable(pair),
     categoryId: pair.categoryId,
     pairSlug: pair.slug,
     useExactTitle: true,
@@ -107,6 +140,14 @@ export default async function HierarchicalConversionPage({
     permanentRedirect(invalidRedirectTarget);
   }
 
+  const currentPath = `/${decodeURIComponent(rawCat).trim()}/${decodeURIComponent(
+    slug
+  ).trim()}`;
+  const explicitRedirect = getSlugRedirectDestination(currentPath);
+  if (explicitRedirect && explicitRedirect !== currentPath) {
+    permanentRedirect(explicitRedirect);
+  }
+
   const categoryIdHint = resolveCategoryIdFromUrlSlug(rawCat);
   const pair = getConversionPair(slug, categoryIdHint);
 
@@ -115,9 +156,6 @@ export default async function HierarchicalConversionPage({
   }
 
   const canonicalPath = getPairUrl(pair);
-  const currentPath = `/${decodeURIComponent(rawCat).trim()}/${decodeURIComponent(
-    slug
-  ).trim()}`;
 
   // Canonicalize any non-.htm or alias category/slug URL to the single canonical /[category]/[slug] URL
   if (currentPath !== canonicalPath) {
@@ -133,6 +171,16 @@ export default async function HierarchicalConversionPage({
   }
 
   const editorial = generateEditorialContentBundle(pair, fromUnit, toUnit);
+  const pairContent = getPairContent(pair.slug);
+  const curatedCommonValues = getCuratedCommonValues(
+    getCategoryUrlSlug(pair.categoryId),
+    pair.slug,
+    pair.fromUnitId
+  );
+  const h1WithSymbols =
+    editorial.h1.includes(fromUnit.symbol) && editorial.h1.includes(toUnit.symbol)
+      ? editorial.h1
+      : `${fromUnit.plural} to ${toUnit.plural} Converter (${fromUnit.symbol} to ${toUnit.symbol})`;
 
   // 1. Reciprocal pair (e.g. inches-to-cm for cm-to-inches)
   const reciprocalPair =
@@ -354,11 +402,11 @@ export default async function HierarchicalConversionPage({
               aria-hidden="true"
             />
             <Link
-              href={getCategoryUrl(category.id)}
+              href={isMergedThinHub(category.id) ? "/specialty" : getCategoryUrl(category.id)}
               prefetch={false}
               className="hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors font-medium"
             >
-              {category.name} Converter
+              {isMergedThinHub(category.id) ? "Specialty & Engineering Hub" : `${category.name} Converter`}
             </Link>
             <ChevronRight
               className="w-4 h-4 text-slate-400 shrink-0"
@@ -420,7 +468,7 @@ export default async function HierarchicalConversionPage({
             </div>
             <div className="space-y-1.5">
               <h1 className="text-[26px] sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#16324F] dark:text-white leading-tight">
-                {editorial.h1}
+                {h1WithSymbols}
               </h1>
               <p className="text-base sm:text-[17px] text-slate-600 dark:text-slate-300 leading-relaxed">
                 {editorial.subheading}
@@ -463,6 +511,8 @@ export default async function HierarchicalConversionPage({
         <ConversionPageInteractive
           pair={pair}
           featuredRelatedPairs={featuredRelatedPairs}
+          pairContent={pairContent}
+          curatedCommonValues={curatedCommonValues}
         />
 
         {/* Compact Official Metrology References Section */}

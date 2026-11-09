@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "kw-to-watts",
+  "category": "power",
+  "categoryId": "power",
+  "fromUnitId": "kilowatt",
+  "toUnitId": "watt",
+  "fromSymbol": "kW",
+  "toSymbol": "W",
+  "intro": "Professionals and everyday users convert kilowatts (kW) to watts (W) when working across metric and si standards in automotive engine output ratings, electric motor sizing, solar inverter specifications, and appliance load planning. One kilowatt equals 1,000 watts, while 1 watt equals 0.001 kilowatts. Whether you are verifying power specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    25,
+    50,
+    100,
+    200,
+    500
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Kilowatt Benchmark (2 kW)",
+      "scenario": "Convert 2 kilowatts (kW) into watts (W) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "2,000 W",
+      "stepByStep": "2 kW × 1,000 = 2,000 W (rounds to 2,000 W)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (25 kW)",
+      "scenario": "Convert 25 kilowatts (kW) into watts (W) for technical comparison and documentation.",
+      "inputValue": 25,
+      "outputValue": "25,000 W",
+      "stepByStep": "25 kW × 1,000 = 25,000 W (rounds to 25,000 W)."
+    },
+    {
+      "title": "Higher-Capacity Specification (200 kW)",
+      "scenario": "Convert 200 kilowatts (kW) into watts (W) for technical comparison and documentation.",
+      "inputValue": 200,
+      "outputValue": "200,000 W",
+      "stepByStep": "200 kW × 1,000 = 200,000 W (rounds to 200,000 W)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "W = kW × 1,000",
+    "exactFactor": "1,000",
+    "roundedFactor": "1,000",
+    "inverseFactor": "0.001"
+  },
+  "internalLinks": [
+    {
+      "label": "Watts to Kilowatts (W to kW)",
+      "href": "/power/watts-to-kw",
+      "type": "reverse"
+    },
+    {
+      "label": "Horsepower (hp) to Kilowatts (hp to kW)",
+      "href": "/power/hp-to-kw",
+      "type": "related"
+    },
+    {
+      "label": "Kilowatts to Horsepower (hp) (kW to hp)",
+      "href": "/power/kw-to-horsepower",
+      "type": "related"
+    },
+    {
+      "label": "Watts to Horsepower (hp) (W to hp)",
+      "href": "/power/watts-to-horsepower",
+      "type": "related"
+    },
+    {
+      "label": "Horsepower (hp) to Watts (hp to W)",
+      "href": "/power/horsepower-to-watts",
+      "type": "related"
+    },
+    {
+      "label": "Power Conversions Hub",
+      "href": "/power",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many watts (W) are in 1 kilowatt (kW)?",
+      "answer": "There are 1,000 watts (W) in 1 kilowatt (kW), which rounds to 1,000 W for everyday calculations. Conversely, 1 watt equals 0.001 kilowatts."
+    },
+    {
+      "question": "How do I convert kilowatts to watts (kW to W)?",
+      "answer": "To convert kilowatts to watts, use the formula: W = kW × 1,000. For example, converting 10 kW gives 10,000 W."
+    },
+    {
+      "question": "What is 10 kilowatts in watts?",
+      "answer": "10 kilowatts (kW) equals exactly 10,000 watts (W) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

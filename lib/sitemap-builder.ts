@@ -1,6 +1,11 @@
 import { SITE_CONFIG } from "@/lib/config";
-import { INDEXABLE_CATEGORIES, isIndexableCategory } from "@/lib/seo-config";
-import { CONVERSION_CATALOGUE } from "@/lib/conversions/catalogue";
+import {
+  INDEXABLE_CATEGORIES,
+  isIndexableCategory,
+  isPairIndexable,
+  getConverterTier,
+} from "@/lib/seo-config";
+import { CONVERSION_CATALOGUE, ensureEnrichedPair } from "@/lib/conversions/catalogue";
 import {
   getCategoryUrlSlug,
   getCategoryUrl,
@@ -19,13 +24,20 @@ export interface SitemapUrlEntry {
 
 const BUILD_LASTMOD = SITE_CONFIG.legalLastUpdatedIso;
 
+const SPECIALTY_CATEGORY_IDS = new Set([
+  "radiation",
+  "digital_image_resolution",
+  "concentration_molar",
+  "fuel_economy",
+]);
+
 /**
  * Returns the list of all child sitemap names (without "sitemap-" prefix and ".xml" suffix)
  * in the exact order they appear in /sitemap.xml:
  * - "pages" -> /sitemap-pages.xml
  * - "guides" -> /sitemap-guides.xml
  * - "cooking" -> /sitemap-cooking.xml
- * - 17 indexable category slugs -> /sitemap-<category>.xml
+ * - indexable category slugs (including "specialty") -> /sitemap-<category>.xml
  */
 export function getAllChildSitemapNames(): string[] {
   const categorySlugs = INDEXABLE_CATEGORIES.filter((slug) => slug !== "cooking");
@@ -34,6 +46,7 @@ export function getAllChildSitemapNames(): string[] {
 
 /**
  * Resolves the canonical, 200-status, indexable URL entries for a given child sitemap name.
+ * Only Tier A and passing Tier B converter pages (where isPairIndexable(pair) === true) are included.
  */
 export function getChildSitemapEntries(name: string): SitemapUrlEntry[] | null {
   const baseUrl = SITE_CONFIG.baseUrl;
@@ -107,7 +120,26 @@ export function getChildSitemapEntries(name: string): SitemapUrlEntry[] | null {
     ];
   }
 
-  // Check if `name` is one of the 17 indexable catalogue category slugs
+  if (name === "specialty") {
+    const specialtyPairs = CONVERSION_CATALOGUE.map((p) => ensureEnrichedPair(p)).filter(
+      (p) => SPECIALTY_CATEGORY_IDS.has(p.categoryId) && isPairIndexable(p)
+    );
+    return [
+      {
+        loc: `${baseUrl}/specialty`,
+        lastmod: BUILD_LASTMOD,
+        changefreq: "weekly",
+        priority: "0.9",
+      },
+      ...specialtyPairs.map((pair) => ({
+        loc: `${baseUrl}${getPairUrl(pair)}`,
+        lastmod: BUILD_LASTMOD,
+        changefreq: "weekly" as const,
+        priority: "0.8",
+      })),
+    ];
+  }
+
   if (!isIndexableCategory(name)) {
     return null;
   }
@@ -122,7 +154,9 @@ export function getChildSitemapEntries(name: string): SitemapUrlEntry[] | null {
     return null;
   }
 
-  const pairs = CONVERSION_CATALOGUE.filter((p) => p.categoryId === categoryId);
+  const indexablePairs = CONVERSION_CATALOGUE.map((p) => ensureEnrichedPair(p)).filter(
+    (p) => p.categoryId === categoryId && isPairIndexable(p)
+  );
 
   return [
     {
@@ -131,7 +165,7 @@ export function getChildSitemapEntries(name: string): SitemapUrlEntry[] | null {
       changefreq: "weekly",
       priority: "0.9",
     },
-    ...pairs.map((pair) => ({
+    ...indexablePairs.map((pair) => ({
       loc: `${baseUrl}${getPairUrl(pair)}`,
       lastmod: BUILD_LASTMOD,
       changefreq: "weekly" as const,
@@ -151,12 +185,23 @@ function escapeXml(str: string): string {
 
 /**
  * Generates the XML string for the root Sitemap Index (/sitemap.xml)
- * and logs the URL count per child sitemap at build time.
+ * and logs the URL count per child sitemap and per tier at build time.
  */
 export function buildSitemapIndexXml(): string {
   const baseUrl = SITE_CONFIG.baseUrl;
   const names = getAllChildSitemapNames();
   let totalUrls = 0;
+
+  let tierACount = 0;
+  let tierBCount = 0;
+  let tierCExcludedCount = 0;
+  for (const rawPair of CONVERSION_CATALOGUE) {
+    const pair = ensureEnrichedPair(rawPair);
+    const tier = getConverterTier(pair);
+    if (tier === "A") tierACount++;
+    else if (tier === "B") tierBCount++;
+    else tierCExcludedCount++;
+  }
 
   const sitemapBlocks = names.map((name) => {
     const entries = getChildSitemapEntries(name) || [];
@@ -172,6 +217,9 @@ export function buildSitemapIndexXml(): string {
     ].join("\n");
   });
 
+  console.log(
+    `[SEO Sitemap] Tier Breakdown -> Tier A: ${tierACount} | Tier B: ${tierBCount} | Tier C excluded: ${tierCExcludedCount}`
+  );
   console.log(
     `[SEO Sitemap] Total indexable URLs across ${names.length} sitemaps: ${totalUrls}`
   );
@@ -220,3 +268,4 @@ export function buildChildSitemapXml(name: string): string | null {
     "",
   ].join("\n");
 }
+

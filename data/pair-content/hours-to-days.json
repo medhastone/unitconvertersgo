@@ -1,0 +1,106 @@
+{
+  "status": "draft-needs-review",
+  "slug": "hours-to-days",
+  "category": "time",
+  "categoryId": "time",
+  "fromUnitId": "hour",
+  "toUnitId": "day",
+  "fromSymbol": "hr",
+  "toSymbol": "d",
+  "intro": "Professionals and everyday users convert hours (hr) to days (d) when working across other and other standards in project scheduling, payroll timecards, scientific interval logging, and server uptime SLAs. One hour equals 0.041667 days, while 1 day equals 24 hours. Whether you are verifying time specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    2,
+    4,
+    6,
+    8,
+    12,
+    16,
+    24,
+    36,
+    48,
+    72,
+    168
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Hour Benchmark (4 hr)",
+      "scenario": "Convert 4 hours (hr) into days (d) for technical comparison and documentation.",
+      "inputValue": 4,
+      "outputValue": "0.166667 d",
+      "stepByStep": "4 hr × 0.041667 = 0.166667 d (rounds to 0.17 d)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (12 hr)",
+      "scenario": "Convert 12 hours (hr) into days (d) for technical comparison and documentation.",
+      "inputValue": 12,
+      "outputValue": "0.5 d",
+      "stepByStep": "12 hr × 0.041667 = 0.5 d (rounds to 0.5 d)."
+    },
+    {
+      "title": "Higher-Capacity Specification (36 hr)",
+      "scenario": "Convert 36 hours (hr) into days (d) for technical comparison and documentation.",
+      "inputValue": 36,
+      "outputValue": "1.5 d",
+      "stepByStep": "36 hr × 0.041667 = 1.5 d (rounds to 1.5 d)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "d = hr × 0.04166667",
+    "exactFactor": "0.04166667",
+    "roundedFactor": "0.0417",
+    "inverseFactor": "24"
+  },
+  "internalLinks": [
+    {
+      "label": "Days to Hours (d to hr)",
+      "href": "/time/days-to-hours",
+      "type": "reverse"
+    },
+    {
+      "label": "Hours to Minutes (hr to min)",
+      "href": "/time/hours-to-minutes",
+      "type": "related"
+    },
+    {
+      "label": "Minutes to Hours (min to hr)",
+      "href": "/time/minutes-to-hours",
+      "type": "related"
+    },
+    {
+      "label": "Minutes to Seconds (min to s)",
+      "href": "/time/minutes-to-seconds",
+      "type": "related"
+    },
+    {
+      "label": "Seconds to Minutes (s to min)",
+      "href": "/time/seconds-to-minutes",
+      "type": "related"
+    },
+    {
+      "label": "Time Conversions Hub",
+      "href": "/time",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many days (d) are in 1 hour (hr)?",
+      "answer": "There are 0.04166667 days (d) in 1 hour (hr), which rounds to 0.0417 d for everyday calculations. Conversely, 1 day equals 24 hours."
+    },
+    {
+      "question": "How do I convert hours to days (hr to d)?",
+      "answer": "To convert hours to days, use the formula: d = hr × 0.04166667. For example, converting 8 hr gives 0.3333 d."
+    },
+    {
+      "question": "What is 8 hours in days?",
+      "answer": "8 hours (hr) equals exactly 0.3333 days (d) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

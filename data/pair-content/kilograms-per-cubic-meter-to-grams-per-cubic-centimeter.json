@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "kilograms-per-cubic-meter-to-grams-per-cubic-centimeter",
+  "category": "density",
+  "categoryId": "density",
+  "fromUnitId": "kg_per_m3",
+  "toUnitId": "g_per_cm3",
+  "fromSymbol": "kg/m³",
+  "toSymbol": "g/cm³",
+  "intro": "Professionals and everyday users convert kilograms per cubic meter (kg/m³) to grams per cubic centimeter (g/cm³) when working across si and metric standards in materials science specifications, concrete and soil compaction testing, chemical solution density, and buoyancy calculations. One kilogram per cubic meter equals 0.001 grams per cubic centimeter, while 1 gram per cubic centimeter equals 1,000 kilograms per cubic meter. Whether you are verifying density & concentration specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Kilogram per Cubic Meter Benchmark (2 kg/m³)",
+      "scenario": "Convert 2 kilograms per cubic meter (kg/m³) into grams per cubic centimeter (g/cm³) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "0.002 g/cm³",
+      "stepByStep": "2 kg/m³ × 0.001 = 0.002 g/cm³ (rounds to 0 g/cm³)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 kg/m³)",
+      "scenario": "Convert 20 kilograms per cubic meter (kg/m³) into grams per cubic centimeter (g/cm³) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "0.02 g/cm³",
+      "stepByStep": "20 kg/m³ × 0.001 = 0.02 g/cm³ (rounds to 0.02 g/cm³)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 kg/m³)",
+      "scenario": "Convert 75 kilograms per cubic meter (kg/m³) into grams per cubic centimeter (g/cm³) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "0.075 g/cm³",
+      "stepByStep": "75 kg/m³ × 0.001 = 0.075 g/cm³ (rounds to 0.08 g/cm³)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Kilogram per Cubic Meter to Gram per Cubic Centimeter is 0.001, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "g/cm³ = kg/m³ × 0.001",
+    "exactFactor": "0.001",
+    "roundedFactor": "0.001",
+    "inverseFactor": "1,000"
+  },
+  "internalLinks": [
+    {
+      "label": "Grams per Cubic Centimeter to Kilograms per Cubic Meter (g/cm³ to kg/m³)",
+      "href": "/density/grams-per-cubic-centimeter-to-kilograms-per-cubic-meter",
+      "type": "reverse"
+    },
+    {
+      "label": "Pounds per Cubic Foot to Kilograms per Cubic Meter (lb/ft³ to kg/m³)",
+      "href": "/density/pounds-per-cubic-foot-to-kilograms-per-cubic-meter",
+      "type": "related"
+    },
+    {
+      "label": "Kilograms per Cubic Meter to Pounds per Cubic Foot (kg/m³ to lb/ft³)",
+      "href": "/density/kilograms-per-cubic-meter-to-pounds-per-cubic-foot",
+      "type": "related"
+    },
+    {
+      "label": "Grams per Milliliter to Grams per Cubic Centimeter (g/mL to g/cm³)",
+      "href": "/density/grams-per-milliliter-to-grams-per-cubic-centimeter",
+      "type": "related"
+    },
+    {
+      "label": "Grams per Cubic Centimeter to Pounds per Cubic Foot (g/cm³ to lb/ft³)",
+      "href": "/density/grams-per-cubic-centimeter-to-pounds-per-cubic-foot",
+      "type": "related"
+    },
+    {
+      "label": "Density & Concentration Conversions Hub",
+      "href": "/density",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many grams per cubic centimeter (g/cm³) are in 1 kilogram per cubic meter (kg/m³)?",
+      "answer": "There are 0.001 grams per cubic centimeter (g/cm³) in 1 kilogram per cubic meter (kg/m³), which rounds to 0.001 g/cm³ for everyday calculations. Conversely, 1 gram per cubic centimeter equals 1,000 kilograms per cubic meter."
+    },
+    {
+      "question": "How do I convert kilograms per cubic meter to grams per cubic centimeter (kg/m³ to g/cm³)?",
+      "answer": "To convert kilograms per cubic meter to grams per cubic centimeter, use the formula: g/cm³ = kg/m³ × 0.001. For example, converting 10 kg/m³ gives 0.01 g/cm³."
+    },
+    {
+      "question": "What is 10 kilograms per cubic meter in grams per cubic centimeter?",
+      "answer": "10 kilograms per cubic meter (kg/m³) equals exactly 0.01 grams per cubic centimeter (g/cm³) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

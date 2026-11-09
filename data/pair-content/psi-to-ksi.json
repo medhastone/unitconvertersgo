@@ -1,0 +1,103 @@
+{
+  "slug": "psi-to-ksi",
+  "categoryId": "pressure",
+  "fromUnitId": "psi",
+  "toUnitId": "ksi",
+  "status": "draft-needs-review",
+  "intro": "Converting psi (psi) to ksi (ksi) is essential when translating measurements across automotive tire inflation, scuba tank monitoring, hydraulic cylinder design, and vacuum chamber calibration. One pounds per square inch equals 0.001 ksi, while one kilopounds per square inch equals 1,000 psi. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
+  "referenceValues": [
+    500,
+    1000,
+    2500,
+    5000,
+    10000,
+    20000,
+    36000,
+    50000,
+    60000,
+    100000
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 1000 psi to ksi",
+      "context": "Baseline reference check when comparing a single pounds per square inch specification against ksi",
+      "inputValue": 1000,
+      "calculation": "1000 psi × 0.001 = 1 ksi",
+      "result": "1000 psi = 1 ksi"
+    },
+    {
+      "title": "Convert 10000 psi to ksi",
+      "context": "Mid-range practical measurement commonly encountered in pressure workflows and equipment sheets",
+      "inputValue": 10000,
+      "calculation": "10000 psi × 0.001 = 10 ksi",
+      "result": "10000 psi = 10 ksi"
+    },
+    {
+      "title": "Convert 50000 psi to ksi",
+      "context": "Larger scale calculation for commercial, industrial, or bulk pressure planning",
+      "inputValue": 50000,
+      "calculation": "50000 psi × 0.001 = 50 ksi",
+      "result": "50000 psi = 50 ksi"
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Gauge Pressure (PSIG) vs. Absolute Pressure (PSIA)",
+    "items": [
+      "Direct unit conversions apply to the pressure magnitude itself. Ensure both values share the same reference datum before converting.",
+      "Tire pressure gauges and compressor dials read Gauge Pressure (PSIG, relative to ~14.696 psi sea-level atmosphere), whereas thermodynamic equations require Absolute Pressure (PSIA = PSIG + 14.696 psi)."
+    ]
+  },
+  "formula": {
+    "exactFactor": "0.001",
+    "roundedFactor": "0.001",
+    "equation": "ksi = psi × 0.001",
+    "inverseEquation": "psi = ksi × 1",
+    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 psi = 0.001 ksi)."
+  },
+  "internalLinks": [
+    {
+      "href": "/pressure/ksi-to-psi",
+      "label": "ksi to PSI (ksi to psi)",
+      "type": "reverse"
+    },
+    {
+      "href": "/pressure/bar-to-psi",
+      "label": "Bars to PSI (bar to psi)",
+      "type": "related"
+    },
+    {
+      "href": "/pressure/psi-to-bar",
+      "label": "PSI to Bars (psi to bar)",
+      "type": "related"
+    },
+    {
+      "href": "/pressure/kpa-to-psi",
+      "label": "Kilopascals to PSI (kPa to psi)",
+      "type": "related"
+    },
+    {
+      "href": "/undefined",
+      "label": "Pressure Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/pressure-units-guide",
+      "label": "PSI, Bar, kPa & Atmospheric Pressure Engineering Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many ksi are in 1 pounds per square inch?",
+      "answer": "There are 0.001 ksi (ksi) in 1 pounds per square inch (psi). To convert psi to ksi, use the exact conversion factor 0.001."
+    },
+    {
+      "question": "How do I convert psi to ksi manually?",
+      "answer": "Multiply your pounds per square inch value by 0.001 (exact factor: 0.001). For example, 10000 psi × 0.001 = 10 ksi."
+    },
+    {
+      "question": "What is 50000 psi in ksi?",
+      "answer": "50000 psi (psi) equals 50 ksi (ksi)."
+    }
+  ]
+}

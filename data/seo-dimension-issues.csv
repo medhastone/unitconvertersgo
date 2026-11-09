@@ -1,0 +1,7 @@
+url,category,from,to,slug,tier,dimension_match,issue_reason,indexable
+/charge/ah-to-kwh,charge,Ampere-hour (Ah),Kilowatt-hour (kWh),ah-to-kwh,C,false,Mismatched unit categories (charge vs energy),false
+/energy/kwh-to-ah,energy,Kilowatt-hour (kWh),Ampere-hour (Ah),kwh-to-ah,C,false,Mismatched unit categories (energy vs charge),false
+/charge/ah-to-wh,charge,Ampere-hour (Ah),Watt-hour (Wh),ah-to-wh,C,false,Mismatched unit categories (charge vs energy),false
+/energy/wh-to-ah,energy,Watt-hour (Wh),Ampere-hour (Ah),wh-to-ah,C,false,Mismatched unit categories (energy vs charge),false
+/charge/mah-to-wh,charge,Milliampere-hour (mAh),Watt-hour (Wh),mah-to-wh,C,false,Mismatched unit categories (charge vs energy),false
+/volume/pints-to-metric-tons,volume,US Pint (pt),Metric Ton (t),pints-to-metric-tons,C,false,Volume (US Pint) vs Mass (Metric Ton) requires material density assumption (301 redirected to /cooking),false

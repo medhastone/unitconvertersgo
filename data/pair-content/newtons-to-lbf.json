@@ -1,0 +1,103 @@
+{
+  "slug": "newtons-to-lbf",
+  "categoryId": "force",
+  "fromUnitId": "newton",
+  "toUnitId": "pound_force",
+  "status": "draft-needs-review",
+  "intro": "Converting newtons (N) to pounds-force (lbf) is essential when translating measurements across structural load calculations, fastener tension testing, aerospace thrust ratings, and mechanical spring design. One newton equals 0.22481 pounds-force, while one pound-force equals 4.44822 newtons. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
+  "referenceValues": [
+    1,
+    4.448,
+    10,
+    25,
+    50,
+    100,
+    250,
+    500,
+    1000,
+    4448
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 4.448 N to lbf",
+      "context": "Baseline reference check when comparing a single newton specification against pounds-force",
+      "inputValue": 4.448,
+      "calculation": "4.448 N × 0.22481 = 0.99995 lbf",
+      "result": "4.448 N = 0.99995 lbf"
+    },
+    {
+      "title": "Convert 50 N to lbf",
+      "context": "Mid-range practical measurement commonly encountered in force workflows and equipment sheets",
+      "inputValue": 50,
+      "calculation": "50 N × 0.22481 = 11.24045 lbf",
+      "result": "50 N = 11.24045 lbf"
+    },
+    {
+      "title": "Convert 500 N to lbf",
+      "context": "Larger scale calculation for commercial, industrial, or bulk force planning",
+      "inputValue": 500,
+      "calculation": "500 N × 0.22481 = 112.40447 lbf",
+      "result": "500 N = 112.40447 lbf"
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Short Ton, Long Ton, Metric Tonne & Troy vs. Avoirdupois Weight",
+    "items": [
+      "In the United States, \"ton\" without qualification refers to the US short ton (2,000 lb = 907.18474 kg), whereas the metric tonne equals 1,000 kg (2,204.62 lb) and the UK long ton equals 2,240 lb (1,016.05 kg).",
+      "Everyday weight conversions use the Avoirdupois ounce (28.349523125 g) and pound (16 oz = 453.59237 g); precious metals like gold and silver use the heavier Troy ounce (31.1034768 g)."
+    ]
+  },
+  "formula": {
+    "exactFactor": "0.22481",
+    "roundedFactor": "0.22481",
+    "equation": "lbf = N × 0.22481",
+    "inverseEquation": "N = lbf × 1",
+    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 N = 0.22481 lbf)."
+  },
+  "internalLinks": [
+    {
+      "href": "/force/pounds-force-to-newtons",
+      "label": "Pounds-force to Newtons (lbf to N)",
+      "type": "reverse"
+    },
+    {
+      "href": "/force/newtons-to-pounds-force",
+      "label": "Newtons to Pounds-force (N to lbf)",
+      "type": "related"
+    },
+    {
+      "href": "/force/kgf-to-newtons",
+      "label": "Kilograms-force to Newtons (kgf to N)",
+      "type": "related"
+    },
+    {
+      "href": "/force/newtons-to-kgf",
+      "label": "Newtons to Kilograms-force (N to kgf)",
+      "type": "related"
+    },
+    {
+      "href": "/undefined",
+      "label": "Force Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/metric-vs-imperial",
+      "label": "Metric vs. Imperial System: Complete Engineering Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many pounds-force are in 1 newton?",
+      "answer": "There are 0.22481 pounds-force (lbf) in 1 newton (N). To convert N to lbf, use the exact conversion factor 0.22481."
+    },
+    {
+      "question": "How do I convert newtons to pounds-force manually?",
+      "answer": "Multiply your newton value by 0.22481 (exact factor: 0.22481). For example, 50 N × 0.22481 = 11.24045 lbf."
+    },
+    {
+      "question": "What is 500 N in lbf?",
+      "answer": "500 newtons (N) equals 112.40447 pounds-force (lbf)."
+    }
+  ]
+}

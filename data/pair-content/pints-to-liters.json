@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "pints-to-liters",
+  "category": "volume",
+  "categoryId": "volume",
+  "fromUnitId": "us_pint",
+  "toUnitId": "liter",
+  "fromSymbol": "pt",
+  "toSymbol": "L",
+  "intro": "Professionals and everyday users convert pints (us) (pt) to liters (L) when working across us_customary and metric standards in culinary recipe scaling, beverage bottling, laboratory reagent preparation, and fluid tank capacity sizing. One pint (us liquid) equals 0.473176 liters, while 1 liter equals 2.113376 pints (us). Whether you are verifying volume & liquid specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Pint (US Liquid) Benchmark (2 pt)",
+      "scenario": "Convert 2 pints (us) (pt) into liters (L) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "0.946353 L",
+      "stepByStep": "2 pt × 0.473176 = 0.946353 L (rounds to 0.95 L)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 pt)",
+      "scenario": "Convert 20 pints (us) (pt) into liters (L) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "9.463529 L",
+      "stepByStep": "20 pt × 0.473176 = 9.463529 L (rounds to 9.46 L)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 pt)",
+      "scenario": "Convert 75 pints (us) (pt) into liters (L) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "35.488235 L",
+      "stepByStep": "75 pt × 0.473176 = 35.488235 L (rounds to 35.49 L)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "US Customary vs. British Imperial Liquid Volume Trap",
+    "items": [
+      "US Customary and UK Imperial liquid units share identical names but have different physical volumes: 1 US Gallon is 3.78541 L (128 US fl oz), whereas 1 UK Imperial Gallon is 4.54609 L (160 Imp fl oz) — a 20.1% difference.",
+      "Similarly, 1 US Pint contains 16 US fluid ounces (473.18 mL), while 1 British Imperial Pint contains 20 Imperial fluid ounces (568.26 mL). Always verify whether your recipe, pump datasheet, or vehicle spec sheet uses US or UK standards."
+    ]
+  },
+  "formula": {
+    "equation": "L = pt × 0.47317647",
+    "exactFactor": "0.47317647",
+    "roundedFactor": "0.4732",
+    "inverseFactor": "2.113376"
+  },
+  "internalLinks": [
+    {
+      "label": "Liters to Pints (US) (L to pt)",
+      "href": "/volume/liters-to-pints",
+      "type": "reverse"
+    },
+    {
+      "label": "Liters to Gallons (US) (L to gal (US))",
+      "href": "/volume/liters-to-gallons",
+      "type": "related"
+    },
+    {
+      "label": "Gallons (US) to Liters (gal (US) to L)",
+      "href": "/volume/gallons-to-liters",
+      "type": "related"
+    },
+    {
+      "label": "Milliliters to Fluid Ounces (US) (mL to fl oz)",
+      "href": "/volume/ml-to-fluid-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Fluid Ounces (US) to Milliliters (fl oz to mL)",
+      "href": "/volume/fluid-ounces-to-ml",
+      "type": "related"
+    },
+    {
+      "label": "Volume & Liquid Conversions Hub",
+      "href": "/volume",
+      "type": "hub"
+    },
+    {
+      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "href": "/guides/us-vs-imperial-fluid-ounces",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many liters (L) are in 1 pint (us liquid) (pt)?",
+      "answer": "There are 0.47317647 liters (L) in 1 pint (us liquid) (pt), which rounds to 0.4732 L for everyday calculations. Conversely, 1 liter equals 2.113376 pints (us)."
+    },
+    {
+      "question": "How do I convert pints (us) to liters (pt to L)?",
+      "answer": "To convert pints (us) to liters, use the formula: L = pt × 0.47317647. For example, converting 10 pt gives 4.7318 L."
+    },
+    {
+      "question": "What is 10 pints (us) in liters?",
+      "answer": "10 pints (us) (pt) equals exactly 4.7318 liters (L) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

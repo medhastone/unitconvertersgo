@@ -1,0 +1,111 @@
+{
+  "status": "draft-needs-review",
+  "slug": "cm-to-inches",
+  "category": "length",
+  "categoryId": "length",
+  "fromUnitId": "centimeter",
+  "toUnitId": "inch",
+  "fromSymbol": "cm",
+  "toSymbol": "in",
+  "intro": "Professionals and everyday users convert centimeters (cm) to inches (in) when working across metric and imperial standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One centimeter equals 0.393701 inches, while 1 inch equals 2.54 centimeters. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    2.54,
+    5,
+    10,
+    15,
+    20,
+    30,
+    50,
+    100,
+    150,
+    180
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Centimeter Benchmark (5 cm)",
+      "scenario": "Convert 5 centimeters (cm) into inches (in) for technical comparison and documentation.",
+      "inputValue": 5,
+      "outputValue": "1.968504 in",
+      "stepByStep": "5 cm × 0.393701 = 1.968504 in (rounds to 1.97 in)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 cm)",
+      "scenario": "Convert 20 centimeters (cm) into inches (in) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "7.874016 in",
+      "stepByStep": "20 cm × 0.393701 = 7.874016 in (rounds to 7.87 in)."
+    },
+    {
+      "title": "Higher-Capacity Specification (100 cm)",
+      "scenario": "Convert 100 centimeters (cm) into inches (in) for technical comparison and documentation.",
+      "inputValue": 100,
+      "outputValue": "39.370079 in",
+      "stepByStep": "100 cm × 0.393701 = 39.370079 in (rounds to 39.37 in)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Centimeter to Inch is 0.39370079, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "in = cm × 0.39370079",
+    "exactFactor": "0.39370079",
+    "roundedFactor": "0.3937",
+    "inverseFactor": "2.54"
+  },
+  "internalLinks": [
+    {
+      "label": "Inches to Centimeters (in to cm)",
+      "href": "/length/inches-to-cm",
+      "type": "reverse"
+    },
+    {
+      "label": "Feet to Meters (ft to m)",
+      "href": "/length/feet-to-meters",
+      "type": "related"
+    },
+    {
+      "label": "Meters to Feet (m to ft)",
+      "href": "/length/meters-to-feet",
+      "type": "related"
+    },
+    {
+      "label": "Kilometers to Miles (km to mi)",
+      "href": "/length/km-to-miles",
+      "type": "related"
+    },
+    {
+      "label": "Miles to Kilometers (mi to km)",
+      "href": "/length/miles-to-km",
+      "type": "related"
+    },
+    {
+      "label": "Length Conversions Hub",
+      "href": "/length",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many inches (in) are in 1 centimeter (cm)?",
+      "answer": "There are 0.39370079 inches (in) in 1 centimeter (cm), which rounds to 0.3937 in for everyday calculations. Conversely, 1 inch equals 2.54 centimeters."
+    },
+    {
+      "question": "How do I convert centimeters to inches (cm to in)?",
+      "answer": "To convert centimeters to inches, use the formula: in = cm × 0.39370079. For example, converting 15 cm gives 5.9055 in."
+    },
+    {
+      "question": "What is 15 centimeters in inches?",
+      "answer": "15 centimeters (cm) equals exactly 5.9055 inches (in) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

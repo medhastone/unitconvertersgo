@@ -1,0 +1,103 @@
+{
+  "slug": "lbs-to-ounces",
+  "categoryId": "mass",
+  "fromUnitId": "pound",
+  "toUnitId": "ounce",
+  "status": "draft-needs-review",
+  "intro": "Converting pounds (lb) to ounces (oz) is essential when translating measurements across international freight shipping, gym barbell loading, laboratory formulation, and commercial food packaging. One pound equals 16 ounces, while one ounce equals 0.0625 pounds. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
+  "referenceValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    100,
+    250
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 1 lb to oz",
+      "context": "Baseline reference check when comparing a single pound specification against ounces",
+      "inputValue": 1,
+      "calculation": "1 lb × 16 = 16 oz",
+      "result": "1 lb = 16 oz"
+    },
+    {
+      "title": "Convert 10 lb to oz",
+      "context": "Mid-range practical measurement commonly encountered in mass & weight workflows and equipment sheets",
+      "inputValue": 10,
+      "calculation": "10 lb × 16 = 160 oz",
+      "result": "10 lb = 160 oz"
+    },
+    {
+      "title": "Convert 50 lb to oz",
+      "context": "Larger scale calculation for commercial, industrial, or bulk mass & weight planning",
+      "inputValue": 50,
+      "calculation": "50 lb × 16 = 800 oz",
+      "result": "50 lb = 800 oz"
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Short Ton, Long Ton, Metric Tonne & Troy vs. Avoirdupois Weight",
+    "items": [
+      "In the United States, \"ton\" without qualification refers to the US short ton (2,000 lb = 907.18474 kg), whereas the metric tonne equals 1,000 kg (2,204.62 lb) and the UK long ton equals 2,240 lb (1,016.05 kg).",
+      "Everyday weight conversions use the Avoirdupois ounce (28.349523125 g) and pound (16 oz = 453.59237 g); precious metals like gold and silver use the heavier Troy ounce (31.1034768 g)."
+    ]
+  },
+  "formula": {
+    "exactFactor": "16",
+    "roundedFactor": "16",
+    "equation": "oz = lb × 16",
+    "inverseEquation": "lb = oz × 1",
+    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 lb = 16 oz)."
+  },
+  "internalLinks": [
+    {
+      "href": "/weight-and-mass/ounces-to-pounds",
+      "label": "Ounces to Pounds (oz to lb)",
+      "type": "reverse"
+    },
+    {
+      "href": "/weight-and-mass/kg-to-lbs",
+      "label": "Kilograms to Pounds (kg to lb)",
+      "type": "related"
+    },
+    {
+      "href": "/weight-and-mass/lbs-to-kg",
+      "label": "Pounds to Kilograms (lb to kg)",
+      "type": "related"
+    },
+    {
+      "href": "/weight-and-mass/grams-to-kg",
+      "label": "Grams to Kilograms (g to kg)",
+      "type": "related"
+    },
+    {
+      "href": "/undefined",
+      "label": "Mass & Weight Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/metric-vs-imperial",
+      "label": "Metric vs. Imperial System: Complete Engineering Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many ounces are in 1 pound?",
+      "answer": "There are 16 ounces (oz) in 1 pound (lb). To convert lb to oz, use the exact conversion factor 16."
+    },
+    {
+      "question": "How do I convert pounds to ounces manually?",
+      "answer": "Multiply your pound value by 16 (exact factor: 16). For example, 10 lb × 16 = 160 oz."
+    },
+    {
+      "question": "What is 50 lb in oz?",
+      "answer": "50 pounds (lb) equals 800 ounces (oz)."
+    }
+  ]
+}

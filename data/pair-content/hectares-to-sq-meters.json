@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "hectares-to-sq-meters",
+  "category": "area",
+  "categoryId": "area",
+  "fromUnitId": "hectare",
+  "toUnitId": "sq_meter",
+  "fromSymbol": "ha",
+  "toSymbol": "m²",
+  "intro": "Professionals and everyday users convert hectares (ha) to square meters (m²) when working across metric and si standards in real estate property deeds, agricultural land surveying, commercial floor plan leases, and civil zoning. One hectare equals 10,000 square meters, while 1 square meter equals 0.0001 hectares. Whether you are verifying area specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.25,
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    25,
+    50,
+    100,
+    500
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Hectare Benchmark (1 ha)",
+      "scenario": "Convert 1 hectares (ha) into square meters (m²) for technical comparison and documentation.",
+      "inputValue": 1,
+      "outputValue": "10,000 m²",
+      "stepByStep": "1 ha × 10,000 = 10,000 m² (rounds to 10,000 m²)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (10 ha)",
+      "scenario": "Convert 10 hectares (ha) into square meters (m²) for technical comparison and documentation.",
+      "inputValue": 10,
+      "outputValue": "100,000 m²",
+      "stepByStep": "10 ha × 10,000 = 100,000 m² (rounds to 100,000 m²)."
+    },
+    {
+      "title": "Higher-Capacity Specification (100 ha)",
+      "scenario": "Convert 100 hectares (ha) into square meters (m²) for technical comparison and documentation.",
+      "inputValue": 100,
+      "outputValue": "1,000,000 m²",
+      "stepByStep": "100 ha × 10,000 = 1,000,000 m² (rounds to 1,000,000 m²)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "m² = ha × 10,000",
+    "exactFactor": "10,000",
+    "roundedFactor": "10,000",
+    "inverseFactor": "0.0001"
+  },
+  "internalLinks": [
+    {
+      "label": "Square Meters to Hectares (m² to ha)",
+      "href": "/area/sq-meters-to-hectares",
+      "type": "reverse"
+    },
+    {
+      "label": "Square Feet to Square Meters (ft² to m²)",
+      "href": "/area/sq-feet-to-sq-meters",
+      "type": "related"
+    },
+    {
+      "label": "Square Meters to Square Feet (m² to ft²)",
+      "href": "/area/sq-meters-to-sq-feet",
+      "type": "related"
+    },
+    {
+      "label": "Acres to Square Feet (ac to ft²)",
+      "href": "/area/acres-to-sq-feet",
+      "type": "related"
+    },
+    {
+      "label": "Square Feet to Acres (ft² to ac)",
+      "href": "/area/sq-feet-to-acres",
+      "type": "related"
+    },
+    {
+      "label": "Area Conversions Hub",
+      "href": "/area",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many square meters (m²) are in 1 hectare (ha)?",
+      "answer": "There are 10,000 square meters (m²) in 1 hectare (ha), which rounds to 10,000 m² for everyday calculations. Conversely, 1 square meter equals 0.0001 hectares."
+    },
+    {
+      "question": "How do I convert hectares to square meters (ha to m²)?",
+      "answer": "To convert hectares to square meters, use the formula: m² = ha × 10,000. For example, converting 5 ha gives 50,000 m²."
+    },
+    {
+      "question": "What is 5 hectares in square meters?",
+      "answer": "5 hectares (ha) equals exactly 50,000 square meters (m²) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

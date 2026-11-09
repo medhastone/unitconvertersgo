@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "lb-ft-to-lb-in",
+  "category": "torque",
+  "categoryId": "torque",
+  "fromUnitId": "lb_ft",
+  "toUnitId": "lb_in",
+  "fromSymbol": "lb·ft",
+  "toSymbol": "lb·in",
+  "intro": "Professionals and everyday users convert pound-feet (lb·ft) to pound-inches (lb·in) when working across imperial and imperial standards in automotive lug nut torque wrench settings, engine dynamometer curves, and industrial fastener specifications. One pound-foot (ft·lbf) equals 12 pound-inches, while 1 pound-inch (in·lbf) equals 0.083333 pound-feet. Whether you are verifying torque specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    5,
+    10,
+    25,
+    50,
+    75,
+    100,
+    150,
+    250,
+    500
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Pound-foot (ft·lbf) Benchmark (10 lb·ft)",
+      "scenario": "Convert 10 pound-feet (lb·ft) into pound-inches (lb·in) for technical comparison and documentation.",
+      "inputValue": 10,
+      "outputValue": "120 lb·in",
+      "stepByStep": "10 lb·ft × 12 = 120 lb·in (rounds to 120 lb·in)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (75 lb·ft)",
+      "scenario": "Convert 75 pound-feet (lb·ft) into pound-inches (lb·in) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "900 lb·in",
+      "stepByStep": "75 lb·ft × 12 = 900 lb·in (rounds to 900 lb·in)."
+    },
+    {
+      "title": "Higher-Capacity Specification (250 lb·ft)",
+      "scenario": "Convert 250 pound-feet (lb·ft) into pound-inches (lb·in) for technical comparison and documentation.",
+      "inputValue": 250,
+      "outputValue": "3,000 lb·in",
+      "stepByStep": "250 lb·ft × 12 = 3,000 lb·in (rounds to 3,000 lb·in)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "lb·in = lb·ft × 12",
+    "exactFactor": "12",
+    "roundedFactor": "12",
+    "inverseFactor": "0.083333"
+  },
+  "internalLinks": [
+    {
+      "label": "Pound-inches to Pound-feet (lb·in to lb·ft)",
+      "href": "/torque/lb-in-to-lb-ft",
+      "type": "reverse"
+    },
+    {
+      "label": "Newton-meters to Pound-feet (N·m to lb·ft)",
+      "href": "/torque/nm-to-lb-ft",
+      "type": "related"
+    },
+    {
+      "label": "Pound-feet to Newton-meters (lb·ft to N·m)",
+      "href": "/torque/lb-ft-to-nm",
+      "type": "related"
+    },
+    {
+      "label": "Newton-meters to Pound-inches (N·m to lb·in)",
+      "href": "/torque/nm-to-lb-in",
+      "type": "related"
+    },
+    {
+      "label": "Pound-inches to Newton-meters (lb·in to N·m)",
+      "href": "/torque/lb-in-to-nm",
+      "type": "related"
+    },
+    {
+      "label": "Torque Conversions Hub",
+      "href": "/torque",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many pound-inches (lb·in) are in 1 pound-foot (ft·lbf) (lb·ft)?",
+      "answer": "There are 12 pound-inches (lb·in) in 1 pound-foot (ft·lbf) (lb·ft), which rounds to 12 lb·in for everyday calculations. Conversely, 1 pound-inch (in·lbf) equals 0.083333 pound-feet."
+    },
+    {
+      "question": "How do I convert pound-feet to pound-inches (lb·ft to lb·in)?",
+      "answer": "To convert pound-feet to pound-inches, use the formula: lb·in = lb·ft × 12. For example, converting 50 lb·ft gives 600 lb·in."
+    },
+    {
+      "question": "What is 50 pound-feet in pound-inches?",
+      "answer": "50 pound-feet (lb·ft) equals exactly 600 pound-inches (lb·in) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

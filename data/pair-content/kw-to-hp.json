@@ -1,0 +1,103 @@
+{
+  "slug": "kw-to-hp",
+  "categoryId": "power",
+  "fromUnitId": "kilowatt",
+  "toUnitId": "horsepower_mechanical",
+  "status": "draft-needs-review",
+  "intro": "Converting kilowatts (kW) to horsepower (hp) is essential when translating measurements across electric motor nameplate ratings, automotive dynamometer testing, solar inverter sizing, and generator selection. One kilowatt equals 1.34102 horsepower, while one horsepower equals 0.7457 kilowatts. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
+  "referenceValues": [
+    1,
+    2,
+    5,
+    10,
+    20,
+    50,
+    75,
+    100,
+    150,
+    250
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 2 kW to hp",
+      "context": "Baseline reference check when comparing a single kilowatt specification against horsepower",
+      "inputValue": 2,
+      "calculation": "2 kW × 1.34102 = 2.68204 hp",
+      "result": "2 kW = 2.68204 hp"
+    },
+    {
+      "title": "Convert 20 kW to hp",
+      "context": "Mid-range practical measurement commonly encountered in power workflows and equipment sheets",
+      "inputValue": 20,
+      "calculation": "20 kW × 1.34102 = 26.82044 hp",
+      "result": "20 kW = 26.82044 hp"
+    },
+    {
+      "title": "Convert 100 kW to hp",
+      "context": "Larger scale calculation for commercial, industrial, or bulk power planning",
+      "inputValue": 100,
+      "calculation": "100 kW × 1.34102 = 134.10221 hp",
+      "result": "100 kW = 134.10221 hp"
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Mechanical Imperial Horsepower (745.7 W) vs. Metric Horsepower (PS / CV)",
+    "items": [
+      "This conversion uses standard mechanical/imperial horsepower (1 hp = 550 ft·lbf/s = 745.699872 W), standard across North American automotive and electric motor specifications.",
+      "European automotive ratings frequently cite metric horsepower (PS or CV), where 1 PS = 735.49875 W (roughly 1.4% smaller than mechanical hp)."
+    ]
+  },
+  "formula": {
+    "exactFactor": "1.34102",
+    "roundedFactor": "1.34102",
+    "equation": "hp = kW × 1.34102",
+    "inverseEquation": "kW = hp × 1",
+    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 kW = 1.34102 hp)."
+  },
+  "internalLinks": [
+    {
+      "href": "/power/hp-to-kw",
+      "label": "Horsepower to Kilowatts (hp to kW)",
+      "type": "reverse"
+    },
+    {
+      "href": "/power/kw-to-horsepower",
+      "label": "Kilowatts to Horsepower (kW to hp)",
+      "type": "related"
+    },
+    {
+      "href": "/power/watts-to-horsepower",
+      "label": "Watts to Horsepower (W to hp)",
+      "type": "related"
+    },
+    {
+      "href": "/power/horsepower-to-watts",
+      "label": "Horsepower to Watts (hp to W)",
+      "type": "related"
+    },
+    {
+      "href": "/undefined",
+      "label": "Power Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/si-prefixes",
+      "label": "SI Prefixes & Scientific Notation Reference Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many horsepower are in 1 kilowatt?",
+      "answer": "There are 1.34102 horsepower (hp) in 1 kilowatt (kW). To convert kW to hp, use the exact conversion factor 1.34102."
+    },
+    {
+      "question": "How do I convert kilowatts to horsepower manually?",
+      "answer": "Multiply your kilowatt value by 1.34102 (exact factor: 1.34102). For example, 20 kW × 1.34102 = 26.82044 hp."
+    },
+    {
+      "question": "What is 100 kW in hp?",
+      "answer": "100 kilowatts (kW) equals 134.10221 horsepower (hp)."
+    }
+  ]
+}

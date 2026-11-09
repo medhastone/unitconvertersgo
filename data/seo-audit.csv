@@ -1,0 +1,688 @@
+url,category,from,to,slug,tier,dimension_match,slug_has_exponent_loss,duplicate_of,has_unique_content,indexable
+/length/cm-to-inches,length,Centimeter (cm),Inch (in),cm-to-inches,A,true,false,,true,true
+/length/inches-to-cm,length,Inch (in),Centimeter (cm),inches-to-cm,A,true,false,,true,true
+/length/meters-to-feet,length,Meter (m),Foot (ft),meters-to-feet,A,true,false,,true,true
+/length/feet-to-meters,length,Foot (ft),Meter (m),feet-to-meters,A,true,false,,true,true
+/length/km-to-miles,length,Kilometer (km),Mile (Statute) (mi),km-to-miles,A,true,false,,true,true
+/length/miles-to-km,length,Mile (Statute) (mi),Kilometer (km),miles-to-km,A,true,false,,true,true
+/length/yards-to-meters,length,Yard (yd),Meter (m),yards-to-meters,A,true,false,,true,true
+/length/meters-to-yards,length,Meter (m),Yard (yd),meters-to-yards,A,true,false,,true,true
+/length/mm-to-inches,length,Millimeter (mm),Inch (in),mm-to-inches,A,true,false,,true,true
+/length/inches-to-mm,length,Inch (in),Millimeter (mm),inches-to-mm,A,true,false,,true,true
+/length/feet-to-inches,length,Foot (ft),Inch (in),feet-to-inches,A,true,false,,true,true
+/length/inches-to-feet,length,Inch (in),Foot (ft),inches-to-feet,A,true,false,,true,true
+/length/miles-to-feet,length,Mile (Statute) (mi),Foot (ft),miles-to-feet,A,true,false,,true,true
+/length/nautical-miles-to-km,length,Nautical Mile (nmi),Kilometer (km),nautical-miles-to-km,C,true,false,,false,false
+/length/micrometers-to-mm,length,Micrometer (Micron) (µm),Millimeter (mm),micrometers-to-mm,C,true,false,,false,false
+/length/cm-to-feet,length,Centimeter (cm),Foot (ft),cm-to-feet,A,true,false,,true,true
+/length/feet-to-cm,length,Foot (ft),Centimeter (cm),feet-to-cm,A,true,false,,true,true
+/length/cm-to-meters,length,Centimeter (cm),Meter (m),cm-to-meters,A,true,false,,true,true
+/length/meters-to-cm,length,Meter (m),Centimeter (cm),meters-to-cm,A,true,false,,true,true
+/length/meters-to-mm,length,Meter (m),Millimeter (mm),meters-to-mm,A,true,false,,true,true
+/length/mm-to-meters,length,Millimeter (mm),Meter (m),mm-to-meters,A,true,false,,true,true
+/length/meters-to-inches,length,Meter (m),Inch (in),meters-to-inches,A,true,false,,true,true
+/length/inches-to-meters,length,Inch (in),Meter (m),inches-to-meters,A,true,false,,true,true
+/length/feet-to-km,length,Foot (ft),Kilometer (km),feet-to-km,C,true,false,,false,false
+/length/km-to-feet,length,Kilometer (km),Foot (ft),km-to-feet,C,true,false,,false,false
+/weight-and-mass/kg-to-lbs,weight-and-mass,Kilogram (kg),Pound (Avoirdupois) (lb),kg-to-lbs,A,true,false,,true,true
+/weight-and-mass/lbs-to-kg,weight-and-mass,Pound (Avoirdupois) (lb),Kilogram (kg),lbs-to-kg,A,true,false,,true,true
+/weight-and-mass/grams-to-ounces,weight-and-mass,Gram (g),Ounce (oz),grams-to-ounces,A,true,false,,true,true
+/weight-and-mass/ounces-to-grams,weight-and-mass,Ounce (oz),Gram (g),ounces-to-grams,A,true,false,,true,true
+/weight-and-mass/kg-to-grams,weight-and-mass,Kilogram (kg),Gram (g),kg-to-grams,A,true,false,,true,true
+/weight-and-mass/grams-to-kg,weight-and-mass,Gram (g),Kilogram (kg),grams-to-kg,A,true,false,,true,true
+/weight-and-mass/stone-to-lbs,weight-and-mass,Stone (UK) (st),Pound (Avoirdupois) (lb),stone-to-lbs,A,true,false,,true,true
+/weight-and-mass/lbs-to-stone,weight-and-mass,Pound (Avoirdupois) (lb),Stone (UK) (st),lbs-to-stone,A,true,false,,true,true
+/weight-and-mass/metric-tons-to-us-tons,weight-and-mass,Metric Ton (Tonne / Megagram) (t),US Short Ton (ton (US)),metric-tons-to-us-tons,A,true,false,,true,true
+/weight-and-mass/mg-to-grams,weight-and-mass,Milligram (mg),Gram (g),mg-to-grams,A,true,false,,true,true
+/weight-and-mass/ounces-to-pounds,weight-and-mass,Ounce (oz),Pound (Avoirdupois) (lb),ounces-to-pounds,A,true,false,,true,true
+/weight-and-mass/pounds-to-ounces,weight-and-mass,Pound (Avoirdupois) (lb),Ounce (oz),pounds-to-ounces,A,true,false,,true,true
+/weight-and-mass/grams-to-pounds,weight-and-mass,Gram (g),Pound (Avoirdupois) (lb),grams-to-pounds,A,true,false,,true,true
+/weight-and-mass/pounds-to-grams,weight-and-mass,Pound (Avoirdupois) (lb),Gram (g),pounds-to-grams,A,true,false,,true,true
+/weight-and-mass/micrograms-to-grams,weight-and-mass,Microgram (µg),Gram (g),micrograms-to-grams,C,true,false,,false,false
+/weight-and-mass/milligrams-to-micrograms,weight-and-mass,Milligram (mg),Microgram (µg),milligrams-to-micrograms,C,true,false,,false,false
+/weight-and-mass/micrograms-to-milligrams,weight-and-mass,Microgram (µg),Milligram (mg),micrograms-to-milligrams,A,true,false,,true,true
+/temperature/celsius-to-fahrenheit,temperature,Celsius (°C),Fahrenheit (°F),celsius-to-fahrenheit,A,true,false,,true,true
+/temperature/fahrenheit-to-celsius,temperature,Fahrenheit (°F),Celsius (°C),fahrenheit-to-celsius,A,true,false,,true,true
+/temperature/celsius-to-kelvin,temperature,Celsius (°C),Kelvin (K),celsius-to-kelvin,A,true,false,,true,true
+/temperature/kelvin-to-celsius,temperature,Kelvin (K),Celsius (°C),kelvin-to-celsius,A,true,false,,true,true
+/temperature/fahrenheit-to-kelvin,temperature,Fahrenheit (°F),Kelvin (K),fahrenheit-to-kelvin,A,true,false,,true,true
+/temperature/kelvin-to-fahrenheit,temperature,Kelvin (K),Fahrenheit (°F),kelvin-to-fahrenheit,A,true,false,,true,true
+/temperature/celsius-to-rankine,temperature,Celsius (°C),Rankine (°R),celsius-to-rankine,C,true,false,,false,false
+/temperature/fahrenheit-to-rankine,temperature,Fahrenheit (°F),Rankine (°R),fahrenheit-to-rankine,C,true,false,,false,false
+/area/sq-feet-to-sq-meters,area,Square Foot (ft²),Square Meter (m²),sq-feet-to-sq-meters,A,true,false,,true,true
+/area/sq-meters-to-sq-feet,area,Square Meter (m²),Square Foot (ft²),sq-meters-to-sq-feet,A,true,false,,true,true
+/area/acres-to-hectares,area,Acre (ac),Hectare (ha),acres-to-hectares,A,true,false,,true,true
+/area/hectares-to-acres,area,Hectare (ha),Acre (ac),hectares-to-acres,A,true,false,,true,true
+/area/sq-miles-to-sq-km,area,Square Mile (mi²),Square Kilometer (km²),sq-miles-to-sq-km,A,true,false,,true,true
+/area/sq-km-to-sq-miles,area,Square Kilometer (km²),Square Mile (mi²),sq-km-to-sq-miles,A,true,false,,true,true
+/area/acres-to-sq-feet,area,Acre (ac),Square Foot (ft²),acres-to-sq-feet,A,true,false,,true,true
+/area/sq-inches-to-sq-cm,area,Square Inch (in²),Square Centimeter (cm²),sq-inches-to-sq-cm,A,true,false,,true,true
+/area/acres-to-square-miles,area,Acre (ac),Square Mile (mi²),acres-to-square-miles,A,true,false,,true,true
+/area/square-miles-to-acres,area,Square Mile (mi²),Acre (ac),square-miles-to-acres,A,true,false,,true,true
+/volume/liters-to-gallons,volume,Liter (L),Gallon (US Liquid) (gal (US)),liters-to-gallons,A,true,false,,true,true
+/volume/gallons-to-liters,volume,Gallon (US Liquid) (gal (US)),Liter (L),gallons-to-liters,A,true,false,,true,true
+/volume/gallons-to-quarts,volume,Gallon (US Liquid) (gal (US)),Quart (US Liquid) (qt),gallons-to-quarts,A,true,false,,true,true
+/volume/quarts-to-gallons,volume,Quart (US Liquid) (qt),Gallon (US Liquid) (gal (US)),quarts-to-gallons,A,true,false,,true,true
+/volume/pints-to-quarts,volume,Pint (US Liquid) (pt),Quart (US Liquid) (qt),pints-to-quarts,A,true,false,,true,true
+/volume/quarts-to-pints,volume,Quart (US Liquid) (qt),Pint (US Liquid) (pt),quarts-to-pints,A,true,false,,true,true
+/volume/tablespoons-to-cups,volume,Tablespoon (US) (tbsp),Cup (US Customary) (cup),tablespoons-to-cups,A,true,false,,true,true
+/volume/cups-to-tablespoons,volume,Cup (US Customary) (cup),Tablespoon (US) (tbsp),cups-to-tablespoons,A,true,false,,true,true
+/volume/liters-to-cups,volume,Liter (L),Cup (US Customary) (cup),liters-to-cups,C,true,false,,false,false
+/volume/cups-to-liters,volume,Cup (US Customary) (cup),Liter (L),cups-to-liters,C,true,false,,false,false
+/volume/cups-to-quarts,volume,Cup (US Customary) (cup),Quart (US Liquid) (qt),cups-to-quarts,C,true,false,,false,false
+/volume/quarts-to-cups,volume,Quart (US Liquid) (qt),Cup (US Customary) (cup),quarts-to-cups,C,true,false,,false,false
+/volume/ml-to-fluid-ounces,volume,Milliliter (mL),Fluid Ounce (US) (fl oz),ml-to-fluid-ounces,A,true,false,,true,true
+/volume/fluid-ounces-to-ml,volume,Fluid Ounce (US) (fl oz),Milliliter (mL),fluid-ounces-to-ml,A,true,false,,true,true
+/volume/cups-to-ml,volume,Cup (US Customary) (cup),Milliliter (mL),cups-to-ml,A,true,false,,true,true
+/volume/ml-to-cups,volume,Milliliter (mL),Cup (US Customary) (cup),ml-to-cups,A,true,false,,true,true
+/volume/tablespoons-to-teaspoons,volume,Tablespoon (US) (tbsp),Teaspoon (US) (tsp),tablespoons-to-teaspoons,A,true,false,,true,true
+/volume/quarts-to-liters,volume,Quart (US Liquid) (qt),Liter (L),quarts-to-liters,A,true,false,,true,true
+/volume/liters-to-quarts,volume,Liter (L),Quart (US Liquid) (qt),liters-to-quarts,A,true,false,,true,true
+/volume/pints-to-cups,volume,Pint (US Liquid) (pt),Cup (US Customary) (cup),pints-to-cups,A,true,false,,true,true
+/volume/cubic-meters-to-cubic-feet,volume,Cubic Meter (m³),Cubic Foot (ft³),cubic-meters-to-cubic-feet,C,true,false,,false,false
+/volume/gallons-us-to-gallons-imperial,volume,Gallon (US Liquid) (gal (US)),Gallon (UK Imperial) (gal (UK)),gallons-us-to-gallons-imperial,C,true,false,,false,false
+/volume/cubic-feet-to-gallons,volume,Cubic Foot (ft³),Gallon (US Liquid) (gal (US)),cubic-feet-to-gallons,A,true,false,,true,true
+/volume/gallons-to-cubic-feet,volume,Gallon (US Liquid) (gal (US)),Cubic Foot (ft³),gallons-to-cubic-feet,C,true,false,,false,false
+/volume/cc-to-ml,volume,Cubic Centimeter (cc) (cm³),Milliliter (mL),cc-to-ml,C,true,false,,false,false
+/volume/ml-to-cc,volume,Milliliter (mL),Cubic Centimeter (cc) (cm³),ml-to-cc,C,true,false,,false,false
+/volume/teaspoons-to-ml,volume,Teaspoon (US) (tsp),Milliliter (mL),teaspoons-to-ml,A,true,false,,true,true
+/volume/ml-to-teaspoons,volume,Milliliter (mL),Teaspoon (US) (tsp),ml-to-teaspoons,A,true,false,,true,true
+/volume/pints-to-ml,volume,Pint (US Liquid) (pt),Milliliter (mL),pints-to-ml,C,true,false,,false,false
+/volume/ml-to-pints,volume,Milliliter (mL),Pint (US Liquid) (pt),ml-to-pints,C,true,false,,false,false
+/volume/quarts-to-ml,volume,Quart (US Liquid) (qt),Milliliter (mL),quarts-to-ml,C,true,false,,false,false
+/volume/ml-to-quarts,volume,Milliliter (mL),Quart (US Liquid) (qt),ml-to-quarts,C,true,false,,false,false
+/speed/mph-to-kph,speed,Miles per Hour (mph),Kilometers per Hour (km/h),mph-to-kph,A,true,false,,true,true
+/speed/kph-to-mph,speed,Kilometers per Hour (km/h),Miles per Hour (mph),kph-to-mph,A,true,false,,true,true
+/speed/meters-per-second-to-kph,speed,Meters per Second (m/s),Kilometers per Hour (km/h),meters-per-second-to-kph,A,true,false,,true,true
+/speed/knots-to-mph,speed,Knot (kn),Miles per Hour (mph),knots-to-mph,A,true,false,,true,true
+/speed/knots-to-kph,speed,Knot (kn),Kilometers per Hour (km/h),knots-to-kph,A,true,false,,true,true
+/speed/fps-to-mph,speed,Feet per Second (ft/s),Miles per Hour (mph),fps-to-mph,A,true,false,,true,true
+/speed/mach-to-kph,speed,Mach (SI Standard Sea Level) (Mach),Kilometers per Hour (km/h),mach-to-kph,A,true,false,,true,true
+/time/seconds-to-minutes,time,Second (s),Minute (min),seconds-to-minutes,A,true,false,,true,true
+/time/seconds-to-milliseconds,time,Second (s),Millisecond (ms),seconds-to-milliseconds,A,true,false,,true,true
+/time/minutes-to-hours,time,Minute (min),Hour (hr),minutes-to-hours,A,true,false,,true,true
+/time/hours-to-days,time,Hour (hr),Day (d),hours-to-days,A,true,false,,true,true
+/time/days-to-hours,time,Day (d),Hour (hr),days-to-hours,A,true,false,,true,true
+/time/days-to-weeks,time,Day (d),Week (wk),days-to-weeks,A,true,false,,true,true
+/time/days-to-years,time,Day (d),Year (Gregorian 365.2425 d) (yr),days-to-years,A,true,false,,true,true
+/time/milliseconds-to-seconds,time,Millisecond (ms),Second (s),milliseconds-to-seconds,A,true,false,,true,true
+/time/hours-to-minutes,time,Hour (hr),Minute (min),hours-to-minutes,A,true,false,,true,true
+/time/weeks-to-days,time,Week (wk),Day (d),weeks-to-days,A,true,false,,true,true
+/pressure/psi-to-bar,pressure,Pounds per Square Inch (psi),Bar (bar),psi-to-bar,A,true,false,,true,true
+/pressure/bar-to-psi,pressure,Bar (bar),Pounds per Square Inch (psi),bar-to-psi,A,true,false,,true,true
+/pressure/kpa-to-psi,pressure,Kilopascal (kPa),Pounds per Square Inch (psi),kpa-to-psi,A,true,false,,true,true
+/pressure/psi-to-kpa,pressure,Pounds per Square Inch (psi),Kilopascal (kPa),psi-to-kpa,A,true,false,,true,true
+/pressure/megapascal-to-psi,pressure,Megapascal (MPa),Pounds per Square Inch (psi),megapascal-to-psi,A,true,false,,true,true
+/pressure/psi-to-megapascal,pressure,Pounds per Square Inch (psi),Megapascal (MPa),psi-to-megapascal,A,true,false,,true,true
+/pressure/hectopascal-to-pascal,pressure,Hectopascal (hPa),Pascal (Pa),hectopascal-to-pascal,C,true,false,,false,false
+/pressure/pascal-to-hectopascal,pressure,Pascal (Pa),Hectopascal (hPa),pascal-to-hectopascal,C,true,false,,false,false
+/pressure/pascal-to-psi,pressure,Pascal (Pa),Pounds per Square Inch (psi),pascal-to-psi,A,true,false,,true,true
+/pressure/atm-to-bar,pressure,Standard Atmosphere (atm),Bar (bar),atm-to-bar,A,true,false,,true,true
+/pressure/atm-to-psi,pressure,Standard Atmosphere (atm),Pounds per Square Inch (psi),atm-to-psi,A,true,false,,true,true
+/pressure/bar-to-atm,pressure,Bar (bar),Standard Atmosphere (atm),bar-to-atm,A,true,false,,true,true
+/pressure/torr-to-atm,pressure,Torr (mmHg) (Torr),Standard Atmosphere (atm),torr-to-atm,C,true,false,,false,false
+/energy/joules-to-calories,energy,Joule (J),Gram Calorie (cal) (cal),joules-to-calories,A,true,false,,true,true
+/energy/calories-to-joules,energy,Gram Calorie (cal) (cal),Joule (J),calories-to-joules,A,true,false,,true,true
+/energy/kj-to-j,energy,Kilojoule (kJ),Joule (J),kj-to-j,A,true,false,,true,true
+/energy/j-to-kj,energy,Joule (J),Kilojoule (kJ),j-to-kj,A,true,false,,true,true
+/energy/kwh-to-joules,energy,Kilowatt-hour (kWh),Joule (J),kwh-to-joules,C,true,false,,false,false
+/energy/btu-to-joules,energy,British Thermal Unit (BTU) (BTU),Joule (J),btu-to-joules,A,true,false,,true,true
+/energy/calories-to-kilocalories,energy,Gram Calorie (cal) (cal),Kilocalorie (Food Calorie) (kcal),calories-to-kilocalories,A,true,false,,true,true
+/energy/kwh-to-btu,energy,Kilowatt-hour (kWh),British Thermal Unit (BTU) (BTU),kwh-to-btu,A,true,false,,true,true
+/energy/ev-to-joules,energy,Electronvolt (eV),Joule (J),ev-to-joules,C,true,false,,false,false
+/power/watts-to-horsepower,power,Watt (W),Horsepower (Mechanical) (hp),watts-to-horsepower,A,true,false,,true,true
+/power/horsepower-to-watts,power,Horsepower (Mechanical) (hp),Watt (W),horsepower-to-watts,A,true,false,,true,true
+/power/kw-to-horsepower,power,Kilowatt (kW),Horsepower (Mechanical) (hp),kw-to-horsepower,A,true,false,,true,true
+/power/hp-to-kw,power,Horsepower (Mechanical) (hp),Kilowatt (kW),hp-to-kw,A,true,false,,true,true
+/power/btu-per-hour-to-watts,power,BTU per Hour (BTU/hr),Watt (W),btu-per-hour-to-watts,A,true,false,,true,true
+/power/mw-to-kw,power,Megawatt (MW),Kilowatt (kW),mw-to-kw,A,true,false,,true,true
+/data-storage/mb-to-gb,data-storage,Megabyte (Decimal) (MB),Gigabyte (Decimal) (GB),mb-to-gb,A,true,false,,true,true
+/data-storage/gb-to-tb,data-storage,Gigabyte (Decimal) (GB),Terabyte (Decimal) (TB),gb-to-tb,A,true,false,,true,true
+/data-storage/kb-to-mb,data-storage,Kilobyte (Decimal) (KB),Megabyte (Decimal) (MB),kb-to-mb,A,true,false,,true,true
+/data-storage/bits-to-bytes,data-storage,Bit (b),Byte (B),bits-to-bytes,A,true,false,,true,true
+/data-storage/bytes-to-kilobytes,data-storage,Byte (B),Kilobyte (Decimal) (KB),bytes-to-kilobytes,C,true,false,,false,false
+/data-storage/gb-to-mb,data-storage,Gigabyte (Decimal) (GB),Megabyte (Decimal) (MB),gb-to-mb,A,true,false,,true,true
+/data-storage/tb-to-gb,data-storage,Terabyte (Decimal) (TB),Gigabyte (Decimal) (GB),tb-to-gb,A,true,false,,true,true
+/data-storage/mib-to-mb,data-storage,Mebibyte (Binary) (MiB),Megabyte (Decimal) (MB),mib-to-mb,C,true,false,,false,false
+/data-transfer/mbps-to-gbps,data-transfer,Megabits per Second (Mbps),Gigabits per Second (Gbps),mbps-to-gbps,A,true,false,,true,true
+/data-transfer/kbps-to-mbps,data-transfer,Kilobits per Second (Kbps),Megabits per Second (Mbps),kbps-to-mbps,A,true,false,,true,true
+/data-transfer/mbps-to-mbytes-per-sec,data-transfer,Megabits per Second (Mbps),Megabytes per Second (MB/s),mbps-to-mbytes-per-sec,A,true,false,,true,true
+/data-transfer/gbps-to-mbps,data-transfer,Gigabits per Second (Gbps),Megabits per Second (Mbps),gbps-to-mbps,A,true,false,,true,true
+/data-transfer/mbytes-per-sec-to-mbps,data-transfer,Megabytes per Second (MB/s),Megabits per Second (Mbps),mbytes-per-sec-to-mbps,A,true,false,,true,true
+/data-transfer/bps-to-kbps,data-transfer,Bits per Second (bps),Kilobits per Second (Kbps),bps-to-kbps,C,true,false,,false,false
+/force/newtons-to-pounds-force,force,Newton (N),Pound-force (lbf),newtons-to-pounds-force,A,true,false,,true,true
+/force/pounds-force-to-newtons,force,Pound-force (lbf),Newton (N),pounds-force-to-newtons,A,true,false,,true,true
+/force/kilonewtons-to-newtons,force,Kilonewton (kN),Newton (N),kilonewtons-to-newtons,A,true,false,,true,true
+/force/dynes-to-newtons,force,Dyne (dyn),Newton (N),dynes-to-newtons,C,true,false,,false,false
+/density/kilograms-per-cubic-meter-to-grams-per-cubic-centimeter,density,Kilogram per Cubic Meter (kg/m³),Gram per Cubic Centimeter (g/cm³),kilograms-per-cubic-meter-to-grams-per-cubic-centimeter,A,true,false,,true,true
+/density/grams-per-cubic-centimeter-to-kilograms-per-cubic-meter,density,Gram per Cubic Centimeter (g/cm³),Kilogram per Cubic Meter (kg/m³),grams-per-cubic-centimeter-to-kilograms-per-cubic-meter,A,true,false,,true,true
+/density/pounds-per-cubic-foot-to-kilograms-per-cubic-meter,density,Pound per Cubic Foot (lb/ft³),Kilogram per Cubic Meter (kg/m³),pounds-per-cubic-foot-to-kilograms-per-cubic-meter,A,true,false,,true,true
+/density/grams-per-milliliter-to-grams-per-cubic-centimeter,density,Gram per Milliliter (g/mL),Gram per Cubic Centimeter (g/cm³),grams-per-milliliter-to-grams-per-cubic-centimeter,C,true,false,,false,false
+/torque/nm-to-lb-ft,torque,Newton-meter (N·m),Pound-foot (ft·lbf) (lb·ft),nm-to-lb-ft,A,true,false,,true,true
+/torque/lb-ft-to-nm,torque,Pound-foot (ft·lbf) (lb·ft),Newton-meter (N·m),lb-ft-to-nm,A,true,false,,true,true
+/torque/nm-to-lb-in,torque,Newton-meter (N·m),Pound-inch (in·lbf) (lb·in),nm-to-lb-in,A,true,false,,true,true
+/torque/kilogram-force-meters-to-newton-meters,torque,Kilogram-force Meter (kgf·m),Newton-meter (N·m),kilogram-force-meters-to-newton-meters,C,true,false,,false,false
+/frequency/hz-to-khz,frequency,Hertz (Hz),Kilohertz (kHz),hz-to-khz,A,true,false,,true,true
+/frequency/khz-to-mhz,frequency,Kilohertz (kHz),Megahertz (MHz),khz-to-mhz,C,true,false,,false,false
+/frequency/mhz-to-ghz,frequency,Megahertz (MHz),Gigahertz (GHz),mhz-to-ghz,A,true,false,,true,true
+/frequency/rpm-to-hz,frequency,Revolutions per Minute (RPM),Hertz (Hz),rpm-to-hz,A,true,false,,true,true
+/angle/degrees-to-radians,angle,Degree (°),Radian (rad),degrees-to-radians,A,true,false,,true,true
+/angle/radians-to-degrees,angle,Radian (rad),Degree (°),radians-to-degrees,A,true,false,,true,true
+/angle/degrees-to-gradians,angle,Degree (°),Gradian (Gon) (grad),degrees-to-gradians,C,true,false,,false,false
+/angle/arcminutes-to-degrees,angle,Minute of Arc (′),Degree (°),arcminutes-to-degrees,C,true,false,,false,false
+/fuel-consumption/mpg-to-l-100km,fuel-consumption,Miles per Gallon (US) (MPG (US)),Liters per 100 km (L/100km),mpg-to-l-100km,A,true,false,,true,true
+/fuel-consumption/l-100km-to-mpg,fuel-consumption,Liters per 100 km (L/100km),Miles per Gallon (US) (MPG (US)),l-100km-to-mpg,A,true,false,,true,true
+/fuel-consumption/mpg-us-to-mpg-imperial,fuel-consumption,Miles per Gallon (US) (MPG (US)),Miles per Gallon (UK) (MPG (UK)),mpg-us-to-mpg-imperial,C,true,false,,false,false
+/fuel-consumption/km-per-l-to-mpg,fuel-consumption,Kilometers per Liter (km/L),Miles per Gallon (US) (MPG (US)),km-per-l-to-mpg,A,true,false,,true,true
+/fuel-consumption/mpg-to-km-per-l,fuel-consumption,Miles per Gallon (US) (MPG (US)),Kilometers per Liter (km/L),mpg-to-km-per-l,A,true,false,,true,true
+/fuel-consumption/km-per-l-to-l-100km,fuel-consumption,Kilometers per Liter (km/L),Liters per 100 km (L/100km),km-per-l-to-l-100km,C,true,false,,false,false
+/fuel-consumption/l-100km-to-km-per-l,fuel-consumption,Liters per 100 km (L/100km),Kilometers per Liter (km/L),l-100km-to-km-per-l,C,true,false,,false,false
+/fuel-consumption/mpg-imperial-to-mpg-us,fuel-consumption,Miles per Gallon (UK) (MPG (UK)),Miles per Gallon (US) (MPG (US)),mpg-imperial-to-mpg-us,C,true,false,,false,false
+/length/cm-to-mm,length,Centimeter (cm),Millimeter (mm),cm-to-mm,A,true,false,,true,true
+/length/mm-to-cm,length,Millimeter (mm),Centimeter (cm),mm-to-cm,A,true,false,,true,true
+/length/yards-to-feet,length,Yard (yd),Foot (ft),yards-to-feet,A,true,false,,true,true
+/length/feet-to-yards,length,Foot (ft),Yard (yd),feet-to-yards,A,true,false,,true,true
+/length/yards-to-inches,length,Yard (yd),Inch (in),yards-to-inches,A,true,false,,true,true
+/length/inches-to-yards,length,Inch (in),Yard (yd),inches-to-yards,A,true,false,,true,true
+/length/km-to-meters,length,Kilometer (km),Meter (m),km-to-meters,A,true,false,,true,true
+/length/meters-to-km,length,Meter (m),Kilometer (km),meters-to-km,A,true,false,,true,true
+/length/feet-to-miles,length,Foot (ft),Mile (Statute) (mi),feet-to-miles,A,true,false,,true,true
+/length/yards-to-miles,length,Yard (yd),Mile (Statute) (mi),yards-to-miles,A,true,false,,true,true
+/length/miles-to-yards,length,Mile (Statute) (mi),Yard (yd),miles-to-yards,A,true,false,,true,true
+/length/nautical-miles-to-miles,length,Nautical Mile (nmi),Mile (Statute) (mi),nautical-miles-to-miles,A,true,false,,true,true
+/length/miles-to-nautical-miles,length,Mile (Statute) (mi),Nautical Mile (nmi),miles-to-nautical-miles,A,true,false,,true,true
+/length/mil-to-mm,length,Mil (Thou) (mil),Millimeter (mm),mil-to-mm,C,true,false,,false,false
+/length/mm-to-mil,length,Millimeter (mm),Mil (Thou) (mil),mm-to-mil,C,true,false,,false,false
+/length/inches-to-nanometers,length,Inch (in),Nanometer (nm),inches-to-nanometers,C,true,false,,false,false
+/length/nanometers-to-inches,length,Nanometer (nm),Inch (in),nanometers-to-inches,C,true,false,,false,false
+/length/inches-to-micrometers,length,Inch (in),Micrometer (Micron) (µm),inches-to-micrometers,C,true,false,,false,false
+/length/micrometers-to-inches,length,Micrometer (Micron) (µm),Inch (in),micrometers-to-inches,C,true,false,,false,false
+/length/meters-to-nanometers,length,Meter (m),Nanometer (nm),meters-to-nanometers,C,true,false,,false,false
+/length/mm-to-nanometers,length,Millimeter (mm),Nanometer (nm),mm-to-nanometers,C,true,false,,false,false
+/length/nanometers-to-mm,length,Nanometer (nm),Millimeter (mm),nanometers-to-mm,C,true,false,,false,false
+/length/nanometers-to-meters,length,Nanometer (nm),Meter (m),nanometers-to-meters,C,true,false,,false,false
+/length/angstroms-to-nanometers,length,Angstrom (Å),Nanometer (nm),angstroms-to-nanometers,C,true,false,,false,false
+/length/points-to-inches,length,Point (Typography) (pt),Inch (in),points-to-inches,C,true,false,,false,false
+/weight-and-mass/grams-to-mg,weight-and-mass,Gram (g),Milligram (mg),grams-to-mg,A,true,false,,true,true
+/weight-and-mass/kg-to-stone,weight-and-mass,Kilogram (kg),Stone (UK) (st),kg-to-stone,A,true,false,,true,true
+/weight-and-mass/stone-to-kg,weight-and-mass,Stone (UK) (st),Kilogram (kg),stone-to-kg,A,true,false,,true,true
+/weight-and-mass/kg-to-ounces,weight-and-mass,Kilogram (kg),Ounce (oz),kg-to-ounces,A,true,false,,true,true
+/weight-and-mass/ounces-to-kg,weight-and-mass,Ounce (oz),Kilogram (kg),ounces-to-kg,A,true,false,,true,true
+/weight-and-mass/kg-to-metric-tons,weight-and-mass,Kilogram (kg),Metric Ton (Tonne / Megagram) (t),kg-to-metric-tons,A,true,false,,true,true
+/weight-and-mass/metric-tons-to-kg,weight-and-mass,Metric Ton (Tonne / Megagram) (t),Kilogram (kg),metric-tons-to-kg,A,true,false,,true,true
+/weight-and-mass/lbs-to-tons,weight-and-mass,Pound (Avoirdupois) (lb),US Short Ton (ton (US)),lbs-to-tons,A,true,false,,true,true
+/weight-and-mass/tons-to-lbs,weight-and-mass,US Short Ton (ton (US)),Pound (Avoirdupois) (lb),tons-to-lbs,A,true,false,,true,true
+/weight-and-mass/us-tons-to-metric-tons,weight-and-mass,US Short Ton (ton (US)),Metric Ton (Tonne / Megagram) (t),us-tons-to-metric-tons,A,true,false,,true,true
+/weight-and-mass/grains-to-grams,weight-and-mass,Grain (gr),Gram (g),grains-to-grams,C,true,false,,false,false
+/weight-and-mass/grams-to-grains,weight-and-mass,Gram (g),Grain (gr),grams-to-grains,C,true,false,,false,false
+/weight-and-mass/carats-to-grams,weight-and-mass,Metric Carat (ct),Gram (g),carats-to-grams,A,true,false,,true,true
+/volume/liters-to-ml,volume,Liter (L),Milliliter (mL),liters-to-ml,A,true,false,,true,true
+/volume/ml-to-liters,volume,Milliliter (mL),Liter (L),ml-to-liters,A,true,false,,true,true
+/volume/tablespoons-to-ml,volume,Tablespoon (US) (tbsp),Milliliter (mL),tablespoons-to-ml,A,true,false,,true,true
+/volume/ml-to-tablespoons,volume,Milliliter (mL),Tablespoon (US) (tbsp),ml-to-tablespoons,A,true,false,,true,true
+/volume/teaspoons-to-tablespoons,volume,Teaspoon (US) (tsp),Tablespoon (US) (tbsp),teaspoons-to-tablespoons,A,true,false,,true,true
+/volume/cups-to-pints,volume,Cup (US Customary) (cup),Pint (US Liquid) (pt),cups-to-pints,A,true,false,,true,true
+/volume/cups-to-gallons,volume,Cup (US Customary) (cup),Gallon (US Liquid) (gal (US)),cups-to-gallons,C,true,false,,false,false
+/volume/gallons-to-cups,volume,Gallon (US Liquid) (gal (US)),Cup (US Customary) (cup),gallons-to-cups,C,true,false,,false,false
+/volume/pints-to-gallons,volume,Pint (US Liquid) (pt),Gallon (US Liquid) (gal (US)),pints-to-gallons,C,true,false,,false,false
+/volume/gallons-to-pints,volume,Gallon (US Liquid) (gal (US)),Pint (US Liquid) (pt),gallons-to-pints,A,true,false,,true,true
+/volume/fluid-ounces-to-cups,volume,Fluid Ounce (US) (fl oz),Cup (US Customary) (cup),fluid-ounces-to-cups,A,true,false,,true,true
+/volume/cups-to-fluid-ounces,volume,Cup (US Customary) (cup),Fluid Ounce (US) (fl oz),cups-to-fluid-ounces,A,true,false,,true,true
+/volume/fluid-ounces-to-gallons,volume,Fluid Ounce (US) (fl oz),Gallon (US Liquid) (gal (US)),fluid-ounces-to-gallons,C,true,false,,false,false
+/volume/gallons-to-fluid-ounces,volume,Gallon (US Liquid) (gal (US)),Fluid Ounce (US) (fl oz),gallons-to-fluid-ounces,A,true,false,,true,true
+/volume/fluid-ounces-to-liters,volume,Fluid Ounce (US) (fl oz),Liter (L),fluid-ounces-to-liters,C,true,false,,false,false
+/volume/liters-to-fluid-ounces,volume,Liter (L),Fluid Ounce (US) (fl oz),liters-to-fluid-ounces,C,true,false,,false,false
+/volume/pints-to-liters,volume,Pint (US Liquid) (pt),Liter (L),pints-to-liters,A,true,false,,true,true
+/volume/liters-to-pints,volume,Liter (L),Pint (US Liquid) (pt),liters-to-pints,A,true,false,,true,true
+/volume/cubic-inches-to-gallons,volume,Cubic Inch (in³),Gallon (US Liquid) (gal (US)),cubic-inches-to-gallons,C,true,false,,false,false
+/volume/cubic-inches-to-liters,volume,Cubic Inch (in³),Liter (L),cubic-inches-to-liters,C,true,false,,false,false
+/volume/liters-to-cubic-inches,volume,Liter (L),Cubic Inch (in³),liters-to-cubic-inches,C,true,false,,false,false
+/volume/cubic-feet-to-cubic-meters,volume,Cubic Foot (ft³),Cubic Meter (m³),cubic-feet-to-cubic-meters,C,true,false,,false,false
+/volume/cubic-feet-to-cubic-yards,volume,Cubic Foot (ft³),Cubic Yard (yd³),cubic-feet-to-cubic-yards,C,true,false,,false,false
+/volume/cubic-yards-to-cubic-feet,volume,Cubic Yard (yd³),Cubic Foot (ft³),cubic-yards-to-cubic-feet,C,true,false,,false,false
+/area/sq-feet-to-acres,area,Square Foot (ft²),Acre (ac),sq-feet-to-acres,A,true,false,,true,true
+/area/sq-feet-to-sq-yards,area,Square Foot (ft²),Square Yard (yd²),sq-feet-to-sq-yards,A,true,false,,true,true
+/area/sq-yards-to-sq-feet,area,Square Yard (yd²),Square Foot (ft²),sq-yards-to-sq-feet,A,true,false,,true,true
+/area/sq-cm-to-sq-inches,area,Square Centimeter (cm²),Square Inch (in²),sq-cm-to-sq-inches,A,true,false,,true,true
+/area/hectares-to-sq-meters,area,Hectare (ha),Square Meter (m²),hectares-to-sq-meters,A,true,false,,true,true
+/area/sq-meters-to-hectares,area,Square Meter (m²),Hectare (ha),sq-meters-to-hectares,A,true,false,,true,true
+/speed/meters-per-second-to-mph,speed,Meters per Second (m/s),Miles per Hour (mph),meters-per-second-to-mph,A,true,false,,true,true
+/speed/mph-to-meters-per-second,speed,Miles per Hour (mph),Meters per Second (m/s),mph-to-meters-per-second,A,true,false,,true,true
+/speed/mph-to-knots,speed,Miles per Hour (mph),Knot (kn),mph-to-knots,A,true,false,,true,true
+/speed/kph-to-meters-per-second,speed,Kilometers per Hour (km/h),Meters per Second (m/s),kph-to-meters-per-second,A,true,false,,true,true
+/speed/mph-to-fps,speed,Miles per Hour (mph),Feet per Second (ft/s),mph-to-fps,A,true,false,,true,true
+/time/months-to-years,time,Month (Average 30.437 d) (mo),Year (Gregorian 365.2425 d) (yr),months-to-years,C,true,false,,false,false
+/time/years-to-months,time,Year (Gregorian 365.2425 d) (yr),Month (Average 30.437 d) (mo),years-to-months,C,true,false,,false,false
+/time/seconds-to-days,time,Second (s),Day (d),seconds-to-days,C,true,false,,false,false
+/time/days-to-seconds,time,Day (d),Second (s),days-to-seconds,C,true,false,,false,false
+/time/minutes-to-seconds,time,Minute (min),Second (s),minutes-to-seconds,A,true,false,,true,true
+/time/seconds-to-hours,time,Second (s),Hour (hr),seconds-to-hours,A,true,false,,true,true
+/time/hours-to-seconds,time,Hour (hr),Second (s),hours-to-seconds,A,true,false,,true,true
+/time/minutes-to-days,time,Minute (min),Day (d),minutes-to-days,C,true,false,,false,false
+/pressure/pascal-to-megapascal,pressure,Pascal (Pa),Megapascal (MPa),pascal-to-megapascal,C,true,false,,false,false
+/pressure/megapascal-to-pascal,pressure,Megapascal (MPa),Pascal (Pa),megapascal-to-pascal,C,true,false,,false,false
+/pressure/bar-to-kpa,pressure,Bar (bar),Kilopascal (kPa),bar-to-kpa,A,true,false,,true,true
+/pressure/kpa-to-bar,pressure,Kilopascal (kPa),Bar (bar),kpa-to-bar,A,true,false,,true,true
+/pressure/bar-to-megapascal,pressure,Bar (bar),Megapascal (MPa),bar-to-megapascal,C,true,false,,false,false
+/pressure/megapascal-to-bar,pressure,Megapascal (MPa),Bar (bar),megapascal-to-bar,C,true,false,,false,false
+/pressure/ksi-to-psi,pressure,Kilopounds per Square Inch (ksi) (ksi),Pounds per Square Inch (psi),ksi-to-psi,A,true,false,,true,true
+/pressure/ksi-to-megapascal,pressure,Kilopounds per Square Inch (ksi) (ksi),Megapascal (MPa),ksi-to-megapascal,C,true,false,,false,false
+/pressure/megapascal-to-ksi,pressure,Megapascal (MPa),Kilopounds per Square Inch (ksi) (ksi),megapascal-to-ksi,C,true,false,,false,false
+/energy/kj-to-kcal,energy,Kilojoule (kJ),Kilocalorie (Food Calorie) (kcal),kj-to-kcal,A,true,false,,true,true
+/energy/kcal-to-kj,energy,Kilocalorie (Food Calorie) (kcal),Kilojoule (kJ),kcal-to-kj,A,true,false,,true,true
+/energy/btu-to-kwh,energy,British Thermal Unit (BTU) (BTU),Kilowatt-hour (kWh),btu-to-kwh,A,true,false,,true,true
+/energy/foot-pounds-to-joules,energy,Foot-pound (ft·lbf) (ft·lbf),Joule (J),foot-pounds-to-joules,A,true,false,,true,true
+/energy/joules-to-foot-pounds,energy,Joule (J),Foot-pound (ft·lbf) (ft·lbf),joules-to-foot-pounds,A,true,false,,true,true
+/power/watts-to-kw,power,Watt (W),Kilowatt (kW),watts-to-kw,A,true,false,,true,true
+/power/kw-to-watts,power,Kilowatt (kW),Watt (W),kw-to-watts,A,true,false,,true,true
+/power/tons-refrigeration-to-btu-per-hour,power,Ton of Refrigeration (TR) (TR),BTU per Hour (BTU/hr),tons-refrigeration-to-btu-per-hour,C,true,false,,false,false
+/power/btu-per-hour-to-tons-refrigeration,power,BTU per Hour (BTU/hr),Ton of Refrigeration (TR) (TR),btu-per-hour-to-tons-refrigeration,C,true,false,,false,false
+/data-storage/mb-to-kb,data-storage,Megabyte (Decimal) (MB),Kilobyte (Decimal) (KB),mb-to-kb,A,true,false,,true,true
+/data-storage/kb-to-gb,data-storage,Kilobyte (Decimal) (KB),Gigabyte (Decimal) (GB),kb-to-gb,C,true,false,,false,false
+/data-storage/gb-to-kb,data-storage,Gigabyte (Decimal) (GB),Kilobyte (Decimal) (KB),gb-to-kb,C,true,false,,false,false
+/data-storage/bytes-to-mb,data-storage,Byte (B),Megabyte (Decimal) (MB),bytes-to-mb,C,true,false,,false,false
+/data-storage/gib-to-gb,data-storage,Gibibyte (Binary) (GiB),Gigabyte (Decimal) (GB),gib-to-gb,A,true,false,,true,true
+/data-transfer/mbps-to-kbps,data-transfer,Megabits per Second (Mbps),Kilobits per Second (Kbps),mbps-to-kbps,C,true,false,,false,false
+/force/kgf-to-newtons,force,Kilogram-force (Kilopond) (kgf),Newton (N),kgf-to-newtons,A,true,false,,true,true
+/force/newtons-to-kgf,force,Newton (N),Kilogram-force (Kilopond) (kgf),newtons-to-kgf,A,true,false,,true,true
+/force/kilonewton-to-pound-force,force,Kilonewton (kN),Pound-force (lbf),kilonewton-to-pound-force,A,true,false,,true,true
+/force/gram-force-to-newton,force,Gram-force (Pond) (gf),Newton (N),gram-force-to-newton,C,true,false,,false,false
+/density/kilograms-per-cubic-meter-to-pounds-per-cubic-foot,density,Kilogram per Cubic Meter (kg/m³),Pound per Cubic Foot (lb/ft³),kilograms-per-cubic-meter-to-pounds-per-cubic-foot,A,true,false,,true,true
+/density/grams-per-cubic-centimeter-to-pounds-per-cubic-foot,density,Gram per Cubic Centimeter (g/cm³),Pound per Cubic Foot (lb/ft³),grams-per-cubic-centimeter-to-pounds-per-cubic-foot,C,true,false,,false,false
+/torque/lb-in-to-nm,torque,Pound-inch (in·lbf) (lb·in),Newton-meter (N·m),lb-in-to-nm,A,true,false,,true,true
+/torque/lb-ft-to-lb-in,torque,Pound-foot (ft·lbf) (lb·ft),Pound-inch (in·lbf) (lb·in),lb-ft-to-lb-in,A,true,false,,true,true
+/torque/lb-in-to-lb-ft,torque,Pound-inch (in·lbf) (lb·in),Pound-foot (ft·lbf) (lb·ft),lb-in-to-lb-ft,A,true,false,,true,true
+/torque/newton-meters-to-kilogram-force-meters,torque,Newton-meter (N·m),Kilogram-force Meter (kgf·m),newton-meters-to-kilogram-force-meters,C,true,false,,false,false
+/frequency/mhz-to-hz,frequency,Megahertz (MHz),Hertz (Hz),mhz-to-hz,C,true,false,,false,false
+/frequency/hz-to-mhz,frequency,Hertz (Hz),Megahertz (MHz),hz-to-mhz,C,true,false,,false,false
+/frequency/khz-to-hz,frequency,Kilohertz (kHz),Hertz (Hz),khz-to-hz,A,true,false,,true,true
+/frequency/ghz-to-hz,frequency,Gigahertz (GHz),Hertz (Hz),ghz-to-hz,C,true,false,,false,false
+/frequency/ghz-to-mhz,frequency,Gigahertz (GHz),Megahertz (MHz),ghz-to-mhz,A,true,false,,true,true
+/angle/radian-to-revolution,angle,Radian (rad),Revolution (Turn) (rev),radian-to-revolution,C,true,false,,false,false
+/angle/mil-to-degree,angle,Angular Mil (NATO) (mil),Degree (°),mil-to-degree,C,true,false,,false,false
+/flow/liters-per-minute-to-us-gallons-per-minute,flow,Liters per Minute (L/min),US Gallons per Minute (GPM) (GPM),liters-per-minute-to-us-gallons-per-minute,A,true,false,,true,true
+/flow/us-gallons-per-minute-to-liters-per-minute,flow,US Gallons per Minute (GPM) (GPM),Liters per Minute (L/min),us-gallons-per-minute-to-liters-per-minute,A,true,false,,true,true
+/flow/cubic-feet-per-hour-to-liters-per-minute,flow,Cubic Feet per Hour (CFH / SCFH) (CFH),Liters per Minute (L/min),cubic-feet-per-hour-to-liters-per-minute,C,true,false,,false,false
+/flow/liters-per-hour-to-us-gallons-per-hour,flow,Liters per Hour (L/h),US Gallons per Hour (GPH) (GPH),liters-per-hour-to-us-gallons-per-hour,C,true,false,,false,false
+/flow/us-gallons-per-minute-to-cubic-meters-per-second,flow,US Gallons per Minute (GPM) (GPM),Cubic Meters per Second (m³/s),us-gallons-per-minute-to-cubic-meters-per-second,C,true,false,,false,false
+/flow/cfm-to-liters-per-minute,flow,Cubic Feet per Minute (CFM) (CFM),Liters per Minute (L/min),cfm-to-liters-per-minute,A,true,false,,true,true
+/flow/cfm-to-cubic-meters-per-hour,flow,Cubic Feet per Minute (CFM) (CFM),Cubic Meters per Hour (m³/h),cfm-to-cubic-meters-per-hour,A,true,false,,true,true
+/flow/gpm-to-cubic-meters-per-hour,flow,US Gallons per Minute (GPM) (GPM),Cubic Meters per Hour (m³/h),gpm-to-cubic-meters-per-hour,C,true,false,,false,false
+/current/milliamps-to-amps,current,Milliampere (mA),Ampere (A),milliamps-to-amps,C,true,false,,false,false
+/current/amps-to-milliamps,current,Ampere (A),Milliampere (mA),amps-to-milliamps,C,true,false,,false,false
+/current/microamps-to-milliamps,current,Microampere (µA),Milliampere (mA),microamps-to-milliamps,C,true,false,,false,false
+/current/kiloamps-to-amps,current,Kiloampere (kA),Ampere (A),kiloamps-to-amps,C,true,false,,false,false
+/electrostatic-capacitance/microfarad-to-farad,electrostatic-capacitance,Microfarad (µF),Farad (F),microfarad-to-farad,C,true,false,,false,false
+/electrostatic-capacitance/picofarad-to-farad,electrostatic-capacitance,Picofarad (pF),Farad (F),picofarad-to-farad,C,true,false,,false,false
+/electrostatic-capacitance/picofarad-to-microfarad,electrostatic-capacitance,Picofarad (pF),Microfarad (µF),picofarad-to-microfarad,C,true,false,,false,false
+/electrostatic-capacitance/nanofarad-to-microfarad,electrostatic-capacitance,Nanofarad (nF),Microfarad (µF),nanofarad-to-microfarad,C,true,false,,false,false
+/electrostatic-capacitance/microfarad-to-nanofarad,electrostatic-capacitance,Microfarad (µF),Nanofarad (nF),microfarad-to-nanofarad,C,true,false,,false,false
+/charge/microcoulomb-to-coulomb,charge,Microcoulomb (µC),Coulomb (C),microcoulomb-to-coulomb,C,true,false,,false,false
+/charge/nanocoulomb-to-coulomb,charge,Nanocoulomb (nC),Coulomb (C),nanocoulomb-to-coulomb,C,true,false,,false,false
+/charge/mah-to-ah,charge,Milliampere-hour (mAh),Ampere-hour (Ah),mah-to-ah,C,true,false,,false,false
+/charge/ah-to-mah,charge,Ampere-hour (Ah),Milliampere-hour (mAh),ah-to-mah,C,true,false,,false,false
+/charge/mah-to-coulombs,charge,Milliampere-hour (mAh),Coulomb (C),mah-to-coulombs,C,true,false,,false,false
+/electric-resistance/megohm-to-ohm,electric-resistance,Megohm (MΩ),Ohm (Ω),megohm-to-ohm,C,true,false,,false,false
+/electric-resistance/ohm-to-megohm,electric-resistance,Ohm (Ω),Megohm (MΩ),ohm-to-megohm,C,true,false,,false,false
+/electric-resistance/kiloohm-to-ohm,electric-resistance,Kiloohm (kΩ),Ohm (Ω),kiloohm-to-ohm,C,true,false,,false,false
+/electric-resistance/ohm-to-kiloohm,electric-resistance,Ohm (Ω),Kiloohm (kΩ),ohm-to-kiloohm,C,true,false,,false,false
+/inductance/millihenry-to-henry,inductance,Millihenry (mH),Henry (H),millihenry-to-henry,C,true,false,,false,false
+/inductance/henry-to-millihenry,inductance,Henry (H),Millihenry (mH),henry-to-millihenry,C,true,false,,false,false
+/inductance/microhenry-to-millihenry,inductance,Microhenry (µH),Millihenry (mH),microhenry-to-millihenry,C,true,false,,false,false
+/inductance/microhenry-to-henry,inductance,Microhenry (µH),Henry (H),microhenry-to-henry,C,true,false,,false,false
+/magnetic-flux-density/gauss-to-tesla,magnetic-flux-density,Gauss (G),Tesla (T),gauss-to-tesla,C,true,false,,false,false
+/magnetic-flux-density/tesla-to-gauss,magnetic-flux-density,Tesla (T),Gauss (G),tesla-to-gauss,C,true,false,,false,false
+/magnetic-flux-density/millitesla-to-gauss,magnetic-flux-density,Millitesla (mT),Gauss (G),millitesla-to-gauss,C,true,false,,false,false
+/magnetic-flux-density/gauss-to-millitesla,magnetic-flux-density,Gauss (G),Millitesla (mT),gauss-to-millitesla,C,true,false,,false,false
+/weight-and-mass/troy-ounces-to-grams,weight-and-mass,Troy Ounce (oz t),Gram (g),troy-ounces-to-grams,A,true,false,,true,true
+/weight-and-mass/grams-to-troy-ounces,weight-and-mass,Gram (g),Troy Ounce (oz t),grams-to-troy-ounces,A,true,false,,true,true
+/volume/imperial-gallons-to-liters,volume,Gallon (UK Imperial) (gal (UK)),Liter (L),imperial-gallons-to-liters,A,true,false,,true,true
+/volume/liters-to-imperial-gallons,volume,Liter (L),Gallon (UK Imperial) (gal (UK)),liters-to-imperial-gallons,A,true,false,,true,true
+/volume/metric-cups-to-ml,volume,Cup (Metric) (cup (metric)),Milliliter (mL),metric-cups-to-ml,C,true,false,,false,false
+/volume/us-cups-to-metric-cups,volume,Cup (US Customary) (cup),Cup (Metric) (cup (metric)),us-cups-to-metric-cups,C,true,false,,false,false
+/length/us-survey-feet-to-meters,length,US Survey Foot (ft (US)),Meter (m),us-survey-feet-to-meters,C,true,false,,false,false
+/length/meters-to-us-survey-feet,length,Meter (m),US Survey Foot (ft (US)),meters-to-us-survey-feet,C,true,false,,false,false
+/power/ps-to-hp,power,Horsepower (Metric PS) (PS),Horsepower (Mechanical) (hp),ps-to-hp,A,true,false,,true,true
+/power/hp-to-ps,power,Horsepower (Mechanical) (hp),Horsepower (Metric PS) (PS),hp-to-ps,A,true,false,,true,true
+/power/ps-to-kw,power,Horsepower (Metric PS) (PS),Kilowatt (kW),ps-to-kw,C,true,false,,false,false
+/power/kw-to-ps,power,Kilowatt (kW),Horsepower (Metric PS) (PS),kw-to-ps,C,true,false,,false,false
+/pressure/inhg-to-hpa,pressure,Inch of Mercury (inHg) (inHg),Hectopascal (hPa),inhg-to-hpa,C,true,false,,false,false
+/pressure/hpa-to-inhg,pressure,Hectopascal (hPa),Inch of Mercury (inHg) (inHg),hpa-to-inhg,C,true,false,,false,false
+/volume/gallons-imperial-to-gallons-us,volume,Gallon (UK Imperial) (gal (UK)),Gallon (US Liquid) (gal (US)),gallons-imperial-to-gallons-us,A,true,false,,true,true
+/volume/us-fluid-ounces-to-imperial-fluid-ounces,volume,Fluid Ounce (US) (fl oz),Fluid Ounce (UK Imperial) (fl oz (UK)),us-fluid-ounces-to-imperial-fluid-ounces,C,true,false,,false,false
+/volume/imperial-fluid-ounces-to-us-fluid-ounces,volume,Fluid Ounce (UK Imperial) (fl oz (UK)),Fluid Ounce (US) (fl oz),imperial-fluid-ounces-to-us-fluid-ounces,C,true,false,,false,false
+/volume/imperial-fluid-ounces-to-ml,volume,Fluid Ounce (UK Imperial) (fl oz (UK)),Milliliter (mL),imperial-fluid-ounces-to-ml,C,true,false,,false,false
+/volume/ml-to-imperial-fluid-ounces,volume,Milliliter (mL),Fluid Ounce (UK Imperial) (fl oz (UK)),ml-to-imperial-fluid-ounces,C,true,false,,false,false
+/volume/ml-to-metric-cups,volume,Milliliter (mL),Cup (Metric) (cup (metric)),ml-to-metric-cups,C,true,false,,false,false
+/volume/metric-cups-to-us-cups,volume,Cup (Metric) (cup (metric)),Cup (US Customary) (cup),metric-cups-to-us-cups,C,true,false,,false,false
+/fuel-consumption/mpg-imperial-to-l-100km,fuel-consumption,Miles per Gallon (UK) (MPG (UK)),Liters per 100 km (L/100km),mpg-imperial-to-l-100km,C,true,false,,false,false
+/fuel-consumption/l-100km-to-mpg-imperial,fuel-consumption,Liters per 100 km (L/100km),Miles per Gallon (UK) (MPG (UK)),l-100km-to-mpg-imperial,C,true,false,,false,false
+/weight-and-mass/metric-tons-to-imperial-tons,weight-and-mass,Metric Ton (Tonne / Megagram) (t),Imperial Long Ton (ton (UK)),metric-tons-to-imperial-tons,C,true,false,,false,false
+/weight-and-mass/imperial-tons-to-metric-tons,weight-and-mass,Imperial Long Ton (ton (UK)),Metric Ton (Tonne / Megagram) (t),imperial-tons-to-metric-tons,C,true,false,,false,false
+/temperature/rankine-to-celsius,temperature,Rankine (°R),Celsius (°C),rankine-to-celsius,C,true,false,,false,false
+/temperature/rankine-to-fahrenheit,temperature,Rankine (°R),Fahrenheit (°F),rankine-to-fahrenheit,C,true,false,,false,false
+/charge/ah-to-kwh,charge,Ampere-hour (Ah),Kilowatt-hour (kWh),ah-to-kwh,C,false,false,,false,false
+/energy/kwh-to-ah,energy,Kilowatt-hour (kWh),Ampere-hour (Ah),kwh-to-ah,C,false,false,,false,false
+/charge/ah-to-wh,charge,Ampere-hour (Ah),Watt-hour (Wh),ah-to-wh,C,false,false,,false,false
+/energy/wh-to-ah,energy,Watt-hour (Wh),Ampere-hour (Ah),wh-to-ah,C,false,false,,false,false
+/charge/mah-to-wh,charge,Milliampere-hour (mAh),Watt-hour (Wh),mah-to-wh,C,false,false,,false,false
+/volume-dry/liters-to-us-bushels,volume-dry,Liter (Dry) (L),US Bushel (bu (US)),liters-to-us-bushels,C,true,false,,false,false
+/volume-dry/us-bushels-to-liters,volume-dry,US Bushel (bu (US)),Liter (Dry) (L),us-bushels-to-liters,C,true,false,,false,false
+/volume-dry/liters-to-imperial-bushels,volume-dry,Liter (Dry) (L),Imperial Bushel (UK) (bu (UK)),liters-to-imperial-bushels,C,true,false,,false,false
+/volume-dry/imperial-bushels-to-liters,volume-dry,Imperial Bushel (UK) (bu (UK)),Liter (Dry) (L),imperial-bushels-to-liters,C,true,false,,false,false
+/volume-dry/liters-to-us-pecks,volume-dry,Liter (Dry) (L),US Peck (pk (US)),liters-to-us-pecks,C,true,false,,false,false
+/volume-dry/us-pecks-to-liters,volume-dry,US Peck (pk (US)),Liter (Dry) (L),us-pecks-to-liters,C,true,false,,false,false
+/currency/us-dollars-to-euros,currency,US Dollar (USD),Euro (EUR),us-dollars-to-euros,C,true,false,,false,false
+/currency/euros-to-us-dollars,currency,Euro (EUR),US Dollar (USD),euros-to-us-dollars,C,true,false,,false,false
+/currency/us-dollars-to-british-pounds,currency,US Dollar (USD),British Pound Sterling (GBP),us-dollars-to-british-pounds,C,true,false,,false,false
+/currency/british-pounds-to-us-dollars,currency,British Pound Sterling (GBP),US Dollar (USD),british-pounds-to-us-dollars,C,true,false,,false,false
+/currency/us-dollars-to-japanese-yen,currency,US Dollar (USD),Japanese Yen (JPY),us-dollars-to-japanese-yen,C,true,false,,false,false
+/currency/japanese-yen-to-us-dollars,currency,Japanese Yen (JPY),US Dollar (USD),japanese-yen-to-us-dollars,C,true,false,,false,false
+/numbers/units-to-dozens,numbers,Unit (One) (1),Dozen (doz),units-to-dozens,C,true,false,,false,false
+/numbers/dozens-to-units,numbers,Dozen (doz),Unit (One) (1),dozens-to-units,C,true,false,,false,false
+/numbers/units-to-gross,numbers,Unit (One) (1),Gross (gr),units-to-gross,C,true,false,,false,false
+/numbers/gross-to-units,numbers,Gross (gr),Unit (One) (1),gross-to-units,C,true,false,,false,false
+/numbers/units-to-thousands,numbers,Unit (One) (1),Thousand (K),units-to-thousands,C,true,false,,false,false
+/numbers/thousands-to-units,numbers,Thousand (K),Unit (One) (1),thousands-to-units,C,true,false,,false,false
+/angular-velocity/radians-per-second-to-degrees-per-second,angular-velocity,Radian per Second (rad/s),Degree per Second (°/s),radians-per-second-to-degrees-per-second,C,true,false,,false,false
+/angular-velocity/degrees-per-second-to-radians-per-second,angular-velocity,Degree per Second (°/s),Radian per Second (rad/s),degrees-per-second-to-radians-per-second,C,true,false,,false,false
+/angular-velocity/radians-per-second-to-revolutions-per-minute,angular-velocity,Radian per Second (rad/s),Revolution per Minute (r/min),radians-per-second-to-revolutions-per-minute,C,true,false,,false,false
+/angular-velocity/revolutions-per-minute-to-radians-per-second,angular-velocity,Revolution per Minute (r/min),Radian per Second (rad/s),revolutions-per-minute-to-radians-per-second,C,true,false,,false,false
+/angular-velocity/radians-per-second-to-revolutions-per-second,angular-velocity,Radian per Second (rad/s),Revolution per Second (r/s),radians-per-second-to-revolutions-per-second,C,true,false,,false,false
+/angular-velocity/revolutions-per-second-to-radians-per-second,angular-velocity,Revolution per Second (r/s),Radian per Second (rad/s),revolutions-per-second-to-radians-per-second,C,true,false,,false,false
+/acceleration/meters-per-second-squared-to-standard-gravity,acceleration,Meter per Second Squared (m/s²),Standard Gravity (g),meters-per-second-squared-to-standard-gravity,C,true,false,,false,false
+/acceleration/standard-gravity-to-meters-per-second-squared,acceleration,Standard Gravity (g),Meter per Second Squared (m/s²),standard-gravity-to-meters-per-second-squared,C,true,false,,false,false
+/acceleration/meters-per-second-squared-to-feet-per-second-squared,acceleration,Meter per Second Squared (m/s²),Foot per Second Squared (ft/s²),meters-per-second-squared-to-feet-per-second-squared,C,true,false,,false,false
+/acceleration/feet-per-second-squared-to-meters-per-second-squared,acceleration,Foot per Second Squared (ft/s²),Meter per Second Squared (m/s²),feet-per-second-squared-to-meters-per-second-squared,C,true,false,,false,false
+/acceleration/meters-per-second-squared-to-inches-per-second-squared,acceleration,Meter per Second Squared (m/s²),Inch per Second Squared (in/s²),meters-per-second-squared-to-inches-per-second-squared,C,true,false,,false,false
+/acceleration/inches-per-second-squared-to-meters-per-second-squared,acceleration,Inch per Second Squared (in/s²),Meter per Second Squared (m/s²),inches-per-second-squared-to-meters-per-second-squared,C,true,false,,false,false
+/angular-acceleration/radians-per-second-squared-to-degrees-per-second-squared,angular-acceleration,Radian per Second Squared (rad/s²),Degree per Second Squared (°/s²),radians-per-second-squared-to-degrees-per-second-squared,C,true,false,,false,false
+/angular-acceleration/degrees-per-second-squared-to-radians-per-second-squared,angular-acceleration,Degree per Second Squared (°/s²),Radian per Second Squared (rad/s²),degrees-per-second-squared-to-radians-per-second-squared,C,true,false,,false,false
+/angular-acceleration/radians-per-second-squared-to-revolutions-per-second-squared,angular-acceleration,Radian per Second Squared (rad/s²),Revolution per Second Squared (r/s²),radians-per-second-squared-to-revolutions-per-second-squared,C,true,false,,false,false
+/angular-acceleration/revolutions-per-second-squared-to-radians-per-second-squared,angular-acceleration,Revolution per Second Squared (r/s²),Radian per Second Squared (rad/s²),revolutions-per-second-squared-to-radians-per-second-squared,C,true,false,,false,false
+/angular-acceleration/radians-per-second-squared-to-rpm-per-second,angular-acceleration,Radian per Second Squared (rad/s²),Revolution per Minute per Second (RPM/s),radians-per-second-squared-to-rpm-per-second,C,true,false,,false,false
+/angular-acceleration/rpm-per-second-to-radians-per-second-squared,angular-acceleration,Revolution per Minute per Second (RPM/s),Radian per Second Squared (rad/s²),rpm-per-second-to-radians-per-second-squared,C,true,false,,false,false
+/specific-volume/cubic-meters-per-kilogram-to-liters-per-kilogram,specific-volume,Cubic Meter per Kilogram (m³/kg),Liter per Kilogram (L/kg),cubic-meters-per-kilogram-to-liters-per-kilogram,C,true,false,,false,false
+/specific-volume/liters-per-kilogram-to-cubic-meters-per-kilogram,specific-volume,Liter per Kilogram (L/kg),Cubic Meter per Kilogram (m³/kg),liters-per-kilogram-to-cubic-meters-per-kilogram,C,true,false,,false,false
+/specific-volume/cubic-meters-per-kilogram-to-cubic-centimeters-per-gram,specific-volume,Cubic Meter per Kilogram (m³/kg),Cubic Centimeter per Gram (cm³/g),cubic-meters-per-kilogram-to-cubic-centimeters-per-gram,C,true,false,,false,false
+/specific-volume/cubic-centimeters-per-gram-to-cubic-meters-per-kilogram,specific-volume,Cubic Centimeter per Gram (cm³/g),Cubic Meter per Kilogram (m³/kg),cubic-centimeters-per-gram-to-cubic-meters-per-kilogram,C,true,false,,false,false
+/specific-volume/cubic-meters-per-kilogram-to-cubic-feet-per-pound,specific-volume,Cubic Meter per Kilogram (m³/kg),Cubic Foot per Pound (ft³/lb),cubic-meters-per-kilogram-to-cubic-feet-per-pound,C,true,false,,false,false
+/specific-volume/cubic-feet-per-pound-to-cubic-meters-per-kilogram,specific-volume,Cubic Foot per Pound (ft³/lb),Cubic Meter per Kilogram (m³/kg),cubic-feet-per-pound-to-cubic-meters-per-kilogram,C,true,false,,false,false
+/moment-of-inertia/kilogram-square-meters-to-kilogram-square-centimeters,moment-of-inertia,Kilogram Square Meter (kg·m²),Kilogram Square Centimeter (kg·cm²),kilogram-square-meters-to-kilogram-square-centimeters,C,true,false,,false,false
+/moment-of-inertia/kilogram-square-centimeters-to-kilogram-square-meters,moment-of-inertia,Kilogram Square Centimeter (kg·cm²),Kilogram Square Meter (kg·m²),kilogram-square-centimeters-to-kilogram-square-meters,C,true,false,,false,false
+/moment-of-inertia/kilogram-square-meters-to-gram-square-centimeters,moment-of-inertia,Kilogram Square Meter (kg·m²),Gram Square Centimeter (g·cm²),kilogram-square-meters-to-gram-square-centimeters,C,true,false,,false,false
+/moment-of-inertia/gram-square-centimeters-to-kilogram-square-meters,moment-of-inertia,Gram Square Centimeter (g·cm²),Kilogram Square Meter (kg·m²),gram-square-centimeters-to-kilogram-square-meters,C,true,false,,false,false
+/moment-of-inertia/kilogram-square-meters-to-pound-square-feet,moment-of-inertia,Kilogram Square Meter (kg·m²),Pound Square Foot (lb·ft²),kilogram-square-meters-to-pound-square-feet,C,true,false,,false,false
+/moment-of-inertia/pound-square-feet-to-kilogram-square-meters,moment-of-inertia,Pound Square Foot (lb·ft²),Kilogram Square Meter (kg·m²),pound-square-feet-to-kilogram-square-meters,C,true,false,,false,false
+/moment-of-force/newton-meters-to-kilonewton-meters,moment-of-force,Newton Meter (N·m),Kilonewton Meter (kN·m),newton-meters-to-kilonewton-meters,C,true,false,,false,false
+/moment-of-force/kilonewton-meters-to-newton-meters,moment-of-force,Kilonewton Meter (kN·m),Newton Meter (N·m),kilonewton-meters-to-newton-meters,C,true,false,,false,false
+/moment-of-force/newton-meters-to-pound-force-feet,moment-of-force,Newton Meter (N·m),Pound-force Foot (lbf·ft),newton-meters-to-pound-force-feet,C,true,false,,false,false
+/moment-of-force/pound-force-feet-to-newton-meters,moment-of-force,Pound-force Foot (lbf·ft),Newton Meter (N·m),pound-force-feet-to-newton-meters,C,true,false,,false,false
+/moment-of-force/newton-meters-to-pound-force-inches,moment-of-force,Newton Meter (N·m),Pound-force Inch (lbf·in),newton-meters-to-pound-force-inches,C,true,false,,false,false
+/moment-of-force/pound-force-inches-to-newton-meters,moment-of-force,Pound-force Inch (lbf·in),Newton Meter (N·m),pound-force-inches-to-newton-meters,C,true,false,,false,false
+/fuel-efficiency-mass/joules-per-kilogram-to-kilojoules-per-kilogram,fuel-efficiency-mass,Joule per Kilogram (J/kg),Kilojoule per Kilogram (kJ/kg),joules-per-kilogram-to-kilojoules-per-kilogram,C,true,false,,false,false
+/fuel-efficiency-mass/kilojoules-per-kilogram-to-joules-per-kilogram,fuel-efficiency-mass,Kilojoule per Kilogram (kJ/kg),Joule per Kilogram (J/kg),kilojoules-per-kilogram-to-joules-per-kilogram,C,true,false,,false,false
+/fuel-efficiency-mass/joules-per-kilogram-to-megajoules-per-kilogram,fuel-efficiency-mass,Joule per Kilogram (J/kg),Megajoule per Kilogram (MJ/kg),joules-per-kilogram-to-megajoules-per-kilogram,C,true,false,,false,false
+/fuel-efficiency-mass/megajoules-per-kilogram-to-joules-per-kilogram,fuel-efficiency-mass,Megajoule per Kilogram (MJ/kg),Joule per Kilogram (J/kg),megajoules-per-kilogram-to-joules-per-kilogram,C,true,false,,false,false
+/fuel-efficiency-mass/joules-per-kilogram-to-calories-per-gram,fuel-efficiency-mass,Joule per Kilogram (J/kg),Calorie (IT) per Gram (cal/g),joules-per-kilogram-to-calories-per-gram,C,true,false,,false,false
+/fuel-efficiency-mass/calories-per-gram-to-joules-per-kilogram,fuel-efficiency-mass,Calorie (IT) per Gram (cal/g),Joule per Kilogram (J/kg),calories-per-gram-to-joules-per-kilogram,C,true,false,,false,false
+/fuel-efficiency-volume/joules-per-cubic-meter-to-megajoules-per-cubic-meter,fuel-efficiency-volume,Joule per Cubic Meter (J/m³),Megajoule per Cubic Meter (MJ/m³),joules-per-cubic-meter-to-megajoules-per-cubic-meter,C,true,false,,false,false
+/fuel-efficiency-volume/megajoules-per-cubic-meter-to-joules-per-cubic-meter,fuel-efficiency-volume,Megajoule per Cubic Meter (MJ/m³),Joule per Cubic Meter (J/m³),megajoules-per-cubic-meter-to-joules-per-cubic-meter,C,true,false,,false,false
+/fuel-efficiency-volume/joules-per-cubic-meter-to-kilojoules-per-liter,fuel-efficiency-volume,Joule per Cubic Meter (J/m³),Kilojoule per Liter (kJ/L),joules-per-cubic-meter-to-kilojoules-per-liter,C,true,false,,false,false
+/fuel-efficiency-volume/kilojoules-per-liter-to-joules-per-cubic-meter,fuel-efficiency-volume,Kilojoule per Liter (kJ/L),Joule per Cubic Meter (J/m³),kilojoules-per-liter-to-joules-per-cubic-meter,C,true,false,,false,false
+/fuel-efficiency-volume/joules-per-cubic-meter-to-megajoules-per-liter,fuel-efficiency-volume,Joule per Cubic Meter (J/m³),Megajoule per Liter (MJ/L),joules-per-cubic-meter-to-megajoules-per-liter,C,true,false,,false,false
+/fuel-efficiency-volume/megajoules-per-liter-to-joules-per-cubic-meter,fuel-efficiency-volume,Megajoule per Liter (MJ/L),Joule per Cubic Meter (J/m³),megajoules-per-liter-to-joules-per-cubic-meter,C,true,false,,false,false
+/temperature-interval/kelvins-to-degrees-celsius,temperature-interval,Kelvin Interval (ΔK),Degree Celsius Interval (Δ°C),kelvins-to-degrees-celsius,C,true,false,,false,false
+/temperature-interval/degrees-celsius-to-kelvins,temperature-interval,Degree Celsius Interval (Δ°C),Kelvin Interval (ΔK),degrees-celsius-to-kelvins,C,true,false,,false,false
+/temperature-interval/kelvins-to-degrees-fahrenheit,temperature-interval,Kelvin Interval (ΔK),Degree Fahrenheit Interval (Δ°F),kelvins-to-degrees-fahrenheit,C,true,false,,false,false
+/temperature-interval/degrees-fahrenheit-to-kelvins,temperature-interval,Degree Fahrenheit Interval (Δ°F),Kelvin Interval (ΔK),degrees-fahrenheit-to-kelvins,C,true,false,,false,false
+/temperature-interval/kelvins-to-degrees-rankine,temperature-interval,Kelvin Interval (ΔK),Degree Rankine Interval (Δ°R),kelvins-to-degrees-rankine,C,true,false,,false,false
+/temperature-interval/degrees-rankine-to-kelvins,temperature-interval,Degree Rankine Interval (Δ°R),Kelvin Interval (ΔK),degrees-rankine-to-kelvins,C,true,false,,false,false
+/thermal-expansion/per-kelvin-to-per-degree-celsius,thermal-expansion,Length per Length per Kelvin (1/K),Length per Length per Degree Celsius (1/°C),per-kelvin-to-per-degree-celsius,C,true,false,,false,false
+/thermal-expansion/per-degree-celsius-to-per-kelvin,thermal-expansion,Length per Length per Degree Celsius (1/°C),Length per Length per Kelvin (1/K),per-degree-celsius-to-per-kelvin,C,true,false,,false,false
+/thermal-expansion/per-kelvin-to-per-degree-fahrenheit,thermal-expansion,Length per Length per Kelvin (1/K),Length per Length per Degree Fahrenheit (1/°F),per-kelvin-to-per-degree-fahrenheit,C,true,false,,false,false
+/thermal-expansion/per-degree-fahrenheit-to-per-kelvin,thermal-expansion,Length per Length per Degree Fahrenheit (1/°F),Length per Length per Kelvin (1/K),per-degree-fahrenheit-to-per-kelvin,C,true,false,,false,false
+/thermal-expansion/per-kelvin-to-parts-per-million-per-kelvin,thermal-expansion,Length per Length per Kelvin (1/K),Micrometer per Meter-Kelvin (ppm/K) (ppm/K),per-kelvin-to-parts-per-million-per-kelvin,C,true,false,,false,false
+/thermal-expansion/parts-per-million-per-kelvin-to-per-kelvin,thermal-expansion,Micrometer per Meter-Kelvin (ppm/K) (ppm/K),Length per Length per Kelvin (1/K),parts-per-million-per-kelvin-to-per-kelvin,C,true,false,,false,false
+/thermal-resistance/kelvins-per-watt-to-degrees-celsius-per-watt,thermal-resistance,Kelvin per Watt (K/W),Degree Celsius per Watt (°C/W),kelvins-per-watt-to-degrees-celsius-per-watt,C,true,false,,false,false
+/thermal-resistance/degrees-celsius-per-watt-to-kelvins-per-watt,thermal-resistance,Degree Celsius per Watt (°C/W),Kelvin per Watt (K/W),degrees-celsius-per-watt-to-kelvins-per-watt,C,true,false,,false,false
+/thermal-resistance/kelvins-per-watt-to-degree-fahrenheit-hours-per-btu,thermal-resistance,Kelvin per Watt (K/W),Degree Fahrenheit Hour per BTU (°F·h/BTU),kelvins-per-watt-to-degree-fahrenheit-hours-per-btu,C,true,false,,false,false
+/thermal-resistance/degree-fahrenheit-hours-per-btu-to-kelvins-per-watt,thermal-resistance,Degree Fahrenheit Hour per BTU (°F·h/BTU),Kelvin per Watt (K/W),degree-fahrenheit-hours-per-btu-to-kelvins-per-watt,C,true,false,,false,false
+/thermal-resistance/kelvins-per-watt-to-degree-fahrenheit-seconds-per-btu,thermal-resistance,Kelvin per Watt (K/W),Degree Fahrenheit Second per BTU (°F·s/BTU),kelvins-per-watt-to-degree-fahrenheit-seconds-per-btu,C,true,false,,false,false
+/thermal-resistance/degree-fahrenheit-seconds-per-btu-to-kelvins-per-watt,thermal-resistance,Degree Fahrenheit Second per BTU (°F·s/BTU),Kelvin per Watt (K/W),degree-fahrenheit-seconds-per-btu-to-kelvins-per-watt,C,true,false,,false,false
+/thermal-conductivity/watts-per-meter-kelvin-to-watts-per-centimeter-celsius,thermal-conductivity,Watt per Meter-Kelvin (W/(m·K)),Watt per Centimeter-Celsius (W/(cm·°C)),watts-per-meter-kelvin-to-watts-per-centimeter-celsius,C,true,false,,false,false
+/thermal-conductivity/watts-per-centimeter-celsius-to-watts-per-meter-kelvin,thermal-conductivity,Watt per Centimeter-Celsius (W/(cm·°C)),Watt per Meter-Kelvin (W/(m·K)),watts-per-centimeter-celsius-to-watts-per-meter-kelvin,C,true,false,,false,false
+/thermal-conductivity/watts-per-meter-kelvin-to-kilowatts-per-meter-kelvin,thermal-conductivity,Watt per Meter-Kelvin (W/(m·K)),Kilowatt per Meter-Kelvin (kW/(m·K)),watts-per-meter-kelvin-to-kilowatts-per-meter-kelvin,C,true,false,,false,false
+/thermal-conductivity/kilowatts-per-meter-kelvin-to-watts-per-meter-kelvin,thermal-conductivity,Kilowatt per Meter-Kelvin (kW/(m·K)),Watt per Meter-Kelvin (W/(m·K)),kilowatts-per-meter-kelvin-to-watts-per-meter-kelvin,C,true,false,,false,false
+/thermal-conductivity/watts-per-meter-kelvin-to-calories-per-second-centimeter-celsius,thermal-conductivity,Watt per Meter-Kelvin (W/(m·K)),Calorie per Second-Centimeter-Celsius (cal/(s·cm·°C)),watts-per-meter-kelvin-to-calories-per-second-centimeter-celsius,C,true,false,,false,false
+/thermal-conductivity/calories-per-second-centimeter-celsius-to-watts-per-meter-kelvin,thermal-conductivity,Calorie per Second-Centimeter-Celsius (cal/(s·cm·°C)),Watt per Meter-Kelvin (W/(m·K)),calories-per-second-centimeter-celsius-to-watts-per-meter-kelvin,C,true,false,,false,false
+/specific-heat-capacity/joules-per-kilogram-kelvin-to-kilojoules-per-kilogram-kelvin,specific-heat-capacity,Joule per Kilogram-Kelvin (J/(kg·K)),Kilojoule per Kilogram-Kelvin (kJ/(kg·K)),joules-per-kilogram-kelvin-to-kilojoules-per-kilogram-kelvin,C,true,false,,false,false
+/specific-heat-capacity/kilojoules-per-kilogram-kelvin-to-joules-per-kilogram-kelvin,specific-heat-capacity,Kilojoule per Kilogram-Kelvin (kJ/(kg·K)),Joule per Kilogram-Kelvin (J/(kg·K)),kilojoules-per-kilogram-kelvin-to-joules-per-kilogram-kelvin,C,true,false,,false,false
+/specific-heat-capacity/joules-per-kilogram-kelvin-to-joules-per-gram-celsius,specific-heat-capacity,Joule per Kilogram-Kelvin (J/(kg·K)),Joule per Gram-Celsius (J/(g·°C)),joules-per-kilogram-kelvin-to-joules-per-gram-celsius,C,true,false,,false,false
+/specific-heat-capacity/joules-per-gram-celsius-to-joules-per-kilogram-kelvin,specific-heat-capacity,Joule per Gram-Celsius (J/(g·°C)),Joule per Kilogram-Kelvin (J/(kg·K)),joules-per-gram-celsius-to-joules-per-kilogram-kelvin,C,true,false,,false,false
+/specific-heat-capacity/joules-per-kilogram-kelvin-to-calories-per-gram-celsius,specific-heat-capacity,Joule per Kilogram-Kelvin (J/(kg·K)),Calorie per Gram-Celsius (cal/(g·°C)),joules-per-kilogram-kelvin-to-calories-per-gram-celsius,C,true,false,,false,false
+/specific-heat-capacity/calories-per-gram-celsius-to-joules-per-kilogram-kelvin,specific-heat-capacity,Calorie per Gram-Celsius (cal/(g·°C)),Joule per Kilogram-Kelvin (J/(kg·K)),calories-per-gram-celsius-to-joules-per-kilogram-kelvin,C,true,false,,false,false
+/heat-density/joules-per-square-meter-to-kilojoules-per-square-meter,heat-density,Joule per Square Meter (J/m²),Kilojoule per Square Meter (kJ/m²),joules-per-square-meter-to-kilojoules-per-square-meter,C,true,false,,false,false
+/heat-density/kilojoules-per-square-meter-to-joules-per-square-meter,heat-density,Kilojoule per Square Meter (kJ/m²),Joule per Square Meter (J/m²),kilojoules-per-square-meter-to-joules-per-square-meter,C,true,false,,false,false
+/heat-density/joules-per-square-meter-to-megajoules-per-square-meter,heat-density,Joule per Square Meter (J/m²),Megajoule per Square Meter (MJ/m²),joules-per-square-meter-to-megajoules-per-square-meter,C,true,false,,false,false
+/heat-density/megajoules-per-square-meter-to-joules-per-square-meter,heat-density,Megajoule per Square Meter (MJ/m²),Joule per Square Meter (J/m²),megajoules-per-square-meter-to-joules-per-square-meter,C,true,false,,false,false
+/heat-density/joules-per-square-meter-to-langleys,heat-density,Joule per Square Meter (J/m²),Langley (cal/cm²) (Ly),joules-per-square-meter-to-langleys,C,true,false,,false,false
+/heat-density/langleys-to-joules-per-square-meter,heat-density,Langley (cal/cm²) (Ly),Joule per Square Meter (J/m²),langleys-to-joules-per-square-meter,C,true,false,,false,false
+/heat-flux-density/watts-per-square-meter-to-kilowatts-per-square-meter,heat-flux-density,Watt per Square Meter (W/m²),Kilowatt per Square Meter (kW/m²),watts-per-square-meter-to-kilowatts-per-square-meter,C,true,false,,false,false
+/heat-flux-density/kilowatts-per-square-meter-to-watts-per-square-meter,heat-flux-density,Kilowatt per Square Meter (kW/m²),Watt per Square Meter (W/m²),kilowatts-per-square-meter-to-watts-per-square-meter,C,true,false,,false,false
+/heat-flux-density/watts-per-square-meter-to-watts-per-square-centimeter,heat-flux-density,Watt per Square Meter (W/m²),Watt per Square Centimeter (W/cm²),watts-per-square-meter-to-watts-per-square-centimeter,C,true,false,,false,false
+/heat-flux-density/watts-per-square-centimeter-to-watts-per-square-meter,heat-flux-density,Watt per Square Centimeter (W/cm²),Watt per Square Meter (W/m²),watts-per-square-centimeter-to-watts-per-square-meter,C,true,false,,false,false
+/heat-flux-density/watts-per-square-meter-to-watts-per-square-inch,heat-flux-density,Watt per Square Meter (W/m²),Watt per Square Inch (W/in²),watts-per-square-meter-to-watts-per-square-inch,C,true,false,,false,false
+/heat-flux-density/watts-per-square-inch-to-watts-per-square-meter,heat-flux-density,Watt per Square Inch (W/in²),Watt per Square Meter (W/m²),watts-per-square-inch-to-watts-per-square-meter,C,true,false,,false,false
+/heat-transfer-coefficient/watts-per-square-meter-kelvin-to-watts-per-square-meter-celsius,heat-transfer-coefficient,Watt per Square Meter-Kelvin (W/(m²·K)),Watt per Square Meter-Celsius (W/(m²·°C)),watts-per-square-meter-kelvin-to-watts-per-square-meter-celsius,C,true,false,,false,false
+/heat-transfer-coefficient/watts-per-square-meter-celsius-to-watts-per-square-meter-kelvin,heat-transfer-coefficient,Watt per Square Meter-Celsius (W/(m²·°C)),Watt per Square Meter-Kelvin (W/(m²·K)),watts-per-square-meter-celsius-to-watts-per-square-meter-kelvin,C,true,false,,false,false
+/heat-transfer-coefficient/watts-per-square-meter-kelvin-to-kilowatts-per-square-meter-kelvin,heat-transfer-coefficient,Watt per Square Meter-Kelvin (W/(m²·K)),Kilowatt per Square Meter-Kelvin (kW/(m²·K)),watts-per-square-meter-kelvin-to-kilowatts-per-square-meter-kelvin,C,true,false,,false,false
+/heat-transfer-coefficient/kilowatts-per-square-meter-kelvin-to-watts-per-square-meter-kelvin,heat-transfer-coefficient,Kilowatt per Square Meter-Kelvin (kW/(m²·K)),Watt per Square Meter-Kelvin (W/(m²·K)),kilowatts-per-square-meter-kelvin-to-watts-per-square-meter-kelvin,C,true,false,,false,false
+/heat-transfer-coefficient/watts-per-square-meter-kelvin-to-btus-per-hour-square-foot-fahrenheit,heat-transfer-coefficient,Watt per Square Meter-Kelvin (W/(m²·K)),BTU per Hour-Square Foot-Fahrenheit (BTU/(h·ft²·°F)),watts-per-square-meter-kelvin-to-btus-per-hour-square-foot-fahrenheit,C,true,false,,false,false
+/heat-transfer-coefficient/btus-per-hour-square-foot-fahrenheit-to-watts-per-square-meter-kelvin,heat-transfer-coefficient,BTU per Hour-Square Foot-Fahrenheit (BTU/(h·ft²·°F)),Watt per Square Meter-Kelvin (W/(m²·K)),btus-per-hour-square-foot-fahrenheit-to-watts-per-square-meter-kelvin,C,true,false,,false,false
+/mass-flow/kilograms-per-second-to-kilograms-per-minute,mass-flow,Kilogram per Second (kg/s),Kilogram per Minute (kg/min),kilograms-per-second-to-kilograms-per-minute,C,true,false,,false,false
+/mass-flow/kilograms-per-minute-to-kilograms-per-second,mass-flow,Kilogram per Minute (kg/min),Kilogram per Second (kg/s),kilograms-per-minute-to-kilograms-per-second,C,true,false,,false,false
+/mass-flow/kilograms-per-second-to-kilograms-per-hour,mass-flow,Kilogram per Second (kg/s),Kilogram per Hour (kg/h),kilograms-per-second-to-kilograms-per-hour,C,true,false,,false,false
+/mass-flow/kilograms-per-hour-to-kilograms-per-second,mass-flow,Kilogram per Hour (kg/h),Kilogram per Second (kg/s),kilograms-per-hour-to-kilograms-per-second,C,true,false,,false,false
+/mass-flow/kilograms-per-second-to-grams-per-second,mass-flow,Kilogram per Second (kg/s),Gram per Second (g/s),kilograms-per-second-to-grams-per-second,C,true,false,,false,false
+/mass-flow/grams-per-second-to-kilograms-per-second,mass-flow,Gram per Second (g/s),Kilogram per Second (kg/s),grams-per-second-to-kilograms-per-second,C,true,false,,false,false
+/molar-flow/moles-per-second-to-kilomoles-per-second,molar-flow,Mole per Second (mol/s),Kilomole per Second (kmol/s),moles-per-second-to-kilomoles-per-second,C,true,false,,false,false
+/molar-flow/kilomoles-per-second-to-moles-per-second,molar-flow,Kilomole per Second (kmol/s),Mole per Second (mol/s),kilomoles-per-second-to-moles-per-second,C,true,false,,false,false
+/molar-flow/moles-per-second-to-kilomoles-per-hour,molar-flow,Mole per Second (mol/s),Kilomole per Hour (kmol/h),moles-per-second-to-kilomoles-per-hour,C,true,false,,false,false
+/molar-flow/kilomoles-per-hour-to-moles-per-second,molar-flow,Kilomole per Hour (kmol/h),Mole per Second (mol/s),kilomoles-per-hour-to-moles-per-second,C,true,false,,false,false
+/molar-flow/moles-per-second-to-moles-per-minute,molar-flow,Mole per Second (mol/s),Mole per Minute (mol/min),moles-per-second-to-moles-per-minute,C,true,false,,false,false
+/molar-flow/moles-per-minute-to-moles-per-second,molar-flow,Mole per Minute (mol/min),Mole per Second (mol/s),moles-per-minute-to-moles-per-second,C,true,false,,false,false
+/mass-flux-density/kilograms-per-second-square-meter-to-kilograms-per-hour-square-meter,mass-flux-density,Kilogram per Second-Square Meter (kg/(s·m²)),Kilogram per Hour-Square Meter (kg/(h·m²)),kilograms-per-second-square-meter-to-kilograms-per-hour-square-meter,C,true,false,,false,false
+/mass-flux-density/kilograms-per-hour-square-meter-to-kilograms-per-second-square-meter,mass-flux-density,Kilogram per Hour-Square Meter (kg/(h·m²)),Kilogram per Second-Square Meter (kg/(s·m²)),kilograms-per-hour-square-meter-to-kilograms-per-second-square-meter,C,true,false,,false,false
+/mass-flux-density/kilograms-per-second-square-meter-to-grams-per-second-square-centimeter,mass-flux-density,Kilogram per Second-Square Meter (kg/(s·m²)),Gram per Second-Square Centimeter (g/(s·cm²)),kilograms-per-second-square-meter-to-grams-per-second-square-centimeter,C,true,false,,false,false
+/mass-flux-density/grams-per-second-square-centimeter-to-kilograms-per-second-square-meter,mass-flux-density,Gram per Second-Square Centimeter (g/(s·cm²)),Kilogram per Second-Square Meter (kg/(s·m²)),grams-per-second-square-centimeter-to-kilograms-per-second-square-meter,C,true,false,,false,false
+/mass-flux-density/kilograms-per-second-square-meter-to-pounds-per-second-square-foot,mass-flux-density,Kilogram per Second-Square Meter (kg/(s·m²)),Pound per Second-Square Foot (lb/(s·ft²)),kilograms-per-second-square-meter-to-pounds-per-second-square-foot,C,true,false,,false,false
+/mass-flux-density/pounds-per-second-square-foot-to-kilograms-per-second-square-meter,mass-flux-density,Pound per Second-Square Foot (lb/(s·ft²)),Kilogram per Second-Square Meter (kg/(s·m²)),pounds-per-second-square-foot-to-kilograms-per-second-square-meter,C,true,false,,false,false
+/concentration-molar/moles-per-cubic-meter-to-moles-per-liter,concentration-molar,Mole per Cubic Meter (mol/m³),"Mole per Liter (Molar, M) (mol/L)",moles-per-cubic-meter-to-moles-per-liter,C,true,false,,false,false
+/concentration-molar/moles-per-liter-to-moles-per-cubic-meter,concentration-molar,"Mole per Liter (Molar, M) (mol/L)",Mole per Cubic Meter (mol/m³),moles-per-liter-to-moles-per-cubic-meter,C,true,false,,false,false
+/concentration-molar/moles-per-cubic-meter-to-millimoles-per-liter,concentration-molar,Mole per Cubic Meter (mol/m³),Millimole per Liter (mM) (mmol/L),moles-per-cubic-meter-to-millimoles-per-liter,C,true,false,,false,false
+/concentration-molar/millimoles-per-liter-to-moles-per-cubic-meter,concentration-molar,Millimole per Liter (mM) (mmol/L),Mole per Cubic Meter (mol/m³),millimoles-per-liter-to-moles-per-cubic-meter,C,true,false,,false,false
+/concentration-molar/moles-per-cubic-meter-to-micromoles-per-liter,concentration-molar,Mole per Cubic Meter (mol/m³),Micromole per Liter (µM) (µmol/L),moles-per-cubic-meter-to-micromoles-per-liter,C,true,false,,false,false
+/concentration-molar/micromoles-per-liter-to-moles-per-cubic-meter,concentration-molar,Micromole per Liter (µM) (µmol/L),Mole per Cubic Meter (mol/m³),micromoles-per-liter-to-moles-per-cubic-meter,C,true,false,,false,false
+/concentration-solution/kilograms-per-liter-to-grams-per-liter,concentration-solution,Kilogram per Liter (kg/L),Gram per Liter (g/L),kilograms-per-liter-to-grams-per-liter,C,true,false,,false,false
+/concentration-solution/grams-per-liter-to-kilograms-per-liter,concentration-solution,Gram per Liter (g/L),Kilogram per Liter (kg/L),grams-per-liter-to-kilograms-per-liter,C,true,false,,false,false
+/concentration-solution/kilograms-per-liter-to-milligrams-per-liter,concentration-solution,Kilogram per Liter (kg/L),Milligram per Liter (mg/L),kilograms-per-liter-to-milligrams-per-liter,C,true,false,,false,false
+/concentration-solution/milligrams-per-liter-to-kilograms-per-liter,concentration-solution,Milligram per Liter (mg/L),Kilogram per Liter (kg/L),milligrams-per-liter-to-kilograms-per-liter,C,true,false,,false,false
+/concentration-solution/kilograms-per-liter-to-grams-per-deciliter,concentration-solution,Kilogram per Liter (kg/L),Gram per Deciliter (% w/v) (g/dL),kilograms-per-liter-to-grams-per-deciliter,C,true,false,,false,false
+/concentration-solution/grams-per-deciliter-to-kilograms-per-liter,concentration-solution,Gram per Deciliter (% w/v) (g/dL),Kilogram per Liter (kg/L),grams-per-deciliter-to-kilograms-per-liter,C,true,false,,false,false
+/viscosity-dynamic/pascal-seconds-to-millipascal-seconds,viscosity-dynamic,Pascal Second (Pa·s),Millipascal Second (mPa·s),pascal-seconds-to-millipascal-seconds,C,true,false,,false,false
+/viscosity-dynamic/millipascal-seconds-to-pascal-seconds,viscosity-dynamic,Millipascal Second (mPa·s),Pascal Second (Pa·s),millipascal-seconds-to-pascal-seconds,C,true,false,,false,false
+/viscosity-dynamic/pascal-seconds-to-poise,viscosity-dynamic,Pascal Second (Pa·s),Poise (P),pascal-seconds-to-poise,C,true,false,,false,false
+/viscosity-dynamic/poise-to-pascal-seconds,viscosity-dynamic,Poise (P),Pascal Second (Pa·s),poise-to-pascal-seconds,C,true,false,,false,false
+/viscosity-dynamic/pascal-seconds-to-centipoise,viscosity-dynamic,Pascal Second (Pa·s),Centipoise (cP),pascal-seconds-to-centipoise,C,true,false,,false,false
+/viscosity-dynamic/centipoise-to-pascal-seconds,viscosity-dynamic,Centipoise (cP),Pascal Second (Pa·s),centipoise-to-pascal-seconds,C,true,false,,false,false
+/viscosity-kinematic/square-meters-per-second-to-square-millimeters-per-second,viscosity-kinematic,Square Meter per Second (m²/s),Square Millimeter per Second (mm²/s),square-meters-per-second-to-square-millimeters-per-second,C,true,false,,false,false
+/viscosity-kinematic/square-millimeters-per-second-to-square-meters-per-second,viscosity-kinematic,Square Millimeter per Second (mm²/s),Square Meter per Second (m²/s),square-millimeters-per-second-to-square-meters-per-second,C,true,false,,false,false
+/viscosity-kinematic/square-meters-per-second-to-stokes,viscosity-kinematic,Square Meter per Second (m²/s),Stokes (St),square-meters-per-second-to-stokes,C,true,false,,false,false
+/viscosity-kinematic/stokes-to-square-meters-per-second,viscosity-kinematic,Stokes (St),Square Meter per Second (m²/s),stokes-to-square-meters-per-second,C,true,false,,false,false
+/viscosity-kinematic/square-meters-per-second-to-centistokes,viscosity-kinematic,Square Meter per Second (m²/s),Centistokes (cSt),square-meters-per-second-to-centistokes,C,true,false,,false,false
+/viscosity-kinematic/centistokes-to-square-meters-per-second,viscosity-kinematic,Centistokes (cSt),Square Meter per Second (m²/s),centistokes-to-square-meters-per-second,C,true,false,,false,false
+/surface-tension/newtons-per-meter-to-millinewtons-per-meter,surface-tension,Newton per Meter (N/m),Millinewton per Meter (mN/m),newtons-per-meter-to-millinewtons-per-meter,C,true,false,,false,false
+/surface-tension/millinewtons-per-meter-to-newtons-per-meter,surface-tension,Millinewton per Meter (mN/m),Newton per Meter (N/m),millinewtons-per-meter-to-newtons-per-meter,C,true,false,,false,false
+/surface-tension/newtons-per-meter-to-dynes-per-centimeter,surface-tension,Newton per Meter (N/m),Dyne per Centimeter (dyn/cm),newtons-per-meter-to-dynes-per-centimeter,C,true,false,,false,false
+/surface-tension/dynes-per-centimeter-to-newtons-per-meter,surface-tension,Dyne per Centimeter (dyn/cm),Newton per Meter (N/m),dynes-per-centimeter-to-newtons-per-meter,C,true,false,,false,false
+/surface-tension/newtons-per-meter-to-grams-force-per-centimeter,surface-tension,Newton per Meter (N/m),Gram-force per Centimeter (gf/cm),newtons-per-meter-to-grams-force-per-centimeter,C,true,false,,false,false
+/surface-tension/grams-force-per-centimeter-to-newtons-per-meter,surface-tension,Gram-force per Centimeter (gf/cm),Newton per Meter (N/m),grams-force-per-centimeter-to-newtons-per-meter,C,true,false,,false,false
+/permeability/square-meters-to-darcies,permeability,Square Meter (Permeability) (m²),Darcy (D),square-meters-to-darcies,C,true,false,,false,false
+/permeability/darcies-to-square-meters,permeability,Darcy (D),Square Meter (Permeability) (m²),darcies-to-square-meters,C,true,false,,false,false
+/permeability/square-meters-to-millidarcies,permeability,Square Meter (Permeability) (m²),Millidarcy (mD),square-meters-to-millidarcies,C,true,false,,false,false
+/permeability/millidarcies-to-square-meters,permeability,Millidarcy (mD),Square Meter (Permeability) (m²),millidarcies-to-square-meters,C,true,false,,false,false
+/permeability/square-meters-to-microdarcies,permeability,Square Meter (Permeability) (m²),Microdarcy (µD),square-meters-to-microdarcies,C,true,false,,false,false
+/permeability/microdarcies-to-square-meters,permeability,Microdarcy (µD),Square Meter (Permeability) (m²),microdarcies-to-square-meters,C,true,false,,false,false
+/luminance/candelas-per-square-meter-to-kilocandelas-per-square-meter,luminance,Candela per Square Meter (Nit) (cd/m²),Kilocandela per Square Meter (kcd/m²),candelas-per-square-meter-to-kilocandelas-per-square-meter,C,true,false,,false,false
+/luminance/kilocandelas-per-square-meter-to-candelas-per-square-meter,luminance,Kilocandela per Square Meter (kcd/m²),Candela per Square Meter (Nit) (cd/m²),kilocandelas-per-square-meter-to-candelas-per-square-meter,C,true,false,,false,false
+/luminance/candelas-per-square-meter-to-stilbs,luminance,Candela per Square Meter (Nit) (cd/m²),Stilb (cd/cm²) (sb),candelas-per-square-meter-to-stilbs,C,true,false,,false,false
+/luminance/stilbs-to-candelas-per-square-meter,luminance,Stilb (cd/cm²) (sb),Candela per Square Meter (Nit) (cd/m²),stilbs-to-candelas-per-square-meter,C,true,false,,false,false
+/luminance/candelas-per-square-meter-to-lamberts,luminance,Candela per Square Meter (Nit) (cd/m²),Lambert (L),candelas-per-square-meter-to-lamberts,C,true,false,,false,false
+/luminance/lamberts-to-candelas-per-square-meter,luminance,Lambert (L),Candela per Square Meter (Nit) (cd/m²),lamberts-to-candelas-per-square-meter,C,true,false,,false,false
+/luminous-intensity/candelas-to-millicandelas,luminous-intensity,Candela (cd),Millicandela (mcd),candelas-to-millicandelas,C,true,false,,false,false
+/luminous-intensity/millicandelas-to-candelas,luminous-intensity,Millicandela (mcd),Candela (cd),millicandelas-to-candelas,C,true,false,,false,false
+/luminous-intensity/candelas-to-kilocandelas,luminous-intensity,Candela (cd),Kilocandela (kcd),candelas-to-kilocandelas,C,true,false,,false,false
+/luminous-intensity/kilocandelas-to-candelas,luminous-intensity,Kilocandela (kcd),Candela (cd),kilocandelas-to-candelas,C,true,false,,false,false
+/luminous-intensity/candelas-to-lumens-per-steradian,luminous-intensity,Candela (cd),Lumen per Steradian (lm/sr),candelas-to-lumens-per-steradian,C,true,false,,false,false
+/luminous-intensity/lumens-per-steradian-to-candelas,luminous-intensity,Lumen per Steradian (lm/sr),Candela (cd),lumens-per-steradian-to-candelas,C,true,false,,false,false
+/illumination/lux-to-kilolux,illumination,Lux (lx),Kilolux (klx),lux-to-kilolux,C,true,false,,false,false
+/illumination/kilolux-to-lux,illumination,Kilolux (klx),Lux (lx),kilolux-to-lux,C,true,false,,false,false
+/illumination/lux-to-millilux,illumination,Lux (lx),Millilux (mlx),lux-to-millilux,C,true,false,,false,false
+/illumination/millilux-to-lux,illumination,Millilux (mlx),Lux (lx),millilux-to-lux,C,true,false,,false,false
+/illumination/lux-to-foot-candles,illumination,Lux (lx),Foot-candle (fc),lux-to-foot-candles,C,true,false,,false,false
+/illumination/foot-candles-to-lux,illumination,Foot-candle (fc),Lux (lx),foot-candles-to-lux,C,true,false,,false,false
+/digital-image-resolution/dots-per-meter-to-dots-per-inch,digital-image-resolution,Dot per Meter (dpm),Dot per Inch (DPI / PPI) (DPI),dots-per-meter-to-dots-per-inch,C,true,false,,false,false
+/digital-image-resolution/dots-per-inch-to-dots-per-meter,digital-image-resolution,Dot per Inch (DPI / PPI) (DPI),Dot per Meter (dpm),dots-per-inch-to-dots-per-meter,C,true,false,,false,false
+/digital-image-resolution/dots-per-meter-to-dots-per-centimeter,digital-image-resolution,Dot per Meter (dpm),Dot per Centimeter (dpcm),dots-per-meter-to-dots-per-centimeter,C,true,false,,false,false
+/digital-image-resolution/dots-per-centimeter-to-dots-per-meter,digital-image-resolution,Dot per Centimeter (dpcm),Dot per Meter (dpm),dots-per-centimeter-to-dots-per-meter,C,true,false,,false,false
+/digital-image-resolution/dots-per-meter-to-dots-per-millimeter,digital-image-resolution,Dot per Meter (dpm),Dot per Millimeter (dpmm),dots-per-meter-to-dots-per-millimeter,C,true,false,,false,false
+/digital-image-resolution/dots-per-millimeter-to-dots-per-meter,digital-image-resolution,Dot per Millimeter (dpmm),Dot per Meter (dpm),dots-per-millimeter-to-dots-per-meter,C,true,false,,false,false
+/linear-charge-density/coulombs-per-meter-to-millicoulombs-per-meter,linear-charge-density,Coulomb per Meter (C/m),Millicoulomb per Meter (mC/m),coulombs-per-meter-to-millicoulombs-per-meter,C,true,false,,false,false
+/linear-charge-density/millicoulombs-per-meter-to-coulombs-per-meter,linear-charge-density,Millicoulomb per Meter (mC/m),Coulomb per Meter (C/m),millicoulombs-per-meter-to-coulombs-per-meter,C,true,false,,false,false
+/linear-charge-density/coulombs-per-meter-to-microcoulombs-per-meter,linear-charge-density,Coulomb per Meter (C/m),Microcoulomb per Meter (µC/m),coulombs-per-meter-to-microcoulombs-per-meter,C,true,false,,false,false
+/linear-charge-density/microcoulombs-per-meter-to-coulombs-per-meter,linear-charge-density,Microcoulomb per Meter (µC/m),Coulomb per Meter (C/m),microcoulombs-per-meter-to-coulombs-per-meter,C,true,false,,false,false
+/linear-charge-density/coulombs-per-meter-to-coulombs-per-centimeter,linear-charge-density,Coulomb per Meter (C/m),Coulomb per Centimeter (C/cm),coulombs-per-meter-to-coulombs-per-centimeter,C,true,false,,false,false
+/linear-charge-density/coulombs-per-centimeter-to-coulombs-per-meter,linear-charge-density,Coulomb per Centimeter (C/cm),Coulomb per Meter (C/m),coulombs-per-centimeter-to-coulombs-per-meter,C,true,false,,false,false
+/surface-charge-density/coulombs-per-square-meter-to-millicoulombs-per-square-meter,surface-charge-density,Coulomb per Square Meter (C/m²),Millicoulomb per Square Meter (mC/m²),coulombs-per-square-meter-to-millicoulombs-per-square-meter,C,true,false,,false,false
+/surface-charge-density/millicoulombs-per-square-meter-to-coulombs-per-square-meter,surface-charge-density,Millicoulomb per Square Meter (mC/m²),Coulomb per Square Meter (C/m²),millicoulombs-per-square-meter-to-coulombs-per-square-meter,C,true,false,,false,false
+/surface-charge-density/coulombs-per-square-meter-to-microcoulombs-per-square-meter,surface-charge-density,Coulomb per Square Meter (C/m²),Microcoulomb per Square Meter (µC/m²),coulombs-per-square-meter-to-microcoulombs-per-square-meter,C,true,false,,false,false
+/surface-charge-density/microcoulombs-per-square-meter-to-coulombs-per-square-meter,surface-charge-density,Microcoulomb per Square Meter (µC/m²),Coulomb per Square Meter (C/m²),microcoulombs-per-square-meter-to-coulombs-per-square-meter,C,true,false,,false,false
+/surface-charge-density/coulombs-per-square-meter-to-coulombs-per-square-centimeter,surface-charge-density,Coulomb per Square Meter (C/m²),Coulomb per Square Centimeter (C/cm²),coulombs-per-square-meter-to-coulombs-per-square-centimeter,C,true,false,,false,false
+/surface-charge-density/coulombs-per-square-centimeter-to-coulombs-per-square-meter,surface-charge-density,Coulomb per Square Centimeter (C/cm²),Coulomb per Square Meter (C/m²),coulombs-per-square-centimeter-to-coulombs-per-square-meter,C,true,false,,false,false
+/volume-charge-density/coulombs-per-cubic-meter-to-millicoulombs-per-cubic-meter,volume-charge-density,Coulomb per Cubic Meter (C/m³),Millicoulomb per Cubic Meter (mC/m³),coulombs-per-cubic-meter-to-millicoulombs-per-cubic-meter,C,true,false,,false,false
+/volume-charge-density/millicoulombs-per-cubic-meter-to-coulombs-per-cubic-meter,volume-charge-density,Millicoulomb per Cubic Meter (mC/m³),Coulomb per Cubic Meter (C/m³),millicoulombs-per-cubic-meter-to-coulombs-per-cubic-meter,C,true,false,,false,false
+/volume-charge-density/coulombs-per-cubic-meter-to-microcoulombs-per-cubic-meter,volume-charge-density,Coulomb per Cubic Meter (C/m³),Microcoulomb per Cubic Meter (µC/m³),coulombs-per-cubic-meter-to-microcoulombs-per-cubic-meter,C,true,false,,false,false
+/volume-charge-density/microcoulombs-per-cubic-meter-to-coulombs-per-cubic-meter,volume-charge-density,Microcoulomb per Cubic Meter (µC/m³),Coulomb per Cubic Meter (C/m³),microcoulombs-per-cubic-meter-to-coulombs-per-cubic-meter,C,true,false,,false,false
+/volume-charge-density/coulombs-per-cubic-meter-to-coulombs-per-cubic-centimeter,volume-charge-density,Coulomb per Cubic Meter (C/m³),Coulomb per Cubic Centimeter (C/cm³),coulombs-per-cubic-meter-to-coulombs-per-cubic-centimeter,C,true,false,,false,false
+/volume-charge-density/coulombs-per-cubic-centimeter-to-coulombs-per-cubic-meter,volume-charge-density,Coulomb per Cubic Centimeter (C/cm³),Coulomb per Cubic Meter (C/m³),coulombs-per-cubic-centimeter-to-coulombs-per-cubic-meter,C,true,false,,false,false
+/linear-current-density/amperes-per-meter-to-amperes-per-centimeter,linear-current-density,Ampere per Meter (A/m),Ampere per Centimeter (A/cm),amperes-per-meter-to-amperes-per-centimeter,C,true,false,,false,false
+/linear-current-density/amperes-per-centimeter-to-amperes-per-meter,linear-current-density,Ampere per Centimeter (A/cm),Ampere per Meter (A/m),amperes-per-centimeter-to-amperes-per-meter,C,true,false,,false,false
+/linear-current-density/amperes-per-meter-to-amperes-per-inch,linear-current-density,Ampere per Meter (A/m),Ampere per Inch (A/in),amperes-per-meter-to-amperes-per-inch,C,true,false,,false,false
+/linear-current-density/amperes-per-inch-to-amperes-per-meter,linear-current-density,Ampere per Inch (A/in),Ampere per Meter (A/m),amperes-per-inch-to-amperes-per-meter,C,true,false,,false,false
+/linear-current-density/amperes-per-meter-to-milliamperes-per-meter,linear-current-density,Ampere per Meter (A/m),Milliampere per Meter (mA/m),amperes-per-meter-to-milliamperes-per-meter,C,true,false,,false,false
+/linear-current-density/milliamperes-per-meter-to-amperes-per-meter,linear-current-density,Milliampere per Meter (mA/m),Ampere per Meter (A/m),milliamperes-per-meter-to-amperes-per-meter,C,true,false,,false,false
+/surface-current-density/amperes-per-square-meter-to-kiloamperes-per-square-meter,surface-current-density,Ampere per Square Meter (A/m²),Kiloampere per Square Meter (kA/m²),amperes-per-square-meter-to-kiloamperes-per-square-meter,C,true,false,,false,false
+/surface-current-density/kiloamperes-per-square-meter-to-amperes-per-square-meter,surface-current-density,Kiloampere per Square Meter (kA/m²),Ampere per Square Meter (A/m²),kiloamperes-per-square-meter-to-amperes-per-square-meter,C,true,false,,false,false
+/surface-current-density/amperes-per-square-meter-to-amperes-per-square-centimeter,surface-current-density,Ampere per Square Meter (A/m²),Ampere per Square Centimeter (A/cm²),amperes-per-square-meter-to-amperes-per-square-centimeter,C,true,false,,false,false
+/surface-current-density/amperes-per-square-centimeter-to-amperes-per-square-meter,surface-current-density,Ampere per Square Centimeter (A/cm²),Ampere per Square Meter (A/m²),amperes-per-square-centimeter-to-amperes-per-square-meter,C,true,false,,false,false
+/surface-current-density/amperes-per-square-meter-to-amperes-per-square-millimeter,surface-current-density,Ampere per Square Meter (A/m²),Ampere per Square Millimeter (A/mm²),amperes-per-square-meter-to-amperes-per-square-millimeter,C,true,false,,false,false
+/surface-current-density/amperes-per-square-millimeter-to-amperes-per-square-meter,surface-current-density,Ampere per Square Millimeter (A/mm²),Ampere per Square Meter (A/m²),amperes-per-square-millimeter-to-amperes-per-square-meter,C,true,false,,false,false
+/electric-field-strength/volts-per-meter-to-kilovolts-per-meter,electric-field-strength,Volt per Meter (V/m),Kilovolt per Meter (kV/m),volts-per-meter-to-kilovolts-per-meter,C,true,false,,false,false
+/electric-field-strength/kilovolts-per-meter-to-volts-per-meter,electric-field-strength,Kilovolt per Meter (kV/m),Volt per Meter (V/m),kilovolts-per-meter-to-volts-per-meter,C,true,false,,false,false
+/electric-field-strength/volts-per-meter-to-kilovolts-per-centimeter,electric-field-strength,Volt per Meter (V/m),Kilovolt per Centimeter (kV/cm),volts-per-meter-to-kilovolts-per-centimeter,C,true,false,,false,false
+/electric-field-strength/kilovolts-per-centimeter-to-volts-per-meter,electric-field-strength,Kilovolt per Centimeter (kV/cm),Volt per Meter (V/m),kilovolts-per-centimeter-to-volts-per-meter,C,true,false,,false,false
+/electric-field-strength/volts-per-meter-to-volts-per-centimeter,electric-field-strength,Volt per Meter (V/m),Volt per Centimeter (V/cm),volts-per-meter-to-volts-per-centimeter,C,true,false,,false,false
+/electric-field-strength/volts-per-centimeter-to-volts-per-meter,electric-field-strength,Volt per Centimeter (V/cm),Volt per Meter (V/m),volts-per-centimeter-to-volts-per-meter,C,true,false,,false,false
+/electric-potential/volts-to-millivolts,electric-potential,Volt (V),Millivolt (mV),volts-to-millivolts,C,true,false,,false,false
+/electric-potential/millivolts-to-volts,electric-potential,Millivolt (mV),Volt (V),millivolts-to-volts,C,true,false,,false,false
+/electric-potential/volts-to-microvolts,electric-potential,Volt (V),Microvolt (µV),volts-to-microvolts,C,true,false,,false,false
+/electric-potential/microvolts-to-volts,electric-potential,Microvolt (µV),Volt (V),microvolts-to-volts,C,true,false,,false,false
+/electric-potential/volts-to-kilovolts,electric-potential,Volt (V),Kilovolt (kV),volts-to-kilovolts,C,true,false,,false,false
+/electric-potential/kilovolts-to-volts,electric-potential,Kilovolt (kV),Volt (V),kilovolts-to-volts,C,true,false,,false,false
+/electric-resistivity/ohm-meters-to-ohm-centimeters,electric-resistivity,Ohm Meter (Ω·m),Ohm Centimeter (Ω·cm),ohm-meters-to-ohm-centimeters,C,true,false,,false,false
+/electric-resistivity/ohm-centimeters-to-ohm-meters,electric-resistivity,Ohm Centimeter (Ω·cm),Ohm Meter (Ω·m),ohm-centimeters-to-ohm-meters,C,true,false,,false,false
+/electric-resistivity/ohm-meters-to-microhm-centimeters,electric-resistivity,Ohm Meter (Ω·m),Microhm Centimeter (µΩ·cm),ohm-meters-to-microhm-centimeters,C,true,false,,false,false
+/electric-resistivity/microhm-centimeters-to-ohm-meters,electric-resistivity,Microhm Centimeter (µΩ·cm),Ohm Meter (Ω·m),microhm-centimeters-to-ohm-meters,C,true,false,,false,false
+/electric-resistivity/ohm-meters-to-ohm-square-millimeters-per-meter,electric-resistivity,Ohm Meter (Ω·m),Ohm Square Millimeter per Meter (Ω·mm²/m),ohm-meters-to-ohm-square-millimeters-per-meter,C,true,false,,false,false
+/electric-resistivity/ohm-square-millimeters-per-meter-to-ohm-meters,electric-resistivity,Ohm Square Millimeter per Meter (Ω·mm²/m),Ohm Meter (Ω·m),ohm-square-millimeters-per-meter-to-ohm-meters,C,true,false,,false,false
+/electric-conductance/siemens-to-millisiemens,electric-conductance,Siemens (S),Millisiemens (mS),siemens-to-millisiemens,C,true,false,,false,false
+/electric-conductance/millisiemens-to-siemens,electric-conductance,Millisiemens (mS),Siemens (S),millisiemens-to-siemens,C,true,false,,false,false
+/electric-conductance/siemens-to-microsiemens,electric-conductance,Siemens (S),Microsiemens (µS),siemens-to-microsiemens,C,true,false,,false,false
+/electric-conductance/microsiemens-to-siemens,electric-conductance,Microsiemens (µS),Siemens (S),microsiemens-to-siemens,C,true,false,,false,false
+/electric-conductance/siemens-to-kilosiemens,electric-conductance,Siemens (S),Kilosiemens (kS),siemens-to-kilosiemens,C,true,false,,false,false
+/electric-conductance/kilosiemens-to-siemens,electric-conductance,Kilosiemens (kS),Siemens (S),kilosiemens-to-siemens,C,true,false,,false,false
+/electric-conductivity/siemens-per-meter-to-millisiemens-per-meter,electric-conductivity,Siemens per Meter (S/m),Millisiemens per Meter (mS/m),siemens-per-meter-to-millisiemens-per-meter,C,true,false,,false,false
+/electric-conductivity/millisiemens-per-meter-to-siemens-per-meter,electric-conductivity,Millisiemens per Meter (mS/m),Siemens per Meter (S/m),millisiemens-per-meter-to-siemens-per-meter,C,true,false,,false,false
+/electric-conductivity/siemens-per-meter-to-millisiemens-per-centimeter,electric-conductivity,Siemens per Meter (S/m),Millisiemens per Centimeter (mS/cm),siemens-per-meter-to-millisiemens-per-centimeter,C,true,false,,false,false
+/electric-conductivity/millisiemens-per-centimeter-to-siemens-per-meter,electric-conductivity,Millisiemens per Centimeter (mS/cm),Siemens per Meter (S/m),millisiemens-per-centimeter-to-siemens-per-meter,C,true,false,,false,false
+/electric-conductivity/siemens-per-meter-to-microsiemens-per-centimeter,electric-conductivity,Siemens per Meter (S/m),Microsiemens per Centimeter (µS/cm),siemens-per-meter-to-microsiemens-per-centimeter,C,true,false,,false,false
+/electric-conductivity/microsiemens-per-centimeter-to-siemens-per-meter,electric-conductivity,Microsiemens per Centimeter (µS/cm),Siemens per Meter (S/m),microsiemens-per-centimeter-to-siemens-per-meter,C,true,false,,false,false
+/magnetomotive-force/ampere-turns-to-kiloampere-turns,magnetomotive-force,Ampere-turn (At),Kiloampere-turn (kAt),ampere-turns-to-kiloampere-turns,C,true,false,,false,false
+/magnetomotive-force/kiloampere-turns-to-ampere-turns,magnetomotive-force,Kiloampere-turn (kAt),Ampere-turn (At),kiloampere-turns-to-ampere-turns,C,true,false,,false,false
+/magnetomotive-force/ampere-turns-to-milliampere-turns,magnetomotive-force,Ampere-turn (At),Milliampere-turn (mAt),ampere-turns-to-milliampere-turns,C,true,false,,false,false
+/magnetomotive-force/milliampere-turns-to-ampere-turns,magnetomotive-force,Milliampere-turn (mAt),Ampere-turn (At),milliampere-turns-to-ampere-turns,C,true,false,,false,false
+/magnetomotive-force/ampere-turns-to-gilberts,magnetomotive-force,Ampere-turn (At),Gilbert (Gb),ampere-turns-to-gilberts,C,true,false,,false,false
+/magnetomotive-force/gilberts-to-ampere-turns,magnetomotive-force,Gilbert (Gb),Ampere-turn (At),gilberts-to-ampere-turns,C,true,false,,false,false
+/magnetic-field-strength/amperes-per-meter-to-kiloamperes-per-meter,magnetic-field-strength,Ampere per Meter (H-Field) (A/m),Kiloampere per Meter (kA/m),amperes-per-meter-to-kiloamperes-per-meter,C,true,false,,false,false
+/magnetic-field-strength/kiloamperes-per-meter-to-amperes-per-meter,magnetic-field-strength,Kiloampere per Meter (kA/m),Ampere per Meter (H-Field) (A/m),kiloamperes-per-meter-to-amperes-per-meter,C,true,false,,false,false
+/magnetic-field-strength/amperes-per-meter-to-oersteds,magnetic-field-strength,Ampere per Meter (H-Field) (A/m),Oersted (Oe),amperes-per-meter-to-oersteds,C,true,false,,false,false
+/magnetic-field-strength/oersteds-to-amperes-per-meter,magnetic-field-strength,Oersted (Oe),Ampere per Meter (H-Field) (A/m),oersteds-to-amperes-per-meter,C,true,false,,false,false
+/magnetic-field-strength/amperes-per-meter-to-gilberts-per-centimeter,magnetic-field-strength,Ampere per Meter (H-Field) (A/m),Gilbert per Centimeter (Gb/cm),amperes-per-meter-to-gilberts-per-centimeter,C,true,false,,false,false
+/magnetic-field-strength/gilberts-per-centimeter-to-amperes-per-meter,magnetic-field-strength,Gilbert per Centimeter (Gb/cm),Ampere per Meter (H-Field) (A/m),gilberts-per-centimeter-to-amperes-per-meter,C,true,false,,false,false
+/magnetic-flux/webers-to-milliwebers,magnetic-flux,Weber (Wb),Milliweber (mWb),webers-to-milliwebers,C,true,false,,false,false
+/magnetic-flux/milliwebers-to-webers,magnetic-flux,Milliweber (mWb),Weber (Wb),milliwebers-to-webers,C,true,false,,false,false
+/magnetic-flux/webers-to-microwebers,magnetic-flux,Weber (Wb),Microweber (µWb),webers-to-microwebers,C,true,false,,false,false
+/magnetic-flux/microwebers-to-webers,magnetic-flux,Microweber (µWb),Weber (Wb),microwebers-to-webers,C,true,false,,false,false
+/magnetic-flux/webers-to-maxwells,magnetic-flux,Weber (Wb),Maxwell (Mx),webers-to-maxwells,C,true,false,,false,false
+/magnetic-flux/maxwells-to-webers,magnetic-flux,Maxwell (Mx),Weber (Wb),maxwells-to-webers,C,true,false,,false,false
+/radiation/sieverts-to-millisieverts,radiation,Sievert (Sv),Millisievert (mSv),sieverts-to-millisieverts,C,true,false,,false,false
+/radiation/millisieverts-to-sieverts,radiation,Millisievert (mSv),Sievert (Sv),millisieverts-to-sieverts,C,true,false,,false,false
+/radiation/sieverts-to-microsieverts,radiation,Sievert (Sv),Microsievert (µSv),sieverts-to-microsieverts,C,true,false,,false,false
+/radiation/microsieverts-to-sieverts,radiation,Microsievert (µSv),Sievert (Sv),microsieverts-to-sieverts,C,true,false,,false,false
+/radiation/sieverts-to-rem,radiation,Sievert (Sv),Rem (Roentgen Equivalent Man) (rem),sieverts-to-rem,C,true,false,,false,false
+/radiation/rem-to-sieverts,radiation,Rem (Roentgen Equivalent Man) (rem),Sievert (Sv),rem-to-sieverts,C,true,false,,false,false
+/radiation-activity/becquerels-to-kilobecquerels,radiation-activity,Becquerel (Bq),Kilobecquerel (kBq),becquerels-to-kilobecquerels,C,true,false,,false,false
+/radiation-activity/kilobecquerels-to-becquerels,radiation-activity,Kilobecquerel (kBq),Becquerel (Bq),kilobecquerels-to-becquerels,C,true,false,,false,false
+/radiation-activity/becquerels-to-megabecquerels,radiation-activity,Becquerel (Bq),Megabecquerel (MBq),becquerels-to-megabecquerels,C,true,false,,false,false
+/radiation-activity/megabecquerels-to-becquerels,radiation-activity,Megabecquerel (MBq),Becquerel (Bq),megabecquerels-to-becquerels,C,true,false,,false,false
+/radiation-activity/becquerels-to-gigabecquerels,radiation-activity,Becquerel (Bq),Gigabecquerel (GBq),becquerels-to-gigabecquerels,C,true,false,,false,false
+/radiation-activity/gigabecquerels-to-becquerels,radiation-activity,Gigabecquerel (GBq),Becquerel (Bq),gigabecquerels-to-becquerels,C,true,false,,false,false
+/radiation-exposure/coulombs-per-kilogram-to-millicoulombs-per-kilogram,radiation-exposure,Coulomb per Kilogram (C/kg),Millicoulomb per Kilogram (mC/kg),coulombs-per-kilogram-to-millicoulombs-per-kilogram,C,true,false,,false,false
+/radiation-exposure/millicoulombs-per-kilogram-to-coulombs-per-kilogram,radiation-exposure,Millicoulomb per Kilogram (mC/kg),Coulomb per Kilogram (C/kg),millicoulombs-per-kilogram-to-coulombs-per-kilogram,C,true,false,,false,false
+/radiation-exposure/coulombs-per-kilogram-to-microcoulombs-per-kilogram,radiation-exposure,Coulomb per Kilogram (C/kg),Microcoulomb per Kilogram (µC/kg),coulombs-per-kilogram-to-microcoulombs-per-kilogram,C,true,false,,false,false
+/radiation-exposure/microcoulombs-per-kilogram-to-coulombs-per-kilogram,radiation-exposure,Microcoulomb per Kilogram (µC/kg),Coulomb per Kilogram (C/kg),microcoulombs-per-kilogram-to-coulombs-per-kilogram,C,true,false,,false,false
+/radiation-exposure/coulombs-per-kilogram-to-roentgens,radiation-exposure,Coulomb per Kilogram (C/kg),Roentgen (R),coulombs-per-kilogram-to-roentgens,C,true,false,,false,false
+/radiation-exposure/roentgens-to-coulombs-per-kilogram,radiation-exposure,Roentgen (R),Coulomb per Kilogram (C/kg),roentgens-to-coulombs-per-kilogram,C,true,false,,false,false
+/radiation-absorbed-dose/grays-to-centigrays,radiation-absorbed-dose,Gray (Gy),Centigray (cGy),grays-to-centigrays,C,true,false,,false,false
+/radiation-absorbed-dose/centigrays-to-grays,radiation-absorbed-dose,Centigray (cGy),Gray (Gy),centigrays-to-grays,C,true,false,,false,false
+/radiation-absorbed-dose/grays-to-milligrays,radiation-absorbed-dose,Gray (Gy),Milligray (mGy),grays-to-milligrays,C,true,false,,false,false
+/radiation-absorbed-dose/milligrays-to-grays,radiation-absorbed-dose,Milligray (mGy),Gray (Gy),milligrays-to-grays,C,true,false,,false,false
+/radiation-absorbed-dose/grays-to-micrograys,radiation-absorbed-dose,Gray (Gy),Microgray (µGy),grays-to-micrograys,C,true,false,,false,false
+/radiation-absorbed-dose/micrograys-to-grays,radiation-absorbed-dose,Microgray (µGy),Gray (Gy),micrograys-to-grays,C,true,false,,false,false
+/prefixes/base-units-to-tera,prefixes,Base Unit (No Prefix) (1),Tera (T) (T),base-units-to-tera,C,true,false,,false,false
+/prefixes/tera-to-base-units,prefixes,Tera (T) (T),Base Unit (No Prefix) (1),tera-to-base-units,C,true,false,,false,false
+/prefixes/base-units-to-giga,prefixes,Base Unit (No Prefix) (1),Giga (G) (G),base-units-to-giga,C,true,false,,false,false
+/prefixes/giga-to-base-units,prefixes,Giga (G) (G),Base Unit (No Prefix) (1),giga-to-base-units,C,true,false,,false,false
+/prefixes/base-units-to-mega,prefixes,Base Unit (No Prefix) (1),Mega (M) (M),base-units-to-mega,C,true,false,,false,false
+/prefixes/mega-to-base-units,prefixes,Mega (M) (M),Base Unit (No Prefix) (1),mega-to-base-units,C,true,false,,false,false
+/sound/pascals-to-millipascals,sound,Pascal (Sound Pressure) (Pa),Millipascal (mPa),pascals-to-millipascals,C,true,false,,false,false
+/sound/millipascals-to-pascals,sound,Millipascal (mPa),Pascal (Sound Pressure) (Pa),millipascals-to-pascals,C,true,false,,false,false
+/sound/pascals-to-micropascals,sound,Pascal (Sound Pressure) (Pa),Micropascal (µPa),pascals-to-micropascals,C,true,false,,false,false
+/sound/micropascals-to-pascals,sound,Micropascal (µPa),Pascal (Sound Pressure) (Pa),micropascals-to-pascals,C,true,false,,false,false
+/sound/pascals-to-baryes,sound,Pascal (Sound Pressure) (Pa),Dyne per Square Centimeter (Barye) (µbar),pascals-to-baryes,C,true,false,,false,false
+/sound/baryes-to-pascals,sound,Dyne per Square Centimeter (Barye) (µbar),Pascal (Sound Pressure) (Pa),baryes-to-pascals,C,true,false,,false,false
+/typography/points-to-picas,typography,Point (DTP / PostScript) (pt),Pica (PostScript) (pc),points-to-picas,C,true,false,,false,false
+/typography/picas-to-points,typography,Pica (PostScript) (pc),Point (DTP / PostScript) (pt),picas-to-points,C,true,false,,false,false
+/typography/points-to-pixels,typography,Point (DTP / PostScript) (pt),Pixel (CSS 96 DPI) (px),points-to-pixels,C,true,false,,false,false
+/typography/pixels-to-points,typography,Pixel (CSS 96 DPI) (px),Point (DTP / PostScript) (pt),pixels-to-points,C,true,false,,false,false
+/typography/points-to-twips,typography,Point (DTP / PostScript) (pt),Twip (twip),points-to-twips,C,true,false,,false,false
+/typography/twips-to-points,typography,Twip (twip),Point (DTP / PostScript) (pt),twips-to-points,C,true,false,,false,false
+/volume-lumber/board-feet-to-thousand-board-feet,volume-lumber,Board Foot (FBM),Thousand Board Feet (MBF),board-feet-to-thousand-board-feet,C,true,false,,false,false
+/volume-lumber/thousand-board-feet-to-board-feet,volume-lumber,Thousand Board Feet (MBF),Board Foot (FBM),thousand-board-feet-to-board-feet,C,true,false,,false,false
+/volume-lumber/board-feet-to-cubic-feet,volume-lumber,Board Foot (FBM),Cubic Foot (Timber) (ft³),board-feet-to-cubic-feet,C,true,false,,false,false
+/volume-lumber/cubic-feet-to-board-feet,volume-lumber,Cubic Foot (Timber) (ft³),Board Foot (FBM),cubic-feet-to-board-feet,C,true,false,,false,false
+/volume-lumber/board-feet-to-cubic-meters,volume-lumber,Board Foot (FBM),Cubic Meter (Timber) (m³),board-feet-to-cubic-meters,C,true,false,,false,false
+/volume-lumber/cubic-meters-to-board-feet,volume-lumber,Cubic Meter (Timber) (m³),Board Foot (FBM),cubic-meters-to-board-feet,C,true,false,,false,false
+/volume/pints-to-metric-tons,volume,US Pint (pt),Metric Ton (t),pints-to-metric-tons,C,false,false,,false,false
+/mass-flux-density/kg-to-g,mass-flux-density,Kilogram per Second per Square Meter (kg/(s·m²)),Gram per Second per Square Meter (g/(s·m²)),kg-to-g,C,true,true,/weight-and-mass/kg-to-grams,false,false

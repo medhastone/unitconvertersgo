@@ -1,0 +1,99 @@
+{
+  "status": "draft-needs-review",
+  "slug": "kilonewtons-to-newtons",
+  "category": "force",
+  "categoryId": "force",
+  "fromUnitId": "kilonewton",
+  "toUnitId": "newton",
+  "fromSymbol": "kN",
+  "toSymbol": "N",
+  "intro": "Professionals and everyday users convert kilonewtons (kN) to newtons (N) when working across metric and si standards in structural beam load analysis, fastener tensile testing, aerospace thrust ratings, and mechanical engineering. One kilonewton equals 1,000 newtons, while 1 newton equals 0.001 kilonewtons. Whether you are verifying force specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    5,
+    10,
+    25,
+    50,
+    75,
+    100,
+    150,
+    250,
+    500
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Kilonewton Benchmark (10 kN)",
+      "scenario": "Convert 10 kilonewtons (kN) into newtons (N) for technical comparison and documentation.",
+      "inputValue": 10,
+      "outputValue": "10,000 N",
+      "stepByStep": "10 kN × 1,000 = 10,000 N (rounds to 10,000 N)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (75 kN)",
+      "scenario": "Convert 75 kilonewtons (kN) into newtons (N) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "75,000 N",
+      "stepByStep": "75 kN × 1,000 = 75,000 N (rounds to 75,000 N)."
+    },
+    {
+      "title": "Higher-Capacity Specification (250 kN)",
+      "scenario": "Convert 250 kilonewtons (kN) into newtons (N) for technical comparison and documentation.",
+      "inputValue": 250,
+      "outputValue": "250,000 N",
+      "stepByStep": "250 kN × 1,000 = 250,000 N (rounds to 250,000 N)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "N = kN × 1,000",
+    "exactFactor": "1,000",
+    "roundedFactor": "1,000",
+    "inverseFactor": "0.001"
+  },
+  "internalLinks": [
+    {
+      "label": "Newtons to Pounds-force (N to lbf)",
+      "href": "/force/newtons-to-pounds-force",
+      "type": "related"
+    },
+    {
+      "label": "Pounds-force to Newtons (lbf to N)",
+      "href": "/force/pounds-force-to-newtons",
+      "type": "related"
+    },
+    {
+      "label": "Kilograms-force to Newtons (kgf to N)",
+      "href": "/force/kgf-to-newtons",
+      "type": "related"
+    },
+    {
+      "label": "Newtons to Kilograms-force (N to kgf)",
+      "href": "/force/newtons-to-kgf",
+      "type": "related"
+    },
+    {
+      "label": "Force Conversions Hub",
+      "href": "/force",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many newtons (N) are in 1 kilonewton (kN)?",
+      "answer": "There are 1,000 newtons (N) in 1 kilonewton (kN), which rounds to 1,000 N for everyday calculations. Conversely, 1 newton equals 0.001 kilonewtons."
+    },
+    {
+      "question": "How do I convert kilonewtons to newtons (kN to N)?",
+      "answer": "To convert kilonewtons to newtons, use the formula: N = kN × 1,000. For example, converting 50 kN gives 50,000 N."
+    },
+    {
+      "question": "What is 50 kilonewtons in newtons?",
+      "answer": "50 kilonewtons (kN) equals exactly 50,000 newtons (N) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

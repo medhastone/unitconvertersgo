@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "calories-to-joules",
+  "category": "energy",
+  "categoryId": "energy",
+  "fromUnitId": "calorie",
+  "toUnitId": "joule",
+  "fromSymbol": "cal",
+  "toSymbol": "J",
+  "intro": "Professionals and everyday users convert calories (cal) to joules (J) when working across other and si standards in residential electricity billing, HVAC heating load calculations, battery storage sizing, and nutritional energy tracking. One gram calorie (cal) equals 4.184 joules, while 1 joule equals 0.239006 calories. Whether you are verifying energy specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    10,
+    50,
+    100,
+    250,
+    500,
+    1000,
+    2000,
+    3600,
+    5000,
+    10000
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Gram Calorie (cal) Benchmark (100 cal)",
+      "scenario": "Convert 100 calories (cal) into joules (J) for technical comparison and documentation.",
+      "inputValue": 100,
+      "outputValue": "418.4 J",
+      "stepByStep": "100 cal × 4.184 = 418.4 J (rounds to 418.4 J)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (1000 cal)",
+      "scenario": "Convert 1000 calories (cal) into joules (J) for technical comparison and documentation.",
+      "inputValue": 1000,
+      "outputValue": "4,184 J",
+      "stepByStep": "1000 cal × 4.184 = 4,184 J (rounds to 4,184 J)."
+    },
+    {
+      "title": "Higher-Capacity Specification (5000 cal)",
+      "scenario": "Convert 5000 calories (cal) into joules (J) for technical comparison and documentation.",
+      "inputValue": 5000,
+      "outputValue": "20,920 J",
+      "stepByStep": "5000 cal × 4.184 = 20,920 J (rounds to 20,920 J)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Dietary Calories (kcal) vs. Chemistry Gram Calories (cal)",
+    "items": [
+      "On nutrition labels, a capitalized \"Calorie\" (Cal) is actually 1 kilocalorie (1,000 small gram calories = 4,184 Joules).",
+      "In physics and chemistry lab equations, 1 small calorie (cal) is the energy required to warm 1 gram of water by 1 °C (4.184 J). Always check whether your source means dietary kcal or thermochemical cal."
+    ]
+  },
+  "formula": {
+    "equation": "J = cal × 4.184",
+    "exactFactor": "4.184",
+    "roundedFactor": "4.184",
+    "inverseFactor": "0.239006"
+  },
+  "internalLinks": [
+    {
+      "label": "Joules to Calories (J to cal)",
+      "href": "/energy/joules-to-calories",
+      "type": "reverse"
+    },
+    {
+      "label": "Joules to Kilojoules (J to kJ)",
+      "href": "/energy/j-to-kj",
+      "type": "related"
+    },
+    {
+      "label": "Kilojoules to Joules (kJ to J)",
+      "href": "/energy/kj-to-j",
+      "type": "related"
+    },
+    {
+      "label": "Kilocalories to Kilojoules (kcal to kJ)",
+      "href": "/energy/kcal-to-kj",
+      "type": "related"
+    },
+    {
+      "label": "Kilojoules to Kilocalories (kJ to kcal)",
+      "href": "/energy/kj-to-kcal",
+      "type": "related"
+    },
+    {
+      "label": "Energy Conversions Hub",
+      "href": "/energy",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many joules (J) are in 1 gram calorie (cal) (cal)?",
+      "answer": "There are 4.184 joules (J) in 1 gram calorie (cal) (cal), which rounds to 4.184 J for everyday calculations. Conversely, 1 joule equals 0.239006 calories."
+    },
+    {
+      "question": "How do I convert calories to joules (cal to J)?",
+      "answer": "To convert calories to joules, use the formula: J = cal × 4.184. For example, converting 500 cal gives 2,092 J."
+    },
+    {
+      "question": "What is 500 calories in joules?",
+      "answer": "500 calories (cal) equals exactly 2,092 joules (J) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

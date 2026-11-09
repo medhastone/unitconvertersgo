@@ -1,0 +1,97 @@
+{
+  "slug": "sqm-to-hectares",
+  "categoryId": "area",
+  "fromUnitId": "sq_meter",
+  "toUnitId": "hectare",
+  "status": "draft-needs-review",
+  "intro": "Converting square meters (m²) to hectares (ha) is essential when translating measurements across real estate land deeds, agricultural plot surveying, flooring estimation, and architectural floor plans. One square meter equals 0.0001 hectares, while one hectare equals 10,000 square meters. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
+  "referenceValues": [
+    1,
+    5,
+    10,
+    25,
+    50,
+    100,
+    250,
+    500,
+    1000,
+    5000
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 5 m² to ha",
+      "context": "Baseline reference check when comparing a single square meter specification against hectares",
+      "inputValue": 5,
+      "calculation": "5 m² × 0.0001 = 0.0005 ha",
+      "result": "5 m² = 0.0005 ha"
+    },
+    {
+      "title": "Convert 50 m² to ha",
+      "context": "Mid-range practical measurement commonly encountered in area workflows and equipment sheets",
+      "inputValue": 50,
+      "calculation": "50 m² × 0.0001 = 0.005 ha",
+      "result": "50 m² = 0.005 ha"
+    },
+    {
+      "title": "Convert 500 m² to ha",
+      "context": "Larger scale calculation for commercial, industrial, or bulk area planning",
+      "inputValue": 500,
+      "calculation": "500 m² × 0.0001 = 0.05 ha",
+      "result": "500 m² = 0.05 ha"
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "exactFactor": "0.0001",
+    "roundedFactor": "0.0001",
+    "equation": "ha = m² × 0.0001",
+    "inverseEquation": "m² = ha × 1",
+    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 m² = 0.0001 ha)."
+  },
+  "internalLinks": [
+    {
+      "href": "/area/hectares-to-sq-meters",
+      "label": "Hectares to Square Meters (ha to m²)",
+      "type": "reverse"
+    },
+    {
+      "href": "/area/acres-to-square-miles",
+      "label": "Acres to Square Miles (ac to mi²)",
+      "type": "related"
+    },
+    {
+      "href": "/area/square-miles-to-acres",
+      "label": "Square Miles to Acres (mi² to ac)",
+      "type": "related"
+    },
+    {
+      "href": "/area/sq-feet-to-sq-meters",
+      "label": "Square Feet to Square Meters (ft² to m²)",
+      "type": "related"
+    },
+    {
+      "href": "/undefined",
+      "label": "Area Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/metric-vs-imperial",
+      "label": "Metric vs. Imperial System: Complete Engineering Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many hectares are in 1 square meter?",
+      "answer": "There are 0.0001 hectares (ha) in 1 square meter (m²). To convert m² to ha, use the exact conversion factor 0.0001."
+    },
+    {
+      "question": "How do I convert square meters to hectares manually?",
+      "answer": "Multiply your square meter value by 0.0001 (exact factor: 0.0001). For example, 50 m² × 0.0001 = 0.005 ha."
+    },
+    {
+      "question": "What is 500 m² in ha?",
+      "answer": "500 square meters (m²) equals 0.05 hectares (ha)."
+    }
+  ]
+}

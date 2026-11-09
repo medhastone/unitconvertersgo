@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "teaspoons-to-tablespoons",
+  "category": "volume",
+  "categoryId": "volume",
+  "fromUnitId": "us_teaspoon",
+  "toUnitId": "us_tablespoon",
+  "fromSymbol": "tsp",
+  "toSymbol": "tbsp",
+  "intro": "Professionals and everyday users convert teaspoons (us) (tsp) to tablespoons (us) (tbsp) when working across us_customary and us_customary standards in culinary recipe scaling, beverage bottling, laboratory reagent preparation, and fluid tank capacity sizing. One teaspoon (us) equals 0.333333 tablespoons (us), while 1 tablespoon (us) equals 3 teaspoons (us). Whether you are verifying volume & liquid specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    1.5,
+    2,
+    3,
+    4.5,
+    6,
+    9,
+    12,
+    15,
+    18
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Teaspoon (US) Benchmark (2 tsp)",
+      "scenario": "Convert 2 teaspoons (us) (tsp) into tablespoons (us) (tbsp) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "0.666667 tbsp",
+      "stepByStep": "2 tsp × 0.333333 = 0.666667 tbsp (rounds to 0.67 tbsp)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (6 tsp)",
+      "scenario": "Convert 6 teaspoons (us) (tsp) into tablespoons (us) (tbsp) for technical comparison and documentation.",
+      "inputValue": 6,
+      "outputValue": "2 tbsp",
+      "stepByStep": "6 tsp × 0.333333 = 2 tbsp (rounds to 2 tbsp)."
+    },
+    {
+      "title": "Higher-Capacity Specification (15 tsp)",
+      "scenario": "Convert 15 teaspoons (us) (tsp) into tablespoons (us) (tbsp) for technical comparison and documentation.",
+      "inputValue": 15,
+      "outputValue": "5 tbsp",
+      "stepByStep": "15 tsp × 0.333333 = 5 tbsp (rounds to 5 tbsp)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "US Customary vs. British Imperial Liquid Volume Trap",
+    "items": [
+      "US Customary and UK Imperial liquid units share identical names but have different physical volumes: 1 US Gallon is 3.78541 L (128 US fl oz), whereas 1 UK Imperial Gallon is 4.54609 L (160 Imp fl oz) — a 20.1% difference.",
+      "Similarly, 1 US Pint contains 16 US fluid ounces (473.18 mL), while 1 British Imperial Pint contains 20 Imperial fluid ounces (568.26 mL). Always verify whether your recipe, pump datasheet, or vehicle spec sheet uses US or UK standards."
+    ]
+  },
+  "formula": {
+    "equation": "tbsp = tsp × 0.33333333",
+    "exactFactor": "0.33333333",
+    "roundedFactor": "0.3333",
+    "inverseFactor": "3"
+  },
+  "internalLinks": [
+    {
+      "label": "Tablespoons (US) to Teaspoons (US) (tbsp to tsp)",
+      "href": "/volume/tablespoons-to-teaspoons",
+      "type": "reverse"
+    },
+    {
+      "label": "Liters to Gallons (US) (L to gal (US))",
+      "href": "/volume/liters-to-gallons",
+      "type": "related"
+    },
+    {
+      "label": "Gallons (US) to Liters (gal (US) to L)",
+      "href": "/volume/gallons-to-liters",
+      "type": "related"
+    },
+    {
+      "label": "Milliliters to Fluid Ounces (US) (mL to fl oz)",
+      "href": "/volume/ml-to-fluid-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Fluid Ounces (US) to Milliliters (fl oz to mL)",
+      "href": "/volume/fluid-ounces-to-ml",
+      "type": "related"
+    },
+    {
+      "label": "Volume & Liquid Conversions Hub",
+      "href": "/volume",
+      "type": "hub"
+    },
+    {
+      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "href": "/guides/us-vs-imperial-fluid-ounces",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many tablespoons (us) (tbsp) are in 1 teaspoon (us) (tsp)?",
+      "answer": "There are 0.33333333 tablespoons (us) (tbsp) in 1 teaspoon (us) (tsp), which rounds to 0.3333 tbsp for everyday calculations. Conversely, 1 tablespoon (us) equals 3 teaspoons (us)."
+    },
+    {
+      "question": "How do I convert teaspoons (us) to tablespoons (us) (tsp to tbsp)?",
+      "answer": "To convert teaspoons (us) to tablespoons (us), use the formula: tbsp = tsp × 0.33333333. For example, converting 4.5 tsp gives 1.5 tbsp."
+    },
+    {
+      "question": "What is 4.5 teaspoons (us) in tablespoons (us)?",
+      "answer": "4.5 teaspoons (us) (tsp) equals exactly 1.5 tablespoons (us) (tbsp) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

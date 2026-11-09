@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "meters-to-feet",
+  "category": "length",
+  "categoryId": "length",
+  "fromUnitId": "meter",
+  "toUnitId": "foot",
+  "fromSymbol": "m",
+  "toSymbol": "ft",
+  "intro": "Professionals and everyday users convert meters (m) to feet (ft) when working across si and imperial standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One meter equals 3.28084 feet, while 1 foot equals 0.3048 meters. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    1.5,
+    1.8,
+    2,
+    3,
+    5,
+    10,
+    20,
+    50,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Meter Benchmark (1.8 m)",
+      "scenario": "Convert 1.8 meters (m) into feet (ft) for technical comparison and documentation.",
+      "inputValue": 1.8,
+      "outputValue": "5.905512 ft",
+      "stepByStep": "1.8 m × 3.28084 = 5.905512 ft (rounds to 5.91 ft)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (5 m)",
+      "scenario": "Convert 5 meters (m) into feet (ft) for technical comparison and documentation.",
+      "inputValue": 5,
+      "outputValue": "16.404199 ft",
+      "stepByStep": "5 m × 3.28084 = 16.404199 ft (rounds to 16.4 ft)."
+    },
+    {
+      "title": "Higher-Capacity Specification (50 m)",
+      "scenario": "Convert 50 meters (m) into feet (ft) for technical comparison and documentation.",
+      "inputValue": 50,
+      "outputValue": "164.041995 ft",
+      "stepByStep": "50 m × 3.28084 = 164.041995 ft (rounds to 164.04 ft)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Meter to Foot is 3.2808399, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "ft = m × 3.2808399",
+    "exactFactor": "3.2808399",
+    "roundedFactor": "3.2808",
+    "inverseFactor": "0.3048"
+  },
+  "internalLinks": [
+    {
+      "label": "Feet to Meters (ft to m)",
+      "href": "/length/feet-to-meters",
+      "type": "reverse"
+    },
+    {
+      "label": "Centimeters to Inches (cm to in)",
+      "href": "/length/cm-to-inches",
+      "type": "related"
+    },
+    {
+      "label": "Inches to Centimeters (in to cm)",
+      "href": "/length/inches-to-cm",
+      "type": "related"
+    },
+    {
+      "label": "Kilometers to Miles (km to mi)",
+      "href": "/length/km-to-miles",
+      "type": "related"
+    },
+    {
+      "label": "Miles to Kilometers (mi to km)",
+      "href": "/length/miles-to-km",
+      "type": "related"
+    },
+    {
+      "label": "Length Conversions Hub",
+      "href": "/length",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many feet (ft) are in 1 meter (m)?",
+      "answer": "There are 3.2808399 feet (ft) in 1 meter (m), which rounds to 3.2808 ft for everyday calculations. Conversely, 1 foot equals 0.3048 meters."
+    },
+    {
+      "question": "How do I convert meters to feet (m to ft)?",
+      "answer": "To convert meters to feet, use the formula: ft = m × 3.2808399. For example, converting 3 m gives 9.8425 ft."
+    },
+    {
+      "question": "What is 3 meters in feet?",
+      "answer": "3 meters (m) equals exactly 9.8425 feet (ft) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

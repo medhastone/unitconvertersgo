@@ -1,0 +1,97 @@
+{
+  "slug": "lbs-to-grams",
+  "categoryId": "mass",
+  "fromUnitId": "pound",
+  "toUnitId": "gram",
+  "status": "draft-needs-review",
+  "intro": "Converting pounds (lb) to grams (g) is essential when translating measurements across international freight shipping, gym barbell loading, laboratory formulation, and commercial food packaging. One pound equals 453.59237 grams, while one gram equals 0.00220462 pounds. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
+  "referenceValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    100,
+    250
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 1 lb to g",
+      "context": "Baseline reference check when comparing a single pound specification against grams",
+      "inputValue": 1,
+      "calculation": "1 lb × 453.59237 = 453.59237 g",
+      "result": "1 lb = 453.59237 g"
+    },
+    {
+      "title": "Convert 10 lb to g",
+      "context": "Mid-range practical measurement commonly encountered in mass & weight workflows and equipment sheets",
+      "inputValue": 10,
+      "calculation": "10 lb × 453.59237 = 4,535.9237 g",
+      "result": "10 lb = 4,535.9237 g"
+    },
+    {
+      "title": "Convert 50 lb to g",
+      "context": "Larger scale calculation for commercial, industrial, or bulk mass & weight planning",
+      "inputValue": 50,
+      "calculation": "50 lb × 453.59237 = 22,679.6185 g",
+      "result": "50 lb = 22,679.6185 g"
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "exactFactor": "453.59237",
+    "roundedFactor": "453.59237",
+    "equation": "g = lb × 453.59237",
+    "inverseEquation": "lb = g × 1",
+    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 lb = 453.59237 g)."
+  },
+  "internalLinks": [
+    {
+      "href": "/weight-and-mass/grams-to-pounds",
+      "label": "Grams to Pounds (g to lb)",
+      "type": "reverse"
+    },
+    {
+      "href": "/weight-and-mass/kg-to-lbs",
+      "label": "Kilograms to Pounds (kg to lb)",
+      "type": "related"
+    },
+    {
+      "href": "/weight-and-mass/lbs-to-kg",
+      "label": "Pounds to Kilograms (lb to kg)",
+      "type": "related"
+    },
+    {
+      "href": "/weight-and-mass/grams-to-kg",
+      "label": "Grams to Kilograms (g to kg)",
+      "type": "related"
+    },
+    {
+      "href": "/undefined",
+      "label": "Mass & Weight Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/metric-vs-imperial",
+      "label": "Metric vs. Imperial System: Complete Engineering Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many grams are in 1 pound?",
+      "answer": "There are 453.59237 grams (g) in 1 pound (lb). To convert lb to g, use the exact conversion factor 453.59237."
+    },
+    {
+      "question": "How do I convert pounds to grams manually?",
+      "answer": "Multiply your pound value by 453.59237 (exact factor: 453.59237). For example, 10 lb × 453.59237 = 4,535.9237 g."
+    },
+    {
+      "question": "What is 50 lb in g?",
+      "answer": "50 pounds (lb) equals 22,679.6185 grams (g)."
+    }
+  ]
+}

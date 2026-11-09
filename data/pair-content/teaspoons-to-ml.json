@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "teaspoons-to-ml",
+  "category": "volume",
+  "categoryId": "volume",
+  "fromUnitId": "us_teaspoon",
+  "toUnitId": "milliliter",
+  "fromSymbol": "tsp",
+  "toSymbol": "mL",
+  "intro": "Professionals and everyday users convert teaspoons (us) (tsp) to milliliters (mL) when working across us_customary and metric standards in culinary recipe scaling, beverage bottling, laboratory reagent preparation, and fluid tank capacity sizing. One teaspoon (us) equals 4.928922 milliliters, while 1 milliliter equals 0.202884 teaspoons (us). Whether you are verifying volume & liquid specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.25,
+    0.5,
+    0.75,
+    1,
+    1.5,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Teaspoon (US) Benchmark (0.75 tsp)",
+      "scenario": "Convert 0.75 teaspoons (us) (tsp) into milliliters (mL) for technical comparison and documentation.",
+      "inputValue": 0.75,
+      "outputValue": "3.696691 mL",
+      "stepByStep": "0.75 tsp × 4.928922 = 3.696691 mL (rounds to 3.7 mL)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (2 tsp)",
+      "scenario": "Convert 2 teaspoons (us) (tsp) into milliliters (mL) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "9.857843 mL",
+      "stepByStep": "2 tsp × 4.928922 = 9.857843 mL (rounds to 9.86 mL)."
+    },
+    {
+      "title": "Higher-Capacity Specification (5 tsp)",
+      "scenario": "Convert 5 teaspoons (us) (tsp) into milliliters (mL) for technical comparison and documentation.",
+      "inputValue": 5,
+      "outputValue": "24.644608 mL",
+      "stepByStep": "5 tsp × 4.928922 = 24.644608 mL (rounds to 24.64 mL)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "US Customary vs. British Imperial Liquid Volume Trap",
+    "items": [
+      "US Customary and UK Imperial liquid units share identical names but have different physical volumes: 1 US Gallon is 3.78541 L (128 US fl oz), whereas 1 UK Imperial Gallon is 4.54609 L (160 Imp fl oz) — a 20.1% difference.",
+      "Similarly, 1 US Pint contains 16 US fluid ounces (473.18 mL), while 1 British Imperial Pint contains 20 Imperial fluid ounces (568.26 mL). Always verify whether your recipe, pump datasheet, or vehicle spec sheet uses US or UK standards."
+    ]
+  },
+  "formula": {
+    "equation": "mL = tsp × 4.92892159",
+    "exactFactor": "4.92892159",
+    "roundedFactor": "4.9289",
+    "inverseFactor": "0.202884"
+  },
+  "internalLinks": [
+    {
+      "label": "Milliliters to Teaspoons (US) (mL to tsp)",
+      "href": "/volume/ml-to-teaspoons",
+      "type": "reverse"
+    },
+    {
+      "label": "Liters to Gallons (US) (L to gal (US))",
+      "href": "/volume/liters-to-gallons",
+      "type": "related"
+    },
+    {
+      "label": "Gallons (US) to Liters (gal (US) to L)",
+      "href": "/volume/gallons-to-liters",
+      "type": "related"
+    },
+    {
+      "label": "Milliliters to Fluid Ounces (US) (mL to fl oz)",
+      "href": "/volume/ml-to-fluid-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Fluid Ounces (US) to Milliliters (fl oz to mL)",
+      "href": "/volume/fluid-ounces-to-ml",
+      "type": "related"
+    },
+    {
+      "label": "Volume & Liquid Conversions Hub",
+      "href": "/volume",
+      "type": "hub"
+    },
+    {
+      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "href": "/guides/us-vs-imperial-fluid-ounces",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many milliliters (mL) are in 1 teaspoon (us) (tsp)?",
+      "answer": "There are 4.92892159 milliliters (mL) in 1 teaspoon (us) (tsp), which rounds to 4.9289 mL for everyday calculations. Conversely, 1 milliliter equals 0.202884 teaspoons (us)."
+    },
+    {
+      "question": "How do I convert teaspoons (us) to milliliters (tsp to mL)?",
+      "answer": "To convert teaspoons (us) to milliliters, use the formula: mL = tsp × 4.92892159. For example, converting 1.5 tsp gives 7.3934 mL."
+    },
+    {
+      "question": "What is 1.5 teaspoons (us) in milliliters?",
+      "answer": "1.5 teaspoons (us) (tsp) equals exactly 7.3934 milliliters (mL) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "feet-to-yards",
+  "category": "length",
+  "categoryId": "length",
+  "fromUnitId": "foot",
+  "toUnitId": "yard",
+  "fromSymbol": "ft",
+  "toSymbol": "yd",
+  "intro": "Professionals and everyday users convert feet (ft) to yards (yd) when working across imperial and imperial standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One foot equals 0.333333 yards, while 1 yard equals 3 feet. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    3,
+    5,
+    6,
+    8,
+    10,
+    12,
+    15,
+    20,
+    50
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Foot Benchmark (5 ft)",
+      "scenario": "Convert 5 feet (ft) into yards (yd) for technical comparison and documentation.",
+      "inputValue": 5,
+      "outputValue": "1.666667 yd",
+      "stepByStep": "5 ft × 0.333333 = 1.666667 yd (rounds to 1.67 yd)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (10 ft)",
+      "scenario": "Convert 10 feet (ft) into yards (yd) for technical comparison and documentation.",
+      "inputValue": 10,
+      "outputValue": "3.333333 yd",
+      "stepByStep": "10 ft × 0.333333 = 3.333333 yd (rounds to 3.33 yd)."
+    },
+    {
+      "title": "Higher-Capacity Specification (20 ft)",
+      "scenario": "Convert 20 feet (ft) into yards (yd) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "6.666667 yd",
+      "stepByStep": "20 ft × 0.333333 = 6.666667 yd (rounds to 6.67 yd)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "yd = ft × 0.33333333",
+    "exactFactor": "0.33333333",
+    "roundedFactor": "0.3333",
+    "inverseFactor": "3"
+  },
+  "internalLinks": [
+    {
+      "label": "Yards to Feet (yd to ft)",
+      "href": "/length/yards-to-feet",
+      "type": "reverse"
+    },
+    {
+      "label": "Centimeters to Inches (cm to in)",
+      "href": "/length/cm-to-inches",
+      "type": "related"
+    },
+    {
+      "label": "Inches to Centimeters (in to cm)",
+      "href": "/length/inches-to-cm",
+      "type": "related"
+    },
+    {
+      "label": "Feet to Meters (ft to m)",
+      "href": "/length/feet-to-meters",
+      "type": "related"
+    },
+    {
+      "label": "Meters to Feet (m to ft)",
+      "href": "/length/meters-to-feet",
+      "type": "related"
+    },
+    {
+      "label": "Length Conversions Hub",
+      "href": "/length",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many yards (yd) are in 1 foot (ft)?",
+      "answer": "There are 0.33333333 yards (yd) in 1 foot (ft), which rounds to 0.3333 yd for everyday calculations. Conversely, 1 yard equals 3 feet."
+    },
+    {
+      "question": "How do I convert feet to yards (ft to yd)?",
+      "answer": "To convert feet to yards, use the formula: yd = ft × 0.33333333. For example, converting 8 ft gives 2.6667 yd."
+    },
+    {
+      "question": "What is 8 feet in yards?",
+      "answer": "8 feet (ft) equals exactly 2.6667 yards (yd) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

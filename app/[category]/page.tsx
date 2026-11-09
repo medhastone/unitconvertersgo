@@ -39,7 +39,7 @@ import {
   buildPageMetadata,
   getCategoryOgImage,
 } from "@/lib/seo";
-import { isIndexableCategory } from "@/lib/seo-config";
+import { isIndexableCategory, isMergedThinHub, getConverterTier } from "@/lib/seo-config";
 import { ConversionPairInfo } from "@/lib/conversions/types";
 
 const CATEGORY_ALIAS_MAP: Record<string, string> = {
@@ -248,7 +248,7 @@ const CATEGORY_PROFILES: Record<string, CategorySeoProfile> = {
     defaultFromId: "km_per_h",
     defaultToId: "mph",
     defaultValue: 100,
-    relatedCategoryIds: ["length", "time", "fuel_economy", "power", "energy", "area"],
+    relatedCategoryIds: ["length", "time", "power", "energy", "area", "force"],
     faqs: [
       {
         question: "How do I convert km/h to mph?",
@@ -329,7 +329,7 @@ const CATEGORY_PROFILES: Record<string, CategorySeoProfile> = {
     defaultFromId: "kilojoule",
     defaultToId: "kilocalorie",
     defaultValue: 100,
-    relatedCategoryIds: ["power", "temperature", "force", "fuel_economy", "mass", "pressure"],
+    relatedCategoryIds: ["power", "temperature", "force", "torque", "mass", "pressure"],
     faqs: [
       {
         question: "How many Joules are in 1 calorie vs. 1 food Calorie (kcal)?",
@@ -1966,6 +1966,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     permanentRedirect("/case-converter");
   }
 
+  if (isMergedThinHub(lowerId)) {
+    permanentRedirect("/specialty");
+  }
+
   const resolvedId =
     resolveCategoryIdFromUrlSlug(lowerId) ||
     CATEGORY_ALIAS_MAP[lowerId] ||
@@ -1974,6 +1978,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
   if (!category) {
     notFound();
+  }
+
+  if (isMergedThinHub(category.id)) {
+    permanentRedirect("/specialty");
   }
 
   const canonicalCategoryPath = getCategoryUrl(category.id);
@@ -2011,11 +2019,22 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const defaultTo = defaultToUnit.id;
   const oneOut = convertUnits(1, defaultFromUnit.id, defaultToUnit.id, "auto");
 
-  // Curated Popular Conversions in this category (with guaranteed unique slugs)
+  // Curated Popular Conversions in this category (prioritize Tier A/B first)
+  const tierABCategoryPairs = conversionPairs.filter((p) => getConverterTier(p) !== "C");
+  const tierCCategoryPairs = conversionPairs.filter((p) => getConverterTier(p) === "C");
+
   const popularPairs: ConversionPairInfo[] = [];
   const seenSlugs = new Set<string>();
+  for (const p of tierABCategoryPairs) {
+    if (popularPairs.length >= 8) break;
+    if (!seenSlugs.has(p.slug)) {
+      seenSlugs.add(p.slug);
+      popularPairs.push(p);
+    }
+  }
   if (profile?.popularSlugs) {
     for (const s of profile.popularSlugs) {
+      if (popularPairs.length >= 8) break;
       const p = CATALOGUE_MAP.get(s);
       if (p && !seenSlugs.has(p.slug)) {
         seenSlugs.add(p.slug);
@@ -2220,46 +2239,82 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
         {/* ===================================================================
             COMPLETE DEDICATED CONVERSION PAIR DIRECTORY FOR THIS CATEGORY
+            Tier A/B shown prominently; Tier C placed in collapsed <details>
             =================================================================== */}
         {conversionPairs.length > 0 && (
           <section
             id="all-category-converters"
-            className="rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-2xs space-y-4 scroll-mt-20"
+            className="rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-2xs space-y-5 scroll-mt-20"
           >
             <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3.5">
               <div className="space-y-1">
                 <h2 className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
-                  All {displayName} Conversion Calculators ({conversionPairs.length})
+                  Popular {displayName} Conversion Calculators
                 </h2>
                 <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
-                  Select any dedicated {displayName.toLowerCase()} pair below for worked examples and printable tables
+                  Select any high-demand {displayName.toLowerCase()} pair below for worked examples and reference tables
                 </p>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-              {conversionPairs.map((pair) => {
-                const pFrom = UNIT_MAP.get(pair.fromUnitId);
-                const pTo = UNIT_MAP.get(pair.toUnitId);
-                const descriptiveLabel =
-                  pFrom && pTo
-                    ? `${pFrom.plural} to ${pTo.plural} Converter (${pFrom.symbol} to ${pTo.symbol})`
-                    : pair.title;
-                return (
-                  <Link
-                    key={pair.slug}
-                    href={getPairUrl(pair)}
-                    prefetch={false}
-                    className="px-4 py-3 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-[#F7F9FC]/70 dark:bg-slate-950/50 hover:bg-white dark:hover:bg-slate-900 hover:border-[#0D9488] transition-all flex items-center justify-between group"
-                  >
-                    <span className="text-sm sm:text-[15px] font-bold text-[#16324F] dark:text-slate-200 group-hover:text-[#0D9488] dark:group-hover:text-[#2DD4BF] truncate pr-2">
-                      {descriptiveLabel}
-                    </span>
-                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#0D9488] shrink-0" />
-                  </Link>
-                );
-              })}
-            </div>
+            {tierABCategoryPairs.length > 0 && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                {tierABCategoryPairs.map((pair) => {
+                  const pFrom = UNIT_MAP.get(pair.fromUnitId);
+                  const pTo = UNIT_MAP.get(pair.toUnitId);
+                  const descriptiveLabel =
+                    pFrom && pTo
+                      ? `${pFrom.plural} to ${pTo.plural} (${pFrom.symbol} to ${pTo.symbol})`
+                      : pair.title;
+                  return (
+                    <Link
+                      key={pair.slug}
+                      href={getPairUrl(pair)}
+                      prefetch={false}
+                      className="px-4 py-3 rounded-xl border border-slate-200/80 dark:border-slate-800 bg-[#F7F9FC]/70 dark:bg-slate-950/50 hover:bg-white dark:hover:bg-slate-900 hover:border-[#0D9488] transition-all flex items-center justify-between group"
+                    >
+                      <span className="text-sm sm:text-[15px] font-bold text-[#16324F] dark:text-slate-200 group-hover:text-[#0D9488] dark:group-hover:text-[#2DD4BF] truncate pr-2">
+                        {descriptiveLabel}
+                      </span>
+                      <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#0D9488] shrink-0" />
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+
+            {tierCCategoryPairs.length > 0 && (
+              <details className="group rounded-xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-950/40 p-4">
+                <summary className="cursor-pointer list-none flex items-center justify-between text-sm font-bold text-[#16324F] dark:text-slate-200">
+                  <span>
+                    All conversions ({tierCCategoryPairs.length} additional {displayName.toLowerCase()} pairs)
+                  </span>
+                  <span className="text-xs text-[#0D9488] dark:text-[#2DD4BF] group-open:rotate-180 transition-transform">
+                    ▼
+                  </span>
+                </summary>
+                <div className="mt-4 pt-4 border-t border-slate-200/70 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5">
+                  {tierCCategoryPairs.map((pair) => {
+                    const pFrom = UNIT_MAP.get(pair.fromUnitId);
+                    const pTo = UNIT_MAP.get(pair.toUnitId);
+                    const descriptiveLabel =
+                      pFrom && pTo
+                        ? `${pFrom.plural} to ${pTo.plural} (${pFrom.symbol} to ${pTo.symbol})`
+                        : pair.title;
+                    return (
+                      <Link
+                        key={pair.slug}
+                        href={getPairUrl(pair)}
+                        prefetch={false}
+                        className="px-3 py-2 rounded-lg border border-slate-200/60 dark:border-slate-800/70 bg-white dark:bg-slate-900 hover:border-[#0D9488] text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-[#0D9488] truncate transition-colors"
+                      >
+                        {descriptiveLabel}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </details>
+            )}
           </section>
         )}
 

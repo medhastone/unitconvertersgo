@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "kg-to-grams",
+  "category": "weight-and-mass",
+  "categoryId": "mass",
+  "fromUnitId": "kilogram",
+  "toUnitId": "gram",
+  "fromSymbol": "kg",
+  "toSymbol": "g",
+  "intro": "Professionals and everyday users convert kilograms (kg) to grams (g) when working across si and metric standards in engineering specifications, international trade documentation, and technical measurements. One kilogram equals 1,000 grams, while 1 gram equals 0.001 kilograms. Whether you are verifying mass & weight specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    1,
+    1.5,
+    2,
+    2.5,
+    5,
+    10
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Kilogram Benchmark (0.5 kg)",
+      "scenario": "Convert 0.5 kilograms (kg) into grams (g) for technical comparison and documentation.",
+      "inputValue": 0.5,
+      "outputValue": "500 g",
+      "stepByStep": "0.5 kg × 1,000 = 500 g (rounds to 500 g)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (1.5 kg)",
+      "scenario": "Convert 1.5 kilograms (kg) into grams (g) for technical comparison and documentation.",
+      "inputValue": 1.5,
+      "outputValue": "1,500 g",
+      "stepByStep": "1.5 kg × 1,000 = 1,500 g (rounds to 1,500 g)."
+    },
+    {
+      "title": "Higher-Capacity Specification (5 kg)",
+      "scenario": "Convert 5 kilograms (kg) into grams (g) for technical comparison and documentation.",
+      "inputValue": 5,
+      "outputValue": "5,000 g",
+      "stepByStep": "5 kg × 1,000 = 5,000 g (rounds to 5,000 g)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "g = kg × 1,000",
+    "exactFactor": "1,000",
+    "roundedFactor": "1,000",
+    "inverseFactor": "0.001"
+  },
+  "internalLinks": [
+    {
+      "label": "Grams to Kilograms (g to kg)",
+      "href": "/weight-and-mass/grams-to-kg",
+      "type": "reverse"
+    },
+    {
+      "label": "Kilograms to Pounds (kg to lb)",
+      "href": "/weight-and-mass/kg-to-lbs",
+      "type": "related"
+    },
+    {
+      "label": "Pounds to Kilograms (lb to kg)",
+      "href": "/weight-and-mass/lbs-to-kg",
+      "type": "related"
+    },
+    {
+      "label": "Grams to Ounces (g to oz)",
+      "href": "/weight-and-mass/grams-to-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Ounces to Grams (oz to g)",
+      "href": "/weight-and-mass/ounces-to-grams",
+      "type": "related"
+    },
+    {
+      "label": "Mass & Weight Conversions Hub",
+      "href": "/weight-and-mass",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many grams (g) are in 1 kilogram (kg)?",
+      "answer": "There are 1,000 grams (g) in 1 kilogram (kg), which rounds to 1,000 g for everyday calculations. Conversely, 1 gram equals 0.001 kilograms."
+    },
+    {
+      "question": "How do I convert kilograms to grams (kg to g)?",
+      "answer": "To convert kilograms to grams, use the formula: g = kg × 1,000. For example, converting 1 kg gives 1,000 g."
+    },
+    {
+      "question": "What is 1 kilograms in grams?",
+      "answer": "1 kilograms (kg) equals exactly 1,000 grams (g) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

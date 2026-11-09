@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "bar-to-kpa",
+  "category": "pressure",
+  "categoryId": "pressure",
+  "fromUnitId": "bar",
+  "toUnitId": "kilopascal",
+  "fromSymbol": "bar",
+  "toSymbol": "kPa",
+  "intro": "Professionals and everyday users convert bars (bar) to kilopascals (kPa) when working across metric and metric standards in automotive tire inflation placards, hydraulic cylinder design, scuba diving tanks, and barometric weather tracking. One bar equals 100 kilopascals, while 1 kilopascal equals 0.01 bars. Whether you are verifying pressure specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    1.5,
+    2,
+    2.2,
+    2.5,
+    3,
+    4,
+    5,
+    10
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Bar Benchmark (1.5 bar)",
+      "scenario": "Convert 1.5 bars (bar) into kilopascals (kPa) for technical comparison and documentation.",
+      "inputValue": 1.5,
+      "outputValue": "150 kPa",
+      "stepByStep": "1.5 bar × 100 = 150 kPa (rounds to 150 kPa)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (2.5 bar)",
+      "scenario": "Convert 2.5 bars (bar) into kilopascals (kPa) for technical comparison and documentation.",
+      "inputValue": 2.5,
+      "outputValue": "250 kPa",
+      "stepByStep": "2.5 bar × 100 = 250 kPa (rounds to 250 kPa)."
+    },
+    {
+      "title": "Higher-Capacity Specification (5 bar)",
+      "scenario": "Convert 5 bars (bar) into kilopascals (kPa) for technical comparison and documentation.",
+      "inputValue": 5,
+      "outputValue": "500 kPa",
+      "stepByStep": "5 bar × 100 = 500 kPa (rounds to 500 kPa)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Gauge Pressure (psig) vs. Absolute Pressure (psia)",
+    "items": [
+      "This converter scales pressure magnitude directly between bar and kPa. In automotive tires, HVAC, and compressed air systems, gauges display Gauge Pressure (referenced to ambient atmospheric pressure, ~14.696 psi or 101.325 kPa at sea level).",
+      "For thermodynamic gas laws (PV = nRT) or vacuum chamber calculations, convert gauge pressure to absolute pressure by adding local barometric pressure before scaling."
+    ]
+  },
+  "formula": {
+    "equation": "kPa = bar × 100",
+    "exactFactor": "100",
+    "roundedFactor": "100",
+    "inverseFactor": "0.01"
+  },
+  "internalLinks": [
+    {
+      "label": "Kilopascals to Bars (kPa to bar)",
+      "href": "/pressure/kpa-to-bar",
+      "type": "reverse"
+    },
+    {
+      "label": "PSI to Bars (psi to bar)",
+      "href": "/pressure/psi-to-bar",
+      "type": "related"
+    },
+    {
+      "label": "Bars to PSI (bar to psi)",
+      "href": "/pressure/bar-to-psi",
+      "type": "related"
+    },
+    {
+      "label": "PSI to Kilopascals (psi to kPa)",
+      "href": "/pressure/psi-to-kpa",
+      "type": "related"
+    },
+    {
+      "label": "Kilopascals to PSI (kPa to psi)",
+      "href": "/pressure/kpa-to-psi",
+      "type": "related"
+    },
+    {
+      "label": "Pressure Conversions Hub",
+      "href": "/pressure",
+      "type": "hub"
+    },
+    {
+      "label": "PSI vs. Bar vs. kPa vs. Atmosphere Pressure Reference",
+      "href": "/guides/pressure-units-psi-bar-kpa-explained",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many kilopascals (kPa) are in 1 bar (bar)?",
+      "answer": "There are 100 kilopascals (kPa) in 1 bar (bar), which rounds to 100 kPa for everyday calculations. Conversely, 1 kilopascal equals 0.01 bars."
+    },
+    {
+      "question": "How do I convert bars to kilopascals (bar to kPa)?",
+      "answer": "To convert bars to kilopascals, use the formula: kPa = bar × 100. For example, converting 2.2 bar gives 220 kPa."
+    },
+    {
+      "question": "What is 2.2 bars in kilopascals?",
+      "answer": "2.2 bars (bar) equals exactly 220 kilopascals (kPa) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

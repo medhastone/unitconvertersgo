@@ -1981,27 +1981,30 @@ const RAW_CONVERSION_CATALOGUE: ConversionPairInfo[] = [
 
   // --- DENSITY (4) ---
   {
-    slug: "kg-per-m3-to-g-per-cm3",
+    slug: "kilograms-per-cubic-meter-to-grams-per-cubic-centimeter",
+    aliases: ["kg-per-m3-to-g-per-cm3"],
     fromUnitId: "kg_per_m3",
     toUnitId: "g_per_cm3",
     categoryId: "density",
-    title: "Kilogram per Cubic Meter to Gram per Cubic Centimeter (kg/m³ to g/cm³)",
+    title: "Kilograms per Cubic Meter to Grams per Cubic Centimeter (kg/m³ to g/cm³)",
     metaDescription: "Convert kg/m³ to g/cm³ for materials science and chemistry. Divide by 1,000.",
     formulaDescription: "1 g/cm³ equals 1,000 kg/m³. Divide kg/m³ by 1,000 to convert to g/cm³.",
     exampleInput: 1000,
   },
   {
-    slug: "g-per-cm3-to-kg-per-m3",
+    slug: "grams-per-cubic-centimeter-to-kilograms-per-cubic-meter",
+    aliases: ["g-per-cm3-to-kg-per-m3"],
     fromUnitId: "g_per_cm3",
     toUnitId: "kg_per_m3",
     categoryId: "density",
-    title: "Gram per Cubic Centimeter to Kilogram per Cubic Meter (g/cm³ to kg/m³)",
+    title: "Grams per Cubic Centimeter to Kilograms per Cubic Meter (g/cm³ to kg/m³)",
     metaDescription: "Convert g/cm³ to kg/m³ with live calculation. Multiply g/cm³ by 1,000.",
     formulaDescription: "Multiply g/cm³ by 1,000 to find kg/m³.",
     exampleInput: 1,
   },
   {
-    slug: "lb-per-ft3-to-kg-per-m3",
+    slug: "pounds-per-cubic-foot-to-kilograms-per-cubic-meter",
+    aliases: ["lb-per-ft3-to-kg-per-m3"],
     fromUnitId: "lb_per_ft3",
     toUnitId: "kg_per_m3",
     categoryId: "density",
@@ -2011,7 +2014,8 @@ const RAW_CONVERSION_CATALOGUE: ConversionPairInfo[] = [
     exampleInput: 62.4,
   },
   {
-    slug: "g-per-ml-to-g-per-cm3",
+    slug: "grams-per-milliliter-to-grams-per-cubic-centimeter",
+    aliases: ["g-per-ml-to-g-per-cm3"],
     fromUnitId: "g_per_ml",
     toUnitId: "g_per_cm3",
     categoryId: "density",
@@ -2053,7 +2057,8 @@ const RAW_CONVERSION_CATALOGUE: ConversionPairInfo[] = [
     exampleInput: 5,
   },
   {
-    slug: "kgf-m-to-nm",
+    slug: "kilogram-force-meters-to-newton-meters",
+    aliases: ["kgf-m-to-nm"],
     fromUnitId: "kgf_m",
     toUnitId: "nm",
     categoryId: "torque",
@@ -3366,21 +3371,23 @@ const RAW_CONVERSION_CATALOGUE: ConversionPairInfo[] = [
 
   // --- ADDITIONAL DENSITY & CONCENTRATION ---
   {
-    slug: "kg-per-m3-to-lb-per-ft3",
+    slug: "kilograms-per-cubic-meter-to-pounds-per-cubic-foot",
+    aliases: ["kg-per-m3-to-lb-per-ft3"],
     fromUnitId: "kg_per_m3",
     toUnitId: "lb_per_ft3",
     categoryId: "density",
-    title: "kg/m³ to lb/ft³ Converter (Kilograms per Cubic Meter to Pounds per Cubic Foot)",
+    title: "Kilograms per Cubic Meter to Pounds per Cubic Foot (kg/m³ to lb/ft³)",
     metaDescription: "Convert metric density (kg/m³) to imperial density (lb/ft³) by dividing by 16.0185.",
     formulaDescription: "1 kg/m³ equals approximately 0.06242796 lb/ft³. Divide kg/m³ by 16.01846.",
     exampleInput: 1000,
   },
   {
-    slug: "g-per-cm3-to-lb-per-ft3",
+    slug: "grams-per-cubic-centimeter-to-pounds-per-cubic-foot",
+    aliases: ["g-per-cm3-to-lb-per-ft3"],
     fromUnitId: "g_per_cm3",
     toUnitId: "lb_per_ft3",
     categoryId: "density",
-    title: "g/cm³ to lb/ft³ Converter (Grams per Cubic Centimeter to lb/ft³)",
+    title: "Grams per Cubic Centimeter to Pounds per Cubic Foot (g/cm³ to lb/ft³)",
     metaDescription: "Convert g/cm³ to lb/ft³ with exact 62.428 multiplier.",
     formulaDescription: "1 g/cm³ equals approximately 62.42796 lb/ft³. Multiply g/cm³ by 62.428.",
     exampleInput: 1,
@@ -3418,7 +3425,8 @@ const RAW_CONVERSION_CATALOGUE: ConversionPairInfo[] = [
     exampleInput: 120,
   },
   {
-    slug: "nm-to-kgf-m",
+    slug: "newton-meters-to-kilogram-force-meters",
+    aliases: ["nm-to-kgf-m"],
     fromUnitId: "nm",
     toUnitId: "kgf_m",
     categoryId: "torque",
@@ -3504,7 +3512,8 @@ const RAW_CONVERSION_CATALOGUE: ConversionPairInfo[] = [
 
   // --- FLOW RATE (8) ---
   {
-    slug: "liter-minute-to-gallon-us-minute",
+    slug: "liters-per-minute-to-us-gallons-per-minute",
+    aliases: ["liter-minute-to-gallon-us-minute"],
     fromUnitId: "liter_per_min",
     toUnitId: "gallon_us_per_min",
     categoryId: "flow",
@@ -3514,7 +3523,8 @@ const RAW_CONVERSION_CATALOGUE: ConversionPairInfo[] = [
     exampleInput: 20,
   },
   {
-    slug: "gallon-us-minute-to-liter-minute",
+    slug: "us-gallons-per-minute-to-liters-per-minute",
+    aliases: ["gallon-us-minute-to-liter-minute"],
     fromUnitId: "gallon_us_per_min",
     toUnitId: "liter_per_min",
     categoryId: "flow",
@@ -3524,7 +3534,8 @@ const RAW_CONVERSION_CATALOGUE: ConversionPairInfo[] = [
     exampleInput: 10,
   },
   {
-    slug: "cubic-foot-hour-to-liter-minute",
+    slug: "cubic-feet-per-hour-to-liters-per-minute",
+    aliases: ["cubic-foot-hour-to-liter-minute"],
     fromUnitId: "cubic_foot_per_hour",
     toUnitId: "liter_per_min",
     categoryId: "flow",
@@ -3534,7 +3545,8 @@ const RAW_CONVERSION_CATALOGUE: ConversionPairInfo[] = [
     exampleInput: 25,
   },
   {
-    slug: "liter-hour-to-gallon-us-hour",
+    slug: "liters-per-hour-to-us-gallons-per-hour",
+    aliases: ["liter-hour-to-gallon-us-hour"],
     fromUnitId: "liter_per_hour",
     toUnitId: "gallon_us_per_hour",
     categoryId: "flow",
@@ -3544,7 +3556,8 @@ const RAW_CONVERSION_CATALOGUE: ConversionPairInfo[] = [
     exampleInput: 1000,
   },
   {
-    slug: "gallon-us-minute-to-cubic-meter-second",
+    slug: "us-gallons-per-minute-to-cubic-meters-per-second",
+    aliases: ["gallon-us-minute-to-cubic-meter-second"],
     fromUnitId: "gallon_us_per_min",
     toUnitId: "cubic_meter_per_sec",
     categoryId: "flow",
@@ -3554,7 +3567,8 @@ const RAW_CONVERSION_CATALOGUE: ConversionPairInfo[] = [
     exampleInput: 500,
   },
   {
-    slug: "cfm-to-liter-minute",
+    slug: "cfm-to-liters-per-minute",
+    aliases: ["cfm-to-liter-minute"],
     fromUnitId: "cubic_foot_per_min",
     toUnitId: "liter_per_min",
     categoryId: "flow",
@@ -3564,7 +3578,8 @@ const RAW_CONVERSION_CATALOGUE: ConversionPairInfo[] = [
     exampleInput: 5,
   },
   {
-    slug: "cfm-to-cubic-meter-hour",
+    slug: "cfm-to-cubic-meters-per-hour",
+    aliases: ["cfm-to-cubic-meter-hour"],
     fromUnitId: "cubic_foot_per_min",
     toUnitId: "cubic_meter_per_hour",
     categoryId: "flow",
@@ -3574,7 +3589,8 @@ const RAW_CONVERSION_CATALOGUE: ConversionPairInfo[] = [
     exampleInput: 100,
   },
   {
-    slug: "gpm-to-cubic-meter-hour",
+    slug: "gpm-to-cubic-meters-per-hour",
+    aliases: ["gpm-to-cubic-meter-hour"],
     fromUnitId: "gallon_us_per_min",
     toUnitId: "cubic_meter_per_hour",
     categoryId: "flow",
@@ -4728,12 +4744,8 @@ function ensureAliasSlugMap(): void {
     "htc-w-cm2k-to-htc-w-m2k": ["htc_w_cm2k", "htc_w_m2k"],
     "w-to-kw": ["htc_w_m2k", "htc_kw_m2k"],
     "kw-to-w": ["htc_kw_m2k", "htc_w_m2k"],
-    "kg-to-g": ["mfd_kg_s_m2", "mfd_g_s_m2"],
-    "g-to-kg": ["mfd_g_s_m2", "mfd_kg_s_m2"],
     "kg-to-kg": ["mfd_kg_s_m2", "mfd_kg_h_m2"],
     "mfd-kg-h-m2-to-mfd-kg-s-m2": ["mfd_kg_h_m2", "mfd_kg_s_m2"],
-    "kg-to-lb": ["mfd_kg_s_m2", "mfd_lb_h_ft2"],
-    "lb-to-kg": ["mfd_lb_h_ft2", "mfd_kg_s_m2"],
     "pascal-seconds-to-lb": ["vd_pa_s", "vd_lb_ft_s"],
     "lb-to-pascal-seconds": ["vd_lb_ft_s", "vd_pa_s"],
   };

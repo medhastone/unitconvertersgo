@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "foot-pounds-to-joules",
+  "category": "energy",
+  "categoryId": "energy",
+  "fromUnitId": "foot_pound",
+  "toUnitId": "joule",
+  "fromSymbol": "ft·lbf",
+  "toSymbol": "J",
+  "intro": "Professionals and everyday users convert foot-pounds (ft·lbf) to joules (J) when working across imperial and si standards in residential electricity billing, HVAC heating load calculations, battery storage sizing, and nutritional energy tracking. One foot-pound (ft·lbf) equals 1.355818 joules, while 1 joule equals 0.737562 foot-pounds. Whether you are verifying energy specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    10,
+    50,
+    100,
+    250,
+    500,
+    1000,
+    2000,
+    3600,
+    5000,
+    10000
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Foot-pound (ft·lbf) Benchmark (100 ft·lbf)",
+      "scenario": "Convert 100 foot-pounds (ft·lbf) into joules (J) for technical comparison and documentation.",
+      "inputValue": 100,
+      "outputValue": "135.581795 J",
+      "stepByStep": "100 ft·lbf × 1.355818 = 135.581795 J (rounds to 135.58 J)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (1000 ft·lbf)",
+      "scenario": "Convert 1000 foot-pounds (ft·lbf) into joules (J) for technical comparison and documentation.",
+      "inputValue": 1000,
+      "outputValue": "1,355.817948 J",
+      "stepByStep": "1000 ft·lbf × 1.355818 = 1,355.817948 J (rounds to 1,355.82 J)."
+    },
+    {
+      "title": "Higher-Capacity Specification (5000 ft·lbf)",
+      "scenario": "Convert 5000 foot-pounds (ft·lbf) into joules (J) for technical comparison and documentation.",
+      "inputValue": 5000,
+      "outputValue": "6,779.089742 J",
+      "stepByStep": "5000 ft·lbf × 1.355818 = 6,779.089742 J (rounds to 6,779.09 J)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Foot-pound (ft·lbf) to Joule is 1.35581795, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "J = ft·lbf × 1.35581795",
+    "exactFactor": "1.35581795",
+    "roundedFactor": "1.3558",
+    "inverseFactor": "0.737562"
+  },
+  "internalLinks": [
+    {
+      "label": "Joules to Foot-pounds (J to ft·lbf)",
+      "href": "/energy/joules-to-foot-pounds",
+      "type": "reverse"
+    },
+    {
+      "label": "Joules to Kilojoules (J to kJ)",
+      "href": "/energy/j-to-kj",
+      "type": "related"
+    },
+    {
+      "label": "Kilojoules to Joules (kJ to J)",
+      "href": "/energy/kj-to-j",
+      "type": "related"
+    },
+    {
+      "label": "Kilocalories to Kilojoules (kcal to kJ)",
+      "href": "/energy/kcal-to-kj",
+      "type": "related"
+    },
+    {
+      "label": "Kilojoules to Kilocalories (kJ to kcal)",
+      "href": "/energy/kj-to-kcal",
+      "type": "related"
+    },
+    {
+      "label": "Energy Conversions Hub",
+      "href": "/energy",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many joules (J) are in 1 foot-pound (ft·lbf) (ft·lbf)?",
+      "answer": "There are 1.35581795 joules (J) in 1 foot-pound (ft·lbf) (ft·lbf), which rounds to 1.3558 J for everyday calculations. Conversely, 1 joule equals 0.737562 foot-pounds."
+    },
+    {
+      "question": "How do I convert foot-pounds to joules (ft·lbf to J)?",
+      "answer": "To convert foot-pounds to joules, use the formula: J = ft·lbf × 1.35581795. For example, converting 500 ft·lbf gives 677.909 J."
+    },
+    {
+      "question": "What is 500 foot-pounds in joules?",
+      "answer": "500 foot-pounds (ft·lbf) equals exactly 677.909 joules (J) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

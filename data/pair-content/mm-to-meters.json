@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "mm-to-meters",
+  "category": "length",
+  "categoryId": "length",
+  "fromUnitId": "millimeter",
+  "toUnitId": "meter",
+  "fromSymbol": "mm",
+  "toSymbol": "m",
+  "intro": "Professionals and everyday users convert millimeters (mm) to meters (m) when working across metric and si standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One millimeter equals 0.001 meters, while 1 meter equals 1,000 millimeters. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    2,
+    5,
+    10,
+    12.7,
+    25.4,
+    50,
+    100,
+    250,
+    1000
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Millimeter Benchmark (5 mm)",
+      "scenario": "Convert 5 millimeters (mm) into meters (m) for technical comparison and documentation.",
+      "inputValue": 5,
+      "outputValue": "0.005 m",
+      "stepByStep": "5 mm × 0.001 = 0.005 m (rounds to 0.01 m)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (25.4 mm)",
+      "scenario": "Convert 25.4 millimeters (mm) into meters (m) for technical comparison and documentation.",
+      "inputValue": 25.4,
+      "outputValue": "0.0254 m",
+      "stepByStep": "25.4 mm × 0.001 = 0.0254 m (rounds to 0.03 m)."
+    },
+    {
+      "title": "Higher-Capacity Specification (250 mm)",
+      "scenario": "Convert 250 millimeters (mm) into meters (m) for technical comparison and documentation.",
+      "inputValue": 250,
+      "outputValue": "0.25 m",
+      "stepByStep": "250 mm × 0.001 = 0.25 m (rounds to 0.25 m)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Millimeter to Meter is 0.001, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "m = mm × 0.001",
+    "exactFactor": "0.001",
+    "roundedFactor": "0.001",
+    "inverseFactor": "1,000"
+  },
+  "internalLinks": [
+    {
+      "label": "Meters to Millimeters (m to mm)",
+      "href": "/length/meters-to-mm",
+      "type": "reverse"
+    },
+    {
+      "label": "Centimeters to Inches (cm to in)",
+      "href": "/length/cm-to-inches",
+      "type": "related"
+    },
+    {
+      "label": "Inches to Centimeters (in to cm)",
+      "href": "/length/inches-to-cm",
+      "type": "related"
+    },
+    {
+      "label": "Feet to Meters (ft to m)",
+      "href": "/length/feet-to-meters",
+      "type": "related"
+    },
+    {
+      "label": "Meters to Feet (m to ft)",
+      "href": "/length/meters-to-feet",
+      "type": "related"
+    },
+    {
+      "label": "Length Conversions Hub",
+      "href": "/length",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many meters (m) are in 1 millimeter (mm)?",
+      "answer": "There are 0.001 meters (m) in 1 millimeter (mm), which rounds to 0.001 m for everyday calculations. Conversely, 1 meter equals 1,000 millimeters."
+    },
+    {
+      "question": "How do I convert millimeters to meters (mm to m)?",
+      "answer": "To convert millimeters to meters, use the formula: m = mm × 0.001. For example, converting 12.7 mm gives 0.0127 m."
+    },
+    {
+      "question": "What is 12.7 millimeters in meters?",
+      "answer": "12.7 millimeters (mm) equals exactly 0.0127 meters (m) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

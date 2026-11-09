@@ -1,0 +1,99 @@
+{
+  "status": "draft-needs-review",
+  "slug": "mw-to-kw",
+  "category": "power",
+  "categoryId": "power",
+  "fromUnitId": "megawatt",
+  "toUnitId": "kilowatt",
+  "fromSymbol": "MW",
+  "toSymbol": "kW",
+  "intro": "Professionals and everyday users convert megawatts (MW) to kilowatts (kW) when working across metric and metric standards in automotive engine output ratings, electric motor sizing, solar inverter specifications, and appliance load planning. One megawatt equals 1,000 kilowatts, while 1 kilowatt equals 0.001 megawatts. Whether you are verifying power specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Megawatt Benchmark (2 MW)",
+      "scenario": "Convert 2 megawatts (MW) into kilowatts (kW) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "2,000 kW",
+      "stepByStep": "2 MW × 1,000 = 2,000 kW (rounds to 2,000 kW)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 MW)",
+      "scenario": "Convert 20 megawatts (MW) into kilowatts (kW) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "20,000 kW",
+      "stepByStep": "20 MW × 1,000 = 20,000 kW (rounds to 20,000 kW)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 MW)",
+      "scenario": "Convert 75 megawatts (MW) into kilowatts (kW) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "75,000 kW",
+      "stepByStep": "75 MW × 1,000 = 75,000 kW (rounds to 75,000 kW)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "kW = MW × 1,000",
+    "exactFactor": "1,000",
+    "roundedFactor": "1,000",
+    "inverseFactor": "0.001"
+  },
+  "internalLinks": [
+    {
+      "label": "Watts to Kilowatts (W to kW)",
+      "href": "/power/watts-to-kw",
+      "type": "related"
+    },
+    {
+      "label": "Kilowatts to Watts (kW to W)",
+      "href": "/power/kw-to-watts",
+      "type": "related"
+    },
+    {
+      "label": "Horsepower (hp) to Kilowatts (hp to kW)",
+      "href": "/power/hp-to-kw",
+      "type": "related"
+    },
+    {
+      "label": "Kilowatts to Horsepower (hp) (kW to hp)",
+      "href": "/power/kw-to-horsepower",
+      "type": "related"
+    },
+    {
+      "label": "Power Conversions Hub",
+      "href": "/power",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many kilowatts (kW) are in 1 megawatt (MW)?",
+      "answer": "There are 1,000 kilowatts (kW) in 1 megawatt (MW), which rounds to 1,000 kW for everyday calculations. Conversely, 1 kilowatt equals 0.001 megawatts."
+    },
+    {
+      "question": "How do I convert megawatts to kilowatts (MW to kW)?",
+      "answer": "To convert megawatts to kilowatts, use the formula: kW = MW × 1,000. For example, converting 10 MW gives 10,000 kW."
+    },
+    {
+      "question": "What is 10 megawatts in kilowatts?",
+      "answer": "10 megawatts (MW) equals exactly 10,000 kilowatts (kW) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

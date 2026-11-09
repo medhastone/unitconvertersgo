@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "inches-to-feet",
+  "category": "length",
+  "categoryId": "length",
+  "fromUnitId": "inch",
+  "toUnitId": "foot",
+  "fromSymbol": "in",
+  "toSymbol": "ft",
+  "intro": "Professionals and everyday users convert inches (in) to feet (ft) when working across imperial and imperial standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One inch equals 0.083333 feet, while 1 foot equals 12 inches. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    2,
+    4,
+    6,
+    8,
+    12,
+    18,
+    24,
+    36,
+    48
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Inch Benchmark (4 in)",
+      "scenario": "Convert 4 inches (in) into feet (ft) for technical comparison and documentation.",
+      "inputValue": 4,
+      "outputValue": "0.333333 ft",
+      "stepByStep": "4 in × 0.083333 = 0.333333 ft (rounds to 0.33 ft)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (12 in)",
+      "scenario": "Convert 12 inches (in) into feet (ft) for technical comparison and documentation.",
+      "inputValue": 12,
+      "outputValue": "1 ft",
+      "stepByStep": "12 in × 0.083333 = 1 ft (rounds to 1 ft)."
+    },
+    {
+      "title": "Higher-Capacity Specification (36 in)",
+      "scenario": "Convert 36 inches (in) into feet (ft) for technical comparison and documentation.",
+      "inputValue": 36,
+      "outputValue": "3 ft",
+      "stepByStep": "36 in × 0.083333 = 3 ft (rounds to 3 ft)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "ft = in × 0.08333333",
+    "exactFactor": "0.08333333",
+    "roundedFactor": "0.0833",
+    "inverseFactor": "12"
+  },
+  "internalLinks": [
+    {
+      "label": "Feet to Inches (ft to in)",
+      "href": "/length/feet-to-inches",
+      "type": "reverse"
+    },
+    {
+      "label": "Centimeters to Inches (cm to in)",
+      "href": "/length/cm-to-inches",
+      "type": "related"
+    },
+    {
+      "label": "Inches to Centimeters (in to cm)",
+      "href": "/length/inches-to-cm",
+      "type": "related"
+    },
+    {
+      "label": "Feet to Meters (ft to m)",
+      "href": "/length/feet-to-meters",
+      "type": "related"
+    },
+    {
+      "label": "Meters to Feet (m to ft)",
+      "href": "/length/meters-to-feet",
+      "type": "related"
+    },
+    {
+      "label": "Length Conversions Hub",
+      "href": "/length",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many feet (ft) are in 1 inch (in)?",
+      "answer": "There are 0.08333333 feet (ft) in 1 inch (in), which rounds to 0.0833 ft for everyday calculations. Conversely, 1 foot equals 12 inches."
+    },
+    {
+      "question": "How do I convert inches to feet (in to ft)?",
+      "answer": "To convert inches to feet, use the formula: ft = in × 0.08333333. For example, converting 8 in gives 0.6667 ft."
+    },
+    {
+      "question": "What is 8 inches in feet?",
+      "answer": "8 inches (in) equals exactly 0.6667 feet (ft) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

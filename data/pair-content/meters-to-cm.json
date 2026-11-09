@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "meters-to-cm",
+  "category": "length",
+  "categoryId": "length",
+  "fromUnitId": "meter",
+  "toUnitId": "centimeter",
+  "fromSymbol": "m",
+  "toSymbol": "cm",
+  "intro": "Professionals and everyday users convert meters (m) to centimeters (cm) when working across si and metric standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One meter equals 100 centimeters, while 1 centimeter equals 0.01 meters. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    1.5,
+    2,
+    3,
+    5,
+    10,
+    25,
+    50,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Meter Benchmark (1.5 m)",
+      "scenario": "Convert 1.5 meters (m) into centimeters (cm) for technical comparison and documentation.",
+      "inputValue": 1.5,
+      "outputValue": "150 cm",
+      "stepByStep": "1.5 m × 100 = 150 cm (rounds to 150 cm)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (5 m)",
+      "scenario": "Convert 5 meters (m) into centimeters (cm) for technical comparison and documentation.",
+      "inputValue": 5,
+      "outputValue": "500 cm",
+      "stepByStep": "5 m × 100 = 500 cm (rounds to 500 cm)."
+    },
+    {
+      "title": "Higher-Capacity Specification (50 m)",
+      "scenario": "Convert 50 meters (m) into centimeters (cm) for technical comparison and documentation.",
+      "inputValue": 50,
+      "outputValue": "5,000 cm",
+      "stepByStep": "50 m × 100 = 5,000 cm (rounds to 5,000 cm)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "cm = m × 100",
+    "exactFactor": "100",
+    "roundedFactor": "100",
+    "inverseFactor": "0.01"
+  },
+  "internalLinks": [
+    {
+      "label": "Centimeters to Meters (cm to m)",
+      "href": "/length/cm-to-meters",
+      "type": "reverse"
+    },
+    {
+      "label": "Centimeters to Inches (cm to in)",
+      "href": "/length/cm-to-inches",
+      "type": "related"
+    },
+    {
+      "label": "Inches to Centimeters (in to cm)",
+      "href": "/length/inches-to-cm",
+      "type": "related"
+    },
+    {
+      "label": "Feet to Meters (ft to m)",
+      "href": "/length/feet-to-meters",
+      "type": "related"
+    },
+    {
+      "label": "Meters to Feet (m to ft)",
+      "href": "/length/meters-to-feet",
+      "type": "related"
+    },
+    {
+      "label": "Length Conversions Hub",
+      "href": "/length",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many centimeters (cm) are in 1 meter (m)?",
+      "answer": "There are 100 centimeters (cm) in 1 meter (m), which rounds to 100 cm for everyday calculations. Conversely, 1 centimeter equals 0.01 meters."
+    },
+    {
+      "question": "How do I convert meters to centimeters (m to cm)?",
+      "answer": "To convert meters to centimeters, use the formula: cm = m × 100. For example, converting 3 m gives 300 cm."
+    },
+    {
+      "question": "What is 3 meters in centimeters?",
+      "answer": "3 meters (m) equals exactly 300 centimeters (cm) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

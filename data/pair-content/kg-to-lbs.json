@@ -1,0 +1,111 @@
+{
+  "status": "draft-needs-review",
+  "slug": "kg-to-lbs",
+  "category": "weight-and-mass",
+  "categoryId": "mass",
+  "fromUnitId": "kilogram",
+  "toUnitId": "pound",
+  "fromSymbol": "kg",
+  "toSymbol": "lb",
+  "intro": "Professionals and everyday users convert kilograms (kg) to pounds (lb) when working across si and imperial standards in engineering specifications, international trade documentation, and technical measurements. One kilogram equals 2.204623 pounds, while 1 pound (avoirdupois) equals 0.453592 kilograms. Whether you are verifying mass & weight specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    60,
+    70,
+    80,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Kilogram Benchmark (5 kg)",
+      "scenario": "Convert 5 kilograms (kg) into pounds (lb) for technical comparison and documentation.",
+      "inputValue": 5,
+      "outputValue": "11.023113 lb",
+      "stepByStep": "5 kg × 2.204623 = 11.023113 lb (rounds to 11.02 lb)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (25 kg)",
+      "scenario": "Convert 25 kilograms (kg) into pounds (lb) for technical comparison and documentation.",
+      "inputValue": 25,
+      "outputValue": "55.115566 lb",
+      "stepByStep": "25 kg × 2.204623 = 55.115566 lb (rounds to 55.12 lb)."
+    },
+    {
+      "title": "Higher-Capacity Specification (70 kg)",
+      "scenario": "Convert 70 kilograms (kg) into pounds (lb) for technical comparison and documentation.",
+      "inputValue": 70,
+      "outputValue": "154.323584 lb",
+      "stepByStep": "70 kg × 2.204623 = 154.323584 lb (rounds to 154.32 lb)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Kilogram to Pound (Avoirdupois) is 2.20462262, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "lb = kg × 2.20462262",
+    "exactFactor": "2.20462262",
+    "roundedFactor": "2.2046",
+    "inverseFactor": "0.453592"
+  },
+  "internalLinks": [
+    {
+      "label": "Pounds to Kilograms (lb to kg)",
+      "href": "/weight-and-mass/lbs-to-kg",
+      "type": "reverse"
+    },
+    {
+      "label": "Grams to Ounces (g to oz)",
+      "href": "/weight-and-mass/grams-to-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Ounces to Grams (oz to g)",
+      "href": "/weight-and-mass/ounces-to-grams",
+      "type": "related"
+    },
+    {
+      "label": "Pounds to Ounces (lb to oz)",
+      "href": "/weight-and-mass/pounds-to-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Ounces to Pounds (oz to lb)",
+      "href": "/weight-and-mass/ounces-to-pounds",
+      "type": "related"
+    },
+    {
+      "label": "Mass & Weight Conversions Hub",
+      "href": "/weight-and-mass",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many pounds (lb) are in 1 kilogram (kg)?",
+      "answer": "There are 2.20462262 pounds (lb) in 1 kilogram (kg), which rounds to 2.2046 lb for everyday calculations. Conversely, 1 pound (avoirdupois) equals 0.453592 kilograms."
+    },
+    {
+      "question": "How do I convert kilograms to pounds (kg to lb)?",
+      "answer": "To convert kilograms to pounds, use the formula: lb = kg × 2.20462262. For example, converting 20 kg gives 44.0925 lb."
+    },
+    {
+      "question": "What is 20 kilograms in pounds?",
+      "answer": "20 kilograms (kg) equals exactly 44.0925 pounds (lb) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "stones-to-lbs",
+  "categoryId": "mass",
+  "fromUnitId": "stone",
+  "toUnitId": "pound",
+  "status": "draft-needs-review",
+  "intro": "Converting stones (st) to pounds (lb) is essential when translating measurements across international freight shipping, gym barbell loading, laboratory formulation, and commercial food packaging. One stone equals 14 pounds, while one pound equals 0.07143 stones. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
+  "referenceValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    100,
+    250
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 1 st to lb",
+      "context": "Baseline reference check when comparing a single stone specification against pounds",
+      "inputValue": 1,
+      "calculation": "1 st × 14 = 14 lb",
+      "result": "1 st = 14 lb"
+    },
+    {
+      "title": "Convert 10 st to lb",
+      "context": "Mid-range practical measurement commonly encountered in mass & weight workflows and equipment sheets",
+      "inputValue": 10,
+      "calculation": "10 st × 14 = 140 lb",
+      "result": "10 st = 140 lb"
+    },
+    {
+      "title": "Convert 50 st to lb",
+      "context": "Larger scale calculation for commercial, industrial, or bulk mass & weight planning",
+      "inputValue": 50,
+      "calculation": "50 st × 14 = 700 lb",
+      "result": "50 st = 700 lb"
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Short Ton, Long Ton, Metric Tonne & Troy vs. Avoirdupois Weight",
+    "items": [
+      "In the United States, \"ton\" without qualification refers to the US short ton (2,000 lb = 907.18474 kg), whereas the metric tonne equals 1,000 kg (2,204.62 lb) and the UK long ton equals 2,240 lb (1,016.05 kg).",
+      "Everyday weight conversions use the Avoirdupois ounce (28.349523125 g) and pound (16 oz = 453.59237 g); precious metals like gold and silver use the heavier Troy ounce (31.1034768 g)."
+    ]
+  },
+  "formula": {
+    "exactFactor": "14",
+    "roundedFactor": "14",
+    "equation": "lb = st × 14",
+    "inverseEquation": "st = lb × 1",
+    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 st = 14 lb)."
+  },
+  "internalLinks": [
+    {
+      "href": "/weight-and-mass/lbs-to-stone",
+      "label": "Pounds to Stones (lb to st)",
+      "type": "reverse"
+    },
+    {
+      "href": "/weight-and-mass/kg-to-lbs",
+      "label": "Kilograms to Pounds (kg to lb)",
+      "type": "related"
+    },
+    {
+      "href": "/weight-and-mass/lbs-to-kg",
+      "label": "Pounds to Kilograms (lb to kg)",
+      "type": "related"
+    },
+    {
+      "href": "/weight-and-mass/grams-to-kg",
+      "label": "Grams to Kilograms (g to kg)",
+      "type": "related"
+    },
+    {
+      "href": "/undefined",
+      "label": "Mass & Weight Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/metric-vs-imperial",
+      "label": "Metric vs. Imperial System: Complete Engineering Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many pounds are in 1 stone?",
+      "answer": "There are 14 pounds (lb) in 1 stone (st). To convert st to lb, use the exact conversion factor 14."
+    },
+    {
+      "question": "How do I convert stones to pounds manually?",
+      "answer": "Multiply your stone value by 14 (exact factor: 14). For example, 10 st × 14 = 140 lb."
+    },
+    {
+      "question": "What is 50 st in lb?",
+      "answer": "50 stones (st) equals 700 pounds (lb)."
+    }
+  ]
+}

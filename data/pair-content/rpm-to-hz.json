@@ -1,0 +1,105 @@
+{
+  "status": "draft-needs-review",
+  "slug": "rpm-to-hz",
+  "category": "frequency",
+  "categoryId": "frequency",
+  "fromUnitId": "rpm",
+  "toUnitId": "hertz",
+  "fromSymbol": "RPM",
+  "toSymbol": "Hz",
+  "intro": "Professionals and everyday users convert rpm (RPM) to hertz (Hz) when working across other and si standards in processor clock speeds, RF wireless spectrum allocation, audio signal processing, and rotational machinery RPM. One revolutions per minute equals 0.016667 hertz, while 1 hertz equals 60 rpm. Whether you are verifying frequency specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Revolutions per Minute Benchmark (2 RPM)",
+      "scenario": "Convert 2 rpm (RPM) into hertz (Hz) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "0.033333 Hz",
+      "stepByStep": "2 RPM × 0.016667 = 0.033333 Hz (rounds to 0.03 Hz)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 RPM)",
+      "scenario": "Convert 20 rpm (RPM) into hertz (Hz) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "0.333333 Hz",
+      "stepByStep": "20 RPM × 0.016667 = 0.333333 Hz (rounds to 0.33 Hz)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 RPM)",
+      "scenario": "Convert 75 rpm (RPM) into hertz (Hz) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "1.25 Hz",
+      "stepByStep": "75 RPM × 0.016667 = 1.25 Hz (rounds to 1.25 Hz)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Revolutions per Minute to Hertz is 0.01666667, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "Hz = RPM × 0.01666667",
+    "exactFactor": "0.01666667",
+    "roundedFactor": "0.0167",
+    "inverseFactor": "60"
+  },
+  "internalLinks": [
+    {
+      "label": "Megahertz to Gigahertz (MHz to GHz)",
+      "href": "/frequency/mhz-to-ghz",
+      "type": "related"
+    },
+    {
+      "label": "Gigahertz to Megahertz (GHz to MHz)",
+      "href": "/frequency/ghz-to-mhz",
+      "type": "related"
+    },
+    {
+      "label": "Hertz to Kilohertz (Hz to kHz)",
+      "href": "/frequency/hz-to-khz",
+      "type": "related"
+    },
+    {
+      "label": "Kilohertz to Hertz (kHz to Hz)",
+      "href": "/frequency/khz-to-hz",
+      "type": "related"
+    },
+    {
+      "label": "Frequency Conversions Hub",
+      "href": "/frequency",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many hertz (Hz) are in 1 revolutions per minute (RPM)?",
+      "answer": "There are 0.01666667 hertz (Hz) in 1 revolutions per minute (RPM), which rounds to 0.0167 Hz for everyday calculations. Conversely, 1 hertz equals 60 rpm."
+    },
+    {
+      "question": "How do I convert rpm to hertz (RPM to Hz)?",
+      "answer": "To convert rpm to hertz, use the formula: Hz = RPM × 0.01666667. For example, converting 10 RPM gives 0.1667 Hz."
+    },
+    {
+      "question": "What is 10 rpm in hertz?",
+      "answer": "10 rpm (RPM) equals exactly 0.1667 hertz (Hz) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

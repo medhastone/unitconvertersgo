@@ -1,0 +1,105 @@
+{
+  "status": "draft-needs-review",
+  "slug": "calories-to-kilocalories",
+  "category": "energy",
+  "categoryId": "energy",
+  "fromUnitId": "calorie",
+  "toUnitId": "kilocalorie",
+  "fromSymbol": "cal",
+  "toSymbol": "kcal",
+  "intro": "Professionals and everyday users convert calories (cal) to kilocalories (kcal) when working across other and other standards in residential electricity billing, HVAC heating load calculations, battery storage sizing, and nutritional energy tracking. One gram calorie (cal) equals 0.001 kilocalories, while 1 kilocalorie (food calorie) equals 1,000 calories. Whether you are verifying energy specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    10,
+    50,
+    100,
+    250,
+    500,
+    1000,
+    2000,
+    3600,
+    5000,
+    10000
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Gram Calorie (cal) Benchmark (100 cal)",
+      "scenario": "Convert 100 calories (cal) into kilocalories (kcal) for technical comparison and documentation.",
+      "inputValue": 100,
+      "outputValue": "0.1 kcal",
+      "stepByStep": "100 cal × 0.001 = 0.1 kcal (rounds to 0.1 kcal)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (1000 cal)",
+      "scenario": "Convert 1000 calories (cal) into kilocalories (kcal) for technical comparison and documentation.",
+      "inputValue": 1000,
+      "outputValue": "1 kcal",
+      "stepByStep": "1000 cal × 0.001 = 1 kcal (rounds to 1 kcal)."
+    },
+    {
+      "title": "Higher-Capacity Specification (5000 cal)",
+      "scenario": "Convert 5000 calories (cal) into kilocalories (kcal) for technical comparison and documentation.",
+      "inputValue": 5000,
+      "outputValue": "5 kcal",
+      "stepByStep": "5000 cal × 0.001 = 5 kcal (rounds to 5 kcal)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Dietary Calories (kcal) vs. Chemistry Gram Calories (cal)",
+    "items": [
+      "On nutrition labels, a capitalized \"Calorie\" (Cal) is actually 1 kilocalorie (1,000 small gram calories = 4,184 Joules).",
+      "In physics and chemistry lab equations, 1 small calorie (cal) is the energy required to warm 1 gram of water by 1 °C (4.184 J). Always check whether your source means dietary kcal or thermochemical cal."
+    ]
+  },
+  "formula": {
+    "equation": "kcal = cal × 0.001",
+    "exactFactor": "0.001",
+    "roundedFactor": "0.001",
+    "inverseFactor": "1,000"
+  },
+  "internalLinks": [
+    {
+      "label": "Joules to Kilojoules (J to kJ)",
+      "href": "/energy/j-to-kj",
+      "type": "related"
+    },
+    {
+      "label": "Kilojoules to Joules (kJ to J)",
+      "href": "/energy/kj-to-j",
+      "type": "related"
+    },
+    {
+      "label": "Kilocalories to Kilojoules (kcal to kJ)",
+      "href": "/energy/kcal-to-kj",
+      "type": "related"
+    },
+    {
+      "label": "Kilojoules to Kilocalories (kJ to kcal)",
+      "href": "/energy/kj-to-kcal",
+      "type": "related"
+    },
+    {
+      "label": "Energy Conversions Hub",
+      "href": "/energy",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many kilocalories (kcal) are in 1 gram calorie (cal) (cal)?",
+      "answer": "There are 0.001 kilocalories (kcal) in 1 gram calorie (cal) (cal), which rounds to 0.001 kcal for everyday calculations. Conversely, 1 kilocalorie (food calorie) equals 1,000 calories."
+    },
+    {
+      "question": "How do I convert calories to kilocalories (cal to kcal)?",
+      "answer": "To convert calories to kilocalories, use the formula: kcal = cal × 0.001. For example, converting 500 cal gives 0.5 kcal."
+    },
+    {
+      "question": "What is 500 calories in kilocalories?",
+      "answer": "500 calories (cal) equals exactly 0.5 kilocalories (kcal) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

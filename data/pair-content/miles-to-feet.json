@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "miles-to-feet",
+  "category": "length",
+  "categoryId": "length",
+  "fromUnitId": "mile",
+  "toUnitId": "foot",
+  "fromSymbol": "mi",
+  "toSymbol": "ft",
+  "intro": "Professionals and everyday users convert miles (mi) to feet (ft) when working across imperial and imperial standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One mile (statute) equals 5,280 feet, while 1 foot equals 0.000189 miles. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    3,
+    5,
+    10,
+    15,
+    21.1,
+    42.2,
+    50,
+    80,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Mile (Statute) Benchmark (5 mi)",
+      "scenario": "Convert 5 miles (mi) into feet (ft) for technical comparison and documentation.",
+      "inputValue": 5,
+      "outputValue": "26,400 ft",
+      "stepByStep": "5 mi × 5,280 = 26,400 ft (rounds to 26,400 ft)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (21.1 mi)",
+      "scenario": "Convert 21.1 miles (mi) into feet (ft) for technical comparison and documentation.",
+      "inputValue": 21.1,
+      "outputValue": "111,408 ft",
+      "stepByStep": "21.1 mi × 5,280 = 111,408 ft (rounds to 111,408 ft)."
+    },
+    {
+      "title": "Higher-Capacity Specification (80 mi)",
+      "scenario": "Convert 80 miles (mi) into feet (ft) for technical comparison and documentation.",
+      "inputValue": 80,
+      "outputValue": "422,400 ft",
+      "stepByStep": "80 mi × 5,280 = 422,400 ft (rounds to 422,400 ft)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "ft = mi × 5,280",
+    "exactFactor": "5,280",
+    "roundedFactor": "5,280",
+    "inverseFactor": "0.000189"
+  },
+  "internalLinks": [
+    {
+      "label": "Feet to Miles (ft to mi)",
+      "href": "/length/feet-to-miles",
+      "type": "reverse"
+    },
+    {
+      "label": "Centimeters to Inches (cm to in)",
+      "href": "/length/cm-to-inches",
+      "type": "related"
+    },
+    {
+      "label": "Inches to Centimeters (in to cm)",
+      "href": "/length/inches-to-cm",
+      "type": "related"
+    },
+    {
+      "label": "Feet to Meters (ft to m)",
+      "href": "/length/feet-to-meters",
+      "type": "related"
+    },
+    {
+      "label": "Meters to Feet (m to ft)",
+      "href": "/length/meters-to-feet",
+      "type": "related"
+    },
+    {
+      "label": "Length Conversions Hub",
+      "href": "/length",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many feet (ft) are in 1 mile (statute) (mi)?",
+      "answer": "There are 5,280 feet (ft) in 1 mile (statute) (mi), which rounds to 5,280 ft for everyday calculations. Conversely, 1 foot equals 0.000189 miles."
+    },
+    {
+      "question": "How do I convert miles to feet (mi to ft)?",
+      "answer": "To convert miles to feet, use the formula: ft = mi × 5,280. For example, converting 15 mi gives 79,200 ft."
+    },
+    {
+      "question": "What is 15 miles in feet?",
+      "answer": "15 miles (mi) equals exactly 79,200 feet (ft) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

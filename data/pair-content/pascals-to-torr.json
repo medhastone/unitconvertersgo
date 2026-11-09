@@ -1,0 +1,103 @@
+{
+  "slug": "pascals-to-torr",
+  "categoryId": "pressure",
+  "fromUnitId": "pascal",
+  "toUnitId": "torr",
+  "status": "draft-needs-review",
+  "intro": "Converting pascals (Pa) to torr (Torr) is essential when translating measurements across automotive tire inflation, scuba tank monitoring, hydraulic cylinder design, and vacuum chamber calibration. One pascal equals 0.00750061 torr, while one torr equals 133.32237 pascals. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
+  "referenceValues": [
+    10,
+    50,
+    100,
+    133.32,
+    500,
+    1000,
+    5000,
+    10000,
+    50000,
+    101325
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 50 Pa to Torr",
+      "context": "Baseline reference check when comparing a single pascal specification against torr",
+      "inputValue": 50,
+      "calculation": "50 Pa × 0.00750061 = 0.37503 Torr",
+      "result": "50 Pa = 0.37503 Torr"
+    },
+    {
+      "title": "Convert 500 Pa to Torr",
+      "context": "Mid-range practical measurement commonly encountered in pressure workflows and equipment sheets",
+      "inputValue": 500,
+      "calculation": "500 Pa × 0.00750061 = 3.75031 Torr",
+      "result": "500 Pa = 3.75031 Torr"
+    },
+    {
+      "title": "Convert 10000 Pa to Torr",
+      "context": "Larger scale calculation for commercial, industrial, or bulk pressure planning",
+      "inputValue": 10000,
+      "calculation": "10000 Pa × 0.00750061 = 75.00617 Torr",
+      "result": "10000 Pa = 75.00617 Torr"
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Gauge Pressure (PSIG) vs. Absolute Pressure (PSIA)",
+    "items": [
+      "Direct unit conversions apply to the pressure magnitude itself. Ensure both values share the same reference datum before converting.",
+      "Tire pressure gauges and compressor dials read Gauge Pressure (PSIG, relative to ~14.696 psi sea-level atmosphere), whereas thermodynamic equations require Absolute Pressure (PSIA = PSIG + 14.696 psi)."
+    ]
+  },
+  "formula": {
+    "exactFactor": "0.00750061",
+    "roundedFactor": "0.00750061",
+    "equation": "Torr = Pa × 0.00750061",
+    "inverseEquation": "Pa = Torr × 1",
+    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 Pa = 0.00750061 Torr)."
+  },
+  "internalLinks": [
+    {
+      "href": "/pressure/torr-to-pascals",
+      "label": "Torr to Pascals (Torr to Pa)",
+      "type": "reverse"
+    },
+    {
+      "href": "/pressure/bar-to-psi",
+      "label": "Bars to PSI (bar to psi)",
+      "type": "related"
+    },
+    {
+      "href": "/pressure/psi-to-bar",
+      "label": "PSI to Bars (psi to bar)",
+      "type": "related"
+    },
+    {
+      "href": "/pressure/kpa-to-psi",
+      "label": "Kilopascals to PSI (kPa to psi)",
+      "type": "related"
+    },
+    {
+      "href": "/undefined",
+      "label": "Pressure Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/pressure-units-guide",
+      "label": "PSI, Bar, kPa & Atmospheric Pressure Engineering Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many torr are in 1 pascal?",
+      "answer": "There are 0.00750061 torr (Torr) in 1 pascal (Pa). To convert Pa to Torr, use the exact conversion factor 0.00750061."
+    },
+    {
+      "question": "How do I convert pascals to torr manually?",
+      "answer": "Multiply your pascal value by 0.00750061 (exact factor: 0.00750061). For example, 500 Pa × 0.00750061 = 3.75031 Torr."
+    },
+    {
+      "question": "What is 10000 Pa in Torr?",
+      "answer": "10000 pascals (Pa) equals 75.00617 torr (Torr)."
+    }
+  ]
+}

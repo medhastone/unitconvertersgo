@@ -1,0 +1,106 @@
+{
+  "status": "draft-needs-review",
+  "slug": "hours-to-seconds",
+  "category": "time",
+  "categoryId": "time",
+  "fromUnitId": "hour",
+  "toUnitId": "second",
+  "fromSymbol": "hr",
+  "toSymbol": "s",
+  "intro": "Professionals and everyday users convert hours (hr) to seconds (s) when working across other and si standards in project scheduling, payroll timecards, scientific interval logging, and server uptime SLAs. One hour equals 3,600 seconds, while 1 second equals 0.000278 hours. Whether you are verifying time specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    2,
+    4,
+    6,
+    8,
+    12,
+    16,
+    24,
+    36,
+    48,
+    72,
+    168
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Hour Benchmark (4 hr)",
+      "scenario": "Convert 4 hours (hr) into seconds (s) for technical comparison and documentation.",
+      "inputValue": 4,
+      "outputValue": "14,400 s",
+      "stepByStep": "4 hr × 3,600 = 14,400 s (rounds to 14,400 s)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (12 hr)",
+      "scenario": "Convert 12 hours (hr) into seconds (s) for technical comparison and documentation.",
+      "inputValue": 12,
+      "outputValue": "43,200 s",
+      "stepByStep": "12 hr × 3,600 = 43,200 s (rounds to 43,200 s)."
+    },
+    {
+      "title": "Higher-Capacity Specification (36 hr)",
+      "scenario": "Convert 36 hours (hr) into seconds (s) for technical comparison and documentation.",
+      "inputValue": 36,
+      "outputValue": "129,600 s",
+      "stepByStep": "36 hr × 3,600 = 129,600 s (rounds to 129,600 s)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "s = hr × 3,600",
+    "exactFactor": "3,600",
+    "roundedFactor": "3,600",
+    "inverseFactor": "0.000278"
+  },
+  "internalLinks": [
+    {
+      "label": "Seconds to Hours (s to hr)",
+      "href": "/time/seconds-to-hours",
+      "type": "reverse"
+    },
+    {
+      "label": "Hours to Minutes (hr to min)",
+      "href": "/time/hours-to-minutes",
+      "type": "related"
+    },
+    {
+      "label": "Minutes to Hours (min to hr)",
+      "href": "/time/minutes-to-hours",
+      "type": "related"
+    },
+    {
+      "label": "Minutes to Seconds (min to s)",
+      "href": "/time/minutes-to-seconds",
+      "type": "related"
+    },
+    {
+      "label": "Seconds to Minutes (s to min)",
+      "href": "/time/seconds-to-minutes",
+      "type": "related"
+    },
+    {
+      "label": "Time Conversions Hub",
+      "href": "/time",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many seconds (s) are in 1 hour (hr)?",
+      "answer": "There are 3,600 seconds (s) in 1 hour (hr), which rounds to 3,600 s for everyday calculations. Conversely, 1 second equals 0.000278 hours."
+    },
+    {
+      "question": "How do I convert hours to seconds (hr to s)?",
+      "answer": "To convert hours to seconds, use the formula: s = hr × 3,600. For example, converting 8 hr gives 28,800 s."
+    },
+    {
+      "question": "What is 8 hours in seconds?",
+      "answer": "8 hours (hr) equals exactly 28,800 seconds (s) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

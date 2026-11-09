@@ -1,0 +1,99 @@
+{
+  "slug": "grams-to-teaspoons",
+  "categorySlug": "cooking",
+  "categoryId": "cooking",
+  "fromUnitId": "gram",
+  "toUnitId": "teaspoons",
+  "status": "draft-needs-review",
+  "intro": "Converting grams to teaspoons requires accounting for ingredient bulk density because teaspoons measure kitchen volume while grams measure mass. In professional baking and culinary formulation, 1 US cup of water weighs 236.59 grams, 1 US cup of all-purpose flour weighs 120 grams, and 1 US cup of granulated sugar weighs 200 grams. Use our ingredient-aware calculator and reference table below to convert recipes accurately without kitchen scale guesswork.",
+  "referenceValues": [
+    15,
+    30,
+    50,
+    100,
+    120,
+    150,
+    200,
+    250,
+    500
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 50 (grams to teaspoons) for Water",
+      "context": "Liquid base recipe conversion using standard water density (1.00 g/mL)",
+      "inputValue": 50,
+      "calculation": "Volume × 1.00 g/mL density factor",
+      "result": "Exact gram/volume match at 1.00 g/mL"
+    },
+    {
+      "title": "Convert 120 (grams to teaspoons) for All-Purpose Flour",
+      "context": "Baking dough hydration calculation using sifted AP flour density (0.507 g/mL)",
+      "inputValue": 120,
+      "calculation": "Adjusted by 0.507 g/mL flour bulk density",
+      "result": "Standard baker's weight equivalent"
+    },
+    {
+      "title": "Convert 200 (grams to teaspoons) for Granulated Sugar",
+      "context": "Pastry and confectionery scaling using granulated sucrose density (0.845 g/mL)",
+      "inputValue": 200,
+      "calculation": "Adjusted by 0.845 g/mL sugar bulk density",
+      "result": "Precision pastry weight equivalent"
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Ingredient Density & US vs. Metric Cup Differences",
+    "items": [
+      "Never assume 1 cup or 1 mL weighs the same across dry ingredients: 1 US cup of all-purpose flour is ~120 g, whereas 1 US cup of honey is ~340 g.",
+      "US recipe cups equal 236.59 mL (or 240 mL FDA label), while Australian/Commonwealth metric cups equal 250 mL."
+    ]
+  },
+  "formula": {
+    "exactFactor": "Density-dependent (m = V × ρ)",
+    "roundedFactor": "1.00 g/mL (water baseline)",
+    "equation": "grams = volume_mL × ingredient_density (g/mL)",
+    "inverseEquation": "volume_mL = grams ÷ ingredient_density (g/mL)",
+    "standardNote": "Verified against USDA FoodData Central and King Arthur Baking weight charts."
+  },
+  "internalLinks": [
+    {
+      "href": "/cooking/teaspoons-to-grams",
+      "label": "Reverse: teaspoons to grams",
+      "type": "reverse"
+    },
+    {
+      "href": "/cooking/cups-to-grams",
+      "label": "Cups to Grams Ingredient Converter",
+      "type": "related"
+    },
+    {
+      "href": "/cooking/tablespoons-to-grams",
+      "label": "Tablespoons to Grams Converter",
+      "type": "related"
+    },
+    {
+      "href": "/cooking/ml-to-grams",
+      "label": "Milliliters to Grams Converter",
+      "type": "related"
+    },
+    {
+      "href": "/cooking",
+      "label": "Cooking & Baking Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/cooking-measurements",
+      "label": "Kitchen Volume & Baking Conversions Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Why does converting grams to teaspoons require selecting an ingredient?",
+      "answer": "Because teaspoons measure three-dimensional space (volume) and grams measure weight (mass). Denser ingredients like butter or honey weigh significantly more per gram than aerated powders like flour or cocoa."
+    },
+    {
+      "question": "How many grams are in 1 US cup vs 1 tablespoon of flour and sugar?",
+      "answer": "1 US cup of all-purpose flour weighs 120 g (7.5 g per tablespoon), while 1 US cup of granulated white sugar weighs 200 g (12.5 g per tablespoon)."
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "slug": "years-to-days",
+  "categoryId": "time",
+  "fromUnitId": "year",
+  "toUnitId": "day",
+  "status": "draft-needs-review",
+  "intro": "Converting years (yr) to days (d) is essential when translating measurements across project billing schedules, payroll timesheets, endurance race splits, and scientific interval logging. One year equals 365.2425 days, while one day equals 0.0027379 years. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
+  "referenceValues": [
+    1,
+    2,
+    5,
+    10,
+    12,
+    15,
+    24,
+    30,
+    48,
+    60
+  ],
+  "workedExamples": [
+    {
+      "title": "Convert 2 yr to d",
+      "context": "Baseline reference check when comparing a single year specification against days",
+      "inputValue": 2,
+      "calculation": "2 yr × 365.2425 = 730.485 d",
+      "result": "2 yr = 730.485 d"
+    },
+    {
+      "title": "Convert 12 yr to d",
+      "context": "Mid-range practical measurement commonly encountered in time workflows and equipment sheets",
+      "inputValue": 12,
+      "calculation": "12 yr × 365.2425 = 4,382.91 d",
+      "result": "12 yr = 4,382.91 d"
+    },
+    {
+      "title": "Convert 30 yr to d",
+      "context": "Larger scale calculation for commercial, industrial, or bulk time planning",
+      "inputValue": 30,
+      "calculation": "30 yr × 365.2425 = 10,957.275 d",
+      "result": "30 yr = 10,957.275 d"
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "exactFactor": "365.2425",
+    "roundedFactor": "365.2425",
+    "equation": "d = yr × 365.2425",
+    "inverseEquation": "yr = d × 1",
+    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 yr = 365.2425 d)."
+  },
+  "internalLinks": [
+    {
+      "href": "/time/days-to-years",
+      "label": "Days to Years (d to yr)",
+      "type": "reverse"
+    },
+    {
+      "href": "/time/seconds-to-milliseconds",
+      "label": "Seconds to Milliseconds (s to ms)",
+      "type": "related"
+    },
+    {
+      "href": "/time/hours-to-days",
+      "label": "Hours to Days (hr to d)",
+      "type": "related"
+    },
+    {
+      "href": "/time/months-to-years",
+      "label": "Months to Years (mo to yr)",
+      "type": "related"
+    },
+    {
+      "href": "/undefined",
+      "label": "Time Conversions Hub",
+      "type": "hub"
+    },
+    {
+      "href": "/guides/si-prefixes",
+      "label": "SI Prefixes & Scientific Notation Reference Guide",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many days are in 1 year?",
+      "answer": "There are 365.2425 days (d) in 1 year (yr). To convert yr to d, use the exact conversion factor 365.2425."
+    },
+    {
+      "question": "How do I convert years to days manually?",
+      "answer": "Multiply your year value by 365.2425 (exact factor: 365.2425). For example, 12 yr × 365.2425 = 4,382.91 d."
+    },
+    {
+      "question": "What is 30 yr in d?",
+      "answer": "30 years (yr) equals 10,957.275 days (d)."
+    }
+  ]
+}

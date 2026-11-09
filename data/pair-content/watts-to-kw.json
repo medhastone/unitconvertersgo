@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "watts-to-kw",
+  "category": "power",
+  "categoryId": "power",
+  "fromUnitId": "watt",
+  "toUnitId": "kilowatt",
+  "fromSymbol": "W",
+  "toSymbol": "kW",
+  "intro": "Professionals and everyday users convert watts (W) to kilowatts (kW) when working across si and metric standards in automotive engine output ratings, electric motor sizing, solar inverter specifications, and appliance load planning. One watt equals 0.001 kilowatts, while 1 kilowatt equals 1,000 watts. Whether you are verifying power specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    15,
+    60,
+    100,
+    250,
+    500,
+    745.7,
+    1000,
+    1500,
+    2000,
+    5000
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Watt Benchmark (100 W)",
+      "scenario": "Convert 100 watts (W) into kilowatts (kW) for technical comparison and documentation.",
+      "inputValue": 100,
+      "outputValue": "0.1 kW",
+      "stepByStep": "100 W × 0.001 = 0.1 kW (rounds to 0.1 kW)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (745.7 W)",
+      "scenario": "Convert 745.7 watts (W) into kilowatts (kW) for technical comparison and documentation.",
+      "inputValue": 745.7,
+      "outputValue": "0.7457 kW",
+      "stepByStep": "745.7 W × 0.001 = 0.7457 kW (rounds to 0.75 kW)."
+    },
+    {
+      "title": "Higher-Capacity Specification (2000 W)",
+      "scenario": "Convert 2000 watts (W) into kilowatts (kW) for technical comparison and documentation.",
+      "inputValue": 2000,
+      "outputValue": "2 kW",
+      "stepByStep": "2000 W × 0.001 = 2 kW (rounds to 2 kW)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Watt to Kilowatt is 0.001, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "kW = W × 0.001",
+    "exactFactor": "0.001",
+    "roundedFactor": "0.001",
+    "inverseFactor": "1,000"
+  },
+  "internalLinks": [
+    {
+      "label": "Kilowatts to Watts (kW to W)",
+      "href": "/power/kw-to-watts",
+      "type": "reverse"
+    },
+    {
+      "label": "Horsepower (hp) to Kilowatts (hp to kW)",
+      "href": "/power/hp-to-kw",
+      "type": "related"
+    },
+    {
+      "label": "Kilowatts to Horsepower (hp) (kW to hp)",
+      "href": "/power/kw-to-horsepower",
+      "type": "related"
+    },
+    {
+      "label": "Watts to Horsepower (hp) (W to hp)",
+      "href": "/power/watts-to-horsepower",
+      "type": "related"
+    },
+    {
+      "label": "Horsepower (hp) to Watts (hp to W)",
+      "href": "/power/horsepower-to-watts",
+      "type": "related"
+    },
+    {
+      "label": "Power Conversions Hub",
+      "href": "/power",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many kilowatts (kW) are in 1 watt (W)?",
+      "answer": "There are 0.001 kilowatts (kW) in 1 watt (W), which rounds to 0.001 kW for everyday calculations. Conversely, 1 kilowatt equals 1,000 watts."
+    },
+    {
+      "question": "How do I convert watts to kilowatts (W to kW)?",
+      "answer": "To convert watts to kilowatts, use the formula: kW = W × 0.001. For example, converting 500 W gives 0.5 kW."
+    },
+    {
+      "question": "What is 500 watts in kilowatts?",
+      "answer": "500 watts (W) equals exactly 0.5 kilowatts (kW) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

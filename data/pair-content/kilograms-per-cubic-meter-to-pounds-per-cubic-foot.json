@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "kilograms-per-cubic-meter-to-pounds-per-cubic-foot",
+  "category": "density",
+  "categoryId": "density",
+  "fromUnitId": "kg_per_m3",
+  "toUnitId": "lb_per_ft3",
+  "fromSymbol": "kg/m³",
+  "toSymbol": "lb/ft³",
+  "intro": "Professionals and everyday users convert kilograms per cubic meter (kg/m³) to pounds per cubic foot (lb/ft³) when working across si and imperial standards in materials science specifications, concrete and soil compaction testing, chemical solution density, and buoyancy calculations. One kilogram per cubic meter equals 0.062428 pounds per cubic foot, while 1 pound per cubic foot equals 16.018463 kilograms per cubic meter. Whether you are verifying density & concentration specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Kilogram per Cubic Meter Benchmark (2 kg/m³)",
+      "scenario": "Convert 2 kilograms per cubic meter (kg/m³) into pounds per cubic foot (lb/ft³) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "0.124856 lb/ft³",
+      "stepByStep": "2 kg/m³ × 0.062428 = 0.124856 lb/ft³ (rounds to 0.12 lb/ft³)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 kg/m³)",
+      "scenario": "Convert 20 kilograms per cubic meter (kg/m³) into pounds per cubic foot (lb/ft³) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "1.248559 lb/ft³",
+      "stepByStep": "20 kg/m³ × 0.062428 = 1.248559 lb/ft³ (rounds to 1.25 lb/ft³)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 kg/m³)",
+      "scenario": "Convert 75 kilograms per cubic meter (kg/m³) into pounds per cubic foot (lb/ft³) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "4.682097 lb/ft³",
+      "stepByStep": "75 kg/m³ × 0.062428 = 4.682097 lb/ft³ (rounds to 4.68 lb/ft³)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "items": [
+      "The exact conversion factor from Kilogram per Cubic Meter to Pound per Cubic Foot is 0.06242796, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
+      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+    ]
+  },
+  "formula": {
+    "equation": "lb/ft³ = kg/m³ × 0.06242796",
+    "exactFactor": "0.06242796",
+    "roundedFactor": "0.0624",
+    "inverseFactor": "16.018463"
+  },
+  "internalLinks": [
+    {
+      "label": "Pounds per Cubic Foot to Kilograms per Cubic Meter (lb/ft³ to kg/m³)",
+      "href": "/density/pounds-per-cubic-foot-to-kilograms-per-cubic-meter",
+      "type": "reverse"
+    },
+    {
+      "label": "Kilograms per Cubic Meter to Grams per Cubic Centimeter (kg/m³ to g/cm³)",
+      "href": "/density/kilograms-per-cubic-meter-to-grams-per-cubic-centimeter",
+      "type": "related"
+    },
+    {
+      "label": "Grams per Cubic Centimeter to Kilograms per Cubic Meter (g/cm³ to kg/m³)",
+      "href": "/density/grams-per-cubic-centimeter-to-kilograms-per-cubic-meter",
+      "type": "related"
+    },
+    {
+      "label": "Grams per Milliliter to Grams per Cubic Centimeter (g/mL to g/cm³)",
+      "href": "/density/grams-per-milliliter-to-grams-per-cubic-centimeter",
+      "type": "related"
+    },
+    {
+      "label": "Grams per Cubic Centimeter to Pounds per Cubic Foot (g/cm³ to lb/ft³)",
+      "href": "/density/grams-per-cubic-centimeter-to-pounds-per-cubic-foot",
+      "type": "related"
+    },
+    {
+      "label": "Density & Concentration Conversions Hub",
+      "href": "/density",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many pounds per cubic foot (lb/ft³) are in 1 kilogram per cubic meter (kg/m³)?",
+      "answer": "There are 0.06242796 pounds per cubic foot (lb/ft³) in 1 kilogram per cubic meter (kg/m³), which rounds to 0.0624 lb/ft³ for everyday calculations. Conversely, 1 pound per cubic foot equals 16.018463 kilograms per cubic meter."
+    },
+    {
+      "question": "How do I convert kilograms per cubic meter to pounds per cubic foot (kg/m³ to lb/ft³)?",
+      "answer": "To convert kilograms per cubic meter to pounds per cubic foot, use the formula: lb/ft³ = kg/m³ × 0.06242796. For example, converting 10 kg/m³ gives 0.6243 lb/ft³."
+    },
+    {
+      "question": "What is 10 kilograms per cubic meter in pounds per cubic foot?",
+      "answer": "10 kilograms per cubic meter (kg/m³) equals exactly 0.6243 pounds per cubic foot (lb/ft³) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}
