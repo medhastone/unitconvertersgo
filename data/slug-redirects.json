@@ -915,6 +915,11 @@
     "permanent": true
   },
   {
+    "source": "/power/btus-per-hour-to-watts",
+    "destination": "/power/btu-per-hour-to-watts",
+    "permanent": true
+  },
+  {
     "source": "/power/megawatts-to-kilowatts",
     "destination": "/power/mw-to-kw",
     "permanent": true
@@ -985,7 +990,67 @@
     "permanent": true
   },
   {
+    "source": "/density/kg-m-to-grams-per-cubic-centimeter",
+    "destination": "/density/kilograms-per-cubic-meter-to-grams-per-cubic-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/density/kg-m-to-g-per-cm3",
+    "destination": "/density/kilograms-per-cubic-meter-to-grams-per-cubic-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/density/kilograms-per-cubic-meter-to-g-cm",
+    "destination": "/density/kilograms-per-cubic-meter-to-grams-per-cubic-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/density/kilograms-per-cubic-meter-to-g-per-cm3",
+    "destination": "/density/kilograms-per-cubic-meter-to-grams-per-cubic-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/density/kg-per-m3-to-g-cm",
+    "destination": "/density/kilograms-per-cubic-meter-to-grams-per-cubic-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/density/kg-per-m3-to-grams-per-cubic-centimeter",
+    "destination": "/density/kilograms-per-cubic-meter-to-grams-per-cubic-centimeter",
+    "permanent": true
+  },
+  {
     "source": "/density/g-cm-to-kg-m",
+    "destination": "/density/grams-per-cubic-centimeter-to-kilograms-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-cm-to-kilograms-per-cubic-meter",
+    "destination": "/density/grams-per-cubic-centimeter-to-kilograms-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-cm-to-kg-per-m3",
+    "destination": "/density/grams-per-cubic-centimeter-to-kilograms-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/density/grams-per-cubic-centimeter-to-kg-m",
+    "destination": "/density/grams-per-cubic-centimeter-to-kilograms-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/density/grams-per-cubic-centimeter-to-kg-per-m3",
+    "destination": "/density/grams-per-cubic-centimeter-to-kilograms-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-per-cm3-to-kg-m",
+    "destination": "/density/grams-per-cubic-centimeter-to-kilograms-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-per-cm3-to-kilograms-per-cubic-meter",
     "destination": "/density/grams-per-cubic-centimeter-to-kilograms-per-cubic-meter",
     "permanent": true
   },
@@ -995,7 +1060,67 @@
     "permanent": true
   },
   {
+    "source": "/density/lb-ft-to-kilograms-per-cubic-meter",
+    "destination": "/density/pounds-per-cubic-foot-to-kilograms-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/density/lb-ft-to-kg-per-m3",
+    "destination": "/density/pounds-per-cubic-foot-to-kilograms-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/density/pounds-per-cubic-foot-to-kg-m",
+    "destination": "/density/pounds-per-cubic-foot-to-kilograms-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/density/pounds-per-cubic-foot-to-kg-per-m3",
+    "destination": "/density/pounds-per-cubic-foot-to-kilograms-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/density/lb-per-ft3-to-kg-m",
+    "destination": "/density/pounds-per-cubic-foot-to-kilograms-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/density/lb-per-ft3-to-kilograms-per-cubic-meter",
+    "destination": "/density/pounds-per-cubic-foot-to-kilograms-per-cubic-meter",
+    "permanent": true
+  },
+  {
     "source": "/density/g-ml-to-g-cm",
+    "destination": "/density/grams-per-milliliter-to-grams-per-cubic-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-ml-to-grams-per-cubic-centimeter",
+    "destination": "/density/grams-per-milliliter-to-grams-per-cubic-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-ml-to-g-per-cm3",
+    "destination": "/density/grams-per-milliliter-to-grams-per-cubic-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/density/grams-per-milliliter-to-g-cm",
+    "destination": "/density/grams-per-milliliter-to-grams-per-cubic-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/density/grams-per-milliliter-to-g-per-cm3",
+    "destination": "/density/grams-per-milliliter-to-grams-per-cubic-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-per-ml-to-g-cm",
+    "destination": "/density/grams-per-milliliter-to-grams-per-cubic-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-per-ml-to-grams-per-cubic-centimeter",
     "destination": "/density/grams-per-milliliter-to-grams-per-cubic-centimeter",
     "permanent": true
   },
@@ -1060,7 +1185,17 @@
     "permanent": true
   },
   {
+    "source": "/fuel-consumption/km-per-l-to-mpg-us",
+    "destination": "/fuel-consumption/km-per-l-to-mpg",
+    "permanent": true
+  },
+  {
     "source": "/fuel-consumption/mpg-us-to-kilometers-per-liter",
+    "destination": "/fuel-consumption/mpg-to-km-per-l",
+    "permanent": true
+  },
+  {
+    "source": "/fuel-consumption/mpg-us-to-km-per-l",
     "destination": "/fuel-consumption/mpg-to-km-per-l",
     "permanent": true
   },
@@ -1070,7 +1205,17 @@
     "permanent": true
   },
   {
+    "source": "/fuel-consumption/km-per-l-to-liters-per-100-kilometers",
+    "destination": "/fuel-consumption/km-per-l-to-l-100km",
+    "permanent": true
+  },
+  {
     "source": "/fuel-consumption/liters-per-100-kilometers-to-kilometers-per-liter",
+    "destination": "/fuel-consumption/l-100km-to-km-per-l",
+    "permanent": true
+  },
+  {
+    "source": "/fuel-consumption/liters-per-100-kilometers-to-km-per-l",
     "destination": "/fuel-consumption/l-100km-to-km-per-l",
     "permanent": true
   },
@@ -1390,7 +1535,17 @@
     "permanent": true
   },
   {
+    "source": "/power/tons-of-refrigeration-to-btus-per-hour",
+    "destination": "/power/tons-refrigeration-to-btu-per-hour",
+    "permanent": true
+  },
+  {
     "source": "/power/btu-h-to-tons-of-refrigeration",
+    "destination": "/power/btu-per-hour-to-tons-refrigeration",
+    "permanent": true
+  },
+  {
+    "source": "/power/btus-per-hour-to-tons-of-refrigeration",
     "destination": "/power/btu-per-hour-to-tons-refrigeration",
     "permanent": true
   },
@@ -1450,7 +1605,67 @@
     "permanent": true
   },
   {
+    "source": "/density/kg-m-to-pounds-per-cubic-foot",
+    "destination": "/density/kilograms-per-cubic-meter-to-pounds-per-cubic-foot",
+    "permanent": true
+  },
+  {
+    "source": "/density/kg-m-to-lb-per-ft3",
+    "destination": "/density/kilograms-per-cubic-meter-to-pounds-per-cubic-foot",
+    "permanent": true
+  },
+  {
+    "source": "/density/kilograms-per-cubic-meter-to-lb-ft",
+    "destination": "/density/kilograms-per-cubic-meter-to-pounds-per-cubic-foot",
+    "permanent": true
+  },
+  {
+    "source": "/density/kilograms-per-cubic-meter-to-lb-per-ft3",
+    "destination": "/density/kilograms-per-cubic-meter-to-pounds-per-cubic-foot",
+    "permanent": true
+  },
+  {
+    "source": "/density/kg-per-m3-to-lb-ft",
+    "destination": "/density/kilograms-per-cubic-meter-to-pounds-per-cubic-foot",
+    "permanent": true
+  },
+  {
+    "source": "/density/kg-per-m3-to-pounds-per-cubic-foot",
+    "destination": "/density/kilograms-per-cubic-meter-to-pounds-per-cubic-foot",
+    "permanent": true
+  },
+  {
     "source": "/density/g-cm-to-lb-ft",
+    "destination": "/density/grams-per-cubic-centimeter-to-pounds-per-cubic-foot",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-cm-to-pounds-per-cubic-foot",
+    "destination": "/density/grams-per-cubic-centimeter-to-pounds-per-cubic-foot",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-cm-to-lb-per-ft3",
+    "destination": "/density/grams-per-cubic-centimeter-to-pounds-per-cubic-foot",
+    "permanent": true
+  },
+  {
+    "source": "/density/grams-per-cubic-centimeter-to-lb-ft",
+    "destination": "/density/grams-per-cubic-centimeter-to-pounds-per-cubic-foot",
+    "permanent": true
+  },
+  {
+    "source": "/density/grams-per-cubic-centimeter-to-lb-per-ft3",
+    "destination": "/density/grams-per-cubic-centimeter-to-pounds-per-cubic-foot",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-per-cm3-to-lb-ft",
+    "destination": "/density/grams-per-cubic-centimeter-to-pounds-per-cubic-foot",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-per-cm3-to-pounds-per-cubic-foot",
     "destination": "/density/grams-per-cubic-centimeter-to-pounds-per-cubic-foot",
     "permanent": true
   },
@@ -1830,6 +2045,166 @@
     "permanent": true
   },
   {
+    "source": "/thermal-expansion/per-kelvin-to-ppm-per-kelvin",
+    "destination": "/thermal-expansion/per-kelvin-to-parts-per-million-per-kelvin",
+    "permanent": true
+  },
+  {
+    "source": "/thermal-expansion/ppm-per-kelvin-to-per-kelvin",
+    "destination": "/thermal-expansion/parts-per-million-per-kelvin-to-per-kelvin",
+    "permanent": true
+  },
+  {
+    "source": "/thermal-conductivity/watts-per-meter-kelvin-to-watts-per-centimeter-c",
+    "destination": "/thermal-conductivity/watts-per-meter-kelvin-to-watts-per-centimeter-celsius",
+    "permanent": true
+  },
+  {
+    "source": "/thermal-conductivity/watts-per-centimeter-c-to-watts-per-meter-kelvin",
+    "destination": "/thermal-conductivity/watts-per-centimeter-celsius-to-watts-per-meter-kelvin",
+    "permanent": true
+  },
+  {
+    "source": "/thermal-conductivity/watts-per-meter-kelvin-to-calories-per-second-centimeter-c",
+    "destination": "/thermal-conductivity/watts-per-meter-kelvin-to-calories-per-second-centimeter-celsius",
+    "permanent": true
+  },
+  {
+    "source": "/thermal-conductivity/calories-per-second-centimeter-c-to-watts-per-meter-kelvin",
+    "destination": "/thermal-conductivity/calories-per-second-centimeter-celsius-to-watts-per-meter-kelvin",
+    "permanent": true
+  },
+  {
+    "source": "/specific-heat-capacity/joules-per-kilogram-kelvin-to-joules-per-gram-c",
+    "destination": "/specific-heat-capacity/joules-per-kilogram-kelvin-to-joules-per-gram-celsius",
+    "permanent": true
+  },
+  {
+    "source": "/specific-heat-capacity/joules-per-gram-c-to-joules-per-kilogram-kelvin",
+    "destination": "/specific-heat-capacity/joules-per-gram-celsius-to-joules-per-kilogram-kelvin",
+    "permanent": true
+  },
+  {
+    "source": "/specific-heat-capacity/joules-per-kilogram-kelvin-to-calories-per-gram-c",
+    "destination": "/specific-heat-capacity/joules-per-kilogram-kelvin-to-calories-per-gram-celsius",
+    "permanent": true
+  },
+  {
+    "source": "/specific-heat-capacity/calories-per-gram-c-to-joules-per-kilogram-kelvin",
+    "destination": "/specific-heat-capacity/calories-per-gram-celsius-to-joules-per-kilogram-kelvin",
+    "permanent": true
+  },
+  {
+    "source": "/heat-transfer-coefficient/watts-per-square-meter-kelvin-to-watts-per-square-meter-c",
+    "destination": "/heat-transfer-coefficient/watts-per-square-meter-kelvin-to-watts-per-square-meter-celsius",
+    "permanent": true
+  },
+  {
+    "source": "/heat-transfer-coefficient/watts-per-square-meter-c-to-watts-per-square-meter-kelvin",
+    "destination": "/heat-transfer-coefficient/watts-per-square-meter-celsius-to-watts-per-square-meter-kelvin",
+    "permanent": true
+  },
+  {
+    "source": "/heat-transfer-coefficient/watts-per-square-meter-kelvin-to-btus-per-hour-sq-foot-f",
+    "destination": "/heat-transfer-coefficient/watts-per-square-meter-kelvin-to-btus-per-hour-square-foot-fahrenheit",
+    "permanent": true
+  },
+  {
+    "source": "/heat-transfer-coefficient/btus-per-hour-sq-foot-f-to-watts-per-square-meter-kelvin",
+    "destination": "/heat-transfer-coefficient/btus-per-hour-square-foot-fahrenheit-to-watts-per-square-meter-kelvin",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/kilograms-per-second-square-meter-to-kilograms-per-hour-sq-meter",
+    "destination": "/mass-flux-density/kilograms-per-second-square-meter-to-kilograms-per-hour-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/kilograms-per-second-sq-meter-to-kilograms-per-hour-square-meter",
+    "destination": "/mass-flux-density/kilograms-per-second-square-meter-to-kilograms-per-hour-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/kilograms-per-second-sq-meter-to-kilograms-per-hour-sq-meter",
+    "destination": "/mass-flux-density/kilograms-per-second-square-meter-to-kilograms-per-hour-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/kilograms-per-hour-square-meter-to-kilograms-per-second-sq-meter",
+    "destination": "/mass-flux-density/kilograms-per-hour-square-meter-to-kilograms-per-second-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/kilograms-per-hour-sq-meter-to-kilograms-per-second-square-meter",
+    "destination": "/mass-flux-density/kilograms-per-hour-square-meter-to-kilograms-per-second-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/kilograms-per-hour-sq-meter-to-kilograms-per-second-sq-meter",
+    "destination": "/mass-flux-density/kilograms-per-hour-square-meter-to-kilograms-per-second-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/kilograms-per-second-square-meter-to-grams-per-second-sq-centimeter",
+    "destination": "/mass-flux-density/kilograms-per-second-square-meter-to-grams-per-second-square-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/kilograms-per-second-sq-meter-to-grams-per-second-square-centimeter",
+    "destination": "/mass-flux-density/kilograms-per-second-square-meter-to-grams-per-second-square-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/kilograms-per-second-sq-meter-to-grams-per-second-sq-centimeter",
+    "destination": "/mass-flux-density/kilograms-per-second-square-meter-to-grams-per-second-square-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/grams-per-second-square-centimeter-to-kilograms-per-second-sq-meter",
+    "destination": "/mass-flux-density/grams-per-second-square-centimeter-to-kilograms-per-second-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/grams-per-second-sq-centimeter-to-kilograms-per-second-square-meter",
+    "destination": "/mass-flux-density/grams-per-second-square-centimeter-to-kilograms-per-second-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/grams-per-second-sq-centimeter-to-kilograms-per-second-sq-meter",
+    "destination": "/mass-flux-density/grams-per-second-square-centimeter-to-kilograms-per-second-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/kilograms-per-second-square-meter-to-pounds-per-second-sq-foot",
+    "destination": "/mass-flux-density/kilograms-per-second-square-meter-to-pounds-per-second-square-foot",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/kilograms-per-second-sq-meter-to-pounds-per-second-square-foot",
+    "destination": "/mass-flux-density/kilograms-per-second-square-meter-to-pounds-per-second-square-foot",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/kilograms-per-second-sq-meter-to-pounds-per-second-sq-foot",
+    "destination": "/mass-flux-density/kilograms-per-second-square-meter-to-pounds-per-second-square-foot",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/pounds-per-second-square-foot-to-kilograms-per-second-sq-meter",
+    "destination": "/mass-flux-density/pounds-per-second-square-foot-to-kilograms-per-second-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/pounds-per-second-sq-foot-to-kilograms-per-second-square-meter",
+    "destination": "/mass-flux-density/pounds-per-second-square-foot-to-kilograms-per-second-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/mass-flux-density/pounds-per-second-sq-foot-to-kilograms-per-second-sq-meter",
+    "destination": "/mass-flux-density/pounds-per-second-square-foot-to-kilograms-per-second-square-meter",
+    "permanent": true
+  },
+  {
     "source": "/concentration-molar/moles-per-cubic-meter-to-moles-per-liter-m",
     "destination": "/concentration-molar/moles-per-cubic-meter-to-moles-per-liter",
     "permanent": true
@@ -1857,6 +2232,16 @@
   {
     "source": "/concentration-molar/micromoles-per-liter-mol-l-to-moles-per-cubic-meter",
     "destination": "/concentration-molar/micromoles-per-liter-to-moles-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/concentration-solution/kilograms-per-liter-to-grams-per-100-ml",
+    "destination": "/concentration-solution/kilograms-per-liter-to-grams-per-deciliter",
+    "permanent": true
+  },
+  {
+    "source": "/concentration-solution/grams-per-100-ml-to-kilograms-per-liter",
+    "destination": "/concentration-solution/grams-per-deciliter-to-kilograms-per-liter",
     "permanent": true
   },
   {
@@ -1895,7 +2280,17 @@
     "permanent": true
   },
   {
+    "source": "/luminance/candelas-per-sq-meter-to-kilocandelas-per-square-meter",
+    "destination": "/luminance/candelas-per-square-meter-to-kilocandelas-per-square-meter",
+    "permanent": true
+  },
+  {
     "source": "/luminance/kilocandelas-per-square-meter-to-candelas-per-square-meter-nits",
+    "destination": "/luminance/kilocandelas-per-square-meter-to-candelas-per-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/luminance/kilocandelas-per-square-meter-to-candelas-per-sq-meter",
     "destination": "/luminance/kilocandelas-per-square-meter-to-candelas-per-square-meter",
     "permanent": true
   },
@@ -1905,7 +2300,17 @@
     "permanent": true
   },
   {
+    "source": "/luminance/candelas-per-sq-meter-to-stilbs",
+    "destination": "/luminance/candelas-per-square-meter-to-stilbs",
+    "permanent": true
+  },
+  {
     "source": "/luminance/stilbs-to-candelas-per-square-meter-nits",
+    "destination": "/luminance/stilbs-to-candelas-per-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/luminance/stilbs-to-candelas-per-sq-meter",
     "destination": "/luminance/stilbs-to-candelas-per-square-meter",
     "permanent": true
   },
@@ -1915,7 +2320,17 @@
     "permanent": true
   },
   {
+    "source": "/luminance/candelas-per-sq-meter-to-lamberts",
+    "destination": "/luminance/candelas-per-square-meter-to-lamberts",
+    "permanent": true
+  },
+  {
     "source": "/luminance/lamberts-to-candelas-per-square-meter-nits",
+    "destination": "/luminance/lamberts-to-candelas-per-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/luminance/lamberts-to-candelas-per-sq-meter",
     "destination": "/luminance/lamberts-to-candelas-per-square-meter",
     "permanent": true
   },
@@ -1947,6 +2362,16 @@
   {
     "source": "/digital-image-resolution/dots-per-millimeter-dpmm-to-dots-per-meter",
     "destination": "/digital-image-resolution/dots-per-millimeter-to-dots-per-meter",
+    "permanent": true
+  },
+  {
+    "source": "/electric-resistivity/ohm-meters-to-ohm-sq-millimeters-per-meter",
+    "destination": "/electric-resistivity/ohm-meters-to-ohm-square-millimeters-per-meter",
+    "permanent": true
+  },
+  {
+    "source": "/electric-resistivity/ohm-sq-millimeters-per-meter-to-ohm-meters",
+    "destination": "/electric-resistivity/ohm-square-millimeters-per-meter-to-ohm-meters",
     "permanent": true
   },
   {
@@ -2182,11 +2607,6 @@
   {
     "source": "/density/kg-m-to-g-ml",
     "destination": "/density/kilograms-per-cubic-meter-to-grams-per-milliliter",
-    "permanent": true
-  },
-  {
-    "source": "/thermal-conductivity/calories-per-second-centimeter-c-to-watts-per-meter-kelvin",
-    "destination": "/thermal-conductivity/calories-per-second-centimeter-celsius-to-watts-per-meter-kelvin",
     "permanent": true
   },
   {

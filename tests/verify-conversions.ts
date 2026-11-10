@@ -516,4 +516,20 @@ assert(
 );
 console.log("✅ (g) Verified /numbers/billions-to-lakhs (Tier A) and dynamic /numbers/* magnitude pairs (Tier B) are indexable and pass the 7-point Content Gate.");
 
+// (h) Verify engineering converter pages (e.g. /heat-transfer-coefficient/btus-per-hour-sq-foot-f-to-watts-per-square-meter-kelvin) are indexable (no noindex tag)
+const htcPair = getConversionPair(
+  "btus-per-hour-sq-foot-f-to-watts-per-square-meter-kelvin",
+  "heat_transfer_coefficient"
+);
+assert(Boolean(htcPair), "(h) Expected heat-transfer-coefficient BTU/(h·ft²·°F) to W/(m²·K) pair to resolve");
+assert(
+  isPairIndexable(htcPair!) === true,
+  `(h) Expected ${htcPair!.slug} to be indexable (no noindex tag), got Tier ${getConverterTier(htcPair!)}`
+);
+assert(
+  isCategoryHubIndexable("heat_transfer_coefficient") === true,
+  "(h) Expected /heat-transfer-coefficient category hub to be indexable"
+);
+console.log("✅ (h) Verified /heat-transfer-coefficient/btus-per-hour-square-foot-fahrenheit-to-watts-per-square-meter-kelvin and engineering categories are indexable (0 noindex tags).");
+
 console.log("🎉 ALL TESTS PASSED! Conversion engine, canonical routing, and site-wide Technical SEO specifications are verified.");

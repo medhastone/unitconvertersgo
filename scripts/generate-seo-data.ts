@@ -390,6 +390,14 @@ export const TIER_A_UNIT_PAIRS: Array<[string, string]> = [
   ["metric_ton", "imperial_ton"],
   ["arcminute", "radian"],
   ["radian", "arcminute"],
+  ["kilowatt_hour", "joule"],
+  ["joule", "kilowatt_hour"],
+  ["hertz", "megahertz"],
+  ["megahertz", "hertz"],
+  ["btu_per_hft2f", "w_per_m2k"],
+  ["w_per_m2k", "btu_per_hft2f"],
+  ["btu_per_hft2f", "w_per_m2c"],
+  ["w_per_m2c", "btu_per_hft2f"],
 ];
 
 // ---------------------------------------------------------------------------
@@ -1179,11 +1187,24 @@ for (const item of CONVERSION_CATALOGUE) {
   const catSlug = getCategoryUrlSlug(item.categoryId);
   const canonicalUrl = `/${catSlug}/${item.slug}`;
 
-  const oldFrom = oldTokenMap[fromU.id] || getPreferredUnitSlug(fromU);
-  const oldTo = oldTokenMap[toU.id] || getPreferredUnitSlug(toU);
-  const oldSlug = `${oldFrom}-to-${oldTo}`;
-  if (oldSlug !== item.slug) {
-    addRedirect(`/${catSlug}/${oldSlug}`, canonicalUrl);
+  const fromTokens = new Set<string>([
+    oldTokenMap[fromU.id] || getPreferredUnitSlug(fromU),
+    getPreferredUnitSlug(fromU),
+    ...(fromU.aliases || []).filter((a) => a.includes("-per-")),
+  ]);
+  const toTokens = new Set<string>([
+    oldTokenMap[toU.id] || getPreferredUnitSlug(toU),
+    getPreferredUnitSlug(toU),
+    ...(toU.aliases || []).filter((a) => a.includes("-per-")),
+  ]);
+
+  for (const oldFrom of fromTokens) {
+    for (const oldTo of toTokens) {
+      const oldSlug = `${oldFrom}-to-${oldTo}`;
+      if (oldSlug !== item.slug) {
+        addRedirect(`/${catSlug}/${oldSlug}`, canonicalUrl);
+      }
+    }
   }
 }
 

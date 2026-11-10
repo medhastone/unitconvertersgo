@@ -2,9 +2,11 @@ import { SITE_CONFIG } from "@/lib/config";
 import {
   INDEXABLE_CATEGORIES,
   isIndexableCategory,
+  isMergedThinHub,
   isPairIndexable,
   getConverterTier,
 } from "@/lib/seo-config";
+import { CATEGORIES } from "@/lib/conversions/units";
 import { CONVERSION_CATALOGUE, ensureEnrichedPair } from "@/lib/conversions/catalogue";
 import {
   getCategoryUrlSlug,
@@ -24,12 +26,9 @@ export interface SitemapUrlEntry {
 
 const BUILD_LASTMOD = SITE_CONFIG.legalLastUpdatedIso;
 
-const SPECIALTY_CATEGORY_IDS = new Set([
-  "radiation",
-  "digital_image_resolution",
-  "concentration_molar",
-  "fuel_economy",
-]);
+const DEDICATED_SITEMAP_CATEGORY_SLUGS = new Set<string>(
+  INDEXABLE_CATEGORIES.filter((slug) => slug !== "cooking" && slug !== "specialty")
+);
 
 /**
  * Returns the list of all child sitemap names (without "sitemap-" prefix and ".xml" suffix)
@@ -121,8 +120,18 @@ export function getChildSitemapEntries(name: string): SitemapUrlEntry[] | null {
   }
 
   if (name === "specialty") {
+    const specialtyCategoryHubs = CATEGORIES.filter((cat) => {
+      const catSlug = getCategoryUrlSlug(cat.id);
+      return (
+        !DEDICATED_SITEMAP_CATEGORY_SLUGS.has(catSlug) &&
+        !isMergedThinHub(cat.id) &&
+        isIndexableCategory(cat.id)
+      );
+    });
     const specialtyPairs = CONVERSION_CATALOGUE.map((p) => ensureEnrichedPair(p)).filter(
-      (p) => SPECIALTY_CATEGORY_IDS.has(p.categoryId) && isPairIndexable(p)
+      (p) =>
+        !DEDICATED_SITEMAP_CATEGORY_SLUGS.has(getCategoryUrlSlug(p.categoryId)) &&
+        isPairIndexable(p)
     );
     return [
       {
@@ -131,6 +140,12 @@ export function getChildSitemapEntries(name: string): SitemapUrlEntry[] | null {
         changefreq: "weekly",
         priority: "0.9",
       },
+      ...specialtyCategoryHubs.map((cat) => ({
+        loc: `${baseUrl}${getCategoryUrl(cat.id)}`,
+        lastmod: BUILD_LASTMOD,
+        changefreq: "weekly" as const,
+        priority: "0.8",
+      })),
       ...specialtyPairs.map((pair) => ({
         loc: `${baseUrl}${getPairUrl(pair)}`,
         lastmod: BUILD_LASTMOD,

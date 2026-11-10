@@ -1,97 +1,104 @@
 {
+  "status": "draft-needs-review",
   "slug": "hz-to-mhz",
+  "category": "frequency",
   "categoryId": "frequency",
   "fromUnitId": "hertz",
   "toUnitId": "megahertz",
-  "status": "draft-needs-review",
-  "intro": "Converting hertz (Hz) to megahertz (MHz) is essential when translating measurements across RF spectrum allocation, microprocessor clock speeds, audio signal processing, and AC power grid diagnostics. One hertz equals 0.000001 megahertz, while one megahertz equals 1,000,000 hertz. Whether you are verifying specifications on technical drawings, reconciling international supplier data sheets, or checking everyday measurements, this calculator applies the exact NIST and BIPM conversion factor with instant table lookups and step-by-step worked examples.",
-  "referenceValues": [
+  "fromSymbol": "Hz",
+  "toSymbol": "MHz",
+  "intro": "Professionals and everyday users convert hertz (Hz) to megahertz (MHz) when working across si and metric standards in processor clock speeds, RF wireless spectrum allocation, audio signal processing, and rotational machinery RPM. One hertz equals 0.000001 megahertz, while 1 megahertz equals 1,000,000 hertz. Whether you are verifying frequency specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
     1,
+    2,
+    5,
+    10,
     20,
+    25,
     50,
-    60,
-    100,
-    440,
-    1000,
-    2400,
-    5000,
-    10000
+    75,
+    100
   ],
   "workedExamples": [
     {
-      "title": "Convert 20 Hz to MHz",
-      "context": "Baseline reference check when comparing a single hertz specification against megahertz",
+      "title": "Standard Hertz Benchmark (2 Hz)",
+      "scenario": "Convert 2 hertz (Hz) into megahertz (MHz) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "0.000002 MHz",
+      "stepByStep": "2 Hz × 0.000001 = 0.000002 MHz (rounds to 0 MHz)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 Hz)",
+      "scenario": "Convert 20 hertz (Hz) into megahertz (MHz) for technical comparison and documentation.",
       "inputValue": 20,
-      "calculation": "20 Hz × 0.000001 = 0.00002 MHz",
-      "result": "20 Hz = 0.00002 MHz"
+      "outputValue": "0.00002 MHz",
+      "stepByStep": "20 Hz × 0.000001 = 0.00002 MHz (rounds to 0 MHz)."
     },
     {
-      "title": "Convert 100 Hz to MHz",
-      "context": "Mid-range practical measurement commonly encountered in frequency workflows and equipment sheets",
-      "inputValue": 100,
-      "calculation": "100 Hz × 0.000001 = 0.0001 MHz",
-      "result": "100 Hz = 0.0001 MHz"
-    },
-    {
-      "title": "Convert 2400 Hz to MHz",
-      "context": "Larger scale calculation for commercial, industrial, or bulk frequency planning",
-      "inputValue": 2400,
-      "calculation": "2400 Hz × 0.000001 = 0.0024 MHz",
-      "result": "2400 Hz = 0.0024 MHz"
+      "title": "Higher-Capacity Specification (75 Hz)",
+      "scenario": "Convert 75 hertz (Hz) into megahertz (MHz) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "0.000075 MHz",
+      "stepByStep": "75 Hz × 0.000001 = 0.000075 MHz (rounds to 0 MHz)."
     }
   ],
   "mistakesAndEdgeCases": null,
   "formula": {
-    "exactFactor": "0.000001",
-    "roundedFactor": "0.000001",
     "equation": "MHz = Hz × 0.000001",
-    "inverseEquation": "Hz = MHz × 1",
-    "standardNote": "Verified against NIST SP 811 and BIPM SI Brochure (1 Hz = 0.000001 MHz)."
+    "exactFactor": "0.000001",
+    "roundedFactor": "0",
+    "inverseFactor": "1,000,000"
   },
   "internalLinks": [
     {
-      "href": "/frequency/mhz-to-hz",
       "label": "Megahertz to Hertz (MHz to Hz)",
+      "href": "/frequency/mhz-to-hz",
       "type": "reverse"
     },
     {
-      "href": "/frequency/khz-to-hz",
-      "label": "Kilohertz to Hertz (kHz to Hz)",
+      "label": "Megahertz to Gigahertz (MHz to GHz)",
+      "href": "/frequency/mhz-to-ghz",
       "type": "related"
     },
     {
-      "href": "/frequency/ghz-to-hz",
-      "label": "Gigahertz to Hertz (GHz to Hz)",
+      "label": "Gigahertz to Megahertz (GHz to MHz)",
+      "href": "/frequency/ghz-to-mhz",
       "type": "related"
     },
     {
-      "href": "/frequency/hz-to-khz",
       "label": "Hertz to Kilohertz (Hz to kHz)",
+      "href": "/frequency/hz-to-khz",
       "type": "related"
     },
     {
-      "href": "/undefined",
+      "label": "Kilohertz to Hertz (kHz to Hz)",
+      "href": "/frequency/khz-to-hz",
+      "type": "related"
+    },
+    {
       "label": "Frequency Conversions Hub",
+      "href": "/frequency",
       "type": "hub"
     },
     {
-      "href": "/guides/si-prefixes",
-      "label": "SI Prefixes & Scientific Notation Reference Guide",
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many megahertz are in 1 hertz?",
-      "answer": "There are 0.000001 megahertz (MHz) in 1 hertz (Hz). To convert Hz to MHz, use the exact conversion factor 0.000001."
+      "question": "How many megahertz (MHz) are in 1 hertz (Hz)?",
+      "answer": "There are 0.000001 megahertz (MHz) in 1 hertz (Hz), which rounds to 0 MHz for everyday calculations. Conversely, 1 megahertz equals 1,000,000 hertz."
     },
     {
-      "question": "How do I convert hertz to megahertz manually?",
-      "answer": "Multiply your hertz value by 0.000001 (exact factor: 0.000001). For example, 100 Hz × 0.000001 = 0.0001 MHz."
+      "question": "How do I convert hertz to megahertz (Hz to MHz)?",
+      "answer": "To convert hertz to megahertz, use the formula: MHz = Hz × 0.000001. For example, converting 10 Hz gives 0 MHz."
     },
     {
-      "question": "What is 2400 Hz in MHz?",
-      "answer": "2400 hertz (Hz) equals 0.0024 megahertz (MHz)."
+      "question": "What is 10 hertz in megahertz?",
+      "answer": "10 hertz (Hz) equals exactly 0 megahertz (MHz) using standard NIST SP 811 and ISO 80000 conversion factors."
     }
   ]
 }

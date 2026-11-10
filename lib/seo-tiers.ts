@@ -56,9 +56,12 @@ export function isCategoryHubIndexable(categoryIdOrSlug: string): boolean {
   if (categoryIdOrSlug === "cooking" || categoryIdOrSlug === "specialty") {
     return true;
   }
-  const slug = getCategoryUrlSlug(getInternalCategoryId(categoryIdOrSlug));
-  if (MERGED_THIN_HUB_SET.has(slug)) return false;
-  return INDEXABLE_HUB_SET.has(slug);
+  const internalId = getInternalCategoryId(categoryIdOrSlug);
+  const slug = getCategoryUrlSlug(internalId);
+  if (MERGED_THIN_HUB_SET.has(slug) || MERGED_THIN_HUB_SET.has(categoryIdOrSlug)) {
+    return false;
+  }
+  return Boolean(slug && slug.length > 0);
 }
 
 /**
@@ -66,7 +69,7 @@ export function isCategoryHubIndexable(categoryIdOrSlug: string): boolean {
  * when paired with everyday units (Task 2 Tier C rule).
  */
 const ARCHAIC_OR_ASTRONOMICAL_UNIT_IDS = new Set<string>([
-  // Astronomical / extreme length
+  // Astronomical / archaic / extreme length
   "solar_radius",
   "sun_radius",
   "earth_radius",
@@ -96,33 +99,23 @@ const ARCHAIC_OR_ASTRONOMICAL_UNIT_IDS = new Set<string>([
   "petameter",
   "exameter",
   "microinch",
-  "angstrom",
   "picometer",
   "femtometer",
   "attometer",
   "planck_length",
-  "mil",
-  "point",
-  "pica",
-  "twip",
   "arpent",
   "vara",
   "russian_verst",
+  "circular_mil",
 
   // Archaic / extreme volume
   "attoliter",
   "picoliter",
   "femtoliter",
   "nanoliter",
-  "microliter",
-  "megaliter",
   "gigaliter",
   "teraliter",
-  "kiloliter",
-  "hectoliter",
   "decaliter",
-  "deciliter",
-  "centiliter",
   "gill_us",
   "gill_uk",
   "minim_us",
@@ -130,11 +123,6 @@ const ARCHAIC_OR_ASTRONOMICAL_UNIT_IDS = new Set<string>([
   "fluid_dram_us",
   "fluid_dram_uk",
   "hogshead",
-  "peck_us",
-  "peck_uk",
-  "bushel_us",
-  "bushel_uk",
-  "cord",
   "board_foot",
   "acre_foot",
   "acre_inch",
@@ -144,30 +132,19 @@ const ARCHAIC_OR_ASTRONOMICAL_UNIT_IDS = new Set<string>([
   "dash",
   "pinch",
   "smidgen",
-  "jigger",
-  "shot",
   "fifth",
 
   // Archaic / extreme mass
-  "grain",
   "dram",
   "scruple",
-  "pennyweight",
-  "troy_pound",
   "quarter_us",
   "quarter_uk",
-  "hundredweight_us",
-  "hundredweight_uk",
-  "slug",
   "planck_mass",
-  "atomic_mass_unit",
-  "dalton",
   "gamma",
-  "quintal",
   "assay_ton",
   "mite",
 
-  // Archaic / CGS electromagnetic & pressure & energy
+  // Archaic CGS ESU/EMU & extreme energy/pressure
   "abvolt",
   "statvolt",
   "abampere",
@@ -183,102 +160,21 @@ const ARCHAIC_OR_ASTRONOMICAL_UNIT_IDS = new Set<string>([
   "statcoulomb",
   "franklin",
   "faraday",
-  "maxwell",
-  "gauss",
-  "oersted",
-  "gilbert",
   "unit_pole",
-  "gamma_mag",
   "poundal",
   "sthene",
-  "dyne",
-  "pond",
-  "kilopond",
-  "kip",
-  "ton_force_short",
-  "ton_force_long",
-  "ton_force_metric",
   "erg",
-  "therm_us",
-  "therm_ec",
   "quad",
   "rydberg",
   "hartree",
   "ton_tnt",
   "kiloton_tnt",
   "megaton_tnt",
-  "barye",
-  "pieze",
-  "dyne_sq_cm",
-  "kgf_sq_m",
-  "kgf_sq_mm",
   "torr_abs",
-  "technical_atmosphere",
-  "poise",
-  "centipoise",
-  "stokes",
-  "centistokes",
-  "lambert",
-  "foot_lambert",
-  "apostilb",
-  "stilb",
-  "phot",
-  "nit",
   "blondel",
   "skot",
-  "roentgen",
-  "rem",
-  "millirem",
-  "rad_abs",
-  "curie",
-  "millicurie",
-  "microcurie",
   "rutherford",
-  "kayser",
-  "denier",
-  "tex",
-  "dtex",
-
-  // Extreme data prefixes
-  "exabyte",
-  "zettabyte",
-  "yottabyte",
-  "petabyte",
-  "kibibyte",
-  "mebibyte",
-  "tebibyte",
-  "pebibyte",
-  "exbibyte",
-  "zebibyte",
-  "yobibyte",
-  "kibibit",
-  "mebibit",
-  "gibibit",
-  "tebibit",
-  "nibble",
-  "word",
-
-  // Extreme time
-  "shake",
-  "svedberg",
-  "planck_time",
-  "fortnight",
-  "Sidereal_day",
-  "sidereal_year",
-  "decade",
-  "century",
-  "millennium",
-  "nanosecond",
-  "picosecond",
-  "femtosecond",
-  "attosecond",
-
-  // Additional extreme sub/super prefixes & archaic units from Search Console audit
-  "circular_mil",
   "terapascal",
-  "gigapascal",
-  "millipascal",
-  "micropascal",
   "nanopascal",
   "microwatt",
   "nanowatt",
@@ -286,12 +182,28 @@ const ARCHAIC_OR_ASTRONOMICAL_UNIT_IDS = new Set<string>([
   "nanojoule",
   "microjoule",
   "millijoule",
-  "megaelectronvolt",
-  "kiloelectronvolt",
-  "electronvolt",
   "inch_ounce",
-  "therm",
-  "gram_force",
+
+  // Extreme data prefixes
+  "exabyte",
+  "zettabyte",
+  "yottabyte",
+  "pebibyte",
+  "exbibyte",
+  "zebibyte",
+  "yobibyte",
+  "nibble",
+  "word",
+
+  // Extreme time
+  "shake",
+  "svedberg",
+  "planck_time",
+  "Sidereal_day",
+  "sidereal_year",
+  "picosecond",
+  "femtosecond",
+  "attosecond",
 ]);
 
 const ZERO_DEMAND_PAIR_SLUGS = new Set<string>([
@@ -617,8 +529,14 @@ export function getConverterTier(pair: ConversionPairInfo): ConverterTier {
     return "C";
   }
 
-  // 5. Check extreme scale ratio (> 1e12 or < 1e-12)
-  if (fromU?.toBase && toU?.toBase) {
+  // 5. Check extreme scale ratio (> 1e12 or < 1e-12) for everyday categories
+  if (
+    fromU?.toBase &&
+    toU?.toBase &&
+    pair.categoryId !== "permeability" &&
+    pair.fromUnitId !== "electronvolt" &&
+    pair.toUnitId !== "electronvolt"
+  ) {
     const ratio = fromU.toBase / toU.toBase;
     if (ratio > 1e12 || ratio < 1e-12) {
       tierCache.set(cacheKey, "C");
@@ -626,16 +544,7 @@ export function getConverterTier(pair: ConversionPairInfo): ConverterTier {
     }
   }
 
-  // 6. Check if category is indexable (or fuel_economy which lives under /specialty)
-  const catSlug = getCategoryUrlSlug(pair.categoryId);
-  const inAllowedCategory =
-    INDEXABLE_HUB_SET.has(catSlug) || pair.categoryId === "fuel_economy";
-  if (!inAllowedCategory) {
-    tierCache.set(cacheKey, "C");
-    return "C";
-  }
-
-  // 7. Enforce Content Gate (Task 5: "Pages failing the gate are automatically treated as Tier C")
+  // 6. Enforce Content Gate (Task 5: "Pages failing the gate are automatically treated as Tier C")
   const pairContent = getPairContent(pair.slug, pair);
   if (!pairContent) {
     tierCache.set(cacheKey, "C");
@@ -649,7 +558,7 @@ export function getConverterTier(pair: ConversionPairInfo): ConverterTier {
   }
 
   // Pairs with static pair-content JSON in our high-demand seed set are Tier A;
-  // other plausible pairs in indexable categories that pass the Content Gate are Tier B
+  // other plausible pairs across all categories that pass the Content Gate are Tier B
   const tier: ConverterTier = hasStaticPairContent(pair.slug) ? "A" : "B";
   tierCache.set(cacheKey, tier);
   return tier;
