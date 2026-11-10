@@ -302,7 +302,7 @@ export default async function CookingIngredientPage({
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#16324F] dark:text-white leading-tight">
+          <h1 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight text-[#16324F] dark:text-white leading-snug [text-wrap:balance]">
             {item.name} — Cups to Grams &amp; Grams to Cups Converter
           </h1>
 

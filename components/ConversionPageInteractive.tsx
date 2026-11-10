@@ -784,15 +784,21 @@ export default function ConversionPageInteractive({
         >
           {/* Card Header + Precision Mode Controls */}
           <div className="flex flex-wrap items-start justify-between gap-3">
-            <div className="flex items-center gap-3">
-              <span className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF] shrink-0">
+            <div className="flex items-start gap-3 min-w-0 flex-1">
+              <span className="inline-flex items-center justify-center w-9 h-9 mt-0.5 rounded-xl bg-[#E6FAF8] dark:bg-teal-950/60 text-[#0D9488] dark:text-[#2DD4BF] shrink-0">
                 <ArrowUpDown className="w-5 h-5" />
               </span>
-              <div>
-                <h2 className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight">
+              <div className="min-w-0 flex-1 space-y-1">
+                <h2
+                  className={`font-extrabold text-[#16324F] dark:text-white tracking-tight [text-wrap:balance] ${
+                    fromUnit.plural.length + toUnit.plural.length > 36
+                      ? "text-lg sm:text-xl leading-snug"
+                      : "text-xl sm:text-2xl leading-tight"
+                  }`}
+                >
                   Convert {fromUnit.plural} to {toUnit.plural}
                 </h2>
-                <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400">
+                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
                   Enter a value in {fromUnit.plural.toLowerCase()} ({fromUnit.symbol}) to convert to {toUnit.plural.toLowerCase()} ({toUnit.symbol}).
                 </p>
               </div>
@@ -800,7 +806,7 @@ export default function ConversionPageInteractive({
 
             {/* Precision Selector */}
             <div
-              className="flex items-center gap-1"
+              className="flex items-center gap-1 shrink-0"
               role="group"
               aria-label="Decimal precision"
             >

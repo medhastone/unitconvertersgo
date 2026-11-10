@@ -128,15 +128,15 @@ export default async function WidgetStudioPage({
 
       {/* Studio Header Banner */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 pb-4 border-b border-slate-200/90 dark:border-slate-800">
-        <div className="space-y-2 max-w-3xl">
+        <div className="space-y-2 min-w-0 flex-1">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#E6FAF8] dark:bg-teal-950/70 text-[#0F766E] dark:text-teal-300 text-xs font-extrabold">
             <Code2 className="w-3.5 h-3.5" />
             <span>Free Website Embed Studio · {widget.fromUnit.symbol} → {widget.toUnit.symbol}</span>
           </div>
-          <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-[#16324F] dark:text-white">
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight text-[#16324F] dark:text-white leading-snug [text-wrap:balance]">
             Add the {widget.shortTitle} to Your Website
           </h1>
-          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
             Customize the widget layout and default values below to generate your HTML embed code.
           </p>
         </div>

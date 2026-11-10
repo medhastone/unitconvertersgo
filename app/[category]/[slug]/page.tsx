@@ -388,124 +388,132 @@ export default async function HierarchicalConversionPage({
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
           <nav
             aria-label="Breadcrumbs"
-            className="flex flex-wrap items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400 shrink-0"
+            className="flex flex-wrap items-center gap-1.5 text-xs sm:text-sm text-slate-500 dark:text-slate-400 min-w-0 flex-1"
           >
             <Link
               href="/"
               prefetch={false}
-              className="hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors font-medium"
+              className="hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors font-medium shrink-0"
             >
               Home
             </Link>
             <ChevronRight
-              className="w-4 h-4 text-slate-400 shrink-0"
+              className="w-3.5 h-3.5 text-slate-400 shrink-0"
               aria-hidden="true"
             />
             <Link
               href={isMergedThinHub(category.id) ? "/specialty" : getCategoryUrl(category.id)}
               prefetch={false}
-              className="hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors font-medium"
+              className="hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors font-medium shrink-0"
             >
               {isMergedThinHub(category.id) ? "Specialty & Engineering Hub" : `${category.name} Converter`}
             </Link>
             <ChevronRight
-              className="w-4 h-4 text-slate-400 shrink-0"
+              className="w-3.5 h-3.5 text-slate-400 shrink-0"
               aria-hidden="true"
             />
-            <span className="text-[#16324F] dark:text-white font-bold">
+            <span className="text-[#16324F] dark:text-white font-bold truncate max-w-[260px] sm:max-w-md lg:max-w-lg">
               {fromUnit.plural} to {toUnit.plural}
             </span>
           </nav>
 
-          <div className="w-full md:max-w-md lg:max-w-lg">
+          <div className="w-full md:w-80 lg:w-96 shrink-0">
             <ToolSearchBar currentCategoryName={category.name} />
           </div>
         </div>
 
-        {/* Page Title (H1) & 1-Sentence Actionable Subheading */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 pb-1">
-          <div className="flex items-start sm:items-center gap-4 max-w-3xl">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#E6FAF8] dark:bg-teal-950/60 border border-[#0D9488]/30 dark:border-teal-800/70 text-[#0D9488] dark:text-[#2DD4BF] shadow-xs flex items-center justify-center shrink-0">
+        {/* Page Title (H1), Compact Subheading & Action Strip */}
+        <header className="flex flex-col gap-3.5 pb-1">
+          <div className="flex items-start gap-3.5 sm:gap-4 w-full">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 mt-0.5 rounded-xl bg-[#E6FAF8] dark:bg-teal-950/60 border border-[#0D9488]/30 dark:border-teal-800/70 text-[#0D9488] dark:text-[#2DD4BF] shadow-xs flex items-center justify-center shrink-0">
               {category.iconName === "Thermometer" ? (
-                <Thermometer className="w-7 h-7 stroke-[2.2]" />
+                <Thermometer className="w-6 h-6 stroke-[2.2]" />
               ) : category.iconName === "Ruler" ? (
-                <Ruler className="w-7 h-7 stroke-[2.2]" />
+                <Ruler className="w-6 h-6 stroke-[2.2]" />
               ) : category.iconName === "Scale" ? (
-                <Scale className="w-7 h-7 stroke-[2.2]" />
+                <Scale className="w-6 h-6 stroke-[2.2]" />
               ) : category.iconName === "Square" ? (
-                <Square className="w-7 h-7 stroke-[2.2]" />
+                <Square className="w-6 h-6 stroke-[2.2]" />
               ) : category.iconName === "Beaker" ? (
-                <Beaker className="w-7 h-7 stroke-[2.2]" />
+                <Beaker className="w-6 h-6 stroke-[2.2]" />
               ) : category.iconName === "Gauge" ? (
-                <Gauge className="w-7 h-7 stroke-[2.2]" />
+                <Gauge className="w-6 h-6 stroke-[2.2]" />
               ) : category.iconName === "Clock" ? (
-                <Clock className="w-7 h-7 stroke-[2.2]" />
+                <Clock className="w-6 h-6 stroke-[2.2]" />
               ) : category.iconName === "CircleDot" ? (
-                <CircleDot className="w-7 h-7 stroke-[2.2]" />
+                <CircleDot className="w-6 h-6 stroke-[2.2]" />
               ) : category.iconName === "Zap" ? (
-                <Zap className="w-7 h-7 stroke-[2.2]" />
+                <Zap className="w-6 h-6 stroke-[2.2]" />
               ) : category.iconName === "Activity" ? (
-                <Activity className="w-7 h-7 stroke-[2.2]" />
+                <Activity className="w-6 h-6 stroke-[2.2]" />
               ) : category.iconName === "HardDrive" ? (
-                <HardDrive className="w-7 h-7 stroke-[2.2]" />
+                <HardDrive className="w-6 h-6 stroke-[2.2]" />
               ) : category.iconName === "ArrowDownUp" ? (
-                <ArrowDownUp className="w-7 h-7 stroke-[2.2]" />
+                <ArrowDownUp className="w-6 h-6 stroke-[2.2]" />
               ) : category.iconName === "Flame" ? (
-                <Flame className="w-7 h-7 stroke-[2.2]" />
+                <Flame className="w-6 h-6 stroke-[2.2]" />
               ) : category.iconName === "Layers" ? (
-                <Layers className="w-7 h-7 stroke-[2.2]" />
+                <Layers className="w-6 h-6 stroke-[2.2]" />
               ) : category.iconName === "RotateCw" ? (
-                <RotateCw className="w-7 h-7 stroke-[2.2]" />
+                <RotateCw className="w-6 h-6 stroke-[2.2]" />
               ) : category.iconName === "Radio" ? (
-                <Radio className="w-7 h-7 stroke-[2.2]" />
+                <Radio className="w-6 h-6 stroke-[2.2]" />
               ) : category.iconName === "Compass" ? (
-                <Compass className="w-7 h-7 stroke-[2.2]" />
+                <Compass className="w-6 h-6 stroke-[2.2]" />
               ) : category.iconName === "Fuel" ? (
-                <Fuel className="w-7 h-7 stroke-[2.2]" />
+                <Fuel className="w-6 h-6 stroke-[2.2]" />
               ) : (
-                <ArrowLeftRight className="w-7 h-7 stroke-[2.2]" />
+                <ArrowLeftRight className="w-6 h-6 stroke-[2.2]" />
               )}
             </div>
-            <div className="space-y-1.5">
-              <h1 className="text-[26px] sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#16324F] dark:text-white leading-tight">
+            <div className="min-w-0 flex-1 space-y-1.5">
+              <h1
+                className={`font-extrabold tracking-tight text-[#16324F] dark:text-white [text-wrap:balance] ${
+                  h1WithSymbols.length > 65
+                    ? "text-xl sm:text-2xl lg:text-[28px] leading-snug"
+                    : h1WithSymbols.length > 42
+                    ? "text-2xl sm:text-[26px] lg:text-3xl leading-snug"
+                    : "text-2xl sm:text-3xl lg:text-[34px] leading-tight"
+                }`}
+              >
                 {h1WithSymbols}
               </h1>
-              <p className="text-base sm:text-[17px] text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-4xl">
                 {editorial.subheading}
               </p>
+
+              {/* Compact Symbol Scale & Reverse Converter Action Strip */}
+              <div className="flex flex-wrap items-center gap-2.5 pt-1.5">
+                <div
+                  aria-hidden="true"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shrink-0"
+                >
+                  <span className="px-2 py-0.5 rounded-md bg-sky-100/90 dark:bg-sky-950 text-sky-700 dark:text-sky-300 font-mono text-xs font-extrabold">
+                    {fromUnit.symbol}
+                  </span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#0D9488] shrink-0" />
+                  <span className="px-2 py-0.5 rounded-md bg-teal-100/90 dark:bg-teal-950 text-teal-700 dark:text-teal-300 font-mono text-xs font-extrabold">
+                    {toUnit.symbol}
+                  </span>
+                </div>
+
+                {reciprocalPair && (
+                  <Link
+                    href={getPairUrl(reciprocalPair)}
+                    prefetch={false}
+                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#16324F] dark:text-slate-200 bg-white dark:bg-slate-900 hover:border-[#0D9488] border border-slate-200/90 dark:border-slate-800 px-3.5 py-1.5 rounded-xl shadow-2xs transition-all group max-w-full"
+                  >
+                    <ArrowLeftRight className="w-3.5 h-3.5 text-[#0D9488] group-hover:rotate-180 transition-transform duration-300 shrink-0" />
+                    <span className="truncate">
+                      {toUnit.plural} to {fromUnit.plural} ({toUnit.symbol} →{" "}
+                      {fromUnit.symbol})
+                    </span>
+                  </Link>
+                )}
+              </div>
             </div>
           </div>
-
-          <div className="flex flex-wrap items-center gap-3 shrink-0">
-            {/* Visual Scale Graphic (Desktop) */}
-            <div
-              aria-hidden="true"
-              className="hidden lg:flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800"
-            >
-              <span className="px-2.5 py-1 rounded-lg bg-sky-100/90 dark:bg-sky-950 text-sky-700 dark:text-sky-300 font-mono text-xs font-extrabold">
-                {fromUnit.symbol}
-              </span>
-              <ArrowRight className="w-4 h-4 text-[#0D9488]" />
-              <span className="px-2.5 py-1 rounded-lg bg-teal-100/90 dark:bg-teal-950 text-teal-700 dark:text-teal-300 font-mono text-xs font-extrabold">
-                {toUnit.symbol}
-              </span>
-            </div>
-
-            {reciprocalPair && (
-              <Link
-                href={getPairUrl(reciprocalPair)}
-                prefetch={false}
-                className="inline-flex items-center gap-2 text-sm font-bold text-[#16324F] dark:text-slate-200 bg-white dark:bg-slate-900 hover:border-[#0D9488] border border-slate-200/90 dark:border-slate-800 px-4 py-2.5 rounded-xl shadow-2xs transition-all group"
-              >
-                <ArrowLeftRight className="w-4 h-4 text-[#0D9488] group-hover:rotate-180 transition-transform duration-300" />
-                <span>
-                  {toUnit.plural} to {fromUnit.plural} ({toUnit.symbol} →{" "}
-                  {fromUnit.symbol})
-                </span>
-              </Link>
-            )}
-          </div>
-        </div>
+        </header>
 
         {/* Main 2-Column Layout: Tool Box -> Conversion Table -> How to Convert -> What Is -> More [Unit A] & [Unit B] Conversions -> FAQs */}
         <ConversionPageInteractive

@@ -2192,25 +2192,25 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
           <nav
             aria-label="Breadcrumbs"
-            className="flex flex-wrap items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400 shrink-0"
+            className="flex flex-wrap items-center gap-1.5 text-xs sm:text-sm text-slate-500 dark:text-slate-400 min-w-0 flex-1"
           >
             <Link
               href="/"
               prefetch={false}
-              className="hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors font-medium"
+              className="hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors font-medium shrink-0"
             >
               Home
             </Link>
             <ChevronRight
-              className="w-4 h-4 text-slate-400 shrink-0"
+              className="w-3.5 h-3.5 text-slate-400 shrink-0"
               aria-hidden="true"
             />
-            <span className="text-[#16324F] dark:text-white font-bold">
+            <span className="text-[#16324F] dark:text-white font-bold truncate">
               {heroTitle}
             </span>
           </nav>
 
-          <div className="w-full md:max-w-md lg:max-w-lg">
+          <div className="w-full md:w-80 lg:w-96 shrink-0">
             <ToolSearchBar currentCategoryName={displayName} />
           </div>
         </div>

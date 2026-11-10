@@ -494,18 +494,18 @@ export default function CategoryDashboardView({
       {/* =====================================================================
           HERO SECTION: Colorful Category Icon Badge + Title + Visual Scale Graphic
           ===================================================================== */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-2">
-        <div className="flex items-start sm:items-center gap-4 sm:gap-5 max-w-2xl">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 pb-1">
+        <div className="flex items-start gap-3.5 sm:gap-4 min-w-0 flex-1">
           <div
-            className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl border shadow-xs flex items-center justify-center shrink-0 ${heroBadgeClass}`}
+            className={`w-11 h-11 sm:w-12 sm:h-12 mt-0.5 rounded-xl border shadow-xs flex items-center justify-center shrink-0 ${heroBadgeClass}`}
           >
-            {renderCategoryIcon(category.iconName, "w-8 h-8 stroke-[2.2]")}
+            {renderCategoryIcon(category.iconName, "w-6 h-6 stroke-[2.2]")}
           </div>
-          <div className="space-y-1.5">
-            <h1 className="text-[26px] sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#16324F] dark:text-white leading-tight">
+          <div className="min-w-0 flex-1 space-y-1">
+            <h1 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold tracking-tight text-[#16324F] dark:text-white leading-tight [text-wrap:balance]">
               {heroTitle}
             </h1>
-            <p className="text-base sm:text-[17px] text-slate-600 dark:text-slate-300 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
               {heroDescription}
             </p>
           </div>
