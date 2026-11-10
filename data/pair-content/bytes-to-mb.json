@@ -1,0 +1,101 @@
+{
+  "status": "draft-needs-review",
+  "slug": "bytes-to-mb",
+  "category": "data-storage",
+  "categoryId": "digital_storage",
+  "fromUnitId": "byte",
+  "toUnitId": "megabyte",
+  "fromSymbol": "B",
+  "toSymbol": "MB",
+  "intro": "Professionals and everyday users convert bytes (B) to megabytes (MB) when working across binary and metric standards in engineering specifications, international trade documentation, and technical measurements. One byte equals 0.000001 megabytes, while 1 megabyte (decimal) equals 1,000,000 bytes. Whether you are verifying digital storage specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64,
+    128,
+    256,
+    512,
+    1000,
+    1024
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Byte Benchmark (4 B)",
+      "scenario": "Convert 4 bytes (B) into megabytes (MB) for technical comparison and documentation.",
+      "inputValue": 4,
+      "outputValue": "0.000004 MB",
+      "stepByStep": "4 B × 0.000001 = 0.000004 MB (rounds to 0 MB)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (32 B)",
+      "scenario": "Convert 32 bytes (B) into megabytes (MB) for technical comparison and documentation.",
+      "inputValue": 32,
+      "outputValue": "0.000032 MB",
+      "stepByStep": "32 B × 0.000001 = 0.000032 MB (rounds to 0 MB)."
+    },
+    {
+      "title": "Higher-Capacity Specification (256 B)",
+      "scenario": "Convert 256 bytes (B) into megabytes (MB) for technical comparison and documentation.",
+      "inputValue": 256,
+      "outputValue": "0.000256 MB",
+      "stepByStep": "256 B × 0.000001 = 0.000256 MB (rounds to 0 MB)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "MB = B × 0.000001",
+    "exactFactor": "0.000001",
+    "roundedFactor": "0",
+    "inverseFactor": "1,000,000"
+  },
+  "internalLinks": [
+    {
+      "label": "Megabytes to Gigabytes (MB to GB)",
+      "href": "/data-storage/mb-to-gb",
+      "type": "related"
+    },
+    {
+      "label": "Gigabytes to Megabytes (GB to MB)",
+      "href": "/data-storage/gb-to-mb",
+      "type": "related"
+    },
+    {
+      "label": "Gigabytes to Terabytes (GB to TB)",
+      "href": "/data-storage/gb-to-tb",
+      "type": "related"
+    },
+    {
+      "label": "Terabytes to Gigabytes (TB to GB)",
+      "href": "/data-storage/tb-to-gb",
+      "type": "related"
+    },
+    {
+      "label": "Digital Storage Conversions Hub",
+      "href": "/data-storage",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many megabytes (MB) are in 1 byte (B)?",
+      "answer": "There are 0.000001 megabytes (MB) in 1 byte (B), which rounds to 0 MB for everyday calculations. Conversely, 1 megabyte (decimal) equals 1,000,000 bytes."
+    },
+    {
+      "question": "How do I convert bytes to megabytes (B to MB)?",
+      "answer": "To convert bytes to megabytes, use the formula: MB = B × 0.000001. For example, converting 16 B gives 0 MB."
+    },
+    {
+      "question": "What is 16 bytes in megabytes?",
+      "answer": "16 bytes (B) equals exactly 0 megabytes (MB) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

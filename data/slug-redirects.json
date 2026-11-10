@@ -2128,5 +2128,275 @@
     "source": "/volume/grams-to-ml",
     "destination": "/cooking/grams-to-ml",
     "permanent": true
+  },
+  {
+    "source": "/pressure/kgf-m-to-ksi",
+    "destination": "/pressure/kilograms-force-per-square-meter-to-ksi",
+    "permanent": true
+  },
+  {
+    "source": "/thermal-conductivity/btus-per-hour-foot-f-to-calories-per-second-centimeter-c",
+    "destination": "/thermal-conductivity/btus-per-hour-foot-fahrenheit-to-calories-per-second-centimeter-celsius",
+    "permanent": true
+  },
+  {
+    "source": "/thermal-conductivity/btu-inches-per-hour-sq-foot-f-to-btus-per-hour-foot-f",
+    "destination": "/thermal-conductivity/btu-inches-per-hour-square-foot-fahrenheit-to-btus-per-hour-foot-fahrenheit",
+    "permanent": true
+  },
+  {
+    "source": "/thermal-conductivity/watts-per-meter-kelvin-to-btu-inches-per-hour-sq-foot-f",
+    "destination": "/thermal-conductivity/watts-per-meter-kelvin-to-btu-inches-per-hour-square-foot-fahrenheit",
+    "permanent": true
+  },
+  {
+    "source": "/thermal-conductivity/btus-per-hour-foot-f-to-kilowatts-per-meter-kelvin",
+    "destination": "/thermal-conductivity/btus-per-hour-foot-fahrenheit-to-kilowatts-per-meter-kelvin",
+    "permanent": true
+  },
+  {
+    "source": "/thermal-conductivity/btu-inches-per-hour-sq-foot-f-to-kilowatts-per-meter-kelvin",
+    "destination": "/thermal-conductivity/btu-inches-per-hour-square-foot-fahrenheit-to-kilowatts-per-meter-kelvin",
+    "permanent": true
+  },
+  {
+    "source": "/thermal-conductivity/kilowatts-per-meter-kelvin-to-calories-per-second-centimeter-c",
+    "destination": "/thermal-conductivity/kilowatts-per-meter-kelvin-to-calories-per-second-centimeter-celsius",
+    "permanent": true
+  },
+  {
+    "source": "/thermal-conductivity/watts-per-centimeter-c-to-calories-per-second-centimeter-c",
+    "destination": "/thermal-conductivity/watts-per-centimeter-celsius-to-calories-per-second-centimeter-celsius",
+    "permanent": true
+  },
+  {
+    "source": "/thermal-conductivity/kilowatts-per-meter-kelvin-to-btus-per-hour-foot-f",
+    "destination": "/thermal-conductivity/kilowatts-per-meter-kelvin-to-btus-per-hour-foot-fahrenheit",
+    "permanent": true
+  },
+  {
+    "source": "/surface-tension/newtons-per-meter-to-gf-cm",
+    "destination": "/surface-tension/newtons-per-meter-to-grams-force-per-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/density/kg-m-to-g-ml",
+    "destination": "/density/kilograms-per-cubic-meter-to-grams-per-milliliter",
+    "permanent": true
+  },
+  {
+    "source": "/thermal-conductivity/calories-per-second-centimeter-c-to-watts-per-meter-kelvin",
+    "destination": "/thermal-conductivity/calories-per-second-centimeter-celsius-to-watts-per-meter-kelvin",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-m-to-mg-m",
+    "destination": "/density/grams-per-cubic-meter-to-milligrams-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/torque/newton-centimeters-to-kgf-cm",
+    "destination": "/torque/newton-centimeters-to-kilogram-force-centimeters",
+    "permanent": true
+  },
+  {
+    "source": "/specific-heat-capacity/btu-to-kilojoules-per-kilogram-kelvin",
+    "destination": "/specific-heat-capacity/btus-per-pound-fahrenheit-to-kilojoules-per-kilogram-kelvin",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/dyn-cm-to-pascals",
+    "destination": "/pressure/dynes-per-square-centimeter-to-pascals",
+    "permanent": true
+  },
+  {
+    "source": "/density/g-ml-to-lb-yd",
+    "destination": "/density/grams-per-milliliter-to-pounds-per-cubic-yard",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/dyn-cm-to-gigapascals",
+    "destination": "/pressure/dynes-per-square-centimeter-to-gigapascals",
+    "permanent": true
+  },
+  {
+    "source": "/energy/megatons-of-tnt-to-kgf-m",
+    "destination": "/energy/megatons-of-tnt-to-kilogram-force-meters",
+    "permanent": true
+  },
+  {
+    "source": "/power/kj-h-to-volt-amperes",
+    "destination": "/power/kilojoules-per-hour-to-volt-amperes",
+    "permanent": true
+  },
+  {
+    "source": "/power/kj-h-to-tons-of-refrigeration",
+    "destination": "/power/kilojoules-per-hour-to-tons-of-refrigeration",
+    "permanent": true
+  },
+  {
+    "source": "/power/kj-h-to-kcal-h",
+    "destination": "/power/kilojoules-per-hour-to-kilocalories-per-hour",
+    "permanent": true
+  },
+  {
+    "source": "/surface-tension/gf-cm-to-newtons-per-meter",
+    "destination": "/surface-tension/grams-force-per-centimeter-to-newtons-per-meter",
+    "permanent": true
+  },
+  {
+    "source": "/flow/m-h-to-ml-min",
+    "destination": "/flow/cubic-meters-per-hour-to-milliliters-per-minute",
+    "permanent": true
+  },
+  {
+    "source": "/power/kj-h-to-metric-horsepower",
+    "destination": "/power/kilojoules-per-hour-to-metric-horsepower",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/gigapascals-to-dyn-cm",
+    "destination": "/pressure/gigapascals-to-dynes-per-square-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/power/kcal-h-to-microwatts",
+    "destination": "/power/kilocalories-per-hour-to-microwatts",
+    "permanent": true
+  },
+  {
+    "source": "/power/metric-horsepower-to-kj-h",
+    "destination": "/power/metric-horsepower-to-kilojoules-per-hour",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/kgf-m-to-micropascals",
+    "destination": "/pressure/kilograms-force-per-square-meter-to-micropascals",
+    "permanent": true
+  },
+  {
+    "source": "/surface-current-density/a-mm-to-ka-m",
+    "destination": "/surface-current-density/amperes-per-square-millimeter-to-kiloamperes-per-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/power/kj-h-to-microwatts",
+    "destination": "/power/kilojoules-per-hour-to-microwatts",
+    "permanent": true
+  },
+  {
+    "source": "/sound/millipascals-to-dynes-cm",
+    "destination": "/sound/millipascals-to-baryes",
+    "permanent": true
+  },
+  {
+    "source": "/surface-charge-density/coulombs-per-square-meter-to-c-cm",
+    "destination": "/surface-charge-density/coulombs-per-square-meter-to-coulombs-per-square-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/flow/m-h-to-gph",
+    "destination": "/flow/cubic-meters-per-hour-to-us-gallons-per-hour",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/kgf-cm-to-megapascals",
+    "destination": "/pressure/kilograms-force-per-square-centimeter-to-megapascals",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/kgf-m-to-psf",
+    "destination": "/pressure/kilograms-force-per-square-meter-to-psf",
+    "permanent": true
+  },
+  {
+    "source": "/power/tons-of-refrigeration-to-kj-h",
+    "destination": "/power/tons-of-refrigeration-to-kilojoules-per-hour",
+    "permanent": true
+  },
+  {
+    "source": "/flow/liters-per-second-to-m-h",
+    "destination": "/flow/liters-per-second-to-cubic-meters-per-hour",
+    "permanent": true
+  },
+  {
+    "source": "/power/tons-of-refrigeration-to-kcal-h",
+    "destination": "/power/tons-of-refrigeration-to-kilocalories-per-hour",
+    "permanent": true
+  },
+  {
+    "source": "/power/megawatts-to-kj-h",
+    "destination": "/power/megawatts-to-kilojoules-per-hour",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/kgf-m-to-torr",
+    "destination": "/pressure/kilograms-force-per-square-meter-to-torr",
+    "permanent": true
+  },
+  {
+    "source": "/flow/ml-h-to-liters-per-second",
+    "destination": "/flow/milliliters-per-hour-to-liters-per-second",
+    "permanent": true
+  },
+  {
+    "source": "/flow/m-h-to-liters-per-second",
+    "destination": "/flow/cubic-meters-per-hour-to-liters-per-second",
+    "permanent": true
+  },
+  {
+    "source": "/flow/liters-per-minute-to-m-s",
+    "destination": "/flow/liters-per-minute-to-cubic-meters-per-second",
+    "permanent": true
+  },
+  {
+    "source": "/flow/m-s-to-m-h",
+    "destination": "/flow/cubic-meters-per-second-to-cubic-meters-per-hour",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/kgf-m-to-dyn-cm",
+    "destination": "/pressure/kilograms-force-per-square-meter-to-dynes-per-square-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/kgf-cm-to-dyn-cm",
+    "destination": "/pressure/kilograms-force-per-square-centimeter-to-dynes-per-square-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/flow/m-h-to-cfh",
+    "destination": "/flow/cubic-meters-per-hour-to-cubic-feet-per-hour",
+    "permanent": true
+  },
+  {
+    "source": "/flow/gpm-to-ml-h",
+    "destination": "/flow/us-gallons-per-minute-to-milliliters-per-hour",
+    "permanent": true
+  },
+  {
+    "source": "/surface-current-density/a-cm-to-amperes-per-square-meter",
+    "destination": "/surface-current-density/amperes-per-square-centimeter-to-amperes-per-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/hectopascals-to-dyn-cm",
+    "destination": "/pressure/hectopascals-to-dynes-per-square-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/heat-transfer-coefficient/w-to-kw",
+    "destination": "/heat-transfer-coefficient/watts-per-square-meter-kelvin-to-kilowatts-per-square-meter-kelvin",
+    "permanent": true
+  },
+  {
+    "source": "/pressure/megapascals-to-kgf-m",
+    "destination": "/pressure/megapascals-to-kilograms-force-per-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/heat-transfer-coefficient/w-to-w",
+    "destination": "/heat-transfer-coefficient/watts-per-square-meter-kelvin-to-watts-per-square-meter-celsius",
+    "permanent": true
   }
 ]

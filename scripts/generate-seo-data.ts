@@ -4,10 +4,15 @@ import {
   CONVERSION_CATALOGUE,
   ensureEnrichedPair,
   findDedicatedPair,
+  getConversionPair,
 } from "../lib/conversions/catalogue";
 import { CATEGORIES, CATEGORY_MAP, UNIT_MAP, UNITS } from "../lib/conversions/units";
 import { convertUnits, formatValue } from "../lib/conversions/engine";
-import { getCategoryUrlSlug, getCanonicalConverterPath } from "../lib/conversions/url";
+import {
+  getCategoryUrlSlug,
+  getCanonicalConverterPath,
+  resolveCategoryIdFromUrlSlug,
+} from "../lib/conversions/url";
 import { ConversionPairInfo, Unit } from "../lib/conversions/types";
 
 function convertValue(val: number, fromU: Unit, toU: Unit): number {
@@ -356,6 +361,35 @@ export const TIER_A_UNIT_PAIRS: Array<[string, string]> = [
   ["thousand", "million"],
   ["dozen", "gross"],
   ["gross", "dozen"],
+
+  // Additional high-demand everyday pairs from Search Console audit
+  ["us_cup", "liter"],
+  ["liter", "us_cup"],
+  ["liter", "us_fluid_ounce"],
+  ["us_cup", "metric_cup"],
+  ["foot", "kilometer"],
+  ["meter", "nanometer"],
+  ["sq_yard", "sq_meter"],
+  ["sq_meter", "sq_yard"],
+  ["sq_cm", "sq_mm"],
+  ["byte", "megabyte"],
+  ["gigabyte", "kilobyte"],
+  ["megabyte", "kilobit"],
+  ["megabyte", "gigabit"],
+  ["gigabit", "kilobyte"],
+  ["minute", "day"],
+  ["horsepower_metric", "kilowatt"],
+  ["kilojoule", "btu"],
+  ["bar", "megapascal"],
+  ["megapascal", "pascal"],
+  ["pascal", "megapascal"],
+  ["kilopascal", "foot_water"],
+  ["inch_water", "torr"],
+  ["fahrenheit", "rankine"],
+  ["kelvin", "rankine"],
+  ["metric_ton", "imperial_ton"],
+  ["arcminute", "radian"],
+  ["radian", "arcminute"],
 ];
 
 // ---------------------------------------------------------------------------
@@ -1168,6 +1202,37 @@ addRedirect("/volume/tablespoons-to-grams", "/cooking/tablespoons-to-grams");
 addRedirect("/volume/teaspoons-to-grams", "/cooking/teaspoons-to-grams");
 addRedirect("/volume/ml-to-grams", "/cooking/ml-to-grams");
 addRedirect("/volume/grams-to-ml", "/cooking/grams-to-ml");
+
+// G2. Scan Search Console Crawled-Not-Indexed CSV (if present) for any non-canonical or exponent-loss URLs
+const gscCsvPath = path.join(ROOT, "public", "assets", "aistudio", "Table_b2c95781.csv");
+if (fs.existsSync(gscCsvPath)) {
+  const csvLines = fs
+    .readFileSync(gscCsvPath, "utf-8")
+    .trim()
+    .split(/\r?\n/)
+    .slice(1);
+  for (const line of csvLines) {
+    const [rawUrl] = line.split(",");
+    if (!rawUrl) continue;
+    try {
+      const pathname = new URL(rawUrl).pathname;
+      if (pathname.startsWith("/widgets/w/")) continue;
+      const parts = pathname.split("/").filter(Boolean);
+      if (parts.length !== 2 || parts[0] === "guides" || parts[0] === "cooking") continue;
+      const [catSlug, pairSlug] = parts;
+      const catId = resolveCategoryIdFromUrlSlug(catSlug);
+      const resolvedPair = getConversionPair(pairSlug, catId);
+      if (resolvedPair) {
+        const canonicalPath = getCanonicalConverterPath(resolvedPair.categoryId, resolvedPair.slug);
+        if (canonicalPath !== pathname) {
+          addRedirect(pathname, canonicalPath);
+        }
+      }
+    } catch {
+      // ignore malformed URL
+    }
+  }
+}
 
 // H. Resolve any chains so every source maps directly to its final destination in 1 hop
 const resolvedRedirects: Array<{

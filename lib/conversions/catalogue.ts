@@ -5023,21 +5023,23 @@ function ensureAliasSlugMap(): void {
 
   // Legacy corrupted slug aliases -> redirect to their clean canonical pairs
   const legacyUnitPairRedirects: Record<string, [string, string]> = {
-    "watts-per-meter-kelvin-to-cal": ["tc_w_mk", "tc_cal_s_cm_c"],
-    "cal-to-watts-per-meter-kelvin": ["tc_cal_s_cm_c", "tc_w_mk"],
-    "w-to-btu": ["htc_w_m2k", "htc_btu_h_ft2_f"],
-    "btu-to-w": ["htc_btu_h_ft2_f", "htc_w_m2k"],
-    "w-to-w": ["htc_w_m2k", "htc_w_cm2k"],
-    "htc-w-cm2k-to-htc-w-m2k": ["htc_w_cm2k", "htc_w_m2k"],
-    "w-to-kw": ["htc_w_m2k", "htc_kw_m2k"],
-    "kw-to-w": ["htc_kw_m2k", "htc_w_m2k"],
-    "kg-to-kg": ["mfd_kg_s_m2", "mfd_kg_h_m2"],
-    "mfd-kg-h-m2-to-mfd-kg-s-m2": ["mfd_kg_h_m2", "mfd_kg_s_m2"],
-    "pascal-seconds-to-lb": ["vd_pa_s", "vd_lb_ft_s"],
-    "lb-to-pascal-seconds": ["vd_lb_ft_s", "vd_pa_s"],
+    "watts-per-meter-kelvin-to-cal": ["w_per_mk", "cal_per_scmc"],
+    "cal-to-watts-per-meter-kelvin": ["cal_per_scmc", "w_per_mk"],
+    "w-to-btu": ["w_per_m2k", "btu_per_hft2f"],
+    "btu-to-w": ["btu_per_hft2f", "w_per_m2k"],
+    "w-to-w": ["w_per_m2k", "w_per_m2c"],
+    "htc-w-cm2k-to-htc-w-m2k": ["w_per_m2c", "w_per_m2k"],
+    "kg-to-kg": ["kg_per_sm2", "kg_per_hm2"],
+    "mfd-kg-h-m2-to-mfd-kg-s-m2": ["kg_per_hm2", "kg_per_sm2"],
+    "pascal-seconds-to-lb": ["pa_s", "lb_per_fts"],
+    "lb-to-pascal-seconds": ["lb_per_fts", "pa_s"],
+    "btu-to-kilojoules-per-kilogram-kelvin": ["btu_per_lbf", "kj_per_kgk"],
+    "millipascals-to-dynes-cm": ["sound_mpa", "barye"],
   };
   for (const [legacySlug, [fId, tId]] of Object.entries(legacyUnitPairRedirects)) {
-    const target = PAIR_BY_UNIT_IDS.get(`${fId}__${tId}`);
+    const fU = UNIT_MAP.get(fId);
+    const tU = UNIT_MAP.get(tId);
+    const target = PAIR_BY_UNIT_IDS.get(`${fId}__${tId}`) || (fU && tU ? synthesizeDynamicPair(fU, tU) : undefined);
     if (target && !CATALOGUE_MAP.has(legacySlug)) {
       CATALOGUE_MAP.set(legacySlug, target);
     }
@@ -5318,6 +5320,26 @@ export function getConversionPair(
     .trim()
     .toLowerCase()
     .replace(/\.html?$/i, "");
+
+  // Category-specific legacy collision overrides (e.g. /heat-transfer-coefficient/w-to-kw vs /power/watts-to-kw)
+  if (categoryIdHint === "heat_transfer_coefficient") {
+    if (clean === "w-to-kw") {
+      const fU = UNIT_MAP.get("w_per_m2k");
+      const tU = UNIT_MAP.get("kw_per_m2k");
+      if (fU && tU) return synthesizeDynamicPair(fU, tU);
+    }
+    if (clean === "kw-to-w") {
+      const fU = UNIT_MAP.get("kw_per_m2k");
+      const tU = UNIT_MAP.get("w_per_m2k");
+      if (fU && tU) return synthesizeDynamicPair(fU, tU);
+    }
+    if (clean === "w-to-w") {
+      const fU = UNIT_MAP.get("w_per_m2k");
+      const tU = UNIT_MAP.get("w_per_m2c");
+      if (fU && tU) return synthesizeDynamicPair(fU, tU);
+    }
+  }
+
   const direct = CATALOGUE_MAP.get(clean);
   if (direct) return ensureEnrichedPair(direct);
 
@@ -5350,6 +5372,11 @@ export function getConversionPair(
     // If categoryIdHint is provided from URL /[category]/[slug].htm, match units within that category first
     if (categoryIdHint) {
       const catUnits = getUnitsByCategory(categoryIdHint);
+      const catLegacyTokens: Record<string, string> = {
+        btu: "btu_per_lbf",
+        "dynes-cm": "barye",
+        "dyn-cm": "barye",
+      };
       for (const u of catUnits) {
         const uTokens = [
           u.id.toLowerCase(),
@@ -5361,10 +5388,10 @@ export function getConversionPair(
           slugifyToken(u.symbol),
           ...(u.aliases || []).map((a) => slugifyToken(a)),
         ];
-        if (!fromUnit && uTokens.includes(leftToken)) {
+        if (!fromUnit && (uTokens.includes(leftToken) || catLegacyTokens[leftToken] === u.id)) {
           fromUnit = u;
         }
-        if (!toUnit && uTokens.includes(rightToken)) {
+        if (!toUnit && (uTokens.includes(rightToken) || catLegacyTokens[rightToken] === u.id)) {
           toUnit = u;
         }
       }

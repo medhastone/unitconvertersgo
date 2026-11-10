@@ -1,0 +1,106 @@
+{
+  "status": "draft-needs-review",
+  "slug": "gb-to-kb",
+  "category": "data-storage",
+  "categoryId": "digital_storage",
+  "fromUnitId": "gigabyte",
+  "toUnitId": "kilobyte",
+  "fromSymbol": "GB",
+  "toSymbol": "KB",
+  "intro": "Professionals and everyday users convert gigabytes (GB) to kilobytes (KB) when working across metric and metric standards in engineering specifications, international trade documentation, and technical measurements. One gigabyte (decimal) equals 1,000,000 kilobytes, while 1 kilobyte (decimal) equals 0.000001 gigabytes. Whether you are verifying digital storage specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64,
+    128,
+    256,
+    512,
+    1000,
+    1024
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Gigabyte (Decimal) Benchmark (4 GB)",
+      "scenario": "Convert 4 gigabytes (GB) into kilobytes (KB) for technical comparison and documentation.",
+      "inputValue": 4,
+      "outputValue": "4,000,000 KB",
+      "stepByStep": "4 GB × 1,000,000 = 4,000,000 KB (rounds to 4,000,000 KB)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (32 GB)",
+      "scenario": "Convert 32 gigabytes (GB) into kilobytes (KB) for technical comparison and documentation.",
+      "inputValue": 32,
+      "outputValue": "32,000,000 KB",
+      "stepByStep": "32 GB × 1,000,000 = 32,000,000 KB (rounds to 32,000,000 KB)."
+    },
+    {
+      "title": "Higher-Capacity Specification (256 GB)",
+      "scenario": "Convert 256 gigabytes (GB) into kilobytes (KB) for technical comparison and documentation.",
+      "inputValue": 256,
+      "outputValue": "256,000,000 KB",
+      "stepByStep": "256 GB × 1,000,000 = 256,000,000 KB (rounds to 256,000,000 KB)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "KB = GB × 1,000,000",
+    "exactFactor": "1,000,000",
+    "roundedFactor": "1,000,000",
+    "inverseFactor": "0.000001"
+  },
+  "internalLinks": [
+    {
+      "label": "Kilobytes to Gigabytes (KB to GB)",
+      "href": "/data-storage/kb-to-gb",
+      "type": "reverse"
+    },
+    {
+      "label": "Megabytes to Gigabytes (MB to GB)",
+      "href": "/data-storage/mb-to-gb",
+      "type": "related"
+    },
+    {
+      "label": "Gigabytes to Megabytes (GB to MB)",
+      "href": "/data-storage/gb-to-mb",
+      "type": "related"
+    },
+    {
+      "label": "Gigabytes to Terabytes (GB to TB)",
+      "href": "/data-storage/gb-to-tb",
+      "type": "related"
+    },
+    {
+      "label": "Terabytes to Gigabytes (TB to GB)",
+      "href": "/data-storage/tb-to-gb",
+      "type": "related"
+    },
+    {
+      "label": "Digital Storage Conversions Hub",
+      "href": "/data-storage",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many kilobytes (KB) are in 1 gigabyte (decimal) (GB)?",
+      "answer": "There are 1,000,000 kilobytes (KB) in 1 gigabyte (decimal) (GB), which rounds to 1,000,000 KB for everyday calculations. Conversely, 1 kilobyte (decimal) equals 0.000001 gigabytes."
+    },
+    {
+      "question": "How do I convert gigabytes to kilobytes (GB to KB)?",
+      "answer": "To convert gigabytes to kilobytes, use the formula: KB = GB × 1,000,000. For example, converting 16 GB gives 16,000,000 KB."
+    },
+    {
+      "question": "What is 16 gigabytes in kilobytes?",
+      "answer": "16 gigabytes (GB) equals exactly 16,000,000 kilobytes (KB) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "ps-to-kw",
+  "category": "power",
+  "categoryId": "power",
+  "fromUnitId": "horsepower_metric",
+  "toUnitId": "kilowatt",
+  "fromSymbol": "PS",
+  "toSymbol": "kW",
+  "intro": "Professionals and everyday users convert metric horsepower (PS) to kilowatts (kW) when working across metric and metric standards in automotive engine output ratings, electric motor sizing, solar inverter specifications, and appliance load planning. One horsepower (metric ps) equals 0.735499 kilowatts, while 1 kilowatt equals 1.359622 metric horsepower. Whether you are verifying power specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Horsepower (Metric PS) Benchmark (2 PS)",
+      "scenario": "Convert 2 metric horsepower (PS) into kilowatts (kW) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "1.470998 kW",
+      "stepByStep": "2 PS × 0.735499 = 1.470998 kW (rounds to 1.47 kW)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 PS)",
+      "scenario": "Convert 20 metric horsepower (PS) into kilowatts (kW) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "14.709975 kW",
+      "stepByStep": "20 PS × 0.735499 = 14.709975 kW (rounds to 14.71 kW)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 PS)",
+      "scenario": "Convert 75 metric horsepower (PS) into kilowatts (kW) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "55.162406 kW",
+      "stepByStep": "75 PS × 0.735499 = 55.162406 kW (rounds to 55.16 kW)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "kW = PS × 0.73549875",
+    "exactFactor": "0.73549875",
+    "roundedFactor": "0.7355",
+    "inverseFactor": "1.359622"
+  },
+  "internalLinks": [
+    {
+      "label": "Kilowatts to Metric Horsepower (kW to PS)",
+      "href": "/power/kw-to-ps",
+      "type": "reverse"
+    },
+    {
+      "label": "Watts to Kilowatts (W to kW)",
+      "href": "/power/watts-to-kw",
+      "type": "related"
+    },
+    {
+      "label": "Kilowatts to Watts (kW to W)",
+      "href": "/power/kw-to-watts",
+      "type": "related"
+    },
+    {
+      "label": "Horsepower (hp) to Kilowatts (hp to kW)",
+      "href": "/power/hp-to-kw",
+      "type": "related"
+    },
+    {
+      "label": "Kilowatts to Horsepower (hp) (kW to hp)",
+      "href": "/power/kw-to-horsepower",
+      "type": "related"
+    },
+    {
+      "label": "Power Conversions Hub",
+      "href": "/power",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many kilowatts (kW) are in 1 horsepower (metric ps) (PS)?",
+      "answer": "There are 0.73549875 kilowatts (kW) in 1 horsepower (metric ps) (PS), which rounds to 0.7355 kW for everyday calculations. Conversely, 1 kilowatt equals 1.359622 metric horsepower."
+    },
+    {
+      "question": "How do I convert metric horsepower to kilowatts (PS to kW)?",
+      "answer": "To convert metric horsepower to kilowatts, use the formula: kW = PS × 0.73549875. For example, converting 10 PS gives 7.355 kW."
+    },
+    {
+      "question": "What is 10 metric horsepower in kilowatts?",
+      "answer": "10 metric horsepower (PS) equals exactly 7.355 kilowatts (kW) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

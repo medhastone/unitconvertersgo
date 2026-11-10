@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "liters-to-fluid-ounces",
+  "category": "volume",
+  "categoryId": "volume",
+  "fromUnitId": "liter",
+  "toUnitId": "us_fluid_ounce",
+  "fromSymbol": "L",
+  "toSymbol": "fl oz",
+  "intro": "Professionals and everyday users convert liters (L) to fluid ounces (us) (fl oz) when working across metric and us_customary standards in culinary recipe scaling, beverage bottling, laboratory reagent preparation, and fluid tank capacity sizing. One liter equals 33.814023 fluid ounces (us), while 1 fluid ounce (us) equals 0.029574 liters. Whether you are verifying volume & liquid specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.25,
+    0.5,
+    0.75,
+    1,
+    1.5,
+    2,
+    3,
+    5,
+    10,
+    20
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Liter Benchmark (0.75 L)",
+      "scenario": "Convert 0.75 liters (L) into fluid ounces (us) (fl oz) for technical comparison and documentation.",
+      "inputValue": 0.75,
+      "outputValue": "25.360517 fl oz",
+      "stepByStep": "0.75 L × 33.814023 = 25.360517 fl oz (rounds to 25.36 fl oz)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (2 L)",
+      "scenario": "Convert 2 liters (L) into fluid ounces (us) (fl oz) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "67.628045 fl oz",
+      "stepByStep": "2 L × 33.814023 = 67.628045 fl oz (rounds to 67.63 fl oz)."
+    },
+    {
+      "title": "Higher-Capacity Specification (10 L)",
+      "scenario": "Convert 10 liters (L) into fluid ounces (us) (fl oz) for technical comparison and documentation.",
+      "inputValue": 10,
+      "outputValue": "338.140227 fl oz",
+      "stepByStep": "10 L × 33.814023 = 338.140227 fl oz (rounds to 338.14 fl oz)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "US Customary vs. British Imperial Liquid Volume Trap",
+    "items": [
+      "US Customary and UK Imperial liquid units share identical names but have different physical volumes: 1 US Gallon is 3.78541 L (128 US fl oz), whereas 1 UK Imperial Gallon is 4.54609 L (160 Imp fl oz) — a 20.1% difference.",
+      "Similarly, 1 US Pint contains 16 US fluid ounces (473.18 mL), while 1 British Imperial Pint contains 20 Imperial fluid ounces (568.26 mL). Always verify whether your recipe, pump datasheet, or vehicle spec sheet uses US or UK standards."
+    ]
+  },
+  "formula": {
+    "equation": "fl oz = L × 33.8140227",
+    "exactFactor": "33.8140227",
+    "roundedFactor": "33.814",
+    "inverseFactor": "0.029574"
+  },
+  "internalLinks": [
+    {
+      "label": "Fluid Ounces (US) to Liters (fl oz to L)",
+      "href": "/volume/fluid-ounces-to-liters",
+      "type": "reverse"
+    },
+    {
+      "label": "Liters to Gallons (US) (L to gal (US))",
+      "href": "/volume/liters-to-gallons",
+      "type": "related"
+    },
+    {
+      "label": "Gallons (US) to Liters (gal (US) to L)",
+      "href": "/volume/gallons-to-liters",
+      "type": "related"
+    },
+    {
+      "label": "Milliliters to Fluid Ounces (US) (mL to fl oz)",
+      "href": "/volume/ml-to-fluid-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Fluid Ounces (US) to Milliliters (fl oz to mL)",
+      "href": "/volume/fluid-ounces-to-ml",
+      "type": "related"
+    },
+    {
+      "label": "Volume & Liquid Conversions Hub",
+      "href": "/volume",
+      "type": "hub"
+    },
+    {
+      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "href": "/guides/us-vs-imperial-fluid-ounces",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many fluid ounces (us) (fl oz) are in 1 liter (L)?",
+      "answer": "There are 33.8140227 fluid ounces (us) (fl oz) in 1 liter (L), which rounds to 33.814 fl oz for everyday calculations. Conversely, 1 fluid ounce (us) equals 0.029574 liters."
+    },
+    {
+      "question": "How do I convert liters to fluid ounces (us) (L to fl oz)?",
+      "answer": "To convert liters to fluid ounces (us), use the formula: fl oz = L × 33.8140227. For example, converting 1.5 L gives 50.721 fl oz."
+    },
+    {
+      "question": "What is 1.5 liters in fluid ounces (us)?",
+      "answer": "1.5 liters (L) equals exactly 50.721 fluid ounces (us) (fl oz) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

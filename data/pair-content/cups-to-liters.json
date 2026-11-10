@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "cups-to-liters",
+  "category": "volume",
+  "categoryId": "volume",
+  "fromUnitId": "us_cup",
+  "toUnitId": "liter",
+  "fromSymbol": "cup",
+  "toSymbol": "L",
+  "intro": "Professionals and everyday users convert cups (us) (cup) to liters (L) when working across us_customary and metric standards in culinary recipe scaling, beverage bottling, laboratory reagent preparation, and fluid tank capacity sizing. One cup (us customary) equals 0.236588 liters, while 1 liter equals 4.226753 cups (us). Whether you are verifying volume & liquid specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.25,
+    0.333,
+    0.5,
+    0.667,
+    0.75,
+    1,
+    1.5,
+    2,
+    3,
+    4
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Cup (US Customary) Benchmark (0.5 cup)",
+      "scenario": "Convert 0.5 cups (us) (cup) into liters (L) for technical comparison and documentation.",
+      "inputValue": 0.5,
+      "outputValue": "0.118294 L",
+      "stepByStep": "0.5 cup × 0.236588 = 0.118294 L (rounds to 0.12 L)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (1 cup)",
+      "scenario": "Convert 1 cups (us) (cup) into liters (L) for technical comparison and documentation.",
+      "inputValue": 1,
+      "outputValue": "0.236588 L",
+      "stepByStep": "1 cup × 0.236588 = 0.236588 L (rounds to 0.24 L)."
+    },
+    {
+      "title": "Higher-Capacity Specification (3 cup)",
+      "scenario": "Convert 3 cups (us) (cup) into liters (L) for technical comparison and documentation.",
+      "inputValue": 3,
+      "outputValue": "0.709765 L",
+      "stepByStep": "3 cup × 0.236588 = 0.709765 L (rounds to 0.71 L)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "US Customary vs. British Imperial Liquid Volume Trap",
+    "items": [
+      "US Customary and UK Imperial liquid units share identical names but have different physical volumes: 1 US Gallon is 3.78541 L (128 US fl oz), whereas 1 UK Imperial Gallon is 4.54609 L (160 Imp fl oz) — a 20.1% difference.",
+      "Similarly, 1 US Pint contains 16 US fluid ounces (473.18 mL), while 1 British Imperial Pint contains 20 Imperial fluid ounces (568.26 mL). Always verify whether your recipe, pump datasheet, or vehicle spec sheet uses US or UK standards."
+    ]
+  },
+  "formula": {
+    "equation": "L = cup × 0.23658824",
+    "exactFactor": "0.23658824",
+    "roundedFactor": "0.2366",
+    "inverseFactor": "4.226753"
+  },
+  "internalLinks": [
+    {
+      "label": "Liters to Cups (US) (L to cup)",
+      "href": "/volume/liters-to-cups",
+      "type": "reverse"
+    },
+    {
+      "label": "Liters to Gallons (US) (L to gal (US))",
+      "href": "/volume/liters-to-gallons",
+      "type": "related"
+    },
+    {
+      "label": "Gallons (US) to Liters (gal (US) to L)",
+      "href": "/volume/gallons-to-liters",
+      "type": "related"
+    },
+    {
+      "label": "Milliliters to Fluid Ounces (US) (mL to fl oz)",
+      "href": "/volume/ml-to-fluid-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Fluid Ounces (US) to Milliliters (fl oz to mL)",
+      "href": "/volume/fluid-ounces-to-ml",
+      "type": "related"
+    },
+    {
+      "label": "Volume & Liquid Conversions Hub",
+      "href": "/volume",
+      "type": "hub"
+    },
+    {
+      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "href": "/guides/us-vs-imperial-fluid-ounces",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many liters (L) are in 1 cup (us customary) (cup)?",
+      "answer": "There are 0.23658824 liters (L) in 1 cup (us customary) (cup), which rounds to 0.2366 L for everyday calculations. Conversely, 1 liter equals 4.226753 cups (us)."
+    },
+    {
+      "question": "How do I convert cups (us) to liters (cup to L)?",
+      "answer": "To convert cups (us) to liters, use the formula: L = cup × 0.23658824. For example, converting 0.75 cup gives 0.1774 L."
+    },
+    {
+      "question": "What is 0.75 cups (us) in liters?",
+      "answer": "0.75 cups (us) (cup) equals exactly 0.1774 liters (L) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

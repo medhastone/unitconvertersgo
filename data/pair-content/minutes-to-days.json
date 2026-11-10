@@ -1,0 +1,99 @@
+{
+  "status": "draft-needs-review",
+  "slug": "minutes-to-days",
+  "category": "time",
+  "categoryId": "time",
+  "fromUnitId": "minute",
+  "toUnitId": "day",
+  "fromSymbol": "min",
+  "toSymbol": "d",
+  "intro": "Professionals and everyday users convert minutes (min) to days (d) when working across other and other standards in project scheduling, payroll timecards, scientific interval logging, and server uptime SLAs. One minute equals 0.000694 days, while 1 day equals 1,440 minutes. Whether you are verifying time specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    1,
+    5,
+    10,
+    15,
+    30,
+    45,
+    60,
+    90,
+    120,
+    180
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Minute Benchmark (10 min)",
+      "scenario": "Convert 10 minutes (min) into days (d) for technical comparison and documentation.",
+      "inputValue": 10,
+      "outputValue": "0.006944 d",
+      "stepByStep": "10 min × 0.000694 = 0.006944 d (rounds to 0.01 d)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (45 min)",
+      "scenario": "Convert 45 minutes (min) into days (d) for technical comparison and documentation.",
+      "inputValue": 45,
+      "outputValue": "0.03125 d",
+      "stepByStep": "45 min × 0.000694 = 0.03125 d (rounds to 0.03 d)."
+    },
+    {
+      "title": "Higher-Capacity Specification (120 min)",
+      "scenario": "Convert 120 minutes (min) into days (d) for technical comparison and documentation.",
+      "inputValue": 120,
+      "outputValue": "0.083333 d",
+      "stepByStep": "120 min × 0.000694 = 0.083333 d (rounds to 0.08 d)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "d = min × 0.00069444",
+    "exactFactor": "0.00069444",
+    "roundedFactor": "0.0007",
+    "inverseFactor": "1,440"
+  },
+  "internalLinks": [
+    {
+      "label": "Hours to Minutes (hr to min)",
+      "href": "/time/hours-to-minutes",
+      "type": "related"
+    },
+    {
+      "label": "Minutes to Hours (min to hr)",
+      "href": "/time/minutes-to-hours",
+      "type": "related"
+    },
+    {
+      "label": "Minutes to Seconds (min to s)",
+      "href": "/time/minutes-to-seconds",
+      "type": "related"
+    },
+    {
+      "label": "Seconds to Minutes (s to min)",
+      "href": "/time/seconds-to-minutes",
+      "type": "related"
+    },
+    {
+      "label": "Time Conversions Hub",
+      "href": "/time",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many days (d) are in 1 minute (min)?",
+      "answer": "There are 0.00069444 days (d) in 1 minute (min), which rounds to 0.0007 d for everyday calculations. Conversely, 1 day equals 1,440 minutes."
+    },
+    {
+      "question": "How do I convert minutes to days (min to d)?",
+      "answer": "To convert minutes to days, use the formula: d = min × 0.00069444. For example, converting 30 min gives 0.0208 d."
+    },
+    {
+      "question": "What is 30 minutes in days?",
+      "answer": "30 minutes (min) equals exactly 0.0208 days (d) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

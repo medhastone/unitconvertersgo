@@ -10,6 +10,7 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Read the UnitConvertersGo Disclaimer. Understand the informational purpose of our conversion tools, how rounding and unit definitions work, and when to verify critical calculations.",
   canonicalPath: "/disclaimer",
+  noindex: true,
 });
 
 const DISCLAIMER_TOC: TocItem[] = [

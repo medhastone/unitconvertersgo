@@ -1,0 +1,110 @@
+{
+  "status": "draft-needs-review",
+  "slug": "us-cups-to-metric-cups",
+  "category": "volume",
+  "categoryId": "volume",
+  "fromUnitId": "us_cup",
+  "toUnitId": "metric_cup",
+  "fromSymbol": "cup",
+  "toSymbol": "cup (metric)",
+  "intro": "Professionals and everyday users convert cups (us) (cup) to metric cups (cup (metric)) when working across us_customary and metric standards in culinary recipe scaling, beverage bottling, laboratory reagent preparation, and fluid tank capacity sizing. One cup (us customary) equals 0.946353 metric cups, while 1 cup (metric) equals 1.056688 cups (us). Whether you are verifying volume & liquid specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.25,
+    0.333,
+    0.5,
+    0.667,
+    0.75,
+    1,
+    1.5,
+    2,
+    3,
+    4
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Cup (US Customary) Benchmark (0.5 cup)",
+      "scenario": "Convert 0.5 cups (us) (cup) into metric cups (cup (metric)) for technical comparison and documentation.",
+      "inputValue": 0.5,
+      "outputValue": "0.473176 cup (metric)",
+      "stepByStep": "0.5 cup × 0.946353 = 0.473176 cup (metric) (rounds to 0.47 cup (metric))."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (1 cup)",
+      "scenario": "Convert 1 cups (us) (cup) into metric cups (cup (metric)) for technical comparison and documentation.",
+      "inputValue": 1,
+      "outputValue": "0.946353 cup (metric)",
+      "stepByStep": "1 cup × 0.946353 = 0.946353 cup (metric) (rounds to 0.95 cup (metric))."
+    },
+    {
+      "title": "Higher-Capacity Specification (3 cup)",
+      "scenario": "Convert 3 cups (us) (cup) into metric cups (cup (metric)) for technical comparison and documentation.",
+      "inputValue": 3,
+      "outputValue": "2.839059 cup (metric)",
+      "stepByStep": "3 cup × 0.946353 = 2.839059 cup (metric) (rounds to 2.84 cup (metric))."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "US Customary vs. British Imperial Liquid Volume Trap",
+    "items": [
+      "US Customary and UK Imperial liquid units share identical names but have different physical volumes: 1 US Gallon is 3.78541 L (128 US fl oz), whereas 1 UK Imperial Gallon is 4.54609 L (160 Imp fl oz) — a 20.1% difference.",
+      "Similarly, 1 US Pint contains 16 US fluid ounces (473.18 mL), while 1 British Imperial Pint contains 20 Imperial fluid ounces (568.26 mL). Always verify whether your recipe, pump datasheet, or vehicle spec sheet uses US or UK standards."
+    ]
+  },
+  "formula": {
+    "equation": "cup (metric) = cup × 0.94635295",
+    "exactFactor": "0.94635295",
+    "roundedFactor": "0.9464",
+    "inverseFactor": "1.056688"
+  },
+  "internalLinks": [
+    {
+      "label": "Metric Cups to Cups (US) (cup (metric) to cup)",
+      "href": "/volume/metric-cups-to-us-cups",
+      "type": "reverse"
+    },
+    {
+      "label": "Liters to Gallons (US) (L to gal (US))",
+      "href": "/volume/liters-to-gallons",
+      "type": "related"
+    },
+    {
+      "label": "Gallons (US) to Liters (gal (US) to L)",
+      "href": "/volume/gallons-to-liters",
+      "type": "related"
+    },
+    {
+      "label": "Milliliters to Fluid Ounces (US) (mL to fl oz)",
+      "href": "/volume/ml-to-fluid-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Fluid Ounces (US) to Milliliters (fl oz to mL)",
+      "href": "/volume/fluid-ounces-to-ml",
+      "type": "related"
+    },
+    {
+      "label": "Volume & Liquid Conversions Hub",
+      "href": "/volume",
+      "type": "hub"
+    },
+    {
+      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "href": "/guides/us-vs-imperial-fluid-ounces",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many metric cups (cup (metric)) are in 1 cup (us customary) (cup)?",
+      "answer": "There are 0.94635295 metric cups (cup (metric)) in 1 cup (us customary) (cup), which rounds to 0.9464 cup (metric) for everyday calculations. Conversely, 1 cup (metric) equals 1.056688 cups (us)."
+    },
+    {
+      "question": "How do I convert cups (us) to metric cups (cup to cup (metric))?",
+      "answer": "To convert cups (us) to metric cups, use the formula: cup (metric) = cup × 0.94635295. For example, converting 0.75 cup gives 0.7098 cup (metric)."
+    },
+    {
+      "question": "What is 0.75 cups (us) in metric cups?",
+      "answer": "0.75 cups (us) (cup) equals exactly 0.7098 metric cups (cup (metric)) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

@@ -9,6 +9,7 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Read the Terms of Use for UnitConvertersGo. Understand acceptable use of our unit conversion tools, embeddable widgets, intellectual property, and limitations of liability.",
   canonicalPath: "/terms-of-use",
+  noindex: true,
 });
 
 const TERMS_TOC: TocItem[] = [

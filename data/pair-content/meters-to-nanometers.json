@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "meters-to-nanometers",
+  "category": "length",
+  "categoryId": "length",
+  "fromUnitId": "meter",
+  "toUnitId": "nanometer",
+  "fromSymbol": "m",
+  "toSymbol": "nm",
+  "intro": "Professionals and everyday users convert meters (m) to nanometers (nm) when working across si and metric standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One meter equals 1,000,000,000 nanometers, while 1 nanometer equals 1.0000e-9 meters. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    1.5,
+    2,
+    3,
+    5,
+    10,
+    25,
+    50,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Meter Benchmark (1.5 m)",
+      "scenario": "Convert 1.5 meters (m) into nanometers (nm) for technical comparison and documentation.",
+      "inputValue": 1.5,
+      "outputValue": "1.5000e+9 nm",
+      "stepByStep": "1.5 m × 1,000,000,000 = 1.5000e+9 nm (rounds to 1.5000e+9 nm)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (5 m)",
+      "scenario": "Convert 5 meters (m) into nanometers (nm) for technical comparison and documentation.",
+      "inputValue": 5,
+      "outputValue": "5.0000e+9 nm",
+      "stepByStep": "5 m × 1,000,000,000 = 5.0000e+9 nm (rounds to 5.0000e+9 nm)."
+    },
+    {
+      "title": "Higher-Capacity Specification (50 m)",
+      "scenario": "Convert 50 meters (m) into nanometers (nm) for technical comparison and documentation.",
+      "inputValue": 50,
+      "outputValue": "5.0000e+10 nm",
+      "stepByStep": "50 m × 1,000,000,000 = 5.0000e+10 nm (rounds to 5.0000e+10 nm)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "nm = m × 999,999,999.9999999",
+    "exactFactor": "999,999,999.9999999",
+    "roundedFactor": "1,000,000,000",
+    "inverseFactor": "1.0000e-9"
+  },
+  "internalLinks": [
+    {
+      "label": "Nanometers to Meters (nm to m)",
+      "href": "/length/nanometers-to-meters",
+      "type": "reverse"
+    },
+    {
+      "label": "Centimeters to Inches (cm to in)",
+      "href": "/length/cm-to-inches",
+      "type": "related"
+    },
+    {
+      "label": "Inches to Centimeters (in to cm)",
+      "href": "/length/inches-to-cm",
+      "type": "related"
+    },
+    {
+      "label": "Feet to Meters (ft to m)",
+      "href": "/length/feet-to-meters",
+      "type": "related"
+    },
+    {
+      "label": "Meters to Feet (m to ft)",
+      "href": "/length/meters-to-feet",
+      "type": "related"
+    },
+    {
+      "label": "Length Conversions Hub",
+      "href": "/length",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many nanometers (nm) are in 1 meter (m)?",
+      "answer": "There are 999,999,999.9999999 nanometers (nm) in 1 meter (m), which rounds to 1,000,000,000 nm for everyday calculations. Conversely, 1 nanometer equals 1.0000e-9 meters."
+    },
+    {
+      "question": "How do I convert meters to nanometers (m to nm)?",
+      "answer": "To convert meters to nanometers, use the formula: nm = m × 999,999,999.9999999. For example, converting 3 m gives 3.0000e+9 nm."
+    },
+    {
+      "question": "What is 3 meters in nanometers?",
+      "answer": "3 meters (m) equals exactly 3.0000e+9 nanometers (nm) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

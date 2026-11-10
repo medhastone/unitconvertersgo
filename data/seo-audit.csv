@@ -22,7 +22,7 @@ url,category,from,to,slug,tier,dimension_match,slug_has_exponent_loss,duplicate_
 /length/mm-to-meters,length,Millimeter (mm),Meter (m),mm-to-meters,A,true,false,,true,true
 /length/meters-to-inches,length,Meter (m),Inch (in),meters-to-inches,A,true,false,,true,true
 /length/inches-to-meters,length,Inch (in),Meter (m),inches-to-meters,A,true,false,,true,true
-/length/feet-to-km,length,Foot (ft),Kilometer (km),feet-to-km,B,true,false,,false,true
+/length/feet-to-km,length,Foot (ft),Kilometer (km),feet-to-km,A,true,false,,true,true
 /length/km-to-feet,length,Kilometer (km),Foot (ft),km-to-feet,B,true,false,,false,true
 /weight-and-mass/kg-to-lbs,weight-and-mass,Kilogram (kg),Pound (Avoirdupois) (lb),kg-to-lbs,A,true,false,,true,true
 /weight-and-mass/lbs-to-kg,weight-and-mass,Pound (Avoirdupois) (lb),Kilogram (kg),lbs-to-kg,A,true,false,,true,true
@@ -48,7 +48,7 @@ url,category,from,to,slug,tier,dimension_match,slug_has_exponent_loss,duplicate_
 /temperature/fahrenheit-to-kelvin,temperature,Fahrenheit (°F),Kelvin (K),fahrenheit-to-kelvin,A,true,false,,true,true
 /temperature/kelvin-to-fahrenheit,temperature,Kelvin (K),Fahrenheit (°F),kelvin-to-fahrenheit,A,true,false,,true,true
 /temperature/celsius-to-rankine,temperature,Celsius (°C),Rankine (°R),celsius-to-rankine,B,true,false,,false,true
-/temperature/fahrenheit-to-rankine,temperature,Fahrenheit (°F),Rankine (°R),fahrenheit-to-rankine,B,true,false,,false,true
+/temperature/fahrenheit-to-rankine,temperature,Fahrenheit (°F),Rankine (°R),fahrenheit-to-rankine,A,true,false,,true,true
 /area/sq-feet-to-sq-meters,area,Square Foot (ft²),Square Meter (m²),sq-feet-to-sq-meters,A,true,false,,true,true
 /area/sq-meters-to-sq-feet,area,Square Meter (m²),Square Foot (ft²),sq-meters-to-sq-feet,A,true,false,,true,true
 /area/acres-to-hectares,area,Acre (ac),Hectare (ha),acres-to-hectares,A,true,false,,true,true
@@ -67,8 +67,8 @@ url,category,from,to,slug,tier,dimension_match,slug_has_exponent_loss,duplicate_
 /volume/quarts-to-pints,volume,Quart (US Liquid) (qt),Pint (US Liquid) (pt),quarts-to-pints,A,true,false,,true,true
 /volume/tablespoons-to-cups,volume,Tablespoon (US) (tbsp),Cup (US Customary) (cup),tablespoons-to-cups,A,true,false,,true,true
 /volume/cups-to-tablespoons,volume,Cup (US Customary) (cup),Tablespoon (US) (tbsp),cups-to-tablespoons,A,true,false,,true,true
-/volume/liters-to-cups,volume,Liter (L),Cup (US Customary) (cup),liters-to-cups,B,true,false,,false,true
-/volume/cups-to-liters,volume,Cup (US Customary) (cup),Liter (L),cups-to-liters,B,true,false,,false,true
+/volume/liters-to-cups,volume,Liter (L),Cup (US Customary) (cup),liters-to-cups,A,true,false,,true,true
+/volume/cups-to-liters,volume,Cup (US Customary) (cup),Liter (L),cups-to-liters,A,true,false,,true,true
 /volume/cups-to-quarts,volume,Cup (US Customary) (cup),Quart (US Liquid) (qt),cups-to-quarts,B,true,false,,false,true
 /volume/quarts-to-cups,volume,Quart (US Liquid) (qt),Cup (US Customary) (cup),quarts-to-cups,B,true,false,,false,true
 /volume/ml-to-fluid-ounces,volume,Milliliter (mL),Fluid Ounce (US) (fl oz),ml-to-fluid-ounces,A,true,false,,true,true
@@ -197,7 +197,7 @@ url,category,from,to,slug,tier,dimension_match,slug_has_exponent_loss,duplicate_
 /length/nanometers-to-inches,length,Nanometer (nm),Inch (in),nanometers-to-inches,B,true,false,,false,true
 /length/inches-to-micrometers,length,Inch (in),Micrometer (Micron) (µm),inches-to-micrometers,B,true,false,,false,true
 /length/micrometers-to-inches,length,Micrometer (Micron) (µm),Inch (in),micrometers-to-inches,B,true,false,,false,true
-/length/meters-to-nanometers,length,Meter (m),Nanometer (nm),meters-to-nanometers,B,true,false,,false,true
+/length/meters-to-nanometers,length,Meter (m),Nanometer (nm),meters-to-nanometers,A,true,false,,true,true
 /length/mm-to-nanometers,length,Millimeter (mm),Nanometer (nm),mm-to-nanometers,B,true,false,,false,true
 /length/nanometers-to-mm,length,Nanometer (nm),Millimeter (mm),nanometers-to-mm,B,true,false,,false,true
 /length/nanometers-to-meters,length,Nanometer (nm),Meter (m),nanometers-to-meters,B,true,false,,false,true
@@ -231,7 +231,7 @@ url,category,from,to,slug,tier,dimension_match,slug_has_exponent_loss,duplicate_
 /volume/fluid-ounces-to-gallons,volume,Fluid Ounce (US) (fl oz),Gallon (US Liquid) (gal (US)),fluid-ounces-to-gallons,B,true,false,,false,true
 /volume/gallons-to-fluid-ounces,volume,Gallon (US Liquid) (gal (US)),Fluid Ounce (US) (fl oz),gallons-to-fluid-ounces,A,true,false,,true,true
 /volume/fluid-ounces-to-liters,volume,Fluid Ounce (US) (fl oz),Liter (L),fluid-ounces-to-liters,B,true,false,,false,true
-/volume/liters-to-fluid-ounces,volume,Liter (L),Fluid Ounce (US) (fl oz),liters-to-fluid-ounces,B,true,false,,false,true
+/volume/liters-to-fluid-ounces,volume,Liter (L),Fluid Ounce (US) (fl oz),liters-to-fluid-ounces,A,true,false,,true,true
 /volume/pints-to-liters,volume,Pint (US Liquid) (pt),Liter (L),pints-to-liters,A,true,false,,true,true
 /volume/liters-to-pints,volume,Liter (L),Pint (US Liquid) (pt),liters-to-pints,A,true,false,,true,true
 /volume/cubic-inches-to-gallons,volume,Cubic Inch (in³),Gallon (US Liquid) (gal (US)),cubic-inches-to-gallons,B,true,false,,false,true
@@ -258,12 +258,12 @@ url,category,from,to,slug,tier,dimension_match,slug_has_exponent_loss,duplicate_
 /time/minutes-to-seconds,time,Minute (min),Second (s),minutes-to-seconds,A,true,false,,true,true
 /time/seconds-to-hours,time,Second (s),Hour (hr),seconds-to-hours,A,true,false,,true,true
 /time/hours-to-seconds,time,Hour (hr),Second (s),hours-to-seconds,A,true,false,,true,true
-/time/minutes-to-days,time,Minute (min),Day (d),minutes-to-days,B,true,false,,false,true
-/pressure/pascal-to-megapascal,pressure,Pascal (Pa),Megapascal (MPa),pascal-to-megapascal,B,true,false,,false,true
-/pressure/megapascal-to-pascal,pressure,Megapascal (MPa),Pascal (Pa),megapascal-to-pascal,B,true,false,,false,true
+/time/minutes-to-days,time,Minute (min),Day (d),minutes-to-days,A,true,false,,true,true
+/pressure/pascal-to-megapascal,pressure,Pascal (Pa),Megapascal (MPa),pascal-to-megapascal,A,true,false,,true,true
+/pressure/megapascal-to-pascal,pressure,Megapascal (MPa),Pascal (Pa),megapascal-to-pascal,A,true,false,,true,true
 /pressure/bar-to-kpa,pressure,Bar (bar),Kilopascal (kPa),bar-to-kpa,A,true,false,,true,true
 /pressure/kpa-to-bar,pressure,Kilopascal (kPa),Bar (bar),kpa-to-bar,A,true,false,,true,true
-/pressure/bar-to-megapascal,pressure,Bar (bar),Megapascal (MPa),bar-to-megapascal,B,true,false,,false,true
+/pressure/bar-to-megapascal,pressure,Bar (bar),Megapascal (MPa),bar-to-megapascal,A,true,false,,true,true
 /pressure/megapascal-to-bar,pressure,Megapascal (MPa),Bar (bar),megapascal-to-bar,B,true,false,,false,true
 /pressure/ksi-to-psi,pressure,Kilopounds per Square Inch (ksi) (ksi),Pounds per Square Inch (psi),ksi-to-psi,A,true,false,,true,true
 /pressure/ksi-to-megapascal,pressure,Kilopounds per Square Inch (ksi) (ksi),Megapascal (MPa),ksi-to-megapascal,B,true,false,,false,true
@@ -279,14 +279,14 @@ url,category,from,to,slug,tier,dimension_match,slug_has_exponent_loss,duplicate_
 /power/btu-per-hour-to-tons-refrigeration,power,BTU per Hour (BTU/hr),Ton of Refrigeration (TR) (TR),btu-per-hour-to-tons-refrigeration,B,true,false,,false,true
 /data-storage/mb-to-kb,data-storage,Megabyte (Decimal) (MB),Kilobyte (Decimal) (KB),mb-to-kb,A,true,false,,true,true
 /data-storage/kb-to-gb,data-storage,Kilobyte (Decimal) (KB),Gigabyte (Decimal) (GB),kb-to-gb,B,true,false,,false,true
-/data-storage/gb-to-kb,data-storage,Gigabyte (Decimal) (GB),Kilobyte (Decimal) (KB),gb-to-kb,B,true,false,,false,true
-/data-storage/bytes-to-mb,data-storage,Byte (B),Megabyte (Decimal) (MB),bytes-to-mb,B,true,false,,false,true
+/data-storage/gb-to-kb,data-storage,Gigabyte (Decimal) (GB),Kilobyte (Decimal) (KB),gb-to-kb,A,true,false,,true,true
+/data-storage/bytes-to-mb,data-storage,Byte (B),Megabyte (Decimal) (MB),bytes-to-mb,A,true,false,,true,true
 /data-storage/gib-to-gb,data-storage,Gibibyte (Binary) (GiB),Gigabyte (Decimal) (GB),gib-to-gb,A,true,false,,true,true
 /data-transfer/mbps-to-kbps,data-transfer,Megabits per Second (Mbps),Kilobits per Second (Kbps),mbps-to-kbps,B,true,false,,false,true
 /force/kgf-to-newtons,force,Kilogram-force (Kilopond) (kgf),Newton (N),kgf-to-newtons,A,true,false,,true,true
 /force/newtons-to-kgf,force,Newton (N),Kilogram-force (Kilopond) (kgf),newtons-to-kgf,A,true,false,,true,true
 /force/kilonewton-to-pound-force,force,Kilonewton (kN),Pound-force (lbf),kilonewton-to-pound-force,A,true,false,,true,true
-/force/gram-force-to-newton,force,Gram-force (Pond) (gf),Newton (N),gram-force-to-newton,B,true,false,,false,true
+/force/gram-force-to-newton,force,Gram-force (Pond) (gf),Newton (N),gram-force-to-newton,C,true,false,,false,false
 /density/kilograms-per-cubic-meter-to-pounds-per-cubic-foot,density,Kilogram per Cubic Meter (kg/m³),Pound per Cubic Foot (lb/ft³),kilograms-per-cubic-meter-to-pounds-per-cubic-foot,A,true,false,,true,true
 /density/grams-per-cubic-centimeter-to-pounds-per-cubic-foot,density,Gram per Cubic Centimeter (g/cm³),Pound per Cubic Foot (lb/ft³),grams-per-cubic-centimeter-to-pounds-per-cubic-foot,B,true,false,,false,true
 /torque/lb-in-to-nm,torque,Pound-inch (in·lbf) (lb·in),Newton-meter (N·m),lb-in-to-nm,A,true,false,,true,true
@@ -339,12 +339,12 @@ url,category,from,to,slug,tier,dimension_match,slug_has_exponent_loss,duplicate_
 /volume/imperial-gallons-to-liters,volume,Gallon (UK Imperial) (gal (UK)),Liter (L),imperial-gallons-to-liters,A,true,false,,true,true
 /volume/liters-to-imperial-gallons,volume,Liter (L),Gallon (UK Imperial) (gal (UK)),liters-to-imperial-gallons,A,true,false,,true,true
 /volume/metric-cups-to-ml,volume,Cup (Metric) (cup (metric)),Milliliter (mL),metric-cups-to-ml,B,true,false,,false,true
-/volume/us-cups-to-metric-cups,volume,Cup (US Customary) (cup),Cup (Metric) (cup (metric)),us-cups-to-metric-cups,B,true,false,,false,true
+/volume/us-cups-to-metric-cups,volume,Cup (US Customary) (cup),Cup (Metric) (cup (metric)),us-cups-to-metric-cups,A,true,false,,true,true
 /length/us-survey-feet-to-meters,length,US Survey Foot (ft (US)),Meter (m),us-survey-feet-to-meters,B,true,false,,false,true
 /length/meters-to-us-survey-feet,length,Meter (m),US Survey Foot (ft (US)),meters-to-us-survey-feet,B,true,false,,false,true
 /power/ps-to-hp,power,Horsepower (Metric PS) (PS),Horsepower (Mechanical) (hp),ps-to-hp,A,true,false,,true,true
 /power/hp-to-ps,power,Horsepower (Mechanical) (hp),Horsepower (Metric PS) (PS),hp-to-ps,A,true,false,,true,true
-/power/ps-to-kw,power,Horsepower (Metric PS) (PS),Kilowatt (kW),ps-to-kw,B,true,false,,false,true
+/power/ps-to-kw,power,Horsepower (Metric PS) (PS),Kilowatt (kW),ps-to-kw,A,true,false,,true,true
 /power/kw-to-ps,power,Kilowatt (kW),Horsepower (Metric PS) (PS),kw-to-ps,B,true,false,,false,true
 /pressure/inhg-to-hpa,pressure,Inch of Mercury (inHg) (inHg),Hectopascal (hPa),inhg-to-hpa,B,true,false,,false,true
 /pressure/hpa-to-inhg,pressure,Hectopascal (hPa),Inch of Mercury (inHg) (inHg),hpa-to-inhg,B,true,false,,false,true
@@ -357,7 +357,7 @@ url,category,from,to,slug,tier,dimension_match,slug_has_exponent_loss,duplicate_
 /volume/metric-cups-to-us-cups,volume,Cup (Metric) (cup (metric)),Cup (US Customary) (cup),metric-cups-to-us-cups,B,true,false,,false,true
 /fuel-consumption/mpg-imperial-to-l-100km,fuel-consumption,Miles per Gallon (UK) (MPG (UK)),Liters per 100 km (L/100km),mpg-imperial-to-l-100km,B,true,false,,false,true
 /fuel-consumption/l-100km-to-mpg-imperial,fuel-consumption,Liters per 100 km (L/100km),Miles per Gallon (UK) (MPG (UK)),l-100km-to-mpg-imperial,B,true,false,,false,true
-/weight-and-mass/metric-tons-to-imperial-tons,weight-and-mass,Metric Ton (Tonne / Megagram) (t),Imperial Long Ton (ton (UK)),metric-tons-to-imperial-tons,B,true,false,,false,true
+/weight-and-mass/metric-tons-to-imperial-tons,weight-and-mass,Metric Ton (Tonne / Megagram) (t),Imperial Long Ton (ton (UK)),metric-tons-to-imperial-tons,A,true,false,,true,true
 /weight-and-mass/imperial-tons-to-metric-tons,weight-and-mass,Imperial Long Ton (ton (UK)),Metric Ton (Tonne / Megagram) (t),imperial-tons-to-metric-tons,B,true,false,,false,true
 /temperature/rankine-to-celsius,temperature,Rankine (°R),Celsius (°C),rankine-to-celsius,B,true,false,,false,true
 /temperature/rankine-to-fahrenheit,temperature,Rankine (°R),Fahrenheit (°F),rankine-to-fahrenheit,B,true,false,,false,true

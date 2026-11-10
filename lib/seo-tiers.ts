@@ -68,13 +68,16 @@ export function isCategoryHubIndexable(categoryIdOrSlug: string): boolean {
 const ARCHAIC_OR_ASTRONOMICAL_UNIT_IDS = new Set<string>([
   // Astronomical / extreme length
   "solar_radius",
+  "sun_radius",
   "earth_radius",
+  "bohr_radius",
   "parsec",
   "kiloparsec",
   "megaparsec",
   "light_year",
   "astronomical_unit",
   "cubit",
+  "long_cubit",
   "royal_cubit",
   "caliber",
   "link",
@@ -269,6 +272,37 @@ const ARCHAIC_OR_ASTRONOMICAL_UNIT_IDS = new Set<string>([
   "picosecond",
   "femtosecond",
   "attosecond",
+
+  // Additional extreme sub/super prefixes & archaic units from Search Console audit
+  "circular_mil",
+  "terapascal",
+  "gigapascal",
+  "millipascal",
+  "micropascal",
+  "nanopascal",
+  "microwatt",
+  "nanowatt",
+  "picowatt",
+  "nanojoule",
+  "microjoule",
+  "millijoule",
+  "megaelectronvolt",
+  "kiloelectronvolt",
+  "electronvolt",
+  "inch_ounce",
+  "therm",
+  "gram_force",
+]);
+
+const ZERO_DEMAND_PAIR_SLUGS = new Set<string>([
+  "cups-to-cubic-millimeters",
+  "cubic-millimeters-to-cups",
+  "lakhs-to-dozens",
+  "dozens-to-lakhs",
+  "hectares-to-square-millimeters",
+  "square-millimeters-to-hectares",
+  "square-millimeters-to-square-feet",
+  "square-feet-to-square-millimeters",
 ]);
 
 export function isAbsurdOrArchaicUnit(unitId: string): boolean {
@@ -573,8 +607,12 @@ export function getConverterTier(pair: ConversionPairInfo): ConverterTier {
     return "C";
   }
 
-  // 4. Fail fast to Tier C if either unit is archaic/astronomical
-  if (isAbsurdOrArchaicUnit(pair.fromUnitId) || isAbsurdOrArchaicUnit(pair.toUnitId)) {
+  // 4. Fail fast to Tier C if either unit is archaic/astronomical or slug is in zero-demand list
+  if (
+    isAbsurdOrArchaicUnit(pair.fromUnitId) ||
+    isAbsurdOrArchaicUnit(pair.toUnitId) ||
+    ZERO_DEMAND_PAIR_SLUGS.has(pair.slug)
+  ) {
     tierCache.set(cacheKey, "C");
     return "C";
   }
