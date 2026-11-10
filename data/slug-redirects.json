@@ -245,6 +245,216 @@
     "permanent": true
   },
   {
+    "source": "/numbers/billion-to-lakh",
+    "destination": "/numbers/billions-to-lakhs",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/b-to-lakh",
+    "destination": "/numbers/billions-to-lakhs",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/lakh-to-billion",
+    "destination": "/numbers/lakhs-to-billions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/lakh-to-b",
+    "destination": "/numbers/lakhs-to-billions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/million-to-lakh",
+    "destination": "/numbers/millions-to-lakhs",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/m-to-lakh",
+    "destination": "/numbers/millions-to-lakhs",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/lakh-to-million",
+    "destination": "/numbers/lakhs-to-millions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/lakh-to-m",
+    "destination": "/numbers/lakhs-to-millions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/crore-to-million",
+    "destination": "/numbers/crores-to-millions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/cr-to-m",
+    "destination": "/numbers/crores-to-millions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/million-to-crore",
+    "destination": "/numbers/millions-to-crores",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/m-to-cr",
+    "destination": "/numbers/millions-to-crores",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/billion-to-crore",
+    "destination": "/numbers/billions-to-crores",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/b-to-cr",
+    "destination": "/numbers/billions-to-crores",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/crore-to-billion",
+    "destination": "/numbers/crores-to-billions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/cr-to-b",
+    "destination": "/numbers/crores-to-billions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/lakh-to-crore",
+    "destination": "/numbers/lakhs-to-crores",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/lakh-to-cr",
+    "destination": "/numbers/lakhs-to-crores",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/crore-to-lakh",
+    "destination": "/numbers/crores-to-lakhs",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/cr-to-lakh",
+    "destination": "/numbers/crores-to-lakhs",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/million-to-billion",
+    "destination": "/numbers/millions-to-billions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/m-to-b",
+    "destination": "/numbers/millions-to-billions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/billion-to-million",
+    "destination": "/numbers/billions-to-millions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/b-to-m",
+    "destination": "/numbers/billions-to-millions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/trillion-to-billion",
+    "destination": "/numbers/trillions-to-billions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/t-to-b",
+    "destination": "/numbers/trillions-to-billions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/billion-to-trillion",
+    "destination": "/numbers/billions-to-trillions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/b-to-t",
+    "destination": "/numbers/billions-to-trillions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/trillion-to-crore",
+    "destination": "/numbers/trillions-to-crores",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/t-to-cr",
+    "destination": "/numbers/trillions-to-crores",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/crore-to-trillion",
+    "destination": "/numbers/crores-to-trillions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/cr-to-t",
+    "destination": "/numbers/crores-to-trillions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/thousand-to-lakh",
+    "destination": "/numbers/thousands-to-lakhs",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/k-to-lakh",
+    "destination": "/numbers/thousands-to-lakhs",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/lakh-to-thousand",
+    "destination": "/numbers/lakhs-to-thousands",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/lakh-to-k",
+    "destination": "/numbers/lakhs-to-thousands",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/million-to-thousand",
+    "destination": "/numbers/millions-to-thousands",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/m-to-k",
+    "destination": "/numbers/millions-to-thousands",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/thousand-to-million",
+    "destination": "/numbers/thousands-to-millions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/k-to-m",
+    "destination": "/numbers/thousands-to-millions",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/dozen-to-gross",
+    "destination": "/numbers/dozens-to-gross",
+    "permanent": true
+  },
+  {
+    "source": "/numbers/gross-to-dozen",
+    "destination": "/numbers/gross-to-dozens",
+    "permanent": true
+  },
+  {
     "source": "/length/centimeters-to-inches",
     "destination": "/length/cm-to-inches",
     "permanent": true
@@ -355,7 +565,7 @@
     "permanent": true
   },
   {
-    "source": "/weight-and-mass/metric-tons-to-tons",
+    "source": "/weight-and-mass/metric-tons-to-us-short-tons",
     "destination": "/weight-and-mass/metric-tons-to-us-tons",
     "permanent": true
   },
@@ -395,28 +605,118 @@
     "permanent": true
   },
   {
-    "source": "/volume/milliliters-to-fluid-ounces",
+    "source": "/volume/liters-to-gallons-us",
+    "destination": "/volume/liters-to-gallons",
+    "permanent": true
+  },
+  {
+    "source": "/volume/gallons-us-to-liters",
+    "destination": "/volume/gallons-to-liters",
+    "permanent": true
+  },
+  {
+    "source": "/volume/gallons-us-to-quarts-us",
+    "destination": "/volume/gallons-to-quarts",
+    "permanent": true
+  },
+  {
+    "source": "/volume/quarts-us-to-gallons-us",
+    "destination": "/volume/quarts-to-gallons",
+    "permanent": true
+  },
+  {
+    "source": "/volume/pints-us-to-quarts-us",
+    "destination": "/volume/pints-to-quarts",
+    "permanent": true
+  },
+  {
+    "source": "/volume/quarts-us-to-pints-us",
+    "destination": "/volume/quarts-to-pints",
+    "permanent": true
+  },
+  {
+    "source": "/volume/tablespoons-us-to-cups-us",
+    "destination": "/volume/tablespoons-to-cups",
+    "permanent": true
+  },
+  {
+    "source": "/volume/cups-us-to-tablespoons-us",
+    "destination": "/volume/cups-to-tablespoons",
+    "permanent": true
+  },
+  {
+    "source": "/volume/liters-to-cups-us",
+    "destination": "/volume/liters-to-cups",
+    "permanent": true
+  },
+  {
+    "source": "/volume/cups-us-to-liters",
+    "destination": "/volume/cups-to-liters",
+    "permanent": true
+  },
+  {
+    "source": "/volume/cups-us-to-quarts-us",
+    "destination": "/volume/cups-to-quarts",
+    "permanent": true
+  },
+  {
+    "source": "/volume/quarts-us-to-cups-us",
+    "destination": "/volume/quarts-to-cups",
+    "permanent": true
+  },
+  {
+    "source": "/volume/milliliters-to-fluid-ounces-us",
     "destination": "/volume/ml-to-fluid-ounces",
     "permanent": true
   },
   {
-    "source": "/volume/fluid-ounces-to-milliliters",
+    "source": "/volume/fluid-ounces-us-to-milliliters",
     "destination": "/volume/fluid-ounces-to-ml",
     "permanent": true
   },
   {
-    "source": "/volume/cups-to-milliliters",
+    "source": "/volume/cups-us-to-milliliters",
     "destination": "/volume/cups-to-ml",
     "permanent": true
   },
   {
-    "source": "/volume/milliliters-to-cups",
+    "source": "/volume/milliliters-to-cups-us",
     "destination": "/volume/ml-to-cups",
     "permanent": true
   },
   {
-    "source": "/volume/gallons-to-imperial-gallons",
+    "source": "/volume/tablespoons-us-to-teaspoons-us",
+    "destination": "/volume/tablespoons-to-teaspoons",
+    "permanent": true
+  },
+  {
+    "source": "/volume/quarts-us-to-liters",
+    "destination": "/volume/quarts-to-liters",
+    "permanent": true
+  },
+  {
+    "source": "/volume/liters-to-quarts-us",
+    "destination": "/volume/liters-to-quarts",
+    "permanent": true
+  },
+  {
+    "source": "/volume/pints-us-to-cups-us",
+    "destination": "/volume/pints-to-cups",
+    "permanent": true
+  },
+  {
+    "source": "/volume/gallons-us-to-gallons-uk",
     "destination": "/volume/gallons-us-to-gallons-imperial",
+    "permanent": true
+  },
+  {
+    "source": "/volume/cubic-feet-to-gallons-us",
+    "destination": "/volume/cubic-feet-to-gallons",
+    "permanent": true
+  },
+  {
+    "source": "/volume/gallons-us-to-cubic-feet",
+    "destination": "/volume/gallons-to-cubic-feet",
     "permanent": true
   },
   {
@@ -430,32 +730,32 @@
     "permanent": true
   },
   {
-    "source": "/volume/teaspoons-to-milliliters",
+    "source": "/volume/teaspoons-us-to-milliliters",
     "destination": "/volume/teaspoons-to-ml",
     "permanent": true
   },
   {
-    "source": "/volume/milliliters-to-teaspoons",
+    "source": "/volume/milliliters-to-teaspoons-us",
     "destination": "/volume/ml-to-teaspoons",
     "permanent": true
   },
   {
-    "source": "/volume/pints-to-milliliters",
+    "source": "/volume/pints-us-to-milliliters",
     "destination": "/volume/pints-to-ml",
     "permanent": true
   },
   {
-    "source": "/volume/milliliters-to-pints",
+    "source": "/volume/milliliters-to-pints-us",
     "destination": "/volume/ml-to-pints",
     "permanent": true
   },
   {
-    "source": "/volume/quarts-to-milliliters",
+    "source": "/volume/quarts-us-to-milliliters",
     "destination": "/volume/quarts-to-ml",
     "permanent": true
   },
   {
-    "source": "/volume/milliliters-to-quarts",
+    "source": "/volume/milliliters-to-quarts-us",
     "destination": "/volume/ml-to-quarts",
     "permanent": true
   },
@@ -590,12 +890,22 @@
     "permanent": true
   },
   {
-    "source": "/power/kilowatts-to-horsepower",
+    "source": "/power/watts-to-horsepower-hp",
+    "destination": "/power/watts-to-horsepower",
+    "permanent": true
+  },
+  {
+    "source": "/power/horsepower-hp-to-watts",
+    "destination": "/power/horsepower-to-watts",
+    "permanent": true
+  },
+  {
+    "source": "/power/kilowatts-to-horsepower-hp",
     "destination": "/power/kw-to-horsepower",
     "permanent": true
   },
   {
-    "source": "/power/horsepower-to-kilowatts",
+    "source": "/power/horsepower-hp-to-kilowatts",
     "destination": "/power/hp-to-kw",
     "permanent": true
   },
@@ -730,27 +1040,27 @@
     "permanent": true
   },
   {
-    "source": "/fuel-consumption/miles-per-gallon-us-to-liters-per-100-kilometers",
+    "source": "/fuel-consumption/mpg-us-to-liters-per-100-kilometers",
     "destination": "/fuel-consumption/mpg-to-l-100km",
     "permanent": true
   },
   {
-    "source": "/fuel-consumption/liters-per-100-kilometers-to-miles-per-gallon-us",
+    "source": "/fuel-consumption/liters-per-100-kilometers-to-mpg-us",
     "destination": "/fuel-consumption/l-100km-to-mpg",
     "permanent": true
   },
   {
-    "source": "/fuel-consumption/miles-per-gallon-us-to-mpg",
+    "source": "/fuel-consumption/mpg-us-to-mpg-uk",
     "destination": "/fuel-consumption/mpg-us-to-mpg-imperial",
     "permanent": true
   },
   {
-    "source": "/fuel-consumption/kilometers-per-liter-to-miles-per-gallon-us",
+    "source": "/fuel-consumption/kilometers-per-liter-to-mpg-us",
     "destination": "/fuel-consumption/km-per-l-to-mpg",
     "permanent": true
   },
   {
-    "source": "/fuel-consumption/miles-per-gallon-us-to-kilometers-per-liter",
+    "source": "/fuel-consumption/mpg-us-to-kilometers-per-liter",
     "destination": "/fuel-consumption/mpg-to-km-per-l",
     "permanent": true
   },
@@ -765,7 +1075,7 @@
     "permanent": true
   },
   {
-    "source": "/fuel-consumption/mpg-to-miles-per-gallon-us",
+    "source": "/fuel-consumption/mpg-uk-to-mpg-us",
     "destination": "/fuel-consumption/mpg-imperial-to-mpg-us",
     "permanent": true
   },
@@ -845,17 +1155,17 @@
     "permanent": true
   },
   {
-    "source": "/weight-and-mass/pounds-to-tons",
+    "source": "/weight-and-mass/pounds-to-us-short-tons",
     "destination": "/weight-and-mass/lbs-to-tons",
     "permanent": true
   },
   {
-    "source": "/weight-and-mass/tons-to-pounds",
+    "source": "/weight-and-mass/us-short-tons-to-pounds",
     "destination": "/weight-and-mass/tons-to-lbs",
     "permanent": true
   },
   {
-    "source": "/weight-and-mass/tons-to-metric-tons",
+    "source": "/weight-and-mass/us-short-tons-to-metric-tons",
     "destination": "/weight-and-mass/us-tons-to-metric-tons",
     "permanent": true
   },
@@ -870,13 +1180,88 @@
     "permanent": true
   },
   {
-    "source": "/volume/tablespoons-to-milliliters",
+    "source": "/volume/tablespoons-us-to-milliliters",
     "destination": "/volume/tablespoons-to-ml",
     "permanent": true
   },
   {
-    "source": "/volume/milliliters-to-tablespoons",
+    "source": "/volume/milliliters-to-tablespoons-us",
     "destination": "/volume/ml-to-tablespoons",
+    "permanent": true
+  },
+  {
+    "source": "/volume/teaspoons-us-to-tablespoons-us",
+    "destination": "/volume/teaspoons-to-tablespoons",
+    "permanent": true
+  },
+  {
+    "source": "/volume/cups-us-to-pints-us",
+    "destination": "/volume/cups-to-pints",
+    "permanent": true
+  },
+  {
+    "source": "/volume/cups-us-to-gallons-us",
+    "destination": "/volume/cups-to-gallons",
+    "permanent": true
+  },
+  {
+    "source": "/volume/gallons-us-to-cups-us",
+    "destination": "/volume/gallons-to-cups",
+    "permanent": true
+  },
+  {
+    "source": "/volume/pints-us-to-gallons-us",
+    "destination": "/volume/pints-to-gallons",
+    "permanent": true
+  },
+  {
+    "source": "/volume/gallons-us-to-pints-us",
+    "destination": "/volume/gallons-to-pints",
+    "permanent": true
+  },
+  {
+    "source": "/volume/fluid-ounces-us-to-cups-us",
+    "destination": "/volume/fluid-ounces-to-cups",
+    "permanent": true
+  },
+  {
+    "source": "/volume/cups-us-to-fluid-ounces-us",
+    "destination": "/volume/cups-to-fluid-ounces",
+    "permanent": true
+  },
+  {
+    "source": "/volume/fluid-ounces-us-to-gallons-us",
+    "destination": "/volume/fluid-ounces-to-gallons",
+    "permanent": true
+  },
+  {
+    "source": "/volume/gallons-us-to-fluid-ounces-us",
+    "destination": "/volume/gallons-to-fluid-ounces",
+    "permanent": true
+  },
+  {
+    "source": "/volume/fluid-ounces-us-to-liters",
+    "destination": "/volume/fluid-ounces-to-liters",
+    "permanent": true
+  },
+  {
+    "source": "/volume/liters-to-fluid-ounces-us",
+    "destination": "/volume/liters-to-fluid-ounces",
+    "permanent": true
+  },
+  {
+    "source": "/volume/pints-us-to-liters",
+    "destination": "/volume/pints-to-liters",
+    "permanent": true
+  },
+  {
+    "source": "/volume/liters-to-pints-us",
+    "destination": "/volume/liters-to-pints",
+    "permanent": true
+  },
+  {
+    "source": "/volume/cubic-inches-to-gallons-us",
+    "destination": "/volume/cubic-inches-to-gallons",
     "permanent": true
   },
   {
@@ -1270,22 +1655,32 @@
     "permanent": true
   },
   {
+    "source": "/volume/gallons-uk-to-liters",
+    "destination": "/volume/imperial-gallons-to-liters",
+    "permanent": true
+  },
+  {
+    "source": "/volume/liters-to-gallons-uk",
+    "destination": "/volume/liters-to-imperial-gallons",
+    "permanent": true
+  },
+  {
     "source": "/volume/metric-cups-to-milliliters",
     "destination": "/volume/metric-cups-to-ml",
     "permanent": true
   },
   {
-    "source": "/volume/cups-to-metric-cups",
+    "source": "/volume/cups-us-to-metric-cups",
     "destination": "/volume/us-cups-to-metric-cups",
     "permanent": true
   },
   {
-    "source": "/power/metric-horsepower-to-horsepower",
+    "source": "/power/metric-horsepower-to-horsepower-hp",
     "destination": "/power/ps-to-hp",
     "permanent": true
   },
   {
-    "source": "/power/horsepower-to-metric-horsepower",
+    "source": "/power/horsepower-hp-to-metric-horsepower",
     "destination": "/power/hp-to-ps",
     "permanent": true
   },
@@ -1310,27 +1705,27 @@
     "permanent": true
   },
   {
-    "source": "/volume/imperial-gallons-to-gallons",
+    "source": "/volume/gallons-uk-to-gallons-us",
     "destination": "/volume/gallons-imperial-to-gallons-us",
     "permanent": true
   },
   {
-    "source": "/volume/fluid-ounces-to-imperial-fluid-ounces",
+    "source": "/volume/fluid-ounces-us-to-fluid-ounces-uk",
     "destination": "/volume/us-fluid-ounces-to-imperial-fluid-ounces",
     "permanent": true
   },
   {
-    "source": "/volume/imperial-fluid-ounces-to-fluid-ounces",
+    "source": "/volume/fluid-ounces-uk-to-fluid-ounces-us",
     "destination": "/volume/imperial-fluid-ounces-to-us-fluid-ounces",
     "permanent": true
   },
   {
-    "source": "/volume/imperial-fluid-ounces-to-milliliters",
+    "source": "/volume/fluid-ounces-uk-to-milliliters",
     "destination": "/volume/imperial-fluid-ounces-to-ml",
     "permanent": true
   },
   {
-    "source": "/volume/milliliters-to-imperial-fluid-ounces",
+    "source": "/volume/milliliters-to-fluid-ounces-uk",
     "destination": "/volume/ml-to-imperial-fluid-ounces",
     "permanent": true
   },
@@ -1340,28 +1735,338 @@
     "permanent": true
   },
   {
-    "source": "/volume/metric-cups-to-cups",
+    "source": "/volume/metric-cups-to-cups-us",
     "destination": "/volume/metric-cups-to-us-cups",
     "permanent": true
   },
   {
-    "source": "/fuel-consumption/mpg-to-liters-per-100-kilometers",
+    "source": "/fuel-consumption/mpg-uk-to-liters-per-100-kilometers",
     "destination": "/fuel-consumption/mpg-imperial-to-l-100km",
     "permanent": true
   },
   {
-    "source": "/fuel-consumption/liters-per-100-kilometers-to-mpg",
+    "source": "/fuel-consumption/liters-per-100-kilometers-to-mpg-uk",
     "destination": "/fuel-consumption/l-100km-to-mpg-imperial",
     "permanent": true
   },
   {
-    "source": "/weight-and-mass/metric-tons-to-long-tons",
+    "source": "/weight-and-mass/metric-tons-to-imperial-long-tons",
     "destination": "/weight-and-mass/metric-tons-to-imperial-tons",
     "permanent": true
   },
   {
-    "source": "/weight-and-mass/long-tons-to-metric-tons",
+    "source": "/weight-and-mass/imperial-long-tons-to-metric-tons",
     "destination": "/weight-and-mass/imperial-tons-to-metric-tons",
+    "permanent": true
+  },
+  {
+    "source": "/volume-dry/liters-dry-to-us-bushels",
+    "destination": "/volume-dry/liters-to-us-bushels",
+    "permanent": true
+  },
+  {
+    "source": "/volume-dry/us-bushels-to-liters-dry",
+    "destination": "/volume-dry/us-bushels-to-liters",
+    "permanent": true
+  },
+  {
+    "source": "/volume-dry/liters-dry-to-imperial-bushels",
+    "destination": "/volume-dry/liters-to-imperial-bushels",
+    "permanent": true
+  },
+  {
+    "source": "/volume-dry/imperial-bushels-to-liters-dry",
+    "destination": "/volume-dry/imperial-bushels-to-liters",
+    "permanent": true
+  },
+  {
+    "source": "/volume-dry/liters-dry-to-us-pecks",
+    "destination": "/volume-dry/liters-to-us-pecks",
+    "permanent": true
+  },
+  {
+    "source": "/volume-dry/us-pecks-to-liters-dry",
+    "destination": "/volume-dry/us-pecks-to-liters",
+    "permanent": true
+  },
+  {
+    "source": "/acceleration/meters-per-second-squared-to-standard-gravity-g",
+    "destination": "/acceleration/meters-per-second-squared-to-standard-gravity",
+    "permanent": true
+  },
+  {
+    "source": "/acceleration/standard-gravity-g-to-meters-per-second-squared",
+    "destination": "/acceleration/standard-gravity-to-meters-per-second-squared",
+    "permanent": true
+  },
+  {
+    "source": "/temperature-interval/kelvins-interval-to-degrees-celsius-interval",
+    "destination": "/temperature-interval/kelvins-to-degrees-celsius",
+    "permanent": true
+  },
+  {
+    "source": "/temperature-interval/degrees-celsius-interval-to-kelvins-interval",
+    "destination": "/temperature-interval/degrees-celsius-to-kelvins",
+    "permanent": true
+  },
+  {
+    "source": "/temperature-interval/kelvins-interval-to-degrees-fahrenheit-interval",
+    "destination": "/temperature-interval/kelvins-to-degrees-fahrenheit",
+    "permanent": true
+  },
+  {
+    "source": "/temperature-interval/degrees-fahrenheit-interval-to-kelvins-interval",
+    "destination": "/temperature-interval/degrees-fahrenheit-to-kelvins",
+    "permanent": true
+  },
+  {
+    "source": "/temperature-interval/kelvins-interval-to-degrees-rankine-interval",
+    "destination": "/temperature-interval/kelvins-to-degrees-rankine",
+    "permanent": true
+  },
+  {
+    "source": "/temperature-interval/degrees-rankine-interval-to-kelvins-interval",
+    "destination": "/temperature-interval/degrees-rankine-to-kelvins",
+    "permanent": true
+  },
+  {
+    "source": "/concentration-molar/moles-per-cubic-meter-to-moles-per-liter-m",
+    "destination": "/concentration-molar/moles-per-cubic-meter-to-moles-per-liter",
+    "permanent": true
+  },
+  {
+    "source": "/concentration-molar/moles-per-liter-m-to-moles-per-cubic-meter",
+    "destination": "/concentration-molar/moles-per-liter-to-moles-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/concentration-molar/moles-per-cubic-meter-to-millimoles-per-liter-mmol-l",
+    "destination": "/concentration-molar/moles-per-cubic-meter-to-millimoles-per-liter",
+    "permanent": true
+  },
+  {
+    "source": "/concentration-molar/millimoles-per-liter-mmol-l-to-moles-per-cubic-meter",
+    "destination": "/concentration-molar/millimoles-per-liter-to-moles-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/concentration-molar/moles-per-cubic-meter-to-micromoles-per-liter-mol-l",
+    "destination": "/concentration-molar/moles-per-cubic-meter-to-micromoles-per-liter",
+    "permanent": true
+  },
+  {
+    "source": "/concentration-molar/micromoles-per-liter-mol-l-to-moles-per-cubic-meter",
+    "destination": "/concentration-molar/micromoles-per-liter-to-moles-per-cubic-meter",
+    "permanent": true
+  },
+  {
+    "source": "/permeability/square-meters-m-to-darcies",
+    "destination": "/permeability/square-meters-to-darcies",
+    "permanent": true
+  },
+  {
+    "source": "/permeability/darcies-to-square-meters-m",
+    "destination": "/permeability/darcies-to-square-meters",
+    "permanent": true
+  },
+  {
+    "source": "/permeability/square-meters-m-to-millidarcies",
+    "destination": "/permeability/square-meters-to-millidarcies",
+    "permanent": true
+  },
+  {
+    "source": "/permeability/millidarcies-to-square-meters-m",
+    "destination": "/permeability/millidarcies-to-square-meters",
+    "permanent": true
+  },
+  {
+    "source": "/permeability/square-meters-m-to-microdarcies",
+    "destination": "/permeability/square-meters-to-microdarcies",
+    "permanent": true
+  },
+  {
+    "source": "/permeability/microdarcies-to-square-meters-m",
+    "destination": "/permeability/microdarcies-to-square-meters",
+    "permanent": true
+  },
+  {
+    "source": "/luminance/candelas-per-square-meter-nits-to-kilocandelas-per-square-meter",
+    "destination": "/luminance/candelas-per-square-meter-to-kilocandelas-per-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/luminance/kilocandelas-per-square-meter-to-candelas-per-square-meter-nits",
+    "destination": "/luminance/kilocandelas-per-square-meter-to-candelas-per-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/luminance/candelas-per-square-meter-nits-to-stilbs",
+    "destination": "/luminance/candelas-per-square-meter-to-stilbs",
+    "permanent": true
+  },
+  {
+    "source": "/luminance/stilbs-to-candelas-per-square-meter-nits",
+    "destination": "/luminance/stilbs-to-candelas-per-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/luminance/candelas-per-square-meter-nits-to-lamberts",
+    "destination": "/luminance/candelas-per-square-meter-to-lamberts",
+    "permanent": true
+  },
+  {
+    "source": "/luminance/lamberts-to-candelas-per-square-meter-nits",
+    "destination": "/luminance/lamberts-to-candelas-per-square-meter",
+    "permanent": true
+  },
+  {
+    "source": "/digital-image-resolution/dots-per-meter-to-dots-per-inch-dpi",
+    "destination": "/digital-image-resolution/dots-per-meter-to-dots-per-inch",
+    "permanent": true
+  },
+  {
+    "source": "/digital-image-resolution/dots-per-inch-dpi-to-dots-per-meter",
+    "destination": "/digital-image-resolution/dots-per-inch-to-dots-per-meter",
+    "permanent": true
+  },
+  {
+    "source": "/digital-image-resolution/dots-per-meter-to-dots-per-centimeter-dpcm",
+    "destination": "/digital-image-resolution/dots-per-meter-to-dots-per-centimeter",
+    "permanent": true
+  },
+  {
+    "source": "/digital-image-resolution/dots-per-centimeter-dpcm-to-dots-per-meter",
+    "destination": "/digital-image-resolution/dots-per-centimeter-to-dots-per-meter",
+    "permanent": true
+  },
+  {
+    "source": "/digital-image-resolution/dots-per-meter-to-dots-per-millimeter-dpmm",
+    "destination": "/digital-image-resolution/dots-per-meter-to-dots-per-millimeter",
+    "permanent": true
+  },
+  {
+    "source": "/digital-image-resolution/dots-per-millimeter-dpmm-to-dots-per-meter",
+    "destination": "/digital-image-resolution/dots-per-millimeter-to-dots-per-meter",
+    "permanent": true
+  },
+  {
+    "source": "/prefixes/base-units-10-to-tera-10",
+    "destination": "/prefixes/base-units-to-tera",
+    "permanent": true
+  },
+  {
+    "source": "/prefixes/tera-10-to-base-units-10",
+    "destination": "/prefixes/tera-to-base-units",
+    "permanent": true
+  },
+  {
+    "source": "/prefixes/base-units-10-to-giga-10",
+    "destination": "/prefixes/base-units-to-giga",
+    "permanent": true
+  },
+  {
+    "source": "/prefixes/giga-10-to-base-units-10",
+    "destination": "/prefixes/giga-to-base-units",
+    "permanent": true
+  },
+  {
+    "source": "/prefixes/base-units-10-to-mega-10",
+    "destination": "/prefixes/base-units-to-mega",
+    "permanent": true
+  },
+  {
+    "source": "/prefixes/mega-10-to-base-units-10",
+    "destination": "/prefixes/mega-to-base-units",
+    "permanent": true
+  },
+  {
+    "source": "/sound/pascals-pa-to-millipascals-mpa",
+    "destination": "/sound/pascals-to-millipascals",
+    "permanent": true
+  },
+  {
+    "source": "/sound/millipascals-mpa-to-pascals-pa",
+    "destination": "/sound/millipascals-to-pascals",
+    "permanent": true
+  },
+  {
+    "source": "/sound/pascals-pa-to-micropascals-pa",
+    "destination": "/sound/pascals-to-micropascals",
+    "permanent": true
+  },
+  {
+    "source": "/sound/micropascals-pa-to-pascals-pa",
+    "destination": "/sound/micropascals-to-pascals",
+    "permanent": true
+  },
+  {
+    "source": "/sound/pascals-pa-to-baryes-microbars",
+    "destination": "/sound/pascals-to-baryes",
+    "permanent": true
+  },
+  {
+    "source": "/sound/baryes-microbars-to-pascals-pa",
+    "destination": "/sound/baryes-to-pascals",
+    "permanent": true
+  },
+  {
+    "source": "/typography/points-pt-to-picas-pc",
+    "destination": "/typography/points-to-picas",
+    "permanent": true
+  },
+  {
+    "source": "/typography/picas-pc-to-points-pt",
+    "destination": "/typography/picas-to-points",
+    "permanent": true
+  },
+  {
+    "source": "/typography/points-pt-to-pixels-px",
+    "destination": "/typography/points-to-pixels",
+    "permanent": true
+  },
+  {
+    "source": "/typography/pixels-px-to-points-pt",
+    "destination": "/typography/pixels-to-points",
+    "permanent": true
+  },
+  {
+    "source": "/typography/points-pt-to-twips",
+    "destination": "/typography/points-to-twips",
+    "permanent": true
+  },
+  {
+    "source": "/typography/twips-to-points-pt",
+    "destination": "/typography/twips-to-points",
+    "permanent": true
+  },
+  {
+    "source": "/volume-lumber/board-feet-to-thousand-board-feet-mbf",
+    "destination": "/volume-lumber/board-feet-to-thousand-board-feet",
+    "permanent": true
+  },
+  {
+    "source": "/volume-lumber/thousand-board-feet-mbf-to-board-feet",
+    "destination": "/volume-lumber/thousand-board-feet-to-board-feet",
+    "permanent": true
+  },
+  {
+    "source": "/volume-lumber/board-feet-to-cubic-feet-ft",
+    "destination": "/volume-lumber/board-feet-to-cubic-feet",
+    "permanent": true
+  },
+  {
+    "source": "/volume-lumber/cubic-feet-ft-to-board-feet",
+    "destination": "/volume-lumber/cubic-feet-to-board-feet",
+    "permanent": true
+  },
+  {
+    "source": "/volume-lumber/board-feet-to-cubic-meters-m",
+    "destination": "/volume-lumber/board-feet-to-cubic-meters",
+    "permanent": true
+  },
+  {
+    "source": "/volume-lumber/cubic-meters-m-to-board-feet",
+    "destination": "/volume-lumber/cubic-meters-to-board-feet",
     "permanent": true
   },
   {

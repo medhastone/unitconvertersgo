@@ -3,7 +3,7 @@ import { UNIT_MAP } from "./conversions/units";
 import { getCategoryUrlSlug, getInternalCategoryId, getCanonicalConverterPath } from "./conversions/url";
 import { ConversionPairInfo, Unit } from "./conversions/types";
 import { evaluateContentGate } from "./content-gate";
-import { getPairContent } from "./pair-content";
+import { getPairContent, hasStaticPairContent } from "./pair-content";
 
 export type ConverterTier = "A" | "B" | "C";
 
@@ -39,6 +39,7 @@ export const INDEXABLE_CATEGORY_HUBS = [
   "angle",
   "frequency",
   "flow",
+  "numbers",
   "cooking",
   "specialty",
 ] as const;
@@ -597,7 +598,7 @@ export function getConverterTier(pair: ConversionPairInfo): ConverterTier {
   }
 
   // 7. Enforce Content Gate (Task 5: "Pages failing the gate are automatically treated as Tier C")
-  const pairContent = getPairContent(pair.slug);
+  const pairContent = getPairContent(pair.slug, pair);
   if (!pairContent) {
     tierCache.set(cacheKey, "C");
     return "C";
@@ -609,9 +610,11 @@ export function getConverterTier(pair: ConversionPairInfo): ConverterTier {
     return "C";
   }
 
-  // Pairs with passing pair-content JSON in our high-demand seed set are Tier A
-  tierCache.set(cacheKey, "A");
-  return "A";
+  // Pairs with static pair-content JSON in our high-demand seed set are Tier A;
+  // other plausible pairs in indexable categories that pass the Content Gate are Tier B
+  const tier: ConverterTier = hasStaticPairContent(pair.slug) ? "A" : "B";
+  tierCache.set(cacheKey, tier);
+  return tier;
 }
 
 export function isPairIndexable(pair: ConversionPairInfo): boolean {

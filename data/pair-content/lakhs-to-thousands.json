@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "lakhs-to-thousands",
+  "category": "numbers",
+  "categoryId": "numbers",
+  "fromUnitId": "lakh",
+  "toUnitId": "thousand",
+  "fromSymbol": "lakh",
+  "toSymbol": "K",
+  "intro": "Professionals and everyday users convert lakhs (lakh) to thousands (K) when working across other and other standards in engineering specifications, international trade documentation, and technical measurements. One lakh equals 100 thousands, while 1 thousand equals 0.01 lakhs. Whether you are verifying numbers & quantities specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Lakh Benchmark (2 lakh)",
+      "scenario": "Convert 2 lakhs (lakh) into thousands (K) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "200 K",
+      "stepByStep": "2 lakh × 100 = 200 K (rounds to 200 K)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 lakh)",
+      "scenario": "Convert 20 lakhs (lakh) into thousands (K) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "2,000 K",
+      "stepByStep": "20 lakh × 100 = 2,000 K (rounds to 2,000 K)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 lakh)",
+      "scenario": "Convert 75 lakhs (lakh) into thousands (K) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "7,500 K",
+      "stepByStep": "75 lakh × 100 = 7,500 K (rounds to 7,500 K)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "K = lakh × 100",
+    "exactFactor": "100",
+    "roundedFactor": "100",
+    "inverseFactor": "0.01"
+  },
+  "internalLinks": [
+    {
+      "label": "Thousands to Lakhs (K to lakh)",
+      "href": "/numbers/thousands-to-lakhs",
+      "type": "reverse"
+    },
+    {
+      "label": "Billions to Lakhs (B to lakh)",
+      "href": "/numbers/billions-to-lakhs",
+      "type": "related"
+    },
+    {
+      "label": "Lakhs to Billions (lakh to B)",
+      "href": "/numbers/lakhs-to-billions",
+      "type": "related"
+    },
+    {
+      "label": "Millions to Lakhs (M to lakh)",
+      "href": "/numbers/millions-to-lakhs",
+      "type": "related"
+    },
+    {
+      "label": "Lakhs to Millions (lakh to M)",
+      "href": "/numbers/lakhs-to-millions",
+      "type": "related"
+    },
+    {
+      "label": "Numbers & Quantities Conversions Hub",
+      "href": "/numbers",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many thousands (K) are in 1 lakh (lakh)?",
+      "answer": "There are 100 thousands (K) in 1 lakh (lakh), which rounds to 100 K for everyday calculations. Conversely, 1 thousand equals 0.01 lakhs."
+    },
+    {
+      "question": "How do I convert lakhs to thousands (lakh to K)?",
+      "answer": "To convert lakhs to thousands, use the formula: K = lakh × 100. For example, converting 10 lakh gives 1,000 K."
+    },
+    {
+      "question": "What is 10 lakhs in thousands?",
+      "answer": "10 lakhs (lakh) equals exactly 1,000 thousands (K) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

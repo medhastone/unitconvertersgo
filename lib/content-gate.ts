@@ -79,7 +79,7 @@ export function evaluateContentGate(
 ): ContentGateResult {
   const data: ContentGateInput | null =
     "fromUnitId" in pairOrInput && !("workedExamples" in pairOrInput)
-      ? getPairContent(pairOrInput.slug)
+      ? getPairContent(pairOrInput.slug, pairOrInput)
       : (pairOrInput as ContentGateInput);
 
   if (!data) {

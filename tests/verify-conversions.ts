@@ -497,7 +497,23 @@ for (const check of symbolChecks) {
 }
 console.log("✅ (f) Verified titles, H1s, and unit labels display proper mathematical unit symbols (g/m³, kgf/cm², kgf/m², ftH₂O).");
 
+// (g) Verify /numbers/billions-to-lakhs and related South Asian / International number magnitude URLs are indexable
+const billionsToLakhs = getConversionPair("billions-to-lakhs", "numbers");
+assert(Boolean(billionsToLakhs), "(g) Expected /numbers/billions-to-lakhs to resolve as a valid conversion pair");
+assert(
+  isPairIndexable(billionsToLakhs!) === true && getConverterTier(billionsToLakhs!) === "A",
+  `(g) Expected /numbers/billions-to-lakhs to be indexable Tier A, got Tier ${getConverterTier(billionsToLakhs!)}`
+);
+assert(
+  evaluateContentGate(billionsToLakhs!).passed === true,
+  `(g) Expected /numbers/billions-to-lakhs to pass 7-point Content Gate`
+);
+const trillionsToLakhs = getConversionPair("trillions-to-lakhs", "numbers");
+assert(Boolean(trillionsToLakhs), "(g) Expected dynamic /numbers/trillions-to-lakhs to resolve");
+assert(
+  isPairIndexable(trillionsToLakhs!) === true,
+  `(g) Expected dynamic /numbers/trillions-to-lakhs to be indexable (Tier ${getConverterTier(trillionsToLakhs!)})`
+);
+console.log("✅ (g) Verified /numbers/billions-to-lakhs (Tier A) and dynamic /numbers/* magnitude pairs (Tier B) are indexable and pass the 7-point Content Gate.");
+
 console.log("🎉 ALL TESTS PASSED! Conversion engine, canonical routing, and site-wide Technical SEO specifications are verified.");
-
-
-

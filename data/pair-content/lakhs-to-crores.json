@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "lakhs-to-crores",
+  "category": "numbers",
+  "categoryId": "numbers",
+  "fromUnitId": "lakh",
+  "toUnitId": "crore",
+  "fromSymbol": "lakh",
+  "toSymbol": "cr",
+  "intro": "Professionals and everyday users convert lakhs (lakh) to crores (cr) when working across other and other standards in engineering specifications, international trade documentation, and technical measurements. One lakh equals 0.01 crores, while 1 crore equals 100 lakhs. Whether you are verifying numbers & quantities specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Lakh Benchmark (2 lakh)",
+      "scenario": "Convert 2 lakhs (lakh) into crores (cr) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "0.02 cr",
+      "stepByStep": "2 lakh × 0.01 = 0.02 cr (rounds to 0.02 cr)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 lakh)",
+      "scenario": "Convert 20 lakhs (lakh) into crores (cr) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "0.2 cr",
+      "stepByStep": "20 lakh × 0.01 = 0.2 cr (rounds to 0.2 cr)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 lakh)",
+      "scenario": "Convert 75 lakhs (lakh) into crores (cr) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "0.75 cr",
+      "stepByStep": "75 lakh × 0.01 = 0.75 cr (rounds to 0.75 cr)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "cr = lakh × 0.01",
+    "exactFactor": "0.01",
+    "roundedFactor": "0.01",
+    "inverseFactor": "100"
+  },
+  "internalLinks": [
+    {
+      "label": "Crores to Lakhs (cr to lakh)",
+      "href": "/numbers/crores-to-lakhs",
+      "type": "reverse"
+    },
+    {
+      "label": "Billions to Lakhs (B to lakh)",
+      "href": "/numbers/billions-to-lakhs",
+      "type": "related"
+    },
+    {
+      "label": "Lakhs to Billions (lakh to B)",
+      "href": "/numbers/lakhs-to-billions",
+      "type": "related"
+    },
+    {
+      "label": "Millions to Lakhs (M to lakh)",
+      "href": "/numbers/millions-to-lakhs",
+      "type": "related"
+    },
+    {
+      "label": "Lakhs to Millions (lakh to M)",
+      "href": "/numbers/lakhs-to-millions",
+      "type": "related"
+    },
+    {
+      "label": "Numbers & Quantities Conversions Hub",
+      "href": "/numbers",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many crores (cr) are in 1 lakh (lakh)?",
+      "answer": "There are 0.01 crores (cr) in 1 lakh (lakh), which rounds to 0.01 cr for everyday calculations. Conversely, 1 crore equals 100 lakhs."
+    },
+    {
+      "question": "How do I convert lakhs to crores (lakh to cr)?",
+      "answer": "To convert lakhs to crores, use the formula: cr = lakh × 0.01. For example, converting 10 lakh gives 0.1 cr."
+    },
+    {
+      "question": "What is 10 lakhs in crores?",
+      "answer": "10 lakhs (lakh) equals exactly 0.1 crores (cr) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

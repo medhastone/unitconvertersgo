@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "millions-to-billions",
+  "category": "numbers",
+  "categoryId": "numbers",
+  "fromUnitId": "million",
+  "toUnitId": "billion",
+  "fromSymbol": "M",
+  "toSymbol": "B",
+  "intro": "Professionals and everyday users convert millions (M) to billions (B) when working across other and other standards in engineering specifications, international trade documentation, and technical measurements. One million equals 0.001 billions, while 1 billion equals 1,000 millions. Whether you are verifying numbers & quantities specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Million Benchmark (2 M)",
+      "scenario": "Convert 2 millions (M) into billions (B) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "0.002 B",
+      "stepByStep": "2 M × 0.001 = 0.002 B (rounds to 0 B)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 M)",
+      "scenario": "Convert 20 millions (M) into billions (B) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "0.02 B",
+      "stepByStep": "20 M × 0.001 = 0.02 B (rounds to 0.02 B)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 M)",
+      "scenario": "Convert 75 millions (M) into billions (B) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "0.075 B",
+      "stepByStep": "75 M × 0.001 = 0.075 B (rounds to 0.08 B)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "B = M × 0.001",
+    "exactFactor": "0.001",
+    "roundedFactor": "0.001",
+    "inverseFactor": "1,000"
+  },
+  "internalLinks": [
+    {
+      "label": "Billions to Millions (B to M)",
+      "href": "/numbers/billions-to-millions",
+      "type": "reverse"
+    },
+    {
+      "label": "Billions to Lakhs (B to lakh)",
+      "href": "/numbers/billions-to-lakhs",
+      "type": "related"
+    },
+    {
+      "label": "Lakhs to Billions (lakh to B)",
+      "href": "/numbers/lakhs-to-billions",
+      "type": "related"
+    },
+    {
+      "label": "Millions to Lakhs (M to lakh)",
+      "href": "/numbers/millions-to-lakhs",
+      "type": "related"
+    },
+    {
+      "label": "Lakhs to Millions (lakh to M)",
+      "href": "/numbers/lakhs-to-millions",
+      "type": "related"
+    },
+    {
+      "label": "Numbers & Quantities Conversions Hub",
+      "href": "/numbers",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many billions (B) are in 1 million (M)?",
+      "answer": "There are 0.001 billions (B) in 1 million (M), which rounds to 0.001 B for everyday calculations. Conversely, 1 billion equals 1,000 millions."
+    },
+    {
+      "question": "How do I convert millions to billions (M to B)?",
+      "answer": "To convert millions to billions, use the formula: B = M × 0.001. For example, converting 10 M gives 0.01 B."
+    },
+    {
+      "question": "What is 10 millions in billions?",
+      "answer": "10 millions (M) equals exactly 0.01 billions (B) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

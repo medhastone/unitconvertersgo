@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "millions-to-thousands",
+  "category": "numbers",
+  "categoryId": "numbers",
+  "fromUnitId": "million",
+  "toUnitId": "thousand",
+  "fromSymbol": "M",
+  "toSymbol": "K",
+  "intro": "Professionals and everyday users convert millions (M) to thousands (K) when working across other and other standards in engineering specifications, international trade documentation, and technical measurements. One million equals 1,000 thousands, while 1 thousand equals 0.001 millions. Whether you are verifying numbers & quantities specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Million Benchmark (2 M)",
+      "scenario": "Convert 2 millions (M) into thousands (K) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "2,000 K",
+      "stepByStep": "2 M × 1,000 = 2,000 K (rounds to 2,000 K)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 M)",
+      "scenario": "Convert 20 millions (M) into thousands (K) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "20,000 K",
+      "stepByStep": "20 M × 1,000 = 20,000 K (rounds to 20,000 K)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 M)",
+      "scenario": "Convert 75 millions (M) into thousands (K) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "75,000 K",
+      "stepByStep": "75 M × 1,000 = 75,000 K (rounds to 75,000 K)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "K = M × 1,000",
+    "exactFactor": "1,000",
+    "roundedFactor": "1,000",
+    "inverseFactor": "0.001"
+  },
+  "internalLinks": [
+    {
+      "label": "Thousands to Millions (K to M)",
+      "href": "/numbers/thousands-to-millions",
+      "type": "reverse"
+    },
+    {
+      "label": "Billions to Lakhs (B to lakh)",
+      "href": "/numbers/billions-to-lakhs",
+      "type": "related"
+    },
+    {
+      "label": "Lakhs to Billions (lakh to B)",
+      "href": "/numbers/lakhs-to-billions",
+      "type": "related"
+    },
+    {
+      "label": "Millions to Lakhs (M to lakh)",
+      "href": "/numbers/millions-to-lakhs",
+      "type": "related"
+    },
+    {
+      "label": "Lakhs to Millions (lakh to M)",
+      "href": "/numbers/lakhs-to-millions",
+      "type": "related"
+    },
+    {
+      "label": "Numbers & Quantities Conversions Hub",
+      "href": "/numbers",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many thousands (K) are in 1 million (M)?",
+      "answer": "There are 1,000 thousands (K) in 1 million (M), which rounds to 1,000 K for everyday calculations. Conversely, 1 thousand equals 0.001 millions."
+    },
+    {
+      "question": "How do I convert millions to thousands (M to K)?",
+      "answer": "To convert millions to thousands, use the formula: K = M × 1,000. For example, converting 10 M gives 10,000 K."
+    },
+    {
+      "question": "What is 10 millions in thousands?",
+      "answer": "10 millions (M) equals exactly 10,000 thousands (K) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

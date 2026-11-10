@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "billions-to-crores",
+  "category": "numbers",
+  "categoryId": "numbers",
+  "fromUnitId": "billion",
+  "toUnitId": "crore",
+  "fromSymbol": "B",
+  "toSymbol": "cr",
+  "intro": "Professionals and everyday users convert billions (B) to crores (cr) when working across other and other standards in engineering specifications, international trade documentation, and technical measurements. One billion equals 100 crores, while 1 crore equals 0.01 billions. Whether you are verifying numbers & quantities specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Billion Benchmark (2 B)",
+      "scenario": "Convert 2 billions (B) into crores (cr) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "200 cr",
+      "stepByStep": "2 B × 100 = 200 cr (rounds to 200 cr)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 B)",
+      "scenario": "Convert 20 billions (B) into crores (cr) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "2,000 cr",
+      "stepByStep": "20 B × 100 = 2,000 cr (rounds to 2,000 cr)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 B)",
+      "scenario": "Convert 75 billions (B) into crores (cr) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "7,500 cr",
+      "stepByStep": "75 B × 100 = 7,500 cr (rounds to 7,500 cr)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "cr = B × 100",
+    "exactFactor": "100",
+    "roundedFactor": "100",
+    "inverseFactor": "0.01"
+  },
+  "internalLinks": [
+    {
+      "label": "Crores to Billions (cr to B)",
+      "href": "/numbers/crores-to-billions",
+      "type": "reverse"
+    },
+    {
+      "label": "Billions to Lakhs (B to lakh)",
+      "href": "/numbers/billions-to-lakhs",
+      "type": "related"
+    },
+    {
+      "label": "Lakhs to Billions (lakh to B)",
+      "href": "/numbers/lakhs-to-billions",
+      "type": "related"
+    },
+    {
+      "label": "Millions to Lakhs (M to lakh)",
+      "href": "/numbers/millions-to-lakhs",
+      "type": "related"
+    },
+    {
+      "label": "Lakhs to Millions (lakh to M)",
+      "href": "/numbers/lakhs-to-millions",
+      "type": "related"
+    },
+    {
+      "label": "Numbers & Quantities Conversions Hub",
+      "href": "/numbers",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many crores (cr) are in 1 billion (B)?",
+      "answer": "There are 100 crores (cr) in 1 billion (B), which rounds to 100 cr for everyday calculations. Conversely, 1 crore equals 0.01 billions."
+    },
+    {
+      "question": "How do I convert billions to crores (B to cr)?",
+      "answer": "To convert billions to crores, use the formula: cr = B × 100. For example, converting 10 B gives 1,000 cr."
+    },
+    {
+      "question": "What is 10 billions in crores?",
+      "answer": "10 billions (B) equals exactly 1,000 crores (cr) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

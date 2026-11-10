@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "lakhs-to-millions",
+  "category": "numbers",
+  "categoryId": "numbers",
+  "fromUnitId": "lakh",
+  "toUnitId": "million",
+  "fromSymbol": "lakh",
+  "toSymbol": "M",
+  "intro": "Professionals and everyday users convert lakhs (lakh) to millions (M) when working across other and other standards in engineering specifications, international trade documentation, and technical measurements. One lakh equals 0.1 millions, while 1 million equals 10 lakhs. Whether you are verifying numbers & quantities specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Lakh Benchmark (2 lakh)",
+      "scenario": "Convert 2 lakhs (lakh) into millions (M) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "0.2 M",
+      "stepByStep": "2 lakh × 0.1 = 0.2 M (rounds to 0.2 M)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 lakh)",
+      "scenario": "Convert 20 lakhs (lakh) into millions (M) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "2 M",
+      "stepByStep": "20 lakh × 0.1 = 2 M (rounds to 2 M)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 lakh)",
+      "scenario": "Convert 75 lakhs (lakh) into millions (M) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "7.5 M",
+      "stepByStep": "75 lakh × 0.1 = 7.5 M (rounds to 7.5 M)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "M = lakh × 0.1",
+    "exactFactor": "0.1",
+    "roundedFactor": "0.1",
+    "inverseFactor": "10"
+  },
+  "internalLinks": [
+    {
+      "label": "Millions to Lakhs (M to lakh)",
+      "href": "/numbers/millions-to-lakhs",
+      "type": "reverse"
+    },
+    {
+      "label": "Billions to Lakhs (B to lakh)",
+      "href": "/numbers/billions-to-lakhs",
+      "type": "related"
+    },
+    {
+      "label": "Lakhs to Billions (lakh to B)",
+      "href": "/numbers/lakhs-to-billions",
+      "type": "related"
+    },
+    {
+      "label": "Crores to Millions (cr to M)",
+      "href": "/numbers/crores-to-millions",
+      "type": "related"
+    },
+    {
+      "label": "Millions to Crores (M to cr)",
+      "href": "/numbers/millions-to-crores",
+      "type": "related"
+    },
+    {
+      "label": "Numbers & Quantities Conversions Hub",
+      "href": "/numbers",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many millions (M) are in 1 lakh (lakh)?",
+      "answer": "There are 0.1 millions (M) in 1 lakh (lakh), which rounds to 0.1 M for everyday calculations. Conversely, 1 million equals 10 lakhs."
+    },
+    {
+      "question": "How do I convert lakhs to millions (lakh to M)?",
+      "answer": "To convert lakhs to millions, use the formula: M = lakh × 0.1. For example, converting 10 lakh gives 1 M."
+    },
+    {
+      "question": "What is 10 lakhs in millions?",
+      "answer": "10 lakhs (lakh) equals exactly 1 millions (M) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

@@ -26,21 +26,21 @@
       "scenario": "Convert 5 liters per 100 kilometers (L/100km) into mpg (us) (MPG (US)) for technical comparison and documentation.",
       "inputValue": 5,
       "outputValue": "47.042917 MPG (US)",
-      "stepByStep": "5 L/100km × 235.214583 = 47.042917 MPG (US) (rounds to 47.04 MPG (US))."
+      "stepByStep": "Apply the inverse consumption formula to 5 L/100km to obtain 47.042917 MPG (US) (47.04 MPG (US))."
     },
     {
       "title": "Practical Mid-Range Conversion (8 L/100km)",
       "scenario": "Convert 8 liters per 100 kilometers (L/100km) into mpg (us) (MPG (US)) for technical comparison and documentation.",
       "inputValue": 8,
       "outputValue": "29.401823 MPG (US)",
-      "stepByStep": "8 L/100km × 235.214583 = 29.401823 MPG (US) (rounds to 29.4 MPG (US))."
+      "stepByStep": "Apply the inverse consumption formula to 8 L/100km to obtain 29.401823 MPG (US) (29.4 MPG (US))."
     },
     {
       "title": "Higher-Capacity Specification (12 L/100km)",
       "scenario": "Convert 12 liters per 100 kilometers (L/100km) into mpg (us) (MPG (US)) for technical comparison and documentation.",
       "inputValue": 12,
       "outputValue": "19.601215 MPG (US)",
-      "stepByStep": "12 L/100km × 235.214583 = 19.601215 MPG (US) (rounds to 19.6 MPG (US))."
+      "stepByStep": "Apply the inverse consumption formula to 12 L/100km to obtain 19.601215 MPG (US) (19.6 MPG (US))."
     }
   ],
   "mistakesAndEdgeCases": {

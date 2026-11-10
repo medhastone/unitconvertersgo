@@ -332,6 +332,30 @@ export const TIER_A_UNIT_PAIRS: Array<[string, string]> = [
   ["gallon_us_per_min", "liter_per_min"],
   ["cubic_foot_per_min", "liter_per_min"],
   ["cubic_foot_per_min", "cubic_meter_per_hour"],
+
+  // Numbers & Magnitudes: billions/lakhs/crores/millions/trillions/thousands/dozens
+  ["billion", "lakh"],
+  ["lakh", "billion"],
+  ["million", "lakh"],
+  ["lakh", "million"],
+  ["crore", "million"],
+  ["million", "crore"],
+  ["billion", "crore"],
+  ["crore", "billion"],
+  ["lakh", "crore"],
+  ["crore", "lakh"],
+  ["million", "billion"],
+  ["billion", "million"],
+  ["trillion", "billion"],
+  ["billion", "trillion"],
+  ["trillion", "crore"],
+  ["crore", "trillion"],
+  ["thousand", "lakh"],
+  ["lakh", "thousand"],
+  ["million", "thousand"],
+  ["thousand", "million"],
+  ["dozen", "gross"],
+  ["gross", "dozen"],
 ];
 
 // ---------------------------------------------------------------------------

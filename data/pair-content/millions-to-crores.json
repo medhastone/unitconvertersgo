@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "millions-to-crores",
+  "category": "numbers",
+  "categoryId": "numbers",
+  "fromUnitId": "million",
+  "toUnitId": "crore",
+  "fromSymbol": "M",
+  "toSymbol": "cr",
+  "intro": "Professionals and everyday users convert millions (M) to crores (cr) when working across other and other standards in engineering specifications, international trade documentation, and technical measurements. One million equals 0.1 crores, while 1 crore equals 10 millions. Whether you are verifying numbers & quantities specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Million Benchmark (2 M)",
+      "scenario": "Convert 2 millions (M) into crores (cr) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "0.2 cr",
+      "stepByStep": "2 M × 0.1 = 0.2 cr (rounds to 0.2 cr)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 M)",
+      "scenario": "Convert 20 millions (M) into crores (cr) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "2 cr",
+      "stepByStep": "20 M × 0.1 = 2 cr (rounds to 2 cr)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 M)",
+      "scenario": "Convert 75 millions (M) into crores (cr) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "7.5 cr",
+      "stepByStep": "75 M × 0.1 = 7.5 cr (rounds to 7.5 cr)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "cr = M × 0.1",
+    "exactFactor": "0.1",
+    "roundedFactor": "0.1",
+    "inverseFactor": "10"
+  },
+  "internalLinks": [
+    {
+      "label": "Crores to Millions (cr to M)",
+      "href": "/numbers/crores-to-millions",
+      "type": "reverse"
+    },
+    {
+      "label": "Billions to Lakhs (B to lakh)",
+      "href": "/numbers/billions-to-lakhs",
+      "type": "related"
+    },
+    {
+      "label": "Lakhs to Billions (lakh to B)",
+      "href": "/numbers/lakhs-to-billions",
+      "type": "related"
+    },
+    {
+      "label": "Millions to Lakhs (M to lakh)",
+      "href": "/numbers/millions-to-lakhs",
+      "type": "related"
+    },
+    {
+      "label": "Lakhs to Millions (lakh to M)",
+      "href": "/numbers/lakhs-to-millions",
+      "type": "related"
+    },
+    {
+      "label": "Numbers & Quantities Conversions Hub",
+      "href": "/numbers",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many crores (cr) are in 1 million (M)?",
+      "answer": "There are 0.1 crores (cr) in 1 million (M), which rounds to 0.1 cr for everyday calculations. Conversely, 1 crore equals 10 millions."
+    },
+    {
+      "question": "How do I convert millions to crores (M to cr)?",
+      "answer": "To convert millions to crores, use the formula: cr = M × 0.1. For example, converting 10 M gives 1 cr."
+    },
+    {
+      "question": "What is 10 millions in crores?",
+      "answer": "10 millions (M) equals exactly 1 crores (cr) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

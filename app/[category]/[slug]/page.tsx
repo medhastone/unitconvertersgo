@@ -171,7 +171,7 @@ export default async function HierarchicalConversionPage({
   }
 
   const editorial = generateEditorialContentBundle(pair, fromUnit, toUnit);
-  const pairContent = getPairContent(pair.slug);
+  const pairContent = getPairContent(pair.slug, pair);
   const curatedCommonValues = getCuratedCommonValues(
     getCategoryUrlSlug(pair.categoryId),
     pair.slug,

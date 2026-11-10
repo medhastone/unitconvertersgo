@@ -26,21 +26,21 @@
       "scenario": "Convert 25 mpg (us) (MPG (US)) into liters per 100 kilometers (L/100km) for technical comparison and documentation.",
       "inputValue": 25,
       "outputValue": "9.408583 L/100km",
-      "stepByStep": "25 MPG (US) × 235.214583 = 9.408583 L/100km (rounds to 9.41 L/100km)."
+      "stepByStep": "Apply the inverse consumption formula to 25 MPG (US) to obtain 9.408583 L/100km (9.41 L/100km)."
     },
     {
       "title": "Practical Mid-Range Conversion (40 MPG (US))",
       "scenario": "Convert 40 mpg (us) (MPG (US)) into liters per 100 kilometers (L/100km) for technical comparison and documentation.",
       "inputValue": 40,
       "outputValue": "5.880365 L/100km",
-      "stepByStep": "40 MPG (US) × 235.214583 = 5.880365 L/100km (rounds to 5.88 L/100km)."
+      "stepByStep": "Apply the inverse consumption formula to 40 MPG (US) to obtain 5.880365 L/100km (5.88 L/100km)."
     },
     {
       "title": "Higher-Capacity Specification (60 MPG (US))",
       "scenario": "Convert 60 mpg (us) (MPG (US)) into liters per 100 kilometers (L/100km) for technical comparison and documentation.",
       "inputValue": 60,
       "outputValue": "3.920243 L/100km",
-      "stepByStep": "60 MPG (US) × 235.214583 = 3.920243 L/100km (rounds to 3.92 L/100km)."
+      "stepByStep": "Apply the inverse consumption formula to 60 MPG (US) to obtain 3.920243 L/100km (3.92 L/100km)."
     }
   ],
   "mistakesAndEdgeCases": {

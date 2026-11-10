@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "trillions-to-billions",
+  "category": "numbers",
+  "categoryId": "numbers",
+  "fromUnitId": "trillion",
+  "toUnitId": "billion",
+  "fromSymbol": "T",
+  "toSymbol": "B",
+  "intro": "Professionals and everyday users convert trillions (T) to billions (B) when working across other and other standards in engineering specifications, international trade documentation, and technical measurements. One trillion equals 1,000 billions, while 1 billion equals 0.001 trillions. Whether you are verifying numbers & quantities specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Trillion Benchmark (2 T)",
+      "scenario": "Convert 2 trillions (T) into billions (B) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "2,000 B",
+      "stepByStep": "2 T × 1,000 = 2,000 B (rounds to 2,000 B)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 T)",
+      "scenario": "Convert 20 trillions (T) into billions (B) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "20,000 B",
+      "stepByStep": "20 T × 1,000 = 20,000 B (rounds to 20,000 B)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 T)",
+      "scenario": "Convert 75 trillions (T) into billions (B) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "75,000 B",
+      "stepByStep": "75 T × 1,000 = 75,000 B (rounds to 75,000 B)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "B = T × 1,000",
+    "exactFactor": "1,000",
+    "roundedFactor": "1,000",
+    "inverseFactor": "0.001"
+  },
+  "internalLinks": [
+    {
+      "label": "Billions to Trillions (B to T)",
+      "href": "/numbers/billions-to-trillions",
+      "type": "reverse"
+    },
+    {
+      "label": "Billions to Lakhs (B to lakh)",
+      "href": "/numbers/billions-to-lakhs",
+      "type": "related"
+    },
+    {
+      "label": "Lakhs to Billions (lakh to B)",
+      "href": "/numbers/lakhs-to-billions",
+      "type": "related"
+    },
+    {
+      "label": "Millions to Lakhs (M to lakh)",
+      "href": "/numbers/millions-to-lakhs",
+      "type": "related"
+    },
+    {
+      "label": "Lakhs to Millions (lakh to M)",
+      "href": "/numbers/lakhs-to-millions",
+      "type": "related"
+    },
+    {
+      "label": "Numbers & Quantities Conversions Hub",
+      "href": "/numbers",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many billions (B) are in 1 trillion (T)?",
+      "answer": "There are 1,000 billions (B) in 1 trillion (T), which rounds to 1,000 B for everyday calculations. Conversely, 1 billion equals 0.001 trillions."
+    },
+    {
+      "question": "How do I convert trillions to billions (T to B)?",
+      "answer": "To convert trillions to billions, use the formula: B = T × 1,000. For example, converting 10 T gives 10,000 B."
+    },
+    {
+      "question": "What is 10 trillions in billions?",
+      "answer": "10 trillions (T) equals exactly 10,000 billions (B) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}

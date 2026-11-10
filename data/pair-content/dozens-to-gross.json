@@ -1,0 +1,104 @@
+{
+  "status": "draft-needs-review",
+  "slug": "dozens-to-gross",
+  "category": "numbers",
+  "categoryId": "numbers",
+  "fromUnitId": "dozen",
+  "toUnitId": "gross",
+  "fromSymbol": "doz",
+  "toSymbol": "gr",
+  "intro": "Professionals and everyday users convert dozens (doz) to gross (gr) when working across other and other standards in engineering specifications, international trade documentation, and technical measurements. One dozen equals 0.083333 gross, while 1 gross equals 12 dozens. Whether you are verifying numbers & quantities specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "commonValues": [
+    0.5,
+    1,
+    2,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100
+  ],
+  "workedExamples": [
+    {
+      "title": "Standard Dozen Benchmark (2 doz)",
+      "scenario": "Convert 2 dozens (doz) into gross (gr) for technical comparison and documentation.",
+      "inputValue": 2,
+      "outputValue": "0.166667 gr",
+      "stepByStep": "2 doz × 0.083333 = 0.166667 gr (rounds to 0.17 gr)."
+    },
+    {
+      "title": "Practical Mid-Range Conversion (20 doz)",
+      "scenario": "Convert 20 dozens (doz) into gross (gr) for technical comparison and documentation.",
+      "inputValue": 20,
+      "outputValue": "1.666667 gr",
+      "stepByStep": "20 doz × 0.083333 = 1.666667 gr (rounds to 1.67 gr)."
+    },
+    {
+      "title": "Higher-Capacity Specification (75 doz)",
+      "scenario": "Convert 75 dozens (doz) into gross (gr) for technical comparison and documentation.",
+      "inputValue": 75,
+      "outputValue": "6.25 gr",
+      "stepByStep": "75 doz × 0.083333 = 6.25 gr (rounds to 6.25 gr)."
+    }
+  ],
+  "mistakesAndEdgeCases": null,
+  "formula": {
+    "equation": "gr = doz × 0.08333333",
+    "exactFactor": "0.08333333",
+    "roundedFactor": "0.0833",
+    "inverseFactor": "12"
+  },
+  "internalLinks": [
+    {
+      "label": "Gross to Dozens (gr to doz)",
+      "href": "/numbers/gross-to-dozens",
+      "type": "reverse"
+    },
+    {
+      "label": "Billions to Lakhs (B to lakh)",
+      "href": "/numbers/billions-to-lakhs",
+      "type": "related"
+    },
+    {
+      "label": "Lakhs to Billions (lakh to B)",
+      "href": "/numbers/lakhs-to-billions",
+      "type": "related"
+    },
+    {
+      "label": "Millions to Lakhs (M to lakh)",
+      "href": "/numbers/millions-to-lakhs",
+      "type": "related"
+    },
+    {
+      "label": "Lakhs to Millions (lakh to M)",
+      "href": "/numbers/lakhs-to-millions",
+      "type": "related"
+    },
+    {
+      "label": "Numbers & Quantities Conversions Hub",
+      "href": "/numbers",
+      "type": "hub"
+    },
+    {
+      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many gross (gr) are in 1 dozen (doz)?",
+      "answer": "There are 0.08333333 gross (gr) in 1 dozen (doz), which rounds to 0.0833 gr for everyday calculations. Conversely, 1 gross equals 12 dozens."
+    },
+    {
+      "question": "How do I convert dozens to gross (doz to gr)?",
+      "answer": "To convert dozens to gross, use the formula: gr = doz × 0.08333333. For example, converting 10 doz gives 0.8333 gr."
+    },
+    {
+      "question": "What is 10 dozens in gross?",
+      "answer": "10 dozens (doz) equals exactly 0.8333 gross (gr) using standard NIST SP 811 and ISO 80000 conversion factors."
+    }
+  ]
+}
