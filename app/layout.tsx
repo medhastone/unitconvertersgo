@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -10,24 +9,6 @@ import { SITE_CONFIG } from "@/lib/config";
 import { DEFAULT_OG_IMAGE, SHARED_FAVICON_ICONS } from "@/lib/seo";
 
 const GA_MEASUREMENT_ID = "G-36PCW5PDH6";
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  display: "swap",
-  variable: "--font-jakarta",
-  preload: true,
-  adjustFontFallback: false,
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  display: "swap",
-  variable: "--font-jetbrains-mono",
-  preload: false,
-  adjustFontFallback: false,
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.baseUrl),
@@ -173,9 +154,16 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${plusJakartaSans.variable} ${jetbrainsMono.variable} scroll-smooth`}
+      className="scroll-smooth"
     >
       <head suppressHydrationWarning>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        />
         <script
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: gaConsentInitScript }}
