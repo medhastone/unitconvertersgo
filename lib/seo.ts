@@ -176,62 +176,8 @@ export function getCategoryOgImage(
   };
 }
 
-/**
- * Obscure scientific unit IDs (extreme SI prefixes) that should be excluded from
- * "More Conversions" footer link blocks.
- */
-export const OBSCURE_UNIT_IDS = new Set<string>([
-  "exameter",
-  "petameter",
-  "terameter",
-  "gigameter",
-  "megameter",
-  "hectometer",
-  "decameter",
-  "decimeter",
-  "picometer",
-  "femtometer",
-  "angstrom",
-  "fathom",
-  "furlong",
-  "chain",
-  "rod",
-  "league",
-  "light_year",
-  "parsec",
-  "astronomical_unit",
-  "microinch",
-  "mil",
-  "planck_length",
-  "carat",
-  "grain",
-  "dram",
-  "slug",
-  "atomic_mass_unit",
-  "quarter_us",
-  "quarter_uk",
-  "hundredweight_us",
-  "hundredweight_uk",
-  "troy_pound",
-  "pennyweight",
-  "gill_us",
-  "gill_uk",
-  "pint_dry_us",
-  "quart_dry_us",
-  "bushel_us",
-  "barrel_us",
-  "prefix_tera",
-  "prefix_giga",
-  "prefix_mega",
-  "prefix_kilo",
-  "prefix_hecto",
-  "prefix_deci",
-  "prefix_centi",
-  "prefix_milli",
-  "prefix_micro",
-  "prefix_nano",
-  "prefix_pico",
-]);
+import { OBSCURE_UNIT_IDS } from "./conversions/obscure-units";
+export { OBSCURE_UNIT_IDS };
 
 /**
  * Non-indexable category helper delegating to centralized lib/seo-config.ts.
@@ -248,9 +194,62 @@ export function cleanUnitDisplayName(rawName: string): string {
   return rawName.replace(/\s+\([^)]*\)/g, "").trim();
 }
 
+const SUPERSCRIPT_DIGITS: Record<string, string> = {
+  "-": "⁻",
+  "0": "⁰",
+  "1": "¹",
+  "2": "²",
+  "3": "³",
+  "4": "⁴",
+  "5": "⁵",
+  "6": "⁶",
+  "7": "⁷",
+  "8": "⁸",
+  "9": "⁹",
+};
+
+function toSuperscriptExponent(exp: number): string {
+  const s = String(Math.round(exp))
+    .split("")
+    .map((ch) => SUPERSCRIPT_DIGITS[ch] ?? ch)
+    .join("");
+  return `10${s}`;
+}
+
+function cleanPrefixLabel(unit: Unit): string {
+  if (unit.id === "prefix_none") return "Base Units";
+  return cleanUnitDisplayName(unit.name);
+}
+
 /**
- * Standardizes tool page titles to:
- * "[A] to [B] Converter – Free & Instant ([a] to [b])"
+ * Natural, high-intent title overrides for top-searched converter pairs (< 60 chars).
+ */
+const COMPACT_QUERY_TITLE_OVERRIDES: Record<string, string> = {
+  "lbs-to-kg": "Lbs to Kg — Pounds to Kilograms Converter",
+  "kg-to-lbs": "Kg to Lbs — Kilograms to Pounds Converter",
+  "cm-to-inches": "CM to Inches — Centimeters to Inches Converter",
+  "inches-to-cm": "Inches to CM — Inches to Centimeters Converter",
+  "meters-to-feet": "Meters to Feet (m to ft) Converter",
+  "feet-to-meters": "Feet to Meters (ft to m) Converter",
+  "km-to-miles": "KM to Miles — Kilometers to Miles Converter",
+  "miles-to-km": "Miles to KM — Miles to Kilometers Converter",
+  "grams-to-ounces": "Grams to Ounces (g to oz) Converter",
+  "ounces-to-grams": "Ounces to Grams (oz to g) Converter",
+  "celsius-to-fahrenheit": "Celsius to Fahrenheit (°C to °F) Converter",
+  "fahrenheit-to-celsius": "Fahrenheit to Celsius (°F to °C) Converter",
+  "sq-feet-to-sq-meters": "Sq Ft to Sq M — Square Feet to Square Meters",
+  "sq-meters-to-sq-feet": "Sq M to Sq Ft — Square Meters to Square Feet",
+  "liters-to-gallons": "Liters to Gallons (L to gal) Converter",
+  "gallons-to-liters": "Gallons to Liters (gal to L) Converter",
+  "ml-to-oz": "mL to Oz — Milliliters to Fluid Ounces",
+  "oz-to-ml": "Oz to mL — Fluid Ounces to Milliliters",
+  "lb-ft-to-nm": "ft-lbs to Nm — Foot-Pounds to Newton-Meters",
+  "nm-to-lb-ft": "Nm to ft-lbs — Newton-Meters to Foot-Pounds",
+};
+
+/**
+ * Standardizes tool page titles while guaranteeing every Tier-A & Prefix title stays < 60 chars
+ * and contains proper mathematical symbols (never raw slug tokens).
  */
 export function buildStandardToolTitle(
   pair: ConversionPairInfo,
@@ -261,7 +260,32 @@ export function buildStandardToolTitle(
   const toUnit = toUnitOverride || UNIT_MAP.get(pair.toUnitId);
 
   if (!fromUnit || !toUnit) {
-    return `${pair.title.replace(/\s*Converter.*$/i, "").trim()} Converter – Free & Instant`;
+    const base = `${pair.title.replace(/\s*Converter.*$/i, "").trim()} Converter`;
+    return base.length < 60 ? base : base.slice(0, 59).trim();
+  }
+
+  // Req 3: Prefix page title pattern: "Micro to Base Units: 1 µ = 10⁻⁶ | UnitConvertersGo"
+  if (pair.categoryId === "prefixes" && fromUnit.toBase && toUnit.toBase) {
+    const ratio = fromUnit.toBase / toUnit.toBase;
+    const exp = Math.round(Math.log10(ratio));
+    const fromLabel = cleanPrefixLabel(fromUnit);
+    const toLabel = cleanPrefixLabel(toUnit);
+    const pow10 = toSuperscriptExponent(exp);
+    const withBrand = `${fromLabel} to ${toLabel}: 1 ${fromUnit.symbol} = ${pow10} | UnitConvertersGo`;
+    if (withBrand.length < 60) {
+      return withBrand;
+    }
+    const withoutBrand = `${fromLabel} to ${toLabel}: 1 ${fromUnit.symbol} = ${pow10}`;
+    if (withoutBrand.length < 60) {
+      return withoutBrand;
+    }
+    return `${fromLabel} to ${toLabel} (${fromUnit.symbol} = ${pow10})`;
+  }
+
+  // Exact high-intent query titles for core pairs
+  const curatedTitle = COMPACT_QUERY_TITLE_OVERRIDES[pair.slug];
+  if (curatedTitle) {
+    return curatedTitle;
   }
 
   const unitA = cleanUnitDisplayName(fromUnit.plural);
@@ -269,12 +293,45 @@ export function buildStandardToolTitle(
   const symA = fromUnit.symbol.trim();
   const symB = toUnit.symbol.trim();
 
-  return `${unitA} to ${unitB} Converter – Free & Instant (${symA} to ${symB})`;
+  // Tiered concise formats under 60 characters
+  const withSymbolsAndBrand = `${unitA} to ${unitB} (${symA} to ${symB}) | UnitConvertersGo`;
+  if (withSymbolsAndBrand.length < 60) {
+    return withSymbolsAndBrand;
+  }
+
+  const withConverter = `${unitA} to ${unitB} Converter (${symA} to ${symB})`;
+  if (withConverter.length < 60) {
+    return withConverter;
+  }
+
+  const withSymbols = `${unitA} to ${unitB} (${symA} to ${symB})`;
+  if (withSymbols.length < 60) {
+    return withSymbols;
+  }
+
+  const shortA = cleanUnitDisplayName(fromUnit.name);
+  const shortB = cleanUnitDisplayName(toUnit.name);
+  const singularSymbols = `${shortA} to ${shortB} (${symA} to ${symB})`;
+  if (singularSymbols.length < 60) {
+    return singularSymbols;
+  }
+
+  const noParens = `${unitA} to ${unitB} Converter`;
+  if (noParens.length < 60) {
+    return noParens;
+  }
+
+  const plain = `${unitA} to ${unitB}`;
+  if (plain.length < 60) {
+    return plain;
+  }
+
+  return `${symA} to ${symB} — ${shortA} to ${shortB}`.slice(0, 59).trim();
 }
 
 /**
  * Builds the standardized tool page meta description:
- * Factor + Benefit + What the page genuinely includes (only features that really exist).
+ * Leads with exact "1 <from> = <value> <to>" result + exact query phrases + real page features.
  */
 export function buildStandardToolDescription(
   pair: ConversionPairInfo,
@@ -292,14 +349,22 @@ export function buildStandardToolDescription(
   const unitBLower = cleanUnitDisplayName(toUnit.plural).toLowerCase();
   const symA = fromUnit.symbol.trim();
   const symB = toUnit.symbol.trim();
+  const slugQuery = pair.slug.replace(/-/g, " ");
 
-  // 1. Exact conversion factor
+  const isMassVolume =
+    (fromUnit.categoryId === "mass" && toUnit.categoryId === "volume") ||
+    (fromUnit.categoryId === "volume" && toUnit.categoryId === "mass");
+
+  // 1. Exact conversion factor right at the beginning of the description
   let factorClause = "";
   try {
     if (pair.categoryId === "temperature") {
       const zeroOut = convertUnits(0, fromUnit.id, toUnit.id, "auto");
       const oneOut = convertUnits(1, fromUnit.id, toUnit.id, "auto");
       factorClause = `0 ${symA} = ${zeroOut.formattedValue} ${symB} (1 ${symA} = ${oneOut.formattedValue} ${symB}).`;
+    } else if (isMassVolume) {
+      const oneOut = convertUnits(1, fromUnit.id, toUnit.id, "auto", 12, 1);
+      factorClause = `1 ${symA} = ${oneOut.formattedValue} ${symB} (assuming water at 1 g/mL).`;
     } else {
       const oneOut = convertUnits(1, fromUnit.id, toUnit.id, "auto");
       factorClause = `1 ${symA} = ${oneOut.formattedValue} ${symB}.`;
@@ -308,28 +373,38 @@ export function buildStandardToolDescription(
     factorClause = `Convert ${symA} to ${symB} accurately.`;
   }
 
-  // 2. Clear user benefit
-  const benefitClause = `Convert ${unitALower} to ${unitBLower} instantly for free.`;
+  // 2. Include both natural query phrase (e.g. "lbs to kg") and full unit names ("pounds to kilograms")
+  const hasDifferentSlugPhrase =
+    !slugQuery.includes(unitALower) || !slugQuery.includes(unitBLower);
+  const benefitClause = isMassVolume
+    ? `Convert ${unitALower} to ${unitBLower} using our substance density selector (water, oil, flour, sugar).`
+    : hasDifferentSlugPhrase && !slugQuery.includes(" per ")
+    ? `Convert ${slugQuery} (${unitALower} to ${unitBLower}) instantly for free.`
+    : `Convert ${unitALower} to ${unitBLower} instantly for free.`;
 
   // 3. Real features that genuinely exist on this page
   const featuresClause =
     pair.categoryId === "length"
-      ? `Includes live calculator, formula, 1/16" tape measure & printable chart.`
-      : `Includes live calculator, step-by-step formula & reference table.`;
+      ? `Includes calculator, formula, 1/16" tape measure & table.`
+      : `Includes calculator, worked examples & conversion table.`;
 
   const fullDesc = `${factorClause} ${benefitClause} ${featuresClause}`;
   if (fullDesc.length <= 160) {
     return fullDesc;
   }
 
-  // Compact fallback when unit names are very long (e.g., engineering compound units)
-  const compactBenefit = `Convert ${symA} to ${symB} instantly for free.`;
+  const compactBenefit = `Convert ${unitALower} to ${unitBLower} (${symA} to ${symB}) free.`;
   const compactDesc = `${factorClause} ${compactBenefit} ${featuresClause}`;
   if (compactDesc.length <= 160) {
     return compactDesc;
   }
 
-  return formatSeoDescription(compactDesc);
+  const tightDesc = `${factorClause} Convert ${symA} to ${symB} with formula, examples & chart.`;
+  if (tightDesc.length <= 160) {
+    return tightDesc;
+  }
+
+  return formatSeoDescription(tightDesc);
 }
 
 /**

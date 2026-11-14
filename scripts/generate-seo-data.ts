@@ -962,7 +962,7 @@ for (const pair of tierAPairs) {
       }
     : null;
 
-  // 3-4 Related converters in same category (prefer Tier A, fallback to category pairs so length is always >= 3)
+  // 4-5 Related converters in same category (prefer Tier A, fallback to category pairs)
   const relatedCandidates = [
     ...tierAPairs.filter(
       (p) =>
@@ -977,7 +977,7 @@ for (const pair of tierAPairs) {
         p.slug !== reversePair?.slug &&
         !tierASlugs.has(p.slug)
     ),
-  ].slice(0, 4);
+  ].slice(0, 5);
 
   const relatedInCategory = relatedCandidates.map((p) => {
     const rf = UNIT_MAP.get(p.fromUnitId)!;
@@ -1208,15 +1208,29 @@ for (const item of CONVERSION_CATALOGUE) {
   }
 }
 
-// F. Duplicate losers across categories -> 301 to canonical primary category
+// F. Duplicate losers across categories & slug aliases -> 301 to shorter canonical slug
 addRedirect("/mass-flux-density/kg-to-g", "/weight-and-mass/kg-to-grams");
 addRedirect("/mass-flux-density/g-to-kg", "/weight-and-mass/grams-to-kg");
 addRedirect("/mass-flux-density/kg-to-lb", "/weight-and-mass/kg-to-lbs");
 addRedirect("/mass-flux-density/lb-to-kg", "/weight-and-mass/lbs-to-kg");
 
-// G. Cross-dimension volume/mass invalid URLs -> 301 to /cooking
-addRedirect("/volume/pints-to-metric-tons", "/cooking");
-addRedirect("/volume/metric-tons-to-pints", "/cooking");
+addRedirect("/area/square-feet-to-square-meters", "/area/sq-feet-to-sq-meters");
+addRedirect("/area/square-meters-to-square-feet", "/area/sq-meters-to-sq-feet");
+
+addRedirect("/torque/foot-pounds-to-newton-meters", "/torque/lb-ft-to-nm");
+addRedirect("/torque/ft-lbs-to-nm", "/torque/lb-ft-to-nm");
+addRedirect("/torque/newton-meters-to-foot-pounds", "/torque/nm-to-lb-ft");
+addRedirect("/torque/nm-to-ft-lbs", "/torque/nm-to-lb-ft");
+
+addRedirect("/density/ppm-to-mg-per-liter", "/concentration-solution/ppm-to-mg-per-liter");
+addRedirect("/density/mg-per-liter-to-ppm", "/concentration-solution/mg-per-liter-to-ppm");
+addRedirect("/concentration-solution/ppm-to-milligrams-per-liter", "/concentration-solution/ppm-to-mg-per-liter");
+addRedirect("/concentration-solution/milligrams-per-liter-to-ppm", "/concentration-solution/mg-per-liter-to-ppm");
+addRedirect("/concentration-solution/ppm-to-micrograms-per-liter", "/concentration-solution/ppm-to-ug-per-liter");
+addRedirect("/concentration-solution/micrograms-per-liter-to-ppm", "/concentration-solution/ug-per-liter-to-ppm");
+addRedirect("/concentration-solution/parts-per-million-to-mg-per-liter", "/concentration-solution/ppm-to-mg-per-liter");
+
+// G. Culinary cup/tbsp/tsp/ml->g URLs -> 301 to USDA ingredient pages /cooking/*
 addRedirect("/volume/cups-to-grams", "/cooking/cups-to-grams");
 addRedirect("/volume/grams-to-cups", "/cooking/grams-to-cups");
 addRedirect("/volume/tablespoons-to-grams", "/cooking/tablespoons-to-grams");
@@ -1283,6 +1297,45 @@ fs.writeFileSync(
   JSON.stringify(resolvedRedirects, null, 2)
 );
 
+// I. Output data/slug-duplicates.csv documenting every duplicate slug -> 301 canonical URL
+const csvRows: string[] = [
+  "duplicate_url,canonical_url,from_unit_id,to_unit_id,category,reason,action",
+];
+for (const entry of resolvedRedirects) {
+  const destParts = entry.destination.split("/").filter(Boolean);
+  let fromUnitId = "";
+  let toUnitId = "";
+  let category = destParts[0] || "";
+  if (destParts.length === 2) {
+    const catId = resolveCategoryIdFromUrlSlug(destParts[0]);
+    const matched = getConversionPair(destParts[1], catId);
+    if (matched) {
+      fromUnitId = matched.fromUnitId;
+      toUnitId = matched.toUnitId;
+      category = matched.categoryId;
+    }
+  }
+  const reason = entry.source.startsWith("/conversions/")
+    ? "legacy_conversions_prefix"
+    : entry.source.split("/")[1] !== destParts[0]
+    ? "cross_category_duplicate"
+    : "alternate_or_verbose_unit_slug";
+  const esc = (s: string) => `"${String(s).replace(/"/g, '""')}"`;
+  csvRows.push(
+    [
+      esc(entry.source),
+      esc(entry.destination),
+      esc(fromUnitId),
+      esc(toUnitId),
+      esc(category),
+      esc(reason),
+      esc("301"),
+    ].join(",")
+  );
+}
+
+fs.writeFileSync(path.join(DATA_DIR, "slug-duplicates.csv"), csvRows.join("\n") + "\n");
+
 console.log(
-  `Generated ${resolvedRedirects.length} 301 redirects in data/slug-redirects.json (0 chains).`
+  `Generated ${resolvedRedirects.length} 301 redirects in data/slug-redirects.json (0 chains) and ${csvRows.length - 1} rows in data/slug-duplicates.csv.`
 );

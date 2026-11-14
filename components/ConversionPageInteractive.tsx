@@ -64,6 +64,8 @@ import {
 import {
   CONVERSION_CATALOGUE,
   findDedicatedPair,
+  getCanonicalPairSlug,
+  getConversionPair,
   getConversionsByCategory,
   getMoreUnitConversionLinks,
   getPairUrl,
@@ -245,6 +247,80 @@ function formatPairResult(rawValue: number, precision: PrecisionMode): string {
   return formatValue(rawValue, precision);
 }
 
+interface SubstancePreset {
+  id: string;
+  label: string;
+  shortLabel: string;
+  density: number; // g/mL (= kg/L)
+}
+
+const SUBSTANCE_DENSITY_PRESETS: SubstancePreset[] = [
+  { id: "water", label: "Pure Water (20 °C)", shortLabel: "Water", density: 1.0 },
+  { id: "milk", label: "Whole Milk", shortLabel: "Milk", density: 1.03 },
+  { id: "olive_oil", label: "Olive Oil", shortLabel: "Olive Oil", density: 0.915 },
+  { id: "veg_oil", label: "Vegetable Oil", shortLabel: "Veg Oil", density: 0.92 },
+  { id: "butter", label: "Melted Butter", shortLabel: "Butter", density: 0.959 },
+  { id: "honey", label: "Honey", shortLabel: "Honey", density: 1.42 },
+  { id: "flour", label: "All-Purpose Flour", shortLabel: "Flour", density: 0.529 },
+  { id: "sugar", label: "Granulated Sugar", shortLabel: "Sugar", density: 0.849 },
+  { id: "gasoline", label: "Gasoline", shortLabel: "Gasoline", density: 0.745 },
+  { id: "diesel", label: "Diesel Fuel", shortLabel: "Diesel", density: 0.832 },
+  { id: "ethanol", label: "Ethanol", shortLabel: "Ethanol", density: 0.789 },
+  { id: "mercury", label: "Mercury", shortLabel: "Mercury", density: 13.534 },
+  { id: "custom", label: "Custom Density", shortLabel: "Custom", density: 1.0 },
+];
+
+const SUPERSCRIPT_DIGITS: Record<string, string> = {
+  "-": "⁻",
+  "0": "⁰",
+  "1": "¹",
+  "2": "²",
+  "3": "³",
+  "4": "⁴",
+  "5": "⁵",
+  "6": "⁶",
+  "7": "⁷",
+  "8": "⁸",
+  "9": "⁹",
+};
+
+function toSuperscriptExponent(exp: number): string {
+  return String(exp)
+    .split("")
+    .map((ch) => SUPERSCRIPT_DIGITS[ch] ?? ch)
+    .join("");
+}
+
+function formatPlainDecimalForPower(val: number): string {
+  if (!Number.isFinite(val)) return "—";
+  if (val === 1) return "1";
+  const exp = Math.round(Math.log10(val));
+  if (Math.abs(val - Math.pow(10, exp)) < 1e-15 * Math.max(1, val)) {
+    if (exp >= 0 && exp <= 12) {
+      return Math.pow(10, exp).toLocaleString("en-US");
+    }
+    if (exp < 0 && exp >= -12) {
+      return `0.${"0".repeat(Math.abs(exp) - 1)}1`;
+    }
+  }
+  return formatValue(val, "auto");
+}
+
+const SI_PREFIX_REFERENCE_ROWS = [
+  { unitId: "prefix_tera", slug: "tera-to-base-units", name: "Tera", symbol: "T", exp: 12, decimal: "1,000,000,000,000" },
+  { unitId: "prefix_giga", slug: "giga-to-base-units", name: "Giga", symbol: "G", exp: 9, decimal: "1,000,000,000" },
+  { unitId: "prefix_mega", slug: "mega-to-base-units", name: "Mega", symbol: "M", exp: 6, decimal: "1,000,000" },
+  { unitId: "prefix_kilo", slug: "kilo-to-base-units", name: "Kilo", symbol: "k", exp: 3, decimal: "1,000" },
+  { unitId: "prefix_hecto", slug: "hecto-to-base-units", name: "Hecto", symbol: "h", exp: 2, decimal: "100" },
+  { unitId: "prefix_none", slug: "base-units-to-kilo", name: "Base Unit", symbol: "1", exp: 0, decimal: "1" },
+  { unitId: "prefix_deci", slug: "deci-to-base-units", name: "Deci", symbol: "d", exp: -1, decimal: "0.1" },
+  { unitId: "prefix_centi", slug: "centi-to-base-units", name: "Centi", symbol: "c", exp: -2, decimal: "0.01" },
+  { unitId: "prefix_milli", slug: "milli-to-base-units", name: "Milli", symbol: "m", exp: -3, decimal: "0.001" },
+  { unitId: "prefix_micro", slug: "micro-to-base-units", name: "Micro", symbol: "µ", exp: -6, decimal: "0.000001" },
+  { unitId: "prefix_nano", slug: "nano-to-base-units", name: "Nano", symbol: "n", exp: -9, decimal: "0.000000001" },
+  { unitId: "prefix_pico", slug: "pico-to-base-units", name: "Pico", symbol: "p", exp: -12, decimal: "0.000000000001" },
+];
+
 /**
  * Produces a human-readable formula string and worked example arithmetic
  */
@@ -252,15 +328,16 @@ function getHumanFormulaAndExample(
   fromUnitId: string,
   toUnitId: string,
   inputVal: number,
-  output: ConversionOutput
+  output: ConversionOutput,
+  densityGPerMl = 1
 ) {
   const fromUnit = output.fromUnit;
   const toUnit = output.toUnit;
   const fromPlural = fromUnit.plural.toLowerCase();
   const toPlural = toUnit.plural.toLowerCase();
 
-  const oneReverse = convertUnits(1, toUnitId, fromUnitId, "auto");
-  const oneForward = convertUnits(1, fromUnitId, toUnitId, "auto");
+  const oneReverse = convertUnits(1, toUnitId, fromUnitId, "auto", 12, densityGPerMl);
+  const oneForward = convertUnits(1, fromUnitId, toUnitId, "auto", 12, densityGPerMl);
 
   if (fromUnitId === "centimeter" && toUnitId === "inch") {
     const approx3 = Number(output.rawValue.toFixed(3));
@@ -340,6 +417,8 @@ export default function ConversionPageInteractive({
   const deferredInputStr = useDeferredValue(inputStr);
   const [precision, setPrecision] = useState<PrecisionMode>("auto");
   const [selectedVoltage, setSelectedVoltage] = useState<number>(12);
+  const [selectedSubstanceId, setSelectedSubstanceId] = useState<string>("water");
+  const [customDensityStr, setCustomDensityStr] = useState<string>("1.000");
   const [copied, setCopied] = useState(false);
   const [copiedFormula, setCopiedFormula] = useState(false);
   const [copiedSolution, setCopiedSolution] = useState(false);
@@ -422,9 +501,57 @@ export default function ConversionPageInteractive({
     );
   }, [fromUnitId, toUnitId]);
 
+  const activeSubstance = useMemo(() => {
+    return (
+      SUBSTANCE_DENSITY_PRESETS.find((s) => s.id === selectedSubstanceId) ||
+      SUBSTANCE_DENSITY_PRESETS[0]
+    );
+  }, [selectedSubstanceId]);
+
+  const densityGPerMl = useMemo(() => {
+    if (selectedSubstanceId === "custom") {
+      const parsed = parseFloat(customDensityStr);
+      return Number.isFinite(parsed) && parsed > 0 && parsed <= 100 ? parsed : 1.0;
+    }
+    return activeSubstance.density;
+  }, [selectedSubstanceId, customDensityStr, activeSubstance]);
+
+  const isCrossDimensionMassVolume = useMemo(() => {
+    const f = UNIT_MAP.get(fromUnitId);
+    const t = UNIT_MAP.get(toUnitId);
+    if (!f || !t) return false;
+    return (
+      (f.categoryId === "mass" && t.categoryId === "volume") ||
+      (f.categoryId === "volume" && t.categoryId === "mass")
+    );
+  }, [fromUnitId, toUnitId]);
+
+  const fromDropdownUnits = useMemo(() => {
+    const f = UNIT_MAP.get(fromUnitId);
+    const catId = f?.categoryId || pair.categoryId;
+    const base = [...getUnitsByCategory(catId)];
+    if (f && !base.some((u) => u.id === f.id)) base.push(f);
+    return base;
+  }, [fromUnitId, pair.categoryId]);
+
+  const toDropdownUnits = useMemo(() => {
+    const t = UNIT_MAP.get(toUnitId);
+    const catId = t?.categoryId || pair.categoryId;
+    const base = [...getUnitsByCategory(catId)];
+    if (t && !base.some((u) => u.id === t.id)) base.push(t);
+    return base;
+  }, [toUnitId, pair.categoryId]);
+
   const activeOutput: ConversionOutput = useMemo(() => {
-    return convertUnits(effectiveInput, fromUnitId, toUnitId, precision, selectedVoltage);
-  }, [effectiveInput, fromUnitId, toUnitId, precision, selectedVoltage]);
+    return convertUnits(
+      effectiveInput,
+      fromUnitId,
+      toUnitId,
+      precision,
+      selectedVoltage,
+      densityGPerMl
+    );
+  }, [effectiveInput, fromUnitId, toUnitId, precision, selectedVoltage, densityGPerMl]);
 
   const highPrecisionFormatted = useMemo(() => {
     if (!isValidInput) return "—";
@@ -635,7 +762,8 @@ export default function ConversionPageInteractive({
         fromUnitId,
         toUnitId,
         isValidInput ? numericInput : pair.exampleInput,
-        activeOutput
+        activeOutput,
+        densityGPerMl
       ),
     [
       fromUnitId,
@@ -644,11 +772,31 @@ export default function ConversionPageInteractive({
       numericInput,
       pair.exampleInput,
       activeOutput,
+      densityGPerMl,
     ]
   );
 
-  // Scale-aware conversion table rows (handles extreme ratios like Inches to Nanometers 0.0000001" to 1" + standard rows)
+  // Scale-aware conversion table rows (handles extreme ratios + density-labelled mass<->volume rows)
   const tableRows = useMemo(() => {
+    if (isCrossDimensionMassVolume) {
+      const baseValues =
+        tablePreset === "small"
+          ? [0.1, 0.25, 0.5, 1, 2, 3, 4, 5, 8, 10]
+          : tablePreset === "large"
+          ? [1, 5, 10, 20, 25, 50, 75, 100, 250, 500]
+          : pairContent?.commonValues || curatedCommonValues || pair.commonValues || [0.5, 1, 2, 5, 10, 20, 25, 50, 100];
+      return baseValues.map((val) => {
+        const res = convertUnits(val, fromUnitId, toUnitId, "auto", selectedVoltage, densityGPerMl);
+        const resThird = convertUnits(val, fromUnitId, thirdVisualUnit.id, "auto", selectedVoltage, densityGPerMl);
+        return {
+          input: val,
+          inputLabel: `${formatValue(val, "auto")} ${fromUnit.symbol}`,
+          formatted6: `${formatPairResult(res.rawValue, "4")} ${toUnit.symbol} (${activeSubstance.shortLabel})`,
+          formattedThird: `${formatValue(resThird.rawValue, "auto")} ${thirdVisualUnit.symbol}`,
+        };
+      });
+    }
+
     if (tablePreset === "small" && (fromUnitId === "inch" || pair.categoryId === "length") && toUnitId !== "nanometer") {
       return STANDARD_TAPE_FRACTIONS.map((row) => {
         const res = convertUnits(row.decimalValue, fromUnitId, toUnitId, "auto");
@@ -688,7 +836,22 @@ export default function ConversionPageInteractive({
       formatted6: r.outputDisplay,
       formattedThird: r.thirdUnitDisplay || "",
     }));
-  }, [tablePreset, pairContent?.commonValues, curatedCommonValues, pair.commonValues, pair.categoryId, fromUnitId, toUnitId, fromUnit, toUnit, thirdVisualUnit]);
+  }, [
+    isCrossDimensionMassVolume,
+    selectedVoltage,
+    densityGPerMl,
+    activeSubstance.shortLabel,
+    tablePreset,
+    pairContent?.commonValues,
+    curatedCommonValues,
+    pair.commonValues,
+    pair.categoryId,
+    fromUnitId,
+    toUnitId,
+    fromUnit,
+    toUnit,
+    thirdVisualUnit,
+  ]);
 
   const isLengthCategory = pair.categoryId === "length";
 
@@ -756,13 +919,28 @@ export default function ConversionPageInteractive({
   }, [pair]);
 
   const oneForward = useMemo(
-    () => convertUnits(1, fromUnitId, toUnitId, "auto"),
-    [fromUnitId, toUnitId]
+    () => convertUnits(1, fromUnitId, toUnitId, "auto", selectedVoltage, densityGPerMl),
+    [fromUnitId, toUnitId, selectedVoltage, densityGPerMl]
   );
   const oneReverse = useMemo(
-    () => convertUnits(1, toUnitId, fromUnitId, "auto"),
-    [fromUnitId, toUnitId]
+    () => convertUnits(1, toUnitId, fromUnitId, "auto", selectedVoltage, densityGPerMl),
+    [fromUnitId, toUnitId, selectedVoltage, densityGPerMl]
   );
+
+  const prefixDirectAnswer = useMemo(() => {
+    if (pair.categoryId !== "prefixes" || !fromUnit.toBase || !toUnit.toBase) return null;
+    const ratio = fromUnit.toBase / toUnit.toBase;
+    const invRatio = toUnit.toBase / fromUnit.toBase;
+    const exp = Math.round(Math.log10(ratio));
+    const invExp = -exp;
+    const cleanFromName = fromUnit.name.replace(/\s*\([^)]*\)/g, "").toLowerCase();
+    const cleanToPlural = toUnit.plural.replace(/\s*\([^)]*\)/g, "").toLowerCase();
+    const decimalStr = formatPlainDecimalForPower(ratio);
+    const invDecimalStr = formatPlainDecimalForPower(invRatio);
+    const line1 = `1 ${cleanFromName} (${fromUnit.symbol}) = ${decimalStr} = 10${toSuperscriptExponent(exp)} ${cleanToPlural}`;
+    const line2 = `Inverse: 1 ${toUnit.name.replace(/\s*\([^)]*\)/g, "").toLowerCase()} (${toUnit.symbol}) = ${invDecimalStr} = 10${toSuperscriptExponent(invExp)} ${cleanFromName} (${fromUnit.symbol})`;
+    return { line1, line2 };
+  }, [pair.categoryId, fromUnit, toUnit]);
 
   const sidebarRelatedCategories = useMemo(() => {
     return CATEGORIES.filter(
@@ -835,6 +1013,38 @@ export default function ConversionPageInteractive({
             </div>
           </div>
 
+          {/* Direct-Answer & Assumption Summary Block (Above Fold) */}
+          {pair.categoryId === "prefixes" && prefixDirectAnswer ? (
+            <div className="p-3.5 sm:p-4 rounded-xl bg-[#E6FAF8]/80 dark:bg-teal-950/40 border border-[#0D9488]/30 space-y-1">
+              <p className="font-mono text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white">
+                {prefixDirectAnswer.line1}
+              </p>
+              <p className="font-mono text-xs sm:text-sm font-semibold text-[#0F766E] dark:text-[#2DD4BF]">
+                {prefixDirectAnswer.line2}
+              </p>
+            </div>
+          ) : isCrossDimensionMassVolume ? (
+            <div className="p-3.5 sm:p-4 rounded-xl bg-amber-50/85 dark:bg-amber-950/35 border border-amber-300/80 dark:border-amber-800/70 space-y-1">
+              <p className="font-mono text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white">
+                Assuming {activeSubstance.label} (ρ = {densityGPerMl.toFixed(3)} g/mL): 1 {fromUnit.symbol} = {oneForward.formattedValue} {toUnit.symbol}
+              </p>
+              <p className="text-xs sm:text-sm text-amber-950 dark:text-amber-200">
+                Mass and volume require substance density (1 {toUnit.symbol} = {oneReverse.formattedValue} {fromUnit.symbol} for {activeSubstance.shortLabel.toLowerCase()}). Change the substance or enter a custom g/mL density below.
+              </p>
+            </div>
+          ) : (
+            <div className="p-3.5 sm:p-4 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/70 border border-slate-200/80 dark:border-slate-800 space-y-1">
+              <p className="font-mono text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white">
+                Direct Answer: 1 {fromUnit.name.toLowerCase()} ({fromUnit.symbol}) = {oneForward.formattedValue} {toUnit.plural.toLowerCase()} ({toUnit.symbol})
+              </p>
+              {pairContent?.mistakesAndEdgeCases?.items?.[0] && (
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  <strong>Medium / Assumption Note:</strong> {pairContent.mistakesAndEdgeCases.items[0]}
+                </p>
+              )}
+            </div>
+          )}
+
           {/* Mobile-First Form Row: Value + From + Swap + To */}
           <div suppressHydrationWarning className="grid grid-cols-1 sm:grid-cols-12 gap-3.5 items-end">
             {/* Value Input (supports decimal, fraction "3/8", or mixed number "5 3/8") */}
@@ -879,7 +1089,7 @@ export default function ConversionPageInteractive({
                 onChange={(e) => setFromUnitId(e.target.value)}
                 className="w-full h-12 px-3.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-300/90 dark:border-slate-700 text-base font-bold text-[#16324F] dark:text-white focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-all cursor-pointer"
               >
-                {categoryUnits.map((u) => (
+                {fromDropdownUnits.map((u) => (
                   <option key={u.id} value={u.id}>
                     {u.plural} ({u.symbol})
                   </option>
@@ -917,7 +1127,7 @@ export default function ConversionPageInteractive({
                 onChange={(e) => setToUnitId(e.target.value)}
                 className="w-full h-12 px-3.5 rounded-xl bg-white dark:bg-slate-950 border border-slate-300/90 dark:border-slate-700 text-base font-bold text-[#16324F] dark:text-white focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-all cursor-pointer"
               >
-                {categoryUnits.map((u) => (
+                {toDropdownUnits.map((u) => (
                   <option key={u.id} value={u.id}>
                     {u.plural} ({u.symbol})
                   </option>
@@ -953,6 +1163,89 @@ export default function ConversionPageInteractive({
               <span className="text-[11px] text-slate-400 dark:text-slate-500 ml-1 hidden sm:inline">
                 (Tip: type mixed numbers like <code className="font-mono font-semibold text-slate-600 dark:text-slate-300">5 3/8</code>)
               </span>
+            </div>
+          )}
+
+          {/* Substance & Density Selector for Cross-Dimension Mass <-> Volume Pages */}
+          {isCrossDimensionMassVolume && (
+            <div className="p-4 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/70 border border-slate-200/90 dark:border-slate-800 space-y-3">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <label
+                  htmlFor="substance-density-select"
+                  className="text-xs sm:text-sm font-extrabold text-[#16324F] dark:text-white flex items-center gap-1.5"
+                >
+                  <Beaker className="w-4 h-4 text-[#0D9488]" />
+                  <span>Substance / Ingredient Density (Required for Mass ↔ Volume)</span>
+                </label>
+                <span className="font-mono text-xs font-bold text-[#0F766E] dark:text-[#2DD4BF]">
+                  ρ = {densityGPerMl.toFixed(3)} g/mL
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center">
+                <div className="sm:col-span-7">
+                  <select
+                    id="substance-density-select"
+                    value={selectedSubstanceId}
+                    onChange={(e) => {
+                      const nextId = e.target.value;
+                      setSelectedSubstanceId(nextId);
+                      const found = SUBSTANCE_DENSITY_PRESETS.find((s) => s.id === nextId);
+                      if (found && nextId !== "custom") {
+                        setCustomDensityStr(found.density.toFixed(3));
+                      }
+                    }}
+                    className="w-full h-10 px-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300/90 dark:border-slate-700 text-sm font-bold text-[#16324F] dark:text-white focus:outline-none focus:border-[#0D9488] cursor-pointer"
+                  >
+                    {SUBSTANCE_DENSITY_PRESETS.map((sub) => (
+                      <option key={sub.id} value={sub.id}>
+                        {sub.label} {sub.id !== "custom" ? `(${sub.density.toFixed(3)} g/mL)` : "(Enter g/mL)"}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="sm:col-span-5 flex items-center gap-2">
+                  <label
+                    htmlFor="custom-density-input"
+                    className="text-xs font-bold text-slate-600 dark:text-slate-300 shrink-0"
+                  >
+                    Density (g/mL):
+                  </label>
+                  <input
+                    id="custom-density-input"
+                    type="number"
+                    step="0.001"
+                    min="0.001"
+                    max="25"
+                    value={customDensityStr}
+                    onChange={(e) => {
+                      setSelectedSubstanceId("custom");
+                      setCustomDensityStr(e.target.value);
+                    }}
+                    className="w-full h-10 px-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300/90 dark:border-slate-700 text-sm font-mono font-bold text-[#16324F] dark:text-white focus:outline-none focus:border-[#0D9488]"
+                  />
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-1.5">
+                {SUBSTANCE_DENSITY_PRESETS.slice(0, 7).map((sub) => (
+                  <button
+                    key={sub.id}
+                    type="button"
+                    onClick={() => {
+                      setSelectedSubstanceId(sub.id);
+                      setCustomDensityStr(sub.density.toFixed(3));
+                    }}
+                    className={`px-2.5 py-1 rounded-lg text-xs font-semibold border transition-colors cursor-pointer ${
+                      selectedSubstanceId === sub.id
+                        ? "bg-[#0D9488] text-white border-[#0D9488]"
+                        : "bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-[#0D9488]"
+                    }`}
+                  >
+                    {sub.shortLabel} ({sub.density} g/mL)
+                  </button>
+                ))}
+              </div>
             </div>
           )}
 
@@ -1042,14 +1335,21 @@ export default function ConversionPageInteractive({
             <div className="p-4 sm:p-5 min-h-[82px] rounded-2xl bg-[#E6FAF8]/85 dark:bg-teal-950/35 border border-[#0D9488]/30 flex flex-wrap items-center justify-between gap-4">
               <div
                 aria-live="polite"
-                className="flex items-baseline gap-2.5 flex-wrap"
+                className="space-y-1"
               >
-                <span className="text-3xl sm:text-4xl font-extrabold font-mono tracking-tight text-[#16324F] dark:text-white break-all">
-                  {highPrecisionFormatted}
-                </span>
-                <span className="text-base sm:text-xl font-bold text-[#0F766E] dark:text-[#2DD4BF]">
-                  {toUnit.plural.toLowerCase()}
-                </span>
+                <div className="flex items-baseline gap-2.5 flex-wrap">
+                  <span className="text-3xl sm:text-4xl font-extrabold font-mono tracking-tight text-[#16324F] dark:text-white break-all">
+                    {highPrecisionFormatted}
+                  </span>
+                  <span className="text-base sm:text-xl font-bold text-[#0F766E] dark:text-[#2DD4BF]">
+                    {toUnit.plural.toLowerCase()}
+                  </span>
+                </div>
+                {isCrossDimensionMassVolume && (
+                  <div className="text-xs sm:text-sm font-bold text-amber-900 dark:text-amber-300">
+                    Assuming {activeSubstance.label} (ρ = {densityGPerMl.toFixed(3)} g/mL)
+                  </div>
+                )}
               </div>
 
               <button
@@ -1134,6 +1434,9 @@ export default function ConversionPageInteractive({
                     ? `${inputStr.trim()} (${numericInput}) ${fromUnit.symbol}`
                     : `${numericInput} ${fromUnit.symbol}`}{" "}
                   = {highPrecisionFormatted} {toUnit.symbol}
+                  {isCrossDimensionMassVolume
+                    ? ` (${activeSubstance.shortLabel}, ρ = ${densityGPerMl.toFixed(3)} g/mL)`
+                    : ""}
                 </div>
               ) : (
                 <div className="text-sm font-semibold text-amber-700 dark:text-amber-300">
@@ -1305,6 +1608,72 @@ export default function ConversionPageInteractive({
             )}
           </div>
         </section>
+
+        {/* Full SI Metric Prefix Reference Table (Req 3) */}
+        {pair.categoryId === "prefixes" && (
+          <section
+            aria-labelledby="si-prefix-reference-heading"
+            className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-7 shadow-xs space-y-4"
+          >
+            <div className="space-y-1">
+              <h2
+                id="si-prefix-reference-heading"
+                className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
+              >
+                Complete SI Metric Prefix Chart (Symbol, Exponent &amp; Decimal)
+              </h2>
+              <p className="text-sm text-slate-600 dark:text-slate-400">
+                Standard International System of Units (SI) decimal factors from Tera (10¹²) to Pico (10⁻¹²).
+              </p>
+            </div>
+            <div className="overflow-x-auto rounded-xl border border-slate-200/90 dark:border-slate-800">
+              <table className="w-full text-left border-collapse text-sm">
+                <thead>
+                  <tr className="bg-[#F7F9FC] dark:bg-slate-800/80 border-b border-slate-200/90 dark:border-slate-800 font-extrabold text-[#16324F] dark:text-white">
+                    <th scope="col" className="py-3 px-4">Prefix</th>
+                    <th scope="col" className="py-3 px-4">Symbol</th>
+                    <th scope="col" className="py-3 px-4">Exponent</th>
+                    <th scope="col" className="py-3 px-4">Decimal Factor (vs. Base Unit)</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200/70 dark:divide-slate-800 font-mono">
+                  {SI_PREFIX_REFERENCE_ROWS.map((row) => {
+                    const isActive = row.unitId === fromUnitId || row.unitId === toUnitId;
+                    return (
+                      <tr
+                        key={row.unitId}
+                        className={
+                          isActive
+                            ? "bg-[#E6FAF8]/70 dark:bg-teal-950/40 font-extrabold"
+                            : "hover:bg-[#F7F9FC] dark:hover:bg-slate-800/40"
+                        }
+                      >
+                        <td className="py-2.5 px-4 font-sans font-bold text-[#16324F] dark:text-white">
+                          <Link
+                            href={`/prefixes/${row.slug}`}
+                            prefetch={false}
+                            className="hover:text-[#0D9488] dark:hover:text-[#2DD4BF] hover:underline"
+                          >
+                            {row.name}
+                          </Link>
+                        </td>
+                        <td className="py-2.5 px-4 font-bold text-[#0D9488] dark:text-[#2DD4BF]">
+                          {row.symbol}
+                        </td>
+                        <td className="py-2.5 px-4 text-slate-700 dark:text-slate-300">
+                          10{toSuperscriptExponent(row.exp)}
+                        </td>
+                        <td className="py-2.5 px-4 text-slate-700 dark:text-slate-300">
+                          {row.decimal}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )}
 
         {/* 1B. PAIR-SPECIFIC INTRO OVERVIEW (60-100 words, Task 5 Gate #1) */}
         {pairContent?.intro && (
@@ -2125,12 +2494,16 @@ export default function ConversionPageInteractive({
           </div>
 
           {(() => {
-            const reversePair = CONVERSION_CATALOGUE.find(
-              (p) => p.fromUnitId === toUnit.id && p.toUnitId === fromUnit.id
-            );
+            const reversePair =
+              CONVERSION_CATALOGUE.find(
+                (p) => p.fromUnitId === toUnit.id && p.toUnitId === fromUnit.id
+              ) || getConversionPair(getCanonicalPairSlug(toUnit, fromUnit), toUnit.categoryId);
+            const fallbackRelated = (pairContent?.internalLinks || [])
+              .filter((l) => l.type === "related")
+              .slice(0, 6);
             const otherRelated = (featuredRelatedPairs || [])
               .filter((p) => p.slug !== pair.slug && p.slug !== reversePair?.slug)
-              .slice(0, 7);
+              .slice(0, 6);
             return (
               <div className="space-y-4">
                 <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
@@ -2161,31 +2534,43 @@ export default function ConversionPageInteractive({
                   hub.
                 </p>
 
-                {otherRelated.length > 0 && (
+                {(otherRelated.length >= 4 || fallbackRelated.length > 0) && (
                   <div className="space-y-2">
                     <h3 className="text-sm font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                       Related {category?.name} Converters
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {otherRelated.map((rel) => {
-                        const rFrom = UNIT_MAP.get(rel.fromUnitId);
-                        const rTo = UNIT_MAP.get(rel.toUnitId);
-                        const anchorLabel =
-                          rFrom && rTo
-                            ? `${rFrom.plural.toLowerCase()} to ${rTo.plural.toLowerCase()} converter`
-                            : `${rel.title.replace(/\s*Converter.*$/i, "").toLowerCase()} converter`;
-                        return (
-                          <Link
-                            key={rel.slug}
-                            href={getPairUrl(rel)}
-                            prefetch={false}
-                            className="inline-flex items-center justify-between gap-2 px-3.5 py-2 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/80 dark:border-slate-800 hover:border-[#0D9488] text-sm font-bold text-[#16324F] dark:text-slate-200 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors capitalize"
-                          >
-                            <span>{anchorLabel}</span>
-                            <ArrowRight className="w-3.5 h-3.5 text-[#0D9488] shrink-0" />
-                          </Link>
-                        );
-                      })}
+                      {otherRelated.length >= 4
+                        ? otherRelated.map((rel) => {
+                            const rFrom = UNIT_MAP.get(rel.fromUnitId);
+                            const rTo = UNIT_MAP.get(rel.toUnitId);
+                            const anchorLabel =
+                              rFrom && rTo
+                                ? `${rFrom.plural.toLowerCase()} to ${rTo.plural.toLowerCase()} converter`
+                                : `${rel.title.replace(/\s*Converter.*$/i, "").toLowerCase()} converter`;
+                            return (
+                              <Link
+                                key={rel.slug}
+                                href={getPairUrl(rel)}
+                                prefetch={false}
+                                className="inline-flex items-center justify-between gap-2 px-3.5 py-2 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/80 dark:border-slate-800 hover:border-[#0D9488] text-sm font-bold text-[#16324F] dark:text-slate-200 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors capitalize"
+                              >
+                                <span>{anchorLabel}</span>
+                                <ArrowRight className="w-3.5 h-3.5 text-[#0D9488] shrink-0" />
+                              </Link>
+                            );
+                          })
+                        : fallbackRelated.map((rel) => (
+                            <Link
+                              key={rel.href}
+                              href={rel.href}
+                              prefetch={false}
+                              className="inline-flex items-center justify-between gap-2 px-3.5 py-2 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/80 dark:border-slate-800 hover:border-[#0D9488] text-sm font-bold text-[#16324F] dark:text-slate-200 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors capitalize"
+                            >
+                              <span>{rel.label}</span>
+                              <ArrowRight className="w-3.5 h-3.5 text-[#0D9488] shrink-0" />
+                            </Link>
+                          ))}
                     </div>
                   </div>
                 )}

@@ -1912,7 +1912,7 @@ const CATEGORY_DASHBOARD_CONFIGS: Record<string, CategoryDashboardConfig> = {
 };
 
 export async function generateStaticParams() {
-  return CATEGORIES.map((c) => ({
+  return CATEGORIES.filter((c) => !isMergedThinHub(c.id)).map((c) => ({
     category: getCategoryUrlSlug(c.id),
   }));
 }

@@ -5,7 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CookieConsentBanner from "@/components/CookieConsentBanner";
-import EagleFlyby from "@/components/EagleFlyby";
+import HawkFlyby from "@/components/HawkFlyby";
 import { SITE_CONFIG } from "@/lib/config";
 import { DEFAULT_OG_IMAGE, SHARED_FAVICON_ICONS } from "@/lib/seo";
 
@@ -17,7 +17,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
   display: "swap",
   variable: "--font-jakarta",
   preload: true,
-  adjustFontFallback: true,
+  adjustFontFallback: false,
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -26,7 +26,7 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
   variable: "--font-jetbrains-mono",
   preload: false,
-  adjustFontFallback: true,
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -210,7 +210,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <EagleFlyby />
+        <HawkFlyby />
         <CookieConsentBanner />
         <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       </body>

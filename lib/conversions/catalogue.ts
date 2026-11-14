@@ -2,7 +2,7 @@ import { ConversionPairInfo, Unit } from "./types";
 import { CATEGORIES, CATEGORY_MAP, UNIT_MAP, UNITS, getUnitsByCategory } from "./units";
 import { convertUnits } from "./engine";
 import { getPairUrl, getCategoryUrl, getCategoryUrlSlug } from "./url";
-import { OBSCURE_UNIT_IDS } from "../seo";
+import { OBSCURE_UNIT_IDS } from "./obscure-units";
 
 export { getPairUrl, getCategoryUrl, getCategoryUrlSlug };
 
@@ -5140,6 +5140,13 @@ const FRIENDLY_PLURAL_OVERRIDES: Record<string, string> = {
   mpg_uk: "Miles per Gallon (UK)",
 };
 
+const PREFERRED_UNIT_SLUG_OVERRIDES: Record<string, string> = {
+  sol_ppm: "ppm",
+  sol_ppb: "ppb",
+  sol_mg_per_l: "mg-per-liter",
+  sol_ug_per_l: "ug-per-liter",
+};
+
 export function getFriendlyUnitSingular(unit: Unit): string {
   if (FRIENDLY_SINGULAR_OVERRIDES[unit.id]) {
     return FRIENDLY_SINGULAR_OVERRIDES[unit.id];
@@ -5155,6 +5162,9 @@ export function getFriendlyUnitPlural(unit: Unit): string {
 }
 
 export function getPreferredUnitSlug(unit: Unit): string {
+  if (PREFERRED_UNIT_SLUG_OVERRIDES[unit.id]) {
+    return PREFERRED_UNIT_SLUG_OVERRIDES[unit.id];
+  }
   return slugifyToken(getFriendlyUnitPlural(unit).toLowerCase());
 }
 
@@ -5284,7 +5294,11 @@ export function getCanonicalPairSlug(fromUnit: Unit, toUnit: Unit): string {
   return `${getPreferredUnitSlug(fromUnit)}-to-${getPreferredUnitSlug(toUnit)}`;
 }
 
-function synthesizeDynamicPair(fromUnit: Unit, toUnit: Unit): ConversionPairInfo {
+function synthesizeDynamicPair(
+  fromUnit: Unit,
+  toUnit: Unit,
+  categoryIdOverride?: string
+): ConversionPairInfo {
   const existing = PAIR_BY_UNIT_IDS.get(`${fromUnit.id}__${toUnit.id}`);
   if (existing) return ensureEnrichedPair(existing);
 
@@ -5292,16 +5306,24 @@ function synthesizeDynamicPair(fromUnit: Unit, toUnit: Unit): ConversionPairInfo
   const fromPlural = getFriendlyUnitPlural(fromUnit);
   const toPlural = getFriendlyUnitPlural(toUnit);
   const oneOut = convertUnits(1, fromUnit.id, toUnit.id, "auto");
+  const isMassVol =
+    (fromUnit.categoryId === "mass" && toUnit.categoryId === "volume") ||
+    (fromUnit.categoryId === "volume" && toUnit.categoryId === "mass");
+  const resolvedCategoryId = categoryIdOverride || fromUnit.categoryId;
 
   const rawPair: ConversionPairInfo = {
     slug: canonicalSlug,
     fromUnitId: fromUnit.id,
     toUnitId: toUnit.id,
-    categoryId: fromUnit.categoryId,
+    categoryId: resolvedCategoryId,
     title: `${fromPlural} to ${toPlural} Converter (${fromUnit.symbol} to ${toUnit.symbol})`,
     h1: `${fromPlural} to ${toPlural} Converter`,
-    metaDescription: `Convert ${fromPlural.toLowerCase()} to ${toPlural.toLowerCase()} (${fromUnit.symbol} to ${toUnit.symbol}) instantly with conversion table, exact formula (1 ${fromUnit.symbol} = ${oneOut.formattedValue} ${toUnit.symbol}), and step-by-step guide.`,
-    formulaDescription: `To convert ${fromPlural.toLowerCase()} to ${toPlural.toLowerCase()}, multiply your ${fromUnit.name.toLowerCase()} figure by ${oneOut.formattedValue}.`,
+    metaDescription: isMassVol
+      ? `Convert ${fromPlural.toLowerCase()} to ${toPlural.toLowerCase()} (${fromUnit.symbol} to ${toUnit.symbol}) with an interactive substance & density selector. Assuming Water (1 g/mL), 1 ${fromUnit.symbol} = ${oneOut.formattedValue} ${toUnit.symbol}.`
+      : `Convert ${fromPlural.toLowerCase()} to ${toPlural.toLowerCase()} (${fromUnit.symbol} to ${toUnit.symbol}) instantly with conversion table, exact formula (1 ${fromUnit.symbol} = ${oneOut.formattedValue} ${toUnit.symbol}), and step-by-step guide.`,
+    formulaDescription: isMassVol
+      ? `Mass-to-volume conversion depends on substance density ρ (m = ρ × V). Assuming Pure Water (ρ = 1.000 g/mL), 1 ${fromUnit.symbol} = ${oneOut.formattedValue} ${toUnit.symbol}.`
+      : `To convert ${fromPlural.toLowerCase()} to ${toPlural.toLowerCase()}, multiply your ${fromUnit.name.toLowerCase()} figure by ${oneOut.formattedValue}.`,
     exampleInput: 5,
   };
 
@@ -5403,8 +5425,18 @@ export function getConversionPair(
 
     if (fromUnit && toUnit && fromUnit.id !== toUnit.id) {
       const sameCategory = fromUnit.categoryId === toUnit.categoryId;
+      const isMassVolumePair =
+        (fromUnit.categoryId === "mass" && toUnit.categoryId === "volume") ||
+        (fromUnit.categoryId === "volume" && toUnit.categoryId === "mass");
       if (sameCategory) {
         return synthesizeDynamicPair(fromUnit, toUnit);
+      }
+      if (isMassVolumePair) {
+        const catOverride =
+          categoryIdHint === "mass" || categoryIdHint === "volume"
+            ? categoryIdHint
+            : fromUnit.categoryId;
+        return synthesizeDynamicPair(fromUnit, toUnit, catOverride);
       }
     }
   }

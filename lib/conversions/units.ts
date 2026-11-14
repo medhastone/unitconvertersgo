@@ -735,11 +735,11 @@ export const UNITS: Unit[] = [
   { id: "lb_per_gal_us", name: "Pound per US Gallon", plural: "Pounds per US Gallon", symbol: "lb/gal", categoryId: "density", system: "us_customary", aliases: ["lb/gal", "lb-gal", "lb-per-gal"], toBase: 119.8264273, description: "Equal to 119.826 g/L (water is approx. 8.345 lb/gal)." },
 
   // --- TORQUE (Base: nm) ---
-  { id: "nm", name: "Newton-meter", plural: "Newton-meters", symbol: "N·m", categoryId: "torque", system: "si", aliases: ["newton meters", "nm"], toBase: 1, description: "Coherent SI unit of rotational torque." },
+  { id: "nm", name: "Newton-meter", plural: "Newton-meters", symbol: "N·m", categoryId: "torque", system: "si", aliases: ["newton-meter", "newton meters", "nm"], toBase: 1, description: "Coherent SI unit of rotational torque." },
   { id: "newton_cm", name: "Newton-centimeter", plural: "Newton-centimeters", symbol: "N·cm", categoryId: "torque", system: "metric", aliases: ["n cm"], toBase: 0.01, description: "Equal to 0.01 N·m." },
   { id: "newton_mm", name: "Newton-millimeter", plural: "Newton-millimeters", symbol: "N·mm", categoryId: "torque", system: "metric", aliases: ["nmm"], toBase: 0.001, description: "Equal to 0.001 N·m." },
   { id: "kilonewton_meter", name: "Kilonewton-meter", plural: "Kilonewton-meters", symbol: "kN·m", categoryId: "torque", system: "metric", aliases: ["knm"], toBase: 1000, description: "Equal to 1,000 N·m." },
-  { id: "lb_ft", name: "Pound-foot (ft·lbf)", plural: "Pound-feet", symbol: "lb·ft", categoryId: "torque", system: "imperial", aliases: ["ft-lb", "ft lbs", "lbf ft"], toBase: 1.3558179483314, description: "Equal to 1.355818 N·m." },
+  { id: "lb_ft", name: "Pound-foot (ft·lbf)", plural: "Pound-feet", symbol: "lb·ft", categoryId: "torque", system: "imperial", aliases: ["ft-lb", "ft lbs", "ft-lbs", "lb-ft", "foot-pound", "foot-pounds", "lbf ft"], toBase: 1.3558179483314, description: "Equal to 1.355818 N·m." },
   { id: "lb_in", name: "Pound-inch (in·lbf)", plural: "Pound-inches", symbol: "lb·in", categoryId: "torque", system: "imperial", aliases: ["in-lb", "lbf in"], toBase: 0.1129848290276, description: "1/12 of a pound-foot (0.112985 N·m)." },
   { id: "oz_in", name: "Ounce-inch (ozf·in)", plural: "Ounce-inches", symbol: "oz·in", categoryId: "torque", system: "imperial", aliases: ["oz-in"], toBase: 0.0070615518142, description: "1/16 of a pound-inch (0.0070616 N·m)." },
   { id: "kgf_m", name: "Kilogram-force Meter", plural: "Kilogram-force Meters", symbol: "kgf·m", categoryId: "torque", system: "metric", aliases: ["kg-m", "kgf-m"], toBase: 9.80665, description: "Equal to 9.80665 N·m." },

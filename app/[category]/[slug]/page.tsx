@@ -33,6 +33,7 @@ import {
   CATALOGUE_MAP,
   getConversionPair,
   getConversionsByCategory,
+  getCanonicalPairSlug,
 } from "@/lib/conversions/catalogue";
 import {
   getCategoryUrlSlug,
@@ -89,7 +90,13 @@ interface HierarchicalConversionPageProps {
 }
 
 export async function generateStaticParams() {
-  return CONVERSION_CATALOGUE.map((item) => ({
+  return CONVERSION_CATALOGUE.filter((item) => {
+    const currentPath = `/${getCategoryUrlSlug(item.categoryId)}/${item.slug}`;
+    if (getSlugRedirectDestination(currentPath)) return false;
+    const dup = getDuplicateOf(item);
+    if (dup && dup !== currentPath) return false;
+    return true;
+  }).map((item) => ({
     category: getCategoryUrlSlug(item.categoryId),
     slug: item.slug,
   }));
@@ -156,6 +163,11 @@ export default async function HierarchicalConversionPage({
   }
 
   const canonicalPath = getPairUrl(pair);
+  const duplicateWinnerPath = getDuplicateOf(pair);
+
+  if (duplicateWinnerPath && duplicateWinnerPath !== currentPath) {
+    permanentRedirect(duplicateWinnerPath);
+  }
 
   // Canonicalize any non-.htm or alias category/slug URL to the single canonical /[category]/[slug] URL
   if (currentPath !== canonicalPath) {
@@ -183,10 +195,11 @@ export default async function HierarchicalConversionPage({
       : `${fromUnit.plural} to ${toUnit.plural} Converter (${fromUnit.symbol} to ${toUnit.symbol})`;
 
   // 1. Reciprocal pair (e.g. inches-to-cm for cm-to-inches)
+  const reciprocalSlug = getCanonicalPairSlug(toUnit, fromUnit);
   const reciprocalPair =
     CONVERSION_CATALOGUE.find(
       (p) => p.fromUnitId === pair.toUnitId && p.toUnitId === pair.fromUnitId
-    ) || getConversionPair(`${toUnit.id}-to-${fromUnit.id}`, pair.categoryId);
+    ) || getConversionPair(reciprocalSlug, toUnit.categoryId);
 
   // 2. Same-Source internal links
   const sameSourceConversions = CONVERSION_CATALOGUE.filter(

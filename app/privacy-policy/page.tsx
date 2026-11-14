@@ -10,7 +10,6 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Read the UnitConvertersGo Privacy Policy. Learn how unit conversions run locally in your browser, what server logs and localStorage keys are used, and your privacy rights.",
   canonicalPath: "/privacy-policy",
-  noindex: true,
 });
 
 const PRIVACY_TOC: TocItem[] = [

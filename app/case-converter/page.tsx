@@ -12,7 +12,6 @@ export const metadata: Metadata = buildPageMetadata({
   description:
     "Free online Case Converter tool. Convert text between Sentence case, lower case, UPPER CASE, Title Case, camelCase, PascalCase, snake_case, and kebab-case in your browser.",
   canonicalPath: "/case-converter",
-  noindex: true,
 });
 
 export default function CaseConverterPage() {

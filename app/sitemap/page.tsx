@@ -13,7 +13,6 @@ export const metadata: Metadata = buildPageMetadata({
   title: `Complete HTML Sitemap — ${CATEGORIES.length} Categories`,
   description: `Complete HTML sitemap for UnitConvertersGo covering ${CATEGORIES.length} measurement categories and ${CONVERSION_CATALOGUE.length} unit conversion calculators.`,
   canonicalPath: "/sitemap",
-  noindex: true,
 });
 
 export default function HtmlSitemapPage() {

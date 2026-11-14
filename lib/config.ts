@@ -4,15 +4,17 @@
  */
 
 import { CATEGORIES } from "./conversions/units";
+import { CONVERSION_CATALOGUE } from "./conversions/catalogue";
 
 export const TOTAL_CATEGORIES_COUNT = CATEGORIES.length;
+export const TOTAL_CONVERTER_PAIRS_COUNT = CONVERSION_CATALOGUE.length;
 
 export const SITE_CONFIG = {
   name: "UnitConvertersGo",
   domain: "UnitConvertersGo.com",
   tagline: "Free Online Unit Converter & Measurement Calculator",
   homepageTitle: "UnitConvertersGo – Free Online Unit Converter",
-  description: `Convert 685 unit pairs across ${CATEGORIES.length} measurement categories instantly. Try our free unit converter for length, weight, volume, and temperature now!`,
+  description: `Convert ${CONVERSION_CATALOGUE.length} unit calculators across ${CATEGORIES.length} measurement categories instantly. Try our free unit converter for length, weight, volume, and temperature now!`,
   // Production or runtime app URL without trailing slash
   baseUrl: (
     process.env.APP_URL ||

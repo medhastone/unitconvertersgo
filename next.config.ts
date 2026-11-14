@@ -26,41 +26,76 @@ function loadSlugRedirects(): Array<{ source: string; destination: string; statu
 
 const nextConfig = (phase: string): NextConfig => {
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
+  const isGithubPages = process.env.GITHUB_PAGES === 'true';
+  const isVercel = process.env.VERCEL === '1';
+  const basePath = isGithubPages ? (process.env.NEXT_PUBLIC_BASE_PATH || '') : '';
+
+  const baseConfig: NextConfig = {
+    distDir: isGithubPages ? 'out' : isDev ? '.next/dev' : '.next',
+    ...(basePath ? { basePath, assetPrefix: basePath } : {}),
+    ...(isGithubPages
+      ? { output: 'export' }
+      : isVercel
+      ? {}
+      : { output: 'standalone', deploymentId: 'ucg-v3' }),
+    cleanDistDir: isGithubPages,
+    reactStrictMode: true,
+    trailingSlash: false,
+    compress: true,
+    poweredByHeader: false,
+    eslint: {
+      ignoreDuringBuilds: true,
+    },
+    typescript: {
+      ignoreBuildErrors: false,
+    },
+    htmlLimitedBots: /.*/,
+    experimental: {
+      optimizePackageImports: ['lucide-react'],
+    },
+    images: {
+      ...(isGithubPages ? { unoptimized: true } : {}),
+      formats: ['image/avif', 'image/webp'],
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'picsum.photos',
+          port: '',
+          pathname: '/**',
+        },
+      ],
+    },
+    transpilePackages: ['motion'],
+    webpack: (config, {dev, isServer}) => {
+      // HMR is disabled in AI Studio via DISABLE_HMR env var.
+      // Do not modify—file watching is disabled to prevent flickering during agent edits.
+      if (dev && process.env.DISABLE_HMR === 'true') {
+        config.watchOptions = {
+          ignored: /.*/,
+        };
+      }
+      if (!isServer) {
+        config.resolve = config.resolve || {};
+        config.resolve.alias = {
+          ...(config.resolve.alias || {}),
+          '../build/polyfills/polyfill-module': false,
+          'next/dist/build/polyfills/polyfill-module': false,
+        };
+      }
+      return config;
+    },
+  };
+
+  if (isGithubPages) {
+    return baseConfig;
+  }
+
   return {
-  distDir: isDev ? '.next/dev' : '.next',
-  deploymentId: 'ucg-v3',
-  cleanDistDir: false,
-  reactStrictMode: true,
-  trailingSlash: false,
-  compress: true,
-  poweredByHeader: false,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: false,
-  },
-  htmlLimitedBots: /.*/,
-  experimental: {
-    optimizePackageImports: ['lucide-react'],
-  },
-  images: {
-    formats: ['image/avif', 'image/webp'],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'picsum.photos',
-        port: '',
-        pathname: '/**',
-      },
-    ],
-  },
-  output: 'standalone',
-  transpilePackages: ['motion'],
-  async headers() {
-    const queryKeys = ['q', 'search', 'filter', 'value', 'from', 'to', 'category', 'page', 'sort'];
-    const noindexRules = queryKeys.map((key) => ({
-      source: '/((?!_next/|api/|favicon|icon|logo|apple-touch-icon|manifest).*)',
+    ...baseConfig,
+    async headers() {
+      const queryKeys = ['q', 'search', 'filter', 'value', 'from', 'to', 'category', 'page', 'sort'];
+      const noindexRules = queryKeys.map((key) => ({
+        source: '/((?!_next/|api/|favicon|icon|logo|apple-touch-icon|manifest).*)',
       has: [{ type: 'query' as const, key }],
       missing: [{ type: 'query' as const, key: 'url' }],
       headers: [
@@ -141,12 +176,12 @@ const nextConfig = (phase: string): NextConfig => {
       // 1. PPM in /density -> /concentration-solution or /density
       {
         source: '/density/ppm-to-mg-per-liter',
-        destination: '/concentration-solution',
+        destination: '/concentration-solution/ppm-to-mg-per-liter',
         statusCode: 301,
       },
       {
         source: '/density/mg-per-liter-to-ppm',
-        destination: '/concentration-solution',
+        destination: '/concentration-solution/mg-per-liter-to-ppm',
         statusCode: 301,
       },
       {
@@ -185,28 +220,6 @@ const nextConfig = (phase: string): NextConfig => {
         destination: '/volume',
         statusCode: 301,
       },
-      // 3. Culinary Mass ↔ Volume -> /cooking (density-aware ingredient converter)
-      {
-        source: '/weight-and-mass/:mass(grams|kilograms|ounces|pounds|g|kg|oz|lb|lbs)-to-:vol(teaspoons|tablespoons|fluid-ounces|cups|pints|quarts|gallons|milliliters|liters|tsp|tbsp|fl-oz|cup|pt|qt|gal|ml|l)',
-        destination: '/cooking',
-        statusCode: 301,
-      },
-      {
-        source: '/volume/:vol(teaspoons|tablespoons|fluid-ounces|cups|pints|quarts|gallons|milliliters|liters|tsp|tbsp|fl-oz|cup|pt|qt|gal|ml|l)-to-:mass(grams|kilograms|ounces|pounds|g|kg|oz|lb|lbs)',
-        destination: '/cooking',
-        statusCode: 301,
-      },
-      // 4. Industrial / Non-culinary Mass ↔ Volume -> /weight-and-mass or /volume
-      {
-        source: '/weight-and-mass/:mass(milligrams|micrograms|tons|metric-tons|long-tons|carats|mg|mcg|ct)-to-:vol(teaspoons|tablespoons|fluid-ounces|cups|pints|quarts|gallons|milliliters|liters|tsp|tbsp|fl-oz|cup|pt|qt|gal|ml|l)',
-        destination: '/weight-and-mass',
-        statusCode: 301,
-      },
-      {
-        source: '/volume/:vol(teaspoons|tablespoons|fluid-ounces|cups|pints|quarts|gallons|milliliters|liters|tsp|tbsp|fl-oz|cup|pt|qt|gal|ml|l)-to-:mass(milligrams|micrograms|tons|metric-tons|long-tons|carats|mg|mcg|ct)',
-        destination: '/volume',
-        statusCode: 301,
-      },
     ];
   },
   async rewrites() {
@@ -218,24 +231,6 @@ const nextConfig = (phase: string): NextConfig => {
         },
       ],
     };
-  },
-  webpack: (config, {dev, isServer}) => {
-    // HMR is disabled in AI Studio via DISABLE_HMR env var.
-    // Do not modify—file watching is disabled to prevent flickering during agent edits.
-    if (dev && process.env.DISABLE_HMR === 'true') {
-      config.watchOptions = {
-        ignored: /.*/,
-      };
-    }
-    if (!isServer) {
-      config.resolve = config.resolve || {};
-      config.resolve.alias = {
-        ...(config.resolve.alias || {}),
-        '../build/polyfills/polyfill-module': false,
-        'next/dist/build/polyfills/polyfill-module': false,
-      };
-    }
-    return config;
   },
   };
 };

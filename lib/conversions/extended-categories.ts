@@ -703,7 +703,7 @@ export const EXTENDED_CATEGORIES: Category[] = [
   },
   {
     id: "radiation_activity",
-    name: "Radiation-Activity",
+    name: "Radiation Activity",
     pluralName: "Radioactive Decay Activity",
     baseUnitId: "becquerel_unit",
     iconName: "Radio",
@@ -713,7 +713,7 @@ export const EXTENDED_CATEGORIES: Category[] = [
   },
   {
     id: "radiation_exposure",
-    name: "Radiation-Exposure",
+    name: "Radiation Exposure",
     pluralName: "Ionizing Radiation Exposure",
     baseUnitId: "c_per_kg_rad",
     iconName: "Radio",
@@ -723,7 +723,7 @@ export const EXTENDED_CATEGORIES: Category[] = [
   },
   {
     id: "radiation_absorbed_dose",
-    name: "Radiation-Absorbed Dose",
+    name: "Radiation Absorbed Dose",
     pluralName: "Radiation Absorbed Dose",
     baseUnitId: "gray_unit",
     iconName: "Radio",
@@ -957,9 +957,13 @@ export const EXTENDED_UNITS: Unit[] = [
   { id: "kmol_per_m3", name: "Kilomole per Cubic Meter", plural: "Kilomoles per Cubic Meter", symbol: "kmol/m³", categoryId: "concentration_molar", system: "metric", aliases: [], toBase: 1000, description: "Equal to 1 mol/L (1,000 mol/m³)." },
 
   // --- CONCENTRATION - SOLUTION (Base: sol_kg_per_l) ---
-  { id: "sol_kg_per_l", name: "Kilogram per Liter", plural: "Kilograms per Liter", symbol: "kg/L", categoryId: "concentration_solution", system: "metric", aliases: [], toBase: 1, description: "Equal to 1,000 g/L." },
-  { id: "sol_g_per_l", name: "Gram per Liter", plural: "Grams per Liter", symbol: "g/L", categoryId: "concentration_solution", system: "metric", aliases: [], toBase: 0.001, description: "Standard laboratory solution concentration unit." },
-  { id: "sol_mg_per_l", name: "Milligram per Liter", plural: "Milligrams per Liter", symbol: "mg/L", categoryId: "concentration_solution", system: "metric", aliases: [], toBase: 1e-6, description: "Water quality concentration unit (approx. 1 ppm in dilute aqueous solution)." },
+  { id: "sol_kg_per_l", name: "Kilogram per Liter", plural: "Kilograms per Liter", symbol: "kg/L", categoryId: "concentration_solution", system: "metric", aliases: ["kg-per-liter"], toBase: 1, description: "Equal to 1,000 g/L." },
+  { id: "sol_g_per_l", name: "Gram per Liter", plural: "Grams per Liter", symbol: "g/L", categoryId: "concentration_solution", system: "metric", aliases: ["g-per-liter"], toBase: 0.001, description: "Standard laboratory solution concentration unit." },
+  { id: "sol_mg_per_l", name: "Milligram per Liter", plural: "Milligrams per Liter", symbol: "mg/L", categoryId: "concentration_solution", system: "metric", aliases: ["mg/l", "mg-l", "mg-per-l", "mg-per-liter"], toBase: 1e-6, description: "Water quality concentration unit (1 mg/L ≈ 1 ppm in dilute aqueous solution)." },
+  { id: "sol_ug_per_l", name: "Microgram per Liter", plural: "Micrograms per Liter", symbol: "µg/L", categoryId: "concentration_solution", system: "metric", aliases: ["ug/l", "ug-l", "ug-per-l", "ug-per-liter", "mcg/l"], toBase: 1e-9, description: "Trace water/environmental concentration unit (1 µg/L ≈ 1 ppb in dilute aqueous solution)." },
+  { id: "sol_ppm", name: "Part per Million (Aqueous ppm)", plural: "Parts per Million (ppm)", symbol: "ppm", categoryId: "concentration_solution", system: "other", aliases: ["ppm", "parts-per-million"], toBase: 1e-6, description: "Mass fraction equal to 1 mg/kg; equals 1 mg/L in dilute water at density ≈ 1.000 g/mL." },
+  { id: "sol_ppb", name: "Part per Billion (Aqueous ppb)", plural: "Parts per Billion (ppb)", symbol: "ppb", categoryId: "concentration_solution", system: "other", aliases: ["ppb", "parts-per-billion"], toBase: 1e-9, description: "Trace mass fraction equal to 1 µg/kg; equals 1 µg/L in dilute water at density ≈ 1.000 g/mL." },
+  { id: "sol_kg_per_m3", name: "Kilogram per Cubic Meter", plural: "Kilograms per Cubic Meter", symbol: "kg/m³", categoryId: "concentration_solution", system: "si", aliases: ["kg/m3", "kg-per-m3", "kg-per-cubic-meter"], toBase: 0.001, description: "SI concentration equal to 1 g/L or 1,000 mg/L (~1,000 ppm in water)." },
   { id: "sol_g_per_100ml", name: "Gram per Deciliter (% w/v)", plural: "Grams per Deciliter", symbol: "g/dL", categoryId: "concentration_solution", system: "metric", aliases: ["g/100ml", "grams-per-100-ml"], toBase: 0.01, description: "Clinical deciliter concentration unit (1 g/dL = 10 g/L = 1 g/100mL)." },
   { id: "sol_lb_per_gal", name: "Pound per US Gallon", plural: "Pounds per US Gallon", symbol: "lb/gal", categoryId: "concentration_solution", system: "us_customary", aliases: [], toBase: 0.119826427, description: "Equal to 119.826 g/L." },
   { id: "sol_grain_per_gal", name: "Grain per US Gallon (gpg)", plural: "Grains per US Gallon", symbol: "gr/gal", categoryId: "concentration_solution", system: "us_customary", aliases: ["gpg"], toBase: 0.00001711806, description: "Water hardness unit (1 gpg ≈ 17.118 mg/L)." },

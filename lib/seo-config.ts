@@ -50,7 +50,7 @@ export const TOP_20_POPULAR_CONVERTERS = [
   { href: "/volume/liters-to-gallons", anchorText: "liters to gallons" },
   { href: "/volume/gallons-to-liters", anchorText: "gallons to liters" },
   { href: "/volume/ml-to-oz", anchorText: "ml to oz" },
-  { href: "/area/square-feet-to-square-meters", anchorText: "sq ft to sq m" },
+  { href: "/area/sq-feet-to-sq-meters", anchorText: "sq ft to sq m" },
   { href: "/area/acres-to-hectares", anchorText: "acres to hectares" },
   { href: "/pressure/psi-to-kpa", anchorText: "psi to kPa" },
   { href: "/power/watts-to-horsepower", anchorText: "watts to horsepower" },

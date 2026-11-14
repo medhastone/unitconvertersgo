@@ -58,6 +58,9 @@ export function isCategoryHubIndexable(categoryIdOrSlug: string): boolean {
   }
   const internalId = getInternalCategoryId(categoryIdOrSlug);
   const slug = getCategoryUrlSlug(internalId);
+  if (internalId === "currency" || slug === "currency") {
+    return false;
+  }
   if (MERGED_THIN_HUB_SET.has(slug) || MERGED_THIN_HUB_SET.has(categoryIdOrSlug)) {
     return false;
   }
@@ -93,7 +96,6 @@ const ARCHAIC_OR_ASTRONOMICAL_UNIT_IDS = new Set<string>([
   "hand",
   "league",
   "nautical_league",
-  "megameter",
   "gigameter",
   "terameter",
   "petameter",
@@ -163,25 +165,19 @@ const ARCHAIC_OR_ASTRONOMICAL_UNIT_IDS = new Set<string>([
   "unit_pole",
   "poundal",
   "sthene",
-  "erg",
   "quad",
   "rydberg",
   "hartree",
-  "ton_tnt",
   "kiloton_tnt",
   "megaton_tnt",
   "torr_abs",
   "blondel",
   "skot",
   "rutherford",
-  "terapascal",
   "nanopascal",
-  "microwatt",
   "nanowatt",
   "picowatt",
   "nanojoule",
-  "microjoule",
-  "millijoule",
   "inch_ounce",
 
   // Extreme data prefixes
@@ -209,12 +205,8 @@ const ARCHAIC_OR_ASTRONOMICAL_UNIT_IDS = new Set<string>([
 const ZERO_DEMAND_PAIR_SLUGS = new Set<string>([
   "cups-to-cubic-millimeters",
   "cubic-millimeters-to-cups",
-  "lakhs-to-dozens",
-  "dozens-to-lakhs",
   "hectares-to-square-millimeters",
   "square-millimeters-to-hectares",
-  "square-millimeters-to-square-feet",
-  "square-feet-to-square-millimeters",
 ]);
 
 export function isAbsurdOrArchaicUnit(unitId: string): boolean {
@@ -289,29 +281,25 @@ export function checkDimensionMatch(
     };
   }
 
-  // Check Volume vs Mass
+  // Check Volume vs Mass: supported on pages with the interactive Substance/Density Selector (default Water 1 g/mL)
   const fromIsVol = VOLUME_UNIT_IDS.has(fromUnit.id) || fromUnit.categoryId === "volume";
   const toIsVol = VOLUME_UNIT_IDS.has(toUnit.id) || toUnit.categoryId === "volume";
-  const fromIsMass = MASS_UNIT_IDS.has(fromUnit.id) || fromUnit.categoryId === "weight";
-  const toIsMass = MASS_UNIT_IDS.has(toUnit.id) || toUnit.categoryId === "weight";
+  const fromIsMass =
+    MASS_UNIT_IDS.has(fromUnit.id) ||
+    fromUnit.categoryId === "mass" ||
+    fromUnit.categoryId === "weight";
+  const toIsMass =
+    MASS_UNIT_IDS.has(toUnit.id) ||
+    toUnit.categoryId === "mass" ||
+    toUnit.categoryId === "weight";
   if ((fromIsVol && toIsMass) || (fromIsMass && toIsVol)) {
-    return {
-      matches: false,
-      reason: "Volume vs Mass conversion requires a material density assumption (m = ρ × V)",
-    };
+    return { matches: true };
   }
 
   if (fromUnit.categoryId !== toUnit.categoryId) {
     return {
       matches: false,
       reason: `Mismatched unit categories (${fromUnit.categoryId} vs ${toUnit.categoryId})`,
-    };
-  }
-
-  if (slug && (slug.includes("pints-to-metric-tons") || slug.includes("metric-tons-to-pints"))) {
-    return {
-      matches: false,
-      reason: "Volume (pints) vs Mass (metric tons) dimension mismatch",
     };
   }
 
@@ -339,6 +327,7 @@ const EXPONENT_LOSS_PATTERNS: RegExp[] = [
 const ALLOWED_ACRONYM_SLUGS = new Set<string>([
   "psi",
   "ksi",
+  "psf",
   "cfm",
   "gpm",
   "gph",
@@ -378,6 +367,7 @@ export function checkSlugHasExponentLoss(
       !part.includes("pascal") &&
       !part.includes("psi") &&
       !part.includes("ksi") &&
+      !part.includes("psf") &&
       !part.includes("torr") &&
       !part.includes("atm") &&
       !part.includes("inhg") &&
@@ -500,6 +490,12 @@ export function getConverterTier(pair: ConversionPairInfo): ConverterTier {
   const fromU = UNIT_MAP.get(pair.fromUnitId);
   const toU = UNIT_MAP.get(pair.toUnitId);
 
+  // 0. Fail fast to Tier C for unverified static currency benchmark rates (until live feed is wired)
+  if (pair.categoryId === "currency") {
+    tierCache.set(cacheKey, "C");
+    return "C";
+  }
+
   // 1. Fail fast to Tier C on dimension mismatch
   const dim = checkDimensionMatch(fromU, toU, pair.slug);
   if (!dim.matches) {
@@ -530,13 +526,20 @@ export function getConverterTier(pair: ConversionPairInfo): ConverterTier {
   }
 
   // 5. Check extreme scale ratio (> 1e12 or < 1e-12) for everyday categories
-  if (
-    fromU?.toBase &&
-    toU?.toBase &&
-    pair.categoryId !== "permeability" &&
-    pair.fromUnitId !== "electronvolt" &&
-    pair.toUnitId !== "electronvolt"
-  ) {
+  const isScaleExemptCategory =
+    pair.categoryId === "permeability" ||
+    pair.categoryId === "prefixes" ||
+    pair.categoryId === "digital_storage" ||
+    pair.categoryId === "capacitance";
+  const isParticleEnergyUnit =
+    pair.fromUnitId === "electronvolt" ||
+    pair.toUnitId === "electronvolt" ||
+    pair.fromUnitId === "kiloelectronvolt" ||
+    pair.toUnitId === "kiloelectronvolt" ||
+    pair.fromUnitId === "megaelectronvolt" ||
+    pair.toUnitId === "megaelectronvolt";
+
+  if (fromU?.toBase && toU?.toBase && !isScaleExemptCategory && !isParticleEnergyUnit) {
     const ratio = fromU.toBase / toU.toBase;
     if (ratio > 1e12 || ratio < 1e-12) {
       tierCache.set(cacheKey, "C");

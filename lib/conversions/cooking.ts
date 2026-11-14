@@ -1811,15 +1811,17 @@ export function resolveInvalidPairRedirect(
     .replace(/^convert-/, "")
     .replace(/-(?:converter|calculator)$/, "");
 
-  // 1. PPM in /density
-  if (
-    cleanSlug === "ppm-to-mg-per-liter" ||
-    cleanSlug === "mg-per-liter-to-ppm"
-  ) {
-    return "/concentration-solution";
-  }
-  if (cleanSlug.startsWith("ppm-to-") || cleanSlug.endsWith("-to-ppm")) {
-    return "/density";
+  // 1. PPM in /density -> /concentration-solution or /density
+  if (cleanCat === "density") {
+    if (cleanSlug === "ppm-to-mg-per-liter") {
+      return "/concentration-solution/ppm-to-mg-per-liter";
+    }
+    if (cleanSlug === "mg-per-liter-to-ppm") {
+      return "/concentration-solution/mg-per-liter-to-ppm";
+    }
+    if (cleanSlug.startsWith("ppm-to-") || cleanSlug.endsWith("-to-ppm")) {
+      return "/density";
+    }
   }
 
   const toIdx = cleanSlug.indexOf("-to-");
@@ -1860,23 +1862,7 @@ export function resolveInvalidPairRedirect(
     return "/weight-and-mass";
   }
 
-  // 3. Culinary Mass ↔ Volume -> Redirect to new Cooking & Ingredient Conversions tool
-  if (
-    (isLeftCulinaryMass && isRightVolume) ||
-    (isLeftVolume && isRightCulinaryMass)
-  ) {
-    return "/cooking";
-  }
-
-  // 4. Non-culinary Mass ↔ Volume -> Redirect to closest valid category hub
-  if (isLeftNonCulinaryMass && isRightVolume) {
-    return "/weight-and-mass";
-  }
-  if (isLeftVolume && isRightNonCulinaryMass) {
-    return "/volume";
-  }
-
-  // 5. Dynamic Charge ↔ Energy (excluding the 5 static interactive battery voltage calculators)
+  // 3. Dynamic Charge ↔ Energy (excluding the 5 static interactive battery voltage calculators)
   if (!ALLOWED_BATTERY_VOLTAGE_SLUGS.has(cleanSlug)) {
     if (CHARGE_TOKENS.has(left) && ENERGY_TOKENS.has(right)) {
       return "/electric-charge";

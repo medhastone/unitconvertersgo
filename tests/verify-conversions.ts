@@ -532,4 +532,27 @@ assert(
 );
 console.log("✅ (h) Verified /heat-transfer-coefficient/btus-per-hour-square-foot-fahrenheit-to-watts-per-square-meter-kelvin and engineering categories are indexable (0 noindex tags).");
 
+// (i) Verify previously false-positive noindex URLs are now indexable
+const shouldBeIndexablePaths: Array<[string, string]> = [
+  ["pressure", "gigapascals-to-psf"],
+  ["prefixes", "nano-to-giga"],
+  ["prefixes", "nano-to-mega"],
+  ["power", "milliwatts-to-microwatts"],
+  ["energy", "joules-to-ergs"],
+  ["data_storage", "petabytes-to-kilobits"],
+  ["numbers", "lakhs-to-dozens"],
+  ["area", "square-millimeters-to-square-feet"],
+  ["length", "megameters-to-kilometers"],
+  ["pressure", "kilopascals-to-terapascals"],
+];
+for (const [catHint, slug] of shouldBeIndexablePaths) {
+  const p = getConversionPair(slug, catHint);
+  assert(Boolean(p), `(i) Expected ${catHint}/${slug} to resolve`);
+  assert(
+    isPairIndexable(p!) === true,
+    `(i) Expected ${catHint}/${slug} to be indexable, got Tier ${getConverterTier(p!)}`
+  );
+}
+console.log("✅ (i) Verified 10 previously false-positive noindex converter pages (psf, SI prefixes, mW↔µW, J↔erg, PB↔kb, etc.) are now indexable.");
+
 console.log("🎉 ALL TESTS PASSED! Conversion engine, canonical routing, and site-wide Technical SEO specifications are verified.");

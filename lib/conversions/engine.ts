@@ -355,7 +355,8 @@ export function convertUnits(
   fromUnitId: string,
   toUnitId: string,
   precision: PrecisionMode = "auto",
-  voltage: number = 12
+  voltage: number = 12,
+  densityGPerMl: number = 1
 ): ConversionOutput {
   const fromUnit = UNIT_MAP.get(fromUnitId);
   const toUnit = UNIT_MAP.get(toUnitId);
@@ -414,6 +415,57 @@ export function convertUnits(
         label: "Arithmetic Substitution",
         expression: `${value} ${fromUnit.symbol} × ${formatValue(factor, "auto")} = ${formatValue(rawValue, precision)} ${toUnit.symbol}`,
         explanation: `At ${safeVoltage} V nominal battery voltage, ${value} ${fromUnit.symbol} equals ${formatValue(rawValue, precision)} ${toUnit.symbol}.`,
+      },
+    ];
+
+    return {
+      rawValue,
+      formattedValue: formatValue(rawValue, precision),
+      fromUnit,
+      toUnit,
+      formulaDisplay,
+      steps,
+      directFactor: factor,
+      inverseFactor,
+      isNonlinear: false,
+    };
+  }
+
+  // Handle Mass <-> Volume Cross-Dimension using Material Density ρ (g/mL = kg/L, default 1.0 Water)
+  const isMassToVolume =
+    fromUnit.categoryId === "mass" && toUnit.categoryId === "volume";
+  const isVolumeToMass =
+    fromUnit.categoryId === "volume" && toUnit.categoryId === "mass";
+
+  if (isMassToVolume || isVolumeToMass) {
+    const safeDensity = densityGPerMl > 0 && isFinite(densityGPerMl) ? densityGPerMl : 1;
+    const fromBaseFactor = fromUnit.toBase ?? 1; // mass in kg or volume in L
+    const toBaseFactor = toUnit.toBase ?? 1; // volume in L or mass in kg
+    // 1 kg/L === 1 g/mL:
+    // mass -> volume: L = kg / ρ
+    // volume -> mass: kg = L * ρ
+    const factor = isMassToVolume
+      ? fromBaseFactor / (safeDensity * toBaseFactor)
+      : (fromBaseFactor * safeDensity) / toBaseFactor;
+    const inverseFactor = 1 / factor;
+    const rawValue = value * factor;
+
+    const formulaDisplay = isMassToVolume
+      ? `${toUnit.symbol} = (${fromUnit.symbol} × ${formatValue(fromBaseFactor / toBaseFactor, "auto")}) ÷ ${safeDensity} g/mL`
+      : `${toUnit.symbol} = (${fromUnit.symbol} × ${formatValue(fromBaseFactor / toBaseFactor, "auto")}) × ${safeDensity} g/mL`;
+
+    const steps: ConversionStep[] = [
+      {
+        label: `Substance Density Assumption (ρ = ${safeDensity} g/mL)`,
+        expression: formulaDisplay,
+        explanation: isMassToVolume
+          ? `Convert mass to kg, divide by material density (${safeDensity} g/mL = ${safeDensity} kg/L) to get liters, then express in ${toUnit.plural.toLowerCase()}.`
+          : `Convert volume to liters, multiply by material density (${safeDensity} g/mL = ${safeDensity} kg/L) to get kg, then express in ${toUnit.plural.toLowerCase()}.`,
+      },
+      {
+        label: "Density-Adjusted Result",
+        expression: `${value} ${fromUnit.symbol} × ${formatValue(factor, "auto")} = ${formatValue(rawValue, precision)} ${toUnit.symbol} (at ρ = ${safeDensity} g/mL)`,
+        explanation: `At assumed density ρ = ${safeDensity} g/mL, ${value} ${fromUnit.symbol} equals ${formatValue(rawValue, precision)} ${toUnit.symbol}.`,
       },
     ];
 

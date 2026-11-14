@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import EmbedCalculatorWidget from "@/components/EmbedCalculatorWidget";
 import {
+  getAllWidgetDirectoryItems,
   resolveWidgetBySlug,
   WidgetAccent,
   WidgetTheme,
@@ -12,7 +13,7 @@ import { buildPageMetadata } from "@/lib/seo";
 
 interface EmbedPageProps {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{
+  searchParams?: Promise<{
     theme?: string;
     accent?: string;
     val?: string;
@@ -21,6 +22,14 @@ interface EmbedPageProps {
     formula?: string;
     lock?: string;
   }>;
+}
+
+export async function generateStaticParams() {
+  return getAllWidgetDirectoryItems()
+    .filter((item) => item.isFeatured)
+    .map((item) => ({
+      slug: item.slug,
+    }));
 }
 
 export async function generateMetadata({ params }: EmbedPageProps): Promise<Metadata> {
@@ -42,7 +51,10 @@ export default async function EmbedWidgetPage({
   searchParams,
 }: EmbedPageProps) {
   const { slug } = await params;
-  const sp = await searchParams;
+  const sp =
+    process.env.GITHUB_PAGES === "true" || !searchParams
+      ? {}
+      : await searchParams;
   const widget = resolveWidgetBySlug(slug);
 
   if (!widget) {

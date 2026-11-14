@@ -82,6 +82,18 @@ export function getChildSitemapEntries(name: string): SitemapUrlEntry[] | null {
         changefreq: "weekly",
         priority: "0.8",
       },
+      {
+        loc: `${baseUrl}/case-converter`,
+        lastmod: BUILD_LASTMOD,
+        changefreq: "monthly",
+        priority: "0.7",
+      },
+      {
+        loc: `${baseUrl}/sitemap`,
+        lastmod: BUILD_LASTMOD,
+        changefreq: "weekly",
+        priority: "0.7",
+      },
     ];
   }
 

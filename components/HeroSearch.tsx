@@ -20,8 +20,8 @@ import {
 import { useTypewriterPlaceholder } from "@/lib/search/animated-prompts";
 import { runSmartSearch } from "@/lib/search/smart-search";
 
-const QUICK_TRY_LINKS = [
-  { label: "convert volt to watt", query: "convert volt to watt" },
+const QUICK_TRY_LINKS: Array<{ label: string; href: string; query?: string }> = [
+  { label: "watts to kW", href: "/power/watts-to-kw" },
   { label: "meter to feet", href: "/length/meters-to-feet" },
   { label: "kg to pounds", href: "/weight-and-mass/kg-to-lbs" },
   { label: "celsius to fahrenheit", href: "/temperature/celsius-to-fahrenheit" },
@@ -183,27 +183,13 @@ export default function HeroSearch() {
         <span>Try:</span>
         {QUICK_TRY_LINKS.map((item, idx) => (
           <span key={item.label} className="inline-flex items-center">
-            {item.query ? (
-              <button
-                type="button"
-                onClick={() => {
-                  setQuery(item.query);
-                  setIsFocused(true);
-                  inputRef.current?.focus();
-                }}
-                className="font-semibold text-[#0D9488] dark:text-[#2DD4BF] hover:underline cursor-pointer"
-              >
-                {item.label}
-              </button>
-            ) : (
-              <Link
-                href={item.href!}
-                prefetch={false}
-                className="hover:text-[#0D9488] dark:hover:text-[#2DD4BF] underline decoration-slate-300 dark:decoration-slate-700 underline-offset-2 transition-colors"
-              >
-                {item.label}
-              </Link>
-            )}
+            <Link
+              href={item.href}
+              prefetch={false}
+              className="hover:text-[#0D9488] dark:hover:text-[#2DD4BF] underline decoration-slate-300 dark:decoration-slate-700 underline-offset-2 transition-colors"
+            >
+              {item.label}
+            </Link>
             {idx < QUICK_TRY_LINKS.length - 1 ? <span>,</span> : <span>...</span>}
           </span>
         ))}

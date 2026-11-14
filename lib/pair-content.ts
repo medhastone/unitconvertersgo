@@ -1,5 +1,6 @@
 import { ConversionPairInfo, Unit } from "./conversions/types";
 import { CATEGORY_MAP, UNIT_MAP, getUnitsByCategory } from "./conversions/units";
+import { getCanonicalPairSlug } from "./conversions/catalogue";
 import { convertUnits } from "./conversions/engine";
 import { getCategoryUrlSlug, getCategoryUrl, getCanonicalConverterPath } from "./conversions/url";
 
@@ -128,28 +129,24 @@ function formatNum(val: number, decimals = 6): string {
   return rounded.toLocaleString("en-US", { maximumFractionDigits: decimals });
 }
 
-function makeUnitToken(u: Unit): string {
-  return u.plural
-    .replace(/\s+\([^)]*\)/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-}
-
 function synthesizePairContent(pair: ConversionPairInfo): PairContentData | null {
   const cached = synthesizedPairContentCache.get(pair.slug);
   if (cached) return cached;
 
   const fromU = UNIT_MAP.get(pair.fromUnitId);
   const toU = UNIT_MAP.get(pair.toUnitId);
-  const cat = CATEGORY_MAP.get(pair.categoryId);
+  const cat = CATEGORY_MAP.get(pair.categoryId) || CATEGORY_MAP.get(fromU?.categoryId || "");
   if (!fromU || !toU || !cat) return null;
+
+  const isMassVol =
+    (fromU.categoryId === "mass" && toU.categoryId === "volume") ||
+    (fromU.categoryId === "volume" && toU.categoryId === "mass");
 
   const catSlug = getCategoryUrlSlug(pair.categoryId);
   const commonValues = getCuratedCommonValues(catSlug, pair.slug, fromU.id);
 
-  const oneTo = convertUnits(1, fromU.id, toU.id, "auto").rawValue;
-  const oneRev = convertUnits(1, toU.id, fromU.id, "auto").rawValue;
+  const oneTo = convertUnits(1, fromU.id, toU.id, "auto", 12, 1).rawValue;
+  const oneRev = convertUnits(1, toU.id, fromU.id, "auto", 12, 1).rawValue;
   const exactFactorStr = formatNum(oneTo, 8);
   const roundedFactorStr = formatNum(oneTo, 4);
   const revFactorStr = formatNum(oneRev, 6);
@@ -191,13 +188,28 @@ function synthesizePairContent(pair: ConversionPairInfo): PairContentData | null
     flow: "pump selection, municipal water pipe sizing, HVAC airflow balancing, and welding shielding gas regulation",
     fuel_economy:
       "comparing North American EPA window stickers against European WLTP and UK vehicle fuel consumption figures",
+    concentration_solution:
+      "drinking water quality testing, environmental compliance monitoring, aquaculture salinity checks, and laboratory reagent preparation",
+    radiation:
+      "occupational dosimetry, medical imaging dose reporting, radiological safety audits, and nuclear regulatory compliance",
+    resistance:
+      "electronic circuit design, PCB pull-up/pull-down sizing, continuity testing, and power distribution diagnostics",
+    capacitance:
+      "RF filter tuning, decoupling capacitor selection, timing circuit calculation, and power electronics design",
+    prefixes:
+      "SI metric unit scaling, scientific notation conversion, semiconductor timing specs, and engineering datasheet interpretation",
   };
 
-  const contextPhrase =
-    domainUseCases[pair.categoryId] ||
-    "engineering specifications, international trade documentation, and standardized technical measurements";
+  const contextPhrase = isMassVol
+    ? "culinary recipe scaling, chemical formulation, freight liquid-weight estimation, and ingredient batching"
+    : domainUseCases[pair.categoryId] ||
+      "engineering specifications, international trade documentation, and standardized technical measurements";
 
-  const intro = `Professionals and everyday users convert ${fromU.plural.toLowerCase()} (${fromU.symbol}) to ${toU.plural.toLowerCase()} (${toU.symbol}) when working across ${fromU.system} and ${toU.system} standards in ${contextPhrase}. One ${fromU.name.toLowerCase()} equals ${exactFactorStr} ${toU.plural.toLowerCase()}, while 1 ${toU.name.toLowerCase()} equals ${revFactorStr} ${fromU.plural.toLowerCase()}. Whether you are verifying ${cat.name.toLowerCase()} specifications on imported equipment, cross-checking technical datasheets, or scaling practical figures, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.`;
+  const densityClause = isMassVol
+    ? " Because mass-to-volume and volume-to-mass conversions depend on substance density, the baseline reference below assumes Pure Water at standard density (ρ = 1.000 g/mL), where 1 milliliter equals 1 gram; use the substance/density selector above for oils, milk, honey, flour, sugar, fuels, or custom densities."
+    : ` Whether you are verifying ${cat.name.toLowerCase()} specifications on imported equipment, cross-checking technical datasheets, or scaling practical figures, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.`;
+
+  const intro = `Professionals and everyday users convert ${fromU.plural.toLowerCase()} (${fromU.symbol}) to ${toU.plural.toLowerCase()} (${toU.symbol}) when working across ${fromU.system} and ${toU.system} standards in ${contextPhrase}. Assuming ${isMassVol ? "Pure Water (ρ = 1.000 g/mL)" : "standard reference conditions"}, 1 ${fromU.name.toLowerCase()} equals ${exactFactorStr} ${toU.plural.toLowerCase()}, while 1 ${toU.name.toLowerCase()} equals ${revFactorStr} ${fromU.plural.toLowerCase()}.${densityClause}`;
 
   const sampleInputs = [
     commonValues[Math.min(2, commonValues.length - 1)] || 1,
@@ -206,7 +218,7 @@ function synthesizePairContent(pair: ConversionPairInfo): PairContentData | null
   ];
 
   const workedExamples: WorkedExampleItem[] = sampleInputs.map((val, idx) => {
-    const out = convertUnits(val, fromU.id, toU.id, "auto").rawValue;
+    const out = convertUnits(val, fromU.id, toU.id, "auto", 12, 1).rawValue;
     const outExact = formatNum(out, 6);
     const outRounded = formatNum(out, 2);
     const labels = [
@@ -214,17 +226,58 @@ function synthesizePairContent(pair: ConversionPairInfo): PairContentData | null
       `Practical Mid-Range Conversion (${val} ${fromU.symbol})`,
       `Higher-Capacity Specification (${val} ${fromU.symbol})`,
     ];
+    const conditionNote = isMassVol ? " (assuming Pure Water, ρ = 1.000 g/mL)" : "";
     return {
       title: labels[idx],
-      scenario: `Convert ${val} ${fromU.plural.toLowerCase()} (${fromU.symbol}) into ${toU.plural.toLowerCase()} (${toU.symbol}) for technical comparison and documentation.`,
+      scenario: `Convert ${val} ${fromU.plural.toLowerCase()} (${fromU.symbol}) into ${toU.plural.toLowerCase()} (${toU.symbol})${conditionNote} for technical comparison and documentation.`,
       inputValue: val,
-      outputValue: `${outExact} ${toU.symbol}`,
-      stepByStep: `${val} ${fromU.symbol} × ${exactFactorStr} = ${outExact} ${toU.symbol} (rounds to ${outRounded} ${toU.symbol}).`,
+      outputValue: isMassVol ? `${outExact} ${toU.symbol} (Water)` : `${outExact} ${toU.symbol}`,
+      stepByStep: `${val} ${fromU.symbol} × ${exactFactorStr}${isMassVol ? " (ρ = 1.000 g/mL)" : ""} = ${outExact} ${toU.symbol} (rounds to ${outRounded} ${toU.symbol}).`,
     };
   });
 
   let mistakesAndEdgeCases: MistakesAndEdgeCasesBlock | null = null;
-  if (pair.categoryId === "numbers") {
+  if (isMassVol) {
+    mistakesAndEdgeCases = {
+      title: "Density & Medium Assumption (Mass ↔ Volume)",
+      items: [
+        "Mass (weight) and volume measure different physical dimensions and cannot be converted without substance density (mass = volume × density).",
+        "Default figures assume Pure Water at ρ = 1.000 g/mL (1 mL = 1 g, 1 L = 1 kg). Dense liquids like honey (1.42 g/mL) weigh ~42% more per cup/pint than water, while olive oil (0.915 g/mL) and gasoline (0.745 g/mL) weigh less. Select a preset or enter a custom g/mL density above.",
+      ],
+    };
+  } else if (pair.categoryId === "concentration_solution") {
+    mistakesAndEdgeCases = {
+      title: "Medium Assumption: Dilute Aqueous Solution (Water) vs. Air / Gas (ppmv)",
+      items: [
+        "In dilute aqueous solutions (water at ≈ 1.000 g/mL = 1 kg/L), 1 ppm by mass equals 1 mg/L (1,000 µg/L) and 1 kg/m³ equals 1,000 ppm = 1,000 mg/L.",
+        "In air or gas mixtures, ppm is usually volume/mole fraction (ppmv), which depends on molecular weight (MW), temperature, and pressure: mg/m³ = ppmv × MW / 24.45 at 25 °C and 1 atm — do not apply aqueous 1 ppm = 1 mg/L ratios to air pollutants.",
+      ],
+    };
+  } else if (pair.categoryId === "flow") {
+    mistakesAndEdgeCases = {
+      title: "Fluid Medium & Pressure Note (Liquid vs. Compressed Air / SCFM vs. ACFM)",
+      items: [
+        "Volumetric flow ratios (such as CFH ↔ CFM, L/s ↔ CFM, and GPD ↔ GPM) are exact geometric relationships regardless of whether the fluid is water, oil, or air.",
+        "For gases and compressed air, confirm whether rated CFM is Actual CFM (ACFM, at line pressure/temperature) or Standard CFM (SCFM, at 14.696 psia and 60 °F/68 °F), because gas density scales directly with absolute pressure.",
+      ],
+    };
+  } else if (pair.categoryId === "radiation") {
+    mistakesAndEdgeCases = {
+      title: "Radiation Weighting Factor (w_R) & Equivalent Dose Context",
+      items: [
+        "Sievert (Sv / mSv) and rem are both equivalent-dose units (1 Sv = 100 rem; 1 mSv = 0.1 rem = 100 mrem), so the mathematical ratio is exact.",
+        "Converting absorbed dose (Gy / rad) into equivalent dose (Sv / rem) depends on the radiation weighting factor w_R: w_R = 1 for X-rays, gamma rays, and beta particles, but w_R = 20 for alpha particles and 2–20 for neutrons.",
+      ],
+    };
+  } else if (pair.categoryId === "prefixes") {
+    mistakesAndEdgeCases = {
+      title: "SI Decimal Metric Prefixes (Base-10) vs. Binary Computing Prefixes (Base-2)",
+      items: [
+        "SI metric prefixes always scale in exact powers of 10 (10³, 10⁶, 10⁻⁶, 10⁻⁹, 10⁻¹²). For example, 1 micro (µ) = 0.000001 = 10⁻⁶ base units, 1 nano (n) = 10⁻⁹, and 1 pico (p) = 10⁻¹².",
+        "Do not confuse lowercase m (milli = 10⁻³) with uppercase M (mega = 10⁶) or µ (micro = 10⁻⁶), and in computing memory keep SI decimal prefixes distinct from IEC binary prefixes (Ki = 2¹⁰ = 1,024).",
+      ],
+    };
+  } else if (pair.categoryId === "numbers") {
     mistakesAndEdgeCases = {
       title: "South Asian (Lakh / Crore) vs. International Short-Scale (Million / Billion) Grouping",
       items: [
@@ -234,22 +287,24 @@ function synthesizePairContent(pair: ConversionPairInfo): PairContentData | null
     };
   }
 
-  const revSlug = `${makeUnitToken(toU)}-to-${makeUnitToken(fromU)}`;
-  const peerUnits = getUnitsByCategory(pair.categoryId)
-    .filter((u) => u.id !== fromU.id && u.id !== toU.id)
-    .slice(0, 3);
+  const revSlug = getCanonicalPairSlug(toU, fromU);
+  const revCategoryId = isMassVol ? toU.categoryId : pair.categoryId;
+  const peerPool = isMassVol
+    ? getUnitsByCategory(toU.categoryId).filter((u) => u.id !== toU.id)
+    : getUnitsByCategory(pair.categoryId).filter((u) => u.id !== fromU.id && u.id !== toU.id);
+  const peerUnits = peerPool.slice(0, 5);
 
   const internalLinks: PairInternalLink[] = [
     {
       label: `${toU.plural} to ${fromU.plural} (${toU.symbol} to ${fromU.symbol})`,
-      href: getCanonicalConverterPath(pair.categoryId, revSlug),
+      href: getCanonicalConverterPath(revCategoryId, revSlug),
       type: "reverse",
     },
     ...peerUnits.map((peer) => ({
       label: `${fromU.plural} to ${peer.plural} (${fromU.symbol} to ${peer.symbol})`,
       href: getCanonicalConverterPath(
-        pair.categoryId,
-        `${makeUnitToken(fromU)}-to-${makeUnitToken(peer)}`
+        fromU.categoryId,
+        getCanonicalPairSlug(fromU, peer)
       ),
       type: "related" as const,
     })),
@@ -265,18 +320,21 @@ function synthesizePairContent(pair: ConversionPairInfo): PairContentData | null
     },
   ];
 
+  const waterNote = isMassVol ? " for pure water (ρ = 1.000 g/mL)" : "";
   const faqs: PairFaqItem[] = [
     {
       question: `How many ${toU.plural.toLowerCase()} (${toU.symbol}) are in 1 ${fromU.name.toLowerCase()} (${fromU.symbol})?`,
-      answer: `There are ${exactFactorStr} ${toU.plural.toLowerCase()} (${toU.symbol}) in 1 ${fromU.name.toLowerCase()} (${fromU.symbol}). For quick everyday estimates, 1 ${fromU.symbol} ≈ ${roundedFactorStr} ${toU.symbol}, and conversely 1 ${toU.symbol} = ${revFactorStr} ${fromU.symbol}.`,
+      answer: `There are ${exactFactorStr} ${toU.plural.toLowerCase()} (${toU.symbol}) in 1 ${fromU.name.toLowerCase()} (${fromU.symbol})${waterNote}. For quick everyday estimates, 1 ${fromU.symbol} ≈ ${roundedFactorStr} ${toU.symbol}, and conversely 1 ${toU.symbol} = ${revFactorStr} ${fromU.symbol}.`,
     },
     {
       question: `What is the formula to convert ${fromU.plural.toLowerCase()} to ${toU.plural.toLowerCase()}?`,
-      answer: `Multiply your value in ${fromU.plural.toLowerCase()} (${fromU.symbol}) by ${exactFactorStr}: ${toU.symbol} = ${fromU.symbol} × ${exactFactorStr}. To convert back from ${toU.plural.toLowerCase()} to ${fromU.plural.toLowerCase()}, multiply by ${revFactorStr}.`,
+      answer: isMassVol
+        ? `Multiply your value in ${fromU.plural.toLowerCase()} (${fromU.symbol}) by ${exactFactorStr} for water (ρ = 1.000 g/mL), and scale linearly by density ρ (in g/mL)${fromU.categoryId === "volume" ? " (multiply by ρ)" : " (divide by ρ)"}.`
+        : `Multiply your value in ${fromU.plural.toLowerCase()} (${fromU.symbol}) by ${exactFactorStr}: ${toU.symbol} = ${fromU.symbol} × ${exactFactorStr}. To convert back from ${toU.plural.toLowerCase()} to ${fromU.plural.toLowerCase()}, multiply by ${revFactorStr}.`,
     },
     {
       question: `What is ${sampleInputs[1]} ${fromU.plural.toLowerCase()} in ${toU.plural.toLowerCase()}?`,
-      answer: `Using the exact conversion factor, ${sampleInputs[1]} ${fromU.symbol} equals ${workedExamples[1].outputValue}. Step-by-step: ${workedExamples[1].stepByStep}`,
+      answer: `Using the exact conversion factor${waterNote}, ${sampleInputs[1]} ${fromU.symbol} equals ${workedExamples[1].outputValue}. Step-by-step: ${workedExamples[1].stepByStep}`,
     },
   ];
 
@@ -294,10 +352,12 @@ function synthesizePairContent(pair: ConversionPairInfo): PairContentData | null
     workedExamples,
     mistakesAndEdgeCases,
     formula: {
-      equation: `${toU.symbol} = ${fromU.symbol} × ${exactFactorStr}`,
-      exactFactor: `1 ${fromU.symbol} = ${exactFactorStr} ${toU.symbol}`,
-      roundedFactor: `1 ${fromU.symbol} ≈ ${roundedFactorStr} ${toU.symbol}`,
-      inverseFactor: `1 ${toU.symbol} = ${revFactorStr} ${fromU.symbol}`,
+      equation: isMassVol
+        ? `${toU.symbol} = ${fromU.symbol} × ${exactFactorStr} (Water, ρ = 1.000 g/mL)`
+        : `${toU.symbol} = ${fromU.symbol} × ${exactFactorStr}`,
+      exactFactor: `1 ${fromU.symbol} = ${exactFactorStr} ${toU.symbol}${isMassVol ? " (Water)" : ""}`,
+      roundedFactor: `1 ${fromU.symbol} ≈ ${roundedFactorStr} ${toU.symbol}${isMassVol ? " (Water)" : ""}`,
+      inverseFactor: `1 ${toU.symbol} = ${revFactorStr} ${fromU.symbol}${isMassVol ? " (Water)" : ""}`,
     },
     internalLinks,
     faqs,

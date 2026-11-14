@@ -20,6 +20,14 @@ interface WidgetStudioPageProps {
   params: Promise<{ slug: string }>;
 }
 
+export async function generateStaticParams() {
+  return getAllWidgetDirectoryItems()
+    .filter((item) => item.isFeatured)
+    .map((item) => ({
+      slug: item.slug,
+    }));
+}
+
 export async function generateMetadata({
   params,
 }: WidgetStudioPageProps): Promise<Metadata> {

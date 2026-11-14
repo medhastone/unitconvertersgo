@@ -394,12 +394,12 @@ url,category,from,to,slug,tier,dimension_match,slug_has_exponent_loss,duplicate_
 /volume-dry/imperial-bushels-to-liters,volume-dry,Imperial Bushel (UK) (bu (UK)),Liter (Dry) (L),imperial-bushels-to-liters,B,true,false,,false,true
 /volume-dry/liters-to-us-pecks,volume-dry,Liter (Dry) (L),US Peck (pk (US)),liters-to-us-pecks,B,true,false,,false,true
 /volume-dry/us-pecks-to-liters,volume-dry,US Peck (pk (US)),Liter (Dry) (L),us-pecks-to-liters,B,true,false,,false,true
-/currency/us-dollars-to-euros,currency,US Dollar (USD),Euro (EUR),us-dollars-to-euros,B,true,false,,false,true
-/currency/euros-to-us-dollars,currency,Euro (EUR),US Dollar (USD),euros-to-us-dollars,B,true,false,,false,true
-/currency/us-dollars-to-british-pounds,currency,US Dollar (USD),British Pound Sterling (GBP),us-dollars-to-british-pounds,B,true,false,,false,true
-/currency/british-pounds-to-us-dollars,currency,British Pound Sterling (GBP),US Dollar (USD),british-pounds-to-us-dollars,B,true,false,,false,true
-/currency/us-dollars-to-japanese-yen,currency,US Dollar (USD),Japanese Yen (JPY),us-dollars-to-japanese-yen,B,true,false,,false,true
-/currency/japanese-yen-to-us-dollars,currency,Japanese Yen (JPY),US Dollar (USD),japanese-yen-to-us-dollars,B,true,false,,false,true
+/currency/us-dollars-to-euros,currency,US Dollar (USD),Euro (EUR),us-dollars-to-euros,C,true,false,,false,false
+/currency/euros-to-us-dollars,currency,Euro (EUR),US Dollar (USD),euros-to-us-dollars,C,true,false,,false,false
+/currency/us-dollars-to-british-pounds,currency,US Dollar (USD),British Pound Sterling (GBP),us-dollars-to-british-pounds,C,true,false,,false,false
+/currency/british-pounds-to-us-dollars,currency,British Pound Sterling (GBP),US Dollar (USD),british-pounds-to-us-dollars,C,true,false,,false,false
+/currency/us-dollars-to-japanese-yen,currency,US Dollar (USD),Japanese Yen (JPY),us-dollars-to-japanese-yen,C,true,false,,false,false
+/currency/japanese-yen-to-us-dollars,currency,Japanese Yen (JPY),US Dollar (USD),japanese-yen-to-us-dollars,C,true,false,,false,false
 /angular-velocity/radians-per-second-to-degrees-per-second,angular-velocity,Radian per Second (rad/s),Degree per Second (°/s),radians-per-second-to-degrees-per-second,B,true,false,,false,true
 /angular-velocity/degrees-per-second-to-radians-per-second,angular-velocity,Degree per Second (°/s),Radian per Second (rad/s),degrees-per-second-to-radians-per-second,B,true,false,,false,true
 /angular-velocity/radians-per-second-to-revolutions-per-minute,angular-velocity,Radian per Second (rad/s),Revolution per Minute (r/min),radians-per-second-to-revolutions-per-minute,B,true,false,,false,true
@@ -524,8 +524,8 @@ url,category,from,to,slug,tier,dimension_match,slug_has_exponent_loss,duplicate_
 /concentration-solution/grams-per-liter-to-kilograms-per-liter,concentration-solution,Gram per Liter (g/L),Kilogram per Liter (kg/L),grams-per-liter-to-kilograms-per-liter,B,true,false,,false,true
 /concentration-solution/kilograms-per-liter-to-milligrams-per-liter,concentration-solution,Kilogram per Liter (kg/L),Milligram per Liter (mg/L),kilograms-per-liter-to-milligrams-per-liter,B,true,false,,false,true
 /concentration-solution/milligrams-per-liter-to-kilograms-per-liter,concentration-solution,Milligram per Liter (mg/L),Kilogram per Liter (kg/L),milligrams-per-liter-to-kilograms-per-liter,B,true,false,,false,true
-/concentration-solution/kilograms-per-liter-to-grams-per-deciliter,concentration-solution,Kilogram per Liter (kg/L),Gram per Deciliter (% w/v) (g/dL),kilograms-per-liter-to-grams-per-deciliter,B,true,false,,false,true
-/concentration-solution/grams-per-deciliter-to-kilograms-per-liter,concentration-solution,Gram per Deciliter (% w/v) (g/dL),Kilogram per Liter (kg/L),grams-per-deciliter-to-kilograms-per-liter,B,true,false,,false,true
+/concentration-solution/kilograms-per-liter-to-micrograms-per-liter,concentration-solution,Kilogram per Liter (kg/L),Microgram per Liter (µg/L),kilograms-per-liter-to-micrograms-per-liter,B,true,false,,false,true
+/concentration-solution/micrograms-per-liter-to-kilograms-per-liter,concentration-solution,Microgram per Liter (µg/L),Kilogram per Liter (kg/L),micrograms-per-liter-to-kilograms-per-liter,B,true,false,,false,true
 /viscosity-dynamic/pascal-seconds-to-millipascal-seconds,viscosity-dynamic,Pascal Second (Pa·s),Millipascal Second (mPa·s),pascal-seconds-to-millipascal-seconds,B,true,false,,false,true
 /viscosity-dynamic/millipascal-seconds-to-pascal-seconds,viscosity-dynamic,Millipascal Second (mPa·s),Pascal Second (Pa·s),millipascal-seconds-to-pascal-seconds,B,true,false,,false,true
 /viscosity-dynamic/pascal-seconds-to-poise,viscosity-dynamic,Pascal Second (Pa·s),Poise (P),pascal-seconds-to-poise,B,true,false,,false,true
