@@ -10,6 +10,7 @@ const CONSENT_STORAGE_KEY = "cookie_consent";
 
 declare global {
   interface Window {
+    dataLayer?: unknown[];
     gtag?: (
       command: "consent" | "config" | "event" | "js",
       targetOrAction: string | Date,
@@ -66,12 +67,27 @@ export default function CookieConsentBanner() {
     getServerConsentSnapshot
   );
   const [dismissedInSession, setDismissedInSession] = useState<boolean>(false);
+  const [hasInteracted, setHasInteracted] = useState<boolean>(false);
 
   useEffect(() => {
     if (storedConsent === "accepted") {
       updateAnalyticsConsent("granted");
     }
   }, [storedConsent]);
+
+  useEffect(() => {
+    if (storedConsent !== null || hasInteracted) return;
+    const onInteract = () => setHasInteracted(true);
+    const events = ["scroll", "pointerdown", "touchstart", "keydown", "mousemove"];
+    for (const evt of events) {
+      window.addEventListener(evt, onInteract, { passive: true, once: true });
+    }
+    return () => {
+      for (const evt of events) {
+        window.removeEventListener(evt, onInteract);
+      }
+    };
+  }, [storedConsent, hasInteracted]);
 
   const handleAccept = (): void => {
     try {
@@ -92,7 +108,7 @@ export default function CookieConsentBanner() {
     setDismissedInSession(true);
   };
 
-  if (storedConsent !== null || dismissedInSession) {
+  if (storedConsent !== null || dismissedInSession || !hasInteracted) {
     return null;
   }
 
@@ -104,10 +120,10 @@ export default function CookieConsentBanner() {
     >
       <div className="max-w-5xl mx-auto pointer-events-auto rounded-2xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-slate-200/90 dark:border-slate-800 shadow-2xl px-4 py-3.5 sm:px-6 sm:py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-start gap-3">
-          <div className="w-9 h-9 rounded-xl bg-teal-50 dark:bg-teal-950/60 border border-teal-200/70 dark:border-teal-800/70 flex items-center justify-center text-[#0D9488] dark:text-[#2DD4BF] shrink-0 mt-0.5">
+          <div className="w-9 h-9 rounded-xl bg-teal-50 dark:bg-teal-950/60 border border-teal-200/70 dark:border-teal-800/70 flex items-center justify-center text-[#0F766E] dark:text-[#2DD4BF] shrink-0 mt-0.5">
             <ShieldCheck className="w-5 h-5" aria-hidden="true" />
           </div>
-          <div className="space-y-0.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+          <div className="space-y-0.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
             <p className="font-bold text-[#16324F] dark:text-white">
               We value your privacy
             </p>
@@ -118,7 +134,7 @@ export default function CookieConsentBanner() {
               <Link
                 href="/privacy"
                 prefetch={false}
-                className="font-semibold text-[#0D9488] dark:text-[#2DD4BF] underline underline-offset-2 hover:text-[#0F766E] transition-colors"
+                className="font-semibold text-[#0F766E] dark:text-[#2DD4BF] underline underline-offset-2 hover:text-[#115E59] transition-colors"
               >
                 Privacy Policy
               </Link>{" "}
@@ -131,14 +147,14 @@ export default function CookieConsentBanner() {
           <button
             type="button"
             onClick={handleDecline}
-            className="flex-1 sm:flex-initial px-4 py-2.5 min-h-[40px] rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100/80 hover:bg-slate-200/80 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200 transition-colors cursor-pointer"
+            className="flex-1 sm:flex-initial px-4 py-2.5 min-h-[40px] rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200 transition-colors cursor-pointer"
           >
             Decline
           </button>
           <button
             type="button"
             onClick={handleAccept}
-            className="flex-1 sm:flex-initial px-5 py-2.5 min-h-[40px] rounded-xl bg-[#0D9488] hover:bg-[#0F766E] text-xs sm:text-sm font-extrabold text-white shadow-xs transition-colors cursor-pointer"
+            className="flex-1 sm:flex-initial px-5 py-2.5 min-h-[40px] rounded-xl bg-[#0F766E] hover:bg-[#115E59] text-xs sm:text-sm font-extrabold text-white shadow-xs transition-colors cursor-pointer"
           >
             Accept
           </button>

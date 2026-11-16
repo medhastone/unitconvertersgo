@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -88,6 +87,32 @@ gtag('consent', 'default', {
   'analytics_storage': 'denied',
   'ad_storage': 'denied'
 });
+gtag('js', new Date());
+gtag('config', '${GA_MEASUREMENT_ID}');
+(function() {
+  var loaded = false;
+  function loadDeferredAssets() {
+    if (loaded) return;
+    loaded = true;
+    var events = ['scroll', 'pointerdown', 'touchstart', 'keydown'];
+    for (var i = 0; i < events.length; i++) {
+      window.removeEventListener(events[i], loadDeferredAssets);
+    }
+    var fontLink = document.createElement('link');
+    fontLink.rel = 'stylesheet';
+    fontLink.href = 'https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap';
+    document.head.appendChild(fontLink);
+
+    var gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}';
+    document.head.appendChild(gaScript);
+  }
+  var events = ['scroll', 'pointerdown', 'touchstart', 'keydown'];
+  for (var i = 0; i < events.length; i++) {
+    window.addEventListener(events[i], loadDeferredAssets, { passive: true, once: true });
+  }
+})();
 `;
 
 export default function RootLayout({
@@ -157,13 +182,6 @@ export default function RootLayout({
       className="scroll-smooth"
     >
       <head suppressHydrationWarning>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-        />
         <script
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: gaConsentInitScript }}
@@ -184,7 +202,7 @@ export default function RootLayout({
         />
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-[#0D9488] focus:text-white focus:text-xs focus:font-bold focus:shadow-lg"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-[#0F766E] focus:text-white focus:text-xs focus:font-bold focus:shadow-lg"
         >
           Skip to main content
         </a>
@@ -200,7 +218,6 @@ export default function RootLayout({
         <Footer />
         <HawkFlyby />
         <CookieConsentBanner />
-        <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
       </body>
     </html>
   );

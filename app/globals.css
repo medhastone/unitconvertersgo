@@ -34,6 +34,20 @@
     background-color: #0f172a;
     color: #f8fafc;
   }
+
+  /* Ensure WCAG 2.1 AA >= 4.5:1 contrast ratio in light mode */
+  html:not(.dark) .text-\[\#0D9488\] {
+    color: #0f766e;
+  }
+
+  html:not(.dark) .bg-\[\#0D9488\] {
+    background-color: #0f766e;
+  }
+
+  html:not(.dark) .text-slate-500,
+  html:not(.dark) .text-slate-400 {
+    color: #475569;
+  }
 }
 
 @media (max-width: 767px) {

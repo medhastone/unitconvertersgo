@@ -700,9 +700,9 @@ export default function HomePage() {
                   <Users className="w-5 h-5" />
                 </div>
                 <div className="space-y-1">
-                  <h4 className="text-sm sm:text-base font-bold text-[#16324F] dark:text-white">
+                  <h3 className="text-sm sm:text-base font-bold text-[#16324F] dark:text-white">
                     Automated Verification &amp; Standards Alignment
-                  </h4>
+                  </h3>
                   <p className="text-sm text-slate-600 dark:text-slate-300">
                     Our calculation engines are continuously validated against automated unit-conversion test suites and official NIST SP 811, BIPM SI, and ISO/IEC 80000 reference tables.
                   </p>

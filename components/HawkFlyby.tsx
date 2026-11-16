@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 
 const FIVE_MINUTES_MS = 5 * 60 * 1000; // 5 minutes gap between flights
-const INITIAL_DELAY_MS = 3500; // First flight after page hydration & LCP settle
+const INITIAL_DELAY_MS = 9500; // First flight after page hydration, LCP & TBT settle
+const INTERACTION_DELAY_MS = 1800; // Fast trigger once user interacts
 const FLIGHT_DURATION_MS = 2900; // 2.9s fast, agile hawk flight from right middle to left
 const STORAGE_KEY_LAST_FLIGHT = "ucg_hawk_last_flight_ts";
 
@@ -22,6 +23,7 @@ export default function HawkFlyby() {
 
     let initialTimer: ReturnType<typeof setTimeout> | null = null;
     let intervalTimer: ReturnType<typeof setInterval> | null = null;
+    let startedSchedule = false;
 
     const triggerFlight = () => {
       if (document.visibilityState === "hidden") return;
@@ -36,29 +38,49 @@ export default function HawkFlyby() {
       setIsFlying(true);
     };
 
-    // Determine when the next flight should occur across page navigations
-    let delayToNextFlight = INITIAL_DELAY_MS;
-    try {
-      const savedTs = Number(
-        window.sessionStorage.getItem(STORAGE_KEY_LAST_FLIGHT)
-      );
-      if (Number.isFinite(savedTs) && savedTs > 0) {
-        const elapsed = Date.now() - savedTs;
-        delayToNextFlight =
-          elapsed >= FIVE_MINUTES_MS
-            ? INITIAL_DELAY_MS
-            : Math.max(INITIAL_DELAY_MS, FIVE_MINUTES_MS - elapsed);
+    const scheduleFlight = (baseDelay: number) => {
+      if (startedSchedule) return;
+      startedSchedule = true;
+      let delayToNextFlight = baseDelay;
+      try {
+        const savedTs = Number(
+          window.sessionStorage.getItem(STORAGE_KEY_LAST_FLIGHT)
+        );
+        if (Number.isFinite(savedTs) && savedTs > 0) {
+          const elapsed = Date.now() - savedTs;
+          delayToNextFlight =
+            elapsed >= FIVE_MINUTES_MS
+              ? baseDelay
+              : Math.max(baseDelay, FIVE_MINUTES_MS - elapsed);
+        }
+      } catch {
+        delayToNextFlight = baseDelay;
       }
-    } catch {
-      delayToNextFlight = INITIAL_DELAY_MS;
+
+      if (initialTimer) clearTimeout(initialTimer);
+      initialTimer = setTimeout(() => {
+        triggerFlight();
+        intervalTimer = setInterval(triggerFlight, FIVE_MINUTES_MS);
+      }, delayToNextFlight);
+    };
+
+    const onUserInteract = () => {
+      scheduleFlight(INTERACTION_DELAY_MS);
+    };
+
+    const events = ["pointermove", "scroll", "touchstart", "keydown"];
+    for (const evt of events) {
+      window.addEventListener(evt, onUserInteract, { passive: true, once: true });
     }
 
     initialTimer = setTimeout(() => {
-      triggerFlight();
-      intervalTimer = setInterval(triggerFlight, FIVE_MINUTES_MS);
-    }, delayToNextFlight);
+      scheduleFlight(0);
+    }, INITIAL_DELAY_MS);
 
     return () => {
+      for (const evt of events) {
+        window.removeEventListener(evt, onUserInteract);
+      }
       if (initialTimer) clearTimeout(initialTimer);
       if (intervalTimer) clearInterval(intervalTimer);
     };
