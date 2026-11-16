@@ -117,9 +117,8 @@ try {
     },
   });
 
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   const sitemapsCount = copyChildSitemapsToRoot();
-  const redirectsCount = generateStaticRedirectPages(basePath);
+  const redirectsCount = generateStaticRedirectPages("");
 
   fs.writeFileSync(path.join(OUT_DIR, ".nojekyll"), "", "utf-8");
   if (!fs.existsSync(path.join(OUT_DIR, "CNAME"))) {

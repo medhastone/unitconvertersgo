@@ -28,11 +28,9 @@ const nextConfig = (phase: string): NextConfig => {
   const isDev = phase === PHASE_DEVELOPMENT_SERVER;
   const isGithubPages = process.env.GITHUB_PAGES === 'true';
   const isVercel = process.env.VERCEL === '1';
-  const basePath = isGithubPages ? (process.env.NEXT_PUBLIC_BASE_PATH || '') : '';
 
   const baseConfig: NextConfig = {
     distDir: isGithubPages ? 'out' : isDev ? '.next/dev' : '.next',
-    ...(basePath ? { basePath, assetPrefix: basePath } : {}),
     ...(isGithubPages
       ? { output: 'export' }
       : isVercel
