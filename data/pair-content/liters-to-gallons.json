@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "liters-to-gallons",
   "category": "volume",
   "categoryId": "volume",
@@ -7,104 +7,161 @@
   "toUnitId": "us_gallon",
   "fromSymbol": "L",
   "toSymbol": "gal (US)",
-  "intro": "Professionals and everyday users convert liters (L) to gallons (us) (gal (US)) when working across metric and us_customary standards in culinary recipe scaling, beverage bottling, laboratory reagent preparation, and fluid tank capacity sizing. One liter equals 0.264172 gallons (us), while 1 gallon (us liquid) equals 3.785412 liters. Whether you are verifying volume & liquid specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert L to gallons US quickly for fuel tanks, aquariums, homebrewing, and liquid storage. One US liquid gallon equals exactly 3.785411784 liters, so dividing liters by 3.78541 converts from a single liter to the gallon scale (1 L ≈ 0.264172 gal). Looking up liters in gallons UK instead? Remember that a UK Imperial gallon holds 4.54609 litres—about 20% more than a US gallon. Use the calculator above or browse our liters to gallons chart below.",
+  "alsoWrittenAs": "litres to US gallons, L to gal, liters into gallons, litre to gallon (US)",
   "commonValues": [
-    0.25,
-    0.5,
-    0.75,
     1,
-    1.5,
-    2,
-    3,
+    2.7,
     5,
     10,
-    20
+    15,
+    25,
+    30,
+    40,
+    50,
+    55
   ],
+  "tableValues": [
+    0.5,
+    1,
+    2,
+    2.7,
+    3,
+    3.785,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    15,
+    18,
+    20,
+    22,
+    25,
+    27,
+    30,
+    32,
+    35,
+    40,
+    43,
+    45,
+    46,
+    50,
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    90,
+    100,
+    120,
+    150,
+    200,
+    250,
+    300,
+    400,
+    500,
+    750,
+    1000,
+    2000,
+    5000
+  ],
+  "tableTitle": "Liters to Gallons Chart — L to US Gallons Table",
+  "tableSubtitle": "Reference chart converting litres and liters from 0.5 L to 5,000 L into US liquid gallons. Click any row to load it above.",
+  "tableRoundingNote": "Computed with the exact factor 1 L = 1 / 3.785411784 gal (US) (≈ 0.26417205 US gal); table values rounded to up to 5 decimal places.",
   "workedExamples": [
     {
-      "title": "Standard Liter Benchmark (0.75 L)",
-      "scenario": "Convert 0.75 liters (L) into gallons (us) (gal (US)) for technical comparison and documentation.",
-      "inputValue": 0.75,
-      "outputValue": "0.198129 gal (US)",
-      "stepByStep": "0.75 L × 0.264172 = 0.198129 gal (US) (rounds to 0.2 gal (US))."
+      "title": "Household Jug or Beverage Container (2.7 L)",
+      "scenario": "Convert 2.7 liters (L) into US gallons (gal (US)) for kitchen or beverage sizing.",
+      "inputValue": 2.7,
+      "outputValue": "0.71326 gal (US)",
+      "stepByStep": "2.7 L ÷ 3.785411784 = 0.7132645 gal (US) (rounds to 0.71 gal (US))."
     },
     {
-      "title": "Practical Mid-Range Conversion (2 L)",
-      "scenario": "Convert 2 liters (L) into gallons (us) (gal (US)) for technical comparison and documentation.",
-      "inputValue": 2,
-      "outputValue": "0.528344 gal (US)",
-      "stepByStep": "2 L × 0.264172 = 0.528344 gal (US) (rounds to 0.53 gal (US))."
+      "title": "Aquarium or Water Drum Capacity (30 L)",
+      "scenario": "Convert 30 liters (L) into US gallons (gal (US)) for fish tank dosing or water storage.",
+      "inputValue": 30,
+      "outputValue": "7.92516 gal (US)",
+      "stepByStep": "30 L ÷ 3.785411784 = 7.9251616 gal (US) (rounds to 7.93 gal (US))."
     },
     {
-      "title": "Higher-Capacity Specification (10 L)",
-      "scenario": "Convert 10 liters (L) into gallons (us) (gal (US)) for technical comparison and documentation.",
-      "inputValue": 10,
-      "outputValue": "2.641721 gal (US)",
-      "stepByStep": "10 L × 0.264172 = 2.641721 gal (US) (rounds to 2.64 gal (US))."
+      "title": "Compact Car Fuel Tank (50 L)",
+      "scenario": "Convert a 50-liter (L) gas tank into US gallons (gal (US)) for fuel economy planning.",
+      "inputValue": 50,
+      "outputValue": "13.2086 gal (US)",
+      "stepByStep": "50 L ÷ 3.785411784 = 13.2086026 gal (US) (rounds to 13.21 gal (US))."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "US Customary vs. British Imperial Liquid Volume Trap",
+    "title": "US Customary vs. British Imperial & Canadian Gallons",
     "items": [
-      "US Customary and UK Imperial liquid units share identical names but have different physical volumes: 1 US Gallon is 3.78541 L (128 US fl oz), whereas 1 UK Imperial Gallon is 4.54609 L (160 Imp fl oz) — a 20.1% difference.",
-      "Similarly, 1 US Pint contains 16 US fluid ounces (473.18 mL), while 1 British Imperial Pint contains 20 Imperial fluid ounces (568.26 mL). Always verify whether your recipe, pump datasheet, or vehicle spec sheet uses US or UK standards."
+      "1 US Liquid Gallon equals 3.785411784 litres (128 US fl oz), whereas 1 UK / Canadian Imperial Gallon equals 4.54609 litres (160 Imp fl oz)—20.1% larger.",
+      "Never confuse US gallons with UK Imperial gallons when reading international fuel consumption specs, chemical mixes, or industrial tank labels."
     ]
   },
   "formula": {
-    "equation": "gal (US) = L × 0.26417205",
+    "equation": "gal (US) = L ÷ 3.785411784",
     "exactFactor": "0.26417205",
     "roundedFactor": "0.2642",
     "inverseFactor": "3.785412"
   },
   "internalLinks": [
     {
-      "label": "Gallons (US) to Liters (gal (US) to L)",
+      "label": "Gallons to Liters Converter (gal to L US)",
       "href": "/volume/gallons-to-liters",
       "type": "reverse"
     },
     {
-      "label": "Milliliters to Fluid Ounces (US) (mL to fl oz)",
-      "href": "/volume/ml-to-fluid-ounces",
+      "label": "Liters to UK Imperial Gallons (L to imp gal)",
+      "href": "/volume/liters-to-imperial-gallons",
       "type": "related"
     },
     {
-      "label": "Fluid Ounces (US) to Milliliters (fl oz to mL)",
-      "href": "/volume/fluid-ounces-to-ml",
+      "label": "Convert Liters to US Quarts",
+      "href": "/volume/liters-to-quarts",
       "type": "related"
     },
     {
-      "label": "Cups (US) to Milliliters (cup to mL)",
-      "href": "/volume/cups-to-ml",
+      "label": "Liters to Cups Calculator",
+      "href": "/volume/liters-to-cups",
       "type": "related"
     },
     {
-      "label": "Milliliters to Cups (US) (mL to cup)",
-      "href": "/volume/ml-to-cups",
+      "label": "Liters to Milliliters (L to mL)",
+      "href": "/volume/liters-to-ml",
       "type": "related"
     },
     {
-      "label": "Volume & Liquid Conversions Hub",
+      "label": "All Volume & Liquid Converters",
       "href": "/volume",
       "type": "hub"
     },
     {
-      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "label": "US Customary vs. British Imperial Fluid Units Guide",
       "href": "/guides/us-vs-imperial-fluid-ounces",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many gallons (us) (gal (US)) are in 1 liter (L)?",
-      "answer": "There are 0.26417205 gallons (us) (gal (US)) in 1 liter (L), which rounds to 0.2642 gal (US) for everyday calculations. Conversely, 1 gallon (us liquid) equals 3.785412 liters."
+      "question": "How many litres are in a gallon?",
+      "answer": "There are 3.78541 litres in 1 US liquid gallon, and 4.54609 litres in 1 UK Imperial gallon."
     },
     {
-      "question": "How do I convert liters to gallons (us) (L to gal (US))?",
-      "answer": "To convert liters to gallons (us), use the formula: gal (US) = L × 0.26417205. For example, converting 1.5 L gives 0.3963 gal (US)."
+      "question": "How much is a liter in gallons?",
+      "answer": "One liter equals 0.26417205 US liquid gallons (about 0.264 gal), or 0.219969 UK Imperial gallons."
     },
     {
-      "question": "What is 1.5 liters in gallons (us)?",
-      "answer": "1.5 liters (L) equals exactly 0.3963 gallons (us) (gal (US)) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "How many Canadian litres are in a US gallon?",
+      "answer": "A litre is the same standard metric unit in Canada and worldwide, so there are 3.785411784 Canadian litres in 1 US liquid gallon (about 3.79 L)."
+    },
+    {
+      "question": "How many liters are in a Canadian gallon?",
+      "answer": "Canada traditionally uses the Imperial gallon in historical references, which holds exactly 4.54609 liters—compared to 3.78541 liters in a US gallon."
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "kg-to-lbs",
   "category": "weight-and-mass",
   "categoryId": "mass",
@@ -7,48 +7,116 @@
   "toUnitId": "pound",
   "fromSymbol": "kg",
   "toSymbol": "lb",
-  "intro": "Professionals and everyday users convert kilograms (kg) to pounds (lb) when working across si and imperial standards in engineering specifications, international trade documentation, and technical measurements. One kilogram equals 2.204623 pounds, while 1 pound (avoirdupois) equals 0.453592 kilograms. Whether you are verifying mass & weight specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert kilograms to pounds instantly using the exact international standard. When comparing kg vs. lb, 1 kilogram equals 2.20462262 avoirdupois pounds (since 1 lb is legally defined as exactly 0.45359237 kg). Whether you need to translate weight from kilograms to pounds for medical charts, Olympic weightlifting plates, or parcel shipping, this calculator computes exact results and lets you inspect our kilos to pounds chart below with clickable rows and worked examples.",
+  "alsoWrittenAs": "kilograms to pounds, kilo to lb, kilos to lbs, kilogrammes to pounds, kg to lbm",
   "commonValues": [
+    1.6,
+    3.1,
+    28,
+    48,
+    50,
+    55.5,
+    57.9,
+    71.4,
+    100,
+    126,
+    138
+  ],
+  "tableValues": [
+    0.5,
     1,
+    1.6,
+    1.9,
     2,
+    3,
+    3.1,
+    4,
     5,
     10,
+    15,
     20,
     25,
+    28,
+    30,
+    35,
+    40,
+    45,
+    48,
     50,
+    51,
+    52,
+    54,
+    55,
+    55.1,
+    55.5,
+    55.6,
+    56,
+    57.3,
+    57.9,
+    58,
+    59.3,
     60,
+    62,
+    65,
+    68,
     70,
+    71.4,
+    72,
+    75,
+    76.4,
+    78,
     80,
-    100
+    82,
+    85,
+    88.4,
+    90,
+    95,
+    100,
+    105,
+    110,
+    114,
+    115,
+    120,
+    125,
+    126,
+    130,
+    135,
+    138,
+    140,
+    145,
+    150
   ],
+  "tableTitle": "Kg to Lbs Conversion Chart — Kilograms to Pounds",
+  "tableSubtitle": "Complete conversion chart for kilograms to pounds (and quick kilos to pounds chart) covering newborn weights, body weight, and gym plates. Click any row to calculate.",
+  "tableRoundingNote": "Computed with the exact factor 1 kg = 1 / 0.45359237 lb (≈ 2.20462262 lb); table results rounded to up to 5 decimal places.",
   "workedExamples": [
     {
-      "title": "Standard Kilogram Benchmark (5 kg)",
-      "scenario": "Convert 5 kilograms (kg) into pounds (lb) for technical comparison and documentation.",
-      "inputValue": 5,
-      "outputValue": "11.023113 lb",
-      "stepByStep": "5 kg × 2.204623 = 11.023113 lb (rounds to 11.02 lb)."
+      "title": "Newborn or Parcel Weight (3.1 kg)",
+      "scenario": "Convert 3.1 kilograms (kg) into pounds (lb) for pediatric records or small parcel shipping.",
+      "inputValue": 3.1,
+      "outputValue": "6.83433 lb",
+      "stepByStep": "3.1 kg ÷ 0.45359237 = 6.8343301 lb (rounds to 6.83 lb, or about 6 lb 13 oz)."
     },
     {
-      "title": "Practical Mid-Range Conversion (25 kg)",
-      "scenario": "Convert 25 kilograms (kg) into pounds (lb) for technical comparison and documentation.",
-      "inputValue": 25,
-      "outputValue": "55.115566 lb",
-      "stepByStep": "25 kg × 2.204623 = 55.115566 lb (rounds to 55.12 lb)."
+      "title": "Adult Body Weight Benchmark (55.5 kg)",
+      "scenario": "Convert 55.5 kilograms (kg) into pounds (lb) for health tracking or sports weight classes.",
+      "inputValue": 55.5,
+      "outputValue": "122.35656 lb",
+      "stepByStep": "55.5 kg ÷ 0.45359237 = 122.3565555 lb (rounds to 122.36 lb)."
     },
     {
-      "title": "Higher-Capacity Specification (70 kg)",
-      "scenario": "Convert 70 kilograms (kg) into pounds (lb) for technical comparison and documentation.",
-      "inputValue": 70,
-      "outputValue": "154.323584 lb",
-      "stepByStep": "70 kg × 2.204623 = 154.323584 lb (rounds to 154.32 lb)."
+      "title": "Heavy Freight or Lifting Total (138 kg)",
+      "scenario": "Convert 138 kilograms (kg) into pounds (lb) for Olympic weightlifting totals or cargo manifests.",
+      "inputValue": 138,
+      "outputValue": "304.23792 lb",
+      "stepByStep": "138 kg ÷ 0.45359237 = 304.2379218 lb (rounds to 304.24 lb)."
     }
   ],
   "mistakesAndEdgeCases": {
     "title": "Exact NIST Factor vs. Early Rounding Drift",
     "items": [
-      "The exact conversion factor from Kilogram to Pound (Avoirdupois) is 2.20462262, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
-      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+      "The exact conversion factor from Kilogram to Pound (Avoirdupois) is 1 ÷ 0.45359237 (≈ 2.20462262), derived from the 1959 International Yard and Pound Agreement.",
+      "Multiplying by 2.2 in your head undercounts by roughly 0.21% (over half a pound on 138 kg). Use 2.20462262 for accuracy and round only the displayed total."
     ]
   },
   "formula": {
@@ -59,53 +127,57 @@
   },
   "internalLinks": [
     {
-      "label": "Pounds to Kilograms (lb to kg)",
+      "label": "Pounds to Kilograms Converter (lb to kg)",
       "href": "/weight-and-mass/lbs-to-kg",
       "type": "reverse"
     },
     {
-      "label": "Grams to Ounces (g to oz)",
-      "href": "/weight-and-mass/grams-to-ounces",
+      "label": "Convert Kilograms to Grams",
+      "href": "/weight-and-mass/kg-to-grams",
       "type": "related"
     },
     {
-      "label": "Ounces to Grams (oz to g)",
-      "href": "/weight-and-mass/ounces-to-grams",
+      "label": "Stone to Pounds (st to lb)",
+      "href": "/weight-and-mass/stone-to-lbs",
       "type": "related"
     },
     {
-      "label": "Pounds to Ounces (lb to oz)",
-      "href": "/weight-and-mass/pounds-to-ounces",
-      "type": "related"
-    },
-    {
-      "label": "Ounces to Pounds (oz to lb)",
+      "label": "Ounces to Pounds Calculator",
       "href": "/weight-and-mass/ounces-to-pounds",
       "type": "related"
     },
     {
-      "label": "Mass & Weight Conversions Hub",
+      "label": "Grams to Ounces Reference",
+      "href": "/weight-and-mass/grams-to-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Weight & Mass Conversion Hub",
       "href": "/weight-and-mass",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial Weight Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
   ],
   "faqs": [
     {
+      "question": "How many kilos are in a pound?",
+      "answer": "There are exactly 0.45359237 kilograms (kilos) in 1 international avoirdupois pound—about 0.4536 kg, or roughly 454 grams."
+    },
+    {
       "question": "How many pounds (lb) are in 1 kilogram (kg)?",
-      "answer": "There are 2.20462262 pounds (lb) in 1 kilogram (kg), which rounds to 2.2046 lb for everyday calculations. Conversely, 1 pound (avoirdupois) equals 0.453592 kilograms."
+      "answer": "There are 2.20462262 pounds (lb) in 1 kilogram (kg), which rounds to 2.2046 lb for everyday calculations."
     },
     {
       "question": "How do I convert kilograms to pounds (kg to lb)?",
-      "answer": "To convert kilograms to pounds, use the formula: lb = kg × 2.20462262. For example, converting 20 kg gives 44.0925 lb."
+      "answer": "To convert kilograms to pounds, multiply kilograms by 2.20462262 (or divide by 0.45359237). For example, 20 kg equals 44.09245 lb."
     },
     {
-      "question": "What is 20 kilograms in pounds?",
-      "answer": "20 kilograms (kg) equals exactly 44.0925 pounds (lb) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What is 55.5 kg in pounds?",
+      "answer": "55.5 kilograms (kg) equals 122.35656 pounds (lb), or about 122.36 lb, computed using the exact 1959 international pound definition."
     }
   ]
 }

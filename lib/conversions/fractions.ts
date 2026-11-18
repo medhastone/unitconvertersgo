@@ -377,6 +377,88 @@ export function generateContinuousLengthChartRows(
 }
 
 /**
+ * Generates length conversion chart rows for an arbitrary curated list of values (including decimals and large spans)
+ * using the exact conversion engine and tape-measure fraction rounding.
+ */
+export function generateLengthChartRowsForValues(
+  fromUnitId: string,
+  toUnitId: string,
+  values: number[],
+  highlightValues?: Set<number>
+): ContinuousLengthChartRow[] {
+  const fromUnit = UNIT_MAP.get(fromUnitId);
+  const toUnit = UNIT_MAP.get(toUnitId);
+  if (!fromUnit || !toUnit) return [];
+
+  const uniqueSorted = Array.from(new Set(values)).sort((a, b) => a - b);
+
+  return uniqueSorted.map((n) => {
+    const out = convertUnits(n, fromUnitId, toUnitId, "auto");
+    const decVal = out.rawValue;
+    const decFormatted = `${out.formattedValue} ${toUnit.symbol}`;
+
+    const inchesDecimal =
+      toUnitId === "inch"
+        ? decVal
+        : fromUnitId === "inch"
+        ? n
+        : convertUnits(n, fromUnitId, "inch", "auto").rawValue;
+
+    const frac64 =
+      formatAsTapeFraction(decVal, 64) ||
+      ({
+        whole: Math.floor(decVal),
+        numerator: 0,
+        denominator: 1,
+        unreducedNumerator: 0,
+        maxDenominator: 64,
+        display: Number(decVal.toFixed(4)).toString(),
+        fractionOnlyDisplay: "0",
+        exactDecimal: decVal,
+        error: 0,
+      } satisfies TapeFractionInfo);
+
+    const frac16 =
+      formatAsTapeFraction(decVal, 16) ||
+      ({
+        whole: Math.floor(decVal),
+        numerator: 0,
+        denominator: 1,
+        unreducedNumerator: 0,
+        maxDenominator: 16,
+        display: Number(decVal.toFixed(4)).toString(),
+        fractionOnlyDisplay: "0",
+        exactDecimal: decVal,
+        error: 0,
+      } satisfies TapeFractionInfo);
+
+    const inFrac16 = formatAsTapeFraction(inchesDecimal, 16);
+    const inFrac64 = formatAsTapeFraction(inchesDecimal, 64);
+
+    return {
+      n,
+      isCommon: highlightValues ? highlightValues.has(n) : COMMON_LENGTH_CHART_VALUES.has(n),
+      inputLabel: `${formatValue(n, "auto")} ${fromUnit.symbol}`,
+      decimalValue: decVal,
+      decimalFormatted: decFormatted,
+      fraction64Display: `${frac64.display} ${toUnit.symbol}`,
+      fraction16Display: `${frac16.display} ${toUnit.symbol}`,
+      fraction64Info: frac64,
+      fraction16Info: frac16,
+      inchesDecimal,
+      inchesFraction16Display: inFrac16
+        ? `${inFrac16.display} in`
+        : `${Number(inchesDecimal.toFixed(4))} in`,
+      inchesFraction64Display: inFrac64
+        ? `${inFrac64.display} in`
+        : `${Number(inchesDecimal.toFixed(4))} in`,
+      feetInchesLabel:
+        inchesDecimal >= 12 ? formatFeetAndInches(inchesDecimal) : null,
+    };
+  });
+}
+
+/**
  * Formats total inches into compound Feet & Inches (e.g. 70 in -> "5 ft 10 in (5' 10\")")
  */
 export function formatFeetAndInches(totalInches: number): string | null {

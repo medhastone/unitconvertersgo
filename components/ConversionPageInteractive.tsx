@@ -84,6 +84,7 @@ import {
   formatFeetAndInches,
   getMultiUnitEquivalents,
   generateContinuousLengthChartRows,
+  generateLengthChartRowsForValues,
   getFractionalInchesGuideData,
   STANDARD_TAPE_FRACTIONS,
   QUICK_FRACTION_CHIPS,
@@ -426,6 +427,9 @@ export default function ConversionPageInteractive({
     "common"
   );
   const [lengthChartMaxN, setLengthChartMaxN] = useState<40 | 100>(40);
+  const [lengthChartMode, setLengthChartMode] = useState<"curated" | "40" | "100">(
+    pairContent?.tableValues && pairContent.tableValues.length > 0 ? "curated" : "40"
+  );
   const [isExporting, setIsExporting] = useState<
     null | "print" | "png" | "pdf"
   >(null);
@@ -822,7 +826,10 @@ export default function ConversionPageInteractive({
         ? "fractions"
         : "standard";
     const effectiveCommonValues =
-      pairContent?.commonValues || curatedCommonValues || pair.commonValues;
+      pairContent?.tableValues ||
+      pairContent?.commonValues ||
+      curatedCommonValues ||
+      pair.commonValues;
     const generated = generateScaleAwareTableRows(
       fromUnit,
       toUnit,
@@ -842,6 +849,7 @@ export default function ConversionPageInteractive({
     densityGPerMl,
     activeSubstance.shortLabel,
     tablePreset,
+    pairContent?.tableValues,
     pairContent?.commonValues,
     curatedCommonValues,
     pair.commonValues,
@@ -857,12 +865,31 @@ export default function ConversionPageInteractive({
 
   const continuousLengthRows = useMemo(() => {
     if (!isLengthCategory) return [];
+    if (
+      lengthChartMode === "curated" &&
+      pairContent?.tableValues &&
+      pairContent.tableValues.length > 0
+    ) {
+      return generateLengthChartRowsForValues(
+        fromUnitId,
+        toUnitId,
+        pairContent.tableValues,
+        new Set(pairContent.commonValues)
+      );
+    }
     return generateContinuousLengthChartRows(
       fromUnitId,
       toUnitId,
       lengthChartMaxN
     );
-  }, [isLengthCategory, fromUnitId, toUnitId, lengthChartMaxN]);
+  }, [
+    isLengthCategory,
+    lengthChartMode,
+    pairContent,
+    fromUnitId,
+    toUnitId,
+    lengthChartMaxN,
+  ]);
 
   const fractionalInchesGuide = useMemo(() => {
     if (!isLengthCategory) return null;
@@ -1675,15 +1702,23 @@ export default function ConversionPageInteractive({
           </section>
         )}
 
-        {/* 1B. PAIR-SPECIFIC INTRO OVERVIEW (60-100 words, Task 5 Gate #1) */}
+        {/* 1B. PAIR-SPECIFIC INTRO OVERVIEW + ALSO WRITTEN AS */}
         {pairContent?.intro && (
           <section
             aria-label={`About converting ${fromUnit.plural} to ${toUnit.plural}`}
-            className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-6 shadow-xs"
+            className="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 p-5 sm:p-6 shadow-xs space-y-3"
           >
             <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
               {pairContent.intro}
             </p>
+            {pairContent.alsoWrittenAs && (
+              <p className="pt-2.5 border-t border-slate-100 dark:border-slate-800 text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                <strong className="font-semibold text-[#16324F] dark:text-slate-200">
+                  Also written as:
+                </strong>{" "}
+                {pairContent.alsoWrittenAs}
+              </p>
+            )}
           </section>
         )}
 
@@ -1702,15 +1737,24 @@ export default function ConversionPageInteractive({
                   id="common-conversions-table-heading"
                   className="text-xl sm:text-2xl font-extrabold text-[#16324F] dark:text-white tracking-tight"
                 >
-                  {isLengthCategory
+                  {pairContent?.tableTitle
+                    ? pairContent.tableTitle
+                    : isLengthCategory
                     ? `${fromUnit.plural} to ${toUnit.plural} Conversion Chart (1–${lengthChartMaxN} Continuous)`
                     : editorial.tableHeading}
                 </h2>
                 <p className="w-full text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-                  {isLengthCategory
+                  {pairContent?.tableSubtitle
+                    ? pairContent.tableSubtitle
+                    : isLengthCategory
                     ? `Continuous 1 to ${lengthChartMaxN} ${fromUnit.plural.toLowerCase()} lookup table with exact decimals and reduced nearest 1/64 fractions. Highlighted rows mark common shop and ruler values.`
-                    : `${editorial.tableSubheading} Click any preset value or arrow to load it into the converter.`}
+                    : `${editorial.tableSubheading} Click any preset value or arrow to load it into the calculator.`}
                 </p>
+                {pairContent?.tableRoundingNote && (
+                  <p className="text-xs sm:text-sm font-medium text-slate-500 dark:text-slate-400">
+                    {pairContent.tableRoundingNote}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -1718,14 +1762,31 @@ export default function ConversionPageInteractive({
             <div className="flex flex-wrap items-center justify-between gap-2.5 w-full no-print">
               {isLengthCategory ? (
                 <div className="inline-flex items-center p-1 bg-[#F7F9FC] dark:bg-slate-800 rounded-xl border border-slate-200/80 dark:border-slate-700 text-xs sm:text-sm">
+                  {pairContent?.tableValues && pairContent.tableValues.length > 0 && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setLengthChartMode("curated");
+                        setIsMobileTableExpanded(true);
+                      }}
+                      className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
+                        lengthChartMode === "curated"
+                          ? "bg-white dark:bg-slate-900 text-[#16324F] dark:text-white shadow-2xs"
+                          : "text-slate-500 dark:text-slate-400 hover:text-[#16324F]"
+                      }`}
+                    >
+                      Common &amp; Ranges
+                    </button>
+                  )}
                   <button
                     type="button"
                     onClick={() => {
+                      setLengthChartMode("40");
                       setLengthChartMaxN(40);
                       setIsMobileTableExpanded(true);
                     }}
                     className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
-                      lengthChartMaxN === 40
+                      lengthChartMode === "40"
                         ? "bg-white dark:bg-slate-900 text-[#16324F] dark:text-white shadow-2xs"
                         : "text-slate-500 dark:text-slate-400 hover:text-[#16324F]"
                     }`}
@@ -1735,11 +1796,12 @@ export default function ConversionPageInteractive({
                   <button
                     type="button"
                     onClick={() => {
+                      setLengthChartMode("100");
                       setLengthChartMaxN(100);
                       setIsMobileTableExpanded(true);
                     }}
                     className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
-                      lengthChartMaxN === 100
+                      lengthChartMode === "100"
                         ? "bg-white dark:bg-slate-900 text-[#16324F] dark:text-white shadow-2xs"
                         : "text-slate-500 dark:text-slate-400 hover:text-[#16324F]"
                     }`}
@@ -1851,15 +1913,18 @@ export default function ConversionPageInteractive({
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-200/70 dark:divide-slate-800 text-[15px] sm:text-base font-mono tabular-nums">
-                    {(isDesktopViewport || isMobileTableExpanded
-                      ? continuousLengthRows
-                      : continuousLengthRows.slice(0, 12)
-                    ).map((row) => {
+                    {continuousLengthRows.map((row, idx) => {
                       const isCurrentRow =
                         isValidInput && Math.abs(numericInput - row.n) < 1e-9;
+                      const rowAnchorId = `val-${String(row.n).replace(/\./g, "-")}`;
+                      const mobileHiddenClass =
+                        !isDesktopViewport && !isMobileTableExpanded && idx >= 12
+                          ? "hidden md:table-row"
+                          : "";
                       return (
                         <tr
                           key={row.n}
+                          id={rowAnchorId}
                           tabIndex={0}
                           onClick={() => handleSelectValue(row.n, true)}
                           onKeyDown={(e) => {
@@ -1869,7 +1934,7 @@ export default function ConversionPageInteractive({
                             }
                           }}
                           title={`Click to load ${row.inputLabel} into calculator`}
-                          className={`group/row cursor-pointer transition-colors ${
+                          className={`scroll-mt-24 group/row cursor-pointer transition-colors ${mobileHiddenClass} ${
                             isCurrentRow
                               ? "bg-[#E6FAF8] dark:bg-teal-950/60 font-extrabold"
                               : row.isCommon
@@ -1949,19 +2014,21 @@ export default function ConversionPageInteractive({
                 <button
                   type="button"
                   onClick={() => {
-                    setLengthChartMaxN((prev) => (prev === 40 ? 100 : 40));
+                    const nextMax = lengthChartMode === "100" ? 40 : 100;
+                    setLengthChartMode(nextMax === 100 ? "100" : "40");
+                    setLengthChartMaxN(nextMax);
                     setIsMobileTableExpanded(true);
                   }}
                   className="no-print inline-flex items-center gap-1.5 font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline cursor-pointer self-start sm:self-auto"
                 >
                   <span>
-                    {lengthChartMaxN === 40
-                      ? `Expand Full 1–100 ${fromUnit.plural} Chart (100 Rows)`
-                      : `Show Compact 1–40 ${fromUnit.plural} Chart (40 Rows)`}
+                    {lengthChartMode === "100"
+                      ? `Show Compact 1–40 ${fromUnit.plural} Chart (40 Rows)`
+                      : `Expand Full 1–100 ${fromUnit.plural} Chart (100 Rows)`}
                   </span>
                   <ChevronDown
                     className={`w-4 h-4 transition-transform ${
-                      lengthChartMaxN === 100 ? "rotate-180" : ""
+                      lengthChartMode === "100" ? "rotate-180" : ""
                     }`}
                   />
                 </button>
@@ -1972,7 +2039,7 @@ export default function ConversionPageInteractive({
               <div className="overflow-x-auto rounded-xl border border-slate-200/90 dark:border-slate-800">
                 <table
                   className="w-full text-left border-collapse"
-                  aria-label={editorial.tableHeading}
+                  aria-label={pairContent?.tableTitle || editorial.tableHeading}
                 >
                   <thead>
                     <tr className="bg-[#F7F9FC] dark:bg-slate-800/80 border-b border-slate-200/90 dark:border-slate-800 text-sm sm:text-[15px] font-extrabold text-[#16324F] dark:text-white">
@@ -1985,15 +2052,18 @@ export default function ConversionPageInteractive({
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-200/70 dark:divide-slate-800 text-[15px] sm:text-base font-mono tabular-nums">
-                    {(isDesktopViewport || isMobileTableExpanded
-                      ? tableRows
-                      : tableRows.slice(0, 10)
-                    ).map((row) => {
+                    {tableRows.map((row, idx) => {
                       const isCurrentRow =
                         isValidInput && Math.abs(numericInput - row.input) < 1e-9;
+                      const rowAnchorId = `val-${String(row.input).replace(/\./g, "-")}`;
+                      const mobileHiddenClass =
+                        !isDesktopViewport && !isMobileTableExpanded && idx >= 10
+                          ? "hidden md:table-row"
+                          : "";
                       return (
                         <tr
                           key={`${row.input}-${row.inputLabel}`}
+                          id={rowAnchorId}
                           tabIndex={0}
                           onClick={() => handleSelectValue(row.input, true)}
                           onKeyDown={(e) => {
@@ -2003,7 +2073,7 @@ export default function ConversionPageInteractive({
                             }
                           }}
                           title={`Click to convert ${row.inputLabel} in calculator`}
-                          className={`group/row cursor-pointer transition-colors ${
+                          className={`scroll-mt-24 group/row cursor-pointer transition-colors ${mobileHiddenClass} ${
                             isCurrentRow
                               ? "bg-[#E6FAF8]/60 dark:bg-teal-950/40 font-extrabold"
                               : "hover:bg-[#F7F9FC] dark:hover:bg-slate-800/50"
@@ -2498,6 +2568,12 @@ export default function ConversionPageInteractive({
               CONVERSION_CATALOGUE.find(
                 (p) => p.fromUnitId === toUnit.id && p.toUnitId === fromUnit.id
               ) || getConversionPair(getCanonicalPairSlug(toUnit, fromUnit), toUnit.categoryId);
+            const curatedReverse = pairContent?.internalLinks?.find(
+              (l) => l.type === "reverse"
+            );
+            const curatedHub = pairContent?.internalLinks?.find(
+              (l) => l.type === "hub"
+            );
             const fallbackRelated = (pairContent?.internalLinks || [])
               .filter((l) => l.type === "related")
               .slice(0, 6);
@@ -2508,7 +2584,15 @@ export default function ConversionPageInteractive({
               <div className="space-y-4">
                 <p className="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
                   Need to calculate in the opposite direction? Use our{" "}
-                  {reversePair ? (
+                  {curatedReverse ? (
+                    <Link
+                      href={curatedReverse.href}
+                      prefetch={false}
+                      className="font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+                    >
+                      {curatedReverse.label}
+                    </Link>
+                  ) : reversePair ? (
                     <Link
                       href={getPairUrl(reversePair)}
                       prefetch={false}
@@ -2522,25 +2606,47 @@ export default function ConversionPageInteractive({
                     </span>
                   )}{" "}
                   ({toUnit.symbol} to {fromUnit.symbol}), or browse our complete{" "}
-                  {category && (
+                  {curatedHub ? (
                     <Link
-                      href={getCategoryUrl(category.id)}
+                      href={curatedHub.href}
                       prefetch={false}
                       className="font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
                     >
-                      {category.name.toLowerCase()} converter
+                      {curatedHub.label}
                     </Link>
-                  )}{" "}
-                  hub.
+                  ) : (
+                    category && (
+                      <Link
+                        href={getCategoryUrl(category.id)}
+                        prefetch={false}
+                        className="font-bold text-[#0D9488] dark:text-[#2DD4BF] hover:underline"
+                      >
+                        {category.name.toLowerCase()} converter
+                      </Link>
+                    )
+                  )}
+                  .
                 </p>
 
-                {(otherRelated.length >= 4 || fallbackRelated.length > 0) && (
+                {(fallbackRelated.length >= 3 || otherRelated.length >= 4 || fallbackRelated.length > 0) && (
                   <div className="space-y-2">
                     <h3 className="text-sm font-extrabold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                       Related {category?.name} Converters
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {otherRelated.length >= 4
+                      {fallbackRelated.length >= 3
+                        ? fallbackRelated.map((rel) => (
+                            <Link
+                              key={rel.href}
+                              href={rel.href}
+                              prefetch={false}
+                              className="inline-flex items-center justify-between gap-2 px-3.5 py-2 rounded-xl bg-[#F7F9FC] dark:bg-slate-950 border border-slate-200/80 dark:border-slate-800 hover:border-[#0D9488] text-sm font-bold text-[#16324F] dark:text-slate-200 hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors"
+                            >
+                              <span>{rel.label}</span>
+                              <ArrowRight className="w-3.5 h-3.5 text-[#0D9488] shrink-0" />
+                            </Link>
+                          ))
+                        : otherRelated.length >= 4
                         ? otherRelated.map((rel) => {
                             const rFrom = UNIT_MAP.get(rel.fromUnitId);
                             const rTo = UNIT_MAP.get(rel.toUnitId);

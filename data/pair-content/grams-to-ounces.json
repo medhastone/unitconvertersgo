@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "grams-to-ounces",
   "category": "weight-and-mass",
   "categoryId": "mass",
@@ -7,74 +7,125 @@
   "toUnitId": "ounce",
   "fromSymbol": "g",
   "toSymbol": "oz",
-  "intro": "Professionals and everyday users convert grams (g) to ounces (oz) when working across metric and imperial standards in engineering specifications, international trade documentation, and technical measurements. One gram equals 0.035274 ounces, while 1 ounce equals 28.349523 grams. Whether you are verifying mass & weight specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert grams to ounces quickly for kitchen recipes, coffee bags, postal parcels, and dry ingredient scaling. Because 1 avoirdupois ounce equals 28.349523 grams, dividing grams by 28.349523 (or multiplying by 0.03527396) gives the exact weight in ounces. Note that dry weight ounces (oz) measure mass, whereas fluid ounces (fl oz) measure liquid volume—they only match numerically for pure water. Browse the complete grams-to-ounces reference chart below.",
+  "alsoWrittenAs": "g to oz, gram to ounce, grams into ounces, gm to oz, metric grams to avoirdupois oz",
   "commonValues": [
-    10,
-    25,
-    28.35,
-    50,
-    100,
-    150,
-    200,
-    250,
-    453.6,
-    500
+    1,
+    28,
+    90,
+    112,
+    142,
+    225,
+    300,
+    350,
+    500,
+    900
   ],
+  "tableValues": [
+    0,
+    1,
+    5,
+    10,
+    14.17,
+    15,
+    20,
+    25,
+    26,
+    28,
+    28.35,
+    30,
+    40,
+    50,
+    60,
+    75,
+    90,
+    100,
+    112,
+    125,
+    142,
+    150,
+    175,
+    180,
+    195,
+    200,
+    225,
+    250,
+    270,
+    300,
+    325,
+    350,
+    375,
+    390,
+    400,
+    420,
+    450,
+    453.6,
+    480,
+    500,
+    510,
+    550,
+    600,
+    650,
+    700,
+    750,
+    800,
+    850,
+    900,
+    1000
+  ],
+  "tableTitle": "Grams to Ounces Conversion Chart (g to oz)",
+  "tableSubtitle": "Complete weight reference table from 0 g to 1,000 g for baking, coffee dosing, and parcel postage. Click any row to calculate.",
+  "tableRoundingNote": "Computed with the exact factor 1 g = 1 / 28.349523125 oz (≈ 0.03527396 oz); table values rounded to up to 5 decimal places.",
   "workedExamples": [
     {
-      "title": "Standard Gram Benchmark (28.35 g)",
-      "scenario": "Convert 28.35 grams (g) into ounces (oz) for technical comparison and documentation.",
-      "inputValue": 28.35,
-      "outputValue": "1.000017 oz",
-      "stepByStep": "28.35 g × 0.035274 = 1.000017 oz (rounds to 1 oz)."
+      "title": "Single-Ounce Pantry Benchmark (28 g)",
+      "scenario": "Convert 28 grams (g) into ounces (oz) for nutrition labels or postal letters.",
+      "inputValue": 28,
+      "outputValue": "0.98767 oz",
+      "stepByStep": "28 g ÷ 28.349523125 = 0.9876709 oz (rounds to 0.99 oz, just under 1 oz)."
     },
     {
-      "title": "Practical Mid-Range Conversion (150 g)",
-      "scenario": "Convert 150 grams (g) into ounces (oz) for technical comparison and documentation.",
-      "inputValue": 150,
-      "outputValue": "5.291094 oz",
-      "stepByStep": "150 g × 0.035274 = 5.291094 oz (rounds to 5.29 oz)."
+      "title": "Kitchen Ingredient Portion (142 g)",
+      "scenario": "Convert 142 grams (g) into ounces (oz) when following an American recipe.",
+      "inputValue": 142,
+      "outputValue": "5.0089 oz",
+      "stepByStep": "142 g ÷ 28.349523125 = 5.0089026 oz (rounds to 5.01 oz, practically 5 oz)."
     },
     {
-      "title": "Higher-Capacity Specification (453.6 g)",
-      "scenario": "Convert 453.6 grams (g) into ounces (oz) for technical comparison and documentation.",
-      "inputValue": 453.6,
-      "outputValue": "16.000269 oz",
-      "stepByStep": "453.6 g × 0.035274 = 16.000269 oz (rounds to 16 oz)."
+      "title": "Standard Grocery Package (500 g)",
+      "scenario": "Convert 500 grams (g) into ounces (oz) for pasta, flour, or bulk food packaging.",
+      "inputValue": 500,
+      "outputValue": "17.63698 oz",
+      "stepByStep": "500 g ÷ 28.349523125 = 17.636981 oz (rounds to 17.64 oz)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Avoirdupois Ounces (oz) vs. Precious Metal Troy Ounces (oz t) vs. Fluid Ounces (fl oz)",
+    "title": "Avoirdupois Ounces (oz) vs. Troy Ounces (oz t) vs. Fluid Ounces (fl oz)",
     "items": [
       "Standard grocery and postal scales use the Avoirdupois ounce (1 oz = 28.349523125 g). Gold, silver, and platinum bullion use the Troy ounce (1 oz t = 31.1034768 g), which is 9.7% heavier.",
       "Never confuse dry weight ounces (oz) with liquid volume fluid ounces (fl oz); they only match numerically for pure water at standard density."
     ]
   },
   "formula": {
-    "equation": "oz = g × 0.03527396",
+    "equation": "oz = g ÷ 28.349523125",
     "exactFactor": "0.03527396",
     "roundedFactor": "0.0353",
     "inverseFactor": "28.349523"
   },
   "internalLinks": [
     {
-      "label": "Ounces to Grams (oz to g)",
+      "label": "Ounces to Grams Converter (oz to g)",
       "href": "/weight-and-mass/ounces-to-grams",
       "type": "reverse"
     },
     {
-      "label": "Kilograms to Pounds (kg to lb)",
-      "href": "/weight-and-mass/kg-to-lbs",
+      "label": "Convert Pounds to Grams",
+      "href": "/weight-and-mass/pounds-to-grams",
       "type": "related"
     },
     {
-      "label": "Pounds to Kilograms (lb to kg)",
-      "href": "/weight-and-mass/lbs-to-kg",
-      "type": "related"
-    },
-    {
-      "label": "Pounds to Ounces (lb to oz)",
-      "href": "/weight-and-mass/pounds-to-ounces",
+      "label": "Grams to Pounds Calculator",
+      "href": "/weight-and-mass/grams-to-pounds",
       "type": "related"
     },
     {
@@ -83,28 +134,41 @@
       "type": "related"
     },
     {
-      "label": "Mass & Weight Conversions Hub",
+      "label": "Kilograms to Grams Reference",
+      "href": "/weight-and-mass/kg-to-grams",
+      "type": "related"
+    },
+    {
+      "label": "All Weight & Mass Unit Converters",
       "href": "/weight-and-mass",
       "type": "hub"
     },
     {
-      "label": "Troy Ounces vs. Regular Avoirdupois Ounces Weight Guide",
+      "label": "Avoirdupois vs. Troy Ounces Guide",
       "href": "/guides/avoirdupois-vs-troy-weight",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many ounces (oz) are in 1 gram (g)?",
-      "answer": "There are 0.03527396 ounces (oz) in 1 gram (g), which rounds to 0.0353 oz for everyday calculations. Conversely, 1 ounce equals 28.349523 grams."
+      "question": "What is the formula to convert grams to oz?",
+      "answer": "To convert grams to ounces, use the formula oz = g ÷ 28.349523 (or oz = g × 0.03527396). For example, 500 g ÷ 28.349523 equals 17.63698 oz."
     },
     {
-      "question": "How do I convert grams to ounces (g to oz)?",
-      "answer": "To convert grams to ounces, use the formula: oz = g × 0.03527396. For example, converting 100 g gives 3.5274 oz."
+      "question": "How many grams are in a half ounce?",
+      "answer": "There are approximately 14.1748 grams (14.17476 g exact) in a half avoirdupois ounce (0.5 oz), often rounded to 14.2 g."
     },
     {
-      "question": "What is 100 grams in ounces?",
-      "answer": "100 grams (g) equals exactly 3.5274 ounces (oz) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "How many grams are in a quarter ounce?",
+      "answer": "There are approximately 7.0874 grams (7.08738 g exact) in a quarter avoirdupois ounce (0.25 oz), often rounded to 7.1 g."
+    },
+    {
+      "question": "Are grams or ounces bigger?",
+      "answer": "An ounce is much bigger than a gram: 1 avoirdupois ounce equals 28.349523 grams, whereas 1 gram is only 0.03527 ounces."
+    },
+    {
+      "question": "What is the difference between a standard ounce and a troy ounce?",
+      "answer": "A standard (avoirdupois) ounce used for food and postal parcels weighs 28.3495 grams, whereas a Troy ounce (oz t) used for precious metals weighs 31.1035 grams."
     }
   ]
 }

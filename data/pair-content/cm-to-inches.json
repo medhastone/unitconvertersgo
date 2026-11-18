@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "cm-to-inches",
   "category": "length",
   "categoryId": "length",
@@ -7,65 +7,146 @@
   "toUnitId": "inch",
   "fromSymbol": "cm",
   "toSymbol": "in",
-  "intro": "Professionals and everyday users convert centimeters (cm) to inches (in) when working across metric and imperial standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One centimeter equals 0.393701 inches, while 1 inch equals 2.54 centimeters. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert centimeters to inches accurately for personal height, furniture dimensions, and packaging specs. Under the 1959 international definition, 1 inch equals exactly 2.54 centimeters, so dividing any cm value by 2.54 gives exact decimal inches (1 cm ≈ 0.39370079 in). Enter whole numbers or decimals like 13.5 cm or 77.5 cm above to see both decimal inches and nearest 1/16 and 1/64 tape fractions, or browse our reference chart below.",
+  "alsoWrittenAs": "centimetres to inches, cm to in, centimeter to inch, cm into inches",
   "commonValues": [
-    1,
-    2.54,
-    5,
-    10,
+    3.5,
+    13.5,
     15,
     20,
     30,
-    50,
-    100,
+    45,
+    59,
+    77.5,
     150,
-    180
+    176
   ],
+  "tableValues": [
+    1,
+    2,
+    2.54,
+    3,
+    3.5,
+    4,
+    4.2,
+    5,
+    6,
+    8,
+    10,
+    12,
+    13.5,
+    14,
+    15,
+    16,
+    18,
+    20,
+    22,
+    24,
+    25,
+    28,
+    30,
+    31,
+    35,
+    40,
+    44.5,
+    45,
+    50,
+    55,
+    59,
+    60,
+    65,
+    70,
+    73,
+    75,
+    77.5,
+    78.5,
+    80,
+    84,
+    85,
+    90,
+    95,
+    98,
+    100,
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    165,
+    170,
+    175,
+    176,
+    180,
+    185,
+    190,
+    200,
+    250,
+    300,
+    350,
+    400,
+    500,
+    600,
+    710
+  ],
+  "tableTitle": "Centimeters to Inches Conversion Chart",
+  "tableSubtitle": "Complete cm-to-inch reference chart covering clothing measurements, furniture dimensions, and body heights, with nearest 1/64\" and 1/16\" tape fractions.",
+  "tableRoundingNote": "Computed with the exact factor 1 cm = 1 / 2.54 in (≈ 0.39370079 in); decimal inches rounded to up to 5 decimal places alongside nearest 1/64\" and 1/16\" fractions.",
   "workedExamples": [
     {
-      "title": "Standard Centimeter Benchmark (5 cm)",
-      "scenario": "Convert 5 centimeters (cm) into inches (in) for technical comparison and documentation.",
-      "inputValue": 5,
-      "outputValue": "1.968504 in",
-      "stepByStep": "5 cm × 0.393701 = 1.968504 in (rounds to 1.97 in)."
+      "title": "Small Component or Screen Width (13.5 cm)",
+      "scenario": "Convert 13.5 centimeters (cm) into inches (in) for electronics, crafts, or hardware sizing.",
+      "inputValue": 13.5,
+      "outputValue": "5.31496 in",
+      "stepByStep": "13.5 cm ÷ 2.54 = 5.3149606 in (rounds to 5.31496 in, or roughly 5 5/16\")."
     },
     {
-      "title": "Practical Mid-Range Conversion (20 cm)",
-      "scenario": "Convert 20 centimeters (cm) into inches (in) for technical comparison and documentation.",
-      "inputValue": 20,
-      "outputValue": "7.874016 in",
-      "stepByStep": "20 cm × 0.393701 = 7.874016 in (rounds to 7.87 in)."
+      "title": "Carry-On or Waist Measurement (45 cm)",
+      "scenario": "Convert 45 centimeters (cm) into inches (in) for luggage dimensions or garment sizing.",
+      "inputValue": 45,
+      "outputValue": "17.71654 in",
+      "stepByStep": "45 cm ÷ 2.54 = 17.7165354 in (rounds to 17.71654 in, or roughly 17 23/32\")."
     },
     {
-      "title": "Higher-Capacity Specification (100 cm)",
-      "scenario": "Convert 100 centimeters (cm) into inches (in) for technical comparison and documentation.",
-      "inputValue": 100,
-      "outputValue": "39.370079 in",
-      "stepByStep": "100 cm × 0.393701 = 39.370079 in (rounds to 39.37 in)."
+      "title": "Human Height Benchmark (176 cm)",
+      "scenario": "Convert 176 centimeters (cm) into inches (in) for medical or passport height records.",
+      "inputValue": 176,
+      "outputValue": "69.29134 in",
+      "stepByStep": "176 cm ÷ 2.54 = 69.2913386 in (rounds to 69.29134 in, or about 5 ft 9.3 in)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "title": "Exact 2.54 Divisor vs. Early Rounding Drift",
     "items": [
-      "The exact conversion factor from Centimeter to Inch is 0.39370079, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
-      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+      "Always divide centimeters by the exact 2.54 definition rather than multiplying by a truncated 0.39 factor, which creates ~0.94% error (over 1.6 inches off on 176 cm).",
+      "For height measurements, divide the total inch result by 12 to express it in feet and inches (for example, 69.29 in = 5 ft 9.29 in)."
     ]
   },
   "formula": {
-    "equation": "in = cm × 0.39370079",
+    "equation": "in = cm ÷ 2.54",
     "exactFactor": "0.39370079",
     "roundedFactor": "0.3937",
     "inverseFactor": "2.54"
   },
   "internalLinks": [
     {
-      "label": "Inches to Centimeters (in to cm)",
+      "label": "Inches to Centimeters Converter (in to cm)",
       "href": "/length/inches-to-cm",
       "type": "reverse"
     },
     {
-      "label": "Feet to Meters (ft to m)",
-      "href": "/length/feet-to-meters",
+      "label": "Convert Millimeters to Inches",
+      "href": "/length/mm-to-inches",
+      "type": "related"
+    },
+    {
+      "label": "Inches to Millimeters Calculator",
+      "href": "/length/inches-to-mm",
+      "type": "related"
+    },
+    {
+      "label": "Centimeters to Feet for Height",
+      "href": "/length/cm-to-feet",
       "type": "related"
     },
     {
@@ -74,22 +155,12 @@
       "type": "related"
     },
     {
-      "label": "Kilometers to Miles (km to mi)",
-      "href": "/length/km-to-miles",
-      "type": "related"
-    },
-    {
-      "label": "Miles to Kilometers (mi to km)",
-      "href": "/length/miles-to-km",
-      "type": "related"
-    },
-    {
-      "label": "Length Conversions Hub",
+      "label": "All Length & Distance Converters",
       "href": "/length",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial Length Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
@@ -97,15 +168,15 @@
   "faqs": [
     {
       "question": "How many inches (in) are in 1 centimeter (cm)?",
-      "answer": "There are 0.39370079 inches (in) in 1 centimeter (cm), which rounds to 0.3937 in for everyday calculations. Conversely, 1 inch equals 2.54 centimeters."
+      "answer": "There are approximately 0.39370079 inches (in) in 1 centimeter (cm), computed as 1 ÷ 2.54. Conversely, 1 international inch equals exactly 2.54 centimeters."
     },
     {
       "question": "How do I convert centimeters to inches (cm to in)?",
-      "answer": "To convert centimeters to inches, use the formula: in = cm × 0.39370079. For example, converting 15 cm gives 5.9055 in."
+      "answer": "To convert centimeters to inches, divide the centimeter value by 2.54 (in = cm ÷ 2.54). For example, 45 cm ÷ 2.54 equals 17.71654 inches."
     },
     {
-      "question": "What is 15 centimeters in inches?",
-      "answer": "15 centimeters (cm) equals exactly 5.9055 inches (in) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What is 176 cm in inches?",
+      "answer": "176 centimeters (cm) equals 69.29134 inches (in), which is approximately 5 feet 9.3 inches."
     }
   ]
 }

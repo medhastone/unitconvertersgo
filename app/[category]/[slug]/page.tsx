@@ -190,7 +190,9 @@ export default async function HierarchicalConversionPage({
     pair.fromUnitId
   );
   const h1WithSymbols =
-    editorial.h1.includes(fromUnit.symbol) && editorial.h1.includes(toUnit.symbol)
+    pair.h1 && pair.h1.includes(fromUnit.symbol) && pair.h1.includes(toUnit.symbol)
+      ? pair.h1
+      : editorial.h1.includes(fromUnit.symbol) && editorial.h1.includes(toUnit.symbol)
       ? editorial.h1
       : `${fromUnit.plural} to ${toUnit.plural} Converter (${fromUnit.symbol} to ${toUnit.symbol})`;
 
@@ -357,7 +359,9 @@ export default async function HierarchicalConversionPage({
   };
 
   const faqList =
-    editorial.googlePaaFaqs && editorial.googlePaaFaqs.length > 0
+    pairContent?.faqs && pairContent.faqs.length >= 2
+      ? pairContent.faqs
+      : editorial.googlePaaFaqs && editorial.googlePaaFaqs.length > 0
       ? editorial.googlePaaFaqs
       : pair.faqs || [];
 

@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "mm-to-inches",
   "category": "length",
   "categoryId": "length",
@@ -7,88 +7,148 @@
   "toUnitId": "inch",
   "fromSymbol": "mm",
   "toSymbol": "in",
-  "intro": "Professionals and everyday users convert millimeters (mm) to inches (in) when working across metric and imperial standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One millimeter equals 0.03937 inches, while 1 inch equals 25.4 millimeters. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert millimeter to inches measurements accurately for fasteners, pipe diameters, and workshop layouts. Since 1 international inch is legally defined as exactly 25.4 mm, dividing millimeters by 25.4 converts mm into inch decimals cleanly (1 mm ≈ 0.03937008 in). Acting as a fast mm to decimal calculator, the tool also displays the nearest 1/16, 1/32, and 1/64 tape-measure fractions alongside our mm to fractional inches conversion chart below.",
+  "alsoWrittenAs": "millimetres to inches, mm to in, millimeter to inch, mm to decimal inches, mm to fractional inches",
   "commonValues": [
     1,
-    2,
+    1.4,
+    2.7,
+    3,
     5,
+    6,
     10,
-    12.7,
-    25.4,
-    50,
-    100,
-    250,
-    1000
+    19,
+    22,
+    150,
+    205
   ],
+  "tableValues": [
+    1,
+    1.4,
+    2,
+    2.7,
+    3,
+    3.3,
+    4,
+    4.8,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    15,
+    16,
+    18,
+    19,
+    20,
+    22,
+    24,
+    25.4,
+    26,
+    28,
+    30,
+    35,
+    40,
+    45,
+    50,
+    60,
+    67,
+    70,
+    75,
+    80,
+    90,
+    100,
+    120,
+    125,
+    140,
+    146,
+    150,
+    175,
+    200,
+    205,
+    225,
+    229,
+    250,
+    260,
+    262,
+    275,
+    300
+  ],
+  "tableTitle": "Millimeters to Inches Conversion Chart",
+  "tableSubtitle": "MM to fractional inches conversion and decimal inch reference table from 1 mm to 300 mm. Click any row to load it into the calculator.",
+  "tableRoundingNote": "Computed with the exact factor 1 mm = 1 / 25.4 in (≈ 0.03937008 in); decimals rounded to up to 5 decimal places alongside nearest 1/64\" and 1/16\" fractions.",
   "workedExamples": [
     {
-      "title": "Standard Millimeter Benchmark (5 mm)",
-      "scenario": "Convert 5 millimeters (mm) into inches (in) for technical comparison and documentation.",
-      "inputValue": 5,
-      "outputValue": "0.19685 in",
-      "stepByStep": "5 mm × 0.03937 = 0.19685 in (rounds to 0.2 in)."
+      "title": "Fine Sheet or Wire Gauge (2.7 mm)",
+      "scenario": "Convert 2.7 millimeters (mm) into decimal and fractional inches (in) for sheet metal or wire sizing.",
+      "inputValue": 2.7,
+      "outputValue": "0.1063 in",
+      "stepByStep": "2.7 mm ÷ 25.4 = 0.1062992 in (rounds to 0.1063 in, nearest 7/64\" or 3/32\")."
     },
     {
-      "title": "Practical Mid-Range Conversion (25.4 mm)",
-      "scenario": "Convert 25.4 millimeters (mm) into inches (in) for technical comparison and documentation.",
-      "inputValue": 25.4,
-      "outputValue": "1 in",
-      "stepByStep": "25.4 mm × 0.03937 = 1 in (rounds to 1 in)."
+      "title": "Common Pipe or Bearing Diameter (22 mm)",
+      "scenario": "Convert 22 millimeters (mm) into inches (in) for plumbing pipe, watch strap, or bearing specifications.",
+      "inputValue": 22,
+      "outputValue": "0.86614 in",
+      "stepByStep": "22 mm ÷ 25.4 = 0.8661417 in (rounds to 0.86614 in, or roughly 7/8\")."
     },
     {
-      "title": "Higher-Capacity Specification (250 mm)",
-      "scenario": "Convert 250 millimeters (mm) into inches (in) for technical comparison and documentation.",
-      "inputValue": 250,
-      "outputValue": "9.84252 in",
-      "stepByStep": "250 mm × 0.03937 = 9.84252 in (rounds to 9.84 in)."
+      "title": "Component Length Benchmark (205 mm)",
+      "scenario": "Convert 205 millimeters (mm) into inches (in) for hardware clearance and layout planning.",
+      "inputValue": 205,
+      "outputValue": "8.07087 in",
+      "stepByStep": "205 mm ÷ 25.4 = 8.0708661 in (rounds to 8.07087 in, or roughly 8 1/16\")."
     }
   ],
   "mistakesAndEdgeCases": {
     "title": "Exact NIST Factor vs. Early Rounding Drift",
     "items": [
-      "The exact conversion factor from Millimeter to Inch is 0.03937008, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
-      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+      "Always divide millimeters by the exact divisor 25.4 rather than multiplying by a truncated 0.039 factor, which introduces a 0.94% error (nearly 0.08 inches off at 205 mm).",
+      "When reading tape-measure fractions, remember that 1/16\" increments round to the nearest 1.5875 mm, while 1/64\" increments resolve down to ~0.397 mm."
     ]
   },
   "formula": {
-    "equation": "in = mm × 0.03937008",
+    "equation": "in = mm ÷ 25.4",
     "exactFactor": "0.03937008",
     "roundedFactor": "0.0394",
     "inverseFactor": "25.4"
   },
   "internalLinks": [
     {
-      "label": "Inches to Millimeters (in to mm)",
+      "label": "Inches to Millimeters Converter (in to mm)",
       "href": "/length/inches-to-mm",
       "type": "reverse"
     },
     {
-      "label": "Centimeters to Inches (cm to in)",
+      "label": "Convert Centimeters to Inches",
       "href": "/length/cm-to-inches",
       "type": "related"
     },
     {
-      "label": "Inches to Centimeters (in to cm)",
+      "label": "Inches to Centimeters Calculator",
       "href": "/length/inches-to-cm",
       "type": "related"
     },
     {
-      "label": "Feet to Meters (ft to m)",
-      "href": "/length/feet-to-meters",
+      "label": "Millimeters to Meters (mm to m)",
+      "href": "/length/mm-to-meters",
       "type": "related"
     },
     {
-      "label": "Meters to Feet (m to ft)",
-      "href": "/length/meters-to-feet",
+      "label": "Inches to Feet Reference",
+      "href": "/length/inches-to-feet",
       "type": "related"
     },
     {
-      "label": "Length Conversions Hub",
+      "label": "Length & Distance Converters Hub",
       "href": "/length",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial Length Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
@@ -96,15 +156,15 @@
   "faqs": [
     {
       "question": "How many inches (in) are in 1 millimeter (mm)?",
-      "answer": "There are 0.03937008 inches (in) in 1 millimeter (mm), which rounds to 0.0394 in for everyday calculations. Conversely, 1 inch equals 25.4 millimeters."
+      "answer": "There are approximately 0.03937008 inches (in) in 1 millimeter (mm), calculated as 1 ÷ 25.4. Conversely, 1 inch equals exactly 25.4 millimeters."
     },
     {
       "question": "How do I convert millimeters to inches (mm to in)?",
-      "answer": "To convert millimeters to inches, use the formula: in = mm × 0.03937008. For example, converting 12.7 mm gives 0.5 in."
+      "answer": "To convert millimeters to inches, divide the millimeter value by 25.4 (in = mm ÷ 25.4). For example, 12.7 mm ÷ 25.4 equals exactly 0.5 in."
     },
     {
-      "question": "What is 12.7 millimeters in inches?",
-      "answer": "12.7 millimeters (mm) equals exactly 0.5 inches (in) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What is 22 mm in inches?",
+      "answer": "22 millimeters (mm) equals 0.86614 inches (in), which is just under 7/8 of an inch (0.875 in) or close to 55/64\" on a precision ruler."
     }
   ]
 }

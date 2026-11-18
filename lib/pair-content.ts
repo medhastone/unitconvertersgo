@@ -45,7 +45,12 @@ export interface PairContentData {
   fromSymbol: string;
   toSymbol: string;
   intro: string;
+  alsoWrittenAs?: string;
   commonValues: number[];
+  tableValues?: number[];
+  tableTitle?: string;
+  tableSubtitle?: string;
+  tableRoundingNote?: string;
   workedExamples: WorkedExampleItem[];
   mistakesAndEdgeCases: MistakesAndEdgeCasesBlock | null;
   formula: PairFormulaBlock;

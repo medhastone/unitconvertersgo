@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "inches-to-feet",
   "category": "length",
   "categoryId": "length",
@@ -7,98 +7,162 @@
   "toUnitId": "foot",
   "fromSymbol": "in",
   "toSymbol": "ft",
-  "intro": "Professionals and everyday users convert inches (in) to feet (ft) when working across imperial and imperial standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One inch equals 0.083333 feet, while 1 foot equals 12 inches. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert inches to feet accurately for human height, carpentry trim, ceiling spans, and architectural layouts. Because 1 international foot equals exactly 12 inches (0.3048 meters), dividing any measurement in inches by 12 gives decimal feet, while the remainder gives standard feet-and-inches or inches into linear feet. Use the conversion table below for common building sizes, tenths of a foot, and fractional tape readings.",
+  "alsoWrittenAs": "in to ft, inches into linear feet, inch to foot, inches to tenths of a foot, in into ft",
   "commonValues": [
+    10,
+    24,
+    36,
+    48,
+    60,
+    69,
+    72,
+    84,
+    96,
+    120
+  ],
+  "tableValues": [
     1,
-    2,
-    4,
     6,
-    8,
+    10,
     12,
     18,
     24,
+    30,
     36,
-    48
+    40,
+    42,
+    43.31,
+    48,
+    50,
+    53.1,
+    54,
+    55.2,
+    57,
+    58,
+    60,
+    62.75,
+    63.7,
+    64,
+    66,
+    66.7,
+    68,
+    69,
+    70.9,
+    72,
+    76,
+    80,
+    82,
+    84,
+    90,
+    92,
+    93.5,
+    96,
+    98,
+    100,
+    108,
+    113,
+    120,
+    125,
+    132,
+    144,
+    180,
+    224.1,
+    240
   ],
+  "tableTitle": "Inches to Feet Conversion Chart",
+  "tableSubtitle": "Complete inch to feet conversion table from 1 in to 240 in (computed as ft = in ÷ 12).",
+  "tableRoundingNote": "Calculated using the exact 1 ft = 12 in definition (1 in = 0.08333333... ft). Repeating decimals are rounded to 5 significant digits in the table; multiples of 12 inches are exact whole feet.",
   "workedExamples": [
     {
-      "title": "Standard Inch Benchmark (4 in)",
-      "scenario": "Convert 4 inches (in) into feet (ft) for technical comparison and documentation.",
-      "inputValue": 4,
-      "outputValue": "0.333333 ft",
-      "stepByStep": "4 in × 0.083333 = 0.333333 ft (rounds to 0.33 ft)."
+      "title": "Metric-Equated Cabinet Width (43.31 in)",
+      "scenario": "Convert 43.31 inches (roughly 110 cm) into decimal feet for an imported cabinetry spec sheet.",
+      "inputValue": 43.31,
+      "outputValue": "3.60917 ft",
+      "stepByStep": "43.31 in ÷ 12 = 3.6091667 ft (rounds to 3.60917 ft, or 3 ft 7.31 in)."
     },
     {
-      "title": "Practical Mid-Range Conversion (12 in)",
-      "scenario": "Convert 12 inches (in) into feet (ft) for technical comparison and documentation.",
-      "inputValue": 12,
-      "outputValue": "1 ft",
-      "stepByStep": "12 in × 0.083333 = 1 ft (rounds to 1 ft)."
+      "title": "Adult Height Benchmark (69 in)",
+      "scenario": "Convert 69 inches into feet and standard feet-and-inches notation.",
+      "inputValue": 69,
+      "outputValue": "5.75 ft",
+      "stepByStep": "69 in ÷ 12 = 5.75 ft exact (5 feet 9 inches)."
     },
     {
-      "title": "Higher-Capacity Specification (36 in)",
-      "scenario": "Convert 36 inches (in) into feet (ft) for technical comparison and documentation.",
-      "inputValue": 36,
-      "outputValue": "3 ft",
-      "stepByStep": "36 in × 0.083333 = 3 ft (rounds to 3 ft)."
+      "title": "Linear Trim & Wall Span (125 in)",
+      "scenario": "Convert 125 inches into linear feet to order baseboard molding.",
+      "inputValue": 125,
+      "outputValue": "10.41667 ft",
+      "stepByStep": "125 in ÷ 12 = 10.416667 ft (rounds to 10.41667 ft, or 10 ft 5 in)."
     }
   ],
-  "mistakesAndEdgeCases": null,
+  "mistakesAndEdgeCases": {
+    "title": "Tenths of a Foot, Linear Feet & US Survey Feet",
+    "items": [
+      "Inches to Tenths of a Foot vs. Feet-and-Inches: Civil and grading plans use decimal feet (tenths of a foot, where 5.5 ft = 5 ft 6 in). Never read 5.5 ft as 5 ft 5 in (66 in vs. 65 in).",
+      "Inches to US Survey Feet: Everyday construction uses the international foot (0.3048 m, exactly 12 in). The legacy US Survey Foot (1200/3937 m) differs by 2 parts per million (1 survey ft ≈ 12.000024 international inches), which only matters for geodetic coordinates over thousands of feet.",
+      "Inches into Linear Feet: When pricing lumber, trim, or pipe per linear foot, simply divide total inches by 12—board width does not change the linear foot total."
+    ]
+  },
   "formula": {
-    "equation": "ft = in × 0.08333333",
+    "equation": "ft = in ÷ 12",
     "exactFactor": "0.08333333",
     "roundedFactor": "0.0833",
     "inverseFactor": "12"
   },
   "internalLinks": [
     {
-      "label": "Feet to Inches (ft to in)",
+      "label": "Feet to Inches Converter (ft to in)",
       "href": "/length/feet-to-inches",
       "type": "reverse"
     },
     {
-      "label": "Centimeters to Inches (cm to in)",
-      "href": "/length/cm-to-inches",
+      "label": "Centimeters to Feet Height Chart",
+      "href": "/length/cm-to-feet",
       "type": "related"
     },
     {
-      "label": "Inches to Centimeters (in to cm)",
-      "href": "/length/inches-to-cm",
-      "type": "related"
-    },
-    {
-      "label": "Feet to Meters (ft to m)",
+      "label": "Convert Feet to Meters (ft to m)",
       "href": "/length/feet-to-meters",
       "type": "related"
     },
     {
-      "label": "Meters to Feet (m to ft)",
-      "href": "/length/meters-to-feet",
+      "label": "Inches to Centimeters Calculator",
+      "href": "/length/inches-to-cm",
       "type": "related"
     },
     {
-      "label": "Length Conversions Hub",
+      "label": "Miles to Feet Distance Table",
+      "href": "/length/miles-to-feet",
+      "type": "related"
+    },
+    {
+      "label": "All Length & Distance Converters",
       "href": "/length",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial Length Reference",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many feet (ft) are in 1 inch (in)?",
-      "answer": "There are 0.08333333 feet (ft) in 1 inch (in), which rounds to 0.0833 ft for everyday calculations. Conversely, 1 foot equals 12 inches."
+      "question": "How do you convert inches to feet (and tenths of a foot)?",
+      "answer": "Divide the number of inches by 12. For example, 69 inches ÷ 12 = 5.75 feet (5 feet 9 inches). To read inches in tenths of a foot for engineering or site grading, keep the decimal output directly (for example, 6 in = 0.5 ft)."
     },
     {
-      "question": "How do I convert inches to feet (in to ft)?",
-      "answer": "To convert inches to feet, use the formula: ft = in × 0.08333333. For example, converting 8 in gives 0.6667 ft."
+      "question": "Are inches into linear feet calculated the same way?",
+      "answer": "Yes. For lumber, baseboard trim, wire, or piping priced by linear foot, use the exact same formula: linear feet = inches ÷ 12. For example, 98 inches equals 8.16667 linear feet."
     },
     {
-      "question": "What is 8 inches in feet?",
-      "answer": "8 inches (in) equals exactly 0.6667 feet (ft) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "How do inches convert to US survey feet?",
+      "answer": "For everyday measurements up to several hundred feet, dividing inches by 12 gives the same practical result. Over long geodetic baselines, 1 US survey foot equals 1200/3937 m (12.000024 international inches), a difference of about 0.01 ft per mile."
+    },
+    {
+      "question": "What is 69 inches in feet?",
+      "answer": "69 inches equals 5.75 feet, or 5 feet 9 inches (69 ÷ 12 = 5.75 ft)."
     }
   ]
 }

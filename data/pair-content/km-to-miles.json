@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "km-to-miles",
   "category": "length",
   "categoryId": "length",
@@ -7,89 +7,162 @@
   "toUnitId": "mile",
   "fromSymbol": "km",
   "toSymbol": "mi",
-  "intro": "Professionals and everyday users convert kilometers (km) to miles (mi) when working across si and imperial standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One kilometer equals 0.621371 miles, while 1 mile (statute) equals 1.609344 kilometers. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert kilometers (km) to miles (mi) with exact precision for road trips, race distances, and international travel planning. Under the international yard and pound definition, 1 statute mile equals exactly 1.609344 kilometers, meaning 1 km equals 0.62137119 miles. Use this km to mi converter for decimals like 3.5 km or 10.5 km, or jump directly to any benchmark in the conversion chart for kilometers to miles below.",
+  "alsoWrittenAs": "kilometres to miles, km to mi, kilometre to mile, kilometers into miles, klicks to miles",
   "commonValues": [
-    1,
-    3,
+    3.5,
     5,
-    10,
-    15,
-    21.1,
-    42.2,
-    50,
-    80,
+    10.5,
+    14,
+    21,
+    36,
     100,
-    160
+    130,
+    200,
+    900
   ],
+  "tableValues": [
+    1,
+    2,
+    3,
+    3.3,
+    3.5,
+    4,
+    5,
+    6,
+    8,
+    10,
+    10.5,
+    12,
+    14,
+    15,
+    16,
+    18,
+    20,
+    21,
+    21.1,
+    22,
+    25,
+    30,
+    35,
+    36,
+    40,
+    42.2,
+    45,
+    50,
+    60,
+    70,
+    75,
+    80,
+    90,
+    100,
+    105,
+    107,
+    110,
+    115,
+    119,
+    120,
+    125,
+    130,
+    135,
+    136,
+    140,
+    150,
+    160,
+    170,
+    180,
+    185,
+    190,
+    200,
+    225,
+    250,
+    275,
+    300,
+    325,
+    340,
+    350,
+    400,
+    500,
+    600,
+    750,
+    900,
+    1000,
+    2000,
+    3000,
+    4000
+  ],
+  "tableTitle": "Conversion Chart for Kilometers to Miles (km to mi)",
+  "tableSubtitle": "Distance chart from 1 km to 4,000 km (kilometres to miles) for road races, highway routes, and regional travel. Click any row to calculate.",
+  "tableRoundingNote": "Computed with the exact factor 1 km = 1 / 1.609344 mi (≈ 0.62137119 mi); decimal miles rounded to up to 5 decimal places.",
   "workedExamples": [
     {
-      "title": "Standard Kilometer Benchmark (5 km)",
-      "scenario": "Convert 5 kilometers (km) into miles (mi) for technical comparison and documentation.",
-      "inputValue": 5,
-      "outputValue": "3.106856 mi",
-      "stepByStep": "5 km × 0.621371 = 3.106856 mi (rounds to 3.11 mi)."
+      "title": "Short Trail or Run Distance (3.5 km)",
+      "scenario": "Convert 3.5 kilometers (km) into miles (mi) for running routes or neighborhood walks.",
+      "inputValue": 3.5,
+      "outputValue": "2.1748 mi",
+      "stepByStep": "3.5 km ÷ 1.609344 = 2.1747992 mi (rounds to 2.1748 mi, or about 2.17 mi)."
     },
     {
-      "title": "Practical Mid-Range Conversion (21.1 km)",
-      "scenario": "Convert 21.1 kilometers (km) into miles (mi) for technical comparison and documentation.",
-      "inputValue": 21.1,
-      "outputValue": "13.110932 mi",
-      "stepByStep": "21.1 km × 0.621371 = 13.110932 mi (rounds to 13.11 mi)."
+      "title": "Half-Marathon Scale Benchmark (21 km)",
+      "scenario": "Convert 21 kilometers (km) into miles (mi) for road race pacing and distance planning.",
+      "inputValue": 21,
+      "outputValue": "13.0488 mi",
+      "stepByStep": "21 km ÷ 1.609344 = 13.048795 mi (rounds to 13.0488 mi, or about 13.05 mi)."
     },
     {
-      "title": "Higher-Capacity Specification (80 km)",
-      "scenario": "Convert 80 kilometers (km) into miles (mi) for technical comparison and documentation.",
-      "inputValue": 80,
-      "outputValue": "49.709695 mi",
-      "stepByStep": "80 km × 0.621371 = 49.709695 mi (rounds to 49.71 mi)."
+      "title": "Intercity Highway Distance (200 km)",
+      "scenario": "Convert 200 kilometers (km) into miles (mi) for road trip planning and fuel range estimates.",
+      "inputValue": 200,
+      "outputValue": "124.27424 mi",
+      "stepByStep": "200 km ÷ 1.609344 = 124.2742384 mi (rounds to 124.27424 mi, or about 124.27 mi)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "title": "Exact 1.609344 Divisor & Statute vs. Nautical Miles",
     "items": [
-      "The exact conversion factor from Kilometer to Mile (Statute) is 0.62137119, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
-      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+      "The exact conversion between kilometers and statute miles uses 1 mi = 1.609344 km (so 1 km ≈ 0.62137119 mi). Approximating 1 km as 0.6 miles introduces a ~3.4% undercount.",
+      "Do not confuse statute miles (1.609344 km, used on roads) with maritime/aviation nautical miles (1 nmi = 1.852 km)."
     ]
   },
   "formula": {
-    "equation": "mi = km × 0.62137119",
+    "equation": "mi = km ÷ 1.609344",
     "exactFactor": "0.62137119",
     "roundedFactor": "0.6214",
     "inverseFactor": "1.609344"
   },
   "internalLinks": [
     {
-      "label": "Miles to Kilometers (mi to km)",
+      "label": "Miles to Kilometers Converter (mi to km)",
       "href": "/length/miles-to-km",
       "type": "reverse"
     },
     {
-      "label": "Centimeters to Inches (cm to in)",
-      "href": "/length/cm-to-inches",
-      "type": "related"
-    },
-    {
-      "label": "Inches to Centimeters (in to cm)",
-      "href": "/length/inches-to-cm",
-      "type": "related"
-    },
-    {
-      "label": "Feet to Meters (ft to m)",
-      "href": "/length/feet-to-meters",
-      "type": "related"
-    },
-    {
-      "label": "Meters to Feet (m to ft)",
+      "label": "Convert Meters to Feet",
       "href": "/length/meters-to-feet",
       "type": "related"
     },
     {
-      "label": "Length Conversions Hub",
+      "label": "Meters to Yards Calculator",
+      "href": "/length/meters-to-yards",
+      "type": "related"
+    },
+    {
+      "label": "Nautical Miles to Kilometers (nmi to km)",
+      "href": "/length/nautical-miles-to-km",
+      "type": "related"
+    },
+    {
+      "label": "Kilometers to Feet (km to ft)",
+      "href": "/length/km-to-feet",
+      "type": "related"
+    },
+    {
+      "label": "All Length & Distance Converters",
       "href": "/length",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial Distance Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
@@ -97,15 +170,15 @@
   "faqs": [
     {
       "question": "How many miles (mi) are in 1 kilometer (km)?",
-      "answer": "There are 0.62137119 miles (mi) in 1 kilometer (km), which rounds to 0.6214 mi for everyday calculations. Conversely, 1 mile (statute) equals 1.609344 kilometers."
+      "answer": "There are approximately 0.62137119 statute miles (mi) in 1 kilometer (km), which rounds to 0.6214 mi. Conversely, 1 statute mile equals exactly 1.609344 kilometers."
     },
     {
       "question": "How do I convert kilometers to miles (km to mi)?",
-      "answer": "To convert kilometers to miles, use the formula: mi = km × 0.62137119. For example, converting 15 km gives 9.3206 mi."
+      "answer": "To convert kilometers to miles, divide the kilometer figure by 1.609344 (or multiply by 0.62137119). For example, 21 km ÷ 1.609344 equals 13.0488 miles."
     },
     {
-      "question": "What is 15 kilometers in miles?",
-      "answer": "15 kilometers (km) equals exactly 9.3206 miles (mi) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What is 200 kilometers in miles?",
+      "answer": "200 kilometers (km) equals 124.27424 statute miles (mi), or roughly 124.3 miles on a road trip."
     }
   ]
 }

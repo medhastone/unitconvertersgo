@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "ounces-to-pounds",
   "category": "weight-and-mass",
   "categoryId": "mass",
@@ -7,47 +7,97 @@
   "toUnitId": "pound",
   "fromSymbol": "oz",
   "toSymbol": "lb",
-  "intro": "Professionals and everyday users convert ounces (oz) to pounds (lb) when working across imperial and imperial standards in engineering specifications, international trade documentation, and technical measurements. One ounce equals 0.0625 pounds, while 1 pound (avoirdupois) equals 16 ounces. Whether you are verifying mass & weight specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert ounces (oz) to pounds (lb) accurately for meat portions, baking ingredients, baby weights, and postal packages. Because one avoirdupois pound equals exactly 16 ounces, each ounce equals 0.0625 pounds—just divide your measurement in ounces by 16. Use the live calculator above for exact decimal pounds, or scan the ounces in a pound chart below for pre-computed weights from 0.5 oz to 600 oz.",
+  "alsoWrittenAs": "oz to lbs, ounce to pound, oz into lb, avoirdupois ounces to pounds",
   "commonValues": [
+    1,
+    4,
+    8,
+    12,
+    16,
+    20,
+    32,
+    36,
+    60,
+    256
+  ],
+  "tableValues": [
     0.5,
     1,
     2,
     4,
+    4.5,
+    5,
+    5.29109429,
     6,
+    6.7,
     8,
+    8.4,
+    10,
     12,
+    13.4,
     16,
+    20,
+    22.9,
     24,
-    32
+    28,
+    32,
+    36,
+    40,
+    42,
+    44,
+    48,
+    52,
+    56,
+    60,
+    64,
+    72,
+    80,
+    88,
+    92,
+    96,
+    100,
+    128,
+    160,
+    192,
+    224,
+    256,
+    320,
+    400,
+    480,
+    600
   ],
+  "tableTitle": "Ounces Pounds Chart — Oz to Lbs Reference Table",
+  "tableSubtitle": "Exact avoirdupois conversions from 0.5 oz to 600 oz using the 16 oz = 1 lb ratio.",
+  "tableRoundingNote": "Computed with the exact US/International avoirdupois definition (1 oz = 1/16 lb = 0.0625 lb). Values are shown rounded to 5 significant digits (up to 5 decimal places); use the calculator above for full floating-point precision.",
   "workedExamples": [
     {
-      "title": "Standard Ounce Benchmark (2 oz)",
-      "scenario": "Convert 2 ounces (oz) into pounds (lb) for technical comparison and documentation.",
-      "inputValue": 2,
-      "outputValue": "0.125 lb",
-      "stepByStep": "2 oz × 0.0625 = 0.125 lb (rounds to 0.13 lb)."
+      "title": "Metric Food Label Conversion (5.29109429 oz)",
+      "scenario": "Convert a 5.29109429 oz (150 g) packaged portion into pounds for commercial recipe scaling.",
+      "inputValue": 5.29109429,
+      "outputValue": "0.33069 lb",
+      "stepByStep": "5.29109429 oz × 0.0625 = 0.33069339 lb (rounds to 0.33069 lb, or roughly one-third of a pound)."
     },
     {
-      "title": "Practical Mid-Range Conversion (8 oz)",
-      "scenario": "Convert 8 ounces (oz) into pounds (lb) for technical comparison and documentation.",
-      "inputValue": 8,
-      "outputValue": "0.5 lb",
-      "stepByStep": "8 oz × 0.0625 = 0.5 lb (rounds to 0.5 lb)."
+      "title": "Kitchen Meat & Parcel Weight (36 oz)",
+      "scenario": "Convert 36 ounces of poultry or a 36 oz domestic package into decimal pounds.",
+      "inputValue": 36,
+      "outputValue": "2.25 lb",
+      "stepByStep": "36 oz ÷ 16 = 2.25 lb exact (2 lb 4 oz)."
     },
     {
-      "title": "Higher-Capacity Specification (24 oz)",
-      "scenario": "Convert 24 ounces (oz) into pounds (lb) for technical comparison and documentation.",
-      "inputValue": 24,
-      "outputValue": "1.5 lb",
-      "stepByStep": "24 oz × 0.0625 = 1.5 lb (rounds to 1.5 lb)."
+      "title": "Bulk Pantry & Freight Weight (256 oz)",
+      "scenario": "Convert 256 ounces of dry restaurant supplies into pounds for inventory logs.",
+      "inputValue": 256,
+      "outputValue": "16 lb",
+      "stepByStep": "256 oz ÷ 16 = 16 lb exact."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Avoirdupois Ounces (oz) vs. Precious Metal Troy Ounces (oz t) vs. Fluid Ounces (fl oz)",
+    "title": "Avoirdupois Ounces (oz) vs. Troy Ounces (oz t) vs. Fluid Ounces (fl oz)",
     "items": [
-      "Standard grocery and postal scales use the Avoirdupois ounce (1 oz = 28.349523125 g). Gold, silver, and platinum bullion use the Troy ounce (1 oz t = 31.1034768 g), which is 9.7% heavier.",
-      "Never confuse dry weight ounces (oz) with liquid volume fluid ounces (fl oz); they only match numerically for pure water at standard density."
+      "Standard grocery, meat, and postal scales use the Avoirdupois ounce (1 oz = 28.349523125 g, 16 oz per pound). Gold, silver, and bullion use the Troy ounce (1 oz t = 31.1034768 g, 12 oz t per troy pound).",
+      "Do not confuse dry weight ounces (oz) with liquid volume fluid ounces (fl oz); only pure water near standard temperature weighs roughly 1.043 oz per US fl oz."
     ]
   },
   "formula": {
@@ -58,53 +108,57 @@
   },
   "internalLinks": [
     {
-      "label": "Pounds to Ounces (lb to oz)",
+      "label": "Pounds to Ounces Converter (lb to oz)",
       "href": "/weight-and-mass/pounds-to-ounces",
       "type": "reverse"
     },
     {
-      "label": "Kilograms to Pounds (kg to lb)",
-      "href": "/weight-and-mass/kg-to-lbs",
-      "type": "related"
-    },
-    {
-      "label": "Pounds to Kilograms (lb to kg)",
-      "href": "/weight-and-mass/lbs-to-kg",
-      "type": "related"
-    },
-    {
-      "label": "Grams to Ounces (g to oz)",
+      "label": "Grams to Ounces Cooking Chart",
       "href": "/weight-and-mass/grams-to-ounces",
       "type": "related"
     },
     {
-      "label": "Ounces to Grams (oz to g)",
+      "label": "Convert Grams to Pounds (g to lb)",
+      "href": "/weight-and-mass/grams-to-pounds",
+      "type": "related"
+    },
+    {
+      "label": "Kilograms to Pounds Weight Table",
+      "href": "/weight-and-mass/kg-to-lbs",
+      "type": "related"
+    },
+    {
+      "label": "Ounces to Grams Calculator (oz to g)",
       "href": "/weight-and-mass/ounces-to-grams",
       "type": "related"
     },
     {
-      "label": "Mass & Weight Conversions Hub",
+      "label": "All Weight & Mass Converters",
       "href": "/weight-and-mass",
       "type": "hub"
     },
     {
-      "label": "Troy Ounces vs. Regular Avoirdupois Ounces Weight Guide",
+      "label": "Avoirdupois vs. Troy Ounces Guide",
       "href": "/guides/avoirdupois-vs-troy-weight",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many pounds (lb) are in 1 ounce (oz)?",
-      "answer": "There are 0.0625 pounds (lb) in 1 ounce (oz), which rounds to 0.0625 lb for everyday calculations. Conversely, 1 pound (avoirdupois) equals 16 ounces."
+      "question": "How many ounces are in a pound of meat (beef, chicken, or pork)?",
+      "answer": "There are exactly 16 ounces in 1 pound of meat—whether weighing raw chicken breast, ground beef, or pork. Note that cooked meat yields roughly 12 oz per raw pound after moisture loss, though the 16 oz = 1 lb unit conversion never changes."
     },
     {
-      "question": "How do I convert ounces to pounds (oz to lb)?",
-      "answer": "To convert ounces to pounds, use the formula: lb = oz × 0.0625. For example, converting 6 oz gives 0.375 lb."
+      "question": "How many ounces are in 1 pound (oz in a lb)?",
+      "answer": "There are exactly 16 avoirdupois ounces in 1 pound (1 lb = 16 oz), so 1 ounce equals 0.0625 pounds (1 ÷ 16)."
     },
     {
-      "question": "What is 6 ounces in pounds?",
-      "answer": "6 ounces (oz) equals exactly 0.375 pounds (lb) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "How many ounces are in a pound of Freon (refrigerant)?",
+      "answer": "There are exactly 16 ounces by weight in a pound of Freon or any other refrigerant. HVAC cylinder charges are measured in standard avoirdupois mass (1 lb = 16 oz), so a 30 lb cylinder holds 480 oz."
+    },
+    {
+      "question": "What is 32 ounces in pounds?",
+      "answer": "32 ounces equals exactly 2 pounds (32 ÷ 16 = 2 lb)."
     }
   ]
 }

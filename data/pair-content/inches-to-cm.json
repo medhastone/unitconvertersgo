@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "inches-to-cm",
   "category": "length",
   "categoryId": "length",
@@ -7,48 +7,113 @@
   "toUnitId": "centimeter",
   "fromSymbol": "in",
   "toSymbol": "cm",
-  "intro": "Professionals and everyday users convert inches (in) to centimeters (cm) when working across imperial and metric standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One inch equals 2.54 centimeters, while 1 centimeter equals 0.393701 inches. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert inches to centimeters (or centimetres) with exact precision for television screens, luggage dimensions, clothing sizes, and workshop blueprints. Under the 1959 international agreement, 1 inch equals exactly 2.54 cm, so multiplying any inch value—decimal or fractional—by 2.54 yields the exact centimeter measurement. Enter whole numbers, decimals like 7.75 in or 33.5 in, or fractions like 1 1/2 in above, or browse the full chart below.",
+  "alsoWrittenAs": "inches to centimetres, in to cm, inch to centimeter, inch into cm, fractional inches to cm",
   "commonValues": [
     1,
-    2,
-    4,
-    6,
-    10,
-    12,
-    18,
-    24,
-    36,
-    48,
-    72
+    7,
+    7.75,
+    9,
+    17.5,
+    20,
+    28,
+    37,
+    57,
+    68
   ],
+  "tableValues": [
+    0.25,
+    0.393700787,
+    0.5,
+    0.75,
+    1,
+    1.5,
+    1.65,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    7.75,
+    8,
+    9,
+    10,
+    11,
+    12,
+    14,
+    15,
+    16,
+    17.5,
+    18,
+    20,
+    22,
+    24,
+    25,
+    28,
+    30,
+    32.5,
+    33.5,
+    35,
+    36,
+    37,
+    40,
+    43,
+    45,
+    48,
+    50,
+    52,
+    55,
+    57,
+    60,
+    65,
+    68,
+    70,
+    72,
+    75,
+    76,
+    80,
+    85,
+    86,
+    90,
+    100,
+    120,
+    150,
+    200,
+    300,
+    410
+  ],
+  "tableTitle": "Inches to Centimeters Conversion Chart",
+  "tableSubtitle": "Complete inch-to-cm reference table covering decimal inches, fractional benchmarks, clothing sizes, and tall spans with nearest 1/64\" and 1/16\" equivalents.",
+  "tableRoundingNote": "Computed with the exact international factor 1 in = 2.54 cm; decimal results shown up to 5 decimal places alongside nearest tape fractions.",
   "workedExamples": [
     {
-      "title": "Standard Inch Benchmark (4 in)",
-      "scenario": "Convert 4 inches (in) into centimeters (cm) for technical comparison and documentation.",
-      "inputValue": 4,
-      "outputValue": "10.16 cm",
-      "stepByStep": "4 in × 2.54 = 10.16 cm (rounds to 10.16 cm)."
+      "title": "Skateboard Deck or Tablet Width (7.75 in)",
+      "scenario": "Convert 7.75 inches (in) into centimeters (cm) for sports gear or consumer electronics.",
+      "inputValue": 7.75,
+      "outputValue": "19.685 cm",
+      "stepByStep": "7.75 in × 2.54 = 19.685 cm (exact)."
     },
     {
-      "title": "Practical Mid-Range Conversion (12 in)",
-      "scenario": "Convert 12 inches (in) into centimeters (cm) for technical comparison and documentation.",
-      "inputValue": 12,
-      "outputValue": "30.48 cm",
-      "stepByStep": "12 in × 2.54 = 30.48 cm (rounds to 30.48 cm)."
+      "title": "Monitor or Garment Length (17.5 in)",
+      "scenario": "Convert 17.5 inches (in) into centimeters (cm) for display diagonals or shirt measurements.",
+      "inputValue": 17.5,
+      "outputValue": "44.45 cm",
+      "stepByStep": "17.5 in × 2.54 = 44.45 cm (exact)."
     },
     {
-      "title": "Higher-Capacity Specification (36 in)",
-      "scenario": "Convert 36 inches (in) into centimeters (cm) for technical comparison and documentation.",
-      "inputValue": 36,
-      "outputValue": "91.44 cm",
-      "stepByStep": "36 in × 2.54 = 91.44 cm (rounds to 91.44 cm)."
+      "title": "Display Panel or Inseam Span (37 in)",
+      "scenario": "Convert 37 inches (in) into centimeters (cm) for furniture, TVs, or tailoring.",
+      "inputValue": 37,
+      "outputValue": "93.98 cm",
+      "stepByStep": "37 in × 2.54 = 93.98 cm (exact)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "title": "Exact 2.54 Factor vs. Early Rounding Drift",
     "items": [
-      "The exact conversion factor from Inch to Centimeter is 2.54, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
-      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+      "The exact conversion factor from Inch to Centimeter is 2.54, fixed by the 1959 International Yard and Pound Agreement (1 in = 2.54 cm).",
+      "Approximating 1 inch as 2.5 cm undercounts by ~1.6%—over 10 cm off across 410 inches. Always multiply by 2.54 first."
     ]
   },
   "formula": {
@@ -59,37 +124,37 @@
   },
   "internalLinks": [
     {
-      "label": "Centimeters to Inches (cm to in)",
+      "label": "Centimeters to Inches Converter (cm to in)",
       "href": "/length/cm-to-inches",
       "type": "reverse"
     },
     {
-      "label": "Feet to Meters (ft to m)",
-      "href": "/length/feet-to-meters",
+      "label": "Convert Inches to Millimeters",
+      "href": "/length/inches-to-mm",
       "type": "related"
     },
     {
-      "label": "Meters to Feet (m to ft)",
-      "href": "/length/meters-to-feet",
+      "label": "Inches to Feet Calculator",
+      "href": "/length/inches-to-feet",
       "type": "related"
     },
     {
-      "label": "Kilometers to Miles (km to mi)",
-      "href": "/length/km-to-miles",
+      "label": "Inches to Meters (in to m)",
+      "href": "/length/inches-to-meters",
       "type": "related"
     },
     {
-      "label": "Miles to Kilometers (mi to km)",
-      "href": "/length/miles-to-km",
+      "label": "Feet to Centimeters Reference",
+      "href": "/length/feet-to-cm",
       "type": "related"
     },
     {
-      "label": "Length Conversions Hub",
+      "label": "All Length & Distance Converters",
       "href": "/length",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial Length Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
@@ -97,15 +162,15 @@
   "faqs": [
     {
       "question": "How many centimeters (cm) are in 1 inch (in)?",
-      "answer": "There are 2.54 centimeters (cm) in 1 inch (in), which rounds to 2.54 cm for everyday calculations. Conversely, 1 centimeter equals 0.393701 inches."
+      "answer": "There are exactly 2.54 centimeters (cm) in 1 international inch (in). Conversely, 1 centimeter equals approximately 0.39370079 inches."
     },
     {
       "question": "How do I convert inches to centimeters (in to cm)?",
-      "answer": "To convert inches to centimeters, use the formula: cm = in × 2.54. For example, converting 10 in gives 25.4 cm."
+      "answer": "To convert inches to centimeters, multiply the inch value by 2.54 (cm = in × 2.54). For example, 37 in × 2.54 = 93.98 cm."
     },
     {
-      "question": "What is 10 inches in centimeters?",
-      "answer": "10 inches (in) equals exactly 25.4 centimeters (cm) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What is 37 inches in centimeters?",
+      "answer": "37 inches (in) equals exactly 93.98 centimeters (centimetres) using the exact 2.54 multiplier."
     }
   ]
 }

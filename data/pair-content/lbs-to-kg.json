@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "lbs-to-kg",
   "category": "weight-and-mass",
   "categoryId": "mass",
@@ -7,48 +7,116 @@
   "toUnitId": "kilogram",
   "fromSymbol": "lb",
   "toSymbol": "kg",
-  "intro": "Professionals and everyday users convert pounds (lb) to kilograms (kg) when working across imperial and si standards in engineering specifications, international trade documentation, and technical measurements. One pound (avoirdupois) equals 0.453592 kilograms, while 1 kilogram equals 2.204623 pounds. Whether you are verifying mass & weight specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Use this pounds to kilograms converter to turn lbs into kg accurately for body weight, airline luggage, and barbell plates. Comparing one pound to one kilo? A single avoirdupois pound equals exactly 0.45359237 kilograms under the 1959 International Yard and Pound Agreement, while 1 kg equals 2.204623 lb. Whether you are converting US pounds to kilograms on shipping manifests, tracking fitness progress, or reading a lbs to kgs chart, every result and table row below uses the exact international factor.",
+  "alsoWrittenAs": "pounds to kilograms, lb to kg, lbs to kgs, avoirdupois pound (lbm) to kilo",
   "commonValues": [
+    6.5,
+    37,
+    78,
+    132,
+    153,
+    164,
+    174,
+    207,
+    270,
+    350
+  ],
+  "tableValues": [
     1,
     5,
+    6.5,
     10,
+    20,
     25,
+    30,
+    35,
+    37,
+    40,
     45,
     50,
+    60,
+    70,
+    78,
+    80,
+    90,
     100,
+    110,
+    120,
+    125,
+    130,
+    132,
     135,
+    137,
+    140,
+    145,
+    147,
     150,
+    153,
+    154,
+    155,
+    157,
+    160,
+    163,
+    164,
+    165,
+    166,
+    170,
+    171,
+    174,
+    175,
+    177,
     180,
-    200
+    185,
+    190,
+    193,
+    195,
+    200,
+    205,
+    207,
+    210,
+    220,
+    230,
+    235,
+    240,
+    250,
+    270,
+    275,
+    300,
+    315,
+    325,
+    350
   ],
+  "tableTitle": "Lbs to Kgs Chart — Pounds to Kilograms Reference Table",
+  "tableSubtitle": "Reference pounds to kilograms chart for powerlifting plates, luggage allowances, and everyday weights. Click any row to load it into the calculator.",
+  "tableRoundingNote": "Computed with the exact 1959 international factor 1 lb = 0.45359237 kg; table results rounded to up to 5 decimal places.",
   "workedExamples": [
     {
-      "title": "Standard Pound (Avoirdupois) Benchmark (10 lb)",
-      "scenario": "Convert 10 pounds (lb) into kilograms (kg) for technical comparison and documentation.",
-      "inputValue": 10,
-      "outputValue": "4.535924 kg",
-      "stepByStep": "10 lb × 0.453592 = 4.535924 kg (rounds to 4.54 kg)."
+      "title": "Small Parcel or Dumbbell Weight (6.5 lb)",
+      "scenario": "Convert 6.5 pounds (lb) into kilograms (kg) for parcel shipping or fitness equipment specs.",
+      "inputValue": 6.5,
+      "outputValue": "2.94835 kg",
+      "stepByStep": "6.5 lb × 0.45359237 = 2.9483504 kg (rounds to 2.95 kg)."
     },
     {
-      "title": "Practical Mid-Range Conversion (50 lb)",
-      "scenario": "Convert 50 pounds (lb) into kilograms (kg) for technical comparison and documentation.",
-      "inputValue": 50,
-      "outputValue": "22.679619 kg",
-      "stepByStep": "50 lb × 0.453592 = 22.679619 kg (rounds to 22.68 kg)."
+      "title": "Body Weight Benchmark (153 lb)",
+      "scenario": "Convert 153 pounds (lb) into kilograms (kg) for medical records or international weight tracking.",
+      "inputValue": 153,
+      "outputValue": "69.39963 kg",
+      "stepByStep": "153 lb × 0.45359237 = 69.3996326 kg (rounds to 69.40 kg)."
     },
     {
-      "title": "Higher-Capacity Specification (150 lb)",
-      "scenario": "Convert 150 pounds (lb) into kilograms (kg) for technical comparison and documentation.",
-      "inputValue": 150,
-      "outputValue": "68.038856 kg",
-      "stepByStep": "150 lb × 0.453592 = 68.038856 kg (rounds to 68.04 kg)."
+      "title": "Powerlifting Barbell Benchmark (350 lb)",
+      "scenario": "Convert a 350-pound (lb) squat or deadlift target into kilograms (kg) for competition plate loading.",
+      "inputValue": 350,
+      "outputValue": "158.75733 kg",
+      "stepByStep": "350 lb × 0.45359237 = 158.7573295 kg (rounds to 158.76 kg)."
     }
   ],
   "mistakesAndEdgeCases": {
     "title": "Exact NIST Factor vs. Early Rounding Drift",
     "items": [
-      "The exact conversion factor from Pound (Avoirdupois) to Kilogram is 0.45359237, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
-      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+      "The exact conversion factor from Pound (Avoirdupois) to Kilogram is 0.45359237, derived from the 1959 International Yard and Pound Agreement (1 lb = 0.45359237 kg).",
+      "Using a rough ÷ 2.2 shortcut introduces ~0.2% error (over 0.3 kg off on a 350 lb barbell). Always multiply by 0.45359237 first and round only the final number."
     ]
   },
   "formula": {
@@ -59,37 +127,37 @@
   },
   "internalLinks": [
     {
-      "label": "Kilograms to Pounds (kg to lb)",
+      "label": "Kilograms to Pounds Converter (kg to lb)",
       "href": "/weight-and-mass/kg-to-lbs",
       "type": "reverse"
     },
     {
-      "label": "Grams to Ounces (g to oz)",
-      "href": "/weight-and-mass/grams-to-ounces",
-      "type": "related"
-    },
-    {
-      "label": "Ounces to Grams (oz to g)",
-      "href": "/weight-and-mass/ounces-to-grams",
-      "type": "related"
-    },
-    {
-      "label": "Pounds to Ounces (lb to oz)",
+      "label": "Convert Pounds to Ounces",
       "href": "/weight-and-mass/pounds-to-ounces",
       "type": "related"
     },
     {
-      "label": "Ounces to Pounds (oz to lb)",
-      "href": "/weight-and-mass/ounces-to-pounds",
+      "label": "Pounds to UK Stone (lbs to st)",
+      "href": "/weight-and-mass/lbs-to-stone",
       "type": "related"
     },
     {
-      "label": "Mass & Weight Conversions Hub",
+      "label": "Grams to Pounds Calculator",
+      "href": "/weight-and-mass/grams-to-pounds",
+      "type": "related"
+    },
+    {
+      "label": "Ounces to Grams for Kitchen Weights",
+      "href": "/weight-and-mass/ounces-to-grams",
+      "type": "related"
+    },
+    {
+      "label": "All Weight & Mass Unit Converters",
       "href": "/weight-and-mass",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial Conversion Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
@@ -97,15 +165,15 @@
   "faqs": [
     {
       "question": "How many kilograms (kg) are in 1 pound (avoirdupois) (lb)?",
-      "answer": "There are 0.45359237 kilograms (kg) in 1 pound (avoirdupois) (lb), which rounds to 0.4536 kg for everyday calculations. Conversely, 1 kilogram equals 2.204623 pounds."
+      "answer": "There are exactly 0.45359237 kilograms (kg) in 1 pound (avoirdupois) (lb), which rounds to 0.4536 kg for everyday calculations. Conversely, 1 kilogram equals 2.204623 pounds."
     },
     {
       "question": "How do I convert pounds to kilograms (lb to kg)?",
-      "answer": "To convert pounds to kilograms, use the formula: kg = lb × 0.45359237. For example, converting 45 lb gives 20.4117 kg."
+      "answer": "To convert pounds to kilograms, multiply the pound value by 0.45359237 (kg = lb × 0.45359237). For example, 45 lb × 0.45359237 equals 20.4117 kg."
     },
     {
-      "question": "What is 45 pounds in kilograms?",
-      "answer": "45 pounds (lb) equals exactly 20.4117 kilograms (kg) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What is 153 pounds in kilograms?",
+      "answer": "153 pounds (lb) equals 69.39963 kilograms (kg)—about 69.4 kg—computed using the exact international factor 0.45359237."
     }
   ]
 }

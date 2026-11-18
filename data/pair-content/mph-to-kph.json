@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "mph-to-kph",
   "category": "speed",
   "categoryId": "speed",
@@ -7,47 +7,98 @@
   "toUnitId": "km_per_h",
   "fromSymbol": "mph",
   "toSymbol": "km/h",
-  "intro": "Professionals and everyday users convert miles per hour (mph) to kilometers per hour (km/h) when working across imperial and metric standards in automotive speedometer readings, aviation airspeed navigation, maritime chart plotting, and meteorology. One miles per hour equals 1.609344 kilometers per hour, while 1 kilometers per hour equals 0.621371 miles per hour. Whether you are verifying speed specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert miles to kilometers per hour instantly for vehicle speedometers, international highway limits, wind advisories, and track speeds. Under the International Yard and Pound Agreement, one mile per hour (mile to kilometer per hour) equals exactly 1.609344 kilometres per hour (km/h), based on 1 statute mile = 1.609344 km. Simply multiply your mph reading by 1.609344—or check a specific speed directly in the reference table below.",
+  "alsoWrittenAs": "miles per hour to kilometres per hour, mph to km/h, mph to kmh, mi/h to km/h, mph to km/hr",
   "commonValues": [
+    20,
+    25,
+    30,
+    37,
+    50,
+    70,
+    100,
+    120,
+    140,
+    300
+  ],
+  "tableValues": [
     5,
     10,
+    15,
+    20,
+    22,
     25,
+    30,
     35,
+    37,
+    38,
+    40,
+    45,
     50,
+    55,
     60,
+    65,
     70,
+    75,
     80,
+    85,
+    90,
+    95,
     100,
-    120
+    105,
+    110,
+    115,
+    120,
+    125,
+    130,
+    135,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200,
+    220,
+    240,
+    250,
+    260,
+    270,
+    280,
+    300,
+    320
   ],
+  "tableTitle": "Common MPH to KM/H Conversion Chart",
+  "tableSubtitle": "Exact speed values from 5 mph to 320 mph calculated with the mph to kmh formula (km/h = mph × 1.609344).",
+  "tableRoundingNote": "Computed with the exact International Statute Mile factor (1 mph = 1.609344 km/h). Values are displayed rounded to 5 significant digits (up to 4–5 decimal places where exact); use the calculator above for full floating-point output.",
   "workedExamples": [
     {
-      "title": "Standard Miles per Hour Benchmark (25 mph)",
-      "scenario": "Convert 25 miles per hour (mph) into kilometers per hour (km/h) for technical comparison and documentation.",
-      "inputValue": 25,
-      "outputValue": "40.2336 km/h",
-      "stepByStep": "25 mph × 1.609344 = 40.2336 km/h (rounds to 40.23 km/h)."
+      "title": "Urban Arterial Speed (37 mph)",
+      "scenario": "Convert 37 mph into kilometers per hour (km/h) to compare a regional road limit against a 60 km/h urban speed zone.",
+      "inputValue": 37,
+      "outputValue": "59.54573 km/h",
+      "stepByStep": "37 mph × 1.609344 = 59.545728 km/h (rounds to 59.55 km/h)."
     },
     {
-      "title": "Practical Mid-Range Conversion (60 mph)",
-      "scenario": "Convert 60 miles per hour (mph) into kilometers per hour (km/h) for technical comparison and documentation.",
-      "inputValue": 60,
-      "outputValue": "96.56064 km/h",
-      "stepByStep": "60 mph × 1.609344 = 96.56064 km/h (rounds to 96.56 km/h)."
-    },
-    {
-      "title": "Higher-Capacity Specification (100 mph)",
-      "scenario": "Convert 100 miles per hour (mph) into kilometers per hour (km/h) for technical comparison and documentation.",
+      "title": "Track & Speedometer Benchmark (100 mph)",
+      "scenario": "Convert 100 mph to km/h for cross-border motorsport regulations and vehicle gauge calibration.",
       "inputValue": 100,
       "outputValue": "160.9344 km/h",
-      "stepByStep": "100 mph × 1.609344 = 160.9344 km/h (rounds to 160.93 km/h)."
+      "stepByStep": "100 mph × 1.609344 = 160.9344 km/h exact (rounds to 160.93 km/h)."
+    },
+    {
+      "title": "High-Speed Rail & Expressway Rating (140 mph)",
+      "scenario": "Convert a 140 mph top operating speed into km/h for international transit specifications.",
+      "inputValue": 140,
+      "outputValue": "225.30816 km/h",
+      "stepByStep": "140 mph × 1.609344 = 225.30816 km/h exact (rounds to 225.31 km/h)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "title": "Statute Mile per Hour vs. Nautical Knots & Early Rounding Drift",
     "items": [
-      "The exact conversion factor from Miles per Hour to Kilometers per Hour is 1.609344, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
-      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+      "Road speedometers use the international statute mile (1 mph = 1.609344 km/h), whereas aviation and marine charts often measure speed in nautical miles per hour, or knots (1 knot = 1.852 km/h ≈ 1.15078 mph).",
+      "Using a rough 1.6× shortcut works for quick highway estimates (60 mph ≈ 96 km/h vs. 96.56 km/h exact), but technical datasheets and radar tolerances should always keep the full 1.609344 factor until final rounding."
     ]
   },
   "formula": {
@@ -63,48 +114,52 @@
       "type": "reverse"
     },
     {
-      "label": "Meters per Second to Kilometers per Hour (m/s to km/h)",
+      "label": "Convert Knots to Miles per Hour",
+      "href": "/speed/knots-to-mph",
+      "type": "related"
+    },
+    {
+      "label": "Knots to Kilometers per Hour Chart",
+      "href": "/speed/knots-to-kph",
+      "type": "related"
+    },
+    {
+      "label": "Meters per Second to km/h Calculator",
       "href": "/speed/meters-per-second-to-kph",
       "type": "related"
     },
     {
-      "label": "Kilometers per Hour to Meters per Second (km/h to m/s)",
-      "href": "/speed/kph-to-meters-per-second",
+      "label": "Miles per Hour to Feet per Second (ft/s)",
+      "href": "/speed/mph-to-fps",
       "type": "related"
     },
     {
-      "label": "Meters per Second to Miles per Hour (m/s to mph)",
-      "href": "/speed/meters-per-second-to-mph",
-      "type": "related"
-    },
-    {
-      "label": "Miles per Hour to Meters per Second (mph to m/s)",
-      "href": "/speed/mph-to-meters-per-second",
-      "type": "related"
-    },
-    {
-      "label": "Speed Conversions Hub",
+      "label": "All Speed Unit Converters",
       "href": "/speed",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial Speed & Distance Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many kilometers per hour (km/h) are in 1 miles per hour (mph)?",
-      "answer": "There are 1.609344 kilometers per hour (km/h) in 1 miles per hour (mph), which rounds to 1.6093 km/h for everyday calculations. Conversely, 1 kilometers per hour equals 0.621371 miles per hour."
+      "question": "What is 1 mph in km/h (miles per hour to km)?",
+      "answer": "1 mile per hour (mph) equals exactly 1.609344 kilometers per hour (km/h). Although 'km' alone measures distance and 'mph' measures speed, 'mph in km' in everyday driving refers to traveling 1.609344 kilometers in one hour."
     },
     {
-      "question": "How do I convert miles per hour to kilometers per hour (mph to km/h)?",
-      "answer": "To convert miles per hour to kilometers per hour, use the formula: km/h = mph × 1.609344. For example, converting 50 mph gives 80.4672 km/h."
+      "question": "What is the mph to kmh formula?",
+      "answer": "Multiply miles per hour by 1.609344: km/h = mph × 1.609344. For quick mental estimates, multiply mph by 1.6 (for example, 50 mph × 1.6 = 80 km/h, compared with the exact 80.4672 km/h)."
     },
     {
-      "question": "What is 50 miles per hour in kilometers per hour?",
-      "answer": "50 miles per hour (mph) equals exactly 80.4672 kilometers per hour (km/h) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What is 120 mph in km/h?",
+      "answer": "120 mph equals exactly 193.12128 km/h (about 193.12 km/h), calculated as 120 × 1.609344."
+    },
+    {
+      "question": "What is 30 mph in km/h?",
+      "answer": "30 mph equals exactly 48.28032 km/h, which corresponds closely to the 50 km/h urban speed limit used in metric countries."
     }
   ]
 }

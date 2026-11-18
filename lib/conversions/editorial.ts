@@ -845,6 +845,8 @@ export function generateScaleAwareTableRows(
         100000000,
         254000000,
       ];
+    } else if (commonValues && commonValues.length > 14) {
+      steps = Array.from(new Set(commonValues)).sort((a, b) => a - b);
     } else if (commonValues && commonValues.length >= 8) {
       const merged = new Set<number>([
         ...commonValues,

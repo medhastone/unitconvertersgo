@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "grams-to-pounds",
   "category": "weight-and-mass",
   "categoryId": "mass",
@@ -7,104 +7,159 @@
   "toUnitId": "pound",
   "fromSymbol": "g",
   "toSymbol": "lb",
-  "intro": "Professionals and everyday users convert grams (g) to pounds (lb) when working across metric and imperial standards in engineering specifications, international trade documentation, and technical measurements. One gram equals 0.002205 pounds, while 1 pound (avoirdupois) equals 453.59237 grams. Whether you are verifying mass & weight specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Use this convert grams into pounds calculator to convert g to lb accurately for recipes, meat portions, nutrition tracking, and postal parcels. Under the International Yard and Pound Agreement, 1 avoirdupois pound equals exactly 453.59237 grams, so dividing grams by 453.59237 (or multiplying by 0.00220462) returns the exact weight in pounds. Check common benchmarks—including 113.4 g for a quarter pound—in the table below.",
+  "alsoWrittenAs": "g to lbs, gram to pound, grams into pounds, g into lb, metric grams to lb",
   "commonValues": [
     5,
+    28.35,
+    113.4,
+    140,
+    250,
+    380,
+    453.59,
+    560,
+    1000,
+    3300
+  ],
+  "tableValues": [
+    1,
+    5,
     10,
+    25,
     28.35,
     50,
+    81,
     100,
+    113.4,
+    140,
+    158,
+    171,
+    184,
     200,
+    226.8,
     250,
-    453.6,
+    300,
+    350,
+    370,
+    380,
+    400,
+    453.59,
     500,
-    1000
+    560,
+    575,
+    600,
+    750,
+    875,
+    1000,
+    1040,
+    1250,
+    1500,
+    2000,
+    2500,
+    2780,
+    2900,
+    3000,
+    3100,
+    3300,
+    3450,
+    3600,
+    4000,
+    4500,
+    4700,
+    5000
   ],
+  "tableTitle": "Grams to Pounds Conversion Chart (1 g to 5,000 g)",
+  "tableSubtitle": "Pre-computed gram-to-pound equivalents including quarter-pound (113.4 g), 1-lb (453.59 g), and parcel weights.",
+  "tableRoundingNote": "Computed using the exact avoirdupois relationship 1 lb = 453.59237 g (lb = g ÷ 453.59237). Table outputs are rounded to 5 significant digits (up to 5 decimal places); use the calculator above for full precision.",
   "workedExamples": [
     {
-      "title": "Standard Gram Benchmark (28.35 g)",
-      "scenario": "Convert 28.35 grams (g) into pounds (lb) for technical comparison and documentation.",
-      "inputValue": 28.35,
-      "outputValue": "0.062501 lb",
-      "stepByStep": "28.35 g × 0.002205 = 0.062501 lb (rounds to 0.06 lb)."
+      "title": "Baking Ingredient Conversion (140 g)",
+      "scenario": "Convert 140 grams of flour or butter into pounds for commercial kitchen batching.",
+      "inputValue": 140,
+      "outputValue": "0.30865 lb",
+      "stepByStep": "140 g ÷ 453.59237 = 0.30864717 lb (rounds to 0.30865 lb, about 4.94 oz)."
     },
     {
-      "title": "Practical Mid-Range Conversion (200 g)",
-      "scenario": "Convert 200 grams (g) into pounds (lb) for technical comparison and documentation.",
-      "inputValue": 200,
-      "outputValue": "0.440925 lb",
-      "stepByStep": "200 g × 0.002205 = 0.440925 lb (rounds to 0.44 lb)."
+      "title": "Meat & Dough Weight (560 g)",
+      "scenario": "Convert a 560-gram cut of meat or bread loaf into pounds.",
+      "inputValue": 560,
+      "outputValue": "1.23459 lb",
+      "stepByStep": "560 g ÷ 453.59237 = 1.23458867 lb (rounds to 1.23459 lb, about 1 lb 3.75 oz)."
     },
     {
-      "title": "Higher-Capacity Specification (500 g)",
-      "scenario": "Convert 500 grams (g) into pounds (lb) for technical comparison and documentation.",
-      "inputValue": 500,
-      "outputValue": "1.102311 lb",
-      "stepByStep": "500 g × 0.002205 = 1.102311 lb (rounds to 1.1 lb)."
+      "title": "Parcel & Infant Weight Benchmark (3,300 g)",
+      "scenario": "Convert 3,300 grams (3.3 kg) into pounds for shipping labels or birth-weight records.",
+      "inputValue": 3300,
+      "outputValue": "7.27525 lb",
+      "stepByStep": "3300 g ÷ 453.59237 = 7.27525465 lb (rounds to 7.27525 lb, about 7 lb 4.4 oz)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "title": "Exact 453.59237 g Divisor vs. Rounding & 'gr' Symbol",
     "items": [
-      "The exact conversion factor from Gram to Pound (Avoirdupois) is 0.00220462, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
-      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+      "Using 454 g per pound instead of the exact 453.59237 g introduces roughly 0.09% error—small for home cooking, but noticeable across bulk inventory or laboratory tare weights.",
+      "In metrology and pharmacy, 'g' denotes grams while 'gr' denotes grains (1 grain = 64.79891 mg). Always check whether a datasheet means grams (g) before converting to pounds."
     ]
   },
   "formula": {
-    "equation": "lb = g × 0.00220462",
+    "equation": "lb = g ÷ 453.59237",
     "exactFactor": "0.00220462",
     "roundedFactor": "0.0022",
     "inverseFactor": "453.59237"
   },
   "internalLinks": [
     {
-      "label": "Pounds to Grams (lb to g)",
+      "label": "Pounds to Grams Converter (lb to g)",
       "href": "/weight-and-mass/pounds-to-grams",
       "type": "reverse"
     },
     {
-      "label": "Kilograms to Pounds (kg to lb)",
-      "href": "/weight-and-mass/kg-to-lbs",
+      "label": "Ounces to Pounds Reference Chart",
+      "href": "/weight-and-mass/ounces-to-pounds",
       "type": "related"
     },
     {
-      "label": "Pounds to Kilograms (lb to kg)",
-      "href": "/weight-and-mass/lbs-to-kg",
-      "type": "related"
-    },
-    {
-      "label": "Grams to Ounces (g to oz)",
+      "label": "Convert Grams to Ounces (g to oz)",
       "href": "/weight-and-mass/grams-to-ounces",
       "type": "related"
     },
     {
-      "label": "Ounces to Grams (oz to g)",
-      "href": "/weight-and-mass/ounces-to-grams",
+      "label": "Kilograms to Pounds Weight Table",
+      "href": "/weight-and-mass/kg-to-lbs",
       "type": "related"
     },
     {
-      "label": "Mass & Weight Conversions Hub",
+      "label": "Kilograms to Grams Calculator (kg to g)",
+      "href": "/weight-and-mass/kg-to-grams",
+      "type": "related"
+    },
+    {
+      "label": "All Weight & Mass Converters",
       "href": "/weight-and-mass",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial Weight Conversion Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many pounds (lb) are in 1 gram (g)?",
-      "answer": "There are 0.00220462 pounds (lb) in 1 gram (g), which rounds to 0.0022 lb for everyday calculations. Conversely, 1 pound (avoirdupois) equals 453.59237 grams."
+      "question": "How many grams are in a quarter pound?",
+      "answer": "There are 113.39809 grams (commonly rounded to 113.4 g) in a quarter pound (0.25 lb, or 4 oz), calculated as 453.59237 ÷ 4."
+    },
+    {
+      "question": "How many grams are in a pound of meat?",
+      "answer": "One pound equals exactly 453.59237 grams (roughly 454 g), regardless of whether you are weighing raw meat, poultry, flour, or parcels."
     },
     {
       "question": "How do I convert grams to pounds (g to lb)?",
-      "answer": "To convert grams to pounds, use the formula: lb = g × 0.00220462. For example, converting 100 g gives 0.2205 lb."
+      "answer": "Divide the weight in grams by 453.59237, or multiply by 0.00220462. For example, 380 g ÷ 453.59237 = 0.83776 lb."
     },
     {
-      "question": "What is 100 grams in pounds?",
-      "answer": "100 grams (g) equals exactly 0.2205 pounds (lb) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "How many pounds (lb) are in 1 gram (g)?",
+      "answer": "One gram equals 0.00220462 pounds (0.002205 lb rounded to 6 decimal places). Conversely, 1 pound equals 453.59237 grams."
     }
   ]
 }
