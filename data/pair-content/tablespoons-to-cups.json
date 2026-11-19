@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "tablespoons-to-cups",
   "category": "volume",
   "categoryId": "volume",
@@ -7,47 +7,85 @@
   "toUnitId": "us_cup",
   "fromSymbol": "tbsp",
   "toSymbol": "cup",
-  "intro": "Professionals and everyday users convert tablespoons (us) (tbsp) to cups (us) (cup) when working across us_customary and us_customary standards in culinary recipe scaling, beverage bottling, laboratory reagent preparation, and fluid tank capacity sizing. One tablespoon (us) equals 0.0625 cups (us), while 1 cup (us customary) equals 16 tablespoons (us). Whether you are verifying volume & liquid specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert US tablespoons (tbsp) to cups accurately for baking recipes, butter sticks, spice blends, and coffee brewing. Under the US Customary kitchen standard, 1 cup equals exactly 16 tablespoons, so 1 tablespoon equals 0.0625 cups (1/16 cup)—simply divide tablespoons by 16. Use the calculator above or check exact fractions and decimals from 0.5 tbsp to 64 tbsp below.",
+  "alsoWrittenAs": "tbsp to cup, tbsp to cups, T to c, US tablespoons to US cups",
   "commonValues": [
+    0.5,
+    1,
+    2,
+    4,
+    6,
+    8,
+    11,
+    16,
+    18,
+    20,
+    32,
+    48
+  ],
+  "tableValues": [
+    0.5,
     1,
     2,
     3,
     4,
+    5,
     6,
+    7,
     8,
+    9,
+    10,
+    11,
     12,
+    14,
+    15,
     16,
+    18,
+    20,
     24,
-    32
+    28,
+    32,
+    36,
+    40,
+    44,
+    46,
+    48,
+    52,
+    56,
+    60,
+    64
   ],
+  "tableTitle": "Tablespoons to Cups Conversion Chart (0.5 tbsp to 64 tbsp)",
+  "tableSubtitle": "Exact US kitchen equivalents computed with cup = tbsp ÷ 16 (16 tbsp = 1 US cup).",
+  "tableRoundingNote": "Computed from the exact US Customary ratio 16 tbsp = 1 US cup (1 tbsp = 0.0625 cup = 14.78676 mL). All whole-tablespoon inputs produce exact 4-decimal or shorter fractions with zero rounding error.",
   "workedExamples": [
     {
-      "title": "Standard Tablespoon (US) Benchmark (3 tbsp)",
-      "scenario": "Convert 3 tablespoons (us) (tbsp) into cups (us) (cup) for technical comparison and documentation.",
-      "inputValue": 3,
-      "outputValue": "0.1875 cup",
-      "stepByStep": "3 tbsp × 0.0625 = 0.1875 cup (rounds to 0.19 cup)."
+      "title": "Baking Oil & Syrup Measure (6 tbsp)",
+      "scenario": "Convert 6 tablespoons into cups for liquid baking ingredients.",
+      "inputValue": 6,
+      "outputValue": "0.375 cup",
+      "stepByStep": "6 tbsp ÷ 16 = 0.375 cup exact (3/8 cup, or 1/4 cup + 2 tbsp)."
     },
     {
-      "title": "Practical Mid-Range Conversion (8 tbsp)",
-      "scenario": "Convert 8 tablespoons (us) (tbsp) into cups (us) (cup) for technical comparison and documentation.",
-      "inputValue": 8,
-      "outputValue": "0.5 cup",
-      "stepByStep": "8 tbsp × 0.0625 = 0.5 cup (rounds to 0.5 cup)."
+      "title": "Scaled Sauce or Butter Measure (11 tbsp)",
+      "scenario": "Convert 11 tablespoons into cups when halving or scaling a recipe.",
+      "inputValue": 11,
+      "outputValue": "0.6875 cup",
+      "stepByStep": "11 tbsp ÷ 16 = 0.6875 cup exact (11/16 cup, just under 3/4 cup)."
     },
     {
-      "title": "Higher-Capacity Specification (24 tbsp)",
-      "scenario": "Convert 24 tablespoons (us) (tbsp) into cups (us) (cup) for technical comparison and documentation.",
-      "inputValue": 24,
-      "outputValue": "1.5 cup",
-      "stepByStep": "24 tbsp × 0.0625 = 1.5 cup (rounds to 1.5 cup)."
+      "title": "Large Batch Dry or Liquid Measure (18 tbsp)",
+      "scenario": "Convert 18 tablespoons into cups for batch cooking.",
+      "inputValue": 18,
+      "outputValue": "1.125 cup",
+      "stepByStep": "18 tbsp ÷ 16 = 1.125 cup exact (1 1/8 cups, or 1 cup + 2 tbsp)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "US Customary vs. British Imperial Liquid Volume Trap",
+    "title": "US Customary Cup (16 × 14.79 mL) vs. Australian Metric Cup (250 mL)",
     "items": [
-      "US Customary and UK Imperial liquid units share identical names but have different physical volumes: 1 US Gallon is 3.78541 L (128 US fl oz), whereas 1 UK Imperial Gallon is 4.54609 L (160 Imp fl oz) — a 20.1% difference.",
-      "Similarly, 1 US Pint contains 16 US fluid ounces (473.18 mL), while 1 British Imperial Pint contains 20 Imperial fluid ounces (568.26 mL). Always verify whether your recipe, pump datasheet, or vehicle spec sheet uses US or UK standards."
+      "One US Customary cup equals 16 US tablespoons (236.59 mL), and US FDA nutrition labels round 1 cup to 240 mL (16 × 15 mL tbsp). Either way, the ratio remains 16 tbsp per cup.",
+      "Australian metric recipes use a 250 mL cup and a 20 mL tablespoon (only 12.5 tablespoons per cup), while standard UK/Canadian metric spoons are 15 mL (~16.67 tbsp per 250 mL metric cup)."
     ]
   },
   "formula": {
@@ -58,53 +96,57 @@
   },
   "internalLinks": [
     {
-      "label": "Cups (US) to Tablespoons (US) (cup to tbsp)",
+      "label": "Cups to Tablespoons Converter (cup to tbsp)",
       "href": "/volume/cups-to-tablespoons",
       "type": "reverse"
     },
     {
-      "label": "Liters to Gallons (US) (L to gal (US))",
-      "href": "/volume/liters-to-gallons",
+      "label": "Tablespoons to Teaspoons Chart (tbsp to tsp)",
+      "href": "/volume/tablespoons-to-teaspoons",
       "type": "related"
     },
     {
-      "label": "Gallons (US) to Liters (gal (US) to L)",
-      "href": "/volume/gallons-to-liters",
+      "label": "Convert Teaspoons to Tablespoons (tsp to tbsp)",
+      "href": "/volume/teaspoons-to-tablespoons",
       "type": "related"
     },
     {
-      "label": "Milliliters to Fluid Ounces (US) (mL to fl oz)",
-      "href": "/volume/ml-to-fluid-ounces",
+      "label": "Tablespoons to Milliliters (tbsp to mL)",
+      "href": "/volume/tablespoons-to-ml",
       "type": "related"
     },
     {
-      "label": "Fluid Ounces (US) to Milliliters (fl oz to mL)",
-      "href": "/volume/fluid-ounces-to-ml",
+      "label": "Cups to Milliliters Reference (cup to mL)",
+      "href": "/volume/cups-to-ml",
       "type": "related"
     },
     {
-      "label": "Volume & Liquid Conversions Hub",
+      "label": "All Volume & Kitchen Converters",
       "href": "/volume",
       "type": "hub"
     },
     {
-      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "label": "US Customary vs. British Imperial Kitchen Units Guide",
       "href": "/guides/us-vs-imperial-fluid-ounces",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many cups (us) (cup) are in 1 tablespoon (us) (tbsp)?",
-      "answer": "There are 0.0625 cups (us) (cup) in 1 tablespoon (us) (tbsp), which rounds to 0.0625 cup for everyday calculations. Conversely, 1 cup (us customary) equals 16 tablespoons (us)."
+      "question": "How many cups are in 1 tablespoon?",
+      "answer": "There are 0.0625 US cups (1/16 cup) in 1 US tablespoon. Conversely, 1 US cup equals exactly 16 tablespoons."
     },
     {
-      "question": "How do I convert tablespoons (us) to cups (us) (tbsp to cup)?",
-      "answer": "To convert tablespoons (us) to cups (us), use the formula: cup = tbsp × 0.0625. For example, converting 6 tbsp gives 0.375 cup."
+      "question": "How many tablespoons in a cup of coffee?",
+      "answer": "By liquid volume, 1 US cup holds 16 tablespoons (and a classic 6 fl oz coffee 'cup' marking on drip brewers equals 12 tablespoons). For coffee grounds, standard brewing guides use 1 to 2 tablespoons per 6 fl oz cup (about 2 tbsp per 8 fl oz US cup)."
     },
     {
-      "question": "What is 6 tablespoons (us) in cups (us)?",
-      "answer": "6 tablespoons (us) (tbsp) equals exactly 0.375 cups (us) (cup) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "How many cups is 8 tablespoons?",
+      "answer": "8 US tablespoons equals exactly 0.5 cups (1/2 cup, or 1 standard US stick of butter)."
+    },
+    {
+      "question": "What is 18 tablespoons in cups?",
+      "answer": "18 US tablespoons equals exactly 1.125 cups (1 and 1/8 cups, or 1 cup plus 2 tablespoons)."
     }
   ]
 }

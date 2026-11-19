@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "hours-to-days",
   "category": "time",
   "categoryId": "time",
@@ -7,100 +7,153 @@
   "toUnitId": "day",
   "fromSymbol": "hr",
   "toSymbol": "d",
-  "intro": "Professionals and everyday users convert hours (hr) to days (d) when working across other and other standards in project scheduling, payroll timecards, scientific interval logging, and server uptime SLAs. One hour equals 0.041667 days, while 1 day equals 24 hours. Whether you are verifying time specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert hours (hr) to civil days (d) accurately for shift schedules, equipment run-hour meters (2,000–16,000 hr), flight timers, and server uptime logs. Under the international time standard, 1 civil day equals exactly 24 hours (86,400 seconds), so 1 hour equals 0.04166667 days—simply divide total hours by 24. Scan common hourly totals from 8 hr to 16,000 hr below.",
+  "alsoWrittenAs": "hr to d, hrs to days, h to d, hour to day",
   "commonValues": [
-    1,
-    2,
-    4,
-    6,
+    8,
+    24,
+    32,
+    56,
+    160,
+    200,
+    320,
+    800,
+    2000,
+    3500,
+    8000,
+    16000
+  ],
+  "tableValues": [
     8,
     12,
-    16,
     24,
-    36,
+    32,
+    40,
+    46,
     48,
+    51,
+    53,
+    56,
+    59,
     72,
-    168
+    82,
+    89,
+    96,
+    100,
+    120,
+    160,
+    162,
+    168,
+    200,
+    240,
+    320,
+    335,
+    500,
+    720,
+    800,
+    1000,
+    2000,
+    3000,
+    3500,
+    5000,
+    8000,
+    8760,
+    9000,
+    10000,
+    16000
   ],
+  "tableTitle": "Hours to Days Conversion Chart (8 hr to 16,000 hr)",
+  "tableSubtitle": "24-hour civil day equivalents computed with d = hr ÷ 24 (1 hr = 0.04166667 d).",
+  "tableRoundingNote": "Computed from the exact civil day definition 1 d = 24 hr (86,400 s). Whole-day multiples like 24, 9,000, and 162 are exact fractions; repeating decimals are rounded to 5 decimal places.",
   "workedExamples": [
     {
-      "title": "Standard Hour Benchmark (4 hr)",
-      "scenario": "Convert 4 hours (hr) into days (d) for technical comparison and documentation.",
-      "inputValue": 4,
-      "outputValue": "0.166667 d",
-      "stepByStep": "4 hr × 0.041667 = 0.166667 d (rounds to 0.17 d)."
+      "title": "Equipment Service Interval (200 hr)",
+      "scenario": "Convert a 200-hour generator or engine maintenance interval into continuous days.",
+      "inputValue": 200,
+      "outputValue": "8.33333 d",
+      "stepByStep": "200 hr ÷ 24 = 8.33333 days (8 full days and 8 hours)."
     },
     {
-      "title": "Practical Mid-Range Conversion (12 hr)",
-      "scenario": "Convert 12 hours (hr) into days (d) for technical comparison and documentation.",
-      "inputValue": 12,
-      "outputValue": "0.5 d",
-      "stepByStep": "12 hr × 0.041667 = 0.5 d (rounds to 0.5 d)."
+      "title": "Annual Full-Time Hours Benchmark (2,000 hr)",
+      "scenario": "Convert 2,000 hours into continuous 24-hour civil days.",
+      "inputValue": 2000,
+      "outputValue": "83.33333 d",
+      "stepByStep": "2,000 hr ÷ 24 = 83.33333 days (83 days and 8 hours)."
     },
     {
-      "title": "Higher-Capacity Specification (36 hr)",
-      "scenario": "Convert 36 hours (hr) into days (d) for technical comparison and documentation.",
-      "inputValue": 36,
-      "outputValue": "1.5 d",
-      "stepByStep": "36 hr × 0.041667 = 1.5 d (rounds to 1.5 d)."
+      "title": "Long-Run Machine & LED Rating (8,000 hr)",
+      "scenario": "Convert 8,000 hours of continuous operation into calendar days.",
+      "inputValue": 8000,
+      "outputValue": "333.33333 d",
+      "stepByStep": "8,000 hr ÷ 24 = 333.33333 days (333 days and 8 hours)."
     }
   ],
-  "mistakesAndEdgeCases": null,
+  "mistakesAndEdgeCases": {
+    "title": "24-Hour Civil Days vs. 8-Hour Business Workdays",
+    "items": [
+      "This converter computes continuous 24-hour calendar days (hr ÷ 24). For payroll or project scheduling based on 8-hour workdays, divide hours by 8 instead (for example, 2,000 hours = 83.33 calendar days, or 250 business workdays).",
+      "For solar vs. sidereal astronomy, a sidereal day is slightly shorter at 23 hours 56 minutes 4.09 seconds (23.9345 hours)."
+    ]
+  },
   "formula": {
-    "equation": "d = hr × 0.04166667",
+    "equation": "d = hr ÷ 24",
     "exactFactor": "0.04166667",
     "roundedFactor": "0.0417",
     "inverseFactor": "24"
   },
   "internalLinks": [
     {
-      "label": "Days to Hours (d to hr)",
+      "label": "Days to Hours Converter (d to hr)",
       "href": "/time/days-to-hours",
       "type": "reverse"
     },
     {
-      "label": "Hours to Minutes (hr to min)",
+      "label": "Hours to Minutes Chart (hr to min)",
       "href": "/time/hours-to-minutes",
       "type": "related"
     },
     {
-      "label": "Minutes to Hours (min to hr)",
+      "label": "Convert Minutes to Hours (min to hr)",
       "href": "/time/minutes-to-hours",
       "type": "related"
     },
     {
-      "label": "Minutes to Seconds (min to s)",
-      "href": "/time/minutes-to-seconds",
+      "label": "Days to Weeks Calculator (d to wk)",
+      "href": "/time/days-to-weeks",
       "type": "related"
     },
     {
-      "label": "Seconds to Minutes (s to min)",
-      "href": "/time/seconds-to-minutes",
+      "label": "Days to Years Reference (d to yr)",
+      "href": "/time/days-to-years",
       "type": "related"
     },
     {
-      "label": "Time Conversions Hub",
+      "label": "All Time Unit Converters",
       "href": "/time",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "SI & International Time Standards Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many days (d) are in 1 hour (hr)?",
-      "answer": "There are 0.04166667 days (d) in 1 hour (hr), which rounds to 0.0417 d for everyday calculations. Conversely, 1 day equals 24 hours."
+      "question": "How many days are in 1 hour?",
+      "answer": "1 hour equals 1/24 of a civil day, or 0.04167 days (0.04166667 d). Conversely, 1 full day equals exactly 24 hours."
     },
     {
-      "question": "How do I convert hours to days (hr to d)?",
-      "answer": "To convert hours to days, use the formula: d = hr × 0.04166667. For example, converting 8 hr gives 0.3333 d."
+      "question": "How do I convert hours to days?",
+      "answer": "Divide the total number of hours by 24: d = hr ÷ 24. For example, 200 hours ÷ 24 = 8.33333 days (8 days and 8 hours)."
     },
     {
-      "question": "What is 8 hours in days?",
-      "answer": "8 hours (hr) equals exactly 0.3333 days (d) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What is 2,000 hours in days?",
+      "answer": "2,000 hours equals 83.33333 continuous calendar days (83 days and 8 hours). At an 8-hour shift, 2,000 hours equals 250 business workdays."
+    },
+    {
+      "question": "What is 8,000 hours in days?",
+      "answer": "8,000 hours equals 333.33333 continuous days (333 days and 8 hours, or about 11 months of non-stop equipment runtime)."
     }
   ]
 }

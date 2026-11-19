@@ -1,0 +1,151 @@
+{
+  "status": "reviewed",
+  "slug": "grains-to-grams",
+  "category": "weight-and-mass",
+  "categoryId": "mass",
+  "fromUnitId": "grain",
+  "toUnitId": "gram",
+  "fromSymbol": "gr",
+  "toSymbol": "g",
+  "intro": "Convert grains (gr) into grams (g, or grammes) accurately for ammunition reloading, archery arrow weights, precious metals, and apothecary scales. Based on the 1959 International Yard and Pound Agreement, each grain to gram conversion uses the exact ratio 1 grain = 0.06479891 grams (1/7,000 pound), while 1 gram equals 15.43236 grains. Check standard grains grams bullet and arrow weights from 1 gr to 1,000 gr below.",
+  "alsoWrittenAs": "gr to g, gr to gram, gr to gm, grains to grammes, grain to gram",
+  "commonValues": [
+    1,
+    15,
+    50,
+    55,
+    100,
+    115,
+    124,
+    147,
+    150,
+    230,
+    500,
+    1000
+  ],
+  "tableValues": [
+    1,
+    2,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    40,
+    50,
+    55,
+    62,
+    75,
+    100,
+    115,
+    124,
+    147,
+    150,
+    154.32,
+    168,
+    175,
+    200,
+    230,
+    250,
+    300,
+    400,
+    500,
+    750,
+    1000
+  ],
+  "tableTitle": "Grains to Grams Conversion Chart (1 gr to 1,000 gr)",
+  "tableSubtitle": "Precision mass equivalents computed with g = gr × 0.06479891 (1 gr = 64.79891 mg exact).",
+  "tableRoundingNote": "Computed from the exact 1959 international grain definition 1 gr = 0.06479891 g (64.79891 mg). Table outputs are rounded to 5 decimal places.",
+  "workedExamples": [
+    {
+      "title": "Rifle Bullet Weight (55 gr)",
+      "scenario": "Convert a standard 55-grain .223/5.56 projectile weight into grams.",
+      "inputValue": 55,
+      "outputValue": "3.56394 g",
+      "stepByStep": "55 gr × 0.06479891 = 3.56394 g (rounds to 3.56 g)."
+    },
+    {
+      "title": "Archery & Hunting Bullet Benchmark (150 gr)",
+      "scenario": "Convert 150 grains into grams for broadhead or rifle bullet specifications.",
+      "inputValue": 150,
+      "outputValue": "9.71984 g",
+      "stepByStep": "150 gr × 0.06479891 = 9.71984 g (rounds to 9.72 g)."
+    },
+    {
+      "title": "Heavy Pistol Projectile (230 gr)",
+      "scenario": "Convert a 230-grain .45 ACP bullet weight into metric grams.",
+      "inputValue": 230,
+      "outputValue": "14.90375 g",
+      "stepByStep": "230 gr × 0.06479891 = 14.90375 g (rounds to 14.90 g)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Grains (gr) vs. Grams (g) & Troy vs. Avoirdupois Consistency",
+    "items": [
+      "Never mix up the abbreviation 'gr' (grain = 0.0648 g) with 'g' (gram = 15.43236 gr): treating grains as grams in powder reloading or pharmaceutical dosing produces a 15.4× error.",
+      "The international grain (64.79891 mg) is identical across avoirdupois, troy, and apothecaries' systems—only the number of grains per pound differs (7,000 gr per avoirdupois lb vs. 5,760 gr per troy lb)."
+    ]
+  },
+  "formula": {
+    "equation": "g = gr × 0.06479891",
+    "exactFactor": "0.06479891",
+    "roundedFactor": "0.0648",
+    "inverseFactor": "15.432358"
+  },
+  "internalLinks": [
+    {
+      "label": "Grams to Grains Converter (g to gr)",
+      "href": "/weight-and-mass/grams-to-grains",
+      "type": "reverse"
+    },
+    {
+      "label": "Milligrams to Grams Chart (mg to g)",
+      "href": "/weight-and-mass/mg-to-grams",
+      "type": "related"
+    },
+    {
+      "label": "Convert Grams to Milligrams (g to mg)",
+      "href": "/weight-and-mass/grams-to-mg",
+      "type": "related"
+    },
+    {
+      "label": "Carats to Grams Gem Calculator (ct to g)",
+      "href": "/weight-and-mass/carats-to-grams",
+      "type": "related"
+    },
+    {
+      "label": "Troy Ounces to Grams Bullion Chart (oz t to g)",
+      "href": "/weight-and-mass/troy-ounces-to-grams",
+      "type": "related"
+    },
+    {
+      "label": "All Weight & Mass Converters",
+      "href": "/weight-and-mass",
+      "type": "hub"
+    },
+    {
+      "label": "Avoirdupois vs. Troy & Grain Weight Guide",
+      "href": "/guides/avoirdupois-vs-troy-weight",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many grams are in 1 grain?",
+      "answer": "There are 0.06479891 grams (about 0.0648 g or 64.8 mg) in 1 grain. Conversely, 1 gram equals 15.43236 grains."
+    },
+    {
+      "question": "How do I convert grains to grams?",
+      "answer": "Multiply the weight in grains by 0.06479891 (or divide by 15.4323584): g = gr × 0.06479891. For example, 100 grains × 0.06479891 = 6.47989 grams."
+    },
+    {
+      "question": "What is 150 grains in grams?",
+      "answer": "150 grains equals 9.71984 grams (rounds to 9.72 g)."
+    },
+    {
+      "question": "Is a grain the same in troy and avoirdupois weight?",
+      "answer": "Yes—under the international standard, 1 grain is identical in both systems at 0.06479891 grams (64.79891 mg). An avoirdupois pound has 7,000 grains, while a troy pound has 5,760 grains."
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "tb-to-gb",
   "category": "data-storage",
   "categoryId": "digital_storage",
@@ -7,45 +7,80 @@
   "toUnitId": "gigabyte",
   "fromSymbol": "TB",
   "toSymbol": "GB",
-  "intro": "Professionals and everyday users convert terabytes (TB) to gigabytes (GB) when working across metric and metric standards in engineering specifications, international trade documentation, and technical measurements. One terabyte (decimal) equals 1,000 gigabytes, while 1 gigabyte (decimal) equals 0.001 terabytes. Whether you are verifying digital storage specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert terabytes (TB) into gigabytes (GB) accurately for external hard drives, NAS storage pools, SSD upgrades, and cloud backup plans. Under the SI decimal standard used by drive makers, there are 1,000 gigabytes in 1 terabyte—to turn any TB to gigabyte capacity, multiply terabytes by 1,000. Compare decimal capacity against binary OS reporting and scan sizes from 0.5 TB to 500 TB below.",
+  "alsoWrittenAs": "terabyte to gigabyte, TB into GB, terabytes into GB, decimal TB to GB",
   "commonValues": [
+    0.5,
     1,
     2,
     4,
     8,
+    10,
     16,
     32,
     64,
-    128,
-    256,
-    512,
-    1000,
-    1024
+    100,
+    250,
+    500
   ],
+  "tableValues": [
+    0.5,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    10,
+    12,
+    16,
+    20,
+    24,
+    32,
+    40,
+    50,
+    64,
+    100,
+    128,
+    200,
+    250,
+    256,
+    500
+  ],
+  "tableTitle": "Terabytes to Gigabytes Conversion Chart (0.5 TB to 500 TB)",
+  "tableSubtitle": "Instant TB to GB calculator results computed with GB = TB × 1,000 (1 TB = 1,000 GB decimal).",
+  "tableRoundingNote": "Computed from the exact SI decimal prefix definition 1 TB = 1,000 GB (10¹² bytes). All decimal results are exact with zero rounding error; in binary IEC units, 1 TiB equals 1,024 GiB.",
   "workedExamples": [
     {
-      "title": "Standard Terabyte (Decimal) Benchmark (4 TB)",
-      "scenario": "Convert 4 terabytes (TB) into gigabytes (GB) for technical comparison and documentation.",
-      "inputValue": 4,
-      "outputValue": "4,000 GB",
-      "stepByStep": "4 TB × 1,000 = 4,000 GB (rounds to 4,000 GB)."
+      "title": "Standard 1 TB Drive & Cloud Plan (1 TB)",
+      "scenario": "Convert 1 terabyte of drive or cloud capacity into gigabytes.",
+      "inputValue": 1,
+      "outputValue": "1,000 GB",
+      "stepByStep": "1 TB × 1,000 = 1,000 GB exact (or ~931.32 GiB in binary Windows units)."
     },
     {
-      "title": "Practical Mid-Range Conversion (32 TB)",
-      "scenario": "Convert 32 terabytes (TB) into gigabytes (GB) for technical comparison and documentation.",
-      "inputValue": 32,
-      "outputValue": "32,000 GB",
-      "stepByStep": "32 TB × 1,000 = 32,000 GB (rounds to 32,000 GB)."
+      "title": "Desktop & NAS Hard Drive (8 TB)",
+      "scenario": "Convert an 8-terabyte RAID drive into gigabytes for backup partitioning.",
+      "inputValue": 8,
+      "outputValue": "8,000 GB",
+      "stepByStep": "8 TB × 1,000 = 8,000 GB exact."
     },
     {
-      "title": "Higher-Capacity Specification (256 TB)",
-      "scenario": "Convert 256 terabytes (TB) into gigabytes (GB) for technical comparison and documentation.",
-      "inputValue": 256,
-      "outputValue": "256,000 GB",
-      "stepByStep": "256 TB × 1,000 = 256,000 GB (rounds to 256,000 GB)."
+      "title": "Enterprise Server Array (500 TB)",
+      "scenario": "Convert 500 terabytes of archive storage into gigabytes.",
+      "inputValue": 500,
+      "outputValue": "500,000 GB",
+      "stepByStep": "500 TB × 1,000 = 500,000 GB exact."
     }
   ],
-  "mistakesAndEdgeCases": null,
+  "mistakesAndEdgeCases": {
+    "title": "Decimal TB (1,000 GB) vs. Binary TiB (1,024 GiB) & Power Units (TW to GW)",
+    "items": [
+      "Drive makers and cloud billing define 1 TB as 1,000 GB (10¹² bytes), whereas Windows reports binary gibibytes (1,024³ bytes) under the 'GB' label—so a 1 TB drive displays ~931 GB and an 8 TB drive displays ~7,450 GB.",
+      "While both terabytes (TB → GB) and terawatts (TW → GW) share the 1,000× SI prefix step, TB/GB measure digital data capacity whereas TW/GW measure electrical power."
+    ]
+  },
   "formula": {
     "equation": "GB = TB × 1,000",
     "exactFactor": "1,000",
@@ -54,53 +89,57 @@
   },
   "internalLinks": [
     {
-      "label": "Gigabytes to Terabytes (GB to TB)",
+      "label": "Gigabytes to Terabytes Converter (GB to TB)",
       "href": "/data-storage/gb-to-tb",
       "type": "reverse"
     },
     {
-      "label": "Megabytes to Gigabytes (MB to GB)",
-      "href": "/data-storage/mb-to-gb",
-      "type": "related"
-    },
-    {
-      "label": "Gigabytes to Megabytes (GB to MB)",
+      "label": "Gigabytes to Megabytes Chart (GB to MB)",
       "href": "/data-storage/gb-to-mb",
       "type": "related"
     },
     {
-      "label": "Kilobytes to Megabytes (KB to MB)",
-      "href": "/data-storage/kb-to-mb",
+      "label": "Convert Megabytes to Gigabytes (MB to GB)",
+      "href": "/data-storage/mb-to-gb",
       "type": "related"
     },
     {
-      "label": "Megabytes to Kilobytes (MB to KB)",
-      "href": "/data-storage/mb-to-kb",
+      "label": "Gibibytes to Gigabytes Binary Tool (GiB to GB)",
+      "href": "/data-storage/gib-to-gb",
       "type": "related"
     },
     {
-      "label": "Digital Storage Conversions Hub",
+      "label": "Mebibytes to Megabytes Reference (MiB to MB)",
+      "href": "/data-storage/mib-to-mb",
+      "type": "related"
+    },
+    {
+      "label": "All Digital Storage Converters",
       "href": "/data-storage",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "SI Prefixes & Measurement Standards Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many gigabytes (GB) are in 1 terabyte (decimal) (TB)?",
-      "answer": "There are 1,000 gigabytes (GB) in 1 terabyte (decimal) (TB), which rounds to 1,000 GB for everyday calculations. Conversely, 1 gigabyte (decimal) equals 0.001 terabytes."
+      "question": "How many gigabytes (GB) are in 1 terabyte (TB)?",
+      "answer": "There are 1,000 gigabytes (GB) in 1 decimal terabyte (TB) under the international SI standard used by storage manufacturers. In binary computing (tebibytes), 1 TiB equals 1,024 GiB."
     },
     {
-      "question": "How do I convert terabytes to gigabytes (TB to GB)?",
-      "answer": "To convert terabytes to gigabytes, use the formula: GB = TB × 1,000. For example, converting 16 TB gives 16,000 GB."
+      "question": "How do you convert terabytes to gigabytes?",
+      "answer": "Multiply the number of terabytes by 1,000: GB = TB × 1,000. For example, an 8 TB hard drive equals 8 × 1,000 = 8,000 GB decimal."
     },
     {
-      "question": "What is 16 terabytes in gigabytes?",
-      "answer": "16 terabytes (TB) equals exactly 16,000 gigabytes (GB) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What is 10 TB in GB?",
+      "answer": "10 terabytes equals 10,000 gigabytes (10 × 1,000 = 10,000 GB) in decimal storage—or about 9,313 GiB when formatted in binary OS units."
+    },
+    {
+      "question": "What is 500 TB in GB?",
+      "answer": "500 terabytes equals 500,000 gigabytes (500 × 1,000 = 500,000 GB) under the SI decimal standard."
     }
   ]
 }

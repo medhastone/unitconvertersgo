@@ -1,0 +1,156 @@
+{
+  "status": "reviewed",
+  "slug": "ml-to-imperial-fluid-ounces",
+  "category": "volume",
+  "categoryId": "volume",
+  "fromUnitId": "milliliter",
+  "toUnitId": "imperial_fluid_ounce",
+  "fromSymbol": "mL",
+  "toSymbol": "fl oz (UK)",
+  "intro": "Convert milliliters (mL) to UK Imperial fluid ounces (fl oz UK) accurately for British recipes, pub pours, beverage cans, and Commonwealth kitchen measures. Under the UK Weights and Measures standard, 1 Imperial fluid ounce equals exactly 28.4130625 mL (1/160 of an Imperial gallon), so 1 mL equals 0.03519508 fl oz (UK)—just divide milliliters by 28.41306. Scan common pour sizes from 4 mL to 1,000 mL below.",
+  "alsoWrittenAs": "mL to fl oz UK, millilitres to Imperial fluid ounces, mLs to UK fl oz, ml to imp fl oz",
+  "commonValues": [
+    4,
+    5,
+    20,
+    50,
+    80,
+    120,
+    187,
+    300,
+    355,
+    500,
+    650,
+    750
+  ],
+  "tableValues": [
+    4,
+    5,
+    10,
+    20,
+    22,
+    25,
+    50,
+    54,
+    80,
+    100,
+    120,
+    150,
+    187,
+    200,
+    250,
+    300,
+    331,
+    355,
+    400,
+    450,
+    500,
+    509,
+    510,
+    568,
+    590,
+    600,
+    650,
+    700,
+    750,
+    800,
+    850,
+    880,
+    900,
+    1000
+  ],
+  "tableTitle": "Milliliters to UK Imperial Fluid Ounces Chart (4 mL to 1,000 mL)",
+  "tableSubtitle": "British Imperial liquid equivalents computed with fl oz (UK) = mL ÷ 28.4130625.",
+  "tableRoundingNote": "Computed from the exact UK Imperial standard 1 fl oz (UK) = 28.4130625 mL (1 mL = 0.03519508 fl oz UK). Table outputs are rounded to 5 decimal places.",
+  "workedExamples": [
+    {
+      "title": "Single-Serve Wine Bottle (187 mL)",
+      "scenario": "Convert a 187-milliliter mini wine bottle into UK Imperial fluid ounces.",
+      "inputValue": 187,
+      "outputValue": "6.58148 fl oz (UK)",
+      "stepByStep": "187 mL ÷ 28.4130625 = 6.58148 fl oz (UK) (about 6.58 UK fl oz)."
+    },
+    {
+      "title": "Standard Beverage Can (355 mL)",
+      "scenario": "Convert a 355-milliliter soda or craft beer can into UK fluid ounces.",
+      "inputValue": 355,
+      "outputValue": "12.49425 fl oz (UK)",
+      "stepByStep": "355 mL ÷ 28.4130625 = 12.49425 fl oz (UK) (about 12.49 UK fl oz)."
+    },
+    {
+      "title": "Full Wine & Spirits Bottle (750 mL)",
+      "scenario": "Convert a 750-milliliter bottle into British Imperial fluid ounces.",
+      "inputValue": 750,
+      "outputValue": "26.39631 fl oz (UK)",
+      "stepByStep": "750 mL ÷ 28.4130625 = 26.39631 fl oz (UK) (about 26.40 UK fl oz)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "UK Imperial Fluid Ounce (28.41 mL) vs. US Fluid Ounce (29.57 mL) & Dry Ounce",
+    "items": [
+      "A UK Imperial fluid ounce (28.41306 mL, 1/20 of a 568 mL UK pint) is 4.1% smaller than a US fluid ounce (29.57353 mL, 1/16 of a 473 mL US pint); verify whether your recipe uses British or American cups and pints.",
+      "Fluid ounces measure liquid volume, not weight/mass (dry avoirdupois ounces = 28.3495 g). Only water has nearly a 1:1 ratio between grams and milliliters."
+    ]
+  },
+  "formula": {
+    "equation": "fl oz (UK) = mL ÷ 28.4130625",
+    "exactFactor": "0.03519508",
+    "roundedFactor": "0.0352",
+    "inverseFactor": "28.413063"
+  },
+  "internalLinks": [
+    {
+      "label": "UK Imperial Fluid Ounces to mL Converter (fl oz UK to mL)",
+      "href": "/volume/imperial-fluid-ounces-to-ml",
+      "type": "reverse"
+    },
+    {
+      "label": "Milliliters to US Fluid Ounces Chart (mL to fl oz US)",
+      "href": "/volume/ml-to-fluid-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Convert UK Fluid Ounces to US Fluid Ounces",
+      "href": "/volume/imperial-fluid-ounces-to-us-fluid-ounces",
+      "type": "related"
+    },
+    {
+      "label": "Milliliters to Liters Calculator (mL to L)",
+      "href": "/volume/ml-to-liters",
+      "type": "related"
+    },
+    {
+      "label": "Liters to UK Imperial Gallons (L to Imp gal)",
+      "href": "/volume/liters-to-imperial-gallons",
+      "type": "related"
+    },
+    {
+      "label": "All Volume & Liquid Converters",
+      "href": "/volume",
+      "type": "hub"
+    },
+    {
+      "label": "US Customary vs. British Imperial Fluid Ounces Guide",
+      "href": "/guides/us-vs-imperial-fluid-ounces",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many UK Imperial fluid ounces are in 1 milliliter?",
+      "answer": "There are 0.035195 UK Imperial fluid ounces in 1 milliliter (1 ÷ 28.4130625 = 0.03519508 fl oz UK). Conversely, 1 UK fluid ounce equals 28.4130625 mL."
+    },
+    {
+      "question": "How do I convert mL to UK fluid ounces?",
+      "answer": "Divide the volume in milliliters by 28.4130625 (or multiply by 0.03519508): fl oz (UK) = mL ÷ 28.4130625. For example, 500 mL ÷ 28.4130625 = 17.59754 fl oz (UK)."
+    },
+    {
+      "question": "What is the difference between UK Imperial fluid ounces and US fluid ounces?",
+      "answer": "1 UK Imperial fluid ounce equals 28.41306 mL (1/20 of a 568 mL UK pint), whereas 1 US fluid ounce equals 29.57353 mL (1/16 of a 473 mL US pint). That makes 100 mL equal to 3.52 UK fl oz or 3.38 US fl oz."
+    },
+    {
+      "question": "What is 750 mL in UK fluid ounces?",
+      "answer": "750 milliliters equals 26.39631 UK Imperial fluid ounces (about 26.4 fl oz UK)."
+    }
+  ]
+}

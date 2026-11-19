@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "megapascal-to-psi",
   "category": "pressure",
   "categoryId": "pressure",
@@ -7,47 +7,94 @@
   "toUnitId": "psi",
   "fromSymbol": "MPa",
   "toSymbol": "psi",
-  "intro": "Professionals and everyday users convert megapascals (MPa) to psi (psi) when working across si and imperial standards in automotive tire inflation placards, hydraulic cylinder design, scuba diving tanks, and barometric weather tracking. One megapascal equals 145.037738 psi, while 1 pounds per square inch equals 0.006895 megapascals. Whether you are verifying pressure specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert megapascals to PSI accurately for hydraulic cylinder ratings, concrete compressive strength (MPa), tire placards, and piping hydrostatic tests. One megapascal (MPa, meaning 1,000,000 pascals or 1 N/mm²) equals 145.037738 pounds per square inch. To convert MPa to psi quickly, multiply megapascals by 145.03774 above or look up standard pressure values from 0.1 MPa to 400 MPa below.",
+  "alsoWrittenAs": "MPa to psi, megapascal to pound per square inch, N/mm² to psi, MPa into psi",
   "commonValues": [
-    0.5,
-    1,
+    0.1,
+    0.2,
+    0.7,
+    1.5,
     2,
     5,
-    10,
-    20,
-    25,
-    50,
-    75,
-    100
+    7,
+    14,
+    21,
+    30,
+    60,
+    400
   ],
+  "tableValues": [
+    0.1,
+    0.2,
+    0.3,
+    0.5,
+    0.7,
+    1,
+    1.2,
+    1.5,
+    1.6,
+    2,
+    2.5,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    10,
+    12,
+    14,
+    15,
+    16,
+    20,
+    21,
+    25,
+    28,
+    30,
+    35,
+    40,
+    50,
+    60,
+    75,
+    100,
+    150,
+    200,
+    250,
+    300,
+    350,
+    400
+  ],
+  "tableTitle": "Megapascals to PSI Conversion Chart (0.1 MPa to 400 MPa)",
+  "tableSubtitle": "Engineering pressure equivalents computed with psi = MPa × 145.037738.",
+  "tableRoundingNote": "Computed from exact NIST/SI definitions (1 MPa = 10⁶ Pa; 1 psi = 6,894.757293 Pa, giving 1 MPa = 145.03773773 psi). Table values are rounded to 5 decimal places.",
   "workedExamples": [
     {
-      "title": "Standard Megapascal Benchmark (2 MPa)",
-      "scenario": "Convert 2 megapascals (MPa) into psi (psi) for technical comparison and documentation.",
-      "inputValue": 2,
-      "outputValue": "290.075475 psi",
-      "stepByStep": "2 MPa × 145.037738 = 290.075475 psi (rounds to 290.08 psi)."
+      "title": "Pneumatic & Water Main Pressure (0.7 MPa)",
+      "scenario": "Convert a 0.7-megapascal municipal water or compressed-air line rating into psi.",
+      "inputValue": 0.7,
+      "outputValue": "101.52642 psi",
+      "stepByStep": "0.7 MPa × 145.037738 = 101.52642 psi (about 101.5 psi)."
     },
     {
-      "title": "Practical Mid-Range Conversion (20 MPa)",
-      "scenario": "Convert 20 megapascals (MPa) into psi (psi) for technical comparison and documentation.",
-      "inputValue": 20,
-      "outputValue": "2,900.754755 psi",
-      "stepByStep": "20 MPa × 145.037738 = 2,900.754755 psi (rounds to 2,900.75 psi)."
+      "title": "Hydraulic Line & Concrete Grade (16 MPa)",
+      "scenario": "Convert 16 megapascals into pounds per square inch for pump or structural datasheets.",
+      "inputValue": 16,
+      "outputValue": "2,320.6038 psi",
+      "stepByStep": "16 MPa × 145.037738 = 2,320.6038 psi (about 2,321 psi)."
     },
     {
-      "title": "Higher-Capacity Specification (75 MPa)",
-      "scenario": "Convert 75 megapascals (MPa) into psi (psi) for technical comparison and documentation.",
-      "inputValue": 75,
-      "outputValue": "10,877.83033 psi",
-      "stepByStep": "75 MPa × 145.037738 = 10,877.83033 psi (rounds to 10,877.83 psi)."
+      "title": "High-Strength Concrete & Cylinder Rating (30 MPa)",
+      "scenario": "Convert 30 MPa into psi for structural engineering specifications.",
+      "inputValue": 30,
+      "outputValue": "4,351.13213 psi",
+      "stepByStep": "30 MPa × 145.037738 = 4,351.13213 psi (about 4,351 psi)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Gauge Pressure (psig) vs. Absolute Pressure (psia)",
+    "title": "MPa vs. Mpsi, Megabar & Gauge vs. Absolute Pressure",
     "items": [
-      "This converter scales pressure magnitude directly between MPa and psi. In automotive tires, HVAC, and compressed air systems, gauges display Gauge Pressure (referenced to ambient atmospheric pressure, ~14.696 psi or 101.325 kPa at sea level).",
-      "For thermodynamic gas laws (PV = nRT) or vacuum chamber calculations, convert gauge pressure to absolute pressure by adding local barometric pressure before scaling."
+      "Do not confuse MPa (megapascals, 145.038 psi) with Mpsi/msi (megapounds per square inch = 1,000,000 psi) or megabar (10⁶ bar ≈ 14.5 million psi)—those units differ by orders of magnitude.",
+      "Pressure gauges read gauge pressure (psig) relative to local air pressure (~14.696 psi or 0.1013 MPa at sea level); add atmospheric pressure when converting gauge readings to absolute pressure (psia)."
     ]
   },
   "formula": {
@@ -58,53 +105,57 @@
   },
   "internalLinks": [
     {
-      "label": "PSI to Megapascals (psi to MPa)",
+      "label": "PSI to Megapascals Converter (psi to MPa)",
       "href": "/pressure/psi-to-megapascal",
       "type": "reverse"
     },
     {
-      "label": "PSI to Bars (psi to bar)",
-      "href": "/pressure/psi-to-bar",
-      "type": "related"
-    },
-    {
-      "label": "Bars to PSI (bar to psi)",
+      "label": "Bar to PSI Pressure Chart (bar to psi)",
       "href": "/pressure/bar-to-psi",
       "type": "related"
     },
     {
-      "label": "PSI to Kilopascals (psi to kPa)",
-      "href": "/pressure/psi-to-kpa",
-      "type": "related"
-    },
-    {
-      "label": "Kilopascals to PSI (kPa to psi)",
+      "label": "Convert Kilopascals to PSI (kPa to psi)",
       "href": "/pressure/kpa-to-psi",
       "type": "related"
     },
     {
-      "label": "Pressure Conversions Hub",
+      "label": "Megapascals to Bar Calculator (MPa to bar)",
+      "href": "/pressure/megapascal-to-bar",
+      "type": "related"
+    },
+    {
+      "label": "KSI to Megapascals Reference (ksi to MPa)",
+      "href": "/pressure/ksi-to-megapascal",
+      "type": "related"
+    },
+    {
+      "label": "All Pressure Unit Converters",
       "href": "/pressure",
       "type": "hub"
     },
     {
-      "label": "PSI vs. Bar vs. kPa vs. Atmosphere Pressure Reference",
+      "label": "PSI vs. Bar vs. kPa vs. MPa Pressure Guide",
       "href": "/guides/pressure-units-psi-bar-kpa-explained",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many psi (psi) are in 1 megapascal (MPa)?",
-      "answer": "There are 145.03773773 psi (psi) in 1 megapascal (MPa), which rounds to 145.0377 psi for everyday calculations. Conversely, 1 pounds per square inch equals 0.006895 megapascals."
+      "question": "What does MPa stand for in pressure?",
+      "answer": "MPa stands for megapascal, an SI metric unit of pressure equal to 1,000,000 pascals (1,000 kPa, 10 bar, or 1 N/mm²). In US/imperial units, 1 MPa equals 145.03774 psi."
     },
     {
-      "question": "How do I convert megapascals to psi (MPa to psi)?",
-      "answer": "To convert megapascals to psi, use the formula: psi = MPa × 145.03773773. For example, converting 10 MPa gives 1,450.3774 psi."
+      "question": "How do you convert MPa to psi?",
+      "answer": "Multiply the pressure in megapascals by 145.037738 (psi = MPa × 145.037738). For example, 5 MPa × 145.037738 = 725.18869 psi."
     },
     {
-      "question": "What is 10 megapascals in psi?",
-      "answer": "10 megapascals (MPa) equals exactly 1,450.3774 psi (psi) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What is 0.1 MPa in psi?",
+      "answer": "0.1 MPa equals 14.50377 psi (equivalent to 1 bar, or just under standard sea-level atmospheric pressure of 14.7 psi)."
+    },
+    {
+      "question": "What is 30 MPa in psi?",
+      "answer": "30 MPa equals 4,351.13213 psi (rounds to 4,351.13 psi)."
     }
   ]
 }

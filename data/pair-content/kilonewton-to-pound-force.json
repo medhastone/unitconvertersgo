@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "kilonewton-to-pound-force",
   "category": "force",
   "categoryId": "force",
@@ -7,47 +7,89 @@
   "toUnitId": "pound_force",
   "fromSymbol": "kN",
   "toSymbol": "lbf",
-  "intro": "Professionals and everyday users convert kilonewtons (kN) to pounds-force (lbf) when working across metric and imperial standards in structural beam load analysis, fastener tensile testing, aerospace thrust ratings, and mechanical engineering. One kilonewton equals 224.808943 pounds-force, while 1 pound-force equals 0.004448 kilonewtons. Whether you are verifying force specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert kilonewtons (kN) to pounds-force (lbf) accurately for climbing carabiner ratings (22–25 kN), structural beam shear loads, and rigging tension specs. Under standard gravity (9.80665 m/s²), 1 kilonewton (1,000 N) equals 224.80894 pounds-force—multiply kN by 224.80894, or tap Swap to switch from lbf to kN. Scan common force ratings from 1 kN to 500 kN below.",
+  "alsoWrittenAs": "kN to lbf, kN in lbs, kilonewtons to pounds-force, kN to lbs force, kilonewtons into lbf",
   "commonValues": [
     1,
     5,
+    5.7,
     10,
+    15,
+    20,
+    22,
+    24,
     25,
+    30,
+    50,
+    100
+  ],
+  "tableValues": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    5.7,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    15,
+    18,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    35,
+    40,
     50,
     75,
     100,
     150,
+    200,
     250,
     500
   ],
+  "tableTitle": "Kilonewtons to Pounds-Force Conversion Chart (1 kN to 500 kN)",
+  "tableSubtitle": "Structural, climbing & rigging force equivalents computed with lbf = kN × 224.80894.",
+  "tableRoundingNote": "Computed from exact NIST definitions (1 kN = 1,000 N; 1 lbf = 4.4482216152605 N, giving 1 kN = 224.8089431 lbf). Table outputs are rounded to 5 decimal places.",
   "workedExamples": [
     {
-      "title": "Standard Kilonewton Benchmark (10 kN)",
-      "scenario": "Convert 10 kilonewtons (kN) into pounds-force (lbf) for technical comparison and documentation.",
-      "inputValue": 10,
-      "outputValue": "2,248.089431 lbf",
-      "stepByStep": "10 kN × 224.808943 = 2,248.089431 lbf (rounds to 2,248.09 lbf)."
+      "title": "Anchor & Sling Tension Load (5.7 kN)",
+      "scenario": "Convert a 5.7-kilonewton anchor or sling tension measurement into pounds-force.",
+      "inputValue": 5.7,
+      "outputValue": "1,281.41098 lbf",
+      "stepByStep": "5.7 kN × 224.8089431 = 1,281.41098 lbf (about 1,281 lbf)."
     },
     {
-      "title": "Practical Mid-Range Conversion (75 kN)",
-      "scenario": "Convert 75 kilonewtons (kN) into pounds-force (lbf) for technical comparison and documentation.",
-      "inputValue": 75,
-      "outputValue": "16,860.670732 lbf",
-      "stepByStep": "75 kN × 224.808943 = 16,860.670732 lbf (rounds to 16,860.67 lbf)."
+      "title": "EN/UIAA Climbing Gear Rating (22 kN)",
+      "scenario": "Convert a 22-kilonewton climbing sling or carabiner breaking strength into pounds-force.",
+      "inputValue": 22,
+      "outputValue": "4,945.79675 lbf",
+      "stepByStep": "22 kN × 224.8089431 = 4,945.79675 lbf (about 4,946 lbf)."
     },
     {
-      "title": "Higher-Capacity Specification (250 kN)",
-      "scenario": "Convert 250 kilonewtons (kN) into pounds-force (lbf) for technical comparison and documentation.",
-      "inputValue": 250,
-      "outputValue": "56,202.235775 lbf",
-      "stepByStep": "250 kN × 224.808943 = 56,202.235775 lbf (rounds to 56,202.24 lbf)."
+      "title": "Heavy-Duty Carabiner Gate Rating (25 kN)",
+      "scenario": "Convert a 25-kilonewton major-axis carabiner rating into pounds-force.",
+      "inputValue": 25,
+      "outputValue": "5,620.22358 lbf",
+      "stepByStep": "25 kN × 224.8089431 = 5,620.22358 lbf (about 5,620 lbf)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "title": "Kilonewtons (kN) vs. Kips (kip = 1,000 lbf) & Pounds-Mass (lbm)",
     "items": [
-      "The exact conversion factor from Kilonewton to Pound-force is 224.8089431, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
-      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+      "Do not confuse kilonewtons (kN) with kips (kilopounds-force): 1 kN equals 224.81 lbf, whereas 1 kip equals 1,000 lbf (4.44822 kN)—over four times larger.",
+      "Kilonewtons and pounds-force measure mechanical force, not mass (lbm); under standard Earth gravity (9.80665 m/s²), 1 kN equals the weight of roughly 101.97 kg (224.81 lb)."
     ]
   },
   "formula": {
@@ -58,48 +100,57 @@
   },
   "internalLinks": [
     {
-      "label": "Newtons to Pounds-force (N to lbf)",
+      "label": "Pounds-Force to Kilonewtons Converter (lbf to kN)",
+      "href": "/force/pounds-force-to-kilonewtons",
+      "type": "reverse"
+    },
+    {
+      "label": "Newtons to Pounds-Force Chart (N to lbf)",
       "href": "/force/newtons-to-pounds-force",
       "type": "related"
     },
     {
-      "label": "Pounds-force to Newtons (lbf to N)",
+      "label": "Convert Pounds-Force to Newtons (lbf to N)",
       "href": "/force/pounds-force-to-newtons",
       "type": "related"
     },
     {
-      "label": "Kilonewtons to Newtons (kN to N)",
+      "label": "Kilonewtons to Newtons Calculator (kN to N)",
       "href": "/force/kilonewtons-to-newtons",
       "type": "related"
     },
     {
-      "label": "Kilograms-force to Newtons (kgf to N)",
-      "href": "/force/kgf-to-newtons",
+      "label": "Newtons to Kilograms-Force Reference (N to kgf)",
+      "href": "/force/newtons-to-kgf",
       "type": "related"
     },
     {
-      "label": "Force Conversions Hub",
+      "label": "All Force Unit Converters",
       "href": "/force",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial Engineering Force Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many pounds-force (lbf) are in 1 kilonewton (kN)?",
-      "answer": "There are 224.8089431 pounds-force (lbf) in 1 kilonewton (kN), which rounds to 224.8089 lbf for everyday calculations. Conversely, 1 pound-force equals 0.004448 kilonewtons."
+      "question": "What are kilonewtons?",
+      "answer": "A kilonewton (kN) is an SI metric unit of force equal to 1,000 newtons. One kilonewton equals 224.80894 pounds-force (lbf), or roughly the gravitational force exerted by a 101.97 kg (224.8 lb) mass on Earth. Climbing gear, rigging, and structural beams are rated in kN."
     },
     {
-      "question": "How do I convert kilonewtons to pounds-force (kN to lbf)?",
-      "answer": "To convert kilonewtons to pounds-force, use the formula: lbf = kN × 224.8089431. For example, converting 50 kN gives 11,240.4472 lbf."
+      "question": "How many lbs (lbf) are in a kilonewton?",
+      "answer": "There are 224.80894 pounds-force (lbf) in 1 kilonewton (kN). Conversely, 1 pound-force equals 0.00444822 kilonewtons."
     },
     {
-      "question": "What is 50 kilonewtons in pounds-force?",
-      "answer": "50 kilonewtons (kN) equals exactly 11,240.4472 pounds-force (lbf) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What is 25 kN in pounds-force?",
+      "answer": "25 kilonewtons (a standard climbing carabiner major-axis strength rating) equals 5,620.22358 pounds-force (about 5,620 lbf)."
+    },
+    {
+      "question": "Is a kilonewton (kN) the same as a kip?",
+      "answer": "No—a kip (kilopound-force) equals 1,000 pounds-force (4.44822 kN), whereas 1 kilonewton equals 224.80894 pounds-force."
     }
   ]
 }

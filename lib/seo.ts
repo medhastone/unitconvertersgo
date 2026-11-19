@@ -246,16 +246,21 @@ const COMPACT_QUERY_TITLE_OVERRIDES: Record<string, string> = {
   "ounces-to-pounds": "Ounces to Pounds (oz to lbs) Converter & Chart",
   "pounds-to-ounces": "Pounds to Ounces (lbs to oz) Converter & Chart",
   "grams-to-pounds": "Grams to Pounds — Convert G to Lb (g to lbs)",
+  "grains-to-grams": "Grains to Grams Calculator (gr to g) & Chart",
   "lbs-to-stone": "Pounds to Stone (lbs to st) Converter & Chart",
   "stone-to-lbs": "Stone to Pounds (st to lbs) Converter & Chart",
   "inches-to-feet": "Inches to Feet — Convert Inches to Feet (in to ft)",
   "feet-to-inches": "Feet to Inches — Feet and Inches Calculator (ft to in)",
   "cups-to-tablespoons": "Cups to Tablespoons (cups to tbsp) Converter",
   "days-to-years": "Days to Years (d to yr) Converter & Chart",
+  "hours-to-days": "Hours to Days (hr to d) Converter & Chart",
   "gb-to-tb": "GB to TB — Gigabytes to Terabytes Converter & Chart",
+  "tb-to-gb": "TB to GB — Terabytes to Gigabytes Calculator & Chart",
   "hp-to-kw": "HP to kW — Horsepower in Kilowatts Converter",
   "newtons-to-pounds-force": "Newtons to Pounds-Force — Newton Force to Lbs Converter",
+  "kilonewton-to-pound-force": "Kilonewtons to Pounds-Force (kN to lbf) Converter",
   "psi-to-megapascal": "PSI to MPa — PSI to Megapascal Converter",
+  "megapascal-to-psi": "MPa to PSI — Convert Megapascals to PSI & Chart",
   "bar-to-psi": "Bar to PSI — Pressure Bar to PSI Converter",
   "celsius-to-fahrenheit": "Celsius to Fahrenheit (°C to °F) Converter",
   "fahrenheit-to-celsius": "Fahrenheit to Celsius (°F to °C) Converter",
@@ -263,6 +268,9 @@ const COMPACT_QUERY_TITLE_OVERRIDES: Record<string, string> = {
   "sq-meters-to-sq-feet": "Sq M to Sq Ft — Square Meters to Square Feet",
   "liters-to-gallons": "Liters to Gallons — Convert L to Gallons US",
   "gallons-to-liters": "Gallons to Liters — US Gallon to Liter Converter",
+  "ml-to-liters": "mL to Liters (mL to L) — Milliliters to Liters Converter",
+  "ml-to-imperial-fluid-ounces": "mL to UK Fluid Ounces (mL to fl oz UK) Converter",
+  "tablespoons-to-cups": "Tablespoons to Cups Converter (tbsp to cups)",
   "ml-to-oz": "mL to Oz — Milliliters to Fluid Ounces",
   "oz-to-ml": "Oz to mL — Fluid Ounces to Milliliters",
   "lb-ft-to-nm": "ft lbs to Nm — Foot Pounds to Newton Meters Converter",
@@ -308,16 +316,28 @@ const COMPACT_QUERY_DESCRIPTION_OVERRIDES: Record<string, string> = {
     "1 L = 0.26417 US gal (1 gal = 3.78541 L). Free convert litres to US gallons calculator with US & UK gallon note, formula, worked examples & chart.",
   "gallons-to-liters":
     "1 US gallon = 3.78541 liters exact (1 L = 0.26417 gal). Instant US gallon to liter conversion for fuel tanks, pools & water jugs—with UK litres note & chart.",
+  "ml-to-liters":
+    "1,000 mL = 1 liter exact (1 mL = 0.001 L). Compare mL vs L and convert milliliters to liters or litres fast for recipes, lab dosages & bottles.",
+  "ml-to-imperial-fluid-ounces":
+    "28.41306 mL = 1 UK fl oz exact (1 mL = 0.035195 fl oz UK). Convert milliliters to British Imperial fluid ounces for UK recipes & drinks with chart.",
+  "tablespoons-to-cups":
+    "16 tbsp = 1 US cup exact (1 tbsp = 0.0625 cup). Convert tablespoons to cups instantly for baking, butter & coffee brewing—with divide-by-16 chart.",
   "cups-to-tablespoons":
     "1 US cup = 16 tbsp exact (1/2 cup = 8 tbsp). Convert cups to tablespoons for baking, butter & cooking—with 1/8 cup guide, formula & chart.",
   "days-to-years":
     "365.2425 days = 1 Gregorian year (1 d = 0.002738 yr). Convert days to years for warranties, loan terms & ages—with common & leap year chart.",
+  "hours-to-days":
+    "24 hours = 1 day exact (1 hr = 0.04167 d). Convert hours to days for work shifts, machine runtime & SLA uptime logs—with divide-by-24 chart.",
   "gb-to-tb":
     "1,000 GB in 1 TB decimal (0.001 TB per GB). Convert gigabytes to terabytes for SSDs, hard drives & cloud tiers—with divide-by-1,000 formula & chart.",
+  "tb-to-gb":
+    "1,000 gigabytes in 1 decimal terabyte (1,024 GiB binary). Convert TB to gigabyte counts for SSDs, external drives & cloud plans with instant chart.",
   "hp-to-kw":
     "1 hp = 0.7457 kW (1 kW = 1.34102 hp). Convert hp in kW for car engines, electric motors & generators—with mechanical vs. metric PS formula & chart.",
   "newtons-to-pounds-force":
     "1 N = 0.22481 lbf (1 lbf = 4.44822 N). Convert N to lbs force instantly for structural loads, tension & thrust—with newtons to pounds formula & chart.",
+  "kilonewton-to-pound-force":
+    "1 kN = 224.80894 lbf exact. Convert kN to lbs force for climbing carabiner ratings, structural beams & anchors—with kN to lbf formula & chart.",
   "inches-to-cm":
     "1 in = 2.54 cm exact. Convert inches to centimeters (or centimetres) instantly for screen sizes, height & woodworking—with formula & tape chart.",
   "inches-to-feet":
@@ -334,12 +354,16 @@ const COMPACT_QUERY_DESCRIPTION_OVERRIDES: Record<string, string> = {
     "1 lb = 16 oz exact. Free pounds to ounces conversion calculator for shipping, meat & baking—with decimal-to-ounces guide, formula & lookup chart.",
   "grams-to-pounds":
     "453.59237 g = 1 lb exact. Free convert grams into pounds calculator for meat, baking & parcels—with quarter-pound guide, formula & chart.",
+  "grains-to-grams":
+    "1 grain = 0.06479891 grams exact (15.43236 gr = 1 g). Instant grain to gram conversion (or grammes) for reloading, archery arrows & bullion.",
   "knots-to-mph":
     "1 knot = 1.15078 mph (exact 1.852 km/h). Instant wind speed conversion knots to mph for aviation, sailing & storms, with formula & reference chart.",
   "fahrenheit-to-celsius":
     "°C = (°F − 32) × 5/9. Convert Fahrenheit to Celsius instantly for weather, fever thermometers & oven temps—with exact formula, examples & chart.",
   "psi-to-megapascal":
     "1 psi = 0.00689476 MPa (1 MPa = 145.038 psi). Convert PSI to megapascals for concrete strength, hydraulics & piping—with formula, examples & chart.",
+  "megapascal-to-psi":
+    "1 MPa = 145.03774 psi exact. Convert from MPa to psi instantly with our MPa-psi converter for hydraulic pressure, concrete strength & stress tests.",
   "bar-to-psi":
     "1 bar = 14.50377 psi exact (100 kPa). Fast pressure bar to psi conversion for car tires, espresso machines & hydraulics—with formula & chart.",
 };
