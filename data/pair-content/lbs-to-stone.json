@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "lbs-to-stone",
   "category": "weight-and-mass",
   "categoryId": "mass",
@@ -7,98 +7,161 @@
   "toUnitId": "stone",
   "fromSymbol": "lb",
   "toSymbol": "st",
-  "intro": "Professionals and everyday users convert pounds (lb) to stones (st) when working across imperial and imperial standards in engineering specifications, international trade documentation, and technical measurements. One pound (avoirdupois) equals 0.071429 stones, while 1 stone (uk) equals 14 pounds. Whether you are verifying mass & weight specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert pounds (lb) to stone (st) cleanly for UK and Irish body-weight readings, fitness logs, medical records, and boxing weight classes. Under the British Imperial standard, 1 stone equals exactly 14 avoirdupois pounds, so dividing pounds by 14 gives decimal stone while the remainder gives stone and pounds. Enter any weight above or scan the full pounds-to-stone table below from 7 lb to 300 lb.",
+  "alsoWrittenAs": "lb to st, pounds to stones, US lbs to UK stone, pound into stone",
   "commonValues": [
-    1,
-    2,
-    5,
-    10,
     25,
-    45,
-    50,
-    100,
-    150,
-    200
+    128,
+    135,
+    145,
+    168,
+    180,
+    196,
+    210,
+    250,
+    280
   ],
+  "tableValues": [
+    7,
+    14,
+    25,
+    28,
+    33,
+    42,
+    50,
+    56,
+    70,
+    84,
+    98,
+    100,
+    112,
+    120,
+    125,
+    128,
+    130,
+    135,
+    140,
+    142,
+    145,
+    150,
+    154,
+    160,
+    165,
+    168,
+    170,
+    175,
+    176,
+    178,
+    180,
+    185,
+    190,
+    196,
+    200,
+    210,
+    215,
+    220,
+    225,
+    230,
+    240,
+    250,
+    260,
+    265,
+    270,
+    280,
+    300
+  ],
+  "tableTitle": "Pounds to Stone Conversion Chart (7 lb to 300 lb)",
+  "tableSubtitle": "Pre-computed UK stone values calculated using the exact ratio 1 stone = 14 pounds (st = lb ÷ 14).",
+  "tableRoundingNote": "Computed with the exact Imperial definition 1 st = 14 lb (1 lb = 1/14 st ≈ 0.07142857 st). Non-terminating decimals are rounded to 5 significant digits (up to 5 decimal places); multiples of 14 lb are exact whole stones.",
   "workedExamples": [
     {
-      "title": "Standard Pound (Avoirdupois) Benchmark (5 lb)",
-      "scenario": "Convert 5 pounds (lb) into stones (st) for technical comparison and documentation.",
-      "inputValue": 5,
-      "outputValue": "0.357143 st",
-      "stepByStep": "5 lb × 0.071429 = 0.357143 st (rounds to 0.36 st)."
+      "title": "Luggage & Kettlebell Weight (25 lb)",
+      "scenario": "Convert 25 pounds into UK stone for gym equipment or baggage comparisons.",
+      "inputValue": 25,
+      "outputValue": "1.78571 st",
+      "stepByStep": "25 lb ÷ 14 = 1.7857143 st (rounds to 1.78571 st, or 1 stone 11 lb)."
     },
     {
-      "title": "Practical Mid-Range Conversion (45 lb)",
-      "scenario": "Convert 45 pounds (lb) into stones (st) for technical comparison and documentation.",
-      "inputValue": 45,
-      "outputValue": "3.214286 st",
-      "stepByStep": "45 lb × 0.071429 = 3.214286 st (rounds to 3.21 st)."
+      "title": "Adult Body Weight (145 lb)",
+      "scenario": "Convert 145 pounds into stone for UK health and fitness tracking.",
+      "inputValue": 145,
+      "outputValue": "10.35714 st",
+      "stepByStep": "145 lb ÷ 14 = 10.3571429 st (rounds to 10.35714 st, or 10 stone 5 lb)."
     },
     {
-      "title": "Higher-Capacity Specification (150 lb)",
-      "scenario": "Convert 150 pounds (lb) into stones (st) for technical comparison and documentation.",
-      "inputValue": 150,
-      "outputValue": "10.714286 st",
-      "stepByStep": "150 lb × 0.071429 = 10.714286 st (rounds to 10.71 st)."
+      "title": "Heavyweight Benchmark (260 lb)",
+      "scenario": "Convert 260 pounds into stone and remainder pounds for clinical or athletic records.",
+      "inputValue": 260,
+      "outputValue": "18.57143 st",
+      "stepByStep": "260 lb ÷ 14 = 18.5714286 st (rounds to 18.57143 st, or 18 stone 8 lb)."
     }
   ],
-  "mistakesAndEdgeCases": null,
+  "mistakesAndEdgeCases": {
+    "title": "Decimal Stone vs. Stone and Pounds (st & lb)",
+    "items": [
+      "Do not misread decimal stone as stone-and-pounds: 10.5 stone equals 10 stone 7 pounds (147 lb), not 10 stone 5 pounds (145 lb).",
+      "To convert decimal stone into stone and pounds, multiply the fractional part by 14 (for example, 0.35714 × 14 = 5 lb, so 10.35714 st = 10 st 5 lb)."
+    ]
+  },
   "formula": {
-    "equation": "st = lb × 0.07142857",
+    "equation": "st = lb ÷ 14",
     "exactFactor": "0.07142857",
     "roundedFactor": "0.0714",
     "inverseFactor": "14"
   },
   "internalLinks": [
     {
-      "label": "Stones to Pounds (st to lb)",
+      "label": "Stone to Pounds Converter (st to lb)",
       "href": "/weight-and-mass/stone-to-lbs",
       "type": "reverse"
     },
     {
-      "label": "Kilograms to Pounds (kg to lb)",
-      "href": "/weight-and-mass/kg-to-lbs",
+      "label": "Kilograms to Stone Body Weight Chart",
+      "href": "/weight-and-mass/kg-to-stone",
       "type": "related"
     },
     {
-      "label": "Pounds to Kilograms (lb to kg)",
+      "label": "Convert Stone to Kilograms (st to kg)",
+      "href": "/weight-and-mass/stone-to-kg",
+      "type": "related"
+    },
+    {
+      "label": "Pounds to Kilograms Calculator (lb to kg)",
       "href": "/weight-and-mass/lbs-to-kg",
       "type": "related"
     },
     {
-      "label": "Grams to Ounces (g to oz)",
-      "href": "/weight-and-mass/grams-to-ounces",
+      "label": "Ounces to Pounds Reference Table (oz to lb)",
+      "href": "/weight-and-mass/ounces-to-pounds",
       "type": "related"
     },
     {
-      "label": "Ounces to Grams (oz to g)",
-      "href": "/weight-and-mass/ounces-to-grams",
-      "type": "related"
-    },
-    {
-      "label": "Mass & Weight Conversions Hub",
+      "label": "All Weight & Mass Converters",
       "href": "/weight-and-mass",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial Weight Conversion Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many stones (st) are in 1 pound (avoirdupois) (lb)?",
-      "answer": "There are 0.07142857 stones (st) in 1 pound (avoirdupois) (lb), which rounds to 0.0714 st for everyday calculations. Conversely, 1 stone (uk) equals 14 pounds."
+      "question": "How many pounds are in a stone?",
+      "answer": "There are exactly 14 pounds in 1 UK stone (1 st = 14 lb). Conversely, 1 pound equals 1/14 of a stone, or approximately 0.07143 st."
     },
     {
-      "question": "How do I convert pounds to stones (lb to st)?",
-      "answer": "To convert pounds to stones, use the formula: st = lb × 0.07142857. For example, converting 25 lb gives 1.7857 st."
+      "question": "How do I convert pounds to stone and pounds?",
+      "answer": "Divide total pounds by 14. The whole number is the stone value, and the remainder is the leftover pounds. For example, 180 lb ÷ 14 = 12 remainder 12, which is 12 stone 12 lb (12.85714 st)."
     },
     {
-      "question": "What is 25 pounds in stones?",
-      "answer": "25 pounds (lb) equals exactly 1.7857 stones (st) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What is 145 pounds in stone?",
+      "answer": "145 pounds equals 10.35714 stone, or 10 stone 5 pounds (145 ÷ 14 = 10 remainder 5)."
+    },
+    {
+      "question": "What is 260 pounds in stone?",
+      "answer": "260 pounds equals 18.57143 stone, or 18 stone 8 pounds (260 ÷ 14 = 18 remainder 8)."
     }
   ]
 }

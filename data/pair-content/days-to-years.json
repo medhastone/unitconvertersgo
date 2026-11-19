@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "days-to-years",
   "category": "time",
   "categoryId": "time",
@@ -7,95 +7,158 @@
   "toUnitId": "year",
   "fromSymbol": "d",
   "toSymbol": "yr",
-  "intro": "Professionals and everyday users convert days (d) to years (yr) when working across other and other standards in project scheduling, payroll timecards, scientific interval logging, and server uptime SLAs. One day equals 0.002738 years, while 1 year (gregorian 365.2425 d) equals 365.2425 days. Whether you are verifying time specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert days (d) to years (yr) accurately for age milestones, warranty durations, multi-year contracts, and scientific uptime logs. Based on the Gregorian calendar average of 365.2425 days per year (incorporating 97 leap days every 400 years), 1 day equals 0.00273791 years—just divide your total days by 365.2425. Use the calculator above or scan pre-computed spans from 1 day to 20,000 days in the lookup table below.",
+  "alsoWrittenAs": "d to yr, day to year, days into years, calendar days to years",
   "commonValues": [
-    1,
-    2,
-    3,
-    5,
-    7,
-    10,
-    14,
-    21,
-    30,
-    60,
-    90,
-    365
+    19,
+    24,
+    50,
+    80,
+    365,
+    1038,
+    1151,
+    1800,
+    4000,
+    20000
   ],
+  "tableValues": [
+    1,
+    7,
+    14,
+    19,
+    22,
+    24,
+    26,
+    30,
+    50,
+    60,
+    67,
+    75,
+    80,
+    90,
+    100,
+    130,
+    180,
+    250,
+    365,
+    365.24,
+    500,
+    730,
+    1000,
+    1038,
+    1095,
+    1151,
+    1461,
+    1800,
+    1826,
+    2000,
+    2300,
+    2500,
+    3000,
+    3652,
+    3900,
+    4000,
+    4166,
+    5000,
+    7305,
+    8127,
+    10000,
+    15000,
+    19000,
+    20000
+  ],
+  "tableTitle": "Days to Years Conversion Chart (1 d to 20,000 d)",
+  "tableSubtitle": "Gregorian calendar year equivalents computed with yr = d ÷ 365.2425 (1 d = 0.00273791 yr).",
+  "tableRoundingNote": "Computed using the Gregorian mean calendar year (1 yr = 365.2425 d = 31,556,952 s). Table results are rounded to 5 significant digits; for non-leap 365-day contracts or 366-day leap years, adjust accordingly.",
   "workedExamples": [
     {
-      "title": "Standard Day Benchmark (3 d)",
-      "scenario": "Convert 3 days (d) into years (yr) for technical comparison and documentation.",
-      "inputValue": 3,
-      "outputValue": "0.008214 yr",
-      "stepByStep": "3 d × 0.002738 = 0.008214 yr (rounds to 0.01 yr)."
+      "title": "Multi-Year Contract Term (1,151 d)",
+      "scenario": "Convert 1,151 calendar days into Gregorian years for warranty or lease accounting.",
+      "inputValue": 1151,
+      "outputValue": "3.15133 yr",
+      "stepByStep": "1,151 d ÷ 365.2425 = 3.151331 yr (about 3 years and 55 days)."
     },
     {
-      "title": "Practical Mid-Range Conversion (10 d)",
-      "scenario": "Convert 10 days (d) into years (yr) for technical comparison and documentation.",
-      "inputValue": 10,
-      "outputValue": "0.027379 yr",
-      "stepByStep": "10 d × 0.002738 = 0.027379 yr (rounds to 0.03 yr)."
+      "title": "Decade-Plus Milestone (4,000 d)",
+      "scenario": "Convert 4,000 days into years for age tracking or equipment service life.",
+      "inputValue": 4000,
+      "outputValue": "10.95163 yr",
+      "stepByStep": "4,000 d ÷ 365.2425 = 10.951628 yr (nearly 11 years)."
     },
     {
-      "title": "Higher-Capacity Specification (30 d)",
-      "scenario": "Convert 30 days (d) into years (yr) for technical comparison and documentation.",
-      "inputValue": 30,
-      "outputValue": "0.082137 yr",
-      "stepByStep": "30 d × 0.002738 = 0.082137 yr (rounds to 0.08 yr)."
+      "title": "Long-Term Life & Archive Span (20,000 d)",
+      "scenario": "Convert 20,000 days into years for actuarial or historical timelines.",
+      "inputValue": 20000,
+      "outputValue": "54.75814 yr",
+      "stepByStep": "20,000 d ÷ 365.2425 = 54.75814 yr (about 54 years and 9 months)."
     }
   ],
-  "mistakesAndEdgeCases": null,
+  "mistakesAndEdgeCases": {
+    "title": "Gregorian Year (365.2425 d) vs. Common Year (365 d) vs. Julian Year (365.25 d)",
+    "items": [
+      "A standard common calendar year has 365 days and a leap year has 366 days, while the long-term Gregorian calendar averages 365.2425 days per year (and the astronomical Julian year uses 365.25 days exact).",
+      "For financial interest calculations (such as ACT/365 or 30/360 bank day-count conventions), check whether your contract specifies an exact 365-day divisor instead of the Gregorian 365.2425-day mean."
+    ]
+  },
   "formula": {
-    "equation": "yr = d × 0.00273791",
+    "equation": "yr = d ÷ 365.2425",
     "exactFactor": "0.00273791",
-    "roundedFactor": "0.0027",
+    "roundedFactor": "0.002738",
     "inverseFactor": "365.2425"
   },
   "internalLinks": [
     {
-      "label": "Hours to Minutes (hr to min)",
-      "href": "/time/hours-to-minutes",
+      "label": "Years to Days Converter (yr to d)",
+      "href": "/time/years-to-days",
+      "type": "reverse"
+    },
+    {
+      "label": "Days to Weeks Chart (d to wk)",
+      "href": "/time/days-to-weeks",
       "type": "related"
     },
     {
-      "label": "Minutes to Hours (min to hr)",
-      "href": "/time/minutes-to-hours",
+      "label": "Convert Days to Hours (d to hr)",
+      "href": "/time/days-to-hours",
       "type": "related"
     },
     {
-      "label": "Minutes to Seconds (min to s)",
-      "href": "/time/minutes-to-seconds",
+      "label": "Months to Years Calculator (mo to yr)",
+      "href": "/time/months-to-years",
       "type": "related"
     },
     {
-      "label": "Seconds to Minutes (s to min)",
-      "href": "/time/seconds-to-minutes",
+      "label": "Years to Months Reference (yr to mo)",
+      "href": "/time/years-to-months",
       "type": "related"
     },
     {
-      "label": "Time Conversions Hub",
+      "label": "All Time Unit Converters",
       "href": "/time",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial & SI Standards Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many years (yr) are in 1 day (d)?",
-      "answer": "There are 0.00273791 years (yr) in 1 day (d), which rounds to 0.0027 yr for everyday calculations. Conversely, 1 year (gregorian 365.2425 d) equals 365.2425 days."
+      "question": "How many years are in 1 day?",
+      "answer": "1 day equals 0.00273791 Gregorian years (1 ÷ 365.2425), or about 0.00274 years."
     },
     {
-      "question": "How do I convert days to years (d to yr)?",
-      "answer": "To convert days to years, use the formula: yr = d × 0.00273791. For example, converting 7 d gives 0.0192 yr."
+      "question": "How do I convert days to years?",
+      "answer": "Divide the number of days by 365.2425 for Gregorian calendar averages (or by 365 for a single non-leap year). For example, 1,151 days ÷ 365.2425 = 3.15133 years."
     },
     {
-      "question": "What is 7 days in years?",
-      "answer": "7 days (d) equals exactly 0.0192 years (yr) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "Should I divide days by 365, 365.2425, or 366?",
+      "answer": "Use 365 for a fixed non-leap year, 366 for a single leap year, and 365.2425 (the Gregorian mean) for multi-year spans so leap days are accurately accounted for."
+    },
+    {
+      "question": "What is 1,000 days in years?",
+      "answer": "1,000 days equals 2.73791 Gregorian years, or roughly 2 years and 9 months."
     }
   ]
 }

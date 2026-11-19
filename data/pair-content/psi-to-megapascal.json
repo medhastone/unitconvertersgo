@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "psi-to-megapascal",
   "category": "pressure",
   "categoryId": "pressure",
@@ -7,104 +7,153 @@
   "toUnitId": "megapascal",
   "fromSymbol": "psi",
   "toSymbol": "MPa",
-  "intro": "Professionals and everyday users convert psi (psi) to megapascals (MPa) when working across imperial and si standards in automotive tire inflation placards, hydraulic cylinder design, scuba diving tanks, and barometric weather tracking. One pounds per square inch equals 0.006895 megapascals, while 1 megapascal equals 145.037738 psi. Whether you are verifying pressure specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert PSI to MPa quickly for concrete compressive strength ratings, hydraulic cylinders, pressure vessels, and steel tensile testing. Each pound per square inch equals 0.006894757 megapascals (where 1 MPa equals 145.037738 psi and is identical to 1 N/mm²). Multiply your PSI reading by 0.00689476—or divide by 145.037738—for an exact PSI-to-megapascal conversion, or look up common engineering values below.",
+  "alsoWrittenAs": "psi to MPa, lbf/in² to MPa, pounds per square inch to megapascals, psi to N/mm²",
   "commonValues": [
-    14.7,
-    28,
     30,
-    32,
-    35,
+    60,
+    100,
+    500,
+    1000,
+    3000,
+    4000,
+    5000,
+    10000,
+    60000
+  ],
+  "tableValues": [
+    1,
+    10,
+    14.7,
+    20,
+    30,
     40,
     50,
     60,
+    70,
     80,
-    100
+    90,
+    100,
+    120,
+    145.04,
+    150,
+    200,
+    250,
+    300,
+    400,
+    500,
+    750,
+    1000,
+    1500,
+    2000,
+    2500,
+    3000,
+    3500,
+    4000,
+    4500,
+    5000,
+    6000,
+    7500,
+    10000,
+    15000,
+    20000,
+    30000,
+    40000,
+    50000,
+    60000
   ],
+  "tableTitle": "PSI to MPa Engineering Reference Chart (1 psi to 60,000 psi)",
+  "tableSubtitle": "Pneumatic, hydraulic, concrete, and steel strength conversions computed with MPa = psi × 0.006894757.",
+  "tableRoundingNote": "Computed from the exact NIST definition 1 psi = 6,894.757293168 Pa (0.006894757293168 MPa). Table results are rounded to 5 significant digits (up to 5 decimal places); use the calculator above for extended precision.",
   "workedExamples": [
     {
-      "title": "Standard Pounds per Square Inch Benchmark (30 psi)",
-      "scenario": "Convert 30 psi (psi) into megapascals (MPa) for technical comparison and documentation.",
-      "inputValue": 30,
-      "outputValue": "0.206843 MPa",
-      "stepByStep": "30 psi × 0.006895 = 0.206843 MPa (rounds to 0.21 MPa)."
+      "title": "Compressed Air Line Pressure (100 psi)",
+      "scenario": "Convert a 100 psi workshop pneumatic regulator setting into megapascals.",
+      "inputValue": 100,
+      "outputValue": "0.68948 MPa",
+      "stepByStep": "100 psi × 0.006894757 = 0.6894757 MPa (rounds to 0.68948 MPa, or ~0.69 MPa)."
     },
     {
-      "title": "Practical Mid-Range Conversion (40 psi)",
-      "scenario": "Convert 40 psi (psi) into megapascals (MPa) for technical comparison and documentation.",
-      "inputValue": 40,
-      "outputValue": "0.27579 MPa",
-      "stepByStep": "40 psi × 0.006895 = 0.27579 MPa (rounds to 0.28 MPa)."
+      "title": "Concrete & Hydraulic Relief Rating (3,000 psi)",
+      "scenario": "Convert 3,000 psi standard residential concrete strength or hydraulic working pressure to MPa.",
+      "inputValue": 3000,
+      "outputValue": "20.68427 MPa",
+      "stepByStep": "3,000 psi × 0.006894757 = 20.6842719 MPa (rounds to 20.68 MPa)."
     },
     {
-      "title": "Higher-Capacity Specification (80 psi)",
-      "scenario": "Convert 80 psi (psi) into megapascals (MPa) for technical comparison and documentation.",
-      "inputValue": 80,
-      "outputValue": "0.551581 MPa",
-      "stepByStep": "80 psi × 0.006895 = 0.551581 MPa (rounds to 0.55 MPa)."
+      "title": "Grade 60 Steel Rebar Yield Strength (60,000 psi)",
+      "scenario": "Convert 60,000 psi (60 ksi) structural steel yield stress into MPa (N/mm²).",
+      "inputValue": 60000,
+      "outputValue": "413.68544 MPa",
+      "stepByStep": "60,000 psi × 0.006894757 = 413.6854376 MPa (rounds to 413.69 MPa, commonly specified as 415–420 MPa)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Gauge Pressure (psig) vs. Absolute Pressure (psia)",
+    "title": "Gauge Pressure (psig) vs. Absolute Pressure (psia) & MPa vs. Msi",
     "items": [
-      "This converter scales pressure magnitude directly between psi and MPa. In automotive tires, HVAC, and compressed air systems, gauges display Gauge Pressure (referenced to ambient atmospheric pressure, ~14.696 psi or 101.325 kPa at sea level).",
-      "For thermodynamic gas laws (PV = nRT) or vacuum chamber calculations, convert gauge pressure to absolute pressure by adding local barometric pressure before scaling."
+      "This converter scales pressure magnitude directly between psi and MPa. Tire, HVAC, and hydraulic gauges usually read Gauge Pressure (psig) relative to ambient atmospheric pressure (~14.696 psi or 0.101325 MPa at sea level).",
+      "Do not confuse MPa (megapascal = 10⁶ Pa) with Msi or Mpsi (megapound per square inch = 10⁶ psi, used for elastic modulus of metals; 1 Msi = 6,894.76 MPa)."
     ]
   },
   "formula": {
     "equation": "MPa = psi × 0.00689476",
-    "exactFactor": "0.00689476",
-    "roundedFactor": "0.0069",
+    "exactFactor": "0.006894757",
+    "roundedFactor": "0.006895",
     "inverseFactor": "145.037738"
   },
   "internalLinks": [
     {
-      "label": "Megapascals to PSI (MPa to psi)",
+      "label": "Megapascals to PSI Converter (MPa to psi)",
       "href": "/pressure/megapascal-to-psi",
       "type": "reverse"
     },
     {
-      "label": "PSI to Bars (psi to bar)",
+      "label": "Convert PSI to Bar (psi to bar)",
       "href": "/pressure/psi-to-bar",
       "type": "related"
     },
     {
-      "label": "Bars to PSI (bar to psi)",
-      "href": "/pressure/bar-to-psi",
-      "type": "related"
-    },
-    {
-      "label": "PSI to Kilopascals (psi to kPa)",
+      "label": "PSI to Kilopascals Table (psi to kPa)",
       "href": "/pressure/psi-to-kpa",
       "type": "related"
     },
     {
-      "label": "Kilopascals to PSI (kPa to psi)",
-      "href": "/pressure/kpa-to-psi",
+      "label": "Megapascals to Bar Calculator (MPa to bar)",
+      "href": "/pressure/megapascal-to-bar",
       "type": "related"
     },
     {
-      "label": "Pressure Conversions Hub",
+      "label": "Bar to Megapascals Reference (bar to MPa)",
+      "href": "/pressure/bar-to-megapascal",
+      "type": "related"
+    },
+    {
+      "label": "All Pressure Unit Converters",
       "href": "/pressure",
       "type": "hub"
     },
     {
-      "label": "PSI vs. Bar vs. kPa vs. Atmosphere Pressure Reference",
+      "label": "PSI vs. Bar vs. kPa vs. MPa Pressure Guide",
       "href": "/guides/pressure-units-psi-bar-kpa-explained",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many megapascals (MPa) are in 1 pounds per square inch (psi)?",
-      "answer": "There are 0.00689476 megapascals (MPa) in 1 pounds per square inch (psi), which rounds to 0.0069 MPa for everyday calculations. Conversely, 1 megapascal equals 145.037738 psi."
+      "question": "How many megapascals (MPa) are in 1 psi?",
+      "answer": "1 pound per square inch (psi) equals 0.00689476 megapascals (MPa). Conversely, 1 MPa equals approximately 145.03774 psi."
     },
     {
-      "question": "How do I convert psi to megapascals (psi to MPa)?",
-      "answer": "To convert psi to megapascals, use the formula: MPa = psi × 0.00689476. For example, converting 35 psi gives 0.2413 MPa."
+      "question": "How do I convert PSI to MPa?",
+      "answer": "Multiply PSI by 0.006894757 (or divide PSI by 145.037738). For example, 3,000 psi ÷ 145.037738 = 20.68427 MPa."
     },
     {
-      "question": "What is 35 psi in megapascals?",
-      "answer": "35 psi (psi) equals exactly 0.2413 megapascals (MPa) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What is 4,000 psi concrete strength in MPa?",
+      "answer": "4,000 psi equals 27.57903 MPa (commonly rounded to 27.6 MPa, or paired with 28 MPa in metric structural concrete standards)."
+    },
+    {
+      "question": "Is 1 MPa equal to 1 N/mm²?",
+      "answer": "Yes. One megapascal equals 1,000,000 newtons per square meter (10⁶ N/m²), which simplifies identically to 1 newton per square millimeter (1 MPa = 1 N/mm²)."
     }
   ]
 }

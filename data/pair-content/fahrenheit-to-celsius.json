@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "fahrenheit-to-celsius",
   "category": "temperature",
   "categoryId": "temperature",
@@ -7,105 +7,164 @@
   "toUnitId": "celsius",
   "fromSymbol": "°F",
   "toSymbol": "°C",
-  "intro": "Professionals and everyday users convert fahrenheit (°F) to celsius (°C) when working across us_customary and si standards in meteorological weather reports, culinary oven calibration, HVAC setpoints, and clinical thermometry. One fahrenheit equals -17.222222 celsius, while 1 celsius equals 33.8 fahrenheit. Whether you are verifying temperature specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert Fahrenheit (°F) to Celsius (°C) instantly for local weather forecasts, clinical fever thermometers, meat internal temperatures, and baking ovens. Because water freezes at 32 °F (0 °C) and boils at 212 °F (100 °C), converting Fahrenheit to Celsius requires subtracting 32 and multiplying by 5/9 (or dividing by 1.8). Enter any temperature above or scan common weather, body-temp, and oven values below.",
+  "alsoWrittenAs": "°F to °C, F to C, degrees Fahrenheit to degrees Celsius, Fahrenheit to Centigrade",
   "commonValues": [
+    3,
+    13,
+    32,
+    55,
+    98.1,
+    100.3,
+    136,
+    194,
+    365,
+    550
+  ],
+  "tableValues": [
     -40,
     0,
+    3,
+    13,
+    20,
     32,
+    40,
     50,
+    55,
+    60,
     68,
     72,
+    80,
+    90,
+    97.2,
+    98.1,
     98.6,
+    99,
+    99.3,
+    99.7,
     100,
+    100.1,
+    100.3,
+    102,
+    104,
+    110,
+    116,
+    121,
+    123,
+    130,
+    134,
+    136,
+    140,
+    148,
+    155,
+    162,
+    165,
+    180,
+    194,
     212,
+    250,
+    300,
     350,
-    400
+    365,
+    375,
+    400,
+    425,
+    450,
+    500,
+    550
   ],
+  "tableTitle": "Fahrenheit to Celsius Reference Chart (-40 °F to 550 °F)",
+  "tableSubtitle": "Weather, clinical body-temperature, cooking, and oven equivalents computed with °C = (°F − 32) × 5/9.",
+  "tableRoundingNote": "Computed using the exact linear scale relation °C = (°F − 32) × 5/9. Repeating decimals are rounded to 5 significant digits in the table; values whose (°F − 32) is divisible by 9 (such as 32 °F, 194 °F, and 365 °F) are exact integers.",
   "workedExamples": [
     {
-      "title": "Standard Fahrenheit Benchmark (32 °F)",
-      "scenario": "Convert 32 fahrenheit (°F) into celsius (°C) for technical comparison and documentation.",
-      "inputValue": 32,
-      "outputValue": "0 °C",
-      "stepByStep": "(32 °F − 32) × 5/9 = 0 × 5/9 = 0 °C."
+      "title": "Cold Winter Forecast (13 °F)",
+      "scenario": "Convert a 13 °F winter morning forecast into Celsius for international weather comparison.",
+      "inputValue": 13,
+      "outputValue": "-10.55556 °C",
+      "stepByStep": "(13 °F − 32) × 5/9 = -19 × 5/9 = -10.55556 °C (rounds to -10.6 °C)."
     },
     {
-      "title": "Practical Mid-Range Conversion (72 °F)",
-      "scenario": "Convert 72 fahrenheit (°F) into celsius (°C) for technical comparison and documentation.",
-      "inputValue": 72,
-      "outputValue": "22.222222 °C",
-      "stepByStep": "(72 °F − 32) × 5/9 = 40 × 5/9 = 22.222222 °C."
+      "title": "Clinical Fever Thermometer (100.3 °F)",
+      "scenario": "Convert a 100.3 °F oral body temperature reading into Celsius for medical documentation.",
+      "inputValue": 100.3,
+      "outputValue": "37.94444 °C",
+      "stepByStep": "(100.3 °F − 32) × 5/9 = 68.3 × 5/9 = 37.94444 °C (rounds to 37.9 °C)."
     },
     {
-      "title": "Higher-Capacity Specification (212 °F)",
-      "scenario": "Convert 212 fahrenheit (°F) into celsius (°C) for technical comparison and documentation.",
-      "inputValue": 212,
-      "outputValue": "100 °C",
-      "stepByStep": "(212 °F − 32) × 5/9 = 180 × 5/9 = 100 °C."
+      "title": "Exact Baking Oven Setting (365 °F)",
+      "scenario": "Convert a 365 °F recipe oven temperature into Celsius for a metric dial.",
+      "inputValue": 365,
+      "outputValue": "185 °C",
+      "stepByStep": "(365 °F − 32) × 5/9 = 333 × 5/9 = 185 °C exact."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Temperature Offset vs. Temperature Interval Trap",
+    "title": "Temperature Readings vs. Temperature Differences (ΔT)",
     "items": [
-      "Converting a specific thermometer reading between Fahrenheit (°F) and Celsius (°C) requires applying the zero-point offset (+32 or +273.15). However, when converting a temperature change or difference (ΔT, such as a 10° rise), you must use only the scale ratio (1 °C = 1.8 °F = 1 K) without adding the offset.",
-      "Remember that -40 °C and -40 °F are the exact crossover point where both relative scales read the same value."
+      "Converting a specific thermometer reading between °F and °C always requires subtracting 32 first. When converting a temperature change or interval (ΔT, such as a 9 °F rise), multiply only by 5/9 without subtracting 32 (Δ9 °F = Δ5 °C).",
+      "Both scales meet at -40 °F = -40 °C; below -40, the Fahrenheit number is lower than Celsius, whereas above -40, Fahrenheit is higher."
     ]
   },
   "formula": {
     "equation": "°C = (°F − 32) × 5/9",
-    "exactFactor": "-17.22222222",
-    "roundedFactor": "-17.2222",
-    "inverseFactor": "33.8"
+    "exactFactor": "5/9 (after −32 offset)",
+    "roundedFactor": "0.5556 (after −32 offset)",
+    "inverseFactor": "1.8 (then +32 offset)"
   },
   "internalLinks": [
     {
-      "label": "Celsius to Fahrenheit (°C to °F)",
+      "label": "Celsius to Fahrenheit Converter (°C to °F)",
       "href": "/temperature/celsius-to-fahrenheit",
       "type": "reverse"
     },
     {
-      "label": "Celsius to Kelvin (°C to K)",
+      "label": "Celsius to Kelvin Scale Table (°C to K)",
       "href": "/temperature/celsius-to-kelvin",
       "type": "related"
     },
     {
-      "label": "Kelvin to Celsius (K to °C)",
-      "href": "/temperature/kelvin-to-celsius",
-      "type": "related"
-    },
-    {
-      "label": "Fahrenheit to Kelvin (°F to K)",
+      "label": "Convert Fahrenheit to Kelvin (°F to K)",
       "href": "/temperature/fahrenheit-to-kelvin",
       "type": "related"
     },
     {
-      "label": "Kelvin to Fahrenheit (K to °F)",
+      "label": "Kelvin to Celsius Calculator (K to °C)",
+      "href": "/temperature/kelvin-to-celsius",
+      "type": "related"
+    },
+    {
+      "label": "Kelvin to Fahrenheit Reference (K to °F)",
       "href": "/temperature/kelvin-to-fahrenheit",
       "type": "related"
     },
     {
-      "label": "Temperature Conversions Hub",
+      "label": "All Temperature Unit Converters",
       "href": "/temperature",
       "type": "hub"
     },
     {
-      "label": "Celsius vs. Fahrenheit vs. Kelvin Temperature Scales Guide",
+      "label": "Celsius vs. Fahrenheit vs. Kelvin Guide",
       "href": "/guides/temperature-scales-explained",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many celsius (°C) are in 1 fahrenheit (°F)?",
-      "answer": "There are -17.22222222 celsius (°C) in 1 fahrenheit (°F), which rounds to -17.2222 °C for everyday calculations. Conversely, 1 celsius equals 33.8 fahrenheit."
+      "question": "What is the exact formula to convert Fahrenheit to Celsius?",
+      "answer": "Subtract 32 from the Fahrenheit value and multiply by 5/9 (or divide by 1.8): °C = (°F − 32) × 5/9. For example, (365 − 32) × 5/9 = 185 °C."
     },
     {
-      "question": "How do I convert fahrenheit to celsius (°F to °C)?",
-      "answer": "To convert fahrenheit to celsius, use the formula: °C = (°F − 32) × 5/9. For example, converting 68 °F gives 20 °C."
+      "question": "What is 100.3 °F in Celsius (fever reading)?",
+      "answer": "100.3 °F equals 37.94444 °C, which rounds to 37.9 °C on clinical thermometers."
     },
     {
-      "question": "What is 68 fahrenheit in celsius?",
-      "answer": "68 fahrenheit (°F) equals exactly 20 celsius (°C) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "How do I convert Fahrenheit to Celsius in Excel?",
+      "answer": "Use the built-in formula =CONVERT(A1,\"F\",\"C\") or the arithmetic formula =(A1-32)*5/9 where cell A1 holds the Fahrenheit temperature."
+    },
+    {
+      "question": "At what temperature are Fahrenheit and Celsius equal?",
+      "answer": "-40 °F equals exactly -40 °C, the single point where both relative temperature scales intersect."
     }
   ]
 }

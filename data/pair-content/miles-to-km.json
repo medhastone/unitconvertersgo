@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "miles-to-km",
   "category": "length",
   "categoryId": "length",
@@ -7,48 +7,99 @@
   "toUnitId": "kilometer",
   "fromSymbol": "mi",
   "toSymbol": "km",
-  "intro": "Professionals and everyday users convert miles (mi) to kilometers (km) when working across imperial and si standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One mile (statute) equals 1.609344 kilometers, while 1 kilometer equals 0.621371 miles. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert miles to kilometers (or kilometres) accurately for road trips, running races, cycling logs, and international travel distances. Under the 1959 International Yard and Pound Agreement, 1 statute mile equals exactly 1.609344 kilometers—making one mile about 60.9% longer than one kilometer. Use this mile in km calculator to multiply any distance by 1.609344, or scan common route benchmarks from 0.5 mi to 2,500 mi below.",
+  "alsoWrittenAs": "mi to km, miles to kilometres, statute mile to kilometer, mi into km",
   "commonValues": [
     1,
-    3.1,
-    5,
-    6.2,
+    2,
+    6,
     10,
+    24,
+    51,
+    80,
+    135,
+    270,
+    2260
+  ],
+  "tableValues": [
+    0.5,
+    1,
+    1.4,
+    2,
+    3,
+    3.26,
+    5,
+    6,
+    7,
+    8,
+    10,
+    10.4,
+    11.8,
     13.1,
+    15,
+    20,
+    24,
     26.2,
+    30,
+    40,
     50,
+    51,
     60,
     70,
-    100
+    73,
+    80,
+    86,
+    90,
+    100,
+    120,
+    135,
+    150,
+    175,
+    190,
+    200,
+    220,
+    250,
+    270,
+    300,
+    400,
+    500,
+    1000,
+    1500,
+    2000,
+    2260,
+    2500
   ],
+  "tableTitle": "Miles to Kilometers Distance Chart (0.5 mi to 2,500 mi)",
+  "tableSubtitle": "Exact statute mile to kilometer conversions computed with km = mi × 1.609344.",
+  "tableRoundingNote": "Computed with the exact International Statute Mile factor (1 mi = 1.609344 km). Table values are rounded to 5 significant digits (up to 5 decimal places); use the calculator above for unrounded output.",
   "workedExamples": [
     {
-      "title": "Standard Mile (Statute) Benchmark (5 mi)",
-      "scenario": "Convert 5 miles (mi) into kilometers (km) for technical comparison and documentation.",
-      "inputValue": 5,
-      "outputValue": "8.04672 km",
-      "stepByStep": "5 mi × 1.609344 = 8.04672 km (rounds to 8.05 km)."
+      "title": "Long-Distance Training Run (10.4 mi)",
+      "scenario": "Convert a 10.4-mile running route into kilometers to compare against metric race splits.",
+      "inputValue": 10.4,
+      "outputValue": "16.73718 km",
+      "stepByStep": "10.4 mi × 1.609344 = 16.7371776 km (rounds to 16.74 km)."
     },
     {
-      "title": "Practical Mid-Range Conversion (13.1 mi)",
-      "scenario": "Convert 13.1 miles (mi) into kilometers (km) for technical comparison and documentation.",
-      "inputValue": 13.1,
-      "outputValue": "21.082406 km",
-      "stepByStep": "13.1 mi × 1.609344 = 21.082406 km (rounds to 21.08 km)."
+      "title": "Intercity Road Trip (135 mi)",
+      "scenario": "Convert a 135-mile highway journey into kilometers for fuel economy and trip logs.",
+      "inputValue": 135,
+      "outputValue": "217.26144 km",
+      "stepByStep": "135 mi × 1.609344 = 217.26144 km exact (rounds to 217.26 km)."
     },
     {
-      "title": "Higher-Capacity Specification (60 mi)",
-      "scenario": "Convert 60 miles (mi) into kilometers (km) for technical comparison and documentation.",
-      "inputValue": 60,
-      "outputValue": "96.56064 km",
-      "stepByStep": "60 mi × 1.609344 = 96.56064 km (rounds to 96.56 km)."
+      "title": "Cross-Country Flight Corridor (2,260 mi)",
+      "scenario": "Convert a 2,260-mile coast-to-coast route into kilometers for aviation or freight records.",
+      "inputValue": 2260,
+      "outputValue": "3,637.11744 km",
+      "stepByStep": "2,260 mi × 1.609344 = 3,637.11744 km exact (rounds to 3,637.12 km)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "title": "Statute Miles vs. Nautical Miles & Distance vs. Speed",
     "items": [
-      "The exact conversion factor from Mile (Statute) to Kilometer is 1.609344, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
-      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+      "Road odometers and highway signs use the international statute mile (1 mi = 1.609344 km), whereas marine and aviation navigation use the nautical mile (1 nmi = 1.852 km exact, about 15% longer).",
+      "Do not confuse miles-to-kilometers distance with miles-per-hour speed (mph to km/h); although both share the 1.609344 multiplier, speed measures distance traveled per hour."
     ]
   },
   "formula": {
@@ -59,53 +110,57 @@
   },
   "internalLinks": [
     {
-      "label": "Kilometers to Miles (km to mi)",
+      "label": "Kilometers to Miles Converter (km to mi)",
       "href": "/length/km-to-miles",
       "type": "reverse"
     },
     {
-      "label": "Centimeters to Inches (cm to in)",
-      "href": "/length/cm-to-inches",
+      "label": "Nautical Miles to Kilometers (nmi to km)",
+      "href": "/length/nautical-miles-to-km",
       "type": "related"
     },
     {
-      "label": "Inches to Centimeters (in to cm)",
-      "href": "/length/inches-to-cm",
+      "label": "Convert Miles to Feet (mi to ft)",
+      "href": "/length/miles-to-feet",
       "type": "related"
     },
     {
-      "label": "Feet to Meters (ft to m)",
-      "href": "/length/feet-to-meters",
+      "label": "Kilometers to Meters Calculator (km to m)",
+      "href": "/length/km-to-meters",
       "type": "related"
     },
     {
-      "label": "Meters to Feet (m to ft)",
-      "href": "/length/meters-to-feet",
+      "label": "Miles per Hour to km/h Speed Converter",
+      "href": "/speed/mph-to-kph",
       "type": "related"
     },
     {
-      "label": "Length Conversions Hub",
+      "label": "All Length & Distance Converters",
       "href": "/length",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial Distance Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many kilometers (km) are in 1 mile (statute) (mi)?",
-      "answer": "There are 1.609344 kilometers (km) in 1 mile (statute) (mi), which rounds to 1.6093 km for everyday calculations. Conversely, 1 kilometer equals 0.621371 miles."
+      "question": "How many kilometers are in 1 mile?",
+      "answer": "1 statute mile equals exactly 1.609344 kilometers (about 1.61 km). Conversely, 1 kilometer equals approximately 0.62137 miles."
     },
     {
-      "question": "How do I convert miles to kilometers (mi to km)?",
-      "answer": "To convert miles to kilometers, use the formula: km = mi × 1.609344. For example, converting 10 mi gives 16.0934 km."
+      "question": "How does a mile compare versus a kilometer?",
+      "answer": "A statute mile is 60.93% longer than a kilometer: 1 mile equals 1.609344 km, whereas 1 km is roughly 0.621 miles (just under two-thirds of a mile)."
     },
     {
-      "question": "What is 10 miles in kilometers?",
-      "answer": "10 miles (mi) equals exactly 16.0934 kilometers (km) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "How do I convert from mile to km?",
+      "answer": "Multiply miles by 1.609344 (km = mi × 1.609344). For example, 270 miles × 1.609344 = 434.52288 km."
+    },
+    {
+      "question": "Is a statute mile the same as a nautical mile?",
+      "answer": "No. Land distances use the statute mile (1.609344 km), while maritime and aviation routes use the nautical mile (1.852 km exact)."
     }
   ]
 }

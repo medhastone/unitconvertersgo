@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "lb-ft-to-nm",
   "category": "torque",
   "categoryId": "torque",
@@ -7,47 +7,83 @@
   "toUnitId": "nm",
   "fromSymbol": "lb·ft",
   "toSymbol": "N·m",
-  "intro": "Professionals and everyday users convert pound-feet (lb·ft) to newton-meters (N·m) when working across imperial and si standards in automotive lug nut torque wrench settings, engine dynamometer curves, and industrial fastener specifications. One pound-foot (ft·lbf) equals 1.355818 newton-meters, while 1 newton-meter equals 0.737562 pound-feet. Whether you are verifying torque specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert foot pounds to Nm (pound-feet to newton-meters) accurately for wheel lug nuts, cylinder head bolts, and engine dynamometer curves. Under the International Yard and Pound Agreement, 1 pound-foot (ft·lbf) equals exactly 1.35581795 newton-meters (ft lbs to newton metres), while 1 N·m equals 0.737562 lb·ft. Whether tightening suspension hardware or converting ft/lbs to Nm on service datasheets, multiply by 1.35582 or scan the torque table below.",
+  "alsoWrittenAs": "ft-lbs to Nm, ft lbs to newton metres, foot pound torque to N·m, ft pounds of torque, lb·ft to N·m",
   "commonValues": [
-    1,
     5,
-    10,
+    9,
+    17,
+    22,
     25,
     50,
-    75,
+    60,
     100,
+    120,
+    200
+  ],
+  "tableValues": [
+    1,
+    5,
+    9,
+    10,
+    15,
+    17,
+    20,
+    22,
+    25,
+    30,
+    35,
+    40,
+    50,
+    60,
+    70,
+    75,
+    80,
+    90,
+    100,
+    110,
+    120,
+    130,
+    140,
     150,
+    175,
+    200,
+    225,
     250,
+    300,
     500
   ],
+  "tableTitle": "Foot Pounds to Nm Chart (1 lb·ft to 500 lb·ft)",
+  "tableSubtitle": "Automotive lug nut, fastener, and engine torque conversions computed with N·m = lb·ft × 1.35581795.",
+  "tableRoundingNote": "Computed with the exact NIST torque factor 1 lb·ft = 1.3558179483 N·m (1 lb = 0.45359237 kg, gₙ = 9.80665 m/s², 1 ft = 0.3048 m). Chart outputs are rounded to 5 significant digits (up to 5 decimal places).",
   "workedExamples": [
     {
-      "title": "Standard Pound-foot (ft·lbf) Benchmark (10 lb·ft)",
-      "scenario": "Convert 10 pound-feet (lb·ft) into newton-meters (N·m) for technical comparison and documentation.",
-      "inputValue": 10,
-      "outputValue": "13.558179 N·m",
-      "stepByStep": "10 lb·ft × 1.355818 = 13.558179 N·m (rounds to 13.56 N·m)."
+      "title": "Valve Cover & Bracket Fastener (17 lb·ft)",
+      "scenario": "Convert 17 foot-pounds of torque into newton-meters for small aluminum engine fasteners.",
+      "inputValue": 17,
+      "outputValue": "23.04891 N·m",
+      "stepByStep": "17 lb·ft × 1.35581795 = 23.048905 N·m (rounds to 23.05 N·m)."
     },
     {
-      "title": "Practical Mid-Range Conversion (75 lb·ft)",
-      "scenario": "Convert 75 pound-feet (lb·ft) into newton-meters (N·m) for technical comparison and documentation.",
-      "inputValue": 75,
-      "outputValue": "101.686346 N·m",
-      "stepByStep": "75 lb·ft × 1.355818 = 101.686346 N·m (rounds to 101.69 N·m)."
+      "title": "Wheel Lug Nut Torque Spec (100 lb·ft)",
+      "scenario": "Convert 100 ft-lbs into newton-meters for passenger vehicle wheel lug nuts.",
+      "inputValue": 100,
+      "outputValue": "135.58179 N·m",
+      "stepByStep": "100 lb·ft × 1.35581795 = 135.581795 N·m (rounds to 135.58 N·m)."
     },
     {
-      "title": "Higher-Capacity Specification (250 lb·ft)",
-      "scenario": "Convert 250 pound-feet (lb·ft) into newton-meters (N·m) for technical comparison and documentation.",
-      "inputValue": 250,
-      "outputValue": "338.954487 N·m",
-      "stepByStep": "250 lb·ft × 1.355818 = 338.954487 N·m (rounds to 338.95 N·m)."
+      "title": "Axle Nut & Crankshaft Bolt (200 lb·ft)",
+      "scenario": "Convert 200 lb·ft heavy drivetrain torque into newton-meters.",
+      "inputValue": 200,
+      "outputValue": "271.16359 N·m",
+      "stepByStep": "200 lb·ft × 1.35581795 = 271.16359 N·m (rounds to 271.16 N·m)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "title": "Torque (ft·lbs → N·m) vs. Force (lbs → N) & ft/lbs Notation",
     "items": [
-      "The exact conversion factor from Pound-foot (ft·lbf) to Newton-meter is 1.35581795, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
-      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+      "Foot-pounds (lb·ft) measure rotational torque, not linear force. Multiply lb·ft by 1.35582 to get N·m; if you instead want to convert pounds-force (lbf) to newtons (N), multiply by 4.44822.",
+      "Mechanics often write 'ft/lbs' informally, even though torque multiplies force by distance (ft·lb). Also keep pound-feet separate from pound-inches (1 lb·ft = 12 lb·in) to prevent 12× over-torquing small bolts."
     ]
   },
   "formula": {
@@ -58,53 +94,57 @@
   },
   "internalLinks": [
     {
-      "label": "Newton-meters to Pound-feet (N·m to lb·ft)",
+      "label": "Newton-Meters to Pound-Feet Converter (N·m to lb·ft)",
       "href": "/torque/nm-to-lb-ft",
       "type": "reverse"
     },
     {
-      "label": "Newton-meters to Pound-inches (N·m to lb·in)",
+      "label": "Newton-Meters to Pound-Inches (N·m to lb·in)",
       "href": "/torque/nm-to-lb-in",
       "type": "related"
     },
     {
-      "label": "Pound-inches to Newton-meters (lb·in to N·m)",
+      "label": "Pound-Inches to Newton-Meters (lb·in to N·m)",
       "href": "/torque/lb-in-to-nm",
       "type": "related"
     },
     {
-      "label": "Pound-feet to Pound-inches (lb·ft to lb·in)",
+      "label": "Pound-Feet to Pound-Inches (lb·ft to lb·in)",
       "href": "/torque/lb-ft-to-lb-in",
       "type": "related"
     },
     {
-      "label": "Pound-inches to Pound-feet (lb·in to lb·ft)",
-      "href": "/torque/lb-in-to-lb-ft",
+      "label": "Kilogram-Force Meters to N·m (kgf·m to N·m)",
+      "href": "/torque/kilogram-force-meters-to-newton-meters",
       "type": "related"
     },
     {
-      "label": "Torque Conversions Hub",
+      "label": "All Torque Unit Converters",
       "href": "/torque",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial Engineering Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many newton-meters (N·m) are in 1 pound-foot (ft·lbf) (lb·ft)?",
-      "answer": "There are 1.35581795 newton-meters (N·m) in 1 pound-foot (ft·lbf) (lb·ft), which rounds to 1.3558 N·m for everyday calculations. Conversely, 1 newton-meter equals 0.737562 pound-feet."
+      "question": "How do you convert ft-lbs to newton-meters (vs. lbs to newtons)?",
+      "answer": "For rotational torque, multiply foot-pounds (lb·ft) by 1.35581795 to get newton-meters (N·m)—for example, 100 lb·ft = 135.58 N·m. For linear force (pounds-force, lbf, to newtons, N), multiply lbf by 4.44822 instead."
     },
     {
-      "question": "How do I convert pound-feet to newton-meters (lb·ft to N·m)?",
-      "answer": "To convert pound-feet to newton-meters, use the formula: N·m = lb·ft × 1.35581795. For example, converting 50 lb·ft gives 67.7909 N·m."
+      "question": "How many foot-pounds are in a newton-meter?",
+      "answer": "There are 0.737562 foot-pounds (lb·ft) in 1 newton-meter (N·m). Conversely, 1 foot-pound equals 1.35581795 newton-meters."
     },
     {
-      "question": "What is 50 pound-feet in newton-meters?",
-      "answer": "50 pound-feet (lb·ft) equals exactly 67.7909 newton-meters (N·m) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What is 100 ft-lbs in Nm?",
+      "answer": "100 ft-lbs equals 135.58179 N·m (commonly rounded to 136 N·m on metric torque wrenches)."
+    },
+    {
+      "question": "What is 25 ft-lbs in Nm?",
+      "answer": "25 ft-lbs equals 33.89545 N·m (about 33.9 N·m)."
     }
   ]
 }

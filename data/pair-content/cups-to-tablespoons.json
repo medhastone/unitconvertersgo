@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "cups-to-tablespoons",
   "category": "volume",
   "categoryId": "volume",
@@ -7,46 +7,90 @@
   "toUnitId": "us_tablespoon",
   "fromSymbol": "cup",
   "toSymbol": "tbsp",
-  "intro": "Professionals and everyday users convert cups (us) (cup) to tablespoons (us) (tbsp) when working across us_customary and us_customary standards in culinary recipe scaling, beverage bottling, laboratory reagent preparation, and fluid tank capacity sizing. One cup (us customary) equals 16 tablespoons (us), while 1 tablespoon (us) equals 0.0625 cups (us). Whether you are verifying volume & liquid specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert US cups to tablespoons (tbsp) instantly for baking, butter sticks, spice rubs, and liquid recipe scaling. Because 1 US customary cup equals 8 US fluid ounces and 1 tablespoon equals 1/2 fluid ounce, there are exactly 16 tablespoons in 1 US cup. Multiply your cup quantity by 16 above—or look up fractions and batch volumes from 0.04 cup to 64 cups below.",
+  "alsoWrittenAs": "cup to tbsp, US cups to tablespoons, c to tbsp, cups into tbsp",
   "commonValues": [
+    0.04,
+    0.125,
     0.25,
-    0.333,
+    0.33,
     0.5,
+    1,
+    2,
+    9,
+    20,
+    48
+  ],
+  "tableValues": [
+    0.04,
+    0.125,
+    0.25,
+    0.33,
+    0.5,
+    0.667,
     0.75,
     1,
     1.5,
     2,
     3,
-    4
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    36,
+    38,
+    40,
+    44,
+    48,
+    56,
+    63,
+    64
   ],
+  "tableTitle": "Cups to Tablespoons Kitchen Chart (0.04 cup to 64 cups)",
+  "tableSubtitle": "US Customary recipe conversions computed with tbsp = cup × 16.",
+  "tableRoundingNote": "Computed using the exact US Customary factor 1 cup = 16 tbsp (236.5882365 mL ÷ 14.78676478 mL). All exact binary kitchen fractions (1/8, 1/4, 1/2, 3/4) yield whole tablespoons without rounding.",
   "workedExamples": [
     {
-      "title": "Standard Cup (US Customary) Benchmark (0.5 cup)",
-      "scenario": "Convert 0.5 cups (us) (cup) into tablespoons (us) (tbsp) for technical comparison and documentation.",
-      "inputValue": 0.5,
-      "outputValue": "8 tbsp",
-      "stepByStep": "0.5 cup × 16 = 8 tbsp (rounds to 8 tbsp)."
+      "title": "One-Third Cup Approximation (0.33 cup)",
+      "scenario": "Convert 0.33 cups into tablespoons for scaled baking and sauce recipes.",
+      "inputValue": 0.33,
+      "outputValue": "5.28 tbsp",
+      "stepByStep": "0.33 cup × 16 = 5.28 tbsp exact (exact 1/3 cup is 5 tbsp + 1 tsp, or 5.3333 tbsp)."
     },
     {
-      "title": "Practical Mid-Range Conversion (1.5 cup)",
-      "scenario": "Convert 1.5 cups (us) (cup) into tablespoons (us) (tbsp) for technical comparison and documentation.",
-      "inputValue": 1.5,
-      "outputValue": "24 tbsp",
-      "stepByStep": "1.5 cup × 16 = 24 tbsp (rounds to 24 tbsp)."
+      "title": "Large Batch Sauce & Soup (9 cups)",
+      "scenario": "Convert 9 cups of broth or dry mix into tablespoons for catering yield logs.",
+      "inputValue": 9,
+      "outputValue": "144 tbsp",
+      "stepByStep": "9 cups × 16 = 144 tbsp exact."
     },
     {
-      "title": "Higher-Capacity Specification (4 cup)",
-      "scenario": "Convert 4 cups (us) (cup) into tablespoons (us) (tbsp) for technical comparison and documentation.",
-      "inputValue": 4,
-      "outputValue": "64 tbsp",
-      "stepByStep": "4 cup × 16 = 64 tbsp (rounds to 64 tbsp)."
+      "title": "Commercial Kitchen Prep (20 cups)",
+      "scenario": "Convert 20 cups (5 quarts) into tablespoons for foodservice recipe costing.",
+      "inputValue": 20,
+      "outputValue": "320 tbsp",
+      "stepByStep": "20 cups × 16 = 320 tbsp exact."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "US Customary vs. British Imperial Liquid Volume Trap",
+    "title": "US Customary vs. Metric & Australian Tablespoons",
     "items": [
-      "US Customary and UK Imperial liquid units share identical names but have different physical volumes: 1 US Gallon is 3.78541 L (128 US fl oz), whereas 1 UK Imperial Gallon is 4.54609 L (160 Imp fl oz) — a 20.1% difference.",
-      "Similarly, 1 US Pint contains 16 US fluid ounces (473.18 mL), while 1 British Imperial Pint contains 20 Imperial fluid ounces (568.26 mL). Always verify whether your recipe, pump datasheet, or vehicle spec sheet uses US or UK standards."
+      "A US tablespoon equals 14.78676 mL (commonly rounded to 15 mL or 15 cc) with 16 tbsp per 236.59 mL US cup. An Australian tablespoon is 20 mL (12.5 tbsp per 250 mL metric cup).",
+      "Exact thirds do not divide evenly into whole tablespoons: 1/3 cup = 5 tbsp + 1 tsp (5.3333 tbsp), and 2/3 cup = 10 tbsp + 2 tsp (10.6667 tbsp)."
     ]
   },
   "formula": {
@@ -57,53 +101,57 @@
   },
   "internalLinks": [
     {
-      "label": "Tablespoons (US) to Cups (US) (tbsp to cup)",
+      "label": "Tablespoons to Cups Converter (tbsp to cup)",
       "href": "/volume/tablespoons-to-cups",
       "type": "reverse"
     },
     {
-      "label": "Liters to Gallons (US) (L to gal (US))",
-      "href": "/volume/liters-to-gallons",
+      "label": "Cups to Milliliters Kitchen Chart (cup to mL)",
+      "href": "/volume/cups-to-ml",
       "type": "related"
     },
     {
-      "label": "Gallons (US) to Liters (gal (US) to L)",
-      "href": "/volume/gallons-to-liters",
+      "label": "Tablespoons to Teaspoons (tbsp to tsp)",
+      "href": "/volume/tablespoons-to-teaspoons",
       "type": "related"
     },
     {
-      "label": "Milliliters to Fluid Ounces (US) (mL to fl oz)",
-      "href": "/volume/ml-to-fluid-ounces",
+      "label": "Tablespoons to Milliliters (tbsp to mL)",
+      "href": "/volume/tablespoons-to-ml",
       "type": "related"
     },
     {
-      "label": "Fluid Ounces (US) to Milliliters (fl oz to mL)",
-      "href": "/volume/fluid-ounces-to-ml",
+      "label": "Cups to Fluid Ounces (cup to fl oz)",
+      "href": "/volume/cups-to-fluid-ounces",
       "type": "related"
     },
     {
-      "label": "Volume & Liquid Conversions Hub",
+      "label": "All Volume & Liquid Converters",
       "href": "/volume",
       "type": "hub"
     },
     {
-      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "label": "US Customary vs. Imperial Volume Guide",
       "href": "/guides/us-vs-imperial-fluid-ounces",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many tablespoons (us) (tbsp) are in 1 cup (us customary) (cup)?",
-      "answer": "There are 16 tablespoons (us) (tbsp) in 1 cup (us customary) (cup), which rounds to 16 tbsp for everyday calculations. Conversely, 1 tablespoon (us) equals 0.0625 cups (us)."
+      "question": "How many cups is 6 tablespoons?",
+      "answer": "6 US tablespoons equals 3/8 of a cup, or 0.375 cups (6 ÷ 16 = 0.375)."
     },
     {
-      "question": "How do I convert cups (us) to tablespoons (us) (cup to tbsp)?",
-      "answer": "To convert cups (us) to tablespoons (us), use the formula: tbsp = cup × 16. For example, converting 1 cup gives 16 tbsp."
+      "question": "How many tablespoons (spoons) are in half a cup?",
+      "answer": "There are exactly 8 tablespoons (or 24 teaspoons) in 1/2 US cup (0.5 × 16 = 8 tbsp)."
     },
     {
-      "question": "What is 1 cups (us) in tablespoons (us)?",
-      "answer": "1 cups (us) (cup) equals exactly 16 tablespoons (us) (tbsp) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "One eighth of a cup (1/8 cup) is how many tablespoons?",
+      "answer": "One eighth of a US cup (0.125 cup) equals exactly 2 tablespoons (0.125 × 16 = 2 tbsp)."
+    },
+    {
+      "question": "How many CCs (mL) are in a tablespoon?",
+      "answer": "One US tablespoon equals 14.78676 cubic centimeters (cc or mL)—commonly rounded to 15 cc (15 mL) in cooking and medical dosing."
     }
   ]
 }

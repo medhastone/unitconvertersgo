@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "meters-to-feet",
   "category": "length",
   "categoryId": "length",
@@ -7,104 +7,158 @@
   "toUnitId": "foot",
   "fromSymbol": "m",
   "toSymbol": "ft",
-  "intro": "Professionals and everyday users convert meters (m) to feet (ft) when working across si and imperial standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One meter equals 3.28084 feet, while 1 foot equals 0.3048 meters. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert meters (or metres) to feet accurately for building heights, athletic tracks, elevation maps, and civil engineering plans. Because 1 international foot equals exactly 0.3048 meters, multiplying meters by 3.2808399 (or dividing by 0.3048) returns exact feet. For geodetic land surveys requiring meters to survey feet, multiply by 3.2808333 (1200/3937 m). Check pre-computed spans in the meter to feet conversion chart below.",
+  "alsoWrittenAs": "m to ft, metres to feet, meter to foot, m into ft, meters to US survey feet",
   "commonValues": [
     1,
     1.5,
-    1.8,
+    3.5,
+    9.8,
+    63.6,
+    85,
+    280,
+    750,
+    2000,
+    8849
+  ],
+  "tableValues": [
+    1,
+    1.25,
+    1.5,
     2,
     3,
+    3.5,
+    3.85,
+    4.35,
     5,
+    6,
+    8,
+    9,
+    9.8,
     10,
+    13.6,
+    15,
     20,
+    25,
+    30,
+    40,
     50,
-    100
+    63.6,
+    75,
+    85,
+    100,
+    150,
+    200,
+    250,
+    280,
+    300,
+    400,
+    500,
+    572,
+    630,
+    750,
+    800,
+    1000,
+    1500,
+    2000,
+    2500,
+    3000,
+    3800,
+    5000,
+    8849
   ],
+  "tableTitle": "Meter to Feet Conversion Chart (1 m to 8,849 m)",
+  "tableSubtitle": "International feet equivalents computed using ft = m ÷ 0.3048 (m × 3.2808399).",
+  "tableRoundingNote": "Computed from the exact International Yard and Pound definition 1 ft = 0.3048 m (1 m = 3.280839895 ft). Chart values are rounded to 5 significant digits; for US Survey Feet (1200/3937 m), multiply meters by 3.28083333.",
   "workedExamples": [
     {
-      "title": "Standard Meter Benchmark (1.8 m)",
-      "scenario": "Convert 1.8 meters (m) into feet (ft) for technical comparison and documentation.",
-      "inputValue": 1.8,
-      "outputValue": "5.905512 ft",
-      "stepByStep": "1.8 m × 3.28084 = 5.905512 ft (rounds to 5.91 ft)."
+      "title": "Doorway & Room Clearance (1.5 m)",
+      "scenario": "Convert 1.5 meters into feet and inches for interior design or equipment clearances.",
+      "inputValue": 1.5,
+      "outputValue": "4.92126 ft",
+      "stepByStep": "1.5 m ÷ 0.3048 = 4.9212598 ft (rounds to 4.92126 ft, or 4 ft 11.06 in)."
     },
     {
-      "title": "Practical Mid-Range Conversion (5 m)",
-      "scenario": "Convert 5 meters (m) into feet (ft) for technical comparison and documentation.",
-      "inputValue": 5,
-      "outputValue": "16.404199 ft",
-      "stepByStep": "5 m × 3.28084 = 16.404199 ft (rounds to 16.4 ft)."
+      "title": "Building & Crane Boom Height (85 m)",
+      "scenario": "Convert 85 meters into feet for structural elevation or aviation obstacle charts.",
+      "inputValue": 85,
+      "outputValue": "278.87139 ft",
+      "stepByStep": "85 m ÷ 0.3048 = 278.871391 ft (rounds to 278.87 ft)."
     },
     {
-      "title": "Higher-Capacity Specification (50 m)",
-      "scenario": "Convert 50 meters (m) into feet (ft) for technical comparison and documentation.",
-      "inputValue": 50,
-      "outputValue": "164.041995 ft",
-      "stepByStep": "50 m × 3.28084 = 164.041995 ft (rounds to 164.04 ft)."
+      "title": "Mountain Trail Elevation (2,000 m)",
+      "scenario": "Convert 2,000 meters (2 km) elevation or trail distance into feet.",
+      "inputValue": 2000,
+      "outputValue": "6,561.67979 ft",
+      "stepByStep": "2,000 m ÷ 0.3048 = 6,561.67979 ft (rounds to 6,561.68 ft)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "title": "International Feet vs. US Survey Feet (meters to survey ft)",
     "items": [
-      "The exact conversion factor from Meter to Foot is 3.2808399, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
-      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+      "Standard engineering, aviation, and height conversions use the International Foot (0.3048 m exact, so 1 m = 3.280839895 ft). Legacy US geodetic surveying uses the US Survey Foot (1200/3937 m ≈ 0.30480061 m, so 1 m = 3.280833333 US survey ft).",
+      "The two definitions differ by only 2 parts per million (~0.0066 ft at 1,000 m, or ~0.01 ft per mile), which matters only in large state-plane coordinate systems."
     ]
   },
   "formula": {
-    "equation": "ft = m × 3.2808399",
+    "equation": "ft = m ÷ 0.3048",
     "exactFactor": "3.2808399",
     "roundedFactor": "3.2808",
     "inverseFactor": "0.3048"
   },
   "internalLinks": [
     {
-      "label": "Feet to Meters (ft to m)",
+      "label": "Feet to Meters Converter (ft to m)",
       "href": "/length/feet-to-meters",
       "type": "reverse"
     },
     {
-      "label": "Centimeters to Inches (cm to in)",
-      "href": "/length/cm-to-inches",
+      "label": "Meters to Millimeters Chart (m to mm)",
+      "href": "/length/meters-to-mm",
       "type": "related"
     },
     {
-      "label": "Inches to Centimeters (in to cm)",
-      "href": "/length/inches-to-cm",
+      "label": "Meters to Yards Table (m to yd)",
+      "href": "/length/meters-to-yards",
       "type": "related"
     },
     {
-      "label": "Kilometers to Miles (km to mi)",
-      "href": "/length/km-to-miles",
+      "label": "Convert Feet to Inches (ft to in)",
+      "href": "/length/feet-to-inches",
       "type": "related"
     },
     {
-      "label": "Miles to Kilometers (mi to km)",
-      "href": "/length/miles-to-km",
+      "label": "Centimeters to Feet Height Chart (cm to ft)",
+      "href": "/length/cm-to-feet",
       "type": "related"
     },
     {
-      "label": "Length Conversions Hub",
+      "label": "All Length & Distance Converters",
       "href": "/length",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial Length Reference",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many feet (ft) are in 1 meter (m)?",
-      "answer": "There are 3.2808399 feet (ft) in 1 meter (m), which rounds to 3.2808 ft for everyday calculations. Conversely, 1 foot equals 0.3048 meters."
+      "question": "How many feet are in 1 meter?",
+      "answer": "1 meter equals 3.28084 international feet (1 ÷ 0.3048 = 3.2808399 ft), or roughly 3 feet 3.37 inches."
     },
     {
-      "question": "How do I convert meters to feet (m to ft)?",
-      "answer": "To convert meters to feet, use the formula: ft = m × 3.2808399. For example, converting 3 m gives 9.8425 ft."
+      "question": "What is the difference between meters to international feet and meters to US survey feet?",
+      "answer": "International feet use 1 ft = 0.3048 m exact (1 m = 3.2808399 ft), whereas US survey feet use 1200/3937 m (1 m = 3.2808333 US survey ft)—a 2 ppm difference of roughly 0.0066 ft per 1,000 meters."
     },
     {
-      "question": "What is 3 meters in feet?",
-      "answer": "3 meters (m) equals exactly 9.8425 feet (ft) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "How do I convert meters to feet?",
+      "answer": "Divide meters by 0.3048, or multiply by 3.28084. For example, 85 m × 3.2808399 = 278.87139 ft."
+    },
+    {
+      "question": "What is 8,849 meters (Mount Everest) in feet?",
+      "answer": "8,849 meters equals 29,032.15223 feet (often rounded to 29,032 ft)."
     }
   ]
 }

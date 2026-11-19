@@ -230,28 +230,42 @@ const COMPACT_QUERY_TITLE_OVERRIDES: Record<string, string> = {
   "inches-to-mm": "Inches to MM Calculator — Convert Inches to Millimeters",
   "mm-to-inches": "MM to Inches — Millimeter to Inches Converter",
   "cm-to-inches": "CM to Inches — Centimeters to Inches Converter",
+  "cm-to-feet": "CM to Feet — Centimeters to Feet Converter",
   "inches-to-cm": "Inches to CM — Inches to Centimeters Converter",
-  "meters-to-feet": "Meters to Feet (m to ft) Converter",
+  "meters-to-feet": "Meters to Feet (m to ft) Converter & Chart",
+  "meters-to-mm": "Meters to Millimeters (m to mm) Converter",
+  "meters-to-yards": "Meters to Yards (m to yd) Converter & Chart",
   "feet-to-meters": "Feet to Meters (ft to m) Converter",
   "km-to-miles": "KM to Miles — Kilometers to Miles Converter",
-  "miles-to-km": "Miles to KM — Miles to Kilometers Converter",
+  "miles-to-km": "Miles to KM — Mile in KM Calculator (mi to km)",
   "kph-to-mph": "Km/h to Mph — Convert Km into Miles per Hour",
   "mph-to-kph": "MPH to KPH — Miles to Kilometers per Hour Converter",
   "knots-to-mph": "Knots to MPH — Knot vs Miles per Hour Converter",
   "grams-to-ounces": "Grams to Ounces (g to oz) Converter",
-  "ounces-to-grams": "Ounces to Grams (oz to g) Converter",
+  "ounces-to-grams": "Ounces to Grams (oz to g) Converter & Oz Chart",
   "ounces-to-pounds": "Ounces to Pounds (oz to lbs) Converter & Chart",
+  "pounds-to-ounces": "Pounds to Ounces (lbs to oz) Converter & Chart",
   "grams-to-pounds": "Grams to Pounds — Convert G to Lb (g to lbs)",
+  "lbs-to-stone": "Pounds to Stone (lbs to st) Converter & Chart",
+  "stone-to-lbs": "Stone to Pounds (st to lbs) Converter & Chart",
   "inches-to-feet": "Inches to Feet — Convert Inches to Feet (in to ft)",
+  "feet-to-inches": "Feet to Inches — Feet and Inches Calculator (ft to in)",
+  "cups-to-tablespoons": "Cups to Tablespoons (cups to tbsp) Converter",
+  "days-to-years": "Days to Years (d to yr) Converter & Chart",
+  "gb-to-tb": "GB to TB — Gigabytes to Terabytes Converter & Chart",
+  "hp-to-kw": "HP to kW — Horsepower in Kilowatts Converter",
+  "newtons-to-pounds-force": "Newtons to Pounds-Force — Newton Force to Lbs Converter",
+  "psi-to-megapascal": "PSI to MPa — PSI to Megapascal Converter",
+  "bar-to-psi": "Bar to PSI — Pressure Bar to PSI Converter",
   "celsius-to-fahrenheit": "Celsius to Fahrenheit (°C to °F) Converter",
   "fahrenheit-to-celsius": "Fahrenheit to Celsius (°F to °C) Converter",
   "sq-feet-to-sq-meters": "Sq Ft to Sq M — Square Feet to Square Meters",
   "sq-meters-to-sq-feet": "Sq M to Sq Ft — Square Meters to Square Feet",
   "liters-to-gallons": "Liters to Gallons — Convert L to Gallons US",
-  "gallons-to-liters": "Gallons to Liters (gal to L) Converter",
+  "gallons-to-liters": "Gallons to Liters — US Gallon to Liter Converter",
   "ml-to-oz": "mL to Oz — Milliliters to Fluid Ounces",
   "oz-to-ml": "Oz to mL — Fluid Ounces to Milliliters",
-  "lb-ft-to-nm": "ft-lbs to Nm — Foot-Pounds to Newton-Meters",
+  "lb-ft-to-nm": "ft lbs to Nm — Foot Pounds to Newton Meters Converter",
   "nm-to-lb-ft": "Nm to ft lbs — Newton Meters to Foot Pounds",
 };
 
@@ -260,10 +274,22 @@ const COMPACT_QUERY_DESCRIPTION_OVERRIDES: Record<string, string> = {
     "1 lb = 0.45359237 kg. Convert US lbs to kg instantly—from one pound to one kilo or body & lifting weights—with exact formula, examples & chart.",
   "kg-to-lbs":
     "1 kg = 2.20462262 lb. Convert kilograms to pounds instantly with our kg to lbs conversion chart, kg vs. lb comparison, formula & worked examples.",
+  "lbs-to-stone":
+    "14 lb = 1 stone exact (1 lb = 0.07143 st). Convert pounds to UK stone & lbs for body weight & shipping—with divide-by-14 formula, examples & chart.",
+  "stone-to-lbs":
+    "1 stone = 14 pounds exact. Convert British stone to lbs instantly for body weight, medical charts & boxing—with multiply-by-14 formula & chart.",
   "inches-to-mm":
     "1 in = 25.4 mm exact. Instant inches to millimeters conversion for decimal & fractional inches (1/16\", 1/32\"), formula, examples & reference chart.",
   "mm-to-inches":
     "1 mm = 0.03937008 in (divide by 25.4). Convert mm into inch decimals or 1/16\" & 1/64\" tape fractions fast with our formula and reference table.",
+  "meters-to-feet":
+    "1 m = 3.28084 ft exact (1 ft = 0.3048 m). Convert meters (metres) to feet or US survey feet for height, engineering & maps—with conversion chart.",
+  "meters-to-mm":
+    "1 m = 1,000 mm exact. Convert meters to millimeters instantly for CAD drawings, construction & machining—with multiply-by-1,000 formula & chart.",
+  "meters-to-yards":
+    "1 m = 1.09361 yd (1 yd = 0.9144 m exact). Convert meters to yards for fabric bolts, swimming pools & track lanes—with meter vs. yards formula & chart.",
+  "lb-ft-to-nm":
+    "1 lb·ft = 1.35582 N·m exact. Convert ft lbs to newton metres for lug nuts, cylinder heads & dyno specs—with foot pounds to Nm chart & examples.",
   "nm-to-lb-ft":
     "1 N·m = 0.73756 lb·ft. Convert newton metres to foot lbs instantly for lug nuts, cylinder heads & torque wrenches, with exact formula & lookup chart.",
   "kph-to-mph":
@@ -272,22 +298,50 @@ const COMPACT_QUERY_DESCRIPTION_OVERRIDES: Record<string, string> = {
     "1 mph = 1.609344 km/h exact. Convert miles to kilometers per hour for speedometers, road limits & racing—with exact formula, examples & chart.",
   "cm-to-inches":
     "1 in = 2.54 cm exact. Convert centimeters to inches instantly for height, clothing & dimensions—with exact formula, examples & 1/16\" tape chart.",
+  "cm-to-feet":
+    "1 ft = 30.48 cm exact (1 cm = 0.03281 ft). Convert centimeters to feet and inches fast for height, rooms & furniture—with formula & lookup chart.",
   "km-to-miles":
     "1 km = 0.62137 mi. Use our km to mi converter for road distances, running races & travel—with exact 1.609344 divisor formula, examples & chart.",
+  "miles-to-km":
+    "1 mile = 1.609344 km exact. Convert from mile to km instantly for road trips, races & travel—with exact multiplier formula, examples & lookup chart.",
   "liters-to-gallons":
     "1 L = 0.26417 US gal (1 gal = 3.78541 L). Free convert litres to US gallons calculator with US & UK gallon note, formula, worked examples & chart.",
+  "gallons-to-liters":
+    "1 US gallon = 3.78541 liters exact (1 L = 0.26417 gal). Instant US gallon to liter conversion for fuel tanks, pools & water jugs—with UK litres note & chart.",
+  "cups-to-tablespoons":
+    "1 US cup = 16 tbsp exact (1/2 cup = 8 tbsp). Convert cups to tablespoons for baking, butter & cooking—with 1/8 cup guide, formula & chart.",
+  "days-to-years":
+    "365.2425 days = 1 Gregorian year (1 d = 0.002738 yr). Convert days to years for warranties, loan terms & ages—with common & leap year chart.",
+  "gb-to-tb":
+    "1,000 GB in 1 TB decimal (0.001 TB per GB). Convert gigabytes to terabytes for SSDs, hard drives & cloud tiers—with divide-by-1,000 formula & chart.",
+  "hp-to-kw":
+    "1 hp = 0.7457 kW (1 kW = 1.34102 hp). Convert hp in kW for car engines, electric motors & generators—with mechanical vs. metric PS formula & chart.",
+  "newtons-to-pounds-force":
+    "1 N = 0.22481 lbf (1 lbf = 4.44822 N). Convert N to lbs force instantly for structural loads, tension & thrust—with newtons to pounds formula & chart.",
   "inches-to-cm":
     "1 in = 2.54 cm exact. Convert inches to centimeters (or centimetres) instantly for screen sizes, height & woodworking—with formula & tape chart.",
   "inches-to-feet":
     "12 in = 1 ft exact (1 in = 0.08333 ft). Fast inch-to-feet conversion in decimal feet, tenths of a foot & ft-in for height, framing & survey work.",
+  "feet-to-inches":
+    "1 ft = 12 in exact. Free feet and inches calculator for height, framing & metric-to-feet conversions—with decimal feet-in breakdown & lookup chart.",
   "grams-to-ounces":
     "1 oz = 28.3495 g (1 g = 0.03527 oz). Convert grams to ounces instantly for cooking, baking & postal shipping—with formula, examples & lookup chart.",
+  "ounces-to-grams":
+    "1 oz = 28.3495 g exact. Convert ounces to grams for recipes, postal scales & portions—with ounce measurement chart, quarter-oz guide & examples.",
   "ounces-to-pounds":
     "16 oz = 1 lb exact (1 oz = 0.0625 lb). Convert ounces to pounds fast for meat, cooking & shipping—with ounce conversion chart, formula & examples.",
+  "pounds-to-ounces":
+    "1 lb = 16 oz exact. Free pounds to ounces conversion calculator for shipping, meat & baking—with decimal-to-ounces guide, formula & lookup chart.",
   "grams-to-pounds":
     "453.59237 g = 1 lb exact. Free convert grams into pounds calculator for meat, baking & parcels—with quarter-pound guide, formula & chart.",
   "knots-to-mph":
     "1 knot = 1.15078 mph (exact 1.852 km/h). Instant wind speed conversion knots to mph for aviation, sailing & storms, with formula & reference chart.",
+  "fahrenheit-to-celsius":
+    "°C = (°F − 32) × 5/9. Convert Fahrenheit to Celsius instantly for weather, fever thermometers & oven temps—with exact formula, examples & chart.",
+  "psi-to-megapascal":
+    "1 psi = 0.00689476 MPa (1 MPa = 145.038 psi). Convert PSI to megapascals for concrete strength, hydraulics & piping—with formula, examples & chart.",
+  "bar-to-psi":
+    "1 bar = 14.50377 psi exact (100 kPa). Fast pressure bar to psi conversion for car tires, espresso machines & hydraulics—with formula & chart.",
 };
 
 /**

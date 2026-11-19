@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "feet-to-inches",
   "category": "length",
   "categoryId": "length",
@@ -7,43 +7,87 @@
   "toUnitId": "inch",
   "fromSymbol": "ft",
   "toSymbol": "in",
-  "intro": "Professionals and everyday users convert feet (ft) to inches (in) when working across imperial and imperial standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One foot equals 12 inches, while 1 inch equals 0.083333 feet. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Use this feet and inches calculator to convert decimal feet to inches cleanly for human height, carpentry framing, drywall sheets, and architectural plans. Because 1 international foot equals exactly 12 inches, multiply any measurement in feet by 12—or pair this tool with our centimeters-to-feet and meters-to-feet pages when you need a metric to feet and inches converter. Check pre-computed spans from 0.5 ft to 200 ft below.",
+  "alsoWrittenAs": "ft to in, foot to inch, decimal feet to inches, ft into in",
   "commonValues": [
     1,
     3,
-    5,
+    5.1,
     6,
+    7,
+    10,
+    12,
+    40.5,
+    100,
+    197
+  ],
+  "tableValues": [
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    4,
+    5,
+    5.1,
+    5.5,
+    6,
+    6.5,
+    7,
     8,
+    9,
     10,
     12,
     15,
     20,
-    50
+    25,
+    30,
+    40,
+    40.5,
+    50,
+    60,
+    75,
+    100,
+    125,
+    150,
+    197,
+    200
   ],
+  "tableTitle": "Feet to Inches Reference Chart (0.5 ft to 200 ft)",
+  "tableSubtitle": "Exact length conversions from decimal feet to inches using in = ft × 12.",
+  "tableRoundingNote": "Computed using the exact 1 ft = 12 in definition. Whole feet and multiples of 0.25 ft produce exact integer inches without rounding error.",
   "workedExamples": [
     {
-      "title": "Standard Foot Benchmark (5 ft)",
-      "scenario": "Convert 5 feet (ft) into inches (in) for technical comparison and documentation.",
-      "inputValue": 5,
-      "outputValue": "60 in",
-      "stepByStep": "5 ft × 12 = 60 in (rounds to 60 in)."
+      "title": "Decimal Feet vs. Height (5.1 ft / 5.10 ft)",
+      "scenario": "Convert 5.10 decimal feet into inches to avoid confusing tenths of a foot with 5 ft 10 in.",
+      "inputValue": 5.1,
+      "outputValue": "61.2 in",
+      "stepByStep": "5.1 ft × 12 = 61.2 in exact (5 ft 1.2 in, whereas 5 ft 10 in is 70 in)."
     },
     {
-      "title": "Practical Mid-Range Conversion (10 ft)",
-      "scenario": "Convert 10 feet (ft) into inches (in) for technical comparison and documentation.",
-      "inputValue": 10,
-      "outputValue": "120 in",
-      "stepByStep": "10 ft × 12 = 120 in (rounds to 120 in)."
+      "title": "Trailer & Setback Length (40.5 ft)",
+      "scenario": "Convert 40.5 feet into total inches for freight loading or property dimensions.",
+      "inputValue": 40.5,
+      "outputValue": "486 in",
+      "stepByStep": "40.5 ft × 12 = 486 in exact."
     },
     {
-      "title": "Higher-Capacity Specification (20 ft)",
-      "scenario": "Convert 20 feet (ft) into inches (in) for technical comparison and documentation.",
-      "inputValue": 20,
-      "outputValue": "240 in",
-      "stepByStep": "20 ft × 12 = 240 in (rounds to 240 in)."
+      "title": "Long Structural & Fence Run (197 ft)",
+      "scenario": "Convert a 197-foot perimeter span into total inches.",
+      "inputValue": 197,
+      "outputValue": "2,364 in",
+      "stepByStep": "197 ft × 12 = 2,364 in exact."
     }
   ],
-  "mistakesAndEdgeCases": null,
+  "mistakesAndEdgeCases": {
+    "title": "Decimal Feet (5.10 ft) vs. Feet & Inches (5 ft 10 in) & Feet-Inches to Feet",
+    "items": [
+      "5.10 decimal feet means 5 and 1/10 feet (61.2 inches, or 5 ft 1.2 in), NOT 5 feet 10 inches (which equals 70 inches).",
+      "To convert feet and inches to decimal feet (feet inches to feet), divide the inches by 12 and add to the whole feet—for example, 5 ft 10 in = 5 + (10 ÷ 12) = 5.83333 ft.",
+      "Structural moment engineers converting kip·ft to kip·in multiply by the same factor of 12 (1 kip·ft = 12 kip·in), since the kip force unit stays unchanged."
+    ]
+  },
   "formula": {
     "equation": "in = ft × 12",
     "exactFactor": "12",
@@ -52,53 +96,57 @@
   },
   "internalLinks": [
     {
-      "label": "Inches to Feet (in to ft)",
+      "label": "Inches to Feet Converter (in to ft)",
       "href": "/length/inches-to-feet",
       "type": "reverse"
     },
     {
-      "label": "Centimeters to Inches (cm to in)",
-      "href": "/length/cm-to-inches",
+      "label": "Centimeters to Feet & Inches Chart (cm to ft)",
+      "href": "/length/cm-to-feet",
       "type": "related"
     },
     {
-      "label": "Inches to Centimeters (in to cm)",
-      "href": "/length/inches-to-cm",
-      "type": "related"
-    },
-    {
-      "label": "Feet to Meters (ft to m)",
-      "href": "/length/feet-to-meters",
-      "type": "related"
-    },
-    {
-      "label": "Meters to Feet (m to ft)",
+      "label": "Meters to Feet Height Table (m to ft)",
       "href": "/length/meters-to-feet",
       "type": "related"
     },
     {
-      "label": "Length Conversions Hub",
+      "label": "Feet to Meters Calculator (ft to m)",
+      "href": "/length/feet-to-meters",
+      "type": "related"
+    },
+    {
+      "label": "Feet to Yards Reference (ft to yd)",
+      "href": "/length/feet-to-yards",
+      "type": "related"
+    },
+    {
+      "label": "All Length & Distance Converters",
       "href": "/length",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial Length Reference",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many inches (in) are in 1 foot (ft)?",
-      "answer": "There are 12 inches (in) in 1 foot (ft), which rounds to 12 in for everyday calculations. Conversely, 1 inch equals 0.083333 feet."
+      "question": "How many inches are in 1 foot?",
+      "answer": "There are exactly 12 inches in 1 international foot (1 ft = 12 in). Conversely, 1 inch equals 1/12 of a foot (about 0.08333 ft)."
     },
     {
-      "question": "How do I convert feet to inches (ft to in)?",
-      "answer": "To convert feet to inches, use the formula: in = ft × 12. For example, converting 8 ft gives 96 in."
+      "question": "How do you convert feet and inches to decimal feet?",
+      "answer": "Divide the inches by 12 and add the result to the whole feet. For example, 5 ft 10 in equals 5 + (10 ÷ 12) = 5.83333 decimal feet (or 70 total inches)."
     },
     {
-      "question": "What is 8 feet in inches?",
-      "answer": "8 feet (ft) equals exactly 96 inches (in) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What is 5.10 feet in inches?",
+      "answer": "5.10 decimal feet equals 61.2 inches (5 ft 1.2 in). If you meant 5 feet 10 inches, that equals 70 inches (5 × 12 + 10)."
+    },
+    {
+      "question": "How many inches is 7 feet?",
+      "answer": "7 feet equals exactly 84 inches (7 × 12 = 84 in)."
     }
   ]
 }

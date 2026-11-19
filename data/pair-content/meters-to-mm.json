@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "meters-to-mm",
   "category": "length",
   "categoryId": "length",
@@ -7,43 +7,87 @@
   "toUnitId": "millimeter",
   "fromSymbol": "m",
   "toSymbol": "mm",
-  "intro": "Professionals and everyday users convert meters (m) to millimeters (mm) when working across si and metric standards in architectural blueprints, international manufacturing tolerances, athletic track distances, and hardware sizing. One meter equals 1,000 millimeters, while 1 millimeter equals 0.001 meters. Whether you are verifying length specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert meters (m) to millimeters (mm) accurately for CAD blueprints, architectural site plans, civil engineering schedules, and CNC machining. Because the SI prefix milli- represents one thousandth, 1 meter equals exactly 1,000 millimeters (metres to millimetres). To scale any meter dimension into millimeters, multiply by 1,000—shifting the decimal point three places right—or check exact pre-computed values in the reference table below.",
+  "alsoWrittenAs": "m to mm, metre to millimetre, meters to millimetres, meter into mm",
   "commonValues": [
+    0.025,
+    0.1,
     0.5,
     1,
-    1.5,
     2,
     3,
-    5,
+    4.31,
     10,
     25,
-    50,
     100
   ],
+  "tableValues": [
+    0.001,
+    0.005,
+    0.01,
+    0.025,
+    0.05,
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    1,
+    1.25,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.31,
+    4.5,
+    5,
+    6,
+    8,
+    10,
+    12,
+    15,
+    20,
+    25,
+    30,
+    50,
+    75,
+    100,
+    1000
+  ],
+  "tableTitle": "Meters to Millimeters Reference Chart (0.001 m to 1,000 m)",
+  "tableSubtitle": "Exact metric lengths calculated with the SI factor mm = m × 1,000.",
+  "tableRoundingNote": "Computed using the exact SI definition 1 m = 1,000 mm. All decimal inputs scale cleanly by moving the decimal point three places right without rounding error.",
   "workedExamples": [
     {
-      "title": "Standard Meter Benchmark (1.5 m)",
-      "scenario": "Convert 1.5 meters (m) into millimeters (mm) for technical comparison and documentation.",
-      "inputValue": 1.5,
-      "outputValue": "1,500 mm",
-      "stepByStep": "1.5 m × 1,000 = 1,500 mm (rounds to 1,500 mm)."
+      "title": "Small Mechanical Tolerance (0.025 m)",
+      "scenario": "Convert 0.025 meters into millimeters for pipe bore and sheet-metal drawings.",
+      "inputValue": 0.025,
+      "outputValue": "25 mm",
+      "stepByStep": "0.025 m × 1,000 = 25 mm exact."
     },
     {
-      "title": "Practical Mid-Range Conversion (5 m)",
-      "scenario": "Convert 5 meters (m) into millimeters (mm) for technical comparison and documentation.",
-      "inputValue": 5,
-      "outputValue": "5,000 mm",
-      "stepByStep": "5 m × 1,000 = 5,000 mm (rounds to 5,000 mm)."
+      "title": "Standard Meter Reference (1 m)",
+      "scenario": "Convert 1 meter into millimeters for architectural scaling and joinery.",
+      "inputValue": 1,
+      "outputValue": "1,000 mm",
+      "stepByStep": "1 m × 1,000 = 1,000 mm exact."
     },
     {
-      "title": "Higher-Capacity Specification (50 m)",
-      "scenario": "Convert 50 meters (m) into millimeters (mm) for technical comparison and documentation.",
-      "inputValue": 50,
-      "outputValue": "50,000 mm",
-      "stepByStep": "50 m × 1,000 = 50,000 mm (rounds to 50,000 mm)."
+      "title": "Room Span Dimension (4.31 m)",
+      "scenario": "Convert a 4.31-meter floor plan wall span into millimeters for construction fabrication.",
+      "inputValue": 4.31,
+      "outputValue": "4,310 mm",
+      "stepByStep": "4.31 m × 1,000 = 4,310 mm exact."
     }
   ],
-  "mistakesAndEdgeCases": null,
+  "mistakesAndEdgeCases": {
+    "title": "Meters to Millimeters vs. Centimeters Decimal Shifts",
+    "items": [
+      "Multiplying meters by 100 yields centimeters, not millimeters. Always multiply by 1,000 (shift the decimal point three places right) when converting meters directly to millimeters.",
+      "In architectural and ISO technical drawings, dimensions are commonly labeled in millimeters without repeating 'mm' (for example, 4310 instead of 4.31 m) to eliminate decimal-point transcription mistakes on site."
+    ]
+  },
   "formula": {
     "equation": "mm = m × 1,000",
     "exactFactor": "1,000",
@@ -52,37 +96,37 @@
   },
   "internalLinks": [
     {
-      "label": "Millimeters to Meters (mm to m)",
+      "label": "Millimeters to Meters Converter (mm to m)",
       "href": "/length/mm-to-meters",
       "type": "reverse"
     },
     {
-      "label": "Centimeters to Inches (cm to in)",
-      "href": "/length/cm-to-inches",
+      "label": "Meters to Centimeters Chart (m to cm)",
+      "href": "/length/meters-to-cm",
       "type": "related"
     },
     {
-      "label": "Inches to Centimeters (in to cm)",
-      "href": "/length/inches-to-cm",
+      "label": "Centimeters to Millimeters Calculator",
+      "href": "/length/cm-to-mm",
       "type": "related"
     },
     {
-      "label": "Feet to Meters (ft to m)",
-      "href": "/length/feet-to-meters",
+      "label": "Convert Millimeters to Inches (mm to in)",
+      "href": "/length/mm-to-inches",
       "type": "related"
     },
     {
-      "label": "Meters to Feet (m to ft)",
+      "label": "Meters to Feet Reference Table (m to ft)",
       "href": "/length/meters-to-feet",
       "type": "related"
     },
     {
-      "label": "Length Conversions Hub",
+      "label": "All Length & Distance Converters",
       "href": "/length",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial Length Reference",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
@@ -90,15 +134,15 @@
   "faqs": [
     {
       "question": "How many millimeters (mm) are in 1 meter (m)?",
-      "answer": "There are 1,000 millimeters (mm) in 1 meter (m), which rounds to 1,000 mm for everyday calculations. Conversely, 1 millimeter equals 0.001 meters."
+      "answer": "There are exactly 1,000 millimeters in 1 meter (1 m = 1,000 mm). Conversely, 1 millimeter equals 0.001 meters."
     },
     {
-      "question": "How do I convert meters to millimeters (m to mm)?",
-      "answer": "To convert meters to millimeters, use the formula: mm = m × 1,000. For example, converting 3 m gives 3,000 mm."
+      "question": "How do I convert meters to millimeters?",
+      "answer": "Multiply the length in meters by 1,000 (mm = m × 1,000). For example, 4.31 m × 1,000 = 4,310 mm."
     },
     {
-      "question": "What is 3 meters in millimeters?",
-      "answer": "3 meters (m) equals exactly 3,000 millimeters (mm) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What is 0.025 meters in millimeters?",
+      "answer": "0.025 meters equals exactly 25 millimeters (0.025 × 1,000 = 25 mm)."
     }
   ]
 }
