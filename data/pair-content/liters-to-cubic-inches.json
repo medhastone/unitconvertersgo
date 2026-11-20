@@ -1,0 +1,152 @@
+{
+  "status": "reviewed",
+  "slug": "liters-to-cubic-inches",
+  "category": "volume",
+  "categoryId": "volume",
+  "fromUnitId": "liter",
+  "toUnitId": "cubic_inch",
+  "fromSymbol": "L",
+  "toSymbol": "in³",
+  "intro": "Run an exact liter to cubic inch conversion for engine displacement, pistons, air compressors, and hydraulic reservoirs. Using international definitions (1 in³ = 16.387064 mL exact), 1 liter equals 61.02374 cubic inches—multiply liters (or litres) by 61.023744 to find cubic inch displacement (CID). Use this liter to CID calculator above or browse popular V8 and diesel engine sizes from 1 L to 10.3 L in the motor chart below.",
+  "alsoWrittenAs": "L to in³, liter to cubic in, litres to cubic inches, L to cu in, L to CID, liters to cubic inch displacement",
+  "commonValues": [
+    1,
+    4.3,
+    4.6,
+    5.3,
+    5.7,
+    5.8,
+    6,
+    6.2,
+    6.6,
+    7.3,
+    8.1,
+    10.3
+  ],
+  "tableValues": [
+    1,
+    2,
+    3,
+    3.5,
+    4,
+    4.3,
+    4.6,
+    5,
+    5.2,
+    5.3,
+    5.4,
+    5.7,
+    5.8,
+    6,
+    6.1,
+    6.2,
+    6.4,
+    6.5,
+    6.6,
+    6.7,
+    7,
+    7.3,
+    8,
+    8.1,
+    8.4,
+    10,
+    10.3,
+    12,
+    383,
+    426
+  ],
+  "tableTitle": "Liter to Cubic Inch Motor Chart (1 L to 426 L)",
+  "tableSubtitle": "Engine displacement & volume equivalents computed with in³ = L × 61.0237441.",
+  "tableRoundingNote": "Computed from the exact international definition (1 in³ = 0.016387064 L exact, giving 1 L = 61.0237440947 in³). Table outputs are rounded to 5 decimal places.",
+  "workedExamples": [
+    {
+      "title": "Small-Block V8 Truck Engine (5.3 L)",
+      "scenario": "Convert a 5.3-liter engine displacement into cubic inches (CID).",
+      "inputValue": 5.3,
+      "outputValue": "323.42584 in³",
+      "stepByStep": "5.3 L × 61.0237441 = 323.42584 in³ (rounds to 323.43 CID)."
+    },
+    {
+      "title": "Performance V8 Displacement (6.2 L)",
+      "scenario": "Convert a 6.2-liter V8 motor size into cubic inches.",
+      "inputValue": 6.2,
+      "outputValue": "378.34721 in³",
+      "stepByStep": "6.2 L × 61.0237441 = 378.34721 in³ (rounds to 378.35 CID)."
+    },
+    {
+      "title": "Heavy-Duty Truck V8 (7.3 L)",
+      "scenario": "Convert a 7.3-liter truck engine displacement into cubic inches.",
+      "inputValue": 7.3,
+      "outputValue": "445.47333 in³",
+      "stepByStep": "7.3 L × 61.0237441 = 445.47333 in³ (commonly cited as 445 CID)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "Badge Rounding (cc vs. L) & Reverse CID Lookups (383, 426)",
+    "items": [
+      "Automakers round fender badges to one decimal place, so exact engine CID can differ slightly from the badge liter number—for example, a GM '5.3L' V8 is actually 5,328 cc (5.328 L = 325.1 in³), whereas 5.300 L equals 323.43 in³. For exact bore-and-stroke specs, divide cubic centimeters by 1,000 first (1,000 cc = 1 L).",
+      "Classic V8 sizes like 383 stroker or 426 Hemi are already measured in cubic inches, not liters. Entering 383 or 426 liters returns over 23,000 in³—to convert CID back to liters instead, tap Swap or open Cubic Inches to Liters (383 in³ = 6.276 L; 426 in³ = 6.981 L)."
+    ]
+  },
+  "formula": {
+    "equation": "in³ = L × 61.0237441",
+    "exactFactor": "61.02374409",
+    "roundedFactor": "61.0237",
+    "inverseFactor": "0.016387064"
+  },
+  "internalLinks": [
+    {
+      "label": "Cubic Inches to Liters Converter (in³ to L)",
+      "href": "/volume/cubic-inches-to-liters",
+      "type": "reverse"
+    },
+    {
+      "label": "Cubic Inches to Gallons Chart (in³ to gal)",
+      "href": "/volume/cubic-inches-to-gallons",
+      "type": "related"
+    },
+    {
+      "label": "Liters to Milliliters / cc Converter (L to mL)",
+      "href": "/volume/liters-to-ml",
+      "type": "related"
+    },
+    {
+      "label": "Liters to US Gallons Calculator (L to gal)",
+      "href": "/volume/liters-to-gallons",
+      "type": "related"
+    },
+    {
+      "label": "Cubic Feet to Gallons Chart (ft³ to gal)",
+      "href": "/volume/cubic-feet-to-gallons",
+      "type": "related"
+    },
+    {
+      "label": "All Volume & Engine Capacity Converters",
+      "href": "/volume",
+      "type": "hub"
+    },
+    {
+      "label": "Metric to Imperial Conversion Guide",
+      "href": "/guides/metric-to-imperial",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How do you convert liters to cubic inches?",
+      "answer": "Multiply the volume in liters by 61.0237441 (or divide by 0.016387064): in³ = L × 61.0237441. For example, 5.3 L × 61.0237441 = 323.43 cubic inches."
+    },
+    {
+      "question": "How many cubic inches is a 5.3 liter engine?",
+      "answer": "Exactly 5.3 liters converts to 323.43 cubic inches (323.42584 in³). Because GM's actual small-block displacement is 5,328 cc (5.328 L), it is commonly listed as 325 CID."
+    },
+    {
+      "question": "How many cubic inches are in 1 liter?",
+      "answer": "1 liter (1,000 cc) equals 61.02374 cubic inches using the exact international definition of 1 in³ = 16.387064 mL."
+    },
+    {
+      "question": "What is a 7.3 liter motor in cubic inches?",
+      "answer": "7.3 liters equals 445.47 cubic inches (445.47333 in³), commonly referred to as a 445 CID V8."
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "status": "reviewed",
+  "slug": "megapascal-to-ksi",
+  "category": "pressure",
+  "categoryId": "pressure",
+  "fromUnitId": "megapascal",
+  "toUnitId": "ksi",
+  "fromSymbol": "MPa",
+  "toSymbol": "ksi",
+  "intro": "Convert from MPa to ksi accurately for structural steel yield strength, ASTM tensile test reports, weld ratings, and bolt grade specifications. Because 1 ksi (1,000 psi) equals 6.89475729 megapascals under NIST and SI definitions, 1 MPa equals 0.14503774 ksi—simply divide MPa by 6.894757 (or multiply by 0.145038). Use the calculator above or scan common material strength values from 1 MPa to 1,000 MPa below.",
+  "alsoWrittenAs": "MPa to ksi, megapascals to kilopounds per square inch, MPa to kpsi, N/mm² to ksi",
+  "commonValues": [
+    10,
+    50,
+    100,
+    120,
+    200,
+    250,
+    300,
+    345,
+    400,
+    500,
+    689.476,
+    1000
+  ],
+  "tableValues": [
+    1,
+    5,
+    10,
+    20,
+    25,
+    50,
+    75,
+    100,
+    120,
+    150,
+    200,
+    250,
+    275,
+    300,
+    345,
+    355,
+    400,
+    450,
+    500,
+    550,
+    600,
+    689.476,
+    700,
+    800,
+    900,
+    1000
+  ],
+  "tableTitle": "MPa to ksi Conversion Chart (1 MPa to 1,000 MPa)",
+  "tableSubtitle": "Metallurgy & structural stress equivalents computed with ksi = MPa ÷ 6.89475729.",
+  "tableRoundingNote": "Computed from exact SI/NIST definitions (1 ksi = 1,000 psi = 6.894757293168 MPa, giving 1 MPa = 0.1450377377 ksi). Table outputs are rounded to 5 decimal places.",
+  "workedExamples": [
+    {
+      "title": "Cast Aluminum Alloy Yield (120 MPa)",
+      "scenario": "Convert a 120 MPa material yield specification into ksi (kpsi).",
+      "inputValue": 120,
+      "outputValue": "17.40453 ksi",
+      "stepByStep": "120 MPa ÷ 6.89475729 = 17.40453 ksi (rounds to 17.40 ksi)."
+    },
+    {
+      "title": "ASTM A36 Structural Steel Yield (250 MPa)",
+      "scenario": "Convert the 250 MPa minimum yield strength of A36 steel into ksi.",
+      "inputValue": 250,
+      "outputValue": "36.25943 ksi",
+      "stepByStep": "250 MPa ÷ 6.89475729 = 36.25943 ksi (matches the 36 ksi steel rating)."
+    },
+    {
+      "title": "ASTM A572 Grade 50 Steel (345 MPa)",
+      "scenario": "Convert a 345 MPa structural plate specification into ksi.",
+      "inputValue": 345,
+      "outputValue": "50.03802 ksi",
+      "stepByStep": "345 MPa ÷ 6.89475729 = 50.03802 ksi (matches the 50 ksi Grade 50 benchmark)."
+    }
+  ],
+  "mistakesAndEdgeCases": {
+    "title": "GPa vs. MPa Elastic Modulus Scaling & ksi vs. psi",
+    "items": [
+      "Young's modulus (elastic modulus) is typically listed in gigapascals (GPa), where 1 GPa = 1,000 MPa = 145.03774 ksi (for example, structural steel at 200 GPa equals 29,007.55 ksi). Multiply GPa by 1,000 before entering a value in MPa.",
+      "1 ksi (sometimes written kpsi) equals 1,000 psi, and 1 MPa is numerically identical to 1 N/mm². Mixing up ksi and psi shifts stress limits by a factor of 1,000×."
+    ]
+  },
+  "formula": {
+    "equation": "ksi = MPa ÷ 6.89475729",
+    "exactFactor": "0.14503774",
+    "roundedFactor": "0.14504",
+    "inverseFactor": "6.894757"
+  },
+  "internalLinks": [
+    {
+      "label": "ksi to Megapascals Converter (ksi to MPa)",
+      "href": "/pressure/ksi-to-megapascal",
+      "type": "reverse"
+    },
+    {
+      "label": "MPa to PSI Reference Chart (MPa to psi)",
+      "href": "/pressure/megapascal-to-psi",
+      "type": "related"
+    },
+    {
+      "label": "PSI to Megapascals Calculator (psi to MPa)",
+      "href": "/pressure/psi-to-megapascal",
+      "type": "related"
+    },
+    {
+      "label": "Kilopascals to PSI Converter (kPa to psi)",
+      "href": "/pressure/kpa-to-psi",
+      "type": "related"
+    },
+    {
+      "label": "Bar to PSI Pressure Table (bar to psi)",
+      "href": "/pressure/bar-to-psi",
+      "type": "related"
+    },
+    {
+      "label": "All Pressure & Stress Converters",
+      "href": "/pressure",
+      "type": "hub"
+    },
+    {
+      "label": "PSI, Bar, kPa & Pascal Pressure Guide",
+      "href": "/guides/pressure-units-psi-bar-kpa-explained",
+      "type": "guide"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How many ksi are in 1 MPa?",
+      "answer": "1 megapascal (MPa) equals 0.14504 ksi (1 ÷ 6.89475729). Conversely, 1 ksi equals 6.89476 MPa (1,000 psi)."
+    },
+    {
+      "question": "How do you convert MPa to ksi?",
+      "answer": "Divide megapascals by 6.89475729 (or multiply by 0.14503774): ksi = MPa ÷ 6.894757. For example, 250 MPa ÷ 6.894757 = 36.26 ksi."
+    },
+    {
+      "question": "What is 120 MPa in ksi?",
+      "answer": "120 MPa equals 17.40453 ksi (about 17.40 kpsi)."
+    },
+    {
+      "question": "Is kpsi the same unit as ksi?",
+      "answer": "Yes. Both ksi and kpsi abbreviate kilopounds (1,000 pounds-force) per square inch, equal to 6.89476 MPa."
+    }
+  ]
+}

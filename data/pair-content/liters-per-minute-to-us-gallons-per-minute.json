@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "liters-per-minute-to-us-gallons-per-minute",
   "category": "flow",
   "categoryId": "flow",
@@ -7,104 +7,142 @@
   "toUnitId": "gallon_us_per_min",
   "fromSymbol": "L/min",
   "toSymbol": "GPM",
-  "intro": "Professionals and everyday users convert liters per minute (L/min) to us gallons per minute (GPM) when working across metric and us_customary standards in pump selection, municipal water pipe sizing, HVAC airflow balancing, and welding shielding gas regulation. One liters per minute equals 0.264172 us gallons per minute, while 1 us gallons per minute (gpm) equals 3.785412 liters per minute. Whether you are verifying flow rate specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert liters per minute (L/min, or LPM) to US gallons per minute (GPM) accurately for water pump selection, irrigation zones, hydraulic circuits, and commercial plumbing specs. Because 1 US liquid gallon equals exactly 3.785411784 liters, each LPM to GPM conversion divides L/min by 3.785411784 (1 L/min = 0.264172 US GPM). Scan common pump flow rates from 1 L/min to 1,000 L/min below.",
+  "alsoWrittenAs": "L/min to GPM, LPM to US GPM, LPM to GPM, litres per minute to US gallons per minute",
   "commonValues": [
-    0.5,
     1,
-    2,
     5,
     10,
+    15,
     20,
     25,
+    30,
+    40,
     50,
     75,
-    100
+    100,
+    200
   ],
+  "tableValues": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50,
+    60,
+    75,
+    80,
+    100,
+    120,
+    150,
+    200,
+    250,
+    300,
+    400,
+    500,
+    1000
+  ],
+  "tableTitle": "Liters per Minute to US GPM Conversion Chart (1 L/min to 1,000 L/min)",
+  "tableSubtitle": "Pump, plumbing & hydraulic flow rates computed with GPM = L/min ÷ 3.785411784.",
+  "tableRoundingNote": "Computed from the exact NIST US liquid gallon definition 1 US gal = 3.785411784 L (1 L/min = 0.26417205 US GPM). Table outputs are rounded to 5 decimal places.",
   "workedExamples": [
     {
-      "title": "Standard Liters per Minute Benchmark (2 L/min)",
-      "scenario": "Convert 2 liters per minute (L/min) into us gallons per minute (GPM) for technical comparison and documentation.",
-      "inputValue": 2,
-      "outputValue": "0.528344 GPM",
-      "stepByStep": "2 L/min × 0.264172 = 0.528344 GPM (rounds to 0.53 GPM)."
-    },
-    {
-      "title": "Practical Mid-Range Conversion (20 L/min)",
-      "scenario": "Convert 20 liters per minute (L/min) into us gallons per minute (GPM) for technical comparison and documentation.",
+      "title": "Residential Booster Pump (20 L/min)",
+      "scenario": "Convert a 20 L/min domestic water pump rating into US gallons per minute.",
       "inputValue": 20,
-      "outputValue": "5.283441 GPM",
-      "stepByStep": "20 L/min × 0.264172 = 5.283441 GPM (rounds to 5.28 GPM)."
+      "outputValue": "5.28344 GPM",
+      "stepByStep": "20 L/min ÷ 3.785411784 = 5.28344 US GPM (about 5.28 GPM)."
     },
     {
-      "title": "Higher-Capacity Specification (75 L/min)",
-      "scenario": "Convert 75 liters per minute (L/min) into us gallons per minute (GPM) for technical comparison and documentation.",
-      "inputValue": 75,
-      "outputValue": "19.812904 GPM",
-      "stepByStep": "75 L/min × 0.264172 = 19.812904 GPM (rounds to 19.81 GPM)."
+      "title": "Irrigation Zone Flow Rate (30 L/min)",
+      "scenario": "Convert 30 liters per minute of sprinkler flow into US GPM.",
+      "inputValue": 30,
+      "outputValue": "7.92516 GPM",
+      "stepByStep": "30 L/min ÷ 3.785411784 = 7.92516 US GPM (about 7.93 GPM)."
+    },
+    {
+      "title": "Commercial Transfer Pump (40 L/min)",
+      "scenario": "Convert a 40 L/min transfer or sump pump specification into US GPM.",
+      "inputValue": 40,
+      "outputValue": "10.56688 GPM",
+      "stepByStep": "40 L/min ÷ 3.785411784 = 10.56688 US GPM (about 10.57 GPM)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "US Customary vs. British Imperial Liquid Volume Trap",
+    "title": "US GPM (3.785 L/min) vs. UK Imperial GPM (4.546 L/min) & Gas SLPM",
     "items": [
-      "US Customary and UK Imperial liquid units share identical names but have different physical volumes: 1 US Gallon is 3.78541 L (128 US fl oz), whereas 1 UK Imperial Gallon is 4.54609 L (160 Imp fl oz) — a 20.1% difference.",
-      "Similarly, 1 US Pint contains 16 US fluid ounces (473.18 mL), while 1 British Imperial Pint contains 20 Imperial fluid ounces (568.26 mL). Always verify whether your recipe, pump datasheet, or vehicle spec sheet uses US or UK standards."
+      "US liquid GPM uses the 3.78541 L gallon (1 L/min = 0.26417 US GPM), whereas British Imperial GPM uses the 4.54609 L gallon (1 L/min = 0.21997 UK GPM)—a 20.1% difference on imported pump curves.",
+      "Volumetric L/min to GPM applies directly to incompressible liquids like water and oil; for compressed air or welding shielding gas, confirm whether your flowmeter reads actual L/min or standard SLPM corrected for pressure and temperature."
     ]
   },
   "formula": {
-    "equation": "GPM = L/min × 0.26417205",
+    "equation": "GPM = L/min ÷ 3.785411784",
     "exactFactor": "0.26417205",
     "roundedFactor": "0.2642",
     "inverseFactor": "3.785412"
   },
   "internalLinks": [
     {
-      "label": "US Gallons per Minute to Liters per Minute (GPM to L/min)",
+      "label": "US GPM to Liters per Minute Converter (GPM to L/min)",
       "href": "/flow/us-gallons-per-minute-to-liters-per-minute",
       "type": "reverse"
     },
     {
-      "label": "Cubic Feet per Minute to Liters per Minute (CFM to L/min)",
-      "href": "/flow/cfm-to-liters-per-minute",
-      "type": "related"
-    },
-    {
-      "label": "Cubic Feet per Minute to Cubic Meters per Hour (CFM to m³/h)",
-      "href": "/flow/cfm-to-cubic-meters-per-hour",
-      "type": "related"
-    },
-    {
-      "label": "Cubic Feet per Hour to Liters per Minute (CFH to L/min)",
-      "href": "/flow/cubic-feet-per-hour-to-liters-per-minute",
-      "type": "related"
-    },
-    {
-      "label": "Liters per Hour to US Gallons per Hour (L/h to GPH)",
+      "label": "Liters per Hour to US GPH Chart (L/h to GPH)",
       "href": "/flow/liters-per-hour-to-us-gallons-per-hour",
       "type": "related"
     },
     {
-      "label": "Flow Rate Conversions Hub",
+      "label": "Convert CFM to Liters per Minute (CFM to L/min)",
+      "href": "/flow/cfm-to-liters-per-minute",
+      "type": "related"
+    },
+    {
+      "label": "US GPM to Cubic Meters per Hour (GPM to m³/h)",
+      "href": "/flow/gpm-to-cubic-meters-per-hour",
+      "type": "related"
+    },
+    {
+      "label": "CFH to Liters per Minute Calculator (CFH to L/min)",
+      "href": "/flow/cubic-feet-per-hour-to-liters-per-minute",
+      "type": "related"
+    },
+    {
+      "label": "All Volumetric Flow Rate Converters",
       "href": "/flow",
       "type": "hub"
     },
     {
-      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "label": "US Customary vs. British Imperial Liquid Units Guide",
       "href": "/guides/us-vs-imperial-fluid-ounces",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many us gallons per minute (GPM) are in 1 liters per minute (L/min)?",
-      "answer": "There are 0.26417205 us gallons per minute (GPM) in 1 liters per minute (L/min), which rounds to 0.2642 GPM for everyday calculations. Conversely, 1 us gallons per minute (gpm) equals 3.785412 liters per minute."
+      "question": "How many US GPM are in 1 L/min (LPM)?",
+      "answer": "1 liter per minute equals 0.264172 US gallons per minute (about 0.2642 GPM). Conversely, 1 US GPM equals 3.78541 liters per minute."
     },
     {
-      "question": "How do I convert liters per minute to us gallons per minute (L/min to GPM)?",
-      "answer": "To convert liters per minute to us gallons per minute, use the formula: GPM = L/min × 0.26417205. For example, converting 10 L/min gives 2.6417 GPM."
+      "question": "How do I convert LPM to GPM (US)?",
+      "answer": "Divide the flow rate in liters per minute by 3.785411784 (or multiply by 0.26417205): GPM = L/min ÷ 3.785411784. For example, 10 L/min = 2.64172 US GPM."
     },
     {
-      "question": "What is 10 liters per minute in us gallons per minute?",
-      "answer": "10 liters per minute (L/min) equals exactly 2.6417 us gallons per minute (GPM) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What are 30 L/min and 40 L/min in US GPM?",
+      "answer": "30 L/min equals 7.92516 US GPM (about 7.93 GPM), and 40 L/min equals 10.56688 US GPM (about 10.57 GPM)."
+    },
+    {
+      "question": "Is US GPM different from UK Imperial GPM?",
+      "answer": "Yes—1 US GPM equals 3.78541 L/min, while 1 UK Imperial GPM equals 4.54609 L/min (about 20% larger). Always verify whether pump datasheets specify US GPM or Imp GPM."
     }
   ]
 }

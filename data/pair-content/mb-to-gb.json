@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "mb-to-gb",
   "category": "data-storage",
   "categoryId": "digital_storage",
@@ -7,100 +7,147 @@
   "toUnitId": "gigabyte",
   "fromSymbol": "MB",
   "toSymbol": "GB",
-  "intro": "Professionals and everyday users convert megabytes (MB) to gigabytes (GB) when working across metric and metric standards in engineering specifications, international trade documentation, and technical measurements. One megabyte (decimal) equals 0.001 gigabytes, while 1 gigabyte (decimal) equals 1,000 megabytes. Whether you are verifying digital storage specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert megabytes (MB) to gigabytes (GB) instantly for mobile data plans, video file sizes, cloud backups, and SSD partitions. Under the international SI decimal standard used by storage makers and cellular carriers, 1 GB equals 1,000 MB (1 MB = 0.001 GB)—divide MB by 1,000 for a quick megs to gigs conversion. Check decimal and binary-sized file benchmarks from 1 MB to 100,000 MB below.",
+  "alsoWrittenAs": "MB to GB, megs to gigs, megabyte to gigabyte, MB into GB",
   "commonValues": [
+    4,
+    100,
+    208,
+    500,
+    1000,
+    1024,
+    6144,
+    10240,
+    15000,
+    21000,
+    24576,
+    100000
+  ],
+  "tableValues": [
     1,
-    2,
     4,
     8,
     16,
     32,
     64,
+    100,
     128,
+    208,
     256,
+    500,
     512,
     1000,
-    1024
+    1024,
+    2000,
+    2048,
+    4096,
+    5000,
+    6144,
+    8192,
+    10000,
+    10240,
+    15000,
+    16384,
+    20000,
+    21000,
+    24576,
+    32768,
+    50000,
+    65536,
+    100000
   ],
+  "tableTitle": "Megabytes to Gigabytes Conversion Chart (1 MB to 100,000 MB)",
+  "tableSubtitle": "SI decimal storage equivalents computed with GB = MB ÷ 1,000 (1,000 MB = 1 GB).",
+  "tableRoundingNote": "Computed from the exact SI decimal standard (1 GB = 1,000 MB; 1 MB = 0.001 GB). All integer MB inputs produce exact terminating decimals up to 3 decimal places. For binary IEC units (1 GiB = 1,024 MiB), divide by 1,024 instead.",
   "workedExamples": [
     {
-      "title": "Standard Megabyte (Decimal) Benchmark (4 MB)",
-      "scenario": "Convert 4 megabytes (MB) into gigabytes (GB) for technical comparison and documentation.",
-      "inputValue": 4,
-      "outputValue": "0.004 GB",
-      "stepByStep": "4 MB × 0.001 = 0.004 GB (rounds to 0 GB)."
+      "title": "App Download or Video Clip (100 MB)",
+      "scenario": "Convert a 100-megabyte file or mobile app download size into gigabytes.",
+      "inputValue": 100,
+      "outputValue": "0.1 GB",
+      "stepByStep": "100 MB ÷ 1,000 = 0.1 GB exact."
     },
     {
-      "title": "Practical Mid-Range Conversion (32 MB)",
-      "scenario": "Convert 32 megabytes (MB) into gigabytes (GB) for technical comparison and documentation.",
-      "inputValue": 32,
-      "outputValue": "0.032 GB",
-      "stepByStep": "32 MB × 0.001 = 0.032 GB (rounds to 0.03 GB)."
+      "title": "Binary Partition Size (10,240 MB)",
+      "scenario": "Convert 10,240 megabytes into decimal gigabytes (and compare to binary GiB).",
+      "inputValue": 10240,
+      "outputValue": "10.24 GB",
+      "stepByStep": "10,240 MB ÷ 1,000 = 10.24 GB decimal (equals 10 GiB in binary 1,024-based units)."
     },
     {
-      "title": "Higher-Capacity Specification (256 MB)",
-      "scenario": "Convert 256 megabytes (MB) into gigabytes (GB) for technical comparison and documentation.",
-      "inputValue": 256,
-      "outputValue": "0.256 GB",
-      "stepByStep": "256 MB × 0.001 = 0.256 GB (rounds to 0.26 GB)."
+      "title": "Monthly Mobile Data Plan (15,000 MB)",
+      "scenario": "Convert a 15,000-megabyte cellular data usage total into gigabytes.",
+      "inputValue": 15000,
+      "outputValue": "15 GB",
+      "stepByStep": "15,000 MB ÷ 1,000 = 15 GB exact."
     }
   ],
-  "mistakesAndEdgeCases": null,
+  "mistakesAndEdgeCases": {
+    "title": "SI Decimal (1,000 MB = 1 GB) vs. IEC Binary (1,024 MiB = 1 GiB) & Megabits (Mb)",
+    "items": [
+      "Drive makers, macOS, and mobile carriers use decimal SI (1,000 MB = 1 GB), whereas RAM modules and Windows file properties use binary powers of 1,024 (1,024 MiB = 1 GiB): for example, 6,144 MB = 6.144 GB decimal (or 6 GiB binary), 10,240 MB = 10.24 GB (10 GiB), and 24,576 MB = 24.576 GB (24 GiB).",
+      "Do not confuse megabytes (MB, capital B, file size) with megabits (Mb / Mbps, lowercase b, internet speed): 1 byte equals 8 bits, so 100 MB equals 800 megabits."
+    ]
+  },
   "formula": {
-    "equation": "GB = MB × 0.001",
+    "equation": "GB = MB ÷ 1,000",
     "exactFactor": "0.001",
     "roundedFactor": "0.001",
     "inverseFactor": "1,000"
   },
   "internalLinks": [
     {
-      "label": "Gigabytes to Megabytes (GB to MB)",
+      "label": "Gigabytes to Megabytes Converter (GB to MB)",
       "href": "/data-storage/gb-to-mb",
       "type": "reverse"
     },
     {
-      "label": "Gigabytes to Terabytes (GB to TB)",
+      "label": "Gigabytes to Terabytes Chart (GB to TB)",
       "href": "/data-storage/gb-to-tb",
       "type": "related"
     },
     {
-      "label": "Terabytes to Gigabytes (TB to GB)",
-      "href": "/data-storage/tb-to-gb",
-      "type": "related"
-    },
-    {
-      "label": "Kilobytes to Megabytes (KB to MB)",
+      "label": "Convert Kilobytes to Megabytes (KB to MB)",
       "href": "/data-storage/kb-to-mb",
       "type": "related"
     },
     {
-      "label": "Megabytes to Kilobytes (MB to KB)",
-      "href": "/data-storage/mb-to-kb",
+      "label": "Mebibytes to Megabytes Binary Check (MiB to MB)",
+      "href": "/data-storage/mib-to-mb",
       "type": "related"
     },
     {
-      "label": "Digital Storage Conversions Hub",
+      "label": "Gibibytes to Gigabytes Calculator (GiB to GB)",
+      "href": "/data-storage/gib-to-gb",
+      "type": "related"
+    },
+    {
+      "label": "All Data Storage Unit Converters",
       "href": "/data-storage",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric & SI Prefixes Reference Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many gigabytes (GB) are in 1 megabyte (decimal) (MB)?",
-      "answer": "There are 0.001 gigabytes (GB) in 1 megabyte (decimal) (MB), which rounds to 0.001 GB for everyday calculations. Conversely, 1 gigabyte (decimal) equals 1,000 megabytes."
+      "question": "How many gigabytes are in 1,000 MB vs. 1,024 MB?",
+      "answer": "In the SI decimal standard used by SSDs, macOS, and cellular plans, 1,000 MB equals 1 GB (and 1,024 MB equals 1.024 GB). In the IEC binary standard used for RAM and Windows, 1,024 MiB equals 1 GiB."
     },
     {
-      "question": "How do I convert megabytes to gigabytes (MB to GB)?",
-      "answer": "To convert megabytes to gigabytes, use the formula: GB = MB × 0.001. For example, converting 16 MB gives 0.016 GB."
+      "question": "How do I convert MB to GB?",
+      "answer": "Divide the number of megabytes by 1,000 (move the decimal point three places left): GB = MB ÷ 1,000. For example, 21,000 MB ÷ 1,000 = 21 GB."
     },
     {
-      "question": "What is 16 megabytes in gigabytes?",
-      "answer": "16 megabytes (MB) equals exactly 0.016 gigabytes (GB) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What are 6,144 MB, 10,240 MB, and 24,576 MB in GB?",
+      "answer": "In decimal SI units, 6,144 MB = 6.144 GB, 10,240 MB = 10.24 GB, and 24,576 MB = 24.576 GB. In binary 1,024-based units (GiB), those exact multiples equal 6 GiB, 10 GiB, and 24 GiB."
+    },
+    {
+      "question": "Why does 100,000 MB equal 100 GB instead of 97.66 GB?",
+      "answer": "Because 100,000 ÷ 1,000 = 100 GB in SI decimal storage, whereas dividing by 1,024 yields 97.65625 GiB in binary IEC units—the reason a 100 GB drive reports ~97.66 GiB in Windows."
     }
   ]
 }

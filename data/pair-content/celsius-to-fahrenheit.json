@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "celsius-to-fahrenheit",
   "category": "temperature",
   "categoryId": "temperature",
@@ -7,48 +7,91 @@
   "toUnitId": "fahrenheit",
   "fromSymbol": "°C",
   "toSymbol": "°F",
-  "intro": "Professionals and everyday users convert celsius (°C) to fahrenheit (°F) when working across si and us_customary standards in meteorological weather reports, culinary oven calibration, HVAC setpoints, and clinical thermometry. One celsius equals 33.8 fahrenheit, while 1 fahrenheit equals -17.222222 celsius. Whether you are verifying temperature specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert degrees Celsius (°C) to Fahrenheit (°F) accurately for weather forecasts, clinical body thermometers, baking ovens, and industrial kilns. Using the exact deg C to Fahrenheit formula, multiply Celsius by 9/5 (1.8) and add 32—so water freezes at 0 °C (32 °F), normal body temperature is 37 °C (98.6 °F), and water boils at 100 °C (212 °F). Scan weather, oven, and kiln temperatures from -40 °C to 1,600 °C below.",
+  "alsoWrittenAs": "°C to °F, C to F, deg C to deg F, centigrade to fahrenheit",
   "commonValues": [
-    -40,
-    -18,
     0,
+    4.3,
+    12.2,
+    28.7,
+    29.9,
+    37,
+    42.5,
+    60,
+    100,
+    130,
+    176,
+    240
+  ],
+  "tableValues": [
+    -40,
+    0,
+    4.3,
     10,
+    12.2,
     20,
     25,
-    30,
+    28.7,
+    29.9,
     37,
+    40,
+    42.5,
+    50,
+    60,
+    61.9,
+    75,
+    83,
     100,
+    120,
+    123,
+    126,
+    130,
+    132,
+    138,
+    150,
+    165,
+    176,
+    178,
     180,
-    200
+    200,
+    220,
+    240,
+    300,
+    485,
+    1000,
+    1600
   ],
+  "tableTitle": "Celsius to Fahrenheit Conversion Chart (-40 °C to 1,600 °C)",
+  "tableSubtitle": "Weather, fever, baking & furnace equivalents computed with °F = (°C × 9/5) + 32.",
+  "tableRoundingNote": "Computed from the exact affine temperature relationship °F = (°C × 1.8) + 32. All Celsius inputs with up to 1 decimal place produce exact terminating Fahrenheit values (displayed up to 2 decimal places).",
   "workedExamples": [
     {
-      "title": "Standard Celsius Benchmark (1 °C)",
-      "scenario": "Convert 1 celsius (°C) into fahrenheit (°F) for technical comparison and documentation.",
-      "inputValue": 1,
-      "outputValue": "33.8 °F",
-      "stepByStep": "(1 °C × 9/5) + 32 = 1.8 + 32 = 33.8 °F."
+      "title": "Warm Summer Weather (28.7 °C)",
+      "scenario": "Convert a 28.7 °C daytime weather forecast into Fahrenheit.",
+      "inputValue": 28.7,
+      "outputValue": "83.66 °F",
+      "stepByStep": "(28.7 × 1.8) + 32 = 51.66 + 32 = 83.66 °F exact."
     },
     {
-      "title": "Practical Mid-Range Conversion (25 °C)",
-      "scenario": "Convert 25 celsius (°C) into fahrenheit (°F) for technical comparison and documentation.",
-      "inputValue": 25,
-      "outputValue": "77 °F",
-      "stepByStep": "(25 °C × 9/5) + 32 = 45 + 32 = 77 °F."
+      "title": "Slow-Roast Oven Setting (130 °C)",
+      "scenario": "Convert a 130 °C European recipe oven temperature into Fahrenheit.",
+      "inputValue": 130,
+      "outputValue": "266 °F",
+      "stepByStep": "(130 × 1.8) + 32 = 234 + 32 = 266 °F exact."
     },
     {
-      "title": "Higher-Capacity Specification (100 °C)",
-      "scenario": "Convert 100 celsius (°C) into fahrenheit (°F) for technical comparison and documentation.",
-      "inputValue": 100,
-      "outputValue": "212 °F",
-      "stepByStep": "(100 °C × 9/5) + 32 = 180 + 32 = 212 °F."
+      "title": "Standard Baking Oven (176 °C)",
+      "scenario": "Convert a 176 °C baking recipe temperature into Fahrenheit.",
+      "inputValue": 176,
+      "outputValue": "348.8 °F",
+      "stepByStep": "(176 × 1.8) + 32 = 316.8 + 32 = 348.8 °F (commonly set to 350 °F)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Temperature Offset vs. Temperature Interval Trap",
+    "title": "Thermometer Point vs. Interval (ΔT) & Mental-Math Shortcut Drift",
     "items": [
-      "Converting a specific thermometer reading between Celsius (°C) and Fahrenheit (°F) requires applying the zero-point offset (+32 or +273.15). However, when converting a temperature change or difference (ΔT, such as a 10° rise), you must use only the scale ratio (1 °C = 1.8 °F = 1 K) without adding the offset.",
-      "Remember that -40 °C and -40 °F are the exact crossover point where both relative scales read the same value."
+      "Converting a specific temperature reading requires adding 32 (°F = °C × 1.8 + 32), whereas converting a temperature change (ΔT, like a 10 °C rise) uses only the 1.8 ratio (Δ10 °C = Δ18 °F, no +32).",
+      "The simple Celsius to Fahrenheit conversion shortcut (double °C and add 30) stays within ~2 °F for weather between 10 °C and 30 °C, but drifts heavily at baking temperatures (240 °C gives 510 °F by shortcut vs. 464 °F exact)."
     ]
   },
   "formula": {
@@ -59,53 +102,57 @@
   },
   "internalLinks": [
     {
-      "label": "Fahrenheit to Celsius (°F to °C)",
+      "label": "Fahrenheit to Celsius Converter (°F to °C)",
       "href": "/temperature/fahrenheit-to-celsius",
       "type": "reverse"
     },
     {
-      "label": "Celsius to Kelvin (°C to K)",
+      "label": "Celsius to Kelvin Chart (°C to K)",
       "href": "/temperature/celsius-to-kelvin",
       "type": "related"
     },
     {
-      "label": "Kelvin to Celsius (K to °C)",
-      "href": "/temperature/kelvin-to-celsius",
-      "type": "related"
-    },
-    {
-      "label": "Fahrenheit to Kelvin (°F to K)",
+      "label": "Convert Fahrenheit to Kelvin (°F to K)",
       "href": "/temperature/fahrenheit-to-kelvin",
       "type": "related"
     },
     {
-      "label": "Kelvin to Fahrenheit (K to °F)",
-      "href": "/temperature/kelvin-to-fahrenheit",
+      "label": "Kelvin to Celsius Calculator (K to °C)",
+      "href": "/temperature/kelvin-to-celsius",
       "type": "related"
     },
     {
-      "label": "Temperature Conversions Hub",
+      "label": "Celsius to Rankine Scale (°C to °R)",
+      "href": "/temperature/celsius-to-rankine",
+      "type": "related"
+    },
+    {
+      "label": "All Temperature Unit Converters",
       "href": "/temperature",
       "type": "hub"
     },
     {
-      "label": "Celsius vs. Fahrenheit vs. Kelvin Temperature Scales Guide",
+      "label": "Celsius, Fahrenheit & Kelvin Scales Guide",
       "href": "/guides/temperature-scales-explained",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many fahrenheit (°F) are in 1 celsius (°C)?",
-      "answer": "There are 33.8 fahrenheit (°F) in 1 celsius (°C), which rounds to 33.8 °F for everyday calculations. Conversely, 1 fahrenheit equals -17.222222 celsius."
+      "question": "What is the deg C to Fahrenheit formula?",
+      "answer": "Multiply the Celsius temperature by 9/5 (or 1.8) and add 32: °F = (°C × 9/5) + 32. Each 1 °C step equals a 1.8 °F increase."
     },
     {
-      "question": "How do I convert celsius to fahrenheit (°C to °F)?",
-      "answer": "To convert celsius to fahrenheit, use the formula: °F = (°C × 9/5) + 32. For example, converting 20 °C gives 68 °F."
+      "question": "What are 0 °C and 100 °C in Fahrenheit?",
+      "answer": "0 °C (freezing point of water) equals exactly 32 °F, and 100 °C (boiling point of water at sea level) equals exactly 212 °F. Both scales meet at -40 °C = -40 °F."
     },
     {
-      "question": "What is 20 celsius in fahrenheit?",
-      "answer": "20 celsius (°C) equals exactly 68 fahrenheit (°F) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What are 130 °C, 176 °C, and 240 °C in Fahrenheit?",
+      "answer": "130 °C equals 266 °F, 176 °C equals 348.8 °F (350 °F baking oven), and 240 °C equals 464 °F."
+    },
+    {
+      "question": "Is there a simple Celsius to Fahrenheit conversion shortcut?",
+      "answer": "For quick weather estimates between 10 °C and 30 °C, double the Celsius number and add 30 (for example, 20 °C ≈ 70 °F vs. 68 °F exact). For baking, fevers, or science, always use the exact × 1.8 + 32 formula."
     }
   ]
 }

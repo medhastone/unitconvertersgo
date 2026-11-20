@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "sq-feet-to-sq-meters",
   "category": "area",
   "categoryId": "area",
@@ -7,47 +7,80 @@
   "toUnitId": "sq_meter",
   "fromSymbol": "ft²",
   "toSymbol": "m²",
-  "intro": "Professionals and everyday users convert square feet (ft²) to square meters (m²) when working across imperial and si standards in real estate property deeds, agricultural land surveying, commercial floor plan leases, and civil zoning. One square foot equals 0.092903 square meters, while 1 square meter equals 10.76391 square feet. Whether you are verifying area specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert square feet (ft²) to square meters (m²) accurately for international real estate listings, architectural floor plans, tile orders, and commercial leases. Because 1 international foot equals exactly 0.3048 meters, 1 square foot equals 0.09290304 square meters (or square metres)—multiply sq ft by 0.09290304, or divide by 10.76391. Explore room, apartment, and commercial areas from 1 ft² to 10,000 ft² in the reference table below.",
+  "alsoWrittenAs": "sq ft to sq m, sqr ft to sq m, ft² to m², sq. ft. to sq. m., square feet to square metres",
   "commonValues": [
-    0.25,
-    0.5,
-    1,
-    2,
-    5,
-    10,
-    25,
     50,
     100,
-    500
+    253,
+    484,
+    500,
+    750,
+    1000,
+    1200,
+    1500,
+    2000,
+    3000,
+    5000
   ],
+  "tableValues": [
+    1,
+    10,
+    50,
+    100,
+    150,
+    200,
+    250,
+    253,
+    300,
+    400,
+    484,
+    500,
+    600,
+    750,
+    800,
+    1000,
+    1200,
+    1500,
+    1800,
+    2000,
+    2500,
+    3000,
+    4000,
+    5000,
+    10000
+  ],
+  "tableTitle": "Square Feet to Square Meters Chart (1 ft² to 10,000 ft²)",
+  "tableSubtitle": "Room, apartment & commercial floor-plan equivalents computed with m² = ft² × 0.09290304.",
+  "tableRoundingNote": "Computed from the exact 1959 International Yard and Pound Agreement (1 ft = 0.3048 m exact, so 1 ft² = 0.09290304 m² exact). Table outputs are rounded to 5 decimal places.",
   "workedExamples": [
     {
-      "title": "Standard Square Foot Benchmark (1 ft²)",
-      "scenario": "Convert 1 square feet (ft²) into square meters (m²) for technical comparison and documentation.",
-      "inputValue": 1,
-      "outputValue": "0.092903 m²",
-      "stepByStep": "1 ft² × 0.092903 = 0.092903 m² (rounds to 0.09 m²)."
-    },
-    {
-      "title": "Practical Mid-Range Conversion (10 ft²)",
-      "scenario": "Convert 10 square feet (ft²) into square meters (m²) for technical comparison and documentation.",
-      "inputValue": 10,
-      "outputValue": "0.92903 m²",
-      "stepByStep": "10 ft² × 0.092903 = 0.92903 m² (rounds to 0.93 m²)."
-    },
-    {
-      "title": "Higher-Capacity Specification (100 ft²)",
-      "scenario": "Convert 100 square feet (ft²) into square meters (m²) for technical comparison and documentation.",
+      "title": "Small Bedroom or Home Office (100 ft²)",
+      "scenario": "Convert a 10 ft × 10 ft (100 sq ft) room into square meters for flooring estimates.",
       "inputValue": 100,
-      "outputValue": "9.290304 m²",
-      "stepByStep": "100 ft² × 0.092903 = 9.290304 m² (rounds to 9.29 m²)."
+      "outputValue": "9.2903 m²",
+      "stepByStep": "100 ft² × 0.09290304 = 9.2903 m² (rounds to 9.29 m²)."
+    },
+    {
+      "title": "Living Room or Studio Suite (253 ft²)",
+      "scenario": "Convert a 253 square foot living area into square meters.",
+      "inputValue": 253,
+      "outputValue": "23.50447 m²",
+      "stepByStep": "253 ft² × 0.09290304 = 23.50447 m² (rounds to 23.50 m²)."
+    },
+    {
+      "title": "Studio Apartment or Garage Bay (484 ft²)",
+      "scenario": "Convert a 484 square foot floor plan (22 ft × 22 ft) into square meters.",
+      "inputValue": 484,
+      "outputValue": "44.96507 m²",
+      "stepByStep": "484 ft² × 0.09290304 = 44.96507 m² (rounds to 44.97 m²)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "title": "Linear Feet vs. Square Feet & Rounding Drift on Commercial Leases",
     "items": [
-      "The exact conversion factor from Square Foot to Square Meter is 0.09290304, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
-      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+      "Square feet measures 2D area, not linear length: first multiply length in feet by width in feet (ft² = L × W), then multiply by 0.3048² = 0.09290304. Using the linear factor 0.3048 instead of 0.09290304 overstates square meters by 3.28×.",
+      "Estimating square meters by dividing square feet by 10 instead of 10.76391 introduces a 7.6% error—turning a 5,000 ft² commercial space from 464.52 m² into 500 m². Always compute with 0.09290304 and round only the final result."
     ]
   },
   "formula": {
@@ -58,53 +91,57 @@
   },
   "internalLinks": [
     {
-      "label": "Square Meters to Square Feet (m² to ft²)",
+      "label": "Square Meters to Square Feet Converter (m² to ft²)",
       "href": "/area/sq-meters-to-sq-feet",
       "type": "reverse"
     },
     {
-      "label": "Acres to Square Feet (ac to ft²)",
-      "href": "/area/acres-to-sq-feet",
-      "type": "related"
-    },
-    {
-      "label": "Square Feet to Acres (ft² to ac)",
+      "label": "Square Feet to Acres Chart (ft² to ac)",
       "href": "/area/sq-feet-to-acres",
       "type": "related"
     },
     {
-      "label": "Acres to Hectares (ac to ha)",
+      "label": "Square Feet to Square Yards Calculator (ft² to yd²)",
+      "href": "/area/sq-feet-to-sq-yards",
+      "type": "related"
+    },
+    {
+      "label": "Acres to Hectares Converter (ac to ha)",
       "href": "/area/acres-to-hectares",
       "type": "related"
     },
     {
-      "label": "Hectares to Acres (ha to ac)",
+      "label": "Hectares to Acres Reference (ha to ac)",
       "href": "/area/hectares-to-acres",
       "type": "related"
     },
     {
-      "label": "Area Conversions Hub",
+      "label": "All Area & Floor Plan Converters",
       "href": "/area",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial Conversion Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many square meters (m²) are in 1 square foot (ft²)?",
-      "answer": "There are 0.09290304 square meters (m²) in 1 square foot (ft²), which rounds to 0.0929 m² for everyday calculations. Conversely, 1 square meter equals 10.76391 square feet."
+      "question": "How many square meters are in 1 square foot?",
+      "answer": "1 square foot equals exactly 0.09290304 square meters (0.3048 m × 0.3048 m). Conversely, 1 square meter equals 10.76391 square feet."
     },
     {
-      "question": "How do I convert square feet to square meters (ft² to m²)?",
-      "answer": "To convert square feet to square meters, use the formula: m² = ft² × 0.09290304. For example, converting 5 ft² gives 0.4645 m²."
+      "question": "What is 484 sq ft in square meters?",
+      "answer": "484 square feet equals 44.96507 square meters (484 × 0.09290304), or about 44.97 m²."
     },
     {
-      "question": "What is 5 square feet in square meters?",
-      "answer": "5 square feet (ft²) equals exactly 0.4645 square meters (m²) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "How do I convert square feet to square meters?",
+      "answer": "Multiply the area in square feet by 0.09290304, or divide by 10.76391. For example, 1,000 ft² × 0.09290304 = 92.903 m²."
+    },
+    {
+      "question": "How do you calculate square feet from feet?",
+      "answer": "Multiply the length in feet by the width in feet (ft² = L × W) to get area in square feet—for instance, a 10 ft × 10 ft room is 100 ft² (9.2903 m²). A single linear foot measurement cannot convert directly to square feet without a second dimension."
     }
   ]
 }

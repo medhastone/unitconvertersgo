@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "kw-to-horsepower",
   "category": "power",
   "categoryId": "power",
@@ -7,47 +7,85 @@
   "toUnitId": "horsepower_mechanical",
   "fromSymbol": "kW",
   "toSymbol": "hp",
-  "intro": "Professionals and everyday users convert kilowatts (kW) to horsepower (hp) (hp) when working across metric and imperial standards in automotive engine output ratings, electric motor sizing, solar inverter specifications, and appliance load planning. One kilowatt equals 1.341022 horsepower (hp), while 1 horsepower (mechanical) equals 0.7457 kilowatts. Whether you are verifying power specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert kilowatts (kW) to mechanical horsepower (hp) accurately for electric vehicles, IEC/NEMA industrial motors, generators, and marine engines. Under the imperial mechanical definition (1 hp = 745.69987 W), 1 kW equals 1.34102209 hp—simply multiply kW by 1.34102209 using the kW to hp conversion formula. Check standard motor and EV ratings from 1 kW to 2,000 kW in the chart below.",
+  "alsoWrittenAs": "kW to hp, kilowatts to hp, kW to mechanical horsepower, kW to BHP, kilowatt to horsepower",
   "commonValues": [
-    0.5,
-    1,
-    2,
-    5,
+    2.2,
+    7.5,
     10,
-    25,
-    50,
+    15,
+    30,
+    37,
+    75,
     100,
     200,
+    300,
+    400,
     500
   ],
+  "tableValues": [
+    1,
+    1.8,
+    2.2,
+    5,
+    7.5,
+    8,
+    10,
+    15,
+    20,
+    30,
+    35,
+    37,
+    45,
+    50,
+    60,
+    75,
+    100,
+    125,
+    150,
+    200,
+    220,
+    250,
+    300,
+    350,
+    400,
+    500,
+    600,
+    800,
+    1000,
+    2000
+  ],
+  "tableTitle": "kW to HP Conversion Chart (1 kW to 2,000 kW)",
+  "tableSubtitle": "Electric motor, EV & engine power kW chart computed with hp = kW × 1.34102209.",
+  "tableRoundingNote": "Computed from the exact mechanical horsepower definition 1 hp = 550 ft·lbf/s = 745.69987158 W (1 kW = 1.34102209 hp). Table outputs are rounded to 5 decimal places.",
   "workedExamples": [
     {
-      "title": "Standard Kilowatt Benchmark (2 kW)",
-      "scenario": "Convert 2 kilowatts (kW) into horsepower (hp) (hp) for technical comparison and documentation.",
-      "inputValue": 2,
-      "outputValue": "2.682044 hp",
-      "stepByStep": "2 kW × 1.341022 = 2.682044 hp (rounds to 2.68 hp)."
+      "title": "IEC Industrial Motor Rating (7.5 kW)",
+      "scenario": "Convert a standard 7.5-kilowatt three-phase electric motor rating into mechanical horsepower.",
+      "inputValue": 7.5,
+      "outputValue": "10.05767 hp",
+      "stepByStep": "7.5 kW × 1.34102209 = 10.05767 hp (commonly matched to a 10 hp NEMA motor)."
     },
     {
-      "title": "Practical Mid-Range Conversion (25 kW)",
-      "scenario": "Convert 25 kilowatts (kW) into horsepower (hp) (hp) for technical comparison and documentation.",
-      "inputValue": 25,
-      "outputValue": "33.525552 hp",
-      "stepByStep": "25 kW × 1.341022 = 33.525552 hp (rounds to 33.53 hp)."
+      "title": "Compact EV & Commercial Pump (75 kW)",
+      "scenario": "Convert a 75-kilowatt motor or drivetrain output into mechanical horsepower.",
+      "inputValue": 75,
+      "outputValue": "100.57666 hp",
+      "stepByStep": "75 kW × 1.34102209 = 100.57666 hp (about 100.6 hp)."
     },
     {
-      "title": "Higher-Capacity Specification (200 kW)",
-      "scenario": "Convert 200 kilowatts (kW) into horsepower (hp) (hp) for technical comparison and documentation.",
+      "title": "Performance Electric Vehicle Output (200 kW)",
+      "scenario": "Convert a 200-kilowatt EV powertrain specification into horsepower.",
       "inputValue": 200,
-      "outputValue": "268.204418 hp",
-      "stepByStep": "200 kW × 1.341022 = 268.204418 hp (rounds to 268.2 hp)."
+      "outputValue": "268.20442 hp",
+      "stepByStep": "200 kW × 1.34102209 = 268.20442 hp (about 268 hp)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Exact NIST Factor vs. Early Rounding Drift",
+    "title": "Mechanical Horsepower (hp / BHP) vs. Metric PS (CV), kWh & MBH",
     "items": [
-      "The exact conversion factor from Kilowatt to Horsepower (Mechanical) is 1.34102209, derived from the 1959 International Yard and Pound Agreement (1 inch = 25.4 mm, 1 lb = 0.45359237 kg).",
-      "In structural engineering, CNC machining, or bulk inventory totals, rounding the multiplier to 2 decimal places too early can introduce cumulative tolerance errors; always compute with the full factor and round only the final displayed figure."
+      "Mechanical/imperial horsepower (hp and UK brake horsepower, BHP) equals 745.7 W (1 kW = 1.34102 hp), whereas European metric horsepower (PS or CV) equals 735.5 W (1 kW = 1.35962 PS)—a 1.4% difference on European car brochures.",
+      "Kilowatts (kW) measure instantaneous power, not energy stored over time (kWh, kilowatt-hours). For HVAC boilers, 1 MBH (1,000 BTU/h) equals 0.29307 kW (1 kW = 3.41214 MBH), which is thermal output rather than shaft horsepower."
     ]
   },
   "formula": {
@@ -58,53 +96,57 @@
   },
   "internalLinks": [
     {
-      "label": "Horsepower (hp) to Kilowatts (hp to kW)",
+      "label": "Horsepower to Kilowatts Converter (hp to kW)",
       "href": "/power/hp-to-kw",
       "type": "reverse"
     },
     {
-      "label": "Watts to Kilowatts (W to kW)",
-      "href": "/power/watts-to-kw",
+      "label": "Kilowatts to Metric Horsepower (kW to PS)",
+      "href": "/power/kw-to-ps",
       "type": "related"
     },
     {
-      "label": "Kilowatts to Watts (kW to W)",
-      "href": "/power/kw-to-watts",
-      "type": "related"
-    },
-    {
-      "label": "Watts to Horsepower (hp) (W to hp)",
+      "label": "Watts to Horsepower Chart (W to hp)",
       "href": "/power/watts-to-horsepower",
       "type": "related"
     },
     {
-      "label": "Horsepower (hp) to Watts (hp to W)",
-      "href": "/power/horsepower-to-watts",
+      "label": "Convert Kilowatts to Watts (kW to W)",
+      "href": "/power/kw-to-watts",
       "type": "related"
     },
     {
-      "label": "Power Conversions Hub",
+      "label": "BTU per Hour to Watts Calculator (BTU/hr to W)",
+      "href": "/power/btu-per-hour-to-watts",
+      "type": "related"
+    },
+    {
+      "label": "All Power & Energy Rate Converters",
       "href": "/power",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric & Imperial Engineering Power Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many horsepower (hp) (hp) are in 1 kilowatt (kW)?",
-      "answer": "There are 1.34102209 horsepower (hp) (hp) in 1 kilowatt (kW), which rounds to 1.341 hp for everyday calculations. Conversely, 1 horsepower (mechanical) equals 0.7457 kilowatts."
+      "question": "How to convert kW to horsepower (hp)?",
+      "answer": "Multiply kilowatts by 1.34102209 (or divide by 0.74569987): hp = kW × 1.34102209. For example, 10 kW × 1.34102209 = 13.41022 mechanical hp."
     },
     {
-      "question": "How do I convert kilowatts to horsepower (hp) (kW to hp)?",
-      "answer": "To convert kilowatts to horsepower (hp), use the formula: hp = kW × 1.34102209. For example, converting 10 kW gives 13.4102 hp."
+      "question": "What is kW vs horsepower (and BHP or metric PS)?",
+      "answer": "Both kilowatts (kW) and horsepower (hp) measure mechanical or electrical power: 1 kW equals 1,000 watts, while 1 mechanical hp (including BHP) equals 745.7 watts—making 1 kW about 1.341 hp. Metric horsepower (PS/CV) is slightly smaller at 735.5 W (1 kW = 1.3596 PS)."
     },
     {
-      "question": "What is 10 kilowatts in horsepower (hp)?",
-      "answer": "10 kilowatts (kW) equals exactly 13.4102 horsepower (hp) (hp) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What is 100 kW in horsepower?",
+      "answer": "100 kilowatts equals 134.10221 mechanical horsepower (about 134.1 hp, or 135.96 metric PS)."
+    },
+    {
+      "question": "Is kWh (kilowatt-hour) or MBH the same as kW?",
+      "answer": "No—kWh measures total energy (power × time, like EV battery capacity), so you cannot convert kWh directly to hp without knowing the time duration. MBH (1,000 BTU/h) is an HVAC thermal power unit where 1 kW = 3.41214 MBH."
     }
   ]
 }

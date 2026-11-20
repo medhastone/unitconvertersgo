@@ -298,26 +298,46 @@ const CATEGORY_PROFILES: Record<string, CategorySeoProfile> = {
     displayName: "Pressure",
     heroTitle: "Pressure Converter",
     heroDescription:
-      "Enter a pressure reading below to convert between PSI, bar, Pascals, and atmospheres.",
+      "Convert pressure and mechanical stress units instantly between PSI, bar, Pascals (Pa, kPa, MPa), standard atmospheres (atm), Torr, mmHg, and inHg for tires, hydraulics, HVAC, and weather.",
     defaultFromId: "bar",
     defaultToId: "psi",
     defaultValue: 2,
+    popularSlugs: [
+      "bar-to-psi",
+      "psi-to-bar",
+      "kpa-to-psi",
+      "psi-to-kpa",
+      "megapascal-to-psi",
+      "psi-to-megapascal",
+      "pascal-to-psi",
+      "atm-to-psi",
+    ],
     relatedCategoryIds: ["force", "area", "temperature", "flow", "volume", "energy"],
     faqs: [
       {
         question: "How many PSI are in 1 bar of pressure?",
         answer:
-          "1 bar (100,000 Pascals) equals approximately 14.50377 pounds per square inch (PSI).",
+          "1 bar (100,000 Pascals) equals 14.50377 pounds per square inch (PSI). Conversely, 1 PSI equals 0.0689476 bar (6,894.76 Pascals).",
       },
       {
         question: "What is standard atmospheric pressure at sea level?",
         answer:
-          "1 standard atmosphere (atm) is defined as 101,325 Pascals (1,013.25 hPa / mbar, 1.01325 bar, 14.6959 PSI, or 760 Torr).",
+          "1 standard atmosphere (atm) is defined as exactly 101,325 Pascals (101.325 kPa, 1,013.25 hPa / mbar, 1.01325 bar, 14.69595 PSI, or 760 Torr / mmHg).",
       },
       {
         question: "Why are hPa and millibar numerically identical?",
         answer:
           "Both 1 hectopascal (hPa) and 1 millibar (mbar) equal exactly 100 Pascals, so meteorological readings in hPa and mbar have the exact same value.",
+      },
+      {
+        question: "What is the difference between gauge pressure (psig) and absolute pressure (psia)?",
+        answer:
+          "Gauge pressure (psig) is measured relative to local ambient air pressure (0 psig at sea level), whereas absolute pressure (psia) is referenced to a perfect vacuum: psia = psig + 14.69595 at standard sea level.",
+      },
+      {
+        question: "How do Pa, kPa, and MPa scale?",
+        answer:
+          "SI pressure units scale in powers of 1,000: 1 kilopascal (kPa) = 1,000 Pascals (Pa), and 1 megapascal (MPa) = 1,000 kPa = 1,000,000 Pa (10 bar ≈ 145.038 PSI).",
       },
     ],
   },
@@ -399,6 +419,53 @@ const CATEGORY_PROFILES: Record<string, CategorySeoProfile> = {
         question: "How many Gigabytes are in 1 Terabyte?",
         answer:
           "In decimal SI storage, 1 Terabyte (TB) equals 1,000 Gigabytes (GB). In binary IEC storage, 1 Tebibyte (TiB) equals 1,024 Gibibytes (GiB).",
+      },
+    ],
+  },
+  flow: {
+    displayName: "Flow Rate",
+    heroTitle: "Flow Rate Converter",
+    heroDescription:
+      "Convert volumetric flow rates instantly between liters per minute (L/min), US gallons per minute (GPM), cubic feet per minute (CFM), cubic feet per second (ft³/s), liters per second (L/s), and cubic meters per hour (m³/h) for plumbing, pumps, HVAC airflow, and hydraulics.",
+    defaultFromId: "liter_per_min",
+    defaultToId: "gallon_us_per_min",
+    defaultValue: 10,
+    popularSlugs: [
+      "liters-per-minute-to-us-gallons-per-minute",
+      "us-gallons-per-minute-to-liters-per-minute",
+      "cfm-to-liters-per-minute",
+      "cfm-to-cubic-meters-per-hour",
+      "gpm-to-cubic-meters-per-hour",
+      "cubic-feet-per-hour-to-liters-per-minute",
+      "liters-per-hour-to-us-gallons-per-hour",
+      "us-gallons-per-minute-to-cubic-meters-per-second",
+    ],
+    relatedCategoryIds: ["volume", "pressure", "speed", "time", "area", "density"],
+    faqs: [
+      {
+        question: "How many liters per minute (L/min) are in 1 US GPM?",
+        answer:
+          "1 US gallon per minute (GPM) equals 3.78541 liters per minute (L/min). Conversely, 1 L/min equals 0.26417 US GPM.",
+      },
+      {
+        question: "How do you convert CFM to L/min or m³/h?",
+        answer:
+          "Multiply cubic feet per minute (CFM) by 28.31685 to get L/min, or multiply CFM by 1.69901 to get cubic meters per hour (m³/h). For example, 100 CFM equals 2,831.68 L/min or 169.90 m³/h.",
+      },
+      {
+        question: "How many GPM are in 1 cubic foot per second (CFS)?",
+        answer:
+          "1 cubic foot per second (ft³/s or CFS) equals 448.83117 US gallons per minute (7.48052 US gal/ft³ × 60 seconds).",
+      },
+      {
+        question: "How do cubic meters per hour (m³/h) and L/min relate?",
+        answer:
+          "1 m³/h equals 1,000 liters divided by 60 minutes, or 16.66667 L/min (4.40287 US GPM). Multiply m³/h by 16.66667 to convert to L/min.",
+      },
+      {
+        question: "What is the difference between volumetric flow rate and mass flow rate?",
+        answer:
+          "Volumetric flow rate (L/min, GPM, CFM, m³/h) measures fluid volume passing a point per unit time, whereas mass flow rate (kg/s, lb/h) measures mass per unit time and depends on fluid density (plus temperature and pressure for compressible gases).",
       },
     ],
   },
@@ -803,23 +870,47 @@ const CATEGORY_DASHBOARD_CONFIGS: Record<string, CategoryDashboardConfig> = {
     sidebarIconClass:
       "bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400",
     primaryUnitIds: ["bar", "psi", "kilopascal"],
+    alsoWrittenAs: "bar, psi (lbf/in²), Pa, kPa, MPa, atm, mbar / hPa, Torr / mmHg, inHg",
     referenceRows: [
-      { description: "Standard atmospheric pressure (1 atm)", baseValueInUnit1: 1.01325 },
+      { description: "Low HVAC / gas line (0.1 bar / 10 kPa)", baseValueInUnit1: 0.1 },
       { description: "1 Bar metric benchmark (100 kPa)", baseValueInUnit1: 1 },
+      { description: "Standard atmospheric pressure (1 atm)", baseValueInUnit1: 1.01325 },
+      { description: "2 Bar reference (~29 PSI)", baseValueInUnit1: 2 },
       { description: "Passenger car tire (~2.2 bar / 32 PSI)", baseValueInUnit1: 2.2 },
-      { description: "Residential water line (~4 bar)", baseValueInUnit1: 4 },
+      { description: "Residential water main (~4 bar)", baseValueInUnit1: 4 },
       { description: "Road bike tire (~6.9 bar / 100 PSI)", baseValueInUnit1: 6.89476 },
-      { description: "Scuba tank full (~200 bar)", baseValueInUnit1: 200 },
+      { description: "Shop air compressor (10 bar / 1 MPa)", baseValueInUnit1: 10 },
+      { description: "Hydraulic press line (100 bar / 10 MPa)", baseValueInUnit1: 100 },
+      { description: "Scuba diving tank full (200 bar)", baseValueInUnit1: 200 },
     ],
+    tableRoundingNote:
+      "Computed from exact SI and NIST definitions (1 bar = 100,000 Pa = 100 kPa exact; 1 psi = 6,894.75729 Pa; 1 atm = 101,325 Pa). Display outputs are rounded to 5 decimal places.",
     formulaCards: [
-      { label: "Bar to PSI", equation: "PSI = bar × 14.5038" },
+      { label: "Bar to PSI", equation: "PSI = bar × 14.50377" },
       { label: "PSI to kPa", equation: "kPa = PSI × 6.89476" },
       { label: "Bar to Kilopascals", equation: "kPa = bar × 100" },
     ],
     workedExampleTitle: "Example: Convert 2 Bar to Pounds per Square Inch (PSI)",
-    workedExampleLines: ["PSI = 2 × 14.5037738", "PSI = 29.007548 PSI"],
+    workedExampleLines: ["PSI = 2 × 14.5037738", "PSI = 29.00755 PSI"],
     workedExampleNote:
       "1 bar equals exactly 100,000 Pascals (100 kPa), and 1 standard atmosphere (atm) equals 101.325 kPa.",
+    workedExamples: [
+      {
+        title: "2 Bar to PSI (Tire & Gauge)",
+        lines: ["2 bar × 14.5037738", "= 29.00755 psi"],
+        note: "1 bar equals 100 kPa exact (≈ 14.5038 psi).",
+      },
+      {
+        title: "32 PSI Car Tire to kPa & Bar",
+        lines: ["32 psi × 6.894757", "= 220.63223 kPa (2.20632 bar)"],
+        note: "Multiply psi by 6.894757 to get kilopascals.",
+      },
+      {
+        title: "101,325 Pa (1 atm) to PSI",
+        lines: ["101,325 Pa ÷ 6,894.75729", "= 14.69595 psi"],
+        note: "Standard sea-level atmospheric pressure.",
+      },
+    ],
     quickInfoBullets: [
       {
         boldPrefix: "Pascal (Pa) & Kilopascal (kPa)",
@@ -1485,22 +1576,47 @@ const CATEGORY_DASHBOARD_CONFIGS: Record<string, CategoryDashboardConfig> = {
     sidebarIconClass:
       "bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-400",
     primaryUnitIds: ["liter_per_min", "gallon_us_per_min", "cubic_foot_per_min"],
+    alsoWrittenAs: "L/min (LPM), US GPM (gal/min), CFM (ft³/min), CFS (ft³/s), L/s, m³/h, m³/s, GPH",
     referenceRows: [
+      { description: "1 Liter per Minute benchmark (1 L/min)", baseValueInUnit1: 1 },
+      { description: "1 US Gallon per Minute (1 GPM)", baseValueInUnit1: 3.78541 },
       { description: "Bathroom faucet aerator (5 L/min)", baseValueInUnit1: 5 },
       { description: "Standard showerhead (~9.5 L/min / 2.5 GPM)", baseValueInUnit1: 9.46353 },
+      { description: "1 Cubic Meter per Hour (1 m³/h)", baseValueInUnit1: 16.66667 },
       { description: "Garden hose flow (20 L/min)", baseValueInUnit1: 20 },
-      { description: "1 Cubic Foot per Minute (~28.32 L/min)", baseValueInUnit1: 28.31685 },
-      { description: " Residential pump (100 L/min)", baseValueInUnit1: 100 },
+      { description: "1 Cubic Foot per Minute (1 CFM)", baseValueInUnit1: 28.31685 },
+      { description: "1 Liter per Second (60 L/min)", baseValueInUnit1: 60 },
+      { description: "Residential transfer pump (100 L/min)", baseValueInUnit1: 100 },
+      { description: "Industrial irrigation pump (1,000 L/min)", baseValueInUnit1: 1000 },
     ],
+    tableRoundingNote:
+      "Computed from exact SI and US customary definitions (1 US gal = 3.785411784 L; 1 ft³ = 28.316846592 L; 1 m³ = 1,000 L). Display outputs are rounded to 5 decimal places.",
     formulaCards: [
       { label: "L/min to US GPM", equation: "GPM = L/min ÷ 3.78541" },
       { label: "US GPM to L/min", equation: "L/min = GPM × 3.78541" },
-      { label: "CFM to L/min", equation: "L/min = CFM × 28.3168" },
+      { label: "CFM to L/min", equation: "L/min = CFM × 28.31685" },
     ],
     workedExampleTitle: "Example: Convert 10 Liters per Minute (L/min) to US GPM",
-    workedExampleLines: ["GPM = 10 ÷ 3.78541178", "GPM = 2.641721 GPM"],
+    workedExampleLines: ["GPM = 10 ÷ 3.78541178", "GPM = 2.64172 GPM"],
     workedExampleNote:
       "1 US Gallon per Minute (GPM) equals 3.78541 L/min, and 1 Cubic Foot per Minute (CFM) equals 28.31685 L/min.",
+    workedExamples: [
+      {
+        title: "10 L/min to US GPM (Plumbing)",
+        lines: ["10 L/min ÷ 3.78541178", "= 2.64172 GPM"],
+        note: "Divide liters per minute by 3.78541 to get US GPM.",
+      },
+      {
+        title: "100 CFM to L/min & m³/h (HVAC)",
+        lines: ["100 CFM × 28.3168466", "= 2,831.68466 L/min (169.90108 m³/h)"],
+        note: "1 CFM equals 28.31685 L/min or 1.69901 m³/h.",
+      },
+      {
+        title: "1 ft³/s (CFS) to US GPM (Hydrology)",
+        lines: ["1 ft³/s × 448.83117", "= 448.83117 GPM"],
+        note: "7.48052 US gal/ft³ × 60 seconds = 448.83117 GPM.",
+      },
+    ],
     quickInfoBullets: [
       {
         boldPrefix: "Liters per Minute (L/min)",

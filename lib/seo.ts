@@ -53,6 +53,7 @@ const CATEGORY_TOP_FOUR_UNITS: Record<string, string[]> = {
   density: ["kg/m³", "g/cm³", "lb/ft³", "lb/gal"],
   angle: ["Degrees", "Radians", "Gradians", "Arcminutes"],
   frequency: ["Hertz", "Kilohertz", "Megahertz", "RPM"],
+  flow: ["L/min", "GPM", "CFM", "m³/h"],
   cooking: ["Cups", "Grams", "Ounces", "Tablespoons"],
 };
 
@@ -95,6 +96,16 @@ export function buildCategorySeoDescription(categoryId: string): string {
   if (categoryId === "cooking") {
     return formatSeoDescription(
       "Convert cooking and baking ingredients between cups, grams, ounces, tablespoons, and milliliters instantly for free with US and Metric cup reference charts."
+    );
+  }
+  if (categoryId === "pressure") {
+    return formatSeoDescription(
+      "Convert pressure units between PSI, bar, kPa, MPa, Pascals, atm & mmHg instantly. Includes live calculator, exact formulas, examples & chart."
+    );
+  }
+  if (categoryId === "flow") {
+    return formatSeoDescription(
+      "Convert volumetric flow rate units between L/min, US GPM, CFM, ft³/s (CFS), L/s & m³/h instantly. Includes live calculator, formulas, examples & chart."
     );
   }
 
@@ -254,25 +265,37 @@ const COMPACT_QUERY_TITLE_OVERRIDES: Record<string, string> = {
   "cups-to-tablespoons": "Cups to Tablespoons (cups to tbsp) Converter",
   "days-to-years": "Days to Years (d to yr) Converter & Chart",
   "hours-to-days": "Hours to Days (hr to d) Converter & Chart",
+  "mb-to-gb": "MB to GB — Megabytes to Gigabytes Converter & Chart",
   "gb-to-tb": "GB to TB — Gigabytes to Terabytes Converter & Chart",
   "tb-to-gb": "TB to GB — Terabytes to Gigabytes Calculator & Chart",
   "hp-to-kw": "HP to kW — Horsepower in Kilowatts Converter",
+  "kw-to-horsepower": "Kilowatts to HP Converter (kW to hp) & Chart",
   "newtons-to-pounds-force": "Newtons to Pounds-Force — Newton Force to Lbs Converter",
   "kilonewton-to-pound-force": "Kilonewtons to Pounds-Force (kN to lbf) Converter",
+  "pascal-to-psi": "Pascals to PSI (Pa to psi) Converter & Chart",
   "psi-to-megapascal": "PSI to MPa — PSI to Megapascal Converter",
   "megapascal-to-psi": "MPa to PSI — Convert Megapascals to PSI & Chart",
+  "megapascal-to-ksi": "MPa to ksi — Megapascals to ksi Converter & Chart",
   "bar-to-psi": "Bar to PSI — Pressure Bar to PSI Converter",
-  "celsius-to-fahrenheit": "Celsius to Fahrenheit (°C to °F) Converter",
+  "celsius-to-fahrenheit": "Celsius to Fahrenheit (°C to °F) Converter & Chart",
   "fahrenheit-to-celsius": "Fahrenheit to Celsius (°F to °C) Converter",
-  "sq-feet-to-sq-meters": "Sq Ft to Sq M — Square Feet to Square Meters",
+  "fahrenheit-to-kelvin": "Fahrenheit to Kelvin (°F to K) Converter & Chart",
+  "sq-feet-to-sq-meters": "Sq Ft to Sq M (ft² to m²) — Square Feet to Square Meters",
   "sq-meters-to-sq-feet": "Sq M to Sq Ft — Square Meters to Square Feet",
+  "sq-feet-to-acres": "Square Feet to Acres (ft² to ac) Converter & Chart",
   "liters-to-gallons": "Liters to Gallons — Convert L to Gallons US",
   "gallons-to-liters": "Gallons to Liters — US Gallon to Liter Converter",
+  "liters-to-cubic-inches": "Liters to Cubic Inches (L to in³) Converter & Chart",
+  "cubic-feet-to-gallons": "Cubic Feet to Gallons (ft³ to gal US) Converter & Chart",
+  "cc-to-ml": "CC to mL (cm³ to mL) — CC vs mL Converter & Chart",
+  "liters-to-ml": "Liters to mL (L to mL) — Liters to Milliliters Converter",
   "ml-to-liters": "mL to Liters (mL to L) — Milliliters to Liters Converter",
   "ml-to-imperial-fluid-ounces": "mL to UK Fluid Ounces (mL to fl oz UK) Converter",
   "tablespoons-to-cups": "Tablespoons to Cups Converter (tbsp to cups)",
   "ml-to-oz": "mL to Oz — Milliliters to Fluid Ounces",
   "oz-to-ml": "Oz to mL — Fluid Ounces to Milliliters",
+  "liters-per-minute-to-us-gallons-per-minute": "LPM to US GPM (L/min to GPM) Flow Rate Converter",
+  "mm-to-meters": "Millimeters to Meters (mm to m) Converter & Chart",
   "lb-ft-to-nm": "ft lbs to Nm — Foot Pounds to Newton Meters Converter",
   "nm-to-lb-ft": "Nm to ft lbs — Newton Meters to Foot Pounds",
 };
@@ -294,6 +317,8 @@ const COMPACT_QUERY_DESCRIPTION_OVERRIDES: Record<string, string> = {
     "1 m = 3.28084 ft exact (1 ft = 0.3048 m). Convert meters (metres) to feet or US survey feet for height, engineering & maps—with conversion chart.",
   "meters-to-mm":
     "1 m = 1,000 mm exact. Convert meters to millimeters instantly for CAD drawings, construction & machining—with multiply-by-1,000 formula & chart.",
+  "mm-to-meters":
+    "1,000 mm = 1 meter exact (1 mm = 0.001 m or 10⁻³ m). Fast mm to m converter for CAD drawings, lumber & science—with divide-by-1,000 chart.",
   "meters-to-yards":
     "1 m = 1.09361 yd (1 yd = 0.9144 m exact). Convert meters to yards for fabric bolts, swimming pools & track lanes—with meter vs. yards formula & chart.",
   "lb-ft-to-nm":
@@ -320,6 +345,8 @@ const COMPACT_QUERY_DESCRIPTION_OVERRIDES: Record<string, string> = {
     "1,000 mL = 1 liter exact (1 mL = 0.001 L). Compare mL vs L and convert milliliters to liters or litres fast for recipes, lab dosages & bottles.",
   "ml-to-imperial-fluid-ounces":
     "28.41306 mL = 1 UK fl oz exact (1 mL = 0.035195 fl oz UK). Convert milliliters to British Imperial fluid ounces for UK recipes & drinks with chart.",
+  "liters-per-minute-to-us-gallons-per-minute":
+    "1 L/min = 0.26417 US GPM (3.78541 LPM = 1 GPM). Convert LPM to GPM US for water pumps, plumbing & irrigation—with exact formula, examples & chart.",
   "tablespoons-to-cups":
     "16 tbsp = 1 US cup exact (1 tbsp = 0.0625 cup). Convert tablespoons to cups instantly for baking, butter & coffee brewing—with divide-by-16 chart.",
   "cups-to-tablespoons":
@@ -328,12 +355,16 @@ const COMPACT_QUERY_DESCRIPTION_OVERRIDES: Record<string, string> = {
     "365.2425 days = 1 Gregorian year (1 d = 0.002738 yr). Convert days to years for warranties, loan terms & ages—with common & leap year chart.",
   "hours-to-days":
     "24 hours = 1 day exact (1 hr = 0.04167 d). Convert hours to days for work shifts, machine runtime & SLA uptime logs—with divide-by-24 chart.",
+  "mb-to-gb":
+    "1,000 MB = 1 GB decimal (1 MB = 0.001 GB; 1,024 MiB = 1 GiB binary). Fast megs to gigs conversion for mobile data, files & drives—with chart.",
   "gb-to-tb":
     "1,000 GB in 1 TB decimal (0.001 TB per GB). Convert gigabytes to terabytes for SSDs, hard drives & cloud tiers—with divide-by-1,000 formula & chart.",
   "tb-to-gb":
     "1,000 gigabytes in 1 decimal terabyte (1,024 GiB binary). Convert TB to gigabyte counts for SSDs, external drives & cloud plans with instant chart.",
   "hp-to-kw":
     "1 hp = 0.7457 kW (1 kW = 1.34102 hp). Convert hp in kW for car engines, electric motors & generators—with mechanical vs. metric PS formula & chart.",
+  "kw-to-horsepower":
+    "1 kW = 1.34102 hp exact (1 hp = 0.7457 kW). Compare kW vs horsepower for EVs, motors & generators—with kW to hp formula, examples & chart.",
   "newtons-to-pounds-force":
     "1 N = 0.22481 lbf (1 lbf = 4.44822 N). Convert N to lbs force instantly for structural loads, tension & thrust—with newtons to pounds formula & chart.",
   "kilonewton-to-pound-force":
@@ -358,14 +389,34 @@ const COMPACT_QUERY_DESCRIPTION_OVERRIDES: Record<string, string> = {
     "1 grain = 0.06479891 grams exact (15.43236 gr = 1 g). Instant grain to gram conversion (or grammes) for reloading, archery arrows & bullion.",
   "knots-to-mph":
     "1 knot = 1.15078 mph (exact 1.852 km/h). Instant wind speed conversion knots to mph for aviation, sailing & storms, with formula & reference chart.",
+  "celsius-to-fahrenheit":
+    "°F = (°C × 9/5) + 32 (0 °C = 32 °F, 100 °C = 212 °F). Instant Celsius conversion for weather, fevers & ovens—with deg C to Fahrenheit chart.",
   "fahrenheit-to-celsius":
     "°C = (°F − 32) × 5/9. Convert Fahrenheit to Celsius instantly for weather, fever thermometers & oven temps—with exact formula, examples & chart.",
+  "fahrenheit-to-kelvin":
+    "K = (°F − 32) × 5/9 + 273.15 (32 °F = 273.15 K). Convert °F to Kelvin instantly for chemistry, HVAC & physics—with exact formula, examples & chart.",
+  "pascal-to-psi":
+    "1 Pa = 0.00014504 psi (6,894.76 Pa = 1 psi). Convert Pascals to PSI for HVAC, hydraulics & physics—or tap Swap for PSI to Pa—with table.",
   "psi-to-megapascal":
     "1 psi = 0.00689476 MPa (1 MPa = 145.038 psi). Convert PSI to megapascals for concrete strength, hydraulics & piping—with formula, examples & chart.",
   "megapascal-to-psi":
     "1 MPa = 145.03774 psi exact. Convert from MPa to psi instantly with our MPa-psi converter for hydraulic pressure, concrete strength & stress tests.",
   "bar-to-psi":
     "1 bar = 14.50377 psi exact (100 kPa). Fast pressure bar to psi conversion for car tires, espresso machines & hydraulics—with formula & chart.",
+  "sq-feet-to-acres":
+    "43,560 sq ft = 1 acre exact (1 ft² = 0.00002296 ac). Calculate sq ft to acres for house lots, half-acre & quarter-acre plots with formula & chart.",
+  "liters-to-cubic-inches":
+    "1 L = 61.02374 in³ exact. Instant liter to cubic inch conversion & liter to CID calculator for car engines (5.3L, 6.2L, 7.3L) with motor chart & formula.",
+  "sq-feet-to-sq-meters":
+    "1 sq ft = 0.092903 m² exact (1 m² = 10.7639 ft²). Convert sqr ft to sq m for floor plans, apartments & real estate with exact formula, examples & chart.",
+  "cubic-feet-to-gallons":
+    "1 ft³ = 7.48052 US gallons exact (1 gal = 0.13368 ft³). Instant conversion cubic feet to gallons for water tanks, pools & aquariums—with formula & chart.",
+  "megapascal-to-ksi":
+    "1 MPa = 0.14504 ksi (1 ksi = 6.89476 MPa). Convert MPa to ksi (kpsi) for steel yield strength, ASTM tensile specs & metallurgy—with formula & chart.",
+  "cc-to-ml":
+    "1 cc = 1 mL exact (1:1). Compare cc vs mL for syringes, medical dosages & lab vials—are cc and mL the same, how many cc in a drop, plus chart & table.",
+  "liters-to-ml":
+    "1 L = 1,000 mL exact (multiply by 1,000). Convert liters (litres) or ltr to mL instantly for recipes, water bottles & lab work—with formula & chart.",
 };
 
 /**

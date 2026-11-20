@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "cubic-feet-to-gallons",
   "category": "volume",
   "categoryId": "volume",
@@ -7,47 +7,79 @@
   "toUnitId": "us_gallon",
   "fromSymbol": "ft³",
   "toSymbol": "gal (US)",
-  "intro": "Professionals and everyday users convert cubic feet (ft³) to gallons (us) (gal (US)) when working across imperial and us_customary standards in culinary recipe scaling, beverage bottling, laboratory reagent preparation, and fluid tank capacity sizing. One cubic foot equals 7.480519 gallons (us), while 1 gallon (us liquid) equals 0.133681 cubic feet. Whether you are verifying volume & liquid specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Run an exact conversion of cubic feet to gallons for swimming pools, water storage tanks, aquariums, rain barrels, and plumbing sizing. Because 1 cubic foot equals 1,728 cubic inches and 1 US liquid gallon is defined as exactly 231 cubic inches, 1 cubic foot of water holds 7.48052 US gallons (and 1 US gallon equals 0.13368 cubic feet). Multiply ft³ by 7.48051948, or look up capacities from 0.5 ft³ to 1,000 ft³ below.",
+  "alsoWrittenAs": "ft³ to gal, cu ft to gal, cubic feet to US gallons, cft to gallons, cubic foot of water to gallons",
   "commonValues": [
-    0.5,
     1,
-    2,
+    3,
     5,
     10,
+    12,
     20,
     25,
     50,
     75,
-    100
+    100,
+    250,
+    500
   ],
+  "tableValues": [
+    0.5,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    10,
+    12,
+    15,
+    20,
+    25,
+    30,
+    40,
+    50,
+    75,
+    100,
+    150,
+    200,
+    250,
+    500,
+    1000
+  ],
+  "tableTitle": "Cubic Feet to US Gallons Conversion Chart (0.5 ft³ to 1,000 ft³)",
+  "tableSubtitle": "Water tank, aquarium & pool capacities computed with gal (US) = ft³ × 7.48051948.",
+  "tableRoundingNote": "Computed from exact US customary definitions (1 ft³ = 1,728 in³; 1 US liquid gallon = 231 in³, giving 1 ft³ = 1,728 ÷ 231 = 7.4805194805 US gal). Table outputs are rounded to 5 decimal places.",
   "workedExamples": [
     {
-      "title": "Standard Cubic Foot Benchmark (2 ft³)",
-      "scenario": "Convert 2 cubic feet (ft³) into gallons (us) (gal (US)) for technical comparison and documentation.",
-      "inputValue": 2,
-      "outputValue": "14.961039 gal (US)",
-      "stepByStep": "2 ft³ × 7.480519 = 14.961039 gal (US) (rounds to 14.96 gal (US))."
+      "title": "Medium Aquarium or Storage Bin (3 ft³)",
+      "scenario": "Convert a 3 cubic foot aquarium volume into US liquid gallons.",
+      "inputValue": 3,
+      "outputValue": "22.44156 gal (US)",
+      "stepByStep": "3 ft³ × 7.48051948 = 22.44156 gal (US) (about 22.44 gallons)."
     },
     {
-      "title": "Practical Mid-Range Conversion (20 ft³)",
-      "scenario": "Convert 20 cubic feet (ft³) into gallons (us) (gal (US)) for technical comparison and documentation.",
-      "inputValue": 20,
-      "outputValue": "149.61039 gal (US)",
-      "stepByStep": "20 ft³ × 7.480519 = 149.61039 gal (US) (rounds to 149.61 gal (US))."
+      "title": "Stock Tank or Basin Capacity (12 ft³)",
+      "scenario": "Find how many US gallons of water fit inside a 12 cubic foot tank.",
+      "inputValue": 12,
+      "outputValue": "89.76623 gal (US)",
+      "stepByStep": "12 ft³ × 7.48051948 = 89.76623 gal (US) (rounds to 89.77 gallons)."
     },
     {
-      "title": "Higher-Capacity Specification (75 ft³)",
-      "scenario": "Convert 75 cubic feet (ft³) into gallons (us) (gal (US)) for technical comparison and documentation.",
-      "inputValue": 75,
-      "outputValue": "561.038961 gal (US)",
-      "stepByStep": "75 ft³ × 7.480519 = 561.038961 gal (US) (rounds to 561.04 gal (US))."
+      "title": "Cistern or Small Spa Volume (100 ft³)",
+      "scenario": "Calculate the US gallon capacity of a 100 cubic foot water cistern.",
+      "inputValue": 100,
+      "outputValue": "748.05195 gal (US)",
+      "stepByStep": "100 ft³ × 7.48051948 = 748.05195 gal (US) (about 748 gallons)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "US Customary vs. British Imperial Liquid Volume Trap",
+    "title": "US vs. Imperial Gallons, Flow Rates (CFS to GPM) & Propane Vapor",
     "items": [
-      "US Customary and UK Imperial liquid units share identical names but have different physical volumes: 1 US Gallon is 3.78541 L (128 US fl oz), whereas 1 UK Imperial Gallon is 4.54609 L (160 Imp fl oz) — a 20.1% difference.",
-      "Similarly, 1 US Pint contains 16 US fluid ounces (473.18 mL), while 1 British Imperial Pint contains 20 Imperial fluid ounces (568.26 mL). Always verify whether your recipe, pump datasheet, or vehicle spec sheet uses US or UK standards."
+      "This converter outputs US liquid gallons (1 ft³ = 7.48052 US gal). Because a British Imperial gallon is 20.1% larger (4.54609 L vs. 3.78541 L), 1 cubic foot equals only 6.22884 UK Imperial gallons.",
+      "Do not confuse static volume (cubic feet) with flow rate (CFS, cubic feet per second). To convert CFS to US gallons per second, multiply by 7.48052; to convert CFS to US gallons per minute (GPM), multiply by 448.83117 (7.48051948 × 60).",
+      "For liquefied gases like propane, distinguish liquid volume from vapor volume: 1 US gallon of liquid propane occupies 0.13368 ft³ inside a tank, but expands roughly 270× into about 36.39 ft³ of gas vapor at standard atmospheric pressure (60 °F, 14.7 psi)."
     ]
   },
   "formula": {
@@ -58,53 +90,57 @@
   },
   "internalLinks": [
     {
-      "label": "Gallons (US) to Cubic Feet (gal (US) to ft³)",
+      "label": "Gallons to Cubic Feet Converter (gal to ft³)",
       "href": "/volume/gallons-to-cubic-feet",
       "type": "reverse"
     },
     {
-      "label": "Liters to Gallons (US) (L to gal (US))",
+      "label": "Cubic Feet to Cubic Meters Chart (ft³ to m³)",
+      "href": "/volume/cubic-feet-to-cubic-meters",
+      "type": "related"
+    },
+    {
+      "label": "Cubic Feet to Cubic Yards Calculator (ft³ to yd³)",
+      "href": "/volume/cubic-feet-to-cubic-yards",
+      "type": "related"
+    },
+    {
+      "label": "Liters to US Gallons Converter (L to gal)",
       "href": "/volume/liters-to-gallons",
       "type": "related"
     },
     {
-      "label": "Gallons (US) to Liters (gal (US) to L)",
+      "label": "US Gallons to Liters Chart (gal to L)",
       "href": "/volume/gallons-to-liters",
       "type": "related"
     },
     {
-      "label": "Milliliters to Fluid Ounces (US) (mL to fl oz)",
-      "href": "/volume/ml-to-fluid-ounces",
-      "type": "related"
-    },
-    {
-      "label": "Fluid Ounces (US) to Milliliters (fl oz to mL)",
-      "href": "/volume/fluid-ounces-to-ml",
-      "type": "related"
-    },
-    {
-      "label": "Volume & Liquid Conversions Hub",
+      "label": "All Volume & Tank Capacity Converters",
       "href": "/volume",
       "type": "hub"
     },
     {
-      "label": "US Customary vs. British Imperial Fluid Units Explained",
+      "label": "US Customary vs. British Imperial Fluid Units Guide",
       "href": "/guides/us-vs-imperial-fluid-ounces",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many gallons (us) (gal (US)) are in 1 cubic foot (ft³)?",
-      "answer": "There are 7.48051948 gallons (us) (gal (US)) in 1 cubic foot (ft³), which rounds to 7.4805 gal (US) for everyday calculations. Conversely, 1 gallon (us liquid) equals 0.133681 cubic feet."
+      "question": "How many cubic feet of water are in a gallon?",
+      "answer": "One US liquid gallon of water equals 0.13368 cubic feet (231 ÷ 1,728 ft³ exact). Conversely, 1 cubic foot of water holds 7.48052 US gallons (weighing roughly 62.43 lb at room temperature)."
     },
     {
-      "question": "How do I convert cubic feet to gallons (us) (ft³ to gal (US))?",
-      "answer": "To convert cubic feet to gallons (us), use the formula: gal (US) = ft³ × 7.48051948. For example, converting 10 ft³ gives 74.8052 gal (US)."
+      "question": "How many cubic feet is a gallon?",
+      "answer": "Geometrically, 1 US liquid gallon equals 0.13368 cubic feet (231 cubic inches) for any liquid. A British Imperial gallon is larger at 0.16054 cubic feet."
     },
     {
-      "question": "What is 10 cubic feet in gallons (us)?",
-      "answer": "10 cubic feet (ft³) equals exactly 74.8052 gallons (us) (gal (US)) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "How many cubic feet are in a gallon of propane?",
+      "answer": "As a liquid inside a tank, 1 US gallon of liquid propane occupies 0.13368 cubic feet (about 4.2 lb). When released and vaporized into propane gas at standard atmospheric pressure (60 °F, 14.7 psi), 1 liquid gallon expands about 270× into roughly 36.39 cubic feet of vapor."
+    },
+    {
+      "question": "How do I convert cubic feet to gallons?",
+      "answer": "Multiply cubic feet by 7.48051948 (1,728 ÷ 231): gal (US) = ft³ × 7.48051948. For example, 100 ft³ × 7.48051948 = 748.05 US gallons."
     }
   ]
 }

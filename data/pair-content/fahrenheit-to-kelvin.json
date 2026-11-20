@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "fahrenheit-to-kelvin",
   "category": "temperature",
   "categoryId": "temperature",
@@ -7,8 +7,10 @@
   "toUnitId": "kelvin",
   "fromSymbol": "°F",
   "toSymbol": "K",
-  "intro": "Professionals and everyday users convert fahrenheit (°F) to kelvin (K) when working across us_customary and si standards in meteorological weather reports, culinary oven calibration, HVAC setpoints, and clinical thermometry. One fahrenheit equals 255.927778 kelvin, while 1 kelvin equals -457.87 fahrenheit. Whether you are verifying temperature specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert degrees Fahrenheit (°F) to Kelvin (K) accurately for thermodynamics, ideal-gas law chemistry, HVAC calculations, and cryogenic engineering. Under SI and NIST standards, water freezes at 32 °F (273.15 K) and boils at 212 °F (373.15 K), while absolute zero is -459.67 °F (0 K). Subtract 32, multiply by 5/9, and add 273.15—or scan key benchmarks from -459.67 °F to 1,000 °F below.",
+  "alsoWrittenAs": "°F to K, F to K, deg F to K, degrees Fahrenheit to Kelvin",
   "commonValues": [
+    -459.67,
     -40,
     0,
     32,
@@ -18,36 +20,71 @@
     98.6,
     100,
     212,
-    350
+    350,
+    500
   ],
+  "tableValues": [
+    -459.67,
+    -40,
+    0,
+    10,
+    20,
+    32,
+    40,
+    50,
+    60,
+    68,
+    70,
+    72,
+    75,
+    80,
+    90,
+    98.6,
+    100,
+    120,
+    150,
+    180,
+    200,
+    212,
+    250,
+    300,
+    350,
+    400,
+    450,
+    500,
+    1000
+  ],
+  "tableTitle": "Fahrenheit to Kelvin Conversion Chart (-459.67 °F to 1,000 °F)",
+  "tableSubtitle": "Thermodynamic temperature equivalents computed with K = (°F − 32) × 5/9 + 273.15.",
+  "tableRoundingNote": "Computed from exact SI thermodynamic definitions (0 °C = 273.15 K; 1 K = 1.8 °F). Exact benchmarks such as 32 °F, 68 °F, 98.6 °F, and 212 °F terminate cleanly; repeating fractions are rounded to 5 decimal places.",
   "workedExamples": [
     {
-      "title": "Standard Fahrenheit Benchmark (32 °F)",
-      "scenario": "Convert 32 fahrenheit (°F) into kelvin (K) for technical comparison and documentation.",
+      "title": "Water Freezing Point (32 °F)",
+      "scenario": "Convert the standard freezing point of pure water (32 °F) into absolute Kelvin.",
       "inputValue": 32,
       "outputValue": "273.15 K",
-      "stepByStep": "Apply the thermodynamic offset formula to 32 °F to obtain 273.15 K."
+      "stepByStep": "(32 − 32) × 5/9 + 273.15 = 0 + 273.15 = 273.15 K exact."
     },
     {
-      "title": "Practical Mid-Range Conversion (72 °F)",
-      "scenario": "Convert 72 fahrenheit (°F) into kelvin (K) for technical comparison and documentation.",
-      "inputValue": 72,
-      "outputValue": "295.372222 K",
-      "stepByStep": "Apply the thermodynamic offset formula to 72 °F to obtain 295.372222 K."
+      "title": "Standard Room Temperature (68 °F)",
+      "scenario": "Convert 68 °F laboratory reference room temperature into Kelvin for gas-law equations.",
+      "inputValue": 68,
+      "outputValue": "293.15 K",
+      "stepByStep": "(68 − 32) × 5/9 + 273.15 = 20 + 273.15 = 293.15 K exact."
     },
     {
-      "title": "Higher-Capacity Specification (212 °F)",
-      "scenario": "Convert 212 fahrenheit (°F) into kelvin (K) for technical comparison and documentation.",
+      "title": "Sea-Level Water Boiling Point (212 °F)",
+      "scenario": "Convert 212 °F boiling water temperature into Kelvin.",
       "inputValue": 212,
       "outputValue": "373.15 K",
-      "stepByStep": "Apply the thermodynamic offset formula to 212 °F to obtain 373.15 K."
+      "stepByStep": "(212 − 32) × 5/9 + 273.15 = 100 + 273.15 = 373.15 K exact."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Temperature Offset vs. Temperature Interval Trap",
+    "title": "Absolute Temperature Point vs. Temperature Interval & Degree Symbol",
     "items": [
-      "Converting a specific thermometer reading between Fahrenheit (°F) and Kelvin (K) requires applying the zero-point offset (+32 or +273.15). However, when converting a temperature change or difference (ΔT, such as a 10° rise), you must use only the scale ratio (1 °C = 1.8 °F = 1 K) without adding the offset.",
-      "Remember that -40 °C and -40 °F are the exact crossover point where both relative scales read the same value."
+      "Converting a specific thermometer reading from °F to K requires both the zero-point offset (−32 and +273.15) and the 5/9 scale factor. When converting a temperature difference or change (ΔT, such as a 18 °F rise), multiply only by 5/9 without any offset (Δ18 °F = Δ10 K).",
+      "Kelvin is an absolute thermodynamic scale written as 'K' without a degree sign (293.15 K, never 293.15 °K), and standard thermodynamic temperatures cannot fall below absolute zero (-459.67 °F = 0 K)."
     ]
   },
   "formula": {
@@ -58,53 +95,57 @@
   },
   "internalLinks": [
     {
-      "label": "Kelvin to Fahrenheit (K to °F)",
+      "label": "Kelvin to Fahrenheit Converter (K to °F)",
       "href": "/temperature/kelvin-to-fahrenheit",
       "type": "reverse"
     },
     {
-      "label": "Celsius to Fahrenheit (°C to °F)",
-      "href": "/temperature/celsius-to-fahrenheit",
-      "type": "related"
-    },
-    {
-      "label": "Fahrenheit to Celsius (°F to °C)",
+      "label": "Fahrenheit to Celsius Chart (°F to °C)",
       "href": "/temperature/fahrenheit-to-celsius",
       "type": "related"
     },
     {
-      "label": "Celsius to Kelvin (°C to K)",
+      "label": "Convert Celsius to Kelvin (°C to K)",
       "href": "/temperature/celsius-to-kelvin",
       "type": "related"
     },
     {
-      "label": "Kelvin to Celsius (K to °C)",
+      "label": "Kelvin to Celsius Calculator (K to °C)",
       "href": "/temperature/kelvin-to-celsius",
       "type": "related"
     },
     {
-      "label": "Temperature Conversions Hub",
+      "label": "Fahrenheit to Rankine Scale (°F to °R)",
+      "href": "/temperature/fahrenheit-to-rankine",
+      "type": "related"
+    },
+    {
+      "label": "All Temperature Unit Converters",
       "href": "/temperature",
       "type": "hub"
     },
     {
-      "label": "Celsius vs. Fahrenheit vs. Kelvin Temperature Scales Guide",
+      "label": "Celsius, Fahrenheit & Kelvin Scales Guide",
       "href": "/guides/temperature-scales-explained",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many kelvin (K) are in 1 fahrenheit (°F)?",
-      "answer": "There are 255.92777778 kelvin (K) in 1 fahrenheit (°F), which rounds to 255.9278 K for everyday calculations. Conversely, 1 kelvin equals -457.87 fahrenheit."
+      "question": "What is the formula to convert °F to Kelvin?",
+      "answer": "Subtract 32 from the Fahrenheit temperature, multiply by 5/9, and add 273.15: K = (°F − 32) × 5/9 + 273.15. Equivalently, K = (°F + 459.67) × 5/9."
     },
     {
-      "question": "How do I convert fahrenheit to kelvin (°F to K)?",
-      "answer": "To convert fahrenheit to kelvin, use the formula: K = (°F − 32) × 5/9 + 273.15. For example, converting 68 °F gives 293.15 K."
+      "question": "What is 0 °F in Kelvin?",
+      "answer": "0 °F equals 255.37222 K (about 255.37 K). At 1 °F, the temperature rises by 5/9 K to 255.92778 K."
     },
     {
-      "question": "What is 68 fahrenheit in kelvin?",
-      "answer": "68 fahrenheit (°F) equals exactly 293.15 kelvin (K) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "What is room temperature (68 °F or 72 °F) in Kelvin?",
+      "answer": "68 °F (20 °C) equals exactly 293.15 K, and 72 °F equals 295.37222 K (about 295.37 K)."
+    },
+    {
+      "question": "What is absolute zero (0 K) in Fahrenheit?",
+      "answer": "Absolute zero (0 K, or -273.15 °C) equals exactly -459.67 °F."
     }
   ]
 }

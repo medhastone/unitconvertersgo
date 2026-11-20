@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "pascal-to-psi",
   "category": "pressure",
   "categoryId": "pressure",
@@ -7,99 +7,141 @@
   "toUnitId": "psi",
   "fromSymbol": "Pa",
   "toSymbol": "psi",
-  "intro": "Professionals and everyday users convert pascals (Pa) to psi (psi) when working across si and imperial standards in automotive tire inflation placards, hydraulic cylinder design, scuba diving tanks, and barometric weather tracking. One pascal equals 0.000145 psi, while 1 pounds per square inch equals 6,894.757293 pascals. Whether you are verifying pressure specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Convert pressure in Pa (Pascals) to pounds per square inch (psi) accurately for HVAC static pressure, vacuum systems, hydraulic engineering, and meteorology. Under NIST and SI standards, 1 psi equals 6,894.75729 Pascals, so 1 Pa equals 0.00014504 psi—divide Pascals by 6,894.75729, or tap Swap to switch to a PSI to Pa converter. Check pressure benchmarks from 1 Pa to 10,000,000 Pa below.",
+  "alsoWrittenAs": "Pa to psi, pascals to pounds per square inch, Pa to lbf/in², pascal to psi",
   "commonValues": [
+    10,
+    100,
+    133.322,
+    500,
+    1000,
+    6894.76,
+    10000,
+    50000,
+    100000,
+    101325,
+    220000,
+    1000000
+  ],
+  "tableValues": [
+    1,
     10,
     50,
     100,
-    133.32,
+    133.322,
     500,
     1000,
+    2500,
     5000,
+    6894.76,
     10000,
+    25000,
     50000,
-    101325
+    100000,
+    101325,
+    150000,
+    200000,
+    220000,
+    250000,
+    300000,
+    500000,
+    1000000,
+    2000000,
+    5000000,
+    10000000
   ],
+  "tableTitle": "Pascals to PSI Conversion Chart (1 Pa to 10,000,000 Pa)",
+  "tableSubtitle": "HVAC, atmospheric & hydraulic equivalents computed with psi = Pa ÷ 6,894.75729.",
+  "tableRoundingNote": "Computed from exact SI/NIST definitions (1 Pa = 1 N/m²; 1 psi = 6,894.757293168 Pa, giving 1 Pa = 0.0001450377 psi). Table outputs are rounded to 5 decimal places.",
   "workedExamples": [
     {
-      "title": "Standard Pascal Benchmark (100 Pa)",
-      "scenario": "Convert 100 pascals (Pa) into psi (psi) for technical comparison and documentation.",
-      "inputValue": 100,
-      "outputValue": "0.014504 psi",
-      "stepByStep": "100 Pa × 0.000145 = 0.014504 psi (rounds to 0.01 psi)."
-    },
-    {
-      "title": "Practical Mid-Range Conversion (1000 Pa)",
-      "scenario": "Convert 1000 pascals (Pa) into psi (psi) for technical comparison and documentation.",
+      "title": "HVAC Static Pressure & 1 kPa (1,000 Pa)",
+      "scenario": "Convert 1,000 Pascals (1 kilopascal) into pounds per square inch.",
       "inputValue": 1000,
-      "outputValue": "0.145038 psi",
-      "stepByStep": "1000 Pa × 0.000145 = 0.145038 psi (rounds to 0.15 psi)."
+      "outputValue": "0.14504 psi",
+      "stepByStep": "1,000 Pa ÷ 6,894.75729 = 0.14504 psi."
     },
     {
-      "title": "Higher-Capacity Specification (50000 Pa)",
-      "scenario": "Convert 50000 pascals (Pa) into psi (psi) for technical comparison and documentation.",
-      "inputValue": 50000,
-      "outputValue": "7.251887 psi",
-      "stepByStep": "50000 Pa × 0.000145 = 7.251887 psi (rounds to 7.25 psi)."
+      "title": "Standard Sea-Level Atmosphere (101,325 Pa)",
+      "scenario": "Convert 1 standard atmosphere (101,325 Pa) into absolute psi (psia).",
+      "inputValue": 101325,
+      "outputValue": "14.69595 psi",
+      "stepByStep": "101,325 Pa ÷ 6,894.75729 = 14.69595 psi (standard atmospheric baseline)."
+    },
+    {
+      "title": "Passenger Car Tire Pressure (220,000 Pa)",
+      "scenario": "Convert 220,000 Pascals (220 kPa / 2.2 bar) into tire gauge psi.",
+      "inputValue": 220000,
+      "outputValue": "31.9083 psi",
+      "stepByStep": "220,000 Pa ÷ 6,894.75729 = 31.9083 psi (rounds to 32 psi)."
     }
   ],
   "mistakesAndEdgeCases": {
-    "title": "Gauge Pressure (psig) vs. Absolute Pressure (psia)",
+    "title": "Gauge (psig) vs. Absolute (psia) & Pascal Prefix Scaling (Pa, kPa, MPa)",
     "items": [
-      "This converter scales pressure magnitude directly between Pa and psi. In automotive tires, HVAC, and compressed air systems, gauges display Gauge Pressure (referenced to ambient atmospheric pressure, ~14.696 psi or 101.325 kPa at sea level).",
-      "For thermodynamic gas laws (PV = nRT) or vacuum chamber calculations, convert gauge pressure to absolute pressure by adding local barometric pressure before scaling."
+      "Tire and air-compressor gauges show gauge pressure (psig, referenced to local air pressure), while vacuum and gas-law calculations use absolute pressure (psia, referenced to zero vacuum): psig = psia − 14.69595 at sea level.",
+      "Verify SI prefixes before converting: 1 kPa = 1,000 Pa (0.14504 psi) and 1 MPa = 1,000,000 Pa (145.03774 psi)—omitting a prefix shifts the psi result by 1,000× or 1,000,000×."
     ]
   },
   "formula": {
-    "equation": "psi = Pa × 0.00014504",
+    "equation": "psi = Pa ÷ 6,894.75729",
     "exactFactor": "0.00014504",
-    "roundedFactor": "0.0001",
+    "roundedFactor": "0.000145",
     "inverseFactor": "6,894.757293"
   },
   "internalLinks": [
     {
-      "label": "PSI to Bars (psi to bar)",
-      "href": "/pressure/psi-to-bar",
-      "type": "related"
+      "label": "PSI to Pascal Converter (psi to Pa)",
+      "href": "/pressure/psi-to-pascal",
+      "type": "reverse"
     },
     {
-      "label": "Bars to PSI (bar to psi)",
-      "href": "/pressure/bar-to-psi",
-      "type": "related"
-    },
-    {
-      "label": "PSI to Kilopascals (psi to kPa)",
-      "href": "/pressure/psi-to-kpa",
-      "type": "related"
-    },
-    {
-      "label": "Kilopascals to PSI (kPa to psi)",
+      "label": "Kilopascals to PSI Chart (kPa to psi)",
       "href": "/pressure/kpa-to-psi",
       "type": "related"
     },
     {
-      "label": "Pressure Conversions Hub",
+      "label": "Megapascals to PSI Calculator (MPa to psi)",
+      "href": "/pressure/megapascal-to-psi",
+      "type": "related"
+    },
+    {
+      "label": "Convert PSI to Megapascals (psi to MPa)",
+      "href": "/pressure/psi-to-megapascal",
+      "type": "related"
+    },
+    {
+      "label": "Bar to PSI Reference Table (bar to psi)",
+      "href": "/pressure/bar-to-psi",
+      "type": "related"
+    },
+    {
+      "label": "All Pressure & Stress Converters",
       "href": "/pressure",
       "type": "hub"
     },
     {
-      "label": "PSI vs. Bar vs. kPa vs. Atmosphere Pressure Reference",
+      "label": "PSI, Bar, kPa & Pascal Pressure Guide",
       "href": "/guides/pressure-units-psi-bar-kpa-explained",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many psi (psi) are in 1 pascal (Pa)?",
-      "answer": "There are 0.00014504 psi (psi) in 1 pascal (Pa), which rounds to 0.0001 psi for everyday calculations. Conversely, 1 pounds per square inch equals 6,894.757293 pascals."
+      "question": "How many psi are in 1 pascal?",
+      "answer": "1 pascal equals 0.00014504 psi (1 ÷ 6,894.75729). Conversely, 1 psi equals 6,894.75729 Pascals (about 6.895 kPa)."
     },
     {
-      "question": "How do I convert pascals to psi (Pa to psi)?",
-      "answer": "To convert pascals to psi, use the formula: psi = Pa × 0.00014504. For example, converting 500 Pa gives 0.0725 psi."
+      "question": "How to convert psia to psi (psig)?",
+      "answer": "Everyday 'psi' on tire and compressor gauges refers to gauge pressure (psig). To convert absolute pressure (psia) to gauge pressure (psig) at sea level, subtract standard atmospheric pressure (14.69595 psi): psig = psia − 14.69595. At higher altitudes, subtract local barometric pressure."
     },
     {
-      "question": "What is 500 pascals in psi?",
-      "answer": "500 pascals (Pa) equals exactly 0.0725 psi (psi) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "How do I convert PSI to Pascals?",
+      "answer": "Multiply pounds per square inch by 6,894.75729: Pa = psi × 6,894.75729. For example, 10 psi × 6,894.75729 = 68,947.57 Pa (68.95 kPa)."
+    },
+    {
+      "question": "What is 100,000 Pascals (1 bar) in psi?",
+      "answer": "100,000 Pascals (100 kPa or 1 bar) equals 14.50377 psi."
     }
   ]
 }

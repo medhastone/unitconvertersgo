@@ -64,15 +64,24 @@ export interface CategoryFormulaCard {
   equation: string;
 }
 
+export interface CategoryWorkedExample {
+  title: string;
+  lines: string[];
+  note?: string;
+}
+
 export interface CategoryDashboardConfig {
   heroBadgeClass: string;
   sidebarIconClass: string;
   primaryUnitIds: [string, string, string];
   referenceRows: CategoryReferenceRow[];
+  tableRoundingNote?: string;
+  alsoWrittenAs?: string;
   formulaCards: [CategoryFormulaCard, CategoryFormulaCard, CategoryFormulaCard];
   workedExampleTitle: string;
   workedExampleLines: string[];
   workedExampleNote: string;
+  workedExamples?: CategoryWorkedExample[];
   quickInfoBullets: { boldPrefix: string; text: string }[];
   unitComparisonCards: {
     unitId: string;
@@ -508,6 +517,14 @@ export default function CategoryDashboardView({
             <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl">
               {heroDescription}
             </p>
+            {dashboardConfig?.alsoWrittenAs && (
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 pt-0.5">
+                <span className="font-semibold text-slate-600 dark:text-slate-300">
+                  Also written as:
+                </span>{" "}
+                {dashboardConfig.alsoWrittenAs}
+              </p>
+            )}
           </div>
         </div>
 
@@ -876,9 +893,11 @@ export default function CategoryDashboardView({
                     const isSelected =
                       fromUnitId === unitCol1.id &&
                       Math.abs(numericValue - row.rawVal1) < 0.0001;
+                    const rowAnchorId = `ref-${unitCol1.id}-${String(row.rawVal1).replace(/[^0-9a-zA-Z.-]/g, "-")}`;
                     return (
                       <tr
                         key={row.description}
+                        id={rowAnchorId}
                         tabIndex={0}
                         onClick={() =>
                           handleSelectPresetValue(
@@ -949,6 +968,11 @@ export default function CategoryDashboardView({
                 </tbody>
               </table>
             </div>
+            {dashboardConfig?.tableRoundingNote && (
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                {dashboardConfig.tableRoundingNote}
+              </p>
+            )}
           </section>
 
           {/* 3. CONVERSION FORMULAS SECTION */}
@@ -1021,22 +1045,47 @@ export default function CategoryDashboardView({
               </div>
             </div>
 
-            {/* Worked Example Callout Box */}
-            <div className="p-4 sm:p-5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/70 border border-slate-200/90 dark:border-slate-800 space-y-2">
-              <div className="text-base font-extrabold text-[#16324F] dark:text-white">
-                {workedExample.title}
-              </div>
-              <div className="font-mono text-[15px] sm:text-base text-slate-700 dark:text-slate-300 space-y-1">
-                {workedExample.lines.map((line, i) => (
-                  <div key={i}>{line}</div>
+            {/* Worked Example(s) Callout Box */}
+            {dashboardConfig?.workedExamples && dashboardConfig.workedExamples.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+                {dashboardConfig.workedExamples.map((ex) => (
+                  <div
+                    key={ex.title}
+                    className="p-4 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/70 border border-slate-200/90 dark:border-slate-800 space-y-2"
+                  >
+                    <div className="text-sm sm:text-base font-extrabold text-[#16324F] dark:text-white">
+                      {ex.title}
+                    </div>
+                    <div className="font-mono text-xs sm:text-sm text-slate-700 dark:text-slate-300 space-y-1">
+                      {ex.lines.map((line, i) => (
+                        <div key={i}>{line}</div>
+                      ))}
+                    </div>
+                    {ex.note && (
+                      <p className="pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        {ex.note}
+                      </p>
+                    )}
+                  </div>
                 ))}
               </div>
-              {workedExample.note && (
-                <p className="pt-1 text-sm sm:text-[15px] text-slate-600 dark:text-slate-400 leading-relaxed">
-                  {workedExample.note}
-                </p>
-              )}
-            </div>
+            ) : (
+              <div className="p-4 sm:p-5 rounded-xl bg-[#F7F9FC] dark:bg-slate-950/70 border border-slate-200/90 dark:border-slate-800 space-y-2">
+                <div className="text-base font-extrabold text-[#16324F] dark:text-white">
+                  {workedExample.title}
+                </div>
+                <div className="font-mono text-[15px] sm:text-base text-slate-700 dark:text-slate-300 space-y-1">
+                  {workedExample.lines.map((line, i) => (
+                    <div key={i}>{line}</div>
+                  ))}
+                </div>
+                {workedExample.note && (
+                  <p className="pt-1 text-sm sm:text-[15px] text-slate-600 dark:text-slate-400 leading-relaxed">
+                    {workedExample.note}
+                  </p>
+                )}
+              </div>
+            )}
           </section>
 
           {/* 4. POPULAR <CATEGORY> CONVERSIONS (Server-Rendered Category Links) */}

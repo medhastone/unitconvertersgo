@@ -1,5 +1,5 @@
 {
-  "status": "draft-needs-review",
+  "status": "reviewed",
   "slug": "sq-feet-to-acres",
   "category": "area",
   "categoryId": "area",
@@ -7,98 +7,142 @@
   "toUnitId": "acre",
   "fromSymbol": "ft²",
   "toSymbol": "ac",
-  "intro": "Professionals and everyday users convert square feet (ft²) to acres (ac) when working across imperial and imperial standards in real estate property deeds, agricultural land surveying, commercial floor plan leases, and civil zoning. One square foot equals 0.000023 acres, while 1 acre equals 43,560 square feet. Whether you are verifying area specifications on imported equipment, cross-checking technical datasheets, or scaling practical measurements, this converter applies the exact NIST SP 811 and ISO 80000 reference relationship with instant precision.",
+  "intro": "Calculate sq ft to acres accurately for residential house lots, commercial parcels, landscaping plans, and land surveys. By exact statutory definition, 1 acre equals 43,560 square feet (66 ft × 660 ft, or 1 chain by 1 furlong), which makes 1 square foot equal to 0.00002296 acres. Divide any square footage by 43,560 to get acreage, or inspect common lot sizes from 1 ft² to 435,600 ft² below—including quarter-acre and half-acre benchmarks.",
+  "alsoWrittenAs": "sq ft to acres, sq ft to ac, ft² to ac, square footage to acres, sq. ft. to acres",
   "commonValues": [
-    0.25,
-    0.5,
-    1,
-    2,
-    5,
-    10,
-    25,
-    50,
-    100,
-    500
+    1000,
+    4356,
+    6098,
+    6969,
+    7840,
+    8712,
+    10000,
+    10890,
+    21780,
+    43560,
+    87120,
+    217800
   ],
+  "tableValues": [
+    1,
+    16,
+    100,
+    128,
+    500,
+    1000,
+    2500,
+    4356,
+    5000,
+    6098,
+    6969,
+    7840,
+    8712,
+    10000,
+    10890,
+    15000,
+    20000,
+    21780,
+    30000,
+    32670,
+    43560,
+    65340,
+    87120,
+    100000,
+    217800,
+    435600
+  ],
+  "tableTitle": "Square Feet to Acres Conversion Chart (1 ft² to 435,600 ft²)",
+  "tableSubtitle": "Residential lot & land parcel benchmarks computed with ac = ft² ÷ 43,560.",
+  "tableRoundingNote": "Computed from the exact statutory definition (1 acre = 43,560 ft², giving 1 ft² = 0.00002295684 ac). Table outputs are rounded to 5 decimal places.",
   "workedExamples": [
     {
-      "title": "Standard Square Foot Benchmark (1 ft²)",
-      "scenario": "Convert 1 square feet (ft²) into acres (ac) for technical comparison and documentation.",
-      "inputValue": 1,
-      "outputValue": "0.000023 ac",
-      "stepByStep": "1 ft² × 0.000023 = 0.000023 ac (rounds to 0 ac)."
+      "title": "One-Tenth of an Acre Lot (4,356 ft²)",
+      "scenario": "Convert a compact 4,356 square foot urban parcel into acres.",
+      "inputValue": 4356,
+      "outputValue": "0.1 ac",
+      "stepByStep": "4,356 ft² ÷ 43,560 = 0.1 ac exact."
     },
     {
-      "title": "Practical Mid-Range Conversion (10 ft²)",
-      "scenario": "Convert 10 square feet (ft²) into acres (ac) for technical comparison and documentation.",
-      "inputValue": 10,
-      "outputValue": "0.00023 ac",
-      "stepByStep": "10 ft² × 0.000023 = 0.00023 ac (rounds to 0 ac)."
+      "title": "Standard Suburban Lot (10,000 ft²)",
+      "scenario": "Convert a 10,000 square foot (100 ft × 100 ft) residential lot into acres.",
+      "inputValue": 10000,
+      "outputValue": "0.22957 ac",
+      "stepByStep": "10,000 ft² ÷ 43,560 = 0.22957 ac (just under a quarter acre)."
     },
     {
-      "title": "Higher-Capacity Specification (100 ft²)",
-      "scenario": "Convert 100 square feet (ft²) into acres (ac) for technical comparison and documentation.",
-      "inputValue": 100,
-      "outputValue": "0.002296 ac",
-      "stepByStep": "100 ft² × 0.000023 = 0.002296 ac (rounds to 0 ac)."
+      "title": "Half-Acre Parcel Benchmark (21,780 ft²)",
+      "scenario": "Verify how many acres a 21,780 square foot property measures.",
+      "inputValue": 21780,
+      "outputValue": "0.5 ac",
+      "stepByStep": "21,780 ft² ÷ 43,560 = 0.5 ac exact."
     }
   ],
-  "mistakesAndEdgeCases": null,
+  "mistakesAndEdgeCases": {
+    "title": "'Square Acre' Misnomer & International vs. US Survey Foot",
+    "items": [
+      "An acre is already a unit of area (43,560 ft²), so 'square acre' is a common misnomer. If you want to go in the opposite direction—converting acres to square feet—tap Swap or use our Acres to Square Feet converter.",
+      "Legacy land deeds occasionally reference the US survey acre (retired by NIST at the end of 2022). The difference between the international acre and US survey acre is under 0.18 ft² per acre (~4 parts per million), negligible for real estate listings but worth checking on historic state-plane surveys."
+    ]
+  },
   "formula": {
-    "equation": "ac = ft² × 0.00002296",
+    "equation": "ac = ft² ÷ 43,560",
     "exactFactor": "0.00002296",
-    "roundedFactor": "0",
+    "roundedFactor": "0.000023",
     "inverseFactor": "43,560"
   },
   "internalLinks": [
     {
-      "label": "Acres to Square Feet (ac to ft²)",
+      "label": "Acres to Square Feet Converter (ac to ft²)",
       "href": "/area/acres-to-sq-feet",
       "type": "reverse"
     },
     {
-      "label": "Square Feet to Square Meters (ft² to m²)",
+      "label": "Square Feet to Square Meters Chart (ft² to m²)",
       "href": "/area/sq-feet-to-sq-meters",
       "type": "related"
     },
     {
-      "label": "Square Meters to Square Feet (m² to ft²)",
-      "href": "/area/sq-meters-to-sq-feet",
+      "label": "Square Feet to Square Yards Calculator (ft² to yd²)",
+      "href": "/area/sq-feet-to-sq-yards",
       "type": "related"
     },
     {
-      "label": "Acres to Hectares (ac to ha)",
+      "label": "Acres to Hectares Converter (ac to ha)",
       "href": "/area/acres-to-hectares",
       "type": "related"
     },
     {
-      "label": "Hectares to Acres (ha to ac)",
+      "label": "Hectares to Acres Reference (ha to ac)",
       "href": "/area/hectares-to-acres",
       "type": "related"
     },
     {
-      "label": "Area Conversions Hub",
+      "label": "All Area & Land Converters",
       "href": "/area",
       "type": "hub"
     },
     {
-      "label": "The Comprehensive Metric to Imperial Conversion Guide",
+      "label": "Metric to Imperial Conversion Guide",
       "href": "/guides/metric-to-imperial",
       "type": "guide"
     }
   ],
   "faqs": [
     {
-      "question": "How many acres (ac) are in 1 square foot (ft²)?",
-      "answer": "There are 0.00002296 acres (ac) in 1 square foot (ft²), which rounds to 0 ac for everyday calculations. Conversely, 1 acre equals 43,560 square feet."
+      "question": "How many square feet are in half an acre?",
+      "answer": "Half an acre equals exactly 21,780 square feet (0.5 × 43,560 ft²). If the lot were a perfect square, each side would measure about 147.58 feet."
     },
     {
-      "question": "How do I convert square feet to acres (ft² to ac)?",
-      "answer": "To convert square feet to acres, use the formula: ac = ft² × 0.00002296. For example, converting 5 ft² gives 0.0001 ac."
+      "question": "What is the square footage of a quarter acre?",
+      "answer": "A quarter acre (0.25 ac) equals exactly 10,890 square feet (0.25 × 43,560 ft²)—for example, a rectangular lot measuring 90 ft × 121 ft."
     },
     {
-      "question": "What is 5 square feet in acres?",
-      "answer": "5 square feet (ft²) equals exactly 0.0001 acres (ac) using standard NIST SP 811 and ISO 80000 conversion factors."
+      "question": "How many acres is 10,000 square feet?",
+      "answer": "10,000 square feet equals 0.22957 acres (10,000 ÷ 43,560), which is slightly less than a quarter acre (0.25 ac = 10,890 ft²)."
+    },
+    {
+      "question": "What is the sq footage in 1 acre?",
+      "answer": "There are exactly 43,560 square feet in 1 acre. A square 1-acre parcel measures approximately 208.71 feet on each side."
     }
   ]
 }
